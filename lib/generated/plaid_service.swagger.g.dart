@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'plaid.swagger.dart';
+part of 'plaid_service.swagger.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

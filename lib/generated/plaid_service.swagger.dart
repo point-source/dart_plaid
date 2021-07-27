@@ -4,28 +4,28 @@ import 'package:collection/collection.dart';
 
 import 'package:chopper/chopper.dart';
 import 'package:chopper/chopper.dart' as chopper;
-import 'plaid.enums.swagger.dart' as enums;
-export 'plaid.enums.swagger.dart';
+import 'plaid_service.enums.swagger.dart' as enums;
+export 'plaid_service.enums.swagger.dart';
 
-part 'plaid.swagger.chopper.dart';
-part 'plaid.swagger.g.dart';
+part 'plaid_service.swagger.chopper.dart';
+part 'plaid_service.swagger.g.dart';
 
 // **************************************************************************
 // SwaggerChopperGenerator
 // **************************************************************************
 
 @ChopperApi()
-abstract class Plaid extends ChopperService {
-  static Plaid create([ChopperClient? client]) {
+abstract class PlaidService extends ChopperService {
+  static PlaidService create([ChopperClient? client]) {
     if (client != null) {
-      return _$Plaid(client);
+      return _$PlaidService(client);
     }
 
     final newClient = ChopperClient(
-        services: [_$Plaid()],
+        services: [_$PlaidService()],
         converter: JsonSerializableConverter(),
         baseUrl: 'https://');
-    return _$Plaid(newClient);
+    return _$PlaidService(newClient);
   }
 
   ///List a user’s connected applications
@@ -574,7 +574,7 @@ abstract class Plaid extends ChopperService {
 }
 
 final Map<Type, Object Function(Map<String, dynamic>)>
-    PlaidJsonDecoderMappings = {
+    PlaidServiceJsonDecoderMappings = {
   ItemGetRequest: ItemGetRequest.fromJsonFactory,
   ItemGetResponse: ItemGetResponse.fromJsonFactory,
   AuthGetRequest: AuthGetRequest.fromJsonFactory,
@@ -21653,7 +21653,7 @@ class JsonSerializableConverter extends chopper.JsonConverter {
   }
 }
 
-final jsonDecoder = CustomJsonDecoder(PlaidJsonDecoderMappings);
+final jsonDecoder = CustomJsonDecoder(PlaidServiceJsonDecoderMappings);
 
 // ignore: unused_element
 String? _dateToJson(DateTime? date) {

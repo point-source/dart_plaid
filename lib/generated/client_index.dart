@@ -1,1 +1,1 @@
-export 'plaid.swagger.dart' show Plaid;
+export 'plaid_service.swagger.dart' show PlaidService;
