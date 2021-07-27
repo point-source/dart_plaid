@@ -20265,32 +20265,32 @@ List<enums.StudentRepaymentPlanType> studentRepaymentPlanTypeListFromJson(
       .toList();
 }
 
-String? aPRAprTypeToJson(enums.APRAprType? aPRAprType) {
-  return enums.$APRAprTypeMap[aPRAprType];
+String? aPRAprTypeToJson(enums.AprAprType? aPRAprType) {
+  return enums.$AprAprTypeMap[aPRAprType];
 }
 
-enums.APRAprType aPRAprTypeFromJson(String? aPRAprType) {
+enums.AprAprType aPRAprTypeFromJson(String? aPRAprType) {
   if (aPRAprType == null) {
-    return enums.APRAprType.swaggerGeneratedUnknown;
+    return enums.AprAprType.swaggerGeneratedUnknown;
   }
 
-  return enums.$APRAprTypeMap.entries
+  return enums.$AprAprTypeMap.entries
       .firstWhere(
           (element) => element.value.toLowerCase() == aPRAprType.toLowerCase(),
           orElse: () =>
-              const MapEntry(enums.APRAprType.swaggerGeneratedUnknown, ''))
+              const MapEntry(enums.AprAprType.swaggerGeneratedUnknown, ''))
       .key;
 }
 
-List<String> aPRAprTypeListToJson(List<enums.APRAprType>? aPRAprType) {
+List<String> aPRAprTypeListToJson(List<enums.AprAprType>? aPRAprType) {
   if (aPRAprType == null) {
     return [];
   }
 
-  return aPRAprType.map((e) => enums.$APRAprTypeMap[e]!).toList();
+  return aPRAprType.map((e) => enums.$AprAprTypeMap[e]!).toList();
 }
 
-List<enums.APRAprType> aPRAprTypeListFromJson(List? aPRAprType) {
+List<enums.AprAprType> aPRAprTypeListFromJson(List? aPRAprType) {
   if (aPRAprType == null) {
     return [];
   }

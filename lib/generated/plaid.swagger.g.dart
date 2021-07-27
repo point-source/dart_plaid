@@ -3735,11 +3735,11 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$AprAprTypeEnumMap = {
-  AprAprType.swaggerGeneratedUnknown: 'swaggerGeneratedUnknown',
-  AprAprType.balanceTransferApr: 'balance_transfer_apr',
-  AprAprType.cashApr: 'cash_apr',
-  AprAprType.purchaseApr: 'purchase_apr',
-  AprAprType.special: 'special',
+  enums.AprAprType.swaggerGeneratedUnknown: 'swaggerGeneratedUnknown',
+  enums.AprAprType.balanceTransferApr: 'balance_transfer_apr',
+  enums.AprAprType.cashApr: 'cash_apr',
+  enums.AprAprType.purchaseApr: 'purchase_apr',
+  enums.AprAprType.special: 'special',
 };
 
 PaymentInitiationMetadata _$PaymentInitiationMetadataFromJson(
