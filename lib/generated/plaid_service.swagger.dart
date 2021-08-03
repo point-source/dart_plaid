@@ -10727,7 +10727,8 @@ class Apr {
 
   @JsonKey(name: 'apr_percentage')
   final double? aprPercentage;
-  @JsonKey(name: 'apr_type')
+  @JsonKey(
+      name: 'apr_type', toJson: aprAprTypeToJson, fromJson: aprAprTypeFromJson)
   final enums.AprAprType? aprType;
   @JsonKey(name: 'balance_subject_to_apr')
   final double? balanceSubjectToApr;
@@ -17361,7 +17362,7 @@ class Paystub {
   @JsonKey(name: 'income_breakdown')
   final IncomeBreakdown? incomeBreakdown;
   @JsonKey(name: 'ytd_earnings')
-  final Object? ytdEarnings;
+  final dynamic? ytdEarnings;
   static const fromJsonFactory = _$PaystubFromJson;
   static const toJsonFactory = _$PaystubToJson;
   Map<String, dynamic> toJson() => _$PaystubToJson(this);
@@ -17398,7 +17399,7 @@ extension $PaystubExtension on Paystub {
       Employee? employee,
       PayPeriodDetails? payPeriodDetails,
       IncomeBreakdown? incomeBreakdown,
-      Object? ytdEarnings}) {
+      dynamic? ytdEarnings}) {
     return Paystub(
         accountId: accountId ?? this.accountId,
         employer: employer ?? this.employer,
@@ -20265,37 +20266,37 @@ List<enums.StudentRepaymentPlanType> studentRepaymentPlanTypeListFromJson(
       .toList();
 }
 
-String? aPRAprTypeToJson(enums.AprAprType? aPRAprType) {
-  return enums.$AprAprTypeMap[aPRAprType];
+String? aprAprTypeToJson(enums.AprAprType? aprAprType) {
+  return enums.$AprAprTypeMap[aprAprType];
 }
 
-enums.AprAprType aPRAprTypeFromJson(String? aPRAprType) {
-  if (aPRAprType == null) {
+enums.AprAprType aprAprTypeFromJson(String? aprAprType) {
+  if (aprAprType == null) {
     return enums.AprAprType.swaggerGeneratedUnknown;
   }
 
   return enums.$AprAprTypeMap.entries
       .firstWhere(
-          (element) => element.value.toLowerCase() == aPRAprType.toLowerCase(),
+          (element) => element.value.toLowerCase() == aprAprType.toLowerCase(),
           orElse: () =>
               const MapEntry(enums.AprAprType.swaggerGeneratedUnknown, ''))
       .key;
 }
 
-List<String> aPRAprTypeListToJson(List<enums.AprAprType>? aPRAprType) {
-  if (aPRAprType == null) {
+List<String> aprAprTypeListToJson(List<enums.AprAprType>? aprAprType) {
+  if (aprAprType == null) {
     return [];
   }
 
-  return aPRAprType.map((e) => enums.$AprAprTypeMap[e]!).toList();
+  return aprAprType.map((e) => enums.$AprAprTypeMap[e]!).toList();
 }
 
-List<enums.AprAprType> aPRAprTypeListFromJson(List? aPRAprType) {
-  if (aPRAprType == null) {
+List<enums.AprAprType> aprAprTypeListFromJson(List? aprAprType) {
+  if (aprAprType == null) {
     return [];
   }
 
-  return aPRAprType.map((e) => aPRAprTypeFromJson(e.toString())).toList();
+  return aprAprType.map((e) => aprAprTypeFromJson(e.toString())).toList();
 }
 
 String? paymentScheduleIntervalToJson(

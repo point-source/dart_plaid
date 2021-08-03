@@ -3684,7 +3684,7 @@ Map<String, dynamic> _$ServicerAddressDataToJson(
 Apr _$AprFromJson(Map<String, dynamic> json) {
   return Apr(
     aprPercentage: (json['apr_percentage'] as num?)?.toDouble(),
-    aprType: _$enumDecodeNullable(_$AprAprTypeEnumMap, json['apr_type']),
+    aprType: aprAprTypeFromJson(json['apr_type'] as String?),
     balanceSubjectToApr: (json['balance_subject_to_apr'] as num?)?.toDouble(),
     interestChargeAmount: (json['interest_charge_amount'] as num?)?.toDouble(),
   );
@@ -3692,55 +3692,10 @@ Apr _$AprFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AprToJson(Apr instance) => <String, dynamic>{
       'apr_percentage': instance.aprPercentage,
-      'apr_type': _$AprAprTypeEnumMap[instance.aprType],
+      'apr_type': aprAprTypeToJson(instance.aprType),
       'balance_subject_to_apr': instance.balanceSubjectToApr,
       'interest_charge_amount': instance.interestChargeAmount,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
-
-const _$AprAprTypeEnumMap = {
-  enums.AprAprType.swaggerGeneratedUnknown: 'swaggerGeneratedUnknown',
-  enums.AprAprType.balanceTransferApr: 'balance_transfer_apr',
-  enums.AprAprType.cashApr: 'cash_apr',
-  enums.AprAprType.purchaseApr: 'purchase_apr',
-  enums.AprAprType.special: 'special',
-};
 
 PaymentInitiationMetadata _$PaymentInitiationMetadataFromJson(
     Map<String, dynamic> json) {
