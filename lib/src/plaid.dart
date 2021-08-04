@@ -1,31 +1,25 @@
 import 'package:chopper/chopper.dart';
+import 'package:dart_plaid/generated/client_index.dart';
 import 'package:dart_plaid/generated/plaid_service.swagger.dart';
 
 class Plaid {
-  Plaid(this.clientId, this.clientSecret);
+  static PlaidService create(String clientId, String secret,
+      {PlaidEnvironment environment = PlaidEnvironment.production}) {
+    final env = environment.toString().split('.').last;
 
-  String clientId;
-  String clientSecret;
-
-  PlaidService? _sandbox;
-  PlaidService? _development;
-  PlaidService? _production;
-
-  PlaidService get sandbox => _sandbox ??= _buildClient('sandbox');
-
-  PlaidService get development => _development ??= _buildClient('development');
-
-  PlaidService get production => _production ??= _buildClient('production');
-
-  PlaidService _buildClient(String flavor) => ChopperClient(
-          services: [PlaidService.create()],
-          interceptors: [_interceptor],
-          converter: JsonSerializableConverter(),
-          baseUrl: 'https://$flavor.plaid.com')
-      .getService<PlaidService>();
-
-  Future<Request> Function(Request) get _interceptor =>
-      (Request request) async => applyHeaders(
-          request, {'PLAID-CLIENT-ID': clientId, 'PLAID-SECRET': clientSecret},
+    interceptor(Request request) async {
+      return applyHeaders(
+          request, {'PLAID-CLIENT-ID': clientId, 'PLAID-SECRET': secret},
           override: false);
+    }
+
+    return ChopperClient(
+            services: [PlaidService.create()],
+            interceptors: [interceptor],
+            converter: JsonSerializableConverter(),
+            baseUrl: 'https://$env.plaid.com')
+        .getService<PlaidService>();
+  }
 }
+
+enum PlaidEnvironment { production, development, sandbox }
