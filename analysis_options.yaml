@@ -12,8 +12,6 @@ include: package:lints/recommended.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
-    - "**/*.swagger.dart"
-    - "**/*.swagger.chopper.dart"
   plugins:
     - dart_code_metrics
 

@@ -12,6 +12,40 @@ const $SandboxItemFireWebhookRequestWebhookCodeMap = {
   SandboxItemFireWebhookRequestWebhookCode.swaggerGeneratedUnknown: ''
 };
 
+enum PaymentInitiationPaymentReverseResponseStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PROCESSING')
+  processing,
+  @JsonValue('EXECUTED')
+  executed,
+  @JsonValue('INITIATED')
+  initiated,
+  @JsonValue('FAILED')
+  failed
+}
+
+const $PaymentInitiationPaymentReverseResponseStatusMap = {
+  PaymentInitiationPaymentReverseResponseStatus.processing: 'PROCESSING',
+  PaymentInitiationPaymentReverseResponseStatus.executed: 'EXECUTED',
+  PaymentInitiationPaymentReverseResponseStatus.initiated: 'INITIATED',
+  PaymentInitiationPaymentReverseResponseStatus.failed: 'FAILED',
+  PaymentInitiationPaymentReverseResponseStatus.swaggerGeneratedUnknown: ''
+};
+
+enum PaymentInitiationPaymentCreateResponseStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PAYMENT_STATUS_INPUT_NEEDED')
+  paymentStatusInputNeeded
+}
+
+const $PaymentInitiationPaymentCreateResponseStatusMap = {
+  PaymentInitiationPaymentCreateResponseStatus.paymentStatusInputNeeded:
+      'PAYMENT_STATUS_INPUT_NEEDED',
+  PaymentInitiationPaymentCreateResponseStatus.swaggerGeneratedUnknown: ''
+};
+
 enum SandboxItemSetVerificationStatusRequestVerificationStatus {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -48,7 +82,17 @@ enum PaymentInitiationPaymentStatus {
   @JsonValue('PAYMENT_STATUS_BLOCKED')
   paymentStatusBlocked,
   @JsonValue('PAYMENT_STATUS_UNKNOWN')
-  paymentStatusUnknown
+  paymentStatusUnknown,
+  @JsonValue('PAYMENT_STATUS_EXECUTED')
+  paymentStatusExecuted,
+  @JsonValue('PAYMENT_STATUS_AUTHORISING')
+  paymentStatusAuthorising,
+  @JsonValue('PAYMENT_STATUS_CANCELLED')
+  paymentStatusCancelled,
+  @JsonValue('PAYMENT_STATUS_ESTABLISHED')
+  paymentStatusEstablished,
+  @JsonValue('PAYMENT_STATUS_REJECTED')
+  paymentStatusRejected
 }
 
 const $PaymentInitiationPaymentStatusMap = {
@@ -65,7 +109,113 @@ const $PaymentInitiationPaymentStatusMap = {
   PaymentInitiationPaymentStatus.paymentStatusFailed: 'PAYMENT_STATUS_FAILED',
   PaymentInitiationPaymentStatus.paymentStatusBlocked: 'PAYMENT_STATUS_BLOCKED',
   PaymentInitiationPaymentStatus.paymentStatusUnknown: 'PAYMENT_STATUS_UNKNOWN',
+  PaymentInitiationPaymentStatus.paymentStatusExecuted:
+      'PAYMENT_STATUS_EXECUTED',
+  PaymentInitiationPaymentStatus.paymentStatusAuthorising:
+      'PAYMENT_STATUS_AUTHORISING',
+  PaymentInitiationPaymentStatus.paymentStatusCancelled:
+      'PAYMENT_STATUS_CANCELLED',
+  PaymentInitiationPaymentStatus.paymentStatusEstablished:
+      'PAYMENT_STATUS_ESTABLISHED',
+  PaymentInitiationPaymentStatus.paymentStatusRejected:
+      'PAYMENT_STATUS_REJECTED',
   PaymentInitiationPaymentStatus.swaggerGeneratedUnknown: ''
+};
+
+enum PaymentInitiationRefundStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PROCESSING')
+  processing,
+  @JsonValue('INITIATED')
+  initiated,
+  @JsonValue('EXECUTED')
+  executed,
+  @JsonValue('FAILED')
+  failed
+}
+
+const $PaymentInitiationRefundStatusMap = {
+  PaymentInitiationRefundStatus.processing: 'PROCESSING',
+  PaymentInitiationRefundStatus.initiated: 'INITIATED',
+  PaymentInitiationRefundStatus.executed: 'EXECUTED',
+  PaymentInitiationRefundStatus.failed: 'FAILED',
+  PaymentInitiationRefundStatus.swaggerGeneratedUnknown: ''
+};
+
+enum ProcessorTokenCreateRequestProcessor {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('achq')
+  achq,
+  @JsonValue('alpaca')
+  alpaca,
+  @JsonValue('astra')
+  astra,
+  @JsonValue('check')
+  check,
+  @JsonValue('checkbook')
+  checkbook,
+  @JsonValue('circle')
+  circle,
+  @JsonValue('drivewealth')
+  drivewealth,
+  @JsonValue('dwolla')
+  dwolla,
+  @JsonValue('galileo')
+  galileo,
+  @JsonValue('lithic')
+  lithic,
+  @JsonValue('modern_treasury')
+  modernTreasury,
+  @JsonValue('moov')
+  moov,
+  @JsonValue('ocrolus')
+  ocrolus,
+  @JsonValue('prime_trust')
+  primeTrust,
+  @JsonValue('rize')
+  rize,
+  @JsonValue('sila_money')
+  silaMoney,
+  @JsonValue('svb_api')
+  svbApi,
+  @JsonValue('treasury_prime')
+  treasuryPrime,
+  @JsonValue('unit')
+  unit,
+  @JsonValue('vesta')
+  vesta,
+  @JsonValue('vopay')
+  vopay,
+  @JsonValue('wyre')
+  wyre
+}
+
+const $ProcessorTokenCreateRequestProcessorMap = {
+  ProcessorTokenCreateRequestProcessor.achq: 'achq',
+  ProcessorTokenCreateRequestProcessor.alpaca: 'alpaca',
+  ProcessorTokenCreateRequestProcessor.astra: 'astra',
+  ProcessorTokenCreateRequestProcessor.check: 'check',
+  ProcessorTokenCreateRequestProcessor.checkbook: 'checkbook',
+  ProcessorTokenCreateRequestProcessor.circle: 'circle',
+  ProcessorTokenCreateRequestProcessor.drivewealth: 'drivewealth',
+  ProcessorTokenCreateRequestProcessor.dwolla: 'dwolla',
+  ProcessorTokenCreateRequestProcessor.galileo: 'galileo',
+  ProcessorTokenCreateRequestProcessor.lithic: 'lithic',
+  ProcessorTokenCreateRequestProcessor.modernTreasury: 'modern_treasury',
+  ProcessorTokenCreateRequestProcessor.moov: 'moov',
+  ProcessorTokenCreateRequestProcessor.ocrolus: 'ocrolus',
+  ProcessorTokenCreateRequestProcessor.primeTrust: 'prime_trust',
+  ProcessorTokenCreateRequestProcessor.rize: 'rize',
+  ProcessorTokenCreateRequestProcessor.silaMoney: 'sila_money',
+  ProcessorTokenCreateRequestProcessor.svbApi: 'svb_api',
+  ProcessorTokenCreateRequestProcessor.treasuryPrime: 'treasury_prime',
+  ProcessorTokenCreateRequestProcessor.unit: 'unit',
+  ProcessorTokenCreateRequestProcessor.vesta: 'vesta',
+  ProcessorTokenCreateRequestProcessor.vopay: 'vopay',
+  ProcessorTokenCreateRequestProcessor.wyre: 'wyre',
+  ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown: ''
 };
 
 enum DepositSwitchCreateRequestCountryCode {
@@ -136,7 +286,9 @@ enum ErrorErrorType {
   @JsonValue('PAYMENT_ERROR')
   paymentError,
   @JsonValue('BANK_TRANSFER_ERROR')
-  bankTransferError
+  bankTransferError,
+  @JsonValue('INCOME_VERIFICATION_ERROR')
+  incomeVerificationError
 }
 
 const $ErrorErrorTypeMap = {
@@ -152,6 +304,7 @@ const $ErrorErrorTypeMap = {
   ErrorErrorType.oauthError: 'OAUTH_ERROR',
   ErrorErrorType.paymentError: 'PAYMENT_ERROR',
   ErrorErrorType.bankTransferError: 'BANK_TRANSFER_ERROR',
+  ErrorErrorType.incomeVerificationError: 'INCOME_VERIFICATION_ERROR',
   ErrorErrorType.swaggerGeneratedUnknown: ''
 };
 
@@ -193,6 +346,8 @@ enum OverrideAccountType {
   depository,
   @JsonValue('loan')
   loan,
+  @JsonValue('payroll')
+  payroll,
   @JsonValue('other')
   other
 }
@@ -202,6 +357,7 @@ const $OverrideAccountTypeMap = {
   OverrideAccountType.credit: 'credit',
   OverrideAccountType.depository: 'depository',
   OverrideAccountType.loan: 'loan',
+  OverrideAccountType.payroll: 'payroll',
   OverrideAccountType.other: 'other',
   OverrideAccountType.swaggerGeneratedUnknown: ''
 };
@@ -209,6 +365,8 @@ const $OverrideAccountTypeMap = {
 enum AccountBaseVerificationStatus {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
+  @JsonValue('automatically_verified')
+  automaticallyVerified,
   @JsonValue('pending_automatic_verification')
   pendingAutomaticVerification,
   @JsonValue('pending_manual_verification')
@@ -222,6 +380,7 @@ enum AccountBaseVerificationStatus {
 }
 
 const $AccountBaseVerificationStatusMap = {
+  AccountBaseVerificationStatus.automaticallyVerified: 'automatically_verified',
   AccountBaseVerificationStatus.pendingAutomaticVerification:
       'pending_automatic_verification',
   AccountBaseVerificationStatus.pendingManualVerification:
@@ -253,6 +412,8 @@ enum AccountSubtype {
   educationSavingsAccount,
   @JsonValue('ebt')
   ebt,
+  @JsonValue('fixed annuity')
+  fixedAnnuity,
   @JsonValue('gic')
   gic,
   @JsonValue('health reimbursement arrangement')
@@ -347,8 +508,6 @@ enum AccountSubtype {
   construction,
   @JsonValue('consumer')
   consumer,
-  @JsonValue('home')
-  home,
   @JsonValue('home equity')
   homeEquity,
   @JsonValue('loan')
@@ -375,6 +534,8 @@ enum AccountSubtype {
   safeDeposit,
   @JsonValue('sarsep')
   sarsep,
+  @JsonValue('payroll')
+  payroll,
   @JsonValue('null')
   $null
 }
@@ -389,6 +550,7 @@ const $AccountSubtypeMap = {
   AccountSubtype.cashIsa: 'cash isa',
   AccountSubtype.educationSavingsAccount: 'education savings account',
   AccountSubtype.ebt: 'ebt',
+  AccountSubtype.fixedAnnuity: 'fixed annuity',
   AccountSubtype.gic: 'gic',
   AccountSubtype.healthReimbursementArrangement:
       'health reimbursement arrangement',
@@ -437,7 +599,6 @@ const $AccountSubtypeMap = {
   AccountSubtype.commercial: 'commercial',
   AccountSubtype.construction: 'construction',
   AccountSubtype.consumer: 'consumer',
-  AccountSubtype.home: 'home',
   AccountSubtype.homeEquity: 'home equity',
   AccountSubtype.loan: 'loan',
   AccountSubtype.mortgage: 'mortgage',
@@ -451,11 +612,12 @@ const $AccountSubtypeMap = {
   AccountSubtype.rewards: 'rewards',
   AccountSubtype.safeDeposit: 'safe deposit',
   AccountSubtype.sarsep: 'sarsep',
+  AccountSubtype.payroll: 'payroll',
   AccountSubtype.$null: 'null',
   AccountSubtype.swaggerGeneratedUnknown: ''
 };
 
-enum TransactionTransactionType {
+enum TransactionBaseTransactionType {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
   @JsonValue('digital')
@@ -468,12 +630,12 @@ enum TransactionTransactionType {
   unresolved
 }
 
-const $TransactionTransactionTypeMap = {
-  TransactionTransactionType.digital: 'digital',
-  TransactionTransactionType.place: 'place',
-  TransactionTransactionType.special: 'special',
-  TransactionTransactionType.unresolved: 'unresolved',
-  TransactionTransactionType.swaggerGeneratedUnknown: ''
+const $TransactionBaseTransactionTypeMap = {
+  TransactionBaseTransactionType.digital: 'digital',
+  TransactionBaseTransactionType.place: 'place',
+  TransactionBaseTransactionType.special: 'special',
+  TransactionBaseTransactionType.unresolved: 'unresolved',
+  TransactionBaseTransactionType.swaggerGeneratedUnknown: ''
 };
 
 enum TransactionPaymentChannel {
@@ -494,6 +656,30 @@ const $TransactionPaymentChannelMap = {
   TransactionPaymentChannel.swaggerGeneratedUnknown: ''
 };
 
+enum RecurringTransactionFrequency {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('UNKNOWN')
+  unknown,
+  @JsonValue('WEEKLY')
+  weekly,
+  @JsonValue('BIWEEKLY')
+  biweekly,
+  @JsonValue('SEMI_MONTHLY')
+  semiMonthly,
+  @JsonValue('MONTHLY')
+  monthly
+}
+
+const $RecurringTransactionFrequencyMap = {
+  RecurringTransactionFrequency.unknown: 'UNKNOWN',
+  RecurringTransactionFrequency.weekly: 'WEEKLY',
+  RecurringTransactionFrequency.biweekly: 'BIWEEKLY',
+  RecurringTransactionFrequency.semiMonthly: 'SEMI_MONTHLY',
+  RecurringTransactionFrequency.monthly: 'MONTHLY',
+  RecurringTransactionFrequency.swaggerGeneratedUnknown: ''
+};
+
 enum CountryCode {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -510,7 +696,9 @@ enum CountryCode {
   @JsonValue('IE')
   ie,
   @JsonValue('CA')
-  ca
+  ca,
+  @JsonValue('DE')
+  de
 }
 
 const $CountryCodeMap = {
@@ -521,6 +709,7 @@ const $CountryCodeMap = {
   CountryCode.fr: 'FR',
   CountryCode.ie: 'IE',
   CountryCode.ca: 'CA',
+  CountryCode.de: 'DE',
   CountryCode.swaggerGeneratedUnknown: ''
 };
 
@@ -787,7 +976,9 @@ enum Products {
   @JsonValue('deposit_switch')
   depositSwitch,
   @JsonValue('standing_orders')
-  standingOrders
+  standingOrders,
+  @JsonValue('transfer')
+  transfer
 }
 
 const $ProductsMap = {
@@ -804,6 +995,7 @@ const $ProductsMap = {
   Products.incomeVerification: 'income_verification',
   Products.depositSwitch: 'deposit_switch',
   Products.standingOrders: 'standing_orders',
+  Products.transfer: 'transfer',
   Products.swaggerGeneratedUnknown: ''
 };
 
@@ -841,6 +1033,18 @@ const $ProductStatusBreakdownRefreshIntervalMap = {
   ProductStatusBreakdownRefreshInterval.delayed: 'DELAYED',
   ProductStatusBreakdownRefreshInterval.stopped: 'STOPPED',
   ProductStatusBreakdownRefreshInterval.swaggerGeneratedUnknown: ''
+};
+
+enum WarningWarningCode {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('OWNERS_UNAVAILABLE')
+  ownersUnavailable
+}
+
+const $WarningWarningCodeMap = {
+  WarningWarningCode.ownersUnavailable: 'OWNERS_UNAVAILABLE',
+  WarningWarningCode.swaggerGeneratedUnknown: ''
 };
 
 enum PaymentAmountCurrency {
@@ -1139,13 +1343,16 @@ enum DepositSwitchGetResponseSwitchMethod {
   @JsonValue('mail')
   mail,
   @JsonValue('pdf')
-  pdf
+  pdf,
+  @JsonValue('null')
+  $null
 }
 
 const $DepositSwitchGetResponseSwitchMethodMap = {
   DepositSwitchGetResponseSwitchMethod.instant: 'instant',
   DepositSwitchGetResponseSwitchMethod.mail: 'mail',
   DepositSwitchGetResponseSwitchMethod.pdf: 'pdf',
+  DepositSwitchGetResponseSwitchMethod.$null: 'null',
   DepositSwitchGetResponseSwitchMethod.swaggerGeneratedUnknown: ''
 };
 
@@ -1203,6 +1410,61 @@ const $ACHClassMap = {
   ACHClass.swaggerGeneratedUnknown: ''
 };
 
+enum TransferIntentCreateMode {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PAYMENT')
+  payment,
+  @JsonValue('DISBURSEMENT')
+  disbursement
+}
+
+const $TransferIntentCreateModeMap = {
+  TransferIntentCreateMode.payment: 'PAYMENT',
+  TransferIntentCreateMode.disbursement: 'DISBURSEMENT',
+  TransferIntentCreateMode.swaggerGeneratedUnknown: ''
+};
+
+enum TransferAuthorizationDecisionRationaleCode {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('NSF')
+  nsf,
+  @JsonValue('RISK')
+  risk,
+  @JsonValue('MANUALLY_VERIFIED_ITEM')
+  manuallyVerifiedItem,
+  @JsonValue('LOGIN_REQUIRED')
+  loginRequired,
+  @JsonValue('ERROR')
+  error
+}
+
+const $TransferAuthorizationDecisionRationaleCodeMap = {
+  TransferAuthorizationDecisionRationaleCode.nsf: 'NSF',
+  TransferAuthorizationDecisionRationaleCode.risk: 'RISK',
+  TransferAuthorizationDecisionRationaleCode.manuallyVerifiedItem:
+      'MANUALLY_VERIFIED_ITEM',
+  TransferAuthorizationDecisionRationaleCode.loginRequired: 'LOGIN_REQUIRED',
+  TransferAuthorizationDecisionRationaleCode.error: 'ERROR',
+  TransferAuthorizationDecisionRationaleCode.swaggerGeneratedUnknown: ''
+};
+
+enum TransferType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('debit')
+  debit,
+  @JsonValue('credit')
+  credit
+}
+
+const $TransferTypeMap = {
+  TransferType.debit: 'debit',
+  TransferType.credit: 'credit',
+  TransferType.swaggerGeneratedUnknown: ''
+};
+
 enum BankTransferType {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1216,6 +1478,51 @@ const $BankTransferTypeMap = {
   BankTransferType.debit: 'debit',
   BankTransferType.credit: 'credit',
   BankTransferType.swaggerGeneratedUnknown: ''
+};
+
+enum TransferStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('pending')
+  pending,
+  @JsonValue('posted')
+  posted,
+  @JsonValue('cancelled')
+  cancelled,
+  @JsonValue('failed')
+  failed,
+  @JsonValue('reversed')
+  reversed
+}
+
+const $TransferStatusMap = {
+  TransferStatus.pending: 'pending',
+  TransferStatus.posted: 'posted',
+  TransferStatus.cancelled: 'cancelled',
+  TransferStatus.failed: 'failed',
+  TransferStatus.reversed: 'reversed',
+  TransferStatus.swaggerGeneratedUnknown: ''
+};
+
+enum TransferSweepStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('null')
+  $null,
+  @JsonValue('unswept')
+  unswept,
+  @JsonValue('swept')
+  swept,
+  @JsonValue('reverse_swept')
+  reverseSwept
+}
+
+const $TransferSweepStatusMap = {
+  TransferSweepStatus.$null: 'null',
+  TransferSweepStatus.unswept: 'unswept',
+  TransferSweepStatus.swept: 'swept',
+  TransferSweepStatus.reverseSwept: 'reverse_swept',
+  TransferSweepStatus.swaggerGeneratedUnknown: ''
 };
 
 enum BankTransferStatus {
@@ -1242,6 +1549,21 @@ const $BankTransferStatusMap = {
   BankTransferStatus.swaggerGeneratedUnknown: ''
 };
 
+enum TransferNetwork {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('ach')
+  ach,
+  @JsonValue('same-day-ach')
+  sameDayAch
+}
+
+const $TransferNetworkMap = {
+  TransferNetwork.ach: 'ach',
+  TransferNetwork.sameDayAch: 'same-day-ach',
+  TransferNetwork.swaggerGeneratedUnknown: ''
+};
+
 enum BankTransferNetwork {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1260,6 +1582,24 @@ const $BankTransferNetworkMap = {
   BankTransferNetwork.swaggerGeneratedUnknown: ''
 };
 
+enum TransferAuthorizationDecision {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('approved')
+  approved,
+  @JsonValue('permitted')
+  permitted,
+  @JsonValue('declined')
+  declined
+}
+
+const $TransferAuthorizationDecisionMap = {
+  TransferAuthorizationDecision.approved: 'approved',
+  TransferAuthorizationDecision.permitted: 'permitted',
+  TransferAuthorizationDecision.declined: 'declined',
+  TransferAuthorizationDecision.swaggerGeneratedUnknown: ''
+};
+
 enum BankTransferDirection {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1276,6 +1616,24 @@ const $BankTransferDirectionMap = {
   BankTransferDirection.inbound: 'inbound',
   BankTransferDirection.$null: 'null',
   BankTransferDirection.swaggerGeneratedUnknown: ''
+};
+
+enum TransferEventListRequestTransferType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('debit')
+  debit,
+  @JsonValue('credit')
+  credit,
+  @JsonValue('null')
+  $null
+}
+
+const $TransferEventListRequestTransferTypeMap = {
+  TransferEventListRequestTransferType.debit: 'debit',
+  TransferEventListRequestTransferType.credit: 'credit',
+  TransferEventListRequestTransferType.$null: 'null',
+  TransferEventListRequestTransferType.swaggerGeneratedUnknown: ''
 };
 
 enum BankTransferEventListRequestBankTransferType {
@@ -1314,6 +1672,36 @@ const $BankTransferEventListRequestDirectionMap = {
   BankTransferEventListRequestDirection.swaggerGeneratedUnknown: ''
 };
 
+enum TransferEventType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('pending')
+  pending,
+  @JsonValue('cancelled')
+  cancelled,
+  @JsonValue('failed')
+  failed,
+  @JsonValue('posted')
+  posted,
+  @JsonValue('reversed')
+  reversed,
+  @JsonValue('swept')
+  swept,
+  @JsonValue('reverse_swept')
+  reverseSwept
+}
+
+const $TransferEventTypeMap = {
+  TransferEventType.pending: 'pending',
+  TransferEventType.cancelled: 'cancelled',
+  TransferEventType.failed: 'failed',
+  TransferEventType.posted: 'posted',
+  TransferEventType.reversed: 'reversed',
+  TransferEventType.swept: 'swept',
+  TransferEventType.reverseSwept: 'reverse_swept',
+  TransferEventType.swaggerGeneratedUnknown: ''
+};
+
 enum BankTransferEventType {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1344,6 +1732,60 @@ const $BankTransferEventTypeMap = {
   BankTransferEventType.swaggerGeneratedUnknown: ''
 };
 
+enum TransferIntentCreateStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PENDING')
+  pending,
+  @JsonValue('SUCCEEDED')
+  succeeded,
+  @JsonValue('FAILED')
+  failed
+}
+
+const $TransferIntentCreateStatusMap = {
+  TransferIntentCreateStatus.pending: 'PENDING',
+  TransferIntentCreateStatus.succeeded: 'SUCCEEDED',
+  TransferIntentCreateStatus.failed: 'FAILED',
+  TransferIntentCreateStatus.swaggerGeneratedUnknown: ''
+};
+
+enum TransferIntentGetStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PENDING')
+  pending,
+  @JsonValue('SUCCEEDED')
+  succeeded,
+  @JsonValue('FAILED')
+  failed
+}
+
+const $TransferIntentGetStatusMap = {
+  TransferIntentGetStatus.pending: 'PENDING',
+  TransferIntentGetStatus.succeeded: 'SUCCEEDED',
+  TransferIntentGetStatus.failed: 'FAILED',
+  TransferIntentGetStatus.swaggerGeneratedUnknown: ''
+};
+
+enum TransferIntentGetAuthorizationDecision {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('APPROVED')
+  approved,
+  @JsonValue('PERMITTED')
+  permitted,
+  @JsonValue('DECLINED')
+  declined
+}
+
+const $TransferIntentGetAuthorizationDecisionMap = {
+  TransferIntentGetAuthorizationDecision.approved: 'APPROVED',
+  TransferIntentGetAuthorizationDecision.permitted: 'PERMITTED',
+  TransferIntentGetAuthorizationDecision.declined: 'DECLINED',
+  TransferIntentGetAuthorizationDecision.swaggerGeneratedUnknown: ''
+};
+
 enum BankTransferReceiverDetailsAvailableBalance {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1360,6 +1802,51 @@ const $BankTransferReceiverDetailsAvailableBalanceMap = {
   BankTransferReceiverDetailsAvailableBalance.negative: 'negative',
   BankTransferReceiverDetailsAvailableBalance.$null: 'null',
   BankTransferReceiverDetailsAvailableBalance.swaggerGeneratedUnknown: ''
+};
+
+enum IncomeVerificationPrecheckMilitaryInfoBranch {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('AIR FORCE')
+  airForce,
+  @JsonValue('ARMY')
+  army,
+  @JsonValue('COAST GUARD')
+  coastGuard,
+  @JsonValue('MARINES')
+  marines,
+  @JsonValue('NAVY')
+  navy,
+  @JsonValue('UNKNOWN')
+  unknown
+}
+
+const $IncomeVerificationPrecheckMilitaryInfoBranchMap = {
+  IncomeVerificationPrecheckMilitaryInfoBranch.airForce: 'AIR FORCE',
+  IncomeVerificationPrecheckMilitaryInfoBranch.army: 'ARMY',
+  IncomeVerificationPrecheckMilitaryInfoBranch.coastGuard: 'COAST GUARD',
+  IncomeVerificationPrecheckMilitaryInfoBranch.marines: 'MARINES',
+  IncomeVerificationPrecheckMilitaryInfoBranch.navy: 'NAVY',
+  IncomeVerificationPrecheckMilitaryInfoBranch.unknown: 'UNKNOWN',
+  IncomeVerificationPrecheckMilitaryInfoBranch.swaggerGeneratedUnknown: ''
+};
+
+enum IncomeVerificationPrecheckConfidence {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('HIGH')
+  high,
+  @JsonValue('LOW')
+  low,
+  @JsonValue('UNKNOWN')
+  unknown
+}
+
+const $IncomeVerificationPrecheckConfidenceMap = {
+  IncomeVerificationPrecheckConfidence.high: 'HIGH',
+  IncomeVerificationPrecheckConfidence.low: 'LOW',
+  IncomeVerificationPrecheckConfidence.unknown: 'UNKNOWN',
+  IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown: ''
 };
 
 enum PayFrequencyValue {
@@ -1413,6 +1900,178 @@ const $VerificationStatusMap = {
   VerificationStatus.swaggerGeneratedUnknown: ''
 };
 
+enum VerificationRefreshStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('VERIFICATION_REFRESH_STATUS_USER_PRESENCE_REQUIRED')
+  verificationRefreshStatusUserPresenceRequired,
+  @JsonValue('VERIFICATION_REFRESH_SUCCESSFUL')
+  verificationRefreshSuccessful,
+  @JsonValue('VERIFICATION_REFRESH_NOT_FOUND')
+  verificationRefreshNotFound
+}
+
+const $VerificationRefreshStatusMap = {
+  VerificationRefreshStatus.verificationRefreshStatusUserPresenceRequired:
+      'VERIFICATION_REFRESH_STATUS_USER_PRESENCE_REQUIRED',
+  VerificationRefreshStatus.verificationRefreshSuccessful:
+      'VERIFICATION_REFRESH_SUCCESSFUL',
+  VerificationRefreshStatus.verificationRefreshNotFound:
+      'VERIFICATION_REFRESH_NOT_FOUND',
+  VerificationRefreshStatus.swaggerGeneratedUnknown: ''
+};
+
+enum DocType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('UNKNOWN')
+  unknown,
+  @JsonValue('DOCUMENT_TYPE_PAYSTUB')
+  documentTypePaystub,
+  @JsonValue('DOCUMENT_TYPE_BANK_STATEMENT')
+  documentTypeBankStatement,
+  @JsonValue('DOCUMENT_TYPE_US_TAX_W2')
+  documentTypeUsTaxW2,
+  @JsonValue('DOCUMENT_TYPE_US_MILITARY_ERAS')
+  documentTypeUsMilitaryEras,
+  @JsonValue('DOCUMENT_TYPE_US_MILITARY_LES')
+  documentTypeUsMilitaryLes,
+  @JsonValue('DOCUMENT_TYPE_US_MILITARY_CLES')
+  documentTypeUsMilitaryCles,
+  @JsonValue('DOCUMENT_TYPE_GIG')
+  documentTypeGig
+}
+
+const $DocTypeMap = {
+  DocType.unknown: 'UNKNOWN',
+  DocType.documentTypePaystub: 'DOCUMENT_TYPE_PAYSTUB',
+  DocType.documentTypeBankStatement: 'DOCUMENT_TYPE_BANK_STATEMENT',
+  DocType.documentTypeUsTaxW2: 'DOCUMENT_TYPE_US_TAX_W2',
+  DocType.documentTypeUsMilitaryEras: 'DOCUMENT_TYPE_US_MILITARY_ERAS',
+  DocType.documentTypeUsMilitaryLes: 'DOCUMENT_TYPE_US_MILITARY_LES',
+  DocType.documentTypeUsMilitaryCles: 'DOCUMENT_TYPE_US_MILITARY_CLES',
+  DocType.documentTypeGig: 'DOCUMENT_TYPE_GIG',
+  DocType.swaggerGeneratedUnknown: ''
+};
+
+enum TotalCanonicalDescription {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('BONUS')
+  bonus,
+  @JsonValue('COMMISSION')
+  commission,
+  @JsonValue('OVERTIME')
+  overtime,
+  @JsonValue('PAID TIME OFF')
+  paidTimeOff,
+  @JsonValue('REGULAR PAY')
+  regularPay,
+  @JsonValue('VACATION')
+  vacation,
+  @JsonValue('EMPLOYEE MEDICARE')
+  employeeMedicare,
+  @JsonValue('FICA')
+  fica,
+  @JsonValue('SOCIAL SECURITY EMPLOYEE TAX')
+  socialSecurityEmployeeTax,
+  @JsonValue('MEDICAL')
+  medical,
+  @JsonValue('VISION')
+  vision,
+  @JsonValue('DENTAL')
+  dental,
+  @JsonValue('NET PAY')
+  netPay,
+  @JsonValue('TAXES')
+  taxes,
+  @JsonValue('NOT_FOUND')
+  notFound,
+  @JsonValue('OTHER')
+  other,
+  @JsonValue('null')
+  $null
+}
+
+const $TotalCanonicalDescriptionMap = {
+  TotalCanonicalDescription.bonus: 'BONUS',
+  TotalCanonicalDescription.commission: 'COMMISSION',
+  TotalCanonicalDescription.overtime: 'OVERTIME',
+  TotalCanonicalDescription.paidTimeOff: 'PAID TIME OFF',
+  TotalCanonicalDescription.regularPay: 'REGULAR PAY',
+  TotalCanonicalDescription.vacation: 'VACATION',
+  TotalCanonicalDescription.employeeMedicare: 'EMPLOYEE MEDICARE',
+  TotalCanonicalDescription.fica: 'FICA',
+  TotalCanonicalDescription.socialSecurityEmployeeTax:
+      'SOCIAL SECURITY EMPLOYEE TAX',
+  TotalCanonicalDescription.medical: 'MEDICAL',
+  TotalCanonicalDescription.vision: 'VISION',
+  TotalCanonicalDescription.dental: 'DENTAL',
+  TotalCanonicalDescription.netPay: 'NET PAY',
+  TotalCanonicalDescription.taxes: 'TAXES',
+  TotalCanonicalDescription.notFound: 'NOT_FOUND',
+  TotalCanonicalDescription.other: 'OTHER',
+  TotalCanonicalDescription.$null: 'null',
+  TotalCanonicalDescription.swaggerGeneratedUnknown: ''
+};
+
+enum EarningsBreakdownCanonicalDescription {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('BONUS')
+  bonus,
+  @JsonValue('COMMISSION')
+  commission,
+  @JsonValue('OVERTIME')
+  overtime,
+  @JsonValue('PAID TIME OFF')
+  paidTimeOff,
+  @JsonValue('REGULAR PAY')
+  regularPay,
+  @JsonValue('VACATION')
+  vacation,
+  @JsonValue('OTHER')
+  other,
+  @JsonValue('null')
+  $null
+}
+
+const $EarningsBreakdownCanonicalDescriptionMap = {
+  EarningsBreakdownCanonicalDescription.bonus: 'BONUS',
+  EarningsBreakdownCanonicalDescription.commission: 'COMMISSION',
+  EarningsBreakdownCanonicalDescription.overtime: 'OVERTIME',
+  EarningsBreakdownCanonicalDescription.paidTimeOff: 'PAID TIME OFF',
+  EarningsBreakdownCanonicalDescription.regularPay: 'REGULAR PAY',
+  EarningsBreakdownCanonicalDescription.vacation: 'VACATION',
+  EarningsBreakdownCanonicalDescription.other: 'OTHER',
+  EarningsBreakdownCanonicalDescription.$null: 'null',
+  EarningsBreakdownCanonicalDescription.swaggerGeneratedUnknown: ''
+};
+
+enum PaystubPayFrequency {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('MONTHLY')
+  monthly,
+  @JsonValue('BI-WEEKLY')
+  biWeekly,
+  @JsonValue('WEEKLY')
+  weekly,
+  @JsonValue('SEMI-MONTHLY')
+  semiMonthly,
+  @JsonValue('null')
+  $null
+}
+
+const $PaystubPayFrequencyMap = {
+  PaystubPayFrequency.monthly: 'MONTHLY',
+  PaystubPayFrequency.biWeekly: 'BI-WEEKLY',
+  PaystubPayFrequency.weekly: 'WEEKLY',
+  PaystubPayFrequency.semiMonthly: 'SEMI-MONTHLY',
+  PaystubPayFrequency.$null: 'null',
+  PaystubPayFrequency.swaggerGeneratedUnknown: ''
+};
+
 enum IncomeBreakdownType {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -1432,6 +2091,134 @@ const $IncomeBreakdownTypeMap = {
   IncomeBreakdownType.regular: 'regular',
   IncomeBreakdownType.$null: 'null',
   IncomeBreakdownType.swaggerGeneratedUnknown: ''
+};
+
+enum PayPeriodDetailsPayFrequency {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PAY_FREQUENCY_UNKNOWN')
+  payFrequencyUnknown,
+  @JsonValue('PAY_FREQUENCY_WEEKLY')
+  payFrequencyWeekly,
+  @JsonValue('PAY_FREQUENCY_BIWEEKLY')
+  payFrequencyBiweekly,
+  @JsonValue('PAY_FREQUENCY_SEMIMONTHLY')
+  payFrequencySemimonthly,
+  @JsonValue('PAY_FREQUENCY_MONTHLY')
+  payFrequencyMonthly,
+  @JsonValue('null')
+  $null
+}
+
+const $PayPeriodDetailsPayFrequencyMap = {
+  PayPeriodDetailsPayFrequency.payFrequencyUnknown: 'PAY_FREQUENCY_UNKNOWN',
+  PayPeriodDetailsPayFrequency.payFrequencyWeekly: 'PAY_FREQUENCY_WEEKLY',
+  PayPeriodDetailsPayFrequency.payFrequencyBiweekly: 'PAY_FREQUENCY_BIWEEKLY',
+  PayPeriodDetailsPayFrequency.payFrequencySemimonthly:
+      'PAY_FREQUENCY_SEMIMONTHLY',
+  PayPeriodDetailsPayFrequency.payFrequencyMonthly: 'PAY_FREQUENCY_MONTHLY',
+  PayPeriodDetailsPayFrequency.$null: 'null',
+  PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown: ''
+};
+
+enum PaystubVerificationStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PAYSTUB_VERIFICATION_STATUS_UNKNOWN')
+  paystubVerificationStatusUnknown,
+  @JsonValue('PAYSTUB_VERIFICATION_STATUS_VERIFIED')
+  paystubVerificationStatusVerified,
+  @JsonValue('PAYSTUB_VERIFICATION_STATUS_FRAUDULENT')
+  paystubVerificationStatusFraudulent,
+  @JsonValue('null')
+  $null
+}
+
+const $PaystubVerificationStatusMap = {
+  PaystubVerificationStatus.paystubVerificationStatusUnknown:
+      'PAYSTUB_VERIFICATION_STATUS_UNKNOWN',
+  PaystubVerificationStatus.paystubVerificationStatusVerified:
+      'PAYSTUB_VERIFICATION_STATUS_VERIFIED',
+  PaystubVerificationStatus.paystubVerificationStatusFraudulent:
+      'PAYSTUB_VERIFICATION_STATUS_FRAUDULENT',
+  PaystubVerificationStatus.$null: 'null',
+  PaystubVerificationStatus.swaggerGeneratedUnknown: ''
+};
+
+enum VerificationAttributeType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_UNKNOWN')
+  verificationAttributeTypeUnknown,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_AMOUNT_MATCH')
+  verificationAttributeTypeAmountMatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_DATE_MATCH')
+  verificationAttributeTypeDateMatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_DATE_MISMATCH')
+  verificationAttributeTypeDateMismatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_FILE_TAMPERING')
+  verificationAttributeTypeFileTampering,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_DESCRIPTION_MATCH')
+  verificationAttributeTypeDescriptionMatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_DESCRIPTION_MISMATCH')
+  verificationAttributeTypeDescriptionMismatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_FIRST_NAME_MATCH')
+  verificationAttributeTypeFirstNameMatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_FIRST_NAME_MISMATCH')
+  verificationAttributeTypeFirstNameMismatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_LAST_NAME_MATCH')
+  verificationAttributeTypeLastNameMatch,
+  @JsonValue('VERIFICATION_ATTRIBUTE_TYPE_LAST_NAME_MISMATCH')
+  verificationAttributeTypeLastNameMismatch,
+  @JsonValue('null')
+  $null
+}
+
+const $VerificationAttributeTypeMap = {
+  VerificationAttributeType.verificationAttributeTypeUnknown:
+      'VERIFICATION_ATTRIBUTE_TYPE_UNKNOWN',
+  VerificationAttributeType.verificationAttributeTypeAmountMatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_AMOUNT_MATCH',
+  VerificationAttributeType.verificationAttributeTypeDateMatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_DATE_MATCH',
+  VerificationAttributeType.verificationAttributeTypeDateMismatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_DATE_MISMATCH',
+  VerificationAttributeType.verificationAttributeTypeFileTampering:
+      'VERIFICATION_ATTRIBUTE_TYPE_FILE_TAMPERING',
+  VerificationAttributeType.verificationAttributeTypeDescriptionMatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_DESCRIPTION_MATCH',
+  VerificationAttributeType.verificationAttributeTypeDescriptionMismatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_DESCRIPTION_MISMATCH',
+  VerificationAttributeType.verificationAttributeTypeFirstNameMatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_FIRST_NAME_MATCH',
+  VerificationAttributeType.verificationAttributeTypeFirstNameMismatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_FIRST_NAME_MISMATCH',
+  VerificationAttributeType.verificationAttributeTypeLastNameMatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_LAST_NAME_MATCH',
+  VerificationAttributeType.verificationAttributeTypeLastNameMismatch:
+      'VERIFICATION_ATTRIBUTE_TYPE_LAST_NAME_MISMATCH',
+  VerificationAttributeType.$null: 'null',
+  VerificationAttributeType.swaggerGeneratedUnknown: ''
+};
+
+enum EmploymentVerificationStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('EMPLOYMENT_STATUS_ACTIVE')
+  employmentStatusActive,
+  @JsonValue('EMPLOYMENT_STATUS_INACTIVE')
+  employmentStatusInactive,
+  @JsonValue('null')
+  $null
+}
+
+const $EmploymentVerificationStatusMap = {
+  EmploymentVerificationStatus.employmentStatusActive:
+      'EMPLOYMENT_STATUS_ACTIVE',
+  EmploymentVerificationStatus.employmentStatusInactive:
+      'EMPLOYMENT_STATUS_INACTIVE',
+  EmploymentVerificationStatus.$null: 'null',
+  EmploymentVerificationStatus.swaggerGeneratedUnknown: ''
 };
 
 enum IncidentUpdateStatus {
@@ -1486,6 +2273,21 @@ const $DepositSwitchTargetAccountAccountSubtypeMap = {
   DepositSwitchTargetAccountAccountSubtype.checking: 'checking',
   DepositSwitchTargetAccountAccountSubtype.savings: 'savings',
   DepositSwitchTargetAccountAccountSubtype.swaggerGeneratedUnknown: ''
+};
+
+enum ScopesContext {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('ENROLLMENT')
+  enrollment,
+  @JsonValue('PORTAL')
+  portal
+}
+
+const $ScopesContextMap = {
+  ScopesContext.enrollment: 'ENROLLMENT',
+  ScopesContext.portal: 'PORTAL',
+  ScopesContext.swaggerGeneratedUnknown: ''
 };
 
 enum ConnectedApplicationProductDataTypes {
@@ -1547,4 +2349,49 @@ const $SandboxIncomeFireWebhookRequestVerificationStatusMap = {
           .verificationStatusProcessingFailed:
       'VERIFICATION_STATUS_PROCESSING_FAILED',
   SandboxIncomeFireWebhookRequestVerificationStatus.swaggerGeneratedUnknown: ''
+};
+
+enum WalletTransactionAmountIsoCurrencyCode {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('GBP')
+  gbp
+}
+
+const $WalletTransactionAmountIsoCurrencyCodeMap = {
+  WalletTransactionAmountIsoCurrencyCode.gbp: 'GBP',
+  WalletTransactionAmountIsoCurrencyCode.swaggerGeneratedUnknown: ''
+};
+
+enum WalletTransactionStatus {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('INITIATED')
+  initiated,
+  @JsonValue('EXECUTED')
+  executed,
+  @JsonValue('BLOCKED')
+  blocked,
+  @JsonValue('FAILED')
+  failed
+}
+
+const $WalletTransactionStatusMap = {
+  WalletTransactionStatus.initiated: 'INITIATED',
+  WalletTransactionStatus.executed: 'EXECUTED',
+  WalletTransactionStatus.blocked: 'BLOCKED',
+  WalletTransactionStatus.failed: 'FAILED',
+  WalletTransactionStatus.swaggerGeneratedUnknown: ''
+};
+
+enum WalletTransactionType {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('PAYOUT')
+  payout
+}
+
+const $WalletTransactionTypeMap = {
+  WalletTransactionType.payout: 'PAYOUT',
+  WalletTransactionType.swaggerGeneratedUnknown: ''
 };

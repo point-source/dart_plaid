@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
@@ -23,554 +22,586 @@ abstract class PlaidService extends ChopperService {
 
     final newClient = ChopperClient(
         services: [_$PlaidService()],
-        converter: JsonSerializableConverter(),
+        converter: $JsonSerializableConverter(),
         baseUrl: 'https://');
     return _$PlaidService(newClient);
   }
 
   ///List a user’s connected applications
-  ///@param body
-
   @Post(path: '/item/application/list')
-  Future<chopper.Response<ItemApplicationListResponse>> itemApplicationList(
-      {@Body() @required ItemApplicationListRequest? body});
+  Future<chopper.Response<ItemApplicationListResponse>> itemApplicationListPost(
+      {@Body() required ItemApplicationListRequest? body});
 
   ///Update the scopes of access for a particular application
-  ///@param body
-
   @Post(path: '/item/application/scopes/update')
   Future<chopper.Response<ItemApplicationScopesUpdateResponse>>
-      itemApplicationScopesUpdate(
-          {@Body() @required ItemApplicationScopesUpdateRequest? body});
+      itemApplicationScopesUpdatePost(
+          {@Body() required ItemApplicationScopesUpdateRequest? body});
 
   ///Retrieve information about a Plaid application
-  ///@param body
-
   @Post(path: '/application/get')
-  Future<chopper.Response<ApplicationGetResponse>> applicationGet(
-      {@Body() @required ApplicationGetRequest? body});
+  Future<chopper.Response<ApplicationGetResponse>> applicationGetPost(
+      {@Body() required ApplicationGetRequest? body});
 
   ///Retrieve an Item
-  ///@param body
-
   @Post(path: '/item/get')
-  Future<chopper.Response<ItemGetResponse>> itemGet(
-      {@Body() @required ItemGetRequest? body});
+  Future<chopper.Response<ItemGetResponse>> itemGetPost(
+      {@Body() required ItemGetRequest? body});
 
   ///Retrieve auth data
-  ///@param body
-
   @Post(path: '/auth/get')
-  Future<chopper.Response<AuthGetResponse>> authGet(
-      {@Body() @required AuthGetRequest? body});
+  Future<chopper.Response<AuthGetResponse>> authGetPost(
+      {@Body() required AuthGetRequest? body});
 
   ///Get transaction data
-  ///@param body
-
   @Post(path: '/transactions/get')
-  Future<chopper.Response<TransactionsGetResponse>> transactionsGet(
-      {@Body() @required TransactionsGetRequest? body});
+  Future<chopper.Response<TransactionsGetResponse>> transactionsGetPost(
+      {@Body() required TransactionsGetRequest? body});
 
   ///Refresh transaction data
-  ///@param body
-
   @Post(path: '/transactions/refresh')
-  Future<chopper.Response<TransactionsRefreshResponse>> transactionsRefresh(
-      {@Body() @required TransactionsRefreshRequest? body});
+  Future<chopper.Response<TransactionsRefreshResponse>> transactionsRefreshPost(
+      {@Body() required TransactionsRefreshRequest? body});
+
+  ///Get streams of recurring transactions
+  @Post(path: '/transactions/recurring/get')
+  Future<chopper.Response<TransactionsRecurringGetResponse>>
+      transactionsRecurringGetPost(
+          {@Body() required TransactionsRecurringGetRequest? body});
+
+  ///Get incremental transaction updates on an item
+  @Post(path: '/transactions/sync')
+  Future<chopper.Response<TransactionsSyncResponse>> transactionsSyncPost(
+      {@Body() required TransactionsSyncRequest? body});
 
   ///Get details of all supported institutions
-  ///@param body
-
   @Post(path: '/institutions/get')
-  Future<chopper.Response<InstitutionsGetResponse>> institutionsGet(
-      {@Body() @required InstitutionsGetRequest? body});
+  Future<chopper.Response<InstitutionsGetResponse>> institutionsGetPost(
+      {@Body() required InstitutionsGetRequest? body});
 
   ///Search institutions
-  ///@param body
-
   @Post(path: '/institutions/search')
-  Future<chopper.Response<InstitutionsSearchResponse>> institutionsSearch(
-      {@Body() @required InstitutionsSearchRequest? body});
+  Future<chopper.Response<InstitutionsSearchResponse>> institutionsSearchPost(
+      {@Body() required InstitutionsSearchRequest? body});
 
   ///Get details of an institution
-  ///@param body
-
   @Post(path: '/institutions/get_by_id')
-  Future<chopper.Response<InstitutionsGetByIdResponse>> institutionsGetById(
-      {@Body() @required InstitutionsGetByIdRequest? body});
+  Future<chopper.Response<InstitutionsGetByIdResponse>> institutionsGetByIdPost(
+      {@Body() required InstitutionsGetByIdRequest? body});
 
   ///Remove an Item
-  ///@param body
-
   @Post(path: '/item/remove')
-  Future<chopper.Response<ItemRemoveResponse>> itemRemove(
-      {@Body() @required ItemRemoveRequest? body});
+  Future<chopper.Response<ItemRemoveResponse>> itemRemovePost(
+      {@Body() required ItemRemoveRequest? body});
 
   ///Retrieve accounts
-  ///@param body
-
   @Post(path: '/accounts/get')
-  Future<chopper.Response<AccountsGetResponse>> accountsGet(
-      {@Body() @required AccountsGetRequest? body});
+  Future<chopper.Response<AccountsGetResponse>> accountsGetPost(
+      {@Body() required AccountsGetRequest? body});
 
   ///Get Categories
-  ///@param body
-
   @Post(path: '/categories/get')
-  Future<chopper.Response<CategoriesGetResponse>> categoriesGet(
-      {@Body() @required CategoriesGetRequest? body});
+  Future<chopper.Response<CategoriesGetResponse>> categoriesGetPost(
+      {@Body() required CategoriesGetRequest? body});
 
   ///Create a test Item and processor token
-  ///@param body
-
   @Post(path: '/sandbox/processor_token/create')
   Future<chopper.Response<SandboxProcessorTokenCreateResponse>>
-      sandboxProcessorTokenCreate(
-          {@Body() @required SandboxProcessorTokenCreateRequest? body});
+      sandboxProcessorTokenCreatePost(
+          {@Body() required SandboxProcessorTokenCreateRequest? body});
 
   ///Create a test Item
-  ///@param body
-
   @Post(path: '/sandbox/public_token/create')
   Future<chopper.Response<SandboxPublicTokenCreateResponse>>
-      sandboxPublicTokenCreate(
-          {@Body() @required SandboxPublicTokenCreateRequest? body});
+      sandboxPublicTokenCreatePost(
+          {@Body() required SandboxPublicTokenCreateRequest? body});
 
   ///Fire a test webhook
-  ///@param body
-
   @Post(path: '/sandbox/item/fire_webhook')
   Future<chopper.Response<SandboxItemFireWebhookResponse>>
-      sandboxItemFireWebhook(
-          {@Body() @required SandboxItemFireWebhookRequest? body});
+      sandboxItemFireWebhookPost(
+          {@Body() required SandboxItemFireWebhookRequest? body});
 
   ///Retrieve real-time balance data
-  ///@param body
-
   @Post(path: '/accounts/balance/get')
-  Future<chopper.Response<AccountsGetResponse>> accountsBalanceGet(
-      {@Body() @required AccountsBalanceGetRequest? body});
+  Future<chopper.Response<AccountsGetResponse>> accountsBalanceGetPost(
+      {@Body() required AccountsBalanceGetRequest? body});
 
   ///Retrieve identity data
-  ///@param body
-
   @Post(path: '/identity/get')
-  Future<chopper.Response<IdentityGetResponse>> identityGet(
-      {@Body() @required IdentityGetRequest? body});
+  Future<chopper.Response<IdentityGetResponse>> identityGetPost(
+      {@Body() required IdentityGetRequest? body});
 
   ///Retrieve Auth data
-  ///@param body
-
   @Post(path: '/processor/auth/get')
-  Future<chopper.Response<ProcessorAuthGetResponse>> processorAuthGet(
-      {@Body() @required ProcessorAuthGetRequest? body});
+  Future<chopper.Response<ProcessorAuthGetResponse>> processorAuthGetPost(
+      {@Body() required ProcessorAuthGetRequest? body});
+
+  ///Create a bank transfer as a processor
+  @Post(path: '/processor/bank_transfer/create')
+  Future<chopper.Response<ProcessorBankTransferCreateResponse>>
+      processorBankTransferCreatePost(
+          {@Body() required ProcessorBankTransferCreateRequest? body});
 
   ///Retrieve Identity data
-  ///@param body
-
   @Post(path: '/processor/identity/get')
-  Future<chopper.Response<ProcessorIdentityGetResponse>> processorIdentityGet(
-      {@Body() @required ProcessorIdentityGetRequest? body});
+  Future<chopper.Response<ProcessorIdentityGetResponse>>
+      processorIdentityGetPost(
+          {@Body() required ProcessorIdentityGetRequest? body});
 
   ///Retrieve Balance data
-  ///@param body
-
   @Post(path: '/processor/balance/get')
-  Future<chopper.Response<ProcessorBalanceGetResponse>> processorBalanceGet(
-      {@Body() @required ProcessorBalanceGetRequest? body});
+  Future<chopper.Response<ProcessorBalanceGetResponse>> processorBalanceGetPost(
+      {@Body() required ProcessorBalanceGetRequest? body});
 
   ///Update Webhook URL
-  ///@param body
-
   @Post(path: '/item/webhook/update')
-  Future<chopper.Response<ItemWebhookUpdateResponse>> itemWebhookUpdate(
-      {@Body() @required ItemWebhookUpdateRequest? body});
+  Future<chopper.Response<ItemWebhookUpdateResponse>> itemWebhookUpdatePost(
+      {@Body() required ItemWebhookUpdateRequest? body});
 
   ///Invalidate access_token
-  ///@param body
-
   @Post(path: '/item/access_token/invalidate')
   Future<chopper.Response<ItemAccessTokenInvalidateResponse>>
-      itemAccessTokenInvalidate(
-          {@Body() @required ItemAccessTokenInvalidateRequest? body});
+      itemAccessTokenInvalidatePost(
+          {@Body() required ItemAccessTokenInvalidateRequest? body});
 
   ///Get webhook verification key
-  ///@param body
-
   @Post(path: '/webhook_verification_key/get')
   Future<chopper.Response<WebhookVerificationKeyGetResponse>>
-      webhookVerificationKeyGet(
-          {@Body() @required WebhookVerificationKeyGetRequest? body});
+      webhookVerificationKeyGetPost(
+          {@Body() required WebhookVerificationKeyGetRequest? body});
 
   ///Retrieve Liabilities data
-  ///@param body
-
   @Post(path: '/liabilities/get')
-  Future<chopper.Response<LiabilitiesGetResponse>> liabilitiesGet(
-      {@Body() @required LiabilitiesGetRequest? body});
+  Future<chopper.Response<LiabilitiesGetResponse>> liabilitiesGetPost(
+      {@Body() required LiabilitiesGetRequest? body});
 
   ///Create payment recipient
-  ///@param body
-
   @Post(path: '/payment_initiation/recipient/create')
   Future<chopper.Response<PaymentInitiationRecipientCreateResponse>>
-      paymentInitiationRecipientCreate(
-          {@Body() @required PaymentInitiationRecipientCreateRequest? body});
+      paymentInitiationRecipientCreatePost(
+          {@Body() required PaymentInitiationRecipientCreateRequest? body});
+
+  ///Reverse an existing payment
+  @Post(path: '/payment_initiation/payment/reverse')
+  Future<chopper.Response<PaymentInitiationPaymentReverseResponse>>
+      paymentInitiationPaymentReversePost(
+          {@Body() required PaymentInitiationPaymentReverseRequest? body});
 
   ///Get payment recipient
-  ///@param body
-
   @Post(path: '/payment_initiation/recipient/get')
   Future<chopper.Response<PaymentInitiationRecipientGetResponse>>
-      paymentInitiationRecipientGet(
-          {@Body() @required PaymentInitiationRecipientGetRequest? body});
+      paymentInitiationRecipientGetPost(
+          {@Body() required PaymentInitiationRecipientGetRequest? body});
 
   ///List payment recipients
-  ///@param body
-
   @Post(path: '/payment_initiation/recipient/list')
   Future<chopper.Response<PaymentInitiationRecipientListResponse>>
-      paymentInitiationRecipientList(
-          {@Body() @required PaymentInitiationRecipientListRequest? body});
+      paymentInitiationRecipientListPost(
+          {@Body() required PaymentInitiationRecipientListRequest? body});
 
   ///Create a payment
-  ///@param body
-
   @Post(path: '/payment_initiation/payment/create')
   Future<chopper.Response<PaymentInitiationPaymentCreateResponse>>
-      paymentInitiationPaymentCreate(
-          {@Body() @required PaymentInitiationPaymentCreateRequest? body});
+      paymentInitiationPaymentCreatePost(
+          {@Body() required PaymentInitiationPaymentCreateRequest? body});
 
   ///Create payment token
-  ///@param body
-
   @Post(path: '/payment_initiation/payment/token/create')
   Future<chopper.Response<PaymentInitiationPaymentTokenCreateResponse>>
-      createPaymentToken(
-          {@Body() @required PaymentInitiationPaymentTokenCreateRequest? body});
+      paymentInitiationPaymentTokenCreatePost(
+          {@Body() required PaymentInitiationPaymentTokenCreateRequest? body});
 
   ///Force a Sandbox Item into an error state
-  ///@param body
-
   @Post(path: '/sandbox/item/reset_login')
-  Future<chopper.Response<SandboxItemResetLoginResponse>> sandboxItemResetLogin(
-      {@Body() @required SandboxItemResetLoginRequest? body});
+  Future<chopper.Response<SandboxItemResetLoginResponse>>
+      sandboxItemResetLoginPost(
+          {@Body() required SandboxItemResetLoginRequest? body});
 
   ///Set verification status for Sandbox account
-  ///@param body
-
   @Post(path: '/sandbox/item/set_verification_status')
   Future<chopper.Response<SandboxItemSetVerificationStatusResponse>>
-      sandboxItemSetVerificationStatus(
-          {@Body() @required SandboxItemSetVerificationStatusRequest? body});
+      sandboxItemSetVerificationStatusPost(
+          {@Body() required SandboxItemSetVerificationStatusRequest? body});
 
   ///Exchange public token for an access token
-  ///@param body
-
   @Post(path: '/item/public_token/exchange')
   Future<chopper.Response<ItemPublicTokenExchangeResponse>>
-      itemPublicTokenExchange(
-          {@Body() @required ItemPublicTokenExchangeRequest? body});
+      itemPublicTokenExchangePost(
+          {@Body() required ItemPublicTokenExchangeRequest? body});
 
   ///Create public token
-  ///@param body
-
   @Post(path: '/item/public_token/create')
-  Future<chopper.Response<ItemPublicTokenCreateResponse>> itemCreatePublicToken(
-      {@Body() @required ItemPublicTokenCreateRequest? body});
+  Future<chopper.Response<ItemPublicTokenCreateResponse>>
+      itemPublicTokenCreatePost(
+          {@Body() required ItemPublicTokenCreateRequest? body});
 
   ///Get payment details
-  ///@param body
-
   @Post(path: '/payment_initiation/payment/get')
   Future<chopper.Response<PaymentInitiationPaymentGetResponse>>
-      paymentInitiationPaymentGet(
-          {@Body() @required PaymentInitiationPaymentGetRequest? body});
+      paymentInitiationPaymentGetPost(
+          {@Body() required PaymentInitiationPaymentGetRequest? body});
 
   ///List payments
-  ///@param body
-
   @Post(path: '/payment_initiation/payment/list')
   Future<chopper.Response<PaymentInitiationPaymentListResponse>>
-      paymentInitiationPaymentList(
-          {@Body() @required PaymentInitiationPaymentListRequest? body});
+      paymentInitiationPaymentListPost(
+          {@Body() required PaymentInitiationPaymentListRequest? body});
 
   ///Create an Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/create')
-  Future<chopper.Response<AssetReportCreateResponse>> assetReportCreate(
-      {@Body() @required AssetReportCreateRequest? body});
+  Future<chopper.Response<AssetReportCreateResponse>> assetReportCreatePost(
+      {@Body() required AssetReportCreateRequest? body});
 
   ///Refresh an Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/refresh')
-  Future<chopper.Response<AssetReportRefreshResponse>> assetReportRefresh(
-      {@Body() @required AssetReportRefreshRequest? body});
+  Future<chopper.Response<AssetReportRefreshResponse>> assetReportRefreshPost(
+      {@Body() required AssetReportRefreshRequest? body});
 
   ///Delete an Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/remove')
-  Future<chopper.Response<AssetReportRemoveResponse>> assetReportRemove(
-      {@Body() @required AssetReportRemoveRequest? body});
+  Future<chopper.Response<AssetReportRemoveResponse>> assetReportRemovePost(
+      {@Body() required AssetReportRemoveRequest? body});
 
   ///Filter Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/filter')
-  Future<chopper.Response<AssetReportFilterResponse>> assetReportFilter(
-      {@Body() @required AssetReportFilterRequest? body});
+  Future<chopper.Response<AssetReportFilterResponse>> assetReportFilterPost(
+      {@Body() required AssetReportFilterRequest? body});
 
   ///Retrieve an Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/get')
-  Future<chopper.Response<AssetReportGetResponse>> assetReportGet(
-      {@Body() @required AssetReportGetRequest? body});
+  Future<chopper.Response<AssetReportGetResponse>> assetReportGetPost(
+      {@Body() required AssetReportGetRequest? body});
 
   ///Retrieve a PDF Asset Report
-  ///@param body
-
   @Post(path: '/asset_report/pdf/get')
-  Future<chopper.Response<String>> assetReportPdfGet(
-      {@Body() @required AssetReportPDFGetRequest? body});
+  Future<chopper.Response<Object>> assetReportPdfGetPost(
+      {@Body() required AssetReportPDFGetRequest? body});
 
   ///Create Asset Report Audit Copy
-  ///@param body
-
   @Post(path: '/asset_report/audit_copy/create')
   Future<chopper.Response<AssetReportAuditCopyCreateResponse>>
-      assetReportAuditCopyCreate(
-          {@Body() @required AssetReportAuditCopyCreateRequest? body});
+      assetReportAuditCopyCreatePost(
+          {@Body() required AssetReportAuditCopyCreateRequest? body});
 
   ///Remove Asset Report Audit Copy
-  ///@param body
-
   @Post(path: '/asset_report/audit_copy/remove')
   Future<chopper.Response<AssetReportAuditCopyRemoveResponse>>
-      assetReportAuditCopyRemove(
-          {@Body() @required AssetReportAuditCopyRemoveRequest? body});
+      assetReportAuditCopyRemovePost(
+          {@Body() required AssetReportAuditCopyRemoveRequest? body});
 
   ///Get Investment holdings
-  ///@param body
-
   @Post(path: '/investments/holdings/get')
   Future<chopper.Response<InvestmentsHoldingsGetResponse>>
-      investmentsHoldingsGet(
-          {@Body() @required InvestmentsHoldingsGetRequest? body});
+      investmentsHoldingsGetPost(
+          {@Body() required InvestmentsHoldingsGetRequest? body});
 
   ///Get investment transactions
-  ///@param body
-
   @Post(path: '/investments/transactions/get')
   Future<chopper.Response<InvestmentsTransactionsGetResponse>>
-      investmentsTransactionsGet(
-          {@Body() @required InvestmentsTransactionsGetRequest? body});
+      investmentsTransactionsGetPost(
+          {@Body() required InvestmentsTransactionsGetRequest? body});
 
   ///Create processor token
-  ///@param body
-
   @Post(path: '/processor/token/create')
-  Future<chopper.Response<ProcessorTokenCreateResponse>> processorTokenCreate(
-      {@Body() @required ProcessorTokenCreateRequest? body});
+  Future<chopper.Response<ProcessorTokenCreateResponse>>
+      processorTokenCreatePost(
+          {@Body() required ProcessorTokenCreateRequest? body});
 
   ///Create Stripe bank account token
-  ///@param body
-
   @Post(path: '/processor/stripe/bank_account_token/create')
   Future<chopper.Response<ProcessorStripeBankAccountTokenCreateResponse>>
-      processorStripeBankAccountTokenCreate(
+      processorStripeBankAccountTokenCreatePost(
           {@Body()
-          @required
-              ProcessorStripeBankAccountTokenCreateRequest? body});
+              required ProcessorStripeBankAccountTokenCreateRequest? body});
 
   ///Create Apex bank account token
-  ///@param body
-
   @Post(path: '/processor/apex/processor_token/create')
   Future<chopper.Response<ProcessorTokenCreateResponse>>
-      processorApexProcessorTokenCreate(
-          {@Body() @required ProcessorApexProcessorTokenCreateRequest? body});
+      processorApexProcessorTokenCreatePost(
+          {@Body() required ProcessorApexProcessorTokenCreateRequest? body});
 
   ///Create a deposit switch
-  ///@param body
-
   @Post(path: '/deposit_switch/create')
-  Future<chopper.Response<DepositSwitchCreateResponse>> depositSwitchCreate(
-      {@Body() @required DepositSwitchCreateRequest? body});
+  Future<chopper.Response<DepositSwitchCreateResponse>> depositSwitchCreatePost(
+      {@Body() required DepositSwitchCreateRequest? body});
 
   ///Import Item
-  ///@param body
-
   @Post(path: '/item/import')
-  Future<chopper.Response<ItemImportResponse>> itemImport(
-      {@Body() @required ItemImportRequest? body});
+  Future<chopper.Response<ItemImportResponse>> itemImportPost(
+      {@Body() required ItemImportRequest? body});
 
   ///Create a deposit switch token
-  ///@param body
-
   @Post(path: '/deposit_switch/token/create')
   Future<chopper.Response<DepositSwitchTokenCreateResponse>>
-      depositSwitchTokenCreate(
-          {@Body() @required DepositSwitchTokenCreateRequest? body});
+      depositSwitchTokenCreatePost(
+          {@Body() required DepositSwitchTokenCreateRequest? body});
 
   ///Create Link Token
-  ///@param body
-
   @Post(path: '/link/token/create')
-  Future<chopper.Response<LinkTokenCreateResponse>> linkTokenCreate(
-      {@Body() @required LinkTokenCreateRequest? body});
+  Future<chopper.Response<LinkTokenCreateResponse>> linkTokenCreatePost(
+      {@Body() required LinkTokenCreateRequest? body});
 
   ///Get Link Token
-  ///@param body
-
   @Post(path: '/link/token/get')
-  Future<chopper.Response<LinkTokenGetResponse>> linkTokenGet(
-      {@Body() @required LinkTokenGetRequest? body});
+  Future<chopper.Response<LinkTokenGetResponse>> linkTokenGetPost(
+      {@Body() required LinkTokenGetRequest? body});
 
   ///Retrieve an Asset Report Audit Copy
-  ///@param body
-
   @Post(path: '/asset_report/audit_copy/get')
-  Future<chopper.Response<AssetReportGetResponse>> assetReportAuditCopyGet(
-      {@Body() @required AssetReportAuditCopyGetRequest? body});
+  Future<chopper.Response<AssetReportGetResponse>> assetReportAuditCopyGetPost(
+      {@Body() required AssetReportAuditCopyGetRequest? body});
 
   ///Retrieve a deposit switch
-  ///@param body
-
   @Post(path: '/deposit_switch/get')
-  Future<chopper.Response<DepositSwitchGetResponse>> depositSwitchGet(
-      {@Body() @required DepositSwitchGetRequest? body});
+  Future<chopper.Response<DepositSwitchGetResponse>> depositSwitchGetPost(
+      {@Body() required DepositSwitchGetRequest? body});
+
+  ///Retrieve a transfer
+  @Post(path: '/transfer/get')
+  Future<chopper.Response<TransferGetResponse>> transferGetPost(
+      {@Body() required TransferGetRequest? body});
 
   ///Retrieve a bank transfer
-  ///@param body
-
   @Post(path: '/bank_transfer/get')
-  Future<chopper.Response<BankTransferGetResponse>> bankTransferGet(
-      {@Body() @required BankTransferGetRequest? body});
+  Future<chopper.Response<BankTransferGetResponse>> bankTransferGetPost(
+      {@Body() required BankTransferGetRequest? body});
+
+  ///Create a transfer authorization
+  @Post(path: '/transfer/authorization/create')
+  Future<chopper.Response<TransferAuthorizationCreateResponse>>
+      transferAuthorizationCreatePost(
+          {@Body() required TransferAuthorizationCreateRequest? body});
+
+  ///Create a transfer
+  @Post(path: '/transfer/create')
+  Future<chopper.Response<TransferCreateResponse>> transferCreatePost(
+      {@Body() required TransferCreateRequest? body});
 
   ///Create a bank transfer
-  ///@param body
-
   @Post(path: '/bank_transfer/create')
-  Future<chopper.Response<BankTransferCreateResponse>> bankTransferCreate(
-      {@Body() @required BankTransferCreateRequest? body});
+  Future<chopper.Response<BankTransferCreateResponse>> bankTransferCreatePost(
+      {@Body() required BankTransferCreateRequest? body});
+
+  ///List transfers
+  @Post(path: '/transfer/list')
+  Future<chopper.Response<TransferListResponse>> transferListPost(
+      {@Body() required TransferListRequest? body});
 
   ///List bank transfers
-  ///@param body
-
   @Post(path: '/bank_transfer/list')
-  Future<chopper.Response<BankTransferListResponse>> bankTransferList(
-      {@Body() @required BankTransferListRequest? body});
+  Future<chopper.Response<BankTransferListResponse>> bankTransferListPost(
+      {@Body() required BankTransferListRequest? body});
+
+  ///Cancel a transfer
+  @Post(path: '/transfer/cancel')
+  Future<chopper.Response<TransferCancelResponse>> transferCancelPost(
+      {@Body() required TransferCancelRequest? body});
 
   ///Cancel a bank transfer
-  ///@param body
-
   @Post(path: '/bank_transfer/cancel')
-  Future<chopper.Response<BankTransferCancelResponse>> bankTransferCancel(
-      {@Body() @required BankTransferCancelRequest? body});
+  Future<chopper.Response<BankTransferCancelResponse>> bankTransferCancelPost(
+      {@Body() required BankTransferCancelRequest? body});
+
+  ///List transfer events
+  @Post(path: '/transfer/event/list')
+  Future<chopper.Response<TransferEventListResponse>> transferEventListPost(
+      {@Body() required TransferEventListRequest? body});
 
   ///List bank transfer events
-  ///@param body
-
   @Post(path: '/bank_transfer/event/list')
-  Future<chopper.Response<BankTransferEventListResponse>> bankTransferEventList(
-      {@Body() @required BankTransferEventListRequest? body});
+  Future<chopper.Response<BankTransferEventListResponse>>
+      bankTransferEventListPost(
+          {@Body() required BankTransferEventListRequest? body});
+
+  ///Sync transfer events
+  @Post(path: '/transfer/event/sync')
+  Future<chopper.Response<TransferEventSyncResponse>> transferEventSyncPost(
+      {@Body() required TransferEventSyncRequest? body});
 
   ///Sync bank transfer events
-  ///@param body
-
   @Post(path: '/bank_transfer/event/sync')
-  Future<chopper.Response<BankTransferEventSyncResponse>> bankTransferEventSync(
-      {@Body() @required BankTransferEventSyncRequest? body});
+  Future<chopper.Response<BankTransferEventSyncResponse>>
+      bankTransferEventSyncPost(
+          {@Body() required BankTransferEventSyncRequest? body});
+
+  ///Retrieve a sweep
+  @Post(path: '/transfer/sweep/get')
+  Future<chopper.Response<TransferSweepGetResponse>> transferSweepGetPost(
+      {@Body() required TransferSweepGetRequest? body});
+
+  ///Retrieve a sweep
+  @Post(path: '/bank_transfer/sweep/get')
+  Future<chopper.Response<BankTransferSweepGetResponse>>
+      bankTransferSweepGetPost(
+          {@Body() required BankTransferSweepGetRequest? body});
+
+  ///List sweeps
+  @Post(path: '/transfer/sweep/list')
+  Future<chopper.Response<TransferSweepListResponse>> transferSweepListPost(
+      {@Body() required TransferSweepListRequest? body});
+
+  ///List sweeps
+  @Post(path: '/bank_transfer/sweep/list')
+  Future<chopper.Response<BankTransferSweepListResponse>>
+      bankTransferSweepListPost(
+          {@Body() required BankTransferSweepListRequest? body});
 
   ///Get balance of your Bank Transfer account
-  ///@param body
-
   @Post(path: '/bank_transfer/balance/get')
   Future<chopper.Response<BankTransferBalanceGetResponse>>
-      bankTransferBalanceGet(
-          {@Body() @required BankTransferBalanceGetRequest? body});
+      bankTransferBalanceGetPost(
+          {@Body() required BankTransferBalanceGetRequest? body});
 
   ///Migrate account into Bank Transfers
-  ///@param body
-
   @Post(path: '/bank_transfer/migrate_account')
   Future<chopper.Response<BankTransferMigrateAccountResponse>>
-      bankTransferMigrateAccount(
-          {@Body() @required BankTransferMigrateAccountRequest? body});
+      bankTransferMigrateAccountPost(
+          {@Body() required BankTransferMigrateAccountRequest? body});
+
+  ///Create a transfer intent object to invoke the Transfer UI
+  @Post(path: '/transfer/intent/create')
+  Future<chopper.Response<TransferIntentCreateResponse>>
+      transferIntentCreatePost(
+          {@Body() required TransferIntentCreateRequest? body});
+
+  ///Retrieve more information about a transfer intent
+  @Post(path: '/transfer/intent/get')
+  Future<chopper.Response<TransferIntentGetResponse>> transferIntentGetPost(
+      {@Body() required TransferIntentGetRequest? body});
 
   ///Simulate a bank transfer event in Sandbox
-  ///@param body
-
   @Post(path: '/sandbox/bank_transfer/simulate')
   Future<chopper.Response<SandboxBankTransferSimulateResponse>>
-      sandboxBankTransferSimulate(
-          {@Body() @required SandboxBankTransferSimulateRequest? body});
+      sandboxBankTransferSimulatePost(
+          {@Body() required SandboxBankTransferSimulateRequest? body});
+
+  ///Simulate creating a sweep for a set of transfers
+  @Post(path: '/sandbox/transfer/sweep/simulate')
+  Future<chopper.Response<SandboxTransferSweepSimulateResponse>>
+      sandboxTransferSweepSimulatePost(
+          {@Body() required SandboxTransferSweepSimulateRequest? body});
+
+  ///Simulate a transfer event in Sandbox
+  @Post(path: '/sandbox/transfer/simulate')
+  Future<chopper.Response<SandboxTransferSimulateResponse>>
+      sandboxTransferSimulatePost(
+          {@Body() required SandboxTransferSimulateRequest? body});
 
   ///Search employer database
-  ///@param body
-
   @Post(path: '/employers/search')
-  Future<chopper.Response<EmployersSearchResponse>> employersSearch(
-      {@Body() @required EmployersSearchRequest? body});
+  Future<chopper.Response<EmployersSearchResponse>> employersSearchPost(
+      {@Body() required EmployersSearchRequest? body});
 
-  ///Create an income verification instance
-  ///@param body
-
+  ///(Deprecated) Create an income verification instance
   @Post(path: '/income/verification/create')
   Future<chopper.Response<IncomeVerificationCreateResponse>>
-      incomeVerificationCreate(
-          {@Body() @required IncomeVerificationCreateRequest? body});
+      incomeVerificationCreatePost(
+          {@Body() required IncomeVerificationCreateRequest? body});
 
-  ///Retrieve a summary of information derived from income verification
-  ///@param body
-
+  ///(Deprecated) Retrieve a summary of information derived from income verification
   @Post(path: '/income/verification/summary/get')
   Future<chopper.Response<IncomeVerificationSummaryGetResponse>>
-      incomeVerificationSummaryGet(
-          {@Body() @required IncomeVerificationSummaryGetRequest? body});
+      incomeVerificationSummaryGetPost(
+          {@Body() required IncomeVerificationSummaryGetRequest? body});
+
+  ///(Deprecated) Retrieve information from a single paystub used for income verification
+  @Post(path: '/income/verification/paystub/get')
+  Future<chopper.Response<IncomeVerificationPaystubGetResponse>>
+      incomeVerificationPaystubGetPost(
+          {@Body() required IncomeVerificationPaystubGetRequest? body});
 
   ///Retrieve information from the paystubs used for income verification
-  ///@param body
-
   @Post(path: '/income/verification/paystubs/get')
   Future<chopper.Response<IncomeVerificationPaystubsGetResponse>>
-      incomeVerificationPaystubsGet(
-          {@Body() @required IncomeVerificationPaystubsGetRequest? body});
+      incomeVerificationPaystubsGetPost(
+          {@Body() required IncomeVerificationPaystubsGetRequest? body});
 
   ///Download the original documents used for income verification
-  ///@param body
-
   @Post(path: '/income/verification/documents/download')
-  Future<chopper.Response<String>> incomeVerificationDocumentsDownload(
-      {@Body() @required IncomeVerificationDocumentsDownloadRequest? body});
+  Future<chopper.Response<String>> incomeVerificationDocumentsDownloadPost(
+      {@Body() required IncomeVerificationDocumentsDownloadRequest? body});
+
+  ///Refresh an income verification
+  @Post(path: '/income/verification/refresh')
+  Future<chopper.Response<IncomeVerificationRefreshResponse>>
+      incomeVerificationRefreshPost(
+          {@Body() required IncomeVerificationRefreshRequest? body});
+
+  ///Retrieve information from the tax documents used for income verification
+  @Post(path: '/income/verification/taxforms/get')
+  Future<chopper.Response<IncomeVerificationTaxformsGetResponse>>
+      incomeVerificationTaxformsGetPost(
+          {@Body() required IncomeVerificationTaxformsGetRequest? body});
+
+  ///Check a user's eligibility for the income verification product
+  @Post(path: '/income/verification/precheck')
+  Future<chopper.Response<IncomeVerificationPrecheckResponse>>
+      incomeVerificationPrecheckPost(
+          {@Body() required IncomeVerificationPrecheckRequest? body});
+
+  ///Retrieve a summary of an individual's employment information.
+  @Post(path: '/employment/verification/get')
+  Future<chopper.Response<EmploymentVerificationGetResponse>>
+      employmentVerificationGetPost(
+          {@Body() required EmploymentVerificationGetRequest? body});
 
   ///Create a deposit switch without using Plaid Exchange
-  ///@param body
-
   @Post(path: '/deposit_switch/alt/create')
   Future<chopper.Response<DepositSwitchAltCreateResponse>>
-      depositSwitchAltCreate(
-          {@Body() @required DepositSwitchAltCreateRequest? body});
+      depositSwitchAltCreatePost(
+          {@Body() required DepositSwitchAltCreateRequest? body});
 
   ///Manually fire a Bank Transfer webhook
-  ///@param body
-
   @Post(path: '/sandbox/bank_transfer/fire_webhook')
   Future<chopper.Response<SandboxBankTransferFireWebhookResponse>>
-      sandboxBankTransferFireWebhook(
-          {@Body() @required SandboxBankTransferFireWebhookRequest? body});
+      sandboxBankTransferFireWebhookPost(
+          {@Body() required SandboxBankTransferFireWebhookRequest? body});
 
   ///Manually fire an Income webhook
-  ///@param body
-
   @Post(path: '/sandbox/income/fire_webhook')
   Future<chopper.Response<SandboxIncomeFireWebhookResponse>>
-      sandboxIncomeFireWebhook(
-          {@Body() @required SandboxIncomeFireWebhookRequest? body});
+      sandboxIncomeFireWebhookPost(
+          {@Body() required SandboxIncomeFireWebhookRequest? body});
+
+  ///Save the selected accounts when connecting to the Platypus Oauth institution
+  @Post(path: '/sandbox/oauth/select_accounts')
+  Future<chopper.Response<SandboxOauthSelectAccountsResponse>>
+      sandboxOauthSelectAccountsPost(
+          {@Body() required SandboxOauthSelectAccountsRequest? body});
+
+  ///Evaluate a planned ACH transaction
+  @Post(path: '/signal/evaluate')
+  Future<chopper.Response<SignalEvaluateResponse>> signalEvaluatePost(
+      {@Body() required SignalEvaluateRequest? body});
+
+  ///Report whether you initiated an ACH transaction
+  @Post(path: '/signal/decision/report')
+  Future<chopper.Response<SignalDecisionReportResponse>>
+      signalDecisionReportPost(
+          {@Body() required SignalDecisionReportRequest? body});
+
+  ///Report a return for an ACH transaction
+  @Post(path: '/signal/return/report')
+  Future<chopper.Response<SignalReturnReportResponse>> signalReturnReportPost(
+      {@Body() required SignalReturnReportRequest? body});
+
+  ///Fetch an e-wallet
+  @Post(path: '/wallet/get')
+  Future<chopper.Response<WalletGetResponse>> walletGetPost(
+      {@Body() required WalletGetRequest? body});
+
+  ///Execute a transaction using an e-wallet
+  @Post(path: '/wallet/transaction/execute')
+  Future<chopper.Response<WalletTransactionExecuteResponse>>
+      walletTransactionExecutePost(
+          {@Body() required WalletTransactionExecuteRequest? body});
+
+  ///List e-wallet transactions
+  @Post(path: '/wallet/transactions/list')
+  Future<chopper.Response<WalletTransactionsListResponse>>
+      walletTransactionsListPost(
+          {@Body() required WalletTransactionsListRequest? body});
 }
 
 final Map<Type, Object Function(Map<String, dynamic>)>
@@ -586,6 +617,12 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   TransactionsGetResponse: TransactionsGetResponse.fromJsonFactory,
   TransactionsRefreshRequest: TransactionsRefreshRequest.fromJsonFactory,
   TransactionsRefreshResponse: TransactionsRefreshResponse.fromJsonFactory,
+  TransactionsRecurringGetRequest:
+      TransactionsRecurringGetRequest.fromJsonFactory,
+  TransactionsRecurringGetResponse:
+      TransactionsRecurringGetResponse.fromJsonFactory,
+  TransactionsSyncRequest: TransactionsSyncRequest.fromJsonFactory,
+  TransactionsSyncResponse: TransactionsSyncResponse.fromJsonFactory,
   InstitutionsGetRequest: InstitutionsGetRequest.fromJsonFactory,
   InstitutionsGetRequestOptions: InstitutionsGetRequestOptions.fromJsonFactory,
   InstitutionsGetResponse: InstitutionsGetResponse.fromJsonFactory,
@@ -631,10 +668,16 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   IdentityGetResponse: IdentityGetResponse.fromJsonFactory,
   ProcessorAuthGetRequest: ProcessorAuthGetRequest.fromJsonFactory,
   ProcessorAuthGetResponse: ProcessorAuthGetResponse.fromJsonFactory,
+  ProcessorBankTransferCreateRequest:
+      ProcessorBankTransferCreateRequest.fromJsonFactory,
+  ProcessorBankTransferCreateResponse:
+      ProcessorBankTransferCreateResponse.fromJsonFactory,
   ProcessorNumber: ProcessorNumber.fromJsonFactory,
   ProcessorIdentityGetRequest: ProcessorIdentityGetRequest.fromJsonFactory,
   ProcessorIdentityGetResponse: ProcessorIdentityGetResponse.fromJsonFactory,
   ProcessorBalanceGetRequest: ProcessorBalanceGetRequest.fromJsonFactory,
+  ProcessorBalanceGetRequestOptions:
+      ProcessorBalanceGetRequestOptions.fromJsonFactory,
   ProcessorBalanceGetResponse: ProcessorBalanceGetResponse.fromJsonFactory,
   ItemWebhookUpdateRequest: ItemWebhookUpdateRequest.fromJsonFactory,
   ItemWebhookUpdateResponse: ItemWebhookUpdateResponse.fromJsonFactory,
@@ -654,6 +697,8 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       PaymentInitiationRecipientCreateRequest.fromJsonFactory,
   PaymentInitiationRecipientCreateResponse:
       PaymentInitiationRecipientCreateResponse.fromJsonFactory,
+  PaymentInitiationPaymentReverseResponse:
+      PaymentInitiationPaymentReverseResponse.fromJsonFactory,
   PaymentInitiationRecipientGetRequest:
       PaymentInitiationRecipientGetRequest.fromJsonFactory,
   PaymentInitiationRecipientGetResponse:
@@ -665,6 +710,8 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       PaymentInitiationRecipientListResponse.fromJsonFactory,
   PaymentInitiationPaymentCreateRequest:
       PaymentInitiationPaymentCreateRequest.fromJsonFactory,
+  PaymentInitiationPaymentReverseRequest:
+      PaymentInitiationPaymentReverseRequest.fromJsonFactory,
   PaymentInitiationPaymentCreateResponse:
       PaymentInitiationPaymentCreateResponse.fromJsonFactory,
   SandboxItemResetLoginRequest: SandboxItemResetLoginRequest.fromJsonFactory,
@@ -684,6 +731,7 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   PaymentInitiationPaymentGetResponse:
       PaymentInitiationPaymentGetResponse.fromJsonFactory,
   PaymentInitiationPayment: PaymentInitiationPayment.fromJsonFactory,
+  PaymentInitiationRefund: PaymentInitiationRefund.fromJsonFactory,
   PaymentInitiationPaymentTokenCreateRequest:
       PaymentInitiationPaymentTokenCreateRequest.fromJsonFactory,
   PaymentInitiationPaymentTokenCreateResponse:
@@ -754,8 +802,11 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       LinkTokenCreateRequestPaymentInitiation.fromJsonFactory,
   LinkTokenCreateRequestDepositSwitch:
       LinkTokenCreateRequestDepositSwitch.fromJsonFactory,
+  LinkTokenCreateRequestTransfer:
+      LinkTokenCreateRequestTransfer.fromJsonFactory,
   LinkTokenCreateRequestAuth: LinkTokenCreateRequestAuth.fromJsonFactory,
   LinkTokenCreateRequestUser: LinkTokenCreateRequestUser.fromJsonFactory,
+  LinkTokenCreateRequestUpdate: LinkTokenCreateRequestUpdate.fromJsonFactory,
   LinkTokenCreateRequestAccountSubtypes:
       LinkTokenCreateRequestAccountSubtypes.fromJsonFactory,
   LinkTokenGetResponse: LinkTokenGetResponse.fromJsonFactory,
@@ -763,29 +814,37 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   LinkTokenCreateResponse: LinkTokenCreateResponse.fromJsonFactory,
   Item: Item.fromJsonFactory,
   Error: Error.fromJsonFactory,
-  NullableItemStatus: NullableItemStatus.fromJsonFactory,
+  ItemStatusNullable: ItemStatusNullable.fromJsonFactory,
+  ItemStatusTransactions: ItemStatusTransactions.fromJsonFactory,
+  ItemStatusInvestments: ItemStatusInvestments.fromJsonFactory,
+  ItemStatusLastWebhook: ItemStatusLastWebhook.fromJsonFactory,
   ItemStatus: ItemStatus.fromJsonFactory,
   AccountBase: AccountBase.fromJsonFactory,
   AccountBalance: AccountBalance.fromJsonFactory,
   NumbersACH: NumbersACH.fromJsonFactory,
-  NullableNumbersACH: NullableNumbersACH.fromJsonFactory,
+  NumbersACHNullable: NumbersACHNullable.fromJsonFactory,
   NumbersEFT: NumbersEFT.fromJsonFactory,
-  NullableNumbersEFT: NullableNumbersEFT.fromJsonFactory,
+  NumbersEFTNullable: NumbersEFTNullable.fromJsonFactory,
   NumbersInternational: NumbersInternational.fromJsonFactory,
-  NullableNumbersInternational: NullableNumbersInternational.fromJsonFactory,
+  NumbersInternationalNullable: NumbersInternationalNullable.fromJsonFactory,
   NumbersBACS: NumbersBACS.fromJsonFactory,
-  NullableNumbersBACS: NullableNumbersBACS.fromJsonFactory,
+  NumbersBACSNullable: NumbersBACSNullable.fromJsonFactory,
   RecipientBACS: RecipientBACS.fromJsonFactory,
-  NullableRecipientBACS: NullableRecipientBACS.fromJsonFactory,
-  NullableSenderBACS: NullableSenderBACS.fromJsonFactory,
+  RecipientBACSNullable: RecipientBACSNullable.fromJsonFactory,
+  SenderBACSNullable: SenderBACSNullable.fromJsonFactory,
   PaymentInitiationOptionalRestrictionBacs:
       PaymentInitiationOptionalRestrictionBacs.fromJsonFactory,
+  RemovedTransaction: RemovedTransaction.fromJsonFactory,
+  TransactionBase: TransactionBase.fromJsonFactory,
   Transaction: Transaction.fromJsonFactory,
   Location: Location.fromJsonFactory,
+  TransactionStream: TransactionStream.fromJsonFactory,
+  TransactionStreamAmount: TransactionStreamAmount.fromJsonFactory,
   Institution: Institution.fromJsonFactory,
   InstitutionStatus: InstitutionStatus.fromJsonFactory,
   PaymentMeta: PaymentMeta.fromJsonFactory,
   Category: Category.fromJsonFactory,
+  PersonalFinanceCategory: PersonalFinanceCategory.fromJsonFactory,
   TransactionsRemovedWebhook: TransactionsRemovedWebhook.fromJsonFactory,
   DefaultUpdateWebhook: DefaultUpdateWebhook.fromJsonFactory,
   HistoricalUpdateWebhook: HistoricalUpdateWebhook.fromJsonFactory,
@@ -793,8 +852,8 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   PhoneNumber: PhoneNumber.fromJsonFactory,
   Email: Email.fromJsonFactory,
   Address: Address.fromJsonFactory,
-  NullableAddress: NullableAddress.fromJsonFactory,
-  NullableAddressData: NullableAddressData.fromJsonFactory,
+  AddressNullable: AddressNullable.fromJsonFactory,
+  AddressDataNullable: AddressDataNullable.fromJsonFactory,
   AddressData: AddressData.fromJsonFactory,
   HistoricalBalance: HistoricalBalance.fromJsonFactory,
   Owner: Owner.fromJsonFactory,
@@ -810,6 +869,8 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   PSLFStatus: PSLFStatus.fromJsonFactory,
   ServicerAddressData: ServicerAddressData.fromJsonFactory,
   Apr: Apr.fromJsonFactory,
+  AuthMetadata: AuthMetadata.fromJsonFactory,
+  AuthSupportedMethods: AuthSupportedMethods.fromJsonFactory,
   PaymentInitiationMetadata: PaymentInitiationMetadata.fromJsonFactory,
   PaymentInitiationStandingOrderMetadata:
       PaymentInitiationStandingOrderMetadata.fromJsonFactory,
@@ -828,9 +889,15 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   Meta: Meta.fromJsonFactory,
   Numbers: Numbers.fromJsonFactory,
   TransactionOverride: TransactionOverride.fromJsonFactory,
+  SecurityOverride: SecurityOverride.fromJsonFactory,
+  HoldingsOverride: HoldingsOverride.fromJsonFactory,
+  InvestmentsTransactionsOverride:
+      InvestmentsTransactionsOverride.fromJsonFactory,
   LiabilityOverride: LiabilityOverride.fromJsonFactory,
   StudentLoanRepaymentModel: StudentLoanRepaymentModel.fromJsonFactory,
   InflowModel: InflowModel.fromJsonFactory,
+  IncomeOverride: IncomeOverride.fromJsonFactory,
+  PaystubOverride: PaystubOverride.fromJsonFactory,
   AutomaticallyVerifiedWebhook: AutomaticallyVerifiedWebhook.fromJsonFactory,
   JWTHeader: JWTHeader.fromJsonFactory,
   VerificationExpiredWebhook: VerificationExpiredWebhook.fromJsonFactory,
@@ -863,8 +930,6 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   InvestmentTransaction: InvestmentTransaction.fromJsonFactory,
   StandaloneInvestmentTransactionType:
       StandaloneInvestmentTransactionType.fromJsonFactory,
-  StandaloneInvestmentTransactionSubtype:
-      StandaloneInvestmentTransactionSubtype.fromJsonFactory,
   AccountSubtypes: AccountSubtypes.fromJsonFactory,
   UserPermissionRevokedWebhook: UserPermissionRevokedWebhook.fromJsonFactory,
   DepositSwitchGetRequest: DepositSwitchGetRequest.fromJsonFactory,
@@ -873,23 +938,66 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       DepositSwitchStateUpdateWebhook.fromJsonFactory,
   AssetReportAuditCopyGetRequest:
       AssetReportAuditCopyGetRequest.fromJsonFactory,
+  TransferGetRequest: TransferGetRequest.fromJsonFactory,
   BankTransferGetRequest: BankTransferGetRequest.fromJsonFactory,
+  TransferGetResponse: TransferGetResponse.fromJsonFactory,
   BankTransferGetResponse: BankTransferGetResponse.fromJsonFactory,
+  Transfer: Transfer.fromJsonFactory,
   BankTransfer: BankTransfer.fromJsonFactory,
+  TransferIntentGetFailureReason:
+      TransferIntentGetFailureReason.fromJsonFactory,
+  TransferUserInRequest: TransferUserInRequest.fromJsonFactory,
+  TransferUserInResponse: TransferUserInResponse.fromJsonFactory,
+  TransferUserAddressInRequest: TransferUserAddressInRequest.fromJsonFactory,
+  TransferUserAddressInResponse: TransferUserAddressInResponse.fromJsonFactory,
   BankTransferUser: BankTransferUser.fromJsonFactory,
+  TransferAuthorizationDecisionRationale:
+      TransferAuthorizationDecisionRationale.fromJsonFactory,
+  TransferAuthorizationProposedTransfer:
+      TransferAuthorizationProposedTransfer.fromJsonFactory,
+  TransferAuthorizationDevice: TransferAuthorizationDevice.fromJsonFactory,
+  TransferMetadata: TransferMetadata.fromJsonFactory,
   BankTransferMetadata: BankTransferMetadata.fromJsonFactory,
+  TransferFailure: TransferFailure.fromJsonFactory,
   BankTransferFailure: BankTransferFailure.fromJsonFactory,
+  TransferAuthorizationCreateRequest:
+      TransferAuthorizationCreateRequest.fromJsonFactory,
+  TransferCreateRequest: TransferCreateRequest.fromJsonFactory,
   BankTransferCreateRequest: BankTransferCreateRequest.fromJsonFactory,
+  TransferAuthorizationCreateResponse:
+      TransferAuthorizationCreateResponse.fromJsonFactory,
+  TransferAuthorization: TransferAuthorization.fromJsonFactory,
+  TransferCreateResponse: TransferCreateResponse.fromJsonFactory,
   BankTransferCreateResponse: BankTransferCreateResponse.fromJsonFactory,
+  TransferListRequest: TransferListRequest.fromJsonFactory,
   BankTransferListRequest: BankTransferListRequest.fromJsonFactory,
+  TransferListResponse: TransferListResponse.fromJsonFactory,
   BankTransferListResponse: BankTransferListResponse.fromJsonFactory,
+  TransferCancelRequest: TransferCancelRequest.fromJsonFactory,
   BankTransferCancelRequest: BankTransferCancelRequest.fromJsonFactory,
+  TransferCancelResponse: TransferCancelResponse.fromJsonFactory,
   BankTransferCancelResponse: BankTransferCancelResponse.fromJsonFactory,
+  TransferEventListRequest: TransferEventListRequest.fromJsonFactory,
   BankTransferEventListRequest: BankTransferEventListRequest.fromJsonFactory,
+  TransferEvent: TransferEvent.fromJsonFactory,
   BankTransferEvent: BankTransferEvent.fromJsonFactory,
+  TransferEventListResponse: TransferEventListResponse.fromJsonFactory,
   BankTransferEventListResponse: BankTransferEventListResponse.fromJsonFactory,
   BankTransferEventSyncRequest: BankTransferEventSyncRequest.fromJsonFactory,
+  TransferEventSyncRequest: TransferEventSyncRequest.fromJsonFactory,
   BankTransferEventSyncResponse: BankTransferEventSyncResponse.fromJsonFactory,
+  TransferEventSyncResponse: TransferEventSyncResponse.fromJsonFactory,
+  BankTransferSweepGetRequest: BankTransferSweepGetRequest.fromJsonFactory,
+  TransferSweepGetRequest: TransferSweepGetRequest.fromJsonFactory,
+  BankTransferSweepGetResponse: BankTransferSweepGetResponse.fromJsonFactory,
+  TransferSweepGetResponse: TransferSweepGetResponse.fromJsonFactory,
+  BankTransferSweepListRequest: BankTransferSweepListRequest.fromJsonFactory,
+  TransferSweepListRequest: TransferSweepListRequest.fromJsonFactory,
+  TransferSweepListResponse: TransferSweepListResponse.fromJsonFactory,
+  BankTransferSweepListResponse: BankTransferSweepListResponse.fromJsonFactory,
+  BankTransferSweep: BankTransferSweep.fromJsonFactory,
+  TransferSweep: TransferSweep.fromJsonFactory,
+  BankTransferSweepAccount: BankTransferSweepAccount.fromJsonFactory,
   BankTransferBalanceGetRequest: BankTransferBalanceGetRequest.fromJsonFactory,
   BankTransferBalanceGetResponse:
       BankTransferBalanceGetResponse.fromJsonFactory,
@@ -898,10 +1006,24 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       BankTransferMigrateAccountRequest.fromJsonFactory,
   BankTransferMigrateAccountResponse:
       BankTransferMigrateAccountResponse.fromJsonFactory,
+  TransferIntentCreateRequest: TransferIntentCreateRequest.fromJsonFactory,
+  TransferIntentCreate: TransferIntentCreate.fromJsonFactory,
+  TransferIntentCreateResponse: TransferIntentCreateResponse.fromJsonFactory,
+  TransferIntentGetRequest: TransferIntentGetRequest.fromJsonFactory,
+  TransferIntentGet: TransferIntentGet.fromJsonFactory,
+  TransferIntentGetResponse: TransferIntentGetResponse.fromJsonFactory,
   SandboxBankTransferSimulateRequest:
       SandboxBankTransferSimulateRequest.fromJsonFactory,
+  SandboxTransferSimulateRequest:
+      SandboxTransferSimulateRequest.fromJsonFactory,
+  SandboxTransferSweepSimulateRequest:
+      SandboxTransferSweepSimulateRequest.fromJsonFactory,
   SandboxBankTransferSimulateResponse:
       SandboxBankTransferSimulateResponse.fromJsonFactory,
+  SandboxTransferSimulateResponse:
+      SandboxTransferSimulateResponse.fromJsonFactory,
+  SandboxTransferSweepSimulateResponse:
+      SandboxTransferSweepSimulateResponse.fromJsonFactory,
   BankTransferReceiverDetails: BankTransferReceiverDetails.fromJsonFactory,
   AccountFiltersResponse: AccountFiltersResponse.fromJsonFactory,
   InstitutionsSearchAccountFilter:
@@ -917,8 +1039,22 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   Employer: Employer.fromJsonFactory,
   IncomeVerificationCreateRequest:
       IncomeVerificationCreateRequest.fromJsonFactory,
+  IncomeVerificationCreateRequestOptions:
+      IncomeVerificationCreateRequestOptions.fromJsonFactory,
   IncomeVerificationCreateResponse:
       IncomeVerificationCreateResponse.fromJsonFactory,
+  IncomeVerificationPrecheckRequest:
+      IncomeVerificationPrecheckRequest.fromJsonFactory,
+  IncomeVerificationPrecheckEmployer:
+      IncomeVerificationPrecheckEmployer.fromJsonFactory,
+  IncomeVerificationPrecheckEmployerAddress:
+      IncomeVerificationPrecheckEmployerAddress.fromJsonFactory,
+  IncomeVerificationPrecheckMilitaryInfo:
+      IncomeVerificationPrecheckMilitaryInfo.fromJsonFactory,
+  IncomeVerificationPrecheckUser:
+      IncomeVerificationPrecheckUser.fromJsonFactory,
+  IncomeVerificationPrecheckResponse:
+      IncomeVerificationPrecheckResponse.fromJsonFactory,
   LinkTokenCreateRequestIncomeVerification:
       LinkTokenCreateRequestIncomeVerification.fromJsonFactory,
   IncomeVerificationStatusWebhook:
@@ -927,6 +1063,10 @@ final Map<Type, Object Function(Map<String, dynamic>)>
       IncomeVerificationSummaryGetRequest.fromJsonFactory,
   IncomeVerificationSummaryGetResponse:
       IncomeVerificationSummaryGetResponse.fromJsonFactory,
+  IncomeVerificationRefreshRequest:
+      IncomeVerificationRefreshRequest.fromJsonFactory,
+  IncomeVerificationRefreshResponse:
+      IncomeVerificationRefreshResponse.fromJsonFactory,
   IncomeSummary: IncomeSummary.fromJsonFactory,
   TransactionData: TransactionData.fromJsonFactory,
   IncomeSummaryFieldString: IncomeSummaryFieldString.fromJsonFactory,
@@ -942,23 +1082,57 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   ProjectedIncomeSummaryFieldNumber:
       ProjectedIncomeSummaryFieldNumber.fromJsonFactory,
   PayFrequency: PayFrequency.fromJsonFactory,
+  IncomeVerificationPaystubGetRequest:
+      IncomeVerificationPaystubGetRequest.fromJsonFactory,
+  IncomeVerificationPaystubGetResponse:
+      IncomeVerificationPaystubGetResponse.fromJsonFactory,
   IncomeVerificationPaystubsGetRequest:
       IncomeVerificationPaystubsGetRequest.fromJsonFactory,
   IncomeVerificationPaystubsGetResponse:
       IncomeVerificationPaystubsGetResponse.fromJsonFactory,
+  DocumentMetadata: DocumentMetadata.fromJsonFactory,
   Paystub: Paystub.fromJsonFactory,
+  Deductions: Deductions.fromJsonFactory,
+  DeductionsBreakdown: DeductionsBreakdown.fromJsonFactory,
+  DeductionsTotal: DeductionsTotal.fromJsonFactory,
+  Total: Total.fromJsonFactory,
+  Pay: Pay.fromJsonFactory,
+  Earnings: Earnings.fromJsonFactory,
+  EarningsBreakdown: EarningsBreakdown.fromJsonFactory,
+  EarningsTotal: EarningsTotal.fromJsonFactory,
+  EmploymentDetails: EmploymentDetails.fromJsonFactory,
+  NetPay: NetPay.fromJsonFactory,
+  PaystubDetails: PaystubDetails.fromJsonFactory,
   IncomeBreakdown: IncomeBreakdown.fromJsonFactory,
   Employee: Employee.fromJsonFactory,
+  TaxpayerID: TaxpayerID.fromJsonFactory,
   PaystubEmployer: PaystubEmployer.fromJsonFactory,
+  PaystubAddress: PaystubAddress.fromJsonFactory,
   PayPeriodDetails: PayPeriodDetails.fromJsonFactory,
+  DistributionBreakdown: DistributionBreakdown.fromJsonFactory,
   PaystubDeduction: PaystubDeduction.fromJsonFactory,
   PaystubYTDDetails: PaystubYTDDetails.fromJsonFactory,
+  PaystubVerification: PaystubVerification.fromJsonFactory,
+  VerificationAttribute: VerificationAttribute.fromJsonFactory,
   IncomeVerificationDocumentsDownloadRequest:
       IncomeVerificationDocumentsDownloadRequest.fromJsonFactory,
-  IncomeVerificationDocumentsDownloadResponse:
-      IncomeVerificationDocumentsDownloadResponse.fromJsonFactory,
+  IncomeVerificationTaxformsGetRequest:
+      IncomeVerificationTaxformsGetRequest.fromJsonFactory,
+  IncomeVerificationTaxformsGetResponse:
+      IncomeVerificationTaxformsGetResponse.fromJsonFactory,
+  Taxform: Taxform.fromJsonFactory,
+  W2: W2.fromJsonFactory,
+  W2Box12: W2Box12.fromJsonFactory,
+  W2StateAndLocalWages: W2StateAndLocalWages.fromJsonFactory,
   IncomeVerificationWebhookStatus:
       IncomeVerificationWebhookStatus.fromJsonFactory,
+  EmploymentVerificationGetRequest:
+      EmploymentVerificationGetRequest.fromJsonFactory,
+  EmploymentVerificationGetResponse:
+      EmploymentVerificationGetResponse.fromJsonFactory,
+  EmploymentVerification: EmploymentVerification.fromJsonFactory,
+  EmployerVerification: EmployerVerification.fromJsonFactory,
+  PlatformIds: PlatformIds.fromJsonFactory,
   AssetReportTransaction: AssetReportTransaction.fromJsonFactory,
   HealthIncident: HealthIncident.fromJsonFactory,
   IncidentUpdate: IncidentUpdate.fromJsonFactory,
@@ -977,7 +1151,9 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   ApplicationGetResponse: ApplicationGetResponse.fromJsonFactory,
   ProductAccess: ProductAccess.fromJsonFactory,
   AccountAccess: AccountAccess.fromJsonFactory,
-  NullableScopes: NullableScopes.fromJsonFactory,
+  AccountProductAccessNullable: AccountProductAccessNullable.fromJsonFactory,
+  AccountProductAccess: AccountProductAccess.fromJsonFactory,
+  ScopesNullable: ScopesNullable.fromJsonFactory,
   Scopes: Scopes.fromJsonFactory,
   RequestedScopes: RequestedScopes.fromJsonFactory,
   ItemApplicationScopesUpdateRequest:
@@ -994,6 +1170,42 @@ final Map<Type, Object Function(Map<String, dynamic>)>
   SandboxIncomeFireWebhookResponse:
       SandboxIncomeFireWebhookResponse.fromJsonFactory,
   ItemApplicationListUserAuth: ItemApplicationListUserAuth.fromJsonFactory,
+  SignalEvaluateRequest: SignalEvaluateRequest.fromJsonFactory,
+  SignalUser: SignalUser.fromJsonFactory,
+  SignalPersonName: SignalPersonName.fromJsonFactory,
+  SignalAddressData: SignalAddressData.fromJsonFactory,
+  SignalDevice: SignalDevice.fromJsonFactory,
+  SignalEvaluateResponse: SignalEvaluateResponse.fromJsonFactory,
+  SignalScores: SignalScores.fromJsonFactory,
+  CustomerInitiatedReturnRisk: CustomerInitiatedReturnRisk.fromJsonFactory,
+  BankInitiatedReturnRisk: BankInitiatedReturnRisk.fromJsonFactory,
+  SignalEvaluateCoreAttributes: SignalEvaluateCoreAttributes.fromJsonFactory,
+  SignalDecisionReportRequest: SignalDecisionReportRequest.fromJsonFactory,
+  SignalDecisionReportResponse: SignalDecisionReportResponse.fromJsonFactory,
+  SignalReturnReportRequest: SignalReturnReportRequest.fromJsonFactory,
+  SignalReturnReportResponse: SignalReturnReportResponse.fromJsonFactory,
+  SandboxOauthSelectAccountsRequest:
+      SandboxOauthSelectAccountsRequest.fromJsonFactory,
+  SandboxOauthSelectAccountsResponse:
+      SandboxOauthSelectAccountsResponse.fromJsonFactory,
+  NewAccountsAvailableWebhook: NewAccountsAvailableWebhook.fromJsonFactory,
+  WalletGetRequest: WalletGetRequest.fromJsonFactory,
+  WalletGetResponse: WalletGetResponse.fromJsonFactory,
+  WalletBalance: WalletBalance.fromJsonFactory,
+  WalletTransactionExecuteRequest:
+      WalletTransactionExecuteRequest.fromJsonFactory,
+  WalletTransactionCounterparty: WalletTransactionCounterparty.fromJsonFactory,
+  WalletTransactionCounterpartyNumbers:
+      WalletTransactionCounterpartyNumbers.fromJsonFactory,
+  WalletTransactionCounterpartyBACS:
+      WalletTransactionCounterpartyBACS.fromJsonFactory,
+  WalletTransactionAmount: WalletTransactionAmount.fromJsonFactory,
+  WalletTransactionExecuteResponse:
+      WalletTransactionExecuteResponse.fromJsonFactory,
+  WalletTransactionsListRequest: WalletTransactionsListRequest.fromJsonFactory,
+  WalletTransactionsListResponse:
+      WalletTransactionsListResponse.fromJsonFactory,
+  WalletTransaction: WalletTransaction.fromJsonFactory,
 };
 
 @JsonSerializable(explicitToJson: true)
@@ -1030,6 +1242,13 @@ class ItemGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemGetRequestExtension on ItemGetRequest {
@@ -1056,7 +1275,7 @@ class ItemGetResponse {
   @JsonKey(name: 'item')
   final Item? item;
   @JsonKey(name: 'status')
-  final NullableItemStatus? status;
+  final ItemStatusNullable? status;
   @JsonKey(name: 'request_id')
   final String? requestId;
   static const fromJsonFactory = _$ItemGetResponseFromJson;
@@ -1075,11 +1294,18 @@ class ItemGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemGetResponseExtension on ItemGetResponse {
   ItemGetResponse copyWith(
-      {Item? item, NullableItemStatus? status, String? requestId}) {
+      {Item? item, ItemStatusNullable? status, String? requestId}) {
     return ItemGetResponse(
         item: item ?? this.item,
         status: status ?? this.status,
@@ -1126,6 +1352,14 @@ class AuthGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $AuthGetRequestExtension on AuthGetRequest {
@@ -1165,6 +1399,10 @@ class AuthGetRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.accountIds, accountIds)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^ runtimeType.hashCode;
 }
 
 extension $AuthGetRequestOptionsExtension on AuthGetRequestOptions {
@@ -1213,6 +1451,14 @@ class AuthGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(numbers) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AuthGetResponseExtension on AuthGetResponse {
@@ -1267,6 +1513,14 @@ class AuthGetNumbers {
             (identical(other.bacs, bacs) ||
                 const DeepCollectionEquality().equals(other.bacs, bacs)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ach) ^
+      const DeepCollectionEquality().hash(eft) ^
+      const DeepCollectionEquality().hash(international) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      runtimeType.hashCode;
 }
 
 extension $AuthGetNumbersExtension on AuthGetNumbers {
@@ -1334,6 +1588,16 @@ class TransactionsGetRequest {
             (identical(other.endDate, endDate) ||
                 const DeepCollectionEquality().equals(other.endDate, endDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(options) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionsGetRequestExtension on TransactionsGetRequest {
@@ -1361,6 +1625,7 @@ class TransactionsGetRequestOptions {
     this.count,
     this.offset,
     this.includeOriginalDescription,
+    this.includePersonalFinanceCategoryBeta,
   });
 
   factory TransactionsGetRequestOptions.fromJson(Map<String, dynamic> json) =>
@@ -1374,6 +1639,8 @@ class TransactionsGetRequestOptions {
   final int? offset;
   @JsonKey(name: 'include_original_description', defaultValue: false)
   final bool? includeOriginalDescription;
+  @JsonKey(name: 'include_personal_finance_category_beta', defaultValue: false)
+  final bool? includePersonalFinanceCategoryBeta;
   static const fromJsonFactory = _$TransactionsGetRequestOptionsFromJson;
   static const toJsonFactory = _$TransactionsGetRequestOptionsToJson;
   Map<String, dynamic> toJson() => _$TransactionsGetRequestOptionsToJson(this);
@@ -1393,8 +1660,22 @@ class TransactionsGetRequestOptions {
                     includeOriginalDescription) ||
                 const DeepCollectionEquality().equals(
                     other.includeOriginalDescription,
-                    includeOriginalDescription)));
+                    includeOriginalDescription)) &&
+            (identical(other.includePersonalFinanceCategoryBeta,
+                    includePersonalFinanceCategoryBeta) ||
+                const DeepCollectionEquality().equals(
+                    other.includePersonalFinanceCategoryBeta,
+                    includePersonalFinanceCategoryBeta)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(includeOriginalDescription) ^
+      const DeepCollectionEquality().hash(includePersonalFinanceCategoryBeta) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionsGetRequestOptionsExtension
@@ -1403,13 +1684,17 @@ extension $TransactionsGetRequestOptionsExtension
       {List<String>? accountIds,
       int? count,
       int? offset,
-      bool? includeOriginalDescription}) {
+      bool? includeOriginalDescription,
+      bool? includePersonalFinanceCategoryBeta}) {
     return TransactionsGetRequestOptions(
         accountIds: accountIds ?? this.accountIds,
         count: count ?? this.count,
         offset: offset ?? this.offset,
         includeOriginalDescription:
-            includeOriginalDescription ?? this.includeOriginalDescription);
+            includeOriginalDescription ?? this.includeOriginalDescription,
+        includePersonalFinanceCategoryBeta:
+            includePersonalFinanceCategoryBeta ??
+                this.includePersonalFinanceCategoryBeta);
   }
 }
 
@@ -1459,6 +1744,15 @@ class TransactionsGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      const DeepCollectionEquality().hash(totalTransactions) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionsGetResponseExtension on TransactionsGetResponse {
@@ -1511,6 +1805,13 @@ class TransactionsRefreshRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(secret) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionsRefreshRequestExtension on TransactionsRefreshRequest {
@@ -1546,11 +1847,293 @@ class TransactionsRefreshResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $TransactionsRefreshResponseExtension on TransactionsRefreshResponse {
   TransactionsRefreshResponse copyWith({String? requestId}) {
     return TransactionsRefreshResponse(requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionsRecurringGetRequest {
+  TransactionsRecurringGetRequest({
+    this.clientId,
+    this.accessToken,
+    this.secret,
+    this.accountIds,
+  });
+
+  factory TransactionsRecurringGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransactionsRecurringGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'account_ids', defaultValue: <String>[])
+  final List<String>? accountIds;
+  static const fromJsonFactory = _$TransactionsRecurringGetRequestFromJson;
+  static const toJsonFactory = _$TransactionsRecurringGetRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransactionsRecurringGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionsRecurringGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.accountIds, accountIds) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountIds, accountIds)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accountIds) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionsRecurringGetRequestExtension
+    on TransactionsRecurringGetRequest {
+  TransactionsRecurringGetRequest copyWith(
+      {String? clientId,
+      String? accessToken,
+      String? secret,
+      List<String>? accountIds}) {
+    return TransactionsRecurringGetRequest(
+        clientId: clientId ?? this.clientId,
+        accessToken: accessToken ?? this.accessToken,
+        secret: secret ?? this.secret,
+        accountIds: accountIds ?? this.accountIds);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionsRecurringGetResponse {
+  TransactionsRecurringGetResponse({
+    this.inflowStreams,
+    this.outflowStreams,
+    this.requestId,
+  });
+
+  factory TransactionsRecurringGetResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$TransactionsRecurringGetResponseFromJson(json);
+
+  @JsonKey(name: 'inflow_streams', defaultValue: <TransactionStream>[])
+  final List<TransactionStream>? inflowStreams;
+  @JsonKey(name: 'outflow_streams', defaultValue: <TransactionStream>[])
+  final List<TransactionStream>? outflowStreams;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransactionsRecurringGetResponseFromJson;
+  static const toJsonFactory = _$TransactionsRecurringGetResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransactionsRecurringGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionsRecurringGetResponse &&
+            (identical(other.inflowStreams, inflowStreams) ||
+                const DeepCollectionEquality()
+                    .equals(other.inflowStreams, inflowStreams)) &&
+            (identical(other.outflowStreams, outflowStreams) ||
+                const DeepCollectionEquality()
+                    .equals(other.outflowStreams, outflowStreams)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(inflowStreams) ^
+      const DeepCollectionEquality().hash(outflowStreams) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionsRecurringGetResponseExtension
+    on TransactionsRecurringGetResponse {
+  TransactionsRecurringGetResponse copyWith(
+      {List<TransactionStream>? inflowStreams,
+      List<TransactionStream>? outflowStreams,
+      String? requestId}) {
+    return TransactionsRecurringGetResponse(
+        inflowStreams: inflowStreams ?? this.inflowStreams,
+        outflowStreams: outflowStreams ?? this.outflowStreams,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionsSyncRequest {
+  TransactionsSyncRequest({
+    this.clientId,
+    this.accessToken,
+    this.secret,
+    this.cursor,
+    this.count,
+  });
+
+  factory TransactionsSyncRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransactionsSyncRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'count')
+  final int? count;
+  static const fromJsonFactory = _$TransactionsSyncRequestFromJson;
+  static const toJsonFactory = _$TransactionsSyncRequestToJson;
+  Map<String, dynamic> toJson() => _$TransactionsSyncRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionsSyncRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.cursor, cursor) ||
+                const DeepCollectionEquality().equals(other.cursor, cursor)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(cursor) ^
+      const DeepCollectionEquality().hash(count) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionsSyncRequestExtension on TransactionsSyncRequest {
+  TransactionsSyncRequest copyWith(
+      {String? clientId,
+      String? accessToken,
+      String? secret,
+      String? cursor,
+      int? count}) {
+    return TransactionsSyncRequest(
+        clientId: clientId ?? this.clientId,
+        accessToken: accessToken ?? this.accessToken,
+        secret: secret ?? this.secret,
+        cursor: cursor ?? this.cursor,
+        count: count ?? this.count);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionsSyncResponse {
+  TransactionsSyncResponse({
+    this.added,
+    this.modified,
+    this.removed,
+    this.nextCursor,
+    this.hasMore,
+    this.requestId,
+  });
+
+  factory TransactionsSyncResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransactionsSyncResponseFromJson(json);
+
+  @JsonKey(name: 'added', defaultValue: <Transaction>[])
+  final List<Transaction>? added;
+  @JsonKey(name: 'modified', defaultValue: <Transaction>[])
+  final List<Transaction>? modified;
+  @JsonKey(name: 'removed', defaultValue: <RemovedTransaction>[])
+  final List<RemovedTransaction>? removed;
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'has_more')
+  final bool? hasMore;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransactionsSyncResponseFromJson;
+  static const toJsonFactory = _$TransactionsSyncResponseToJson;
+  Map<String, dynamic> toJson() => _$TransactionsSyncResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionsSyncResponse &&
+            (identical(other.added, added) ||
+                const DeepCollectionEquality().equals(other.added, added)) &&
+            (identical(other.modified, modified) ||
+                const DeepCollectionEquality()
+                    .equals(other.modified, modified)) &&
+            (identical(other.removed, removed) ||
+                const DeepCollectionEquality()
+                    .equals(other.removed, removed)) &&
+            (identical(other.nextCursor, nextCursor) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextCursor, nextCursor)) &&
+            (identical(other.hasMore, hasMore) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasMore, hasMore)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(added) ^
+      const DeepCollectionEquality().hash(modified) ^
+      const DeepCollectionEquality().hash(removed) ^
+      const DeepCollectionEquality().hash(nextCursor) ^
+      const DeepCollectionEquality().hash(hasMore) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionsSyncResponseExtension on TransactionsSyncResponse {
+  TransactionsSyncResponse copyWith(
+      {List<Transaction>? added,
+      List<Transaction>? modified,
+      List<RemovedTransaction>? removed,
+      String? nextCursor,
+      bool? hasMore,
+      String? requestId}) {
+    return TransactionsSyncResponse(
+        added: added ?? this.added,
+        modified: modified ?? this.modified,
+        removed: removed ?? this.removed,
+        nextCursor: nextCursor ?? this.nextCursor,
+        hasMore: hasMore ?? this.hasMore,
+        requestId: requestId ?? this.requestId);
   }
 }
 
@@ -1606,6 +2189,16 @@ class InstitutionsGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetRequestExtension on InstitutionsGetRequest {
@@ -1633,6 +2226,7 @@ class InstitutionsGetRequestOptions {
     this.routingNumbers,
     this.oauth,
     this.includeOptionalMetadata,
+    this.includeAuthMetadata,
     this.includePaymentInitiationMetadata,
   });
 
@@ -1650,6 +2244,8 @@ class InstitutionsGetRequestOptions {
   final bool? oauth;
   @JsonKey(name: 'include_optional_metadata')
   final bool? includeOptionalMetadata;
+  @JsonKey(name: 'include_auth_metadata', defaultValue: false)
+  final bool? includeAuthMetadata;
   @JsonKey(name: 'include_payment_initiation_metadata', defaultValue: false)
   final bool? includePaymentInitiationMetadata;
   static const fromJsonFactory = _$InstitutionsGetRequestOptionsFromJson;
@@ -1672,12 +2268,25 @@ class InstitutionsGetRequestOptions {
                     other.includeOptionalMetadata, includeOptionalMetadata) ||
                 const DeepCollectionEquality().equals(
                     other.includeOptionalMetadata, includeOptionalMetadata)) &&
+            (identical(other.includeAuthMetadata, includeAuthMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.includeAuthMetadata, includeAuthMetadata)) &&
             (identical(other.includePaymentInitiationMetadata,
                     includePaymentInitiationMetadata) ||
                 const DeepCollectionEquality().equals(
                     other.includePaymentInitiationMetadata,
                     includePaymentInitiationMetadata)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(routingNumbers) ^
+      const DeepCollectionEquality().hash(oauth) ^
+      const DeepCollectionEquality().hash(includeOptionalMetadata) ^
+      const DeepCollectionEquality().hash(includeAuthMetadata) ^
+      const DeepCollectionEquality().hash(includePaymentInitiationMetadata) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetRequestOptionsExtension
@@ -1687,6 +2296,7 @@ extension $InstitutionsGetRequestOptionsExtension
       List<String>? routingNumbers,
       bool? oauth,
       bool? includeOptionalMetadata,
+      bool? includeAuthMetadata,
       bool? includePaymentInitiationMetadata}) {
     return InstitutionsGetRequestOptions(
         products: products ?? this.products,
@@ -1694,6 +2304,7 @@ extension $InstitutionsGetRequestOptionsExtension
         oauth: oauth ?? this.oauth,
         includeOptionalMetadata:
             includeOptionalMetadata ?? this.includeOptionalMetadata,
+        includeAuthMetadata: includeAuthMetadata ?? this.includeAuthMetadata,
         includePaymentInitiationMetadata: includePaymentInitiationMetadata ??
             this.includePaymentInitiationMetadata);
   }
@@ -1733,6 +2344,13 @@ class InstitutionsGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(institutions) ^
+      const DeepCollectionEquality().hash(total) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetResponseExtension on InstitutionsGetResponse {
@@ -1801,6 +2419,16 @@ class InstitutionsSearchRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(query) ^
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsSearchRequestExtension on InstitutionsSearchRequest {
@@ -1826,6 +2454,7 @@ class InstitutionsSearchRequestOptions {
   InstitutionsSearchRequestOptions({
     this.oauth,
     this.includeOptionalMetadata,
+    this.includeAuthMetadata,
     this.includePaymentInitiationMetadata,
     this.paymentInitiation,
   });
@@ -1838,6 +2467,8 @@ class InstitutionsSearchRequestOptions {
   final bool? oauth;
   @JsonKey(name: 'include_optional_metadata')
   final bool? includeOptionalMetadata;
+  @JsonKey(name: 'include_auth_metadata', defaultValue: false)
+  final bool? includeAuthMetadata;
   @JsonKey(name: 'include_payment_initiation_metadata', defaultValue: false)
   final bool? includePaymentInitiationMetadata;
   @JsonKey(name: 'payment_initiation')
@@ -1857,6 +2488,9 @@ class InstitutionsSearchRequestOptions {
                     other.includeOptionalMetadata, includeOptionalMetadata) ||
                 const DeepCollectionEquality().equals(
                     other.includeOptionalMetadata, includeOptionalMetadata)) &&
+            (identical(other.includeAuthMetadata, includeAuthMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.includeAuthMetadata, includeAuthMetadata)) &&
             (identical(other.includePaymentInitiationMetadata,
                     includePaymentInitiationMetadata) ||
                 const DeepCollectionEquality().equals(
@@ -1866,6 +2500,15 @@ class InstitutionsSearchRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.paymentInitiation, paymentInitiation)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(oauth) ^
+      const DeepCollectionEquality().hash(includeOptionalMetadata) ^
+      const DeepCollectionEquality().hash(includeAuthMetadata) ^
+      const DeepCollectionEquality().hash(includePaymentInitiationMetadata) ^
+      const DeepCollectionEquality().hash(paymentInitiation) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsSearchRequestOptionsExtension
@@ -1873,12 +2516,14 @@ extension $InstitutionsSearchRequestOptionsExtension
   InstitutionsSearchRequestOptions copyWith(
       {bool? oauth,
       bool? includeOptionalMetadata,
+      bool? includeAuthMetadata,
       bool? includePaymentInitiationMetadata,
       InstitutionsSearchPaymentInitiationOptions? paymentInitiation}) {
     return InstitutionsSearchRequestOptions(
         oauth: oauth ?? this.oauth,
         includeOptionalMetadata:
             includeOptionalMetadata ?? this.includeOptionalMetadata,
+        includeAuthMetadata: includeAuthMetadata ?? this.includeAuthMetadata,
         includePaymentInitiationMetadata: includePaymentInitiationMetadata ??
             this.includePaymentInitiationMetadata,
         paymentInitiation: paymentInitiation ?? this.paymentInitiation);
@@ -1912,6 +2557,10 @@ class InstitutionsSearchPaymentInitiationOptions {
                 const DeepCollectionEquality()
                     .equals(other.paymentId, paymentId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentId) ^ runtimeType.hashCode;
 }
 
 extension $InstitutionsSearchPaymentInitiationOptionsExtension
@@ -1951,6 +2600,12 @@ class InstitutionsSearchResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(institutions) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsSearchResponseExtension on InstitutionsSearchResponse {
@@ -2010,6 +2665,15 @@ class InstitutionsGetByIdRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetByIdRequestExtension on InstitutionsGetByIdRequest {
@@ -2033,6 +2697,7 @@ class InstitutionsGetByIdRequestOptions {
   InstitutionsGetByIdRequestOptions({
     this.includeOptionalMetadata,
     this.includeStatus,
+    this.includeAuthMetadata,
     this.includePaymentInitiationMetadata,
   });
 
@@ -2044,6 +2709,8 @@ class InstitutionsGetByIdRequestOptions {
   final bool? includeOptionalMetadata;
   @JsonKey(name: 'include_status', defaultValue: false)
   final bool? includeStatus;
+  @JsonKey(name: 'include_auth_metadata', defaultValue: false)
+  final bool? includeAuthMetadata;
   @JsonKey(name: 'include_payment_initiation_metadata', defaultValue: false)
   final bool? includePaymentInitiationMetadata;
   static const fromJsonFactory = _$InstitutionsGetByIdRequestOptionsFromJson;
@@ -2062,12 +2729,23 @@ class InstitutionsGetByIdRequestOptions {
             (identical(other.includeStatus, includeStatus) ||
                 const DeepCollectionEquality()
                     .equals(other.includeStatus, includeStatus)) &&
+            (identical(other.includeAuthMetadata, includeAuthMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.includeAuthMetadata, includeAuthMetadata)) &&
             (identical(other.includePaymentInitiationMetadata,
                     includePaymentInitiationMetadata) ||
                 const DeepCollectionEquality().equals(
                     other.includePaymentInitiationMetadata,
                     includePaymentInitiationMetadata)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(includeOptionalMetadata) ^
+      const DeepCollectionEquality().hash(includeStatus) ^
+      const DeepCollectionEquality().hash(includeAuthMetadata) ^
+      const DeepCollectionEquality().hash(includePaymentInitiationMetadata) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetByIdRequestOptionsExtension
@@ -2075,11 +2753,13 @@ extension $InstitutionsGetByIdRequestOptionsExtension
   InstitutionsGetByIdRequestOptions copyWith(
       {bool? includeOptionalMetadata,
       bool? includeStatus,
+      bool? includeAuthMetadata,
       bool? includePaymentInitiationMetadata}) {
     return InstitutionsGetByIdRequestOptions(
         includeOptionalMetadata:
             includeOptionalMetadata ?? this.includeOptionalMetadata,
         includeStatus: includeStatus ?? this.includeStatus,
+        includeAuthMetadata: includeAuthMetadata ?? this.includeAuthMetadata,
         includePaymentInitiationMetadata: includePaymentInitiationMetadata ??
             this.includePaymentInitiationMetadata);
   }
@@ -2114,6 +2794,12 @@ class InstitutionsGetByIdResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(institution) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsGetByIdResponseExtension on InstitutionsGetByIdResponse {
@@ -2159,6 +2845,13 @@ class ItemRemoveRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemRemoveRequestExtension on ItemRemoveRequest {
@@ -2194,6 +2887,10 @@ class ItemRemoveResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $ItemRemoveResponseExtension on ItemRemoveResponse {
@@ -2241,6 +2938,14 @@ class AccountsGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountsGetRequestExtension on AccountsGetRequest {
@@ -2280,6 +2985,10 @@ class AccountsGetRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.accountIds, accountIds)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^ runtimeType.hashCode;
 }
 
 extension $AccountsGetRequestOptionsExtension on AccountsGetRequestOptions {
@@ -2322,6 +3031,13 @@ class AccountsGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountsGetResponseExtension on AccountsGetResponse {
@@ -2344,6 +3060,9 @@ class CategoriesGetRequest {
   static const fromJsonFactory = _$CategoriesGetRequestFromJson;
   static const toJsonFactory = _$CategoriesGetRequestToJson;
   Map<String, dynamic> toJson() => _$CategoriesGetRequestToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2375,6 +3094,12 @@ class CategoriesGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(categories) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $CategoriesGetResponseExtension on CategoriesGetResponse {
@@ -2427,6 +3152,14 @@ class SandboxProcessorTokenCreateRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxProcessorTokenCreateRequestExtension
@@ -2477,6 +3210,12 @@ class SandboxProcessorTokenCreateRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.overridePassword, overridePassword)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(overrideUsername) ^
+      const DeepCollectionEquality().hash(overridePassword) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxProcessorTokenCreateRequestOptionsExtension
@@ -2520,6 +3259,12 @@ class SandboxProcessorTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(processorToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxProcessorTokenCreateResponseExtension
@@ -2581,6 +3326,15 @@ class SandboxPublicTokenCreateRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(initialProducts) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxPublicTokenCreateRequestExtension
@@ -2644,6 +3398,14 @@ class SandboxPublicTokenCreateRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.transactions, transactions)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(overrideUsername) ^
+      const DeepCollectionEquality().hash(overridePassword) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxPublicTokenCreateRequestOptionsExtension
@@ -2672,10 +3434,10 @@ class SandboxPublicTokenCreateRequestOptionsTransactions {
           Map<String, dynamic> json) =>
       _$SandboxPublicTokenCreateRequestOptionsTransactionsFromJson(json);
 
-  @JsonKey(name: 'start_date')
-  final String? startDate;
-  @JsonKey(name: 'end_date')
-  final String? endDate;
+  @JsonKey(name: 'start_date', toJson: _dateToJson)
+  final DateTime? startDate;
+  @JsonKey(name: 'end_date', toJson: _dateToJson)
+  final DateTime? endDate;
   static const fromJsonFactory =
       _$SandboxPublicTokenCreateRequestOptionsTransactionsFromJson;
   static const toJsonFactory =
@@ -2693,12 +3455,18 @@ class SandboxPublicTokenCreateRequestOptionsTransactions {
             (identical(other.endDate, endDate) ||
                 const DeepCollectionEquality().equals(other.endDate, endDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxPublicTokenCreateRequestOptionsTransactionsExtension
     on SandboxPublicTokenCreateRequestOptionsTransactions {
   SandboxPublicTokenCreateRequestOptionsTransactions copyWith(
-      {String? startDate, String? endDate}) {
+      {DateTime? startDate, DateTime? endDate}) {
     return SandboxPublicTokenCreateRequestOptionsTransactions(
         startDate: startDate ?? this.startDate,
         endDate: endDate ?? this.endDate);
@@ -2736,6 +3504,12 @@ class SandboxPublicTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(publicToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxPublicTokenCreateResponseExtension
@@ -2791,6 +3565,14 @@ class SandboxItemFireWebhookRequest {
                 const DeepCollectionEquality()
                     .equals(other.webhookCode, webhookCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxItemFireWebhookRequestExtension
@@ -2837,6 +3619,12 @@ class SandboxItemFireWebhookResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookFired) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxItemFireWebhookResponseExtension
@@ -2888,6 +3676,14 @@ class AccountsBalanceGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountsBalanceGetRequestExtension on AccountsBalanceGetRequest {
@@ -2935,6 +3731,12 @@ class AccountsBalanceGetRequestOptions {
                 const DeepCollectionEquality().equals(
                     other.minLastUpdatedDatetime, minLastUpdatedDatetime)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^
+      const DeepCollectionEquality().hash(minLastUpdatedDatetime) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountsBalanceGetRequestOptionsExtension
@@ -2987,6 +3789,14 @@ class IdentityGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $IdentityGetRequestExtension on IdentityGetRequest {
@@ -3026,6 +3836,10 @@ class IdentityGetRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.accountIds, accountIds)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^ runtimeType.hashCode;
 }
 
 extension $IdentityGetRequestOptionsExtension on IdentityGetRequestOptions {
@@ -3068,6 +3882,13 @@ class IdentityGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $IdentityGetResponseExtension on IdentityGetResponse {
@@ -3114,6 +3935,13 @@ class ProcessorAuthGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.processorToken, processorToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(processorToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorAuthGetRequestExtension on ProcessorAuthGetRequest {
@@ -3160,6 +3988,13 @@ class ProcessorAuthGetResponse {
             (identical(other.account, account) ||
                 const DeepCollectionEquality().equals(other.account, account)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(numbers) ^
+      const DeepCollectionEquality().hash(account) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorAuthGetResponseExtension on ProcessorAuthGetResponse {
@@ -3169,6 +4004,217 @@ extension $ProcessorAuthGetResponseExtension on ProcessorAuthGetResponse {
         requestId: requestId ?? this.requestId,
         numbers: numbers ?? this.numbers,
         account: account ?? this.account);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProcessorBankTransferCreateRequest {
+  ProcessorBankTransferCreateRequest({
+    this.clientId,
+    this.secret,
+    this.idempotencyKey,
+    this.processorToken,
+    this.type,
+    this.network,
+    this.amount,
+    this.isoCurrencyCode,
+    this.description,
+    this.achClass,
+    this.user,
+    this.customTag,
+    this.metadata,
+    this.originationAccountId,
+  });
+
+  factory ProcessorBankTransferCreateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProcessorBankTransferCreateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'idempotency_key')
+  final String? idempotencyKey;
+  @JsonKey(name: 'processor_token')
+  final String? processorToken;
+  @JsonKey(
+      name: 'type',
+      toJson: bankTransferTypeToJson,
+      fromJson: bankTransferTypeFromJson)
+  final enums.BankTransferType? type;
+  @JsonKey(
+      name: 'network',
+      toJson: bankTransferNetworkToJson,
+      fromJson: bankTransferNetworkFromJson)
+  final enums.BankTransferNetwork? network;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'user')
+  final BankTransferUser? user;
+  @JsonKey(name: 'custom_tag')
+  final String? customTag;
+  @JsonKey(name: 'metadata')
+  final BankTransferMetadata? metadata;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$ProcessorBankTransferCreateRequestFromJson;
+  static const toJsonFactory = _$ProcessorBankTransferCreateRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ProcessorBankTransferCreateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProcessorBankTransferCreateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.idempotencyKey, idempotencyKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.idempotencyKey, idempotencyKey)) &&
+            (identical(other.processorToken, processorToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.processorToken, processorToken)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.network, network) ||
+                const DeepCollectionEquality()
+                    .equals(other.network, network)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.customTag, customTag) ||
+                const DeepCollectionEquality()
+                    .equals(other.customTag, customTag)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(idempotencyKey) ^
+      const DeepCollectionEquality().hash(processorToken) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(customTag) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $ProcessorBankTransferCreateRequestExtension
+    on ProcessorBankTransferCreateRequest {
+  ProcessorBankTransferCreateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? idempotencyKey,
+      String? processorToken,
+      enums.BankTransferType? type,
+      enums.BankTransferNetwork? network,
+      String? amount,
+      String? isoCurrencyCode,
+      String? description,
+      enums.ACHClass? achClass,
+      BankTransferUser? user,
+      String? customTag,
+      BankTransferMetadata? metadata,
+      String? originationAccountId}) {
+    return ProcessorBankTransferCreateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        idempotencyKey: idempotencyKey ?? this.idempotencyKey,
+        processorToken: processorToken ?? this.processorToken,
+        type: type ?? this.type,
+        network: network ?? this.network,
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        description: description ?? this.description,
+        achClass: achClass ?? this.achClass,
+        user: user ?? this.user,
+        customTag: customTag ?? this.customTag,
+        metadata: metadata ?? this.metadata,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProcessorBankTransferCreateResponse {
+  ProcessorBankTransferCreateResponse({
+    this.bankTransfer,
+    this.requestId,
+  });
+
+  factory ProcessorBankTransferCreateResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProcessorBankTransferCreateResponseFromJson(json);
+
+  @JsonKey(name: 'bank_transfer')
+  final BankTransfer? bankTransfer;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$ProcessorBankTransferCreateResponseFromJson;
+  static const toJsonFactory = _$ProcessorBankTransferCreateResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$ProcessorBankTransferCreateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProcessorBankTransferCreateResponse &&
+            (identical(other.bankTransfer, bankTransfer) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankTransfer, bankTransfer)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransfer) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $ProcessorBankTransferCreateResponseExtension
+    on ProcessorBankTransferCreateResponse {
+  ProcessorBankTransferCreateResponse copyWith(
+      {BankTransfer? bankTransfer, String? requestId}) {
+    return ProcessorBankTransferCreateResponse(
+        bankTransfer: bankTransfer ?? this.bankTransfer,
+        requestId: requestId ?? this.requestId);
   }
 }
 
@@ -3185,13 +4231,13 @@ class ProcessorNumber {
       _$ProcessorNumberFromJson(json);
 
   @JsonKey(name: 'ach')
-  final NullableNumbersACH? ach;
+  final NumbersACHNullable? ach;
   @JsonKey(name: 'eft')
-  final NullableNumbersEFT? eft;
+  final NumbersEFTNullable? eft;
   @JsonKey(name: 'international')
-  final NullableNumbersInternational? international;
+  final NumbersInternationalNullable? international;
   @JsonKey(name: 'bacs')
-  final NullableNumbersBACS? bacs;
+  final NumbersBACSNullable? bacs;
   static const fromJsonFactory = _$ProcessorNumberFromJson;
   static const toJsonFactory = _$ProcessorNumberToJson;
   Map<String, dynamic> toJson() => _$ProcessorNumberToJson(this);
@@ -3210,14 +4256,22 @@ class ProcessorNumber {
             (identical(other.bacs, bacs) ||
                 const DeepCollectionEquality().equals(other.bacs, bacs)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ach) ^
+      const DeepCollectionEquality().hash(eft) ^
+      const DeepCollectionEquality().hash(international) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorNumberExtension on ProcessorNumber {
   ProcessorNumber copyWith(
-      {NullableNumbersACH? ach,
-      NullableNumbersEFT? eft,
-      NullableNumbersInternational? international,
-      NullableNumbersBACS? bacs}) {
+      {NumbersACHNullable? ach,
+      NumbersEFTNullable? eft,
+      NumbersInternationalNullable? international,
+      NumbersBACSNullable? bacs}) {
     return ProcessorNumber(
         ach: ach ?? this.ach,
         eft: eft ?? this.eft,
@@ -3260,6 +4314,13 @@ class ProcessorIdentityGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.processorToken, processorToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(processorToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorIdentityGetRequestExtension on ProcessorIdentityGetRequest {
@@ -3301,6 +4362,12 @@ class ProcessorIdentityGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorIdentityGetResponseExtension
@@ -3319,6 +4386,7 @@ class ProcessorBalanceGetRequest {
     this.clientId,
     this.secret,
     this.processorToken,
+    this.options,
   });
 
   factory ProcessorBalanceGetRequest.fromJson(Map<String, dynamic> json) =>
@@ -3330,6 +4398,8 @@ class ProcessorBalanceGetRequest {
   final String? secret;
   @JsonKey(name: 'processor_token')
   final String? processorToken;
+  @JsonKey(name: 'options')
+  final ProcessorBalanceGetRequestOptions? options;
   static const fromJsonFactory = _$ProcessorBalanceGetRequestFromJson;
   static const toJsonFactory = _$ProcessorBalanceGetRequestToJson;
   Map<String, dynamic> toJson() => _$ProcessorBalanceGetRequestToJson(this);
@@ -3345,17 +4415,73 @@ class ProcessorBalanceGetRequest {
                 const DeepCollectionEquality().equals(other.secret, secret)) &&
             (identical(other.processorToken, processorToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.processorToken, processorToken)));
+                    .equals(other.processorToken, processorToken)) &&
+            (identical(other.options, options) ||
+                const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(processorToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorBalanceGetRequestExtension on ProcessorBalanceGetRequest {
   ProcessorBalanceGetRequest copyWith(
-      {String? clientId, String? secret, String? processorToken}) {
+      {String? clientId,
+      String? secret,
+      String? processorToken,
+      ProcessorBalanceGetRequestOptions? options}) {
     return ProcessorBalanceGetRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
-        processorToken: processorToken ?? this.processorToken);
+        processorToken: processorToken ?? this.processorToken,
+        options: options ?? this.options);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProcessorBalanceGetRequestOptions {
+  ProcessorBalanceGetRequestOptions({
+    this.minLastUpdatedDatetime,
+  });
+
+  factory ProcessorBalanceGetRequestOptions.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProcessorBalanceGetRequestOptionsFromJson(json);
+
+  @JsonKey(name: 'min_last_updated_datetime')
+  final DateTime? minLastUpdatedDatetime;
+  static const fromJsonFactory = _$ProcessorBalanceGetRequestOptionsFromJson;
+  static const toJsonFactory = _$ProcessorBalanceGetRequestOptionsToJson;
+  Map<String, dynamic> toJson() =>
+      _$ProcessorBalanceGetRequestOptionsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProcessorBalanceGetRequestOptions &&
+            (identical(other.minLastUpdatedDatetime, minLastUpdatedDatetime) ||
+                const DeepCollectionEquality().equals(
+                    other.minLastUpdatedDatetime, minLastUpdatedDatetime)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(minLastUpdatedDatetime) ^
+      runtimeType.hashCode;
+}
+
+extension $ProcessorBalanceGetRequestOptionsExtension
+    on ProcessorBalanceGetRequestOptions {
+  ProcessorBalanceGetRequestOptions copyWith(
+      {DateTime? minLastUpdatedDatetime}) {
+    return ProcessorBalanceGetRequestOptions(
+        minLastUpdatedDatetime:
+            minLastUpdatedDatetime ?? this.minLastUpdatedDatetime);
   }
 }
 
@@ -3388,6 +4514,12 @@ class ProcessorBalanceGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorBalanceGetResponseExtension on ProcessorBalanceGetResponse {
@@ -3438,6 +4570,14 @@ class ItemWebhookUpdateRequest {
             (identical(other.webhook, webhook) ||
                 const DeepCollectionEquality().equals(other.webhook, webhook)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemWebhookUpdateRequestExtension on ItemWebhookUpdateRequest {
@@ -3482,6 +4622,12 @@ class ItemWebhookUpdateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemWebhookUpdateResponseExtension on ItemWebhookUpdateResponse {
@@ -3527,6 +4673,13 @@ class ItemAccessTokenInvalidateRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemAccessTokenInvalidateRequestExtension
@@ -3571,6 +4724,12 @@ class ItemAccessTokenInvalidateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(newAccessToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemAccessTokenInvalidateResponseExtension
@@ -3618,6 +4777,13 @@ class WebhookVerificationKeyGetRequest {
             (identical(other.keyId, keyId) ||
                 const DeepCollectionEquality().equals(other.keyId, keyId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(keyId) ^
+      runtimeType.hashCode;
 }
 
 extension $WebhookVerificationKeyGetRequestExtension
@@ -3661,6 +4827,12 @@ class WebhookVerificationKeyGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(key) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $WebhookVerificationKeyGetResponseExtension
@@ -3736,6 +4908,19 @@ class JWKPublicKey {
                 const DeepCollectionEquality()
                     .equals(other.expiredAt, expiredAt)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(alg) ^
+      const DeepCollectionEquality().hash(crv) ^
+      const DeepCollectionEquality().hash(kid) ^
+      const DeepCollectionEquality().hash(kty) ^
+      const DeepCollectionEquality().hash(use) ^
+      const DeepCollectionEquality().hash(x) ^
+      const DeepCollectionEquality().hash(y) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(expiredAt) ^
+      runtimeType.hashCode;
 }
 
 extension $JWKPublicKeyExtension on JWKPublicKey {
@@ -3801,6 +4986,14 @@ class LiabilitiesGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $LiabilitiesGetRequestExtension on LiabilitiesGetRequest {
@@ -3840,6 +5033,10 @@ class LiabilitiesGetRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.accountIds, accountIds)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^ runtimeType.hashCode;
 }
 
 extension $LiabilitiesGetRequestOptionsExtension
@@ -3890,6 +5087,14 @@ class LiabilitiesGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(liabilities) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $LiabilitiesGetResponseExtension on LiabilitiesGetResponse {
@@ -3930,7 +5135,7 @@ class PaymentInitiationRecipientCreateRequest {
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'bacs')
-  final NullableRecipientBACS? bacs;
+  final RecipientBACSNullable? bacs;
   @JsonKey(name: 'address')
   final PaymentInitiationAddress? address;
   static const fromJsonFactory =
@@ -3957,6 +5162,16 @@ class PaymentInitiationRecipientCreateRequest {
             (identical(other.address, address) ||
                 const DeepCollectionEquality().equals(other.address, address)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientCreateRequestExtension
@@ -3966,7 +5181,7 @@ extension $PaymentInitiationRecipientCreateRequestExtension
       String? secret,
       String? name,
       String? iban,
-      NullableRecipientBACS? bacs,
+      RecipientBACSNullable? bacs,
       PaymentInitiationAddress? address}) {
     return PaymentInitiationRecipientCreateRequest(
         clientId: clientId ?? this.clientId,
@@ -4010,6 +5225,12 @@ class PaymentInitiationRecipientCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientCreateResponseExtension
@@ -4018,6 +5239,68 @@ extension $PaymentInitiationRecipientCreateResponseExtension
       {String? recipientId, String? requestId}) {
     return PaymentInitiationRecipientCreateResponse(
         recipientId: recipientId ?? this.recipientId,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaymentInitiationPaymentReverseResponse {
+  PaymentInitiationPaymentReverseResponse({
+    this.refundId,
+    this.status,
+    this.requestId,
+  });
+
+  factory PaymentInitiationPaymentReverseResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$PaymentInitiationPaymentReverseResponseFromJson(json);
+
+  @JsonKey(name: 'refund_id')
+  final String? refundId;
+  @JsonKey(
+      name: 'status',
+      toJson: paymentInitiationPaymentReverseResponseStatusToJson,
+      fromJson: paymentInitiationPaymentReverseResponseStatusFromJson)
+  final enums.PaymentInitiationPaymentReverseResponseStatus? status;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory =
+      _$PaymentInitiationPaymentReverseResponseFromJson;
+  static const toJsonFactory = _$PaymentInitiationPaymentReverseResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$PaymentInitiationPaymentReverseResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaymentInitiationPaymentReverseResponse &&
+            (identical(other.refundId, refundId) ||
+                const DeepCollectionEquality()
+                    .equals(other.refundId, refundId)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(refundId) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $PaymentInitiationPaymentReverseResponseExtension
+    on PaymentInitiationPaymentReverseResponse {
+  PaymentInitiationPaymentReverseResponse copyWith(
+      {String? refundId,
+      enums.PaymentInitiationPaymentReverseResponseStatus? status,
+      String? requestId}) {
+    return PaymentInitiationPaymentReverseResponse(
+        refundId: refundId ?? this.refundId,
+        status: status ?? this.status,
         requestId: requestId ?? this.requestId);
   }
 }
@@ -4058,6 +5341,13 @@ class PaymentInitiationRecipientGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.recipientId, recipientId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(recipientId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientGetRequestExtension
@@ -4097,6 +5387,10 @@ class PaymentInitiationRecipientGetResponse extends PaymentInitiationRecipient {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientGetResponseExtension
@@ -4130,7 +5424,7 @@ class PaymentInitiationRecipient {
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'bacs')
-  final NullableRecipientBACS? bacs;
+  final RecipientBACSNullable? bacs;
   @JsonKey(name: 'emi_recipient_id')
   final String? emiRecipientId;
   static const fromJsonFactory = _$PaymentInitiationRecipientFromJson;
@@ -4157,6 +5451,16 @@ class PaymentInitiationRecipient {
                 const DeepCollectionEquality()
                     .equals(other.emiRecipientId, emiRecipientId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(emiRecipientId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientExtension on PaymentInitiationRecipient {
@@ -4165,7 +5469,7 @@ extension $PaymentInitiationRecipientExtension on PaymentInitiationRecipient {
       String? name,
       PaymentInitiationAddress? address,
       String? iban,
-      NullableRecipientBACS? bacs,
+      RecipientBACSNullable? bacs,
       String? emiRecipientId}) {
     return PaymentInitiationRecipient(
         recipientId: recipientId ?? this.recipientId,
@@ -4208,6 +5512,12 @@ class PaymentInitiationRecipientListRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientListRequestExtension
@@ -4251,6 +5561,12 @@ class PaymentInitiationRecipientListResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(recipients) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientListResponseExtension
@@ -4322,6 +5638,17 @@ class PaymentInitiationPaymentCreateRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(schedule) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentCreateRequestExtension
@@ -4346,6 +5673,63 @@ extension $PaymentInitiationPaymentCreateRequestExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class PaymentInitiationPaymentReverseRequest {
+  PaymentInitiationPaymentReverseRequest({
+    this.clientId,
+    this.secret,
+    this.paymentId,
+  });
+
+  factory PaymentInitiationPaymentReverseRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$PaymentInitiationPaymentReverseRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'payment_id')
+  final String? paymentId;
+  static const fromJsonFactory =
+      _$PaymentInitiationPaymentReverseRequestFromJson;
+  static const toJsonFactory = _$PaymentInitiationPaymentReverseRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$PaymentInitiationPaymentReverseRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaymentInitiationPaymentReverseRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.paymentId, paymentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentId, paymentId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(paymentId) ^
+      runtimeType.hashCode;
+}
+
+extension $PaymentInitiationPaymentReverseRequestExtension
+    on PaymentInitiationPaymentReverseRequest {
+  PaymentInitiationPaymentReverseRequest copyWith(
+      {String? clientId, String? secret, String? paymentId}) {
+    return PaymentInitiationPaymentReverseRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        paymentId: paymentId ?? this.paymentId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class PaymentInitiationPaymentCreateResponse {
   PaymentInitiationPaymentCreateResponse({
     this.paymentId,
@@ -4359,8 +5743,11 @@ class PaymentInitiationPaymentCreateResponse {
 
   @JsonKey(name: 'payment_id')
   final String? paymentId;
-  @JsonKey(name: 'status')
-  final String? status;
+  @JsonKey(
+      name: 'status',
+      toJson: paymentInitiationPaymentCreateResponseStatusToJson,
+      fromJson: paymentInitiationPaymentCreateResponseStatusFromJson)
+  final enums.PaymentInitiationPaymentCreateResponseStatus? status;
   @JsonKey(name: 'request_id')
   final String? requestId;
   static const fromJsonFactory =
@@ -4382,12 +5769,21 @@ class PaymentInitiationPaymentCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentId) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentCreateResponseExtension
     on PaymentInitiationPaymentCreateResponse {
   PaymentInitiationPaymentCreateResponse copyWith(
-      {String? paymentId, String? status, String? requestId}) {
+      {String? paymentId,
+      enums.PaymentInitiationPaymentCreateResponseStatus? status,
+      String? requestId}) {
     return PaymentInitiationPaymentCreateResponse(
         paymentId: paymentId ?? this.paymentId,
         status: status ?? this.status,
@@ -4429,6 +5825,13 @@ class SandboxItemResetLoginRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxItemResetLoginRequestExtension
@@ -4471,6 +5874,12 @@ class SandboxItemResetLoginResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(resetLogin) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxItemResetLoginResponseExtension
@@ -4537,6 +5946,15 @@ class SandboxItemSetVerificationStatusRequest {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxItemSetVerificationStatusRequestExtension
@@ -4583,6 +6001,10 @@ class SandboxItemSetVerificationStatusResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $SandboxItemSetVerificationStatusResponseExtension
@@ -4627,6 +6049,13 @@ class ItemPublicTokenExchangeRequest {
                 const DeepCollectionEquality()
                     .equals(other.publicToken, publicToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(publicToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemPublicTokenExchangeRequestExtension
@@ -4675,6 +6104,13 @@ class ItemPublicTokenExchangeResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemPublicTokenExchangeResponseExtension
@@ -4722,6 +6158,13 @@ class ItemPublicTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemPublicTokenCreateRequestExtension
@@ -4770,6 +6213,13 @@ class ItemPublicTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(publicToken) ^
+      const DeepCollectionEquality().hash(expiration) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemPublicTokenCreateResponseExtension
@@ -4819,6 +6269,13 @@ class PaymentInitiationPaymentGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.paymentId, paymentId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(paymentId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentGetRequestExtension
@@ -4857,6 +6314,10 @@ class PaymentInitiationPaymentGetResponse extends PaymentInitiationPayment {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentGetResponseExtension
@@ -4881,7 +6342,8 @@ class PaymentInitiationPayment {
     this.refundDetails,
     this.bacs,
     this.iban,
-    this.emiAccountId,
+    this.initiatedRefunds,
+    this.walletId,
   });
 
   factory PaymentInitiationPayment.fromJson(Map<String, dynamic> json) =>
@@ -4909,11 +6371,13 @@ class PaymentInitiationPayment {
   @JsonKey(name: 'refund_details')
   final ExternalPaymentRefundDetails? refundDetails;
   @JsonKey(name: 'bacs')
-  final NullableSenderBACS? bacs;
+  final SenderBACSNullable? bacs;
   @JsonKey(name: 'iban')
   final String? iban;
-  @JsonKey(name: 'emi_account_id')
-  final String? emiAccountId;
+  @JsonKey(name: 'initiated_refunds', defaultValue: <PaymentInitiationRefund>[])
+  final List<PaymentInitiationRefund>? initiatedRefunds;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
   static const fromJsonFactory = _$PaymentInitiationPaymentFromJson;
   static const toJsonFactory = _$PaymentInitiationPaymentToJson;
   Map<String, dynamic> toJson() => _$PaymentInitiationPaymentToJson(this);
@@ -4951,10 +6415,30 @@ class PaymentInitiationPayment {
                 const DeepCollectionEquality().equals(other.bacs, bacs)) &&
             (identical(other.iban, iban) ||
                 const DeepCollectionEquality().equals(other.iban, iban)) &&
-            (identical(other.emiAccountId, emiAccountId) ||
+            (identical(other.initiatedRefunds, initiatedRefunds) ||
                 const DeepCollectionEquality()
-                    .equals(other.emiAccountId, emiAccountId)));
+                    .equals(other.initiatedRefunds, initiatedRefunds)) &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(adjustedReference) ^
+      const DeepCollectionEquality().hash(lastStatusUpdate) ^
+      const DeepCollectionEquality().hash(schedule) ^
+      const DeepCollectionEquality().hash(refundDetails) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(initiatedRefunds) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentExtension on PaymentInitiationPayment {
@@ -4968,9 +6452,10 @@ extension $PaymentInitiationPaymentExtension on PaymentInitiationPayment {
       DateTime? lastStatusUpdate,
       ExternalPaymentScheduleGet? schedule,
       ExternalPaymentRefundDetails? refundDetails,
-      NullableSenderBACS? bacs,
+      SenderBACSNullable? bacs,
       String? iban,
-      String? emiAccountId}) {
+      List<PaymentInitiationRefund>? initiatedRefunds,
+      String? walletId}) {
     return PaymentInitiationPayment(
         paymentId: paymentId ?? this.paymentId,
         amount: amount ?? this.amount,
@@ -4983,7 +6468,74 @@ extension $PaymentInitiationPaymentExtension on PaymentInitiationPayment {
         refundDetails: refundDetails ?? this.refundDetails,
         bacs: bacs ?? this.bacs,
         iban: iban ?? this.iban,
-        emiAccountId: emiAccountId ?? this.emiAccountId);
+        initiatedRefunds: initiatedRefunds ?? this.initiatedRefunds,
+        walletId: walletId ?? this.walletId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaymentInitiationRefund {
+  PaymentInitiationRefund({
+    this.refundId,
+    this.amount,
+    this.status,
+    this.lastStatusUpdate,
+  });
+
+  factory PaymentInitiationRefund.fromJson(Map<String, dynamic> json) =>
+      _$PaymentInitiationRefundFromJson(json);
+
+  @JsonKey(name: 'refund_id')
+  final String? refundId;
+  @JsonKey(name: 'amount')
+  final PaymentAmount? amount;
+  @JsonKey(
+      name: 'status',
+      toJson: paymentInitiationRefundStatusToJson,
+      fromJson: paymentInitiationRefundStatusFromJson)
+  final enums.PaymentInitiationRefundStatus? status;
+  @JsonKey(name: 'last_status_update')
+  final DateTime? lastStatusUpdate;
+  static const fromJsonFactory = _$PaymentInitiationRefundFromJson;
+  static const toJsonFactory = _$PaymentInitiationRefundToJson;
+  Map<String, dynamic> toJson() => _$PaymentInitiationRefundToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaymentInitiationRefund &&
+            (identical(other.refundId, refundId) ||
+                const DeepCollectionEquality()
+                    .equals(other.refundId, refundId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.lastStatusUpdate, lastStatusUpdate) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastStatusUpdate, lastStatusUpdate)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(refundId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(lastStatusUpdate) ^
+      runtimeType.hashCode;
+}
+
+extension $PaymentInitiationRefundExtension on PaymentInitiationRefund {
+  PaymentInitiationRefund copyWith(
+      {String? refundId,
+      PaymentAmount? amount,
+      enums.PaymentInitiationRefundStatus? status,
+      DateTime? lastStatusUpdate}) {
+    return PaymentInitiationRefund(
+        refundId: refundId ?? this.refundId,
+        amount: amount ?? this.amount,
+        status: status ?? this.status,
+        lastStatusUpdate: lastStatusUpdate ?? this.lastStatusUpdate);
   }
 }
 
@@ -5025,6 +6577,13 @@ class PaymentInitiationPaymentTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.paymentId, paymentId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(paymentId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentTokenCreateRequestExtension
@@ -5079,6 +6638,13 @@ class PaymentInitiationPaymentTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentToken) ^
+      const DeepCollectionEquality().hash(paymentTokenExpirationTime) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentTokenCreateResponseExtension
@@ -5115,7 +6681,7 @@ class PaymentInitiationPaymentListRequest {
   @JsonKey(name: 'count')
   final int? count;
   @JsonKey(name: 'cursor')
-  final String? cursor;
+  final DateTime? cursor;
   static const fromJsonFactory = _$PaymentInitiationPaymentListRequestFromJson;
   static const toJsonFactory = _$PaymentInitiationPaymentListRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -5135,12 +6701,20 @@ class PaymentInitiationPaymentListRequest {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(cursor) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentListRequestExtension
     on PaymentInitiationPaymentListRequest {
   PaymentInitiationPaymentListRequest copyWith(
-      {String? clientId, String? secret, int? count, String? cursor}) {
+      {String? clientId, String? secret, int? count, DateTime? cursor}) {
     return PaymentInitiationPaymentListRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
@@ -5186,6 +6760,13 @@ class PaymentInitiationPaymentListResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(payments) ^
+      const DeepCollectionEquality().hash(nextCursor) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentListResponseExtension
@@ -5246,6 +6827,15 @@ class AssetReportCreateRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessTokens) ^
+      const DeepCollectionEquality().hash(daysRequested) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportCreateRequestExtension on AssetReportCreateRequest {
@@ -5299,6 +6889,13 @@ class AssetReportCreateRequestOptions {
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientReportId) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(user) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportCreateRequestOptionsExtension
@@ -5347,6 +6944,13 @@ class AssetReportCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(assetReportId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportCreateResponseExtension on AssetReportCreateResponse {
@@ -5404,6 +7008,15 @@ class AssetReportRefreshRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(daysRequested) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportRefreshRequestExtension on AssetReportRefreshRequest {
@@ -5458,6 +7071,13 @@ class AssetReportRefreshRequestOptions {
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientReportId) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(user) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportRefreshRequestOptionsExtension
@@ -5506,6 +7126,13 @@ class AssetReportRefreshResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(assetReportId) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportRefreshResponseExtension on AssetReportRefreshResponse {
@@ -5552,6 +7179,13 @@ class AssetReportRemoveRequest {
                 const DeepCollectionEquality()
                     .equals(other.assetReportToken, assetReportToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportRemoveRequestExtension on AssetReportRemoveRequest {
@@ -5593,6 +7227,12 @@ class AssetReportRemoveResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(removed) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportRemoveResponseExtension on AssetReportRemoveResponse {
@@ -5643,6 +7283,14 @@ class AssetReportFilterRequest {
                 const DeepCollectionEquality()
                     .equals(other.accountIdsToExclude, accountIdsToExclude)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(accountIdsToExclude) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportFilterRequestExtension on AssetReportFilterRequest {
@@ -5694,6 +7342,13 @@ class AssetReportFilterResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(assetReportId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportFilterResponseExtension on AssetReportFilterResponse {
@@ -5724,7 +7379,7 @@ class AssetReportGetRequest {
   final String? secret;
   @JsonKey(name: 'asset_report_token')
   final String? assetReportToken;
-  @JsonKey(name: 'include_insights')
+  @JsonKey(name: 'include_insights', defaultValue: false)
   final bool? includeInsights;
   static const fromJsonFactory = _$AssetReportGetRequestFromJson;
   static const toJsonFactory = _$AssetReportGetRequestToJson;
@@ -5746,6 +7401,14 @@ class AssetReportGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.includeInsights, includeInsights)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(includeInsights) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportGetRequestExtension on AssetReportGetRequest {
@@ -5796,6 +7459,13 @@ class AssetReportGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(report) ^
+      const DeepCollectionEquality().hash(warnings) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportGetResponseExtension on AssetReportGetResponse {
@@ -5842,6 +7512,13 @@ class AssetReportPDFGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.assetReportToken, assetReportToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportPDFGetRequestExtension on AssetReportPDFGetRequest {
@@ -5896,6 +7573,14 @@ class AssetReportAuditCopyCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.auditorId, auditorId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(assetReportToken) ^
+      const DeepCollectionEquality().hash(auditorId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportAuditCopyCreateRequestExtension
@@ -5944,6 +7629,12 @@ class AssetReportAuditCopyCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(auditCopyToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportAuditCopyCreateResponseExtension
@@ -5992,6 +7683,13 @@ class AssetReportAuditCopyRemoveRequest {
                 const DeepCollectionEquality()
                     .equals(other.auditCopyToken, auditCopyToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(auditCopyToken) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportAuditCopyRemoveRequestExtension
@@ -6036,6 +7734,12 @@ class AssetReportAuditCopyRemoveResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(removed) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportAuditCopyRemoveResponseExtension
@@ -6087,6 +7791,14 @@ class InvestmentsHoldingsGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsHoldingsGetRequestExtension
@@ -6129,6 +7841,10 @@ class InvestmentHoldingsGetRequestOptions {
                 const DeepCollectionEquality()
                     .equals(other.accountIds, accountIds)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^ runtimeType.hashCode;
 }
 
 extension $InvestmentHoldingsGetRequestOptionsExtension
@@ -6185,6 +7901,15 @@ class InvestmentsHoldingsGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(holdings) ^
+      const DeepCollectionEquality().hash(securities) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsHoldingsGetResponseExtension
@@ -6257,6 +7982,16 @@ class InvestmentsTransactionsGetRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsTransactionsGetRequestExtension
@@ -6314,6 +8049,13 @@ class InvestmentsTransactionsGetRequestOptions {
             (identical(other.offset, offset) ||
                 const DeepCollectionEquality().equals(other.offset, offset)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountIds) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsTransactionsGetRequestOptionsExtension
@@ -6384,6 +8126,16 @@ class InvestmentsTransactionsGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(securities) ^
+      const DeepCollectionEquality().hash(investmentTransactions) ^
+      const DeepCollectionEquality().hash(totalInvestmentTransactions) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsTransactionsGetResponseExtension
@@ -6428,8 +8180,11 @@ class ProcessorTokenCreateRequest {
   final String? accessToken;
   @JsonKey(name: 'account_id')
   final String? accountId;
-  @JsonKey(name: 'processor')
-  final String? processor;
+  @JsonKey(
+      name: 'processor',
+      toJson: processorTokenCreateRequestProcessorToJson,
+      fromJson: processorTokenCreateRequestProcessorFromJson)
+  final enums.ProcessorTokenCreateRequestProcessor? processor;
   static const fromJsonFactory = _$ProcessorTokenCreateRequestFromJson;
   static const toJsonFactory = _$ProcessorTokenCreateRequestToJson;
   Map<String, dynamic> toJson() => _$ProcessorTokenCreateRequestToJson(this);
@@ -6453,6 +8208,15 @@ class ProcessorTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.processor, processor)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(processor) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorTokenCreateRequestExtension on ProcessorTokenCreateRequest {
@@ -6461,7 +8225,7 @@ extension $ProcessorTokenCreateRequestExtension on ProcessorTokenCreateRequest {
       String? secret,
       String? accessToken,
       String? accountId,
-      String? processor}) {
+      enums.ProcessorTokenCreateRequestProcessor? processor}) {
     return ProcessorTokenCreateRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
@@ -6500,6 +8264,12 @@ class ProcessorTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(processorToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorTokenCreateResponseExtension
@@ -6556,6 +8326,14 @@ class ProcessorStripeBankAccountTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.accountId, accountId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorStripeBankAccountTokenCreateRequestExtension
@@ -6606,6 +8384,12 @@ class ProcessorStripeBankAccountTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(stripeBankAccountToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorStripeBankAccountTokenCreateResponseExtension
@@ -6662,6 +8446,14 @@ class ProcessorApexProcessorTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.accountId, accountId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      runtimeType.hashCode;
 }
 
 extension $ProcessorApexProcessorTokenCreateRequestExtension
@@ -6733,6 +8525,16 @@ class DepositSwitchCreateRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(targetAccessToken) ^
+      const DeepCollectionEquality().hash(targetAccountId) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchCreateRequestExtension on DepositSwitchCreateRequest {
@@ -6786,6 +8588,12 @@ class DepositSwitchCreateRequestOptions {
                     other.transactionItemAccessTokens,
                     transactionItemAccessTokens)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(transactionItemAccessTokens) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchCreateRequestOptionsExtension
@@ -6828,6 +8636,12 @@ class DepositSwitchCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchCreateResponseExtension on DepositSwitchCreateResponse {
@@ -6887,6 +8701,15 @@ class ItemImportRequest {
             (identical(other.options, options) ||
                 const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(userAuth) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemImportRequestExtension on ItemImportRequest {
@@ -6927,6 +8750,10 @@ class ItemImportRequestOptions {
             (identical(other.webhook, webhook) ||
                 const DeepCollectionEquality().equals(other.webhook, webhook)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhook) ^ runtimeType.hashCode;
 }
 
 extension $ItemImportRequestOptionsExtension on ItemImportRequestOptions {
@@ -6963,6 +8790,12 @@ class ItemImportRequestUserAuth {
                 const DeepCollectionEquality()
                     .equals(other.authToken, authToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(authToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemImportRequestUserAuthExtension on ItemImportRequestUserAuth {
@@ -7001,6 +8834,12 @@ class ItemImportResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemImportResponseExtension on ItemImportResponse {
@@ -7046,6 +8885,13 @@ class DepositSwitchTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.depositSwitchId, depositSwitchId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchTokenCreateRequestExtension
@@ -7098,6 +8944,13 @@ class DepositSwitchTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depositSwitchToken) ^
+      const DeepCollectionEquality().hash(depositSwitchTokenExpirationTime) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchTokenCreateResponseExtension
@@ -7148,6 +9001,13 @@ class LinkTokenGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.linkToken, linkToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(linkToken) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenGetRequestExtension on LinkTokenGetRequest {
@@ -7182,6 +9042,8 @@ class LinkTokenCreateRequest {
     this.depositSwitch,
     this.incomeVerification,
     this.auth,
+    this.transfer,
+    this.update,
   });
 
   factory LinkTokenCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -7231,6 +9093,10 @@ class LinkTokenCreateRequest {
   final LinkTokenCreateRequestIncomeVerification? incomeVerification;
   @JsonKey(name: 'auth')
   final LinkTokenCreateRequestAuth? auth;
+  @JsonKey(name: 'transfer')
+  final LinkTokenCreateRequestTransfer? transfer;
+  @JsonKey(name: 'update')
+  final LinkTokenCreateRequestUpdate? update;
   static const fromJsonFactory = _$LinkTokenCreateRequestFromJson;
   static const toJsonFactory = _$LinkTokenCreateRequestToJson;
   Map<String, dynamic> toJson() => _$LinkTokenCreateRequestToJson(this);
@@ -7292,8 +9158,38 @@ class LinkTokenCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.incomeVerification, incomeVerification)) &&
             (identical(other.auth, auth) ||
-                const DeepCollectionEquality().equals(other.auth, auth)));
+                const DeepCollectionEquality().equals(other.auth, auth)) &&
+            (identical(other.transfer, transfer) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfer, transfer)) &&
+            (identical(other.update, update) ||
+                const DeepCollectionEquality().equals(other.update, update)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(clientName) ^
+      const DeepCollectionEquality().hash(language) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(linkCustomizationName) ^
+      const DeepCollectionEquality().hash(redirectUri) ^
+      const DeepCollectionEquality().hash(androidPackageName) ^
+      const DeepCollectionEquality().hash(accountFilters) ^
+      const DeepCollectionEquality().hash(euConfig) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(paymentInitiation) ^
+      const DeepCollectionEquality().hash(depositSwitch) ^
+      const DeepCollectionEquality().hash(incomeVerification) ^
+      const DeepCollectionEquality().hash(auth) ^
+      const DeepCollectionEquality().hash(transfer) ^
+      const DeepCollectionEquality().hash(update) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestExtension on LinkTokenCreateRequest {
@@ -7316,7 +9212,9 @@ extension $LinkTokenCreateRequestExtension on LinkTokenCreateRequest {
       LinkTokenCreateRequestPaymentInitiation? paymentInitiation,
       LinkTokenCreateRequestDepositSwitch? depositSwitch,
       LinkTokenCreateRequestIncomeVerification? incomeVerification,
-      LinkTokenCreateRequestAuth? auth}) {
+      LinkTokenCreateRequestAuth? auth,
+      LinkTokenCreateRequestTransfer? transfer,
+      LinkTokenCreateRequestUpdate? update}) {
     return LinkTokenCreateRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
@@ -7337,7 +9235,9 @@ extension $LinkTokenCreateRequestExtension on LinkTokenCreateRequest {
         paymentInitiation: paymentInitiation ?? this.paymentInitiation,
         depositSwitch: depositSwitch ?? this.depositSwitch,
         incomeVerification: incomeVerification ?? this.incomeVerification,
-        auth: auth ?? this.auth);
+        auth: auth ?? this.auth,
+        transfer: transfer ?? this.transfer,
+        update: update ?? this.update);
   }
 }
 
@@ -7380,6 +9280,14 @@ class LinkTokenAccountFilters {
                 const DeepCollectionEquality()
                     .equals(other.investment, investment)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(investment) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenAccountFiltersExtension on LinkTokenAccountFilters {
@@ -7419,6 +9327,10 @@ class LinkTokenEUConfig {
                 const DeepCollectionEquality()
                     .equals(other.headless, headless)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(headless) ^ runtimeType.hashCode;
 }
 
 extension $LinkTokenEUConfigExtension on LinkTokenEUConfig {
@@ -7453,6 +9365,10 @@ class LinkTokenCreateRequestPaymentInitiation {
                 const DeepCollectionEquality()
                     .equals(other.paymentId, paymentId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentId) ^ runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestPaymentInitiationExtension
@@ -7488,6 +9404,11 @@ class LinkTokenCreateRequestDepositSwitch {
                 const DeepCollectionEquality()
                     .equals(other.depositSwitchId, depositSwitchId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestDepositSwitchExtension
@@ -7495,6 +9416,42 @@ extension $LinkTokenCreateRequestDepositSwitchExtension
   LinkTokenCreateRequestDepositSwitch copyWith({String? depositSwitchId}) {
     return LinkTokenCreateRequestDepositSwitch(
         depositSwitchId: depositSwitchId ?? this.depositSwitchId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LinkTokenCreateRequestTransfer {
+  LinkTokenCreateRequestTransfer({
+    this.intentId,
+  });
+
+  factory LinkTokenCreateRequestTransfer.fromJson(Map<String, dynamic> json) =>
+      _$LinkTokenCreateRequestTransferFromJson(json);
+
+  @JsonKey(name: 'intent_id')
+  final String? intentId;
+  static const fromJsonFactory = _$LinkTokenCreateRequestTransferFromJson;
+  static const toJsonFactory = _$LinkTokenCreateRequestTransferToJson;
+  Map<String, dynamic> toJson() => _$LinkTokenCreateRequestTransferToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LinkTokenCreateRequestTransfer &&
+            (identical(other.intentId, intentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.intentId, intentId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(intentId) ^ runtimeType.hashCode;
+}
+
+extension $LinkTokenCreateRequestTransferExtension
+    on LinkTokenCreateRequestTransfer {
+  LinkTokenCreateRequestTransfer copyWith({String? intentId}) {
+    return LinkTokenCreateRequestTransfer(intentId: intentId ?? this.intentId);
   }
 }
 
@@ -7524,6 +9481,10 @@ class LinkTokenCreateRequestAuth {
                 const DeepCollectionEquality()
                     .equals(other.flowType, flowType)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(flowType) ^ runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAuthExtension on LinkTokenCreateRequestAuth {
@@ -7556,14 +9517,14 @@ class LinkTokenCreateRequestUser {
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @JsonKey(name: 'phone_number_verified_time')
-  final String? phoneNumberVerifiedTime;
+  final DateTime? phoneNumberVerifiedTime;
   @JsonKey(name: 'email_address')
   final String? emailAddress;
   @JsonKey(name: 'email_address_verified_time')
-  final String? emailAddressVerifiedTime;
+  final DateTime? emailAddressVerifiedTime;
   @JsonKey(name: 'ssn')
   final String? ssn;
-  @JsonKey(name: 'date_of_birth')
+  @JsonKey(name: 'date_of_birth', toJson: _dateToJson)
   final DateTime? dateOfBirth;
   static const fromJsonFactory = _$LinkTokenCreateRequestUserFromJson;
   static const toJsonFactory = _$LinkTokenCreateRequestUserToJson;
@@ -7600,6 +9561,18 @@ class LinkTokenCreateRequestUser {
                 const DeepCollectionEquality()
                     .equals(other.dateOfBirth, dateOfBirth)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientUserId) ^
+      const DeepCollectionEquality().hash(legalName) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(phoneNumberVerifiedTime) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(emailAddressVerifiedTime) ^
+      const DeepCollectionEquality().hash(ssn) ^
+      const DeepCollectionEquality().hash(dateOfBirth) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestUserExtension on LinkTokenCreateRequestUser {
@@ -7607,9 +9580,9 @@ extension $LinkTokenCreateRequestUserExtension on LinkTokenCreateRequestUser {
       {String? clientUserId,
       String? legalName,
       String? phoneNumber,
-      String? phoneNumberVerifiedTime,
+      DateTime? phoneNumberVerifiedTime,
       String? emailAddress,
-      String? emailAddressVerifiedTime,
+      DateTime? emailAddressVerifiedTime,
       String? ssn,
       DateTime? dateOfBirth}) {
     return LinkTokenCreateRequestUser(
@@ -7623,6 +9596,46 @@ extension $LinkTokenCreateRequestUserExtension on LinkTokenCreateRequestUser {
             emailAddressVerifiedTime ?? this.emailAddressVerifiedTime,
         ssn: ssn ?? this.ssn,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LinkTokenCreateRequestUpdate {
+  LinkTokenCreateRequestUpdate({
+    this.accountSelectionEnabled,
+  });
+
+  factory LinkTokenCreateRequestUpdate.fromJson(Map<String, dynamic> json) =>
+      _$LinkTokenCreateRequestUpdateFromJson(json);
+
+  @JsonKey(name: 'account_selection_enabled', defaultValue: false)
+  final bool? accountSelectionEnabled;
+  static const fromJsonFactory = _$LinkTokenCreateRequestUpdateFromJson;
+  static const toJsonFactory = _$LinkTokenCreateRequestUpdateToJson;
+  Map<String, dynamic> toJson() => _$LinkTokenCreateRequestUpdateToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LinkTokenCreateRequestUpdate &&
+            (identical(
+                    other.accountSelectionEnabled, accountSelectionEnabled) ||
+                const DeepCollectionEquality().equals(
+                    other.accountSelectionEnabled, accountSelectionEnabled)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSelectionEnabled) ^
+      runtimeType.hashCode;
+}
+
+extension $LinkTokenCreateRequestUpdateExtension
+    on LinkTokenCreateRequestUpdate {
+  LinkTokenCreateRequestUpdate copyWith({bool? accountSelectionEnabled}) {
+    return LinkTokenCreateRequestUpdate(
+        accountSelectionEnabled:
+            accountSelectionEnabled ?? this.accountSelectionEnabled);
   }
 }
 
@@ -7668,6 +9681,14 @@ class LinkTokenCreateRequestAccountSubtypes {
                 const DeepCollectionEquality()
                     .equals(other.investment, investment)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(investment) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAccountSubtypesExtension
@@ -7732,6 +9753,15 @@ class LinkTokenGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(linkToken) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(expiration) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenGetResponseExtension on LinkTokenGetResponse {
@@ -7815,6 +9845,17 @@ class LinkTokenGetMetadataResponse {
                 const DeepCollectionEquality()
                     .equals(other.clientName, clientName)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(initialProducts) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(language) ^
+      const DeepCollectionEquality().hash(accountFilters) ^
+      const DeepCollectionEquality().hash(redirectUri) ^
+      const DeepCollectionEquality().hash(clientName) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenGetMetadataResponseExtension
@@ -7873,6 +9914,13 @@ class LinkTokenCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(linkToken) ^
+      const DeepCollectionEquality().hash(expiration) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateResponseExtension on LinkTokenCreateResponse {
@@ -7894,6 +9942,7 @@ class Item {
     this.error,
     this.availableProducts,
     this.billedProducts,
+    this.products,
     this.consentExpirationTime,
     this.updateType,
   });
@@ -7918,8 +9967,13 @@ class Item {
       toJson: productsListToJson,
       fromJson: productsListFromJson)
   final List<enums.Products>? billedProducts;
+  @JsonKey(
+      name: 'products',
+      toJson: productsListToJson,
+      fromJson: productsListFromJson)
+  final List<enums.Products>? products;
   @JsonKey(name: 'consent_expiration_time')
-  final String? consentExpirationTime;
+  final DateTime? consentExpirationTime;
   @JsonKey(
       name: 'update_type',
       toJson: itemUpdateTypeToJson,
@@ -7949,6 +10003,9 @@ class Item {
             (identical(other.billedProducts, billedProducts) ||
                 const DeepCollectionEquality()
                     .equals(other.billedProducts, billedProducts)) &&
+            (identical(other.products, products) ||
+                const DeepCollectionEquality()
+                    .equals(other.products, products)) &&
             (identical(other.consentExpirationTime, consentExpirationTime) ||
                 const DeepCollectionEquality().equals(
                     other.consentExpirationTime, consentExpirationTime)) &&
@@ -7956,6 +10013,19 @@ class Item {
                 const DeepCollectionEquality()
                     .equals(other.updateType, updateType)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(availableProducts) ^
+      const DeepCollectionEquality().hash(billedProducts) ^
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(consentExpirationTime) ^
+      const DeepCollectionEquality().hash(updateType) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemExtension on Item {
@@ -7966,7 +10036,8 @@ extension $ItemExtension on Item {
       Error? error,
       List<enums.Products>? availableProducts,
       List<enums.Products>? billedProducts,
-      String? consentExpirationTime,
+      List<enums.Products>? products,
+      DateTime? consentExpirationTime,
       enums.ItemUpdateType? updateType}) {
     return Item(
         itemId: itemId ?? this.itemId,
@@ -7975,6 +10046,7 @@ extension $ItemExtension on Item {
         error: error ?? this.error,
         availableProducts: availableProducts ?? this.availableProducts,
         billedProducts: billedProducts ?? this.billedProducts,
+        products: products ?? this.products,
         consentExpirationTime:
             consentExpirationTime ?? this.consentExpirationTime,
         updateType: updateType ?? this.updateType);
@@ -8052,6 +10124,19 @@ class Error {
                 const DeepCollectionEquality()
                     .equals(other.suggestedAction, suggestedAction)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(errorType) ^
+      const DeepCollectionEquality().hash(errorCode) ^
+      const DeepCollectionEquality().hash(errorMessage) ^
+      const DeepCollectionEquality().hash(displayMessage) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(causes) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(documentationUrl) ^
+      const DeepCollectionEquality().hash(suggestedAction) ^
+      runtimeType.hashCode;
 }
 
 extension $ErrorExtension on Error {
@@ -8079,15 +10164,153 @@ extension $ErrorExtension on Error {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableItemStatus extends ItemStatus {
-  NullableItemStatus();
+class ItemStatusNullable extends ItemStatus {
+  ItemStatusNullable();
 
-  factory NullableItemStatus.fromJson(Map<String, dynamic> json) =>
-      _$NullableItemStatusFromJson(json);
+  factory ItemStatusNullable.fromJson(Map<String, dynamic> json) =>
+      _$ItemStatusNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableItemStatusFromJson;
-  static const toJsonFactory = _$NullableItemStatusToJson;
-  Map<String, dynamic> toJson() => _$NullableItemStatusToJson(this);
+  static const fromJsonFactory = _$ItemStatusNullableFromJson;
+  static const toJsonFactory = _$ItemStatusNullableToJson;
+  Map<String, dynamic> toJson() => _$ItemStatusNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class ItemStatusTransactions {
+  ItemStatusTransactions({
+    this.lastSuccessfulUpdate,
+    this.lastFailedUpdate,
+  });
+
+  factory ItemStatusTransactions.fromJson(Map<String, dynamic> json) =>
+      _$ItemStatusTransactionsFromJson(json);
+
+  @JsonKey(name: 'last_successful_update')
+  final DateTime? lastSuccessfulUpdate;
+  @JsonKey(name: 'last_failed_update')
+  final DateTime? lastFailedUpdate;
+  static const fromJsonFactory = _$ItemStatusTransactionsFromJson;
+  static const toJsonFactory = _$ItemStatusTransactionsToJson;
+  Map<String, dynamic> toJson() => _$ItemStatusTransactionsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ItemStatusTransactions &&
+            (identical(other.lastSuccessfulUpdate, lastSuccessfulUpdate) ||
+                const DeepCollectionEquality().equals(
+                    other.lastSuccessfulUpdate, lastSuccessfulUpdate)) &&
+            (identical(other.lastFailedUpdate, lastFailedUpdate) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastFailedUpdate, lastFailedUpdate)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(lastSuccessfulUpdate) ^
+      const DeepCollectionEquality().hash(lastFailedUpdate) ^
+      runtimeType.hashCode;
+}
+
+extension $ItemStatusTransactionsExtension on ItemStatusTransactions {
+  ItemStatusTransactions copyWith(
+      {DateTime? lastSuccessfulUpdate, DateTime? lastFailedUpdate}) {
+    return ItemStatusTransactions(
+        lastSuccessfulUpdate: lastSuccessfulUpdate ?? this.lastSuccessfulUpdate,
+        lastFailedUpdate: lastFailedUpdate ?? this.lastFailedUpdate);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ItemStatusInvestments {
+  ItemStatusInvestments({
+    this.lastSuccessfulUpdate,
+    this.lastFailedUpdate,
+  });
+
+  factory ItemStatusInvestments.fromJson(Map<String, dynamic> json) =>
+      _$ItemStatusInvestmentsFromJson(json);
+
+  @JsonKey(name: 'last_successful_update')
+  final DateTime? lastSuccessfulUpdate;
+  @JsonKey(name: 'last_failed_update')
+  final DateTime? lastFailedUpdate;
+  static const fromJsonFactory = _$ItemStatusInvestmentsFromJson;
+  static const toJsonFactory = _$ItemStatusInvestmentsToJson;
+  Map<String, dynamic> toJson() => _$ItemStatusInvestmentsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ItemStatusInvestments &&
+            (identical(other.lastSuccessfulUpdate, lastSuccessfulUpdate) ||
+                const DeepCollectionEquality().equals(
+                    other.lastSuccessfulUpdate, lastSuccessfulUpdate)) &&
+            (identical(other.lastFailedUpdate, lastFailedUpdate) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastFailedUpdate, lastFailedUpdate)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(lastSuccessfulUpdate) ^
+      const DeepCollectionEquality().hash(lastFailedUpdate) ^
+      runtimeType.hashCode;
+}
+
+extension $ItemStatusInvestmentsExtension on ItemStatusInvestments {
+  ItemStatusInvestments copyWith(
+      {DateTime? lastSuccessfulUpdate, DateTime? lastFailedUpdate}) {
+    return ItemStatusInvestments(
+        lastSuccessfulUpdate: lastSuccessfulUpdate ?? this.lastSuccessfulUpdate,
+        lastFailedUpdate: lastFailedUpdate ?? this.lastFailedUpdate);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ItemStatusLastWebhook {
+  ItemStatusLastWebhook({
+    this.sentAt,
+    this.codeSent,
+  });
+
+  factory ItemStatusLastWebhook.fromJson(Map<String, dynamic> json) =>
+      _$ItemStatusLastWebhookFromJson(json);
+
+  @JsonKey(name: 'sent_at')
+  final DateTime? sentAt;
+  @JsonKey(name: 'code_sent')
+  final String? codeSent;
+  static const fromJsonFactory = _$ItemStatusLastWebhookFromJson;
+  static const toJsonFactory = _$ItemStatusLastWebhookToJson;
+  Map<String, dynamic> toJson() => _$ItemStatusLastWebhookToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ItemStatusLastWebhook &&
+            (identical(other.sentAt, sentAt) ||
+                const DeepCollectionEquality().equals(other.sentAt, sentAt)) &&
+            (identical(other.codeSent, codeSent) ||
+                const DeepCollectionEquality()
+                    .equals(other.codeSent, codeSent)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sentAt) ^
+      const DeepCollectionEquality().hash(codeSent) ^
+      runtimeType.hashCode;
+}
+
+extension $ItemStatusLastWebhookExtension on ItemStatusLastWebhook {
+  ItemStatusLastWebhook copyWith({DateTime? sentAt, String? codeSent}) {
+    return ItemStatusLastWebhook(
+        sentAt: sentAt ?? this.sentAt, codeSent: codeSent ?? this.codeSent);
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8102,11 +10325,11 @@ class ItemStatus {
       _$ItemStatusFromJson(json);
 
   @JsonKey(name: 'investments')
-  final ItemStatus$Investments? investments;
+  final ItemStatusInvestments? investments;
   @JsonKey(name: 'transactions')
-  final ItemStatus$Transactions? transactions;
+  final ItemStatusTransactions? transactions;
   @JsonKey(name: 'last_webhook')
-  final ItemStatus$LastWebhook? lastWebhook;
+  final ItemStatusLastWebhook? lastWebhook;
   static const fromJsonFactory = _$ItemStatusFromJson;
   static const toJsonFactory = _$ItemStatusToJson;
   Map<String, dynamic> toJson() => _$ItemStatusToJson(this);
@@ -8125,13 +10348,20 @@ class ItemStatus {
                 const DeepCollectionEquality()
                     .equals(other.lastWebhook, lastWebhook)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(investments) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      const DeepCollectionEquality().hash(lastWebhook) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemStatusExtension on ItemStatus {
   ItemStatus copyWith(
-      {ItemStatus$Investments? investments,
-      ItemStatus$Transactions? transactions,
-      ItemStatus$LastWebhook? lastWebhook}) {
+      {ItemStatusInvestments? investments,
+      ItemStatusTransactions? transactions,
+      ItemStatusLastWebhook? lastWebhook}) {
     return ItemStatus(
         investments: investments ?? this.investments,
         transactions: transactions ?? this.transactions,
@@ -8208,6 +10438,18 @@ class AccountBase {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(balances) ^
+      const DeepCollectionEquality().hash(mask) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(officialName) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subtype) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountBaseExtension on AccountBase {
@@ -8257,7 +10499,7 @@ class AccountBalance {
   @JsonKey(name: 'unofficial_currency_code')
   final String? unofficialCurrencyCode;
   @JsonKey(name: 'last_updated_datetime')
-  final String? lastUpdatedDatetime;
+  final DateTime? lastUpdatedDatetime;
   static const fromJsonFactory = _$AccountBalanceFromJson;
   static const toJsonFactory = _$AccountBalanceToJson;
   Map<String, dynamic> toJson() => _$AccountBalanceToJson(this);
@@ -8284,6 +10526,16 @@ class AccountBalance {
                 const DeepCollectionEquality()
                     .equals(other.lastUpdatedDatetime, lastUpdatedDatetime)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(available) ^
+      const DeepCollectionEquality().hash(current) ^
+      const DeepCollectionEquality().hash(limit) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(lastUpdatedDatetime) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountBalanceExtension on AccountBalance {
@@ -8293,7 +10545,7 @@ extension $AccountBalanceExtension on AccountBalance {
       double? limit,
       String? isoCurrencyCode,
       String? unofficialCurrencyCode,
-      String? lastUpdatedDatetime}) {
+      DateTime? lastUpdatedDatetime}) {
     return AccountBalance(
         available: available ?? this.available,
         current: current ?? this.current,
@@ -8346,6 +10598,14 @@ class NumbersACH {
                 const DeepCollectionEquality()
                     .equals(other.wireRouting, wireRouting)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(routing) ^
+      const DeepCollectionEquality().hash(wireRouting) ^
+      runtimeType.hashCode;
 }
 
 extension $NumbersACHExtension on NumbersACH {
@@ -8363,15 +10623,18 @@ extension $NumbersACHExtension on NumbersACH {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableNumbersACH extends NumbersACH {
-  NullableNumbersACH();
+class NumbersACHNullable extends NumbersACH {
+  NumbersACHNullable();
 
-  factory NullableNumbersACH.fromJson(Map<String, dynamic> json) =>
-      _$NullableNumbersACHFromJson(json);
+  factory NumbersACHNullable.fromJson(Map<String, dynamic> json) =>
+      _$NumbersACHNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableNumbersACHFromJson;
-  static const toJsonFactory = _$NullableNumbersACHToJson;
-  Map<String, dynamic> toJson() => _$NullableNumbersACHToJson(this);
+  static const fromJsonFactory = _$NumbersACHNullableFromJson;
+  static const toJsonFactory = _$NumbersACHNullableToJson;
+  Map<String, dynamic> toJson() => _$NumbersACHNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8414,6 +10677,14 @@ class NumbersEFT {
             (identical(other.branch, branch) ||
                 const DeepCollectionEquality().equals(other.branch, branch)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(institution) ^
+      const DeepCollectionEquality().hash(branch) ^
+      runtimeType.hashCode;
 }
 
 extension $NumbersEFTExtension on NumbersEFT {
@@ -8431,15 +10702,18 @@ extension $NumbersEFTExtension on NumbersEFT {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableNumbersEFT extends NumbersEFT {
-  NullableNumbersEFT();
+class NumbersEFTNullable extends NumbersEFT {
+  NumbersEFTNullable();
 
-  factory NullableNumbersEFT.fromJson(Map<String, dynamic> json) =>
-      _$NullableNumbersEFTFromJson(json);
+  factory NumbersEFTNullable.fromJson(Map<String, dynamic> json) =>
+      _$NumbersEFTNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableNumbersEFTFromJson;
-  static const toJsonFactory = _$NullableNumbersEFTToJson;
-  Map<String, dynamic> toJson() => _$NullableNumbersEFTToJson(this);
+  static const fromJsonFactory = _$NumbersEFTNullableFromJson;
+  static const toJsonFactory = _$NumbersEFTNullableToJson;
+  Map<String, dynamic> toJson() => _$NumbersEFTNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8475,6 +10749,13 @@ class NumbersInternational {
             (identical(other.bic, bic) ||
                 const DeepCollectionEquality().equals(other.bic, bic)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bic) ^
+      runtimeType.hashCode;
 }
 
 extension $NumbersInternationalExtension on NumbersInternational {
@@ -8488,15 +10769,18 @@ extension $NumbersInternationalExtension on NumbersInternational {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableNumbersInternational extends NumbersInternational {
-  NullableNumbersInternational();
+class NumbersInternationalNullable extends NumbersInternational {
+  NumbersInternationalNullable();
 
-  factory NullableNumbersInternational.fromJson(Map<String, dynamic> json) =>
-      _$NullableNumbersInternationalFromJson(json);
+  factory NumbersInternationalNullable.fromJson(Map<String, dynamic> json) =>
+      _$NumbersInternationalNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableNumbersInternationalFromJson;
-  static const toJsonFactory = _$NullableNumbersInternationalToJson;
-  Map<String, dynamic> toJson() => _$NullableNumbersInternationalToJson(this);
+  static const fromJsonFactory = _$NumbersInternationalNullableFromJson;
+  static const toJsonFactory = _$NumbersInternationalNullableToJson;
+  Map<String, dynamic> toJson() => _$NumbersInternationalNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8534,6 +10818,13 @@ class NumbersBACS {
                 const DeepCollectionEquality()
                     .equals(other.sortCode, sortCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(sortCode) ^
+      runtimeType.hashCode;
 }
 
 extension $NumbersBACSExtension on NumbersBACS {
@@ -8546,15 +10837,18 @@ extension $NumbersBACSExtension on NumbersBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableNumbersBACS extends NumbersBACS {
-  NullableNumbersBACS();
+class NumbersBACSNullable extends NumbersBACS {
+  NumbersBACSNullable();
 
-  factory NullableNumbersBACS.fromJson(Map<String, dynamic> json) =>
-      _$NullableNumbersBACSFromJson(json);
+  factory NumbersBACSNullable.fromJson(Map<String, dynamic> json) =>
+      _$NumbersBACSNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableNumbersBACSFromJson;
-  static const toJsonFactory = _$NullableNumbersBACSToJson;
-  Map<String, dynamic> toJson() => _$NullableNumbersBACSToJson(this);
+  static const fromJsonFactory = _$NumbersBACSNullableFromJson;
+  static const toJsonFactory = _$NumbersBACSNullableToJson;
+  Map<String, dynamic> toJson() => _$NumbersBACSNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8586,6 +10880,12 @@ class RecipientBACS {
                 const DeepCollectionEquality()
                     .equals(other.sortCode, sortCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(sortCode) ^
+      runtimeType.hashCode;
 }
 
 extension $RecipientBACSExtension on RecipientBACS {
@@ -8596,27 +10896,33 @@ extension $RecipientBACSExtension on RecipientBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableRecipientBACS extends RecipientBACS {
-  NullableRecipientBACS();
+class RecipientBACSNullable extends RecipientBACS {
+  RecipientBACSNullable();
 
-  factory NullableRecipientBACS.fromJson(Map<String, dynamic> json) =>
-      _$NullableRecipientBACSFromJson(json);
+  factory RecipientBACSNullable.fromJson(Map<String, dynamic> json) =>
+      _$RecipientBACSNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableRecipientBACSFromJson;
-  static const toJsonFactory = _$NullableRecipientBACSToJson;
-  Map<String, dynamic> toJson() => _$NullableRecipientBACSToJson(this);
+  static const fromJsonFactory = _$RecipientBACSNullableFromJson;
+  static const toJsonFactory = _$RecipientBACSNullableToJson;
+  Map<String, dynamic> toJson() => _$RecipientBACSNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableSenderBACS extends RecipientBACS {
-  NullableSenderBACS();
+class SenderBACSNullable extends RecipientBACS {
+  SenderBACSNullable();
 
-  factory NullableSenderBACS.fromJson(Map<String, dynamic> json) =>
-      _$NullableSenderBACSFromJson(json);
+  factory SenderBACSNullable.fromJson(Map<String, dynamic> json) =>
+      _$SenderBACSNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableSenderBACSFromJson;
-  static const toJsonFactory = _$NullableSenderBACSToJson;
-  Map<String, dynamic> toJson() => _$NullableSenderBACSToJson(this);
+  static const fromJsonFactory = _$SenderBACSNullableFromJson;
+  static const toJsonFactory = _$SenderBACSNullableToJson;
+  Map<String, dynamic> toJson() => _$SenderBACSNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8632,91 +10938,271 @@ class PaymentInitiationOptionalRestrictionBacs extends RecipientBACS {
   static const toJsonFactory = _$PaymentInitiationOptionalRestrictionBacsToJson;
   Map<String, dynamic> toJson() =>
       _$PaymentInitiationOptionalRestrictionBacsToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
-class Transaction {
-  Transaction({
-    this.transactionType,
+class RemovedTransaction {
+  RemovedTransaction({
     this.transactionId,
-    this.accountOwner,
+  });
+
+  factory RemovedTransaction.fromJson(Map<String, dynamic> json) =>
+      _$RemovedTransactionFromJson(json);
+
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  static const fromJsonFactory = _$RemovedTransactionFromJson;
+  static const toJsonFactory = _$RemovedTransactionToJson;
+  Map<String, dynamic> toJson() => _$RemovedTransactionToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemovedTransaction &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionId, transactionId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transactionId) ^ runtimeType.hashCode;
+}
+
+extension $RemovedTransactionExtension on RemovedTransaction {
+  RemovedTransaction copyWith({String? transactionId}) {
+    return RemovedTransaction(
+        transactionId: transactionId ?? this.transactionId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionBase {
+  TransactionBase({
+    this.transactionType,
     this.pendingTransactionId,
-    this.pending,
-    this.paymentChannel,
-    this.paymentMeta,
-    this.name,
-    this.merchantName,
-    this.location,
-    this.authorizedDate,
-    this.authorizedDatetime,
-    this.date,
-    this.datetime,
     this.categoryId,
     this.category,
-    this.unofficialCurrencyCode,
-    this.isoCurrencyCode,
-    this.amount,
-    this.accountId,
-    this.transactionCode,
+    this.location,
+    this.paymentMeta,
+    this.accountOwner,
+    this.name,
     this.originalDescription,
+    this.accountId,
+    this.amount,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.date,
+    this.pending,
+    this.transactionId,
+    this.merchantName,
+    this.checkNumber,
+  });
+
+  factory TransactionBase.fromJson(Map<String, dynamic> json) =>
+      _$TransactionBaseFromJson(json);
+
+  @JsonKey(
+      name: 'transaction_type',
+      toJson: transactionBaseTransactionTypeToJson,
+      fromJson: transactionBaseTransactionTypeFromJson)
+  final enums.TransactionBaseTransactionType? transactionType;
+  @JsonKey(name: 'pending_transaction_id')
+  final String? pendingTransactionId;
+  @JsonKey(name: 'category_id')
+  final String? categoryId;
+  @JsonKey(name: 'category', defaultValue: <String>[])
+  final List<String>? category;
+  @JsonKey(name: 'location')
+  final Location? location;
+  @JsonKey(name: 'payment_meta')
+  final PaymentMeta? paymentMeta;
+  @JsonKey(name: 'account_owner')
+  final String? accountOwner;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'original_description')
+  final String? originalDescription;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
+  @JsonKey(name: 'pending')
+  final bool? pending;
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(name: 'merchant_name')
+  final String? merchantName;
+  @JsonKey(name: 'check_number')
+  final String? checkNumber;
+  static const fromJsonFactory = _$TransactionBaseFromJson;
+  static const toJsonFactory = _$TransactionBaseToJson;
+  Map<String, dynamic> toJson() => _$TransactionBaseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionBase &&
+            (identical(other.transactionType, transactionType) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionType, transactionType)) &&
+            (identical(other.pendingTransactionId, pendingTransactionId) ||
+                const DeepCollectionEquality().equals(
+                    other.pendingTransactionId, pendingTransactionId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.category, category) ||
+                const DeepCollectionEquality()
+                    .equals(other.category, category)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)) &&
+            (identical(other.paymentMeta, paymentMeta) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentMeta, paymentMeta)) &&
+            (identical(other.accountOwner, accountOwner) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountOwner, accountOwner)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.originalDescription, originalDescription) ||
+                const DeepCollectionEquality()
+                    .equals(other.originalDescription, originalDescription)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.pending, pending) ||
+                const DeepCollectionEquality()
+                    .equals(other.pending, pending)) &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionId, transactionId)) &&
+            (identical(other.merchantName, merchantName) ||
+                const DeepCollectionEquality()
+                    .equals(other.merchantName, merchantName)) &&
+            (identical(other.checkNumber, checkNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.checkNumber, checkNumber)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transactionType) ^
+      const DeepCollectionEquality().hash(pendingTransactionId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(location) ^
+      const DeepCollectionEquality().hash(paymentMeta) ^
+      const DeepCollectionEquality().hash(accountOwner) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(originalDescription) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(pending) ^
+      const DeepCollectionEquality().hash(transactionId) ^
+      const DeepCollectionEquality().hash(merchantName) ^
+      const DeepCollectionEquality().hash(checkNumber) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionBaseExtension on TransactionBase {
+  TransactionBase copyWith(
+      {enums.TransactionBaseTransactionType? transactionType,
+      String? pendingTransactionId,
+      String? categoryId,
+      List<String>? category,
+      Location? location,
+      PaymentMeta? paymentMeta,
+      String? accountOwner,
+      String? name,
+      String? originalDescription,
+      String? accountId,
+      double? amount,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      DateTime? date,
+      bool? pending,
+      String? transactionId,
+      String? merchantName,
+      String? checkNumber}) {
+    return TransactionBase(
+        transactionType: transactionType ?? this.transactionType,
+        pendingTransactionId: pendingTransactionId ?? this.pendingTransactionId,
+        categoryId: categoryId ?? this.categoryId,
+        category: category ?? this.category,
+        location: location ?? this.location,
+        paymentMeta: paymentMeta ?? this.paymentMeta,
+        accountOwner: accountOwner ?? this.accountOwner,
+        name: name ?? this.name,
+        originalDescription: originalDescription ?? this.originalDescription,
+        accountId: accountId ?? this.accountId,
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        date: date ?? this.date,
+        pending: pending ?? this.pending,
+        transactionId: transactionId ?? this.transactionId,
+        merchantName: merchantName ?? this.merchantName,
+        checkNumber: checkNumber ?? this.checkNumber);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Transaction extends TransactionBase {
+  Transaction({
+    this.paymentChannel,
+    this.authorizedDate,
+    this.authorizedDatetime,
+    this.datetime,
+    this.transactionCode,
+    this.personalFinanceCategory,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
       _$TransactionFromJson(json);
 
   @JsonKey(
-      name: 'transaction_type',
-      toJson: transactionTransactionTypeToJson,
-      fromJson: transactionTransactionTypeFromJson)
-  final enums.TransactionTransactionType? transactionType;
-  @JsonKey(name: 'transaction_id')
-  final String? transactionId;
-  @JsonKey(name: 'account_owner')
-  final String? accountOwner;
-  @JsonKey(name: 'pending_transaction_id')
-  final String? pendingTransactionId;
-  @JsonKey(name: 'pending')
-  final bool? pending;
-  @JsonKey(
       name: 'payment_channel',
       toJson: transactionPaymentChannelToJson,
       fromJson: transactionPaymentChannelFromJson)
   final enums.TransactionPaymentChannel? paymentChannel;
-  @JsonKey(name: 'payment_meta')
-  final PaymentMeta? paymentMeta;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'merchant_name')
-  final String? merchantName;
-  @JsonKey(name: 'location')
-  final Location? location;
-  @JsonKey(name: 'authorized_date')
-  final String? authorizedDate;
+  @JsonKey(name: 'authorized_date', toJson: _dateToJson)
+  final DateTime? authorizedDate;
   @JsonKey(name: 'authorized_datetime')
-  final String? authorizedDatetime;
-  @JsonKey(name: 'date')
-  final String? date;
+  final DateTime? authorizedDatetime;
   @JsonKey(name: 'datetime')
-  final String? datetime;
-  @JsonKey(name: 'category_id')
-  final String? categoryId;
-  @JsonKey(name: 'category', defaultValue: <String>[])
-  final List<String>? category;
-  @JsonKey(name: 'unofficial_currency_code')
-  final String? unofficialCurrencyCode;
-  @JsonKey(name: 'iso_currency_code')
-  final String? isoCurrencyCode;
-  @JsonKey(name: 'amount')
-  final double? amount;
-  @JsonKey(name: 'account_id')
-  final String? accountId;
+  final DateTime? datetime;
   @JsonKey(
       name: 'transaction_code',
       toJson: transactionCodeToJson,
       fromJson: transactionCodeFromJson)
   final enums.TransactionCode? transactionCode;
-  @JsonKey(name: 'original_description')
-  final String? originalDescription;
+  @JsonKey(name: 'personalFinanceCategory')
+  final dynamic personalFinanceCategory;
   static const fromJsonFactory = _$TransactionFromJson;
   static const toJsonFactory = _$TransactionToJson;
   Map<String, dynamic> toJson() => _$TransactionToJson(this);
@@ -8725,120 +11211,54 @@ class Transaction {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Transaction &&
-            (identical(other.transactionType, transactionType) ||
-                const DeepCollectionEquality()
-                    .equals(other.transactionType, transactionType)) &&
-            (identical(other.transactionId, transactionId) ||
-                const DeepCollectionEquality()
-                    .equals(other.transactionId, transactionId)) &&
-            (identical(other.accountOwner, accountOwner) ||
-                const DeepCollectionEquality()
-                    .equals(other.accountOwner, accountOwner)) &&
-            (identical(other.pendingTransactionId, pendingTransactionId) ||
-                const DeepCollectionEquality().equals(
-                    other.pendingTransactionId, pendingTransactionId)) &&
-            (identical(other.pending, pending) ||
-                const DeepCollectionEquality()
-                    .equals(other.pending, pending)) &&
             (identical(other.paymentChannel, paymentChannel) ||
                 const DeepCollectionEquality()
                     .equals(other.paymentChannel, paymentChannel)) &&
-            (identical(other.paymentMeta, paymentMeta) ||
-                const DeepCollectionEquality()
-                    .equals(other.paymentMeta, paymentMeta)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.merchantName, merchantName) ||
-                const DeepCollectionEquality()
-                    .equals(other.merchantName, merchantName)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
             (identical(other.authorizedDate, authorizedDate) ||
                 const DeepCollectionEquality()
                     .equals(other.authorizedDate, authorizedDate)) &&
             (identical(other.authorizedDatetime, authorizedDatetime) ||
                 const DeepCollectionEquality()
                     .equals(other.authorizedDatetime, authorizedDatetime)) &&
-            (identical(other.date, date) ||
-                const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.datetime, datetime) ||
                 const DeepCollectionEquality()
                     .equals(other.datetime, datetime)) &&
-            (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality()
-                    .equals(other.category, category)) &&
-            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
-                const DeepCollectionEquality().equals(
-                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
-            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.accountId, accountId) ||
-                const DeepCollectionEquality()
-                    .equals(other.accountId, accountId)) &&
             (identical(other.transactionCode, transactionCode) ||
                 const DeepCollectionEquality()
                     .equals(other.transactionCode, transactionCode)) &&
-            (identical(other.originalDescription, originalDescription) ||
-                const DeepCollectionEquality()
-                    .equals(other.originalDescription, originalDescription)));
+            (identical(
+                    other.personalFinanceCategory, personalFinanceCategory) ||
+                const DeepCollectionEquality().equals(
+                    other.personalFinanceCategory, personalFinanceCategory)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paymentChannel) ^
+      const DeepCollectionEquality().hash(authorizedDate) ^
+      const DeepCollectionEquality().hash(authorizedDatetime) ^
+      const DeepCollectionEquality().hash(datetime) ^
+      const DeepCollectionEquality().hash(transactionCode) ^
+      const DeepCollectionEquality().hash(personalFinanceCategory) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionExtension on Transaction {
   Transaction copyWith(
-      {enums.TransactionTransactionType? transactionType,
-      String? transactionId,
-      String? accountOwner,
-      String? pendingTransactionId,
-      bool? pending,
-      enums.TransactionPaymentChannel? paymentChannel,
-      PaymentMeta? paymentMeta,
-      String? name,
-      String? merchantName,
-      Location? location,
-      String? authorizedDate,
-      String? authorizedDatetime,
-      String? date,
-      String? datetime,
-      String? categoryId,
-      List<String>? category,
-      String? unofficialCurrencyCode,
-      String? isoCurrencyCode,
-      double? amount,
-      String? accountId,
+      {enums.TransactionPaymentChannel? paymentChannel,
+      DateTime? authorizedDate,
+      DateTime? authorizedDatetime,
+      DateTime? datetime,
       enums.TransactionCode? transactionCode,
-      String? originalDescription}) {
+      dynamic? personalFinanceCategory}) {
     return Transaction(
-        transactionType: transactionType ?? this.transactionType,
-        transactionId: transactionId ?? this.transactionId,
-        accountOwner: accountOwner ?? this.accountOwner,
-        pendingTransactionId: pendingTransactionId ?? this.pendingTransactionId,
-        pending: pending ?? this.pending,
         paymentChannel: paymentChannel ?? this.paymentChannel,
-        paymentMeta: paymentMeta ?? this.paymentMeta,
-        name: name ?? this.name,
-        merchantName: merchantName ?? this.merchantName,
-        location: location ?? this.location,
         authorizedDate: authorizedDate ?? this.authorizedDate,
         authorizedDatetime: authorizedDatetime ?? this.authorizedDatetime,
-        date: date ?? this.date,
         datetime: datetime ?? this.datetime,
-        categoryId: categoryId ?? this.categoryId,
-        category: category ?? this.category,
-        unofficialCurrencyCode:
-            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
-        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
-        amount: amount ?? this.amount,
-        accountId: accountId ?? this.accountId,
         transactionCode: transactionCode ?? this.transactionCode,
-        originalDescription: originalDescription ?? this.originalDescription);
+        personalFinanceCategory:
+            personalFinanceCategory ?? this.personalFinanceCategory);
   }
 }
 
@@ -8903,6 +11323,18 @@ class Location {
                 const DeepCollectionEquality()
                     .equals(other.storeNumber, storeNumber)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(lat) ^
+      const DeepCollectionEquality().hash(lon) ^
+      const DeepCollectionEquality().hash(storeNumber) ^
+      runtimeType.hashCode;
 }
 
 extension $LocationExtension on Location {
@@ -8928,6 +11360,193 @@ extension $LocationExtension on Location {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TransactionStream {
+  TransactionStream({
+    this.accountId,
+    this.streamId,
+    this.categoryId,
+    this.category,
+    this.description,
+    this.firstDate,
+    this.lastDate,
+    this.frequency,
+    this.transactionIds,
+    this.averageAmount,
+    this.isActive,
+  });
+
+  factory TransactionStream.fromJson(Map<String, dynamic> json) =>
+      _$TransactionStreamFromJson(json);
+
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'stream_id')
+  final String? streamId;
+  @JsonKey(name: 'category_id')
+  final String? categoryId;
+  @JsonKey(name: 'category', defaultValue: <String>[])
+  final List<String>? category;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'first_date', toJson: _dateToJson)
+  final DateTime? firstDate;
+  @JsonKey(name: 'last_date', toJson: _dateToJson)
+  final DateTime? lastDate;
+  @JsonKey(
+      name: 'frequency',
+      toJson: recurringTransactionFrequencyToJson,
+      fromJson: recurringTransactionFrequencyFromJson)
+  final enums.RecurringTransactionFrequency? frequency;
+  @JsonKey(name: 'transaction_ids', defaultValue: <String>[])
+  final List<String>? transactionIds;
+  @JsonKey(name: 'average_amount')
+  final TransactionStreamAmount? averageAmount;
+  @JsonKey(name: 'is_active')
+  final bool? isActive;
+  static const fromJsonFactory = _$TransactionStreamFromJson;
+  static const toJsonFactory = _$TransactionStreamToJson;
+  Map<String, dynamic> toJson() => _$TransactionStreamToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionStream &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.streamId, streamId) ||
+                const DeepCollectionEquality()
+                    .equals(other.streamId, streamId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.category, category) ||
+                const DeepCollectionEquality()
+                    .equals(other.category, category)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.firstDate, firstDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstDate, firstDate)) &&
+            (identical(other.lastDate, lastDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastDate, lastDate)) &&
+            (identical(other.frequency, frequency) ||
+                const DeepCollectionEquality()
+                    .equals(other.frequency, frequency)) &&
+            (identical(other.transactionIds, transactionIds) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionIds, transactionIds)) &&
+            (identical(other.averageAmount, averageAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.averageAmount, averageAmount)) &&
+            (identical(other.isActive, isActive) ||
+                const DeepCollectionEquality()
+                    .equals(other.isActive, isActive)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(streamId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(firstDate) ^
+      const DeepCollectionEquality().hash(lastDate) ^
+      const DeepCollectionEquality().hash(frequency) ^
+      const DeepCollectionEquality().hash(transactionIds) ^
+      const DeepCollectionEquality().hash(averageAmount) ^
+      const DeepCollectionEquality().hash(isActive) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionStreamExtension on TransactionStream {
+  TransactionStream copyWith(
+      {String? accountId,
+      String? streamId,
+      String? categoryId,
+      List<String>? category,
+      String? description,
+      DateTime? firstDate,
+      DateTime? lastDate,
+      enums.RecurringTransactionFrequency? frequency,
+      List<String>? transactionIds,
+      TransactionStreamAmount? averageAmount,
+      bool? isActive}) {
+    return TransactionStream(
+        accountId: accountId ?? this.accountId,
+        streamId: streamId ?? this.streamId,
+        categoryId: categoryId ?? this.categoryId,
+        category: category ?? this.category,
+        description: description ?? this.description,
+        firstDate: firstDate ?? this.firstDate,
+        lastDate: lastDate ?? this.lastDate,
+        frequency: frequency ?? this.frequency,
+        transactionIds: transactionIds ?? this.transactionIds,
+        averageAmount: averageAmount ?? this.averageAmount,
+        isActive: isActive ?? this.isActive);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionStreamAmount {
+  TransactionStreamAmount({
+    this.amount,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+  });
+
+  factory TransactionStreamAmount.fromJson(Map<String, dynamic> json) =>
+      _$TransactionStreamAmountFromJson(json);
+
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  static const fromJsonFactory = _$TransactionStreamAmountFromJson;
+  static const toJsonFactory = _$TransactionStreamAmountToJson;
+  Map<String, dynamic> toJson() => _$TransactionStreamAmountToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransactionStreamAmount &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
+}
+
+extension $TransactionStreamAmountExtension on TransactionStreamAmount {
+  TransactionStreamAmount copyWith(
+      {double? amount,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode}) {
+    return TransactionStreamAmount(
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class Institution {
   Institution({
     this.institutionId,
@@ -8941,6 +11560,7 @@ class Institution {
     this.oauth,
     this.status,
     this.paymentInitiationMetadata,
+    this.authMetadata,
   });
 
   factory Institution.fromJson(Map<String, dynamic> json) =>
@@ -8974,6 +11594,8 @@ class Institution {
   final InstitutionStatus? status;
   @JsonKey(name: 'payment_initiation_metadata')
   final PaymentInitiationMetadata? paymentInitiationMetadata;
+  @JsonKey(name: 'auth_metadata')
+  final AuthMetadata? authMetadata;
   static const fromJsonFactory = _$InstitutionFromJson;
   static const toJsonFactory = _$InstitutionToJson;
   Map<String, dynamic> toJson() => _$InstitutionToJson(this);
@@ -9011,8 +11633,27 @@ class Institution {
                     paymentInitiationMetadata) ||
                 const DeepCollectionEquality().equals(
                     other.paymentInitiationMetadata,
-                    paymentInitiationMetadata)));
+                    paymentInitiationMetadata)) &&
+            (identical(other.authMetadata, authMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.authMetadata, authMetadata)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(products) ^
+      const DeepCollectionEquality().hash(countryCodes) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(primaryColor) ^
+      const DeepCollectionEquality().hash(logo) ^
+      const DeepCollectionEquality().hash(routingNumbers) ^
+      const DeepCollectionEquality().hash(oauth) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(paymentInitiationMetadata) ^
+      const DeepCollectionEquality().hash(authMetadata) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionExtension on Institution {
@@ -9027,7 +11668,8 @@ extension $InstitutionExtension on Institution {
       List<String>? routingNumbers,
       bool? oauth,
       InstitutionStatus? status,
-      PaymentInitiationMetadata? paymentInitiationMetadata}) {
+      PaymentInitiationMetadata? paymentInitiationMetadata,
+      AuthMetadata? authMetadata}) {
     return Institution(
         institutionId: institutionId ?? this.institutionId,
         name: name ?? this.name,
@@ -9040,7 +11682,8 @@ extension $InstitutionExtension on Institution {
         oauth: oauth ?? this.oauth,
         status: status ?? this.status,
         paymentInitiationMetadata:
-            paymentInitiationMetadata ?? this.paymentInitiationMetadata);
+            paymentInitiationMetadata ?? this.paymentInitiationMetadata,
+        authMetadata: authMetadata ?? this.authMetadata);
   }
 }
 
@@ -9053,6 +11696,9 @@ class InstitutionStatus {
     this.balance,
     this.identity,
     this.investmentsUpdates,
+    this.liabilitiesUpdates,
+    this.liabilities,
+    this.investments,
     this.healthIncidents,
   });
 
@@ -9071,6 +11717,12 @@ class InstitutionStatus {
   final ProductStatus? identity;
   @JsonKey(name: 'investments_updates')
   final ProductStatus? investmentsUpdates;
+  @JsonKey(name: 'liabilities_updates')
+  final ProductStatus? liabilitiesUpdates;
+  @JsonKey(name: 'liabilities')
+  final ProductStatus? liabilities;
+  @JsonKey(name: 'investments')
+  final ProductStatus? investments;
   @JsonKey(name: 'health_incidents', defaultValue: <HealthIncident>[])
   final List<HealthIncident>? healthIncidents;
   static const fromJsonFactory = _$InstitutionStatusFromJson;
@@ -9098,10 +11750,33 @@ class InstitutionStatus {
             (identical(other.investmentsUpdates, investmentsUpdates) ||
                 const DeepCollectionEquality()
                     .equals(other.investmentsUpdates, investmentsUpdates)) &&
+            (identical(other.liabilitiesUpdates, liabilitiesUpdates) ||
+                const DeepCollectionEquality()
+                    .equals(other.liabilitiesUpdates, liabilitiesUpdates)) &&
+            (identical(other.liabilities, liabilities) ||
+                const DeepCollectionEquality()
+                    .equals(other.liabilities, liabilities)) &&
+            (identical(other.investments, investments) ||
+                const DeepCollectionEquality()
+                    .equals(other.investments, investments)) &&
             (identical(other.healthIncidents, healthIncidents) ||
                 const DeepCollectionEquality()
                     .equals(other.healthIncidents, healthIncidents)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(itemLogins) ^
+      const DeepCollectionEquality().hash(transactionsUpdates) ^
+      const DeepCollectionEquality().hash(auth) ^
+      const DeepCollectionEquality().hash(balance) ^
+      const DeepCollectionEquality().hash(identity) ^
+      const DeepCollectionEquality().hash(investmentsUpdates) ^
+      const DeepCollectionEquality().hash(liabilitiesUpdates) ^
+      const DeepCollectionEquality().hash(liabilities) ^
+      const DeepCollectionEquality().hash(investments) ^
+      const DeepCollectionEquality().hash(healthIncidents) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionStatusExtension on InstitutionStatus {
@@ -9112,6 +11787,9 @@ extension $InstitutionStatusExtension on InstitutionStatus {
       ProductStatus? balance,
       ProductStatus? identity,
       ProductStatus? investmentsUpdates,
+      ProductStatus? liabilitiesUpdates,
+      ProductStatus? liabilities,
+      ProductStatus? investments,
       List<HealthIncident>? healthIncidents}) {
     return InstitutionStatus(
         itemLogins: itemLogins ?? this.itemLogins,
@@ -9120,6 +11798,9 @@ extension $InstitutionStatusExtension on InstitutionStatus {
         balance: balance ?? this.balance,
         identity: identity ?? this.identity,
         investmentsUpdates: investmentsUpdates ?? this.investmentsUpdates,
+        liabilitiesUpdates: liabilitiesUpdates ?? this.liabilitiesUpdates,
+        liabilities: liabilities ?? this.liabilities,
+        investments: investments ?? this.investments,
         healthIncidents: healthIncidents ?? this.healthIncidents);
   }
 }
@@ -9185,6 +11866,18 @@ class PaymentMeta {
             (identical(other.reason, reason) ||
                 const DeepCollectionEquality().equals(other.reason, reason)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(referenceNumber) ^
+      const DeepCollectionEquality().hash(ppdId) ^
+      const DeepCollectionEquality().hash(payee) ^
+      const DeepCollectionEquality().hash(byOrderOf) ^
+      const DeepCollectionEquality().hash(payer) ^
+      const DeepCollectionEquality().hash(paymentMethod) ^
+      const DeepCollectionEquality().hash(paymentProcessor) ^
+      const DeepCollectionEquality().hash(reason) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentMetaExtension on PaymentMeta {
@@ -9243,6 +11936,13 @@ class Category {
                 const DeepCollectionEquality()
                     .equals(other.hierarchy, hierarchy)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(group) ^
+      const DeepCollectionEquality().hash(hierarchy) ^
+      runtimeType.hashCode;
 }
 
 extension $CategoryExtension on Category {
@@ -9252,6 +11952,50 @@ extension $CategoryExtension on Category {
         categoryId: categoryId ?? this.categoryId,
         group: group ?? this.group,
         hierarchy: hierarchy ?? this.hierarchy);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PersonalFinanceCategory {
+  PersonalFinanceCategory({
+    this.primary,
+    this.detailed,
+  });
+
+  factory PersonalFinanceCategory.fromJson(Map<String, dynamic> json) =>
+      _$PersonalFinanceCategoryFromJson(json);
+
+  @JsonKey(name: 'primary')
+  final String? primary;
+  @JsonKey(name: 'detailed')
+  final String? detailed;
+  static const fromJsonFactory = _$PersonalFinanceCategoryFromJson;
+  static const toJsonFactory = _$PersonalFinanceCategoryToJson;
+  Map<String, dynamic> toJson() => _$PersonalFinanceCategoryToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PersonalFinanceCategory &&
+            (identical(other.primary, primary) ||
+                const DeepCollectionEquality()
+                    .equals(other.primary, primary)) &&
+            (identical(other.detailed, detailed) ||
+                const DeepCollectionEquality()
+                    .equals(other.detailed, detailed)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(primary) ^
+      const DeepCollectionEquality().hash(detailed) ^
+      runtimeType.hashCode;
+}
+
+extension $PersonalFinanceCategoryExtension on PersonalFinanceCategory {
+  PersonalFinanceCategory copyWith({String? primary, String? detailed}) {
+    return PersonalFinanceCategory(
+        primary: primary ?? this.primary, detailed: detailed ?? this.detailed);
   }
 }
 
@@ -9300,6 +12044,15 @@ class TransactionsRemovedWebhook {
             (identical(other.itemId, itemId) ||
                 const DeepCollectionEquality().equals(other.itemId, itemId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(removedTransactions) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionsRemovedWebhookExtension on TransactionsRemovedWebhook {
@@ -9363,6 +12116,15 @@ class DefaultUpdateWebhook {
             (identical(other.itemId, itemId) ||
                 const DeepCollectionEquality().equals(other.itemId, itemId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(newTransactions) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      runtimeType.hashCode;
 }
 
 extension $DefaultUpdateWebhookExtension on DefaultUpdateWebhook {
@@ -9426,6 +12188,15 @@ class HistoricalUpdateWebhook {
             (identical(other.itemId, itemId) ||
                 const DeepCollectionEquality().equals(other.itemId, itemId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(newTransactions) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      runtimeType.hashCode;
 }
 
 extension $HistoricalUpdateWebhookExtension on HistoricalUpdateWebhook {
@@ -9489,6 +12260,15 @@ class InitialUpdateWebhook {
             (identical(other.itemId, itemId) ||
                 const DeepCollectionEquality().equals(other.itemId, itemId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(newTransactions) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      runtimeType.hashCode;
 }
 
 extension $InitialUpdateWebhookExtension on InitialUpdateWebhook {
@@ -9543,6 +12323,13 @@ class PhoneNumber {
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(primary) ^
+      const DeepCollectionEquality().hash(type) ^
+      runtimeType.hashCode;
 }
 
 extension $PhoneNumberExtension on PhoneNumber {
@@ -9587,6 +12374,13 @@ class Email {
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(primary) ^
+      const DeepCollectionEquality().hash(type) ^
+      runtimeType.hashCode;
 }
 
 extension $EmailExtension on Email {
@@ -9625,6 +12419,12 @@ class Address {
             (identical(other.primary, primary) ||
                 const DeepCollectionEquality().equals(other.primary, primary)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(primary) ^
+      runtimeType.hashCode;
 }
 
 extension $AddressExtension on Address {
@@ -9634,27 +12434,33 @@ extension $AddressExtension on Address {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableAddress extends Address {
-  NullableAddress();
+class AddressNullable extends Address {
+  AddressNullable();
 
-  factory NullableAddress.fromJson(Map<String, dynamic> json) =>
-      _$NullableAddressFromJson(json);
+  factory AddressNullable.fromJson(Map<String, dynamic> json) =>
+      _$AddressNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableAddressFromJson;
-  static const toJsonFactory = _$NullableAddressToJson;
-  Map<String, dynamic> toJson() => _$NullableAddressToJson(this);
+  static const fromJsonFactory = _$AddressNullableFromJson;
+  static const toJsonFactory = _$AddressNullableToJson;
+  Map<String, dynamic> toJson() => _$AddressNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableAddressData extends AddressData {
-  NullableAddressData();
+class AddressDataNullable extends AddressData {
+  AddressDataNullable();
 
-  factory NullableAddressData.fromJson(Map<String, dynamic> json) =>
-      _$NullableAddressDataFromJson(json);
+  factory AddressDataNullable.fromJson(Map<String, dynamic> json) =>
+      _$AddressDataNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableAddressDataFromJson;
-  static const toJsonFactory = _$NullableAddressDataToJson;
-  Map<String, dynamic> toJson() => _$NullableAddressDataToJson(this);
+  static const fromJsonFactory = _$AddressDataNullableFromJson;
+  static const toJsonFactory = _$AddressDataNullableToJson;
+  Map<String, dynamic> toJson() => _$AddressDataNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -9700,6 +12506,15 @@ class AddressData {
             (identical(other.country, country) ||
                 const DeepCollectionEquality().equals(other.country, country)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
 }
 
 extension $AddressDataExtension on AddressData {
@@ -9730,8 +12545,8 @@ class HistoricalBalance {
   factory HistoricalBalance.fromJson(Map<String, dynamic> json) =>
       _$HistoricalBalanceFromJson(json);
 
-  @JsonKey(name: 'date')
-  final String? date;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
   @JsonKey(name: 'current')
   final double? current;
   @JsonKey(name: 'iso_currency_code')
@@ -9758,11 +12573,19 @@ class HistoricalBalance {
                 const DeepCollectionEquality().equals(
                     other.unofficialCurrencyCode, unofficialCurrencyCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(current) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
 }
 
 extension $HistoricalBalanceExtension on HistoricalBalance {
   HistoricalBalance copyWith(
-      {String? date,
+      {DateTime? date,
       double? current,
       String? isoCurrencyCode,
       String? unofficialCurrencyCode}) {
@@ -9813,6 +12636,14 @@ class Owner {
                 const DeepCollectionEquality()
                     .equals(other.addresses, addresses)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(names) ^
+      const DeepCollectionEquality().hash(phoneNumbers) ^
+      const DeepCollectionEquality().hash(emails) ^
+      const DeepCollectionEquality().hash(addresses) ^
+      runtimeType.hashCode;
 }
 
 extension $OwnerExtension on Owner {
@@ -9868,6 +12699,14 @@ class OwnerOverride {
                 const DeepCollectionEquality()
                     .equals(other.addresses, addresses)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(names) ^
+      const DeepCollectionEquality().hash(phoneNumbers) ^
+      const DeepCollectionEquality().hash(emails) ^
+      const DeepCollectionEquality().hash(addresses) ^
+      runtimeType.hashCode;
 }
 
 extension $OwnerOverrideExtension on OwnerOverride {
@@ -9917,6 +12756,13 @@ class LiabilitiesObject {
             (identical(other.student, student) ||
                 const DeepCollectionEquality().equals(other.student, student)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(mortgage) ^
+      const DeepCollectionEquality().hash(student) ^
+      runtimeType.hashCode;
 }
 
 extension $LiabilitiesObjectExtension on LiabilitiesObject {
@@ -9967,10 +12813,10 @@ class StudentLoan {
   final String? accountId;
   @JsonKey(name: 'account_number')
   final String? accountNumber;
-  @JsonKey(name: 'disbursement_dates', defaultValue: <String>[])
-  final List<String>? disbursementDates;
-  @JsonKey(name: 'expected_payoff_date')
-  final String? expectedPayoffDate;
+  @JsonKey(name: 'disbursement_dates', defaultValue: <DateTime>[])
+  final List<DateTime>? disbursementDates;
+  @JsonKey(name: 'expected_payoff_date', toJson: _dateToJson)
+  final DateTime? expectedPayoffDate;
   @JsonKey(name: 'guarantor')
   final String? guarantor;
   @JsonKey(name: 'interest_rate_percentage')
@@ -9979,20 +12825,20 @@ class StudentLoan {
   final bool? isOverdue;
   @JsonKey(name: 'last_payment_amount')
   final double? lastPaymentAmount;
-  @JsonKey(name: 'last_payment_date')
-  final String? lastPaymentDate;
-  @JsonKey(name: 'last_statement_issue_date')
-  final String? lastStatementIssueDate;
+  @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
+  final DateTime? lastPaymentDate;
+  @JsonKey(name: 'last_statement_issue_date', toJson: _dateToJson)
+  final DateTime? lastStatementIssueDate;
   @JsonKey(name: 'loan_name')
   final String? loanName;
   @JsonKey(name: 'loan_status')
   final StudentLoanStatus? loanStatus;
   @JsonKey(name: 'minimum_payment_amount')
   final double? minimumPaymentAmount;
-  @JsonKey(name: 'next_payment_due_date')
-  final String? nextPaymentDueDate;
-  @JsonKey(name: 'origination_date')
-  final String? originationDate;
+  @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
+  final DateTime? nextPaymentDueDate;
+  @JsonKey(name: 'origination_date', toJson: _dateToJson)
+  final DateTime? originationDate;
   @JsonKey(name: 'origination_principal_amount')
   final double? originationPrincipalAmount;
   @JsonKey(name: 'outstanding_interest_amount')
@@ -10084,25 +12930,53 @@ class StudentLoan {
             (identical(other.ytdInterestPaid, ytdInterestPaid) || const DeepCollectionEquality().equals(other.ytdInterestPaid, ytdInterestPaid)) &&
             (identical(other.ytdPrincipalPaid, ytdPrincipalPaid) || const DeepCollectionEquality().equals(other.ytdPrincipalPaid, ytdPrincipalPaid)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(accountNumber) ^
+      const DeepCollectionEquality().hash(disbursementDates) ^
+      const DeepCollectionEquality().hash(expectedPayoffDate) ^
+      const DeepCollectionEquality().hash(guarantor) ^
+      const DeepCollectionEquality().hash(interestRatePercentage) ^
+      const DeepCollectionEquality().hash(isOverdue) ^
+      const DeepCollectionEquality().hash(lastPaymentAmount) ^
+      const DeepCollectionEquality().hash(lastPaymentDate) ^
+      const DeepCollectionEquality().hash(lastStatementIssueDate) ^
+      const DeepCollectionEquality().hash(loanName) ^
+      const DeepCollectionEquality().hash(loanStatus) ^
+      const DeepCollectionEquality().hash(minimumPaymentAmount) ^
+      const DeepCollectionEquality().hash(nextPaymentDueDate) ^
+      const DeepCollectionEquality().hash(originationDate) ^
+      const DeepCollectionEquality().hash(originationPrincipalAmount) ^
+      const DeepCollectionEquality().hash(outstandingInterestAmount) ^
+      const DeepCollectionEquality().hash(paymentReferenceNumber) ^
+      const DeepCollectionEquality().hash(pslfStatus) ^
+      const DeepCollectionEquality().hash(repaymentPlan) ^
+      const DeepCollectionEquality().hash(sequenceNumber) ^
+      const DeepCollectionEquality().hash(servicerAddress) ^
+      const DeepCollectionEquality().hash(ytdInterestPaid) ^
+      const DeepCollectionEquality().hash(ytdPrincipalPaid) ^
+      runtimeType.hashCode;
 }
 
 extension $StudentLoanExtension on StudentLoan {
   StudentLoan copyWith(
       {String? accountId,
       String? accountNumber,
-      List<String>? disbursementDates,
-      String? expectedPayoffDate,
+      List<DateTime>? disbursementDates,
+      DateTime? expectedPayoffDate,
       String? guarantor,
       double? interestRatePercentage,
       bool? isOverdue,
       double? lastPaymentAmount,
-      String? lastPaymentDate,
-      String? lastStatementIssueDate,
+      DateTime? lastPaymentDate,
+      DateTime? lastStatementIssueDate,
       String? loanName,
       StudentLoanStatus? loanStatus,
       double? minimumPaymentAmount,
-      String? nextPaymentDueDate,
-      String? originationDate,
+      DateTime? nextPaymentDueDate,
+      DateTime? originationDate,
       double? originationPrincipalAmount,
       double? outstandingInterestAmount,
       String? paymentReferenceNumber,
@@ -10154,6 +13028,7 @@ class CreditCardLiability {
     this.lastPaymentAmount,
     this.lastPaymentDate,
     this.lastStatementIssueDate,
+    this.lastStatementBalance,
     this.minimumPaymentAmount,
     this.nextPaymentDueDate,
   });
@@ -10169,14 +13044,16 @@ class CreditCardLiability {
   final bool? isOverdue;
   @JsonKey(name: 'last_payment_amount')
   final double? lastPaymentAmount;
-  @JsonKey(name: 'last_payment_date')
-  final String? lastPaymentDate;
-  @JsonKey(name: 'last_statement_issue_date')
-  final String? lastStatementIssueDate;
+  @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
+  final DateTime? lastPaymentDate;
+  @JsonKey(name: 'last_statement_issue_date', toJson: _dateToJson)
+  final DateTime? lastStatementIssueDate;
+  @JsonKey(name: 'last_statement_balance')
+  final double? lastStatementBalance;
   @JsonKey(name: 'minimum_payment_amount')
   final double? minimumPaymentAmount;
-  @JsonKey(name: 'next_payment_due_date')
-  final String? nextPaymentDueDate;
+  @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
+  final DateTime? nextPaymentDueDate;
   static const fromJsonFactory = _$CreditCardLiabilityFromJson;
   static const toJsonFactory = _$CreditCardLiabilityToJson;
   Map<String, dynamic> toJson() => _$CreditCardLiabilityToJson(this);
@@ -10202,6 +13079,9 @@ class CreditCardLiability {
             (identical(other.lastStatementIssueDate, lastStatementIssueDate) ||
                 const DeepCollectionEquality().equals(
                     other.lastStatementIssueDate, lastStatementIssueDate)) &&
+            (identical(other.lastStatementBalance, lastStatementBalance) ||
+                const DeepCollectionEquality().equals(
+                    other.lastStatementBalance, lastStatementBalance)) &&
             (identical(other.minimumPaymentAmount, minimumPaymentAmount) ||
                 const DeepCollectionEquality().equals(
                     other.minimumPaymentAmount, minimumPaymentAmount)) &&
@@ -10209,6 +13089,19 @@ class CreditCardLiability {
                 const DeepCollectionEquality()
                     .equals(other.nextPaymentDueDate, nextPaymentDueDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(aprs) ^
+      const DeepCollectionEquality().hash(isOverdue) ^
+      const DeepCollectionEquality().hash(lastPaymentAmount) ^
+      const DeepCollectionEquality().hash(lastPaymentDate) ^
+      const DeepCollectionEquality().hash(lastStatementIssueDate) ^
+      const DeepCollectionEquality().hash(lastStatementBalance) ^
+      const DeepCollectionEquality().hash(minimumPaymentAmount) ^
+      const DeepCollectionEquality().hash(nextPaymentDueDate) ^
+      runtimeType.hashCode;
 }
 
 extension $CreditCardLiabilityExtension on CreditCardLiability {
@@ -10217,10 +13110,11 @@ extension $CreditCardLiabilityExtension on CreditCardLiability {
       List<Apr>? aprs,
       bool? isOverdue,
       double? lastPaymentAmount,
-      String? lastPaymentDate,
-      String? lastStatementIssueDate,
+      DateTime? lastPaymentDate,
+      DateTime? lastStatementIssueDate,
+      double? lastStatementBalance,
       double? minimumPaymentAmount,
-      String? nextPaymentDueDate}) {
+      DateTime? nextPaymentDueDate}) {
     return CreditCardLiability(
         accountId: accountId ?? this.accountId,
         aprs: aprs ?? this.aprs,
@@ -10229,6 +13123,7 @@ extension $CreditCardLiabilityExtension on CreditCardLiability {
         lastPaymentDate: lastPaymentDate ?? this.lastPaymentDate,
         lastStatementIssueDate:
             lastStatementIssueDate ?? this.lastStatementIssueDate,
+        lastStatementBalance: lastStatementBalance ?? this.lastStatementBalance,
         minimumPaymentAmount: minimumPaymentAmount ?? this.minimumPaymentAmount,
         nextPaymentDueDate: nextPaymentDueDate ?? this.nextPaymentDueDate);
   }
@@ -10278,20 +13173,20 @@ class MortgageLiability {
   final MortgageInterestRate? interestRate;
   @JsonKey(name: 'last_payment_amount')
   final double? lastPaymentAmount;
-  @JsonKey(name: 'last_payment_date')
-  final String? lastPaymentDate;
+  @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
+  final DateTime? lastPaymentDate;
   @JsonKey(name: 'loan_type_description')
   final String? loanTypeDescription;
   @JsonKey(name: 'loan_term')
   final String? loanTerm;
-  @JsonKey(name: 'maturity_date')
-  final String? maturityDate;
+  @JsonKey(name: 'maturity_date', toJson: _dateToJson)
+  final DateTime? maturityDate;
   @JsonKey(name: 'next_monthly_payment')
   final double? nextMonthlyPayment;
-  @JsonKey(name: 'next_payment_due_date')
-  final String? nextPaymentDueDate;
-  @JsonKey(name: 'origination_date')
-  final String? originationDate;
+  @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
+  final DateTime? nextPaymentDueDate;
+  @JsonKey(name: 'origination_date', toJson: _dateToJson)
+  final DateTime? originationDate;
   @JsonKey(name: 'origination_principal_amount')
   final double? originationPrincipalAmount;
   @JsonKey(name: 'past_due_amount')
@@ -10371,6 +13266,30 @@ class MortgageLiability {
                 const DeepCollectionEquality()
                     .equals(other.ytdPrincipalPaid, ytdPrincipalPaid)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(accountNumber) ^
+      const DeepCollectionEquality().hash(currentLateFee) ^
+      const DeepCollectionEquality().hash(escrowBalance) ^
+      const DeepCollectionEquality().hash(hasPmi) ^
+      const DeepCollectionEquality().hash(hasPrepaymentPenalty) ^
+      const DeepCollectionEquality().hash(interestRate) ^
+      const DeepCollectionEquality().hash(lastPaymentAmount) ^
+      const DeepCollectionEquality().hash(lastPaymentDate) ^
+      const DeepCollectionEquality().hash(loanTypeDescription) ^
+      const DeepCollectionEquality().hash(loanTerm) ^
+      const DeepCollectionEquality().hash(maturityDate) ^
+      const DeepCollectionEquality().hash(nextMonthlyPayment) ^
+      const DeepCollectionEquality().hash(nextPaymentDueDate) ^
+      const DeepCollectionEquality().hash(originationDate) ^
+      const DeepCollectionEquality().hash(originationPrincipalAmount) ^
+      const DeepCollectionEquality().hash(pastDueAmount) ^
+      const DeepCollectionEquality().hash(propertyAddress) ^
+      const DeepCollectionEquality().hash(ytdInterestPaid) ^
+      const DeepCollectionEquality().hash(ytdPrincipalPaid) ^
+      runtimeType.hashCode;
 }
 
 extension $MortgageLiabilityExtension on MortgageLiability {
@@ -10383,13 +13302,13 @@ extension $MortgageLiabilityExtension on MortgageLiability {
       bool? hasPrepaymentPenalty,
       MortgageInterestRate? interestRate,
       double? lastPaymentAmount,
-      String? lastPaymentDate,
+      DateTime? lastPaymentDate,
       String? loanTypeDescription,
       String? loanTerm,
-      String? maturityDate,
+      DateTime? maturityDate,
       double? nextMonthlyPayment,
-      String? nextPaymentDueDate,
-      String? originationDate,
+      DateTime? nextPaymentDueDate,
+      DateTime? originationDate,
       double? originationPrincipalAmount,
       double? pastDueAmount,
       MortgagePropertyAddress? propertyAddress,
@@ -10448,6 +13367,12 @@ class MortgageInterestRate {
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(percentage) ^
+      const DeepCollectionEquality().hash(type) ^
+      runtimeType.hashCode;
 }
 
 extension $MortgageInterestRateExtension on MortgageInterestRate {
@@ -10501,6 +13426,15 @@ class MortgagePropertyAddress {
             (identical(other.street, street) ||
                 const DeepCollectionEquality().equals(other.street, street)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      runtimeType.hashCode;
 }
 
 extension $MortgagePropertyAddressExtension on MortgagePropertyAddress {
@@ -10529,8 +13463,8 @@ class StudentLoanStatus {
   factory StudentLoanStatus.fromJson(Map<String, dynamic> json) =>
       _$StudentLoanStatusFromJson(json);
 
-  @JsonKey(name: 'end_date')
-  final String? endDate;
+  @JsonKey(name: 'end_date', toJson: _dateToJson)
+  final DateTime? endDate;
   @JsonKey(
       name: 'type',
       toJson: studentLoanStatusTypeToJson,
@@ -10550,11 +13484,17 @@ class StudentLoanStatus {
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(type) ^
+      runtimeType.hashCode;
 }
 
 extension $StudentLoanStatusExtension on StudentLoanStatus {
   StudentLoanStatus copyWith(
-      {String? endDate, enums.StudentLoanStatusType? type}) {
+      {DateTime? endDate, enums.StudentLoanStatusType? type}) {
     return StudentLoanStatus(
         endDate: endDate ?? this.endDate, type: type ?? this.type);
   }
@@ -10591,6 +13531,12 @@ class StudentRepaymentPlan {
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(type) ^
+      runtimeType.hashCode;
 }
 
 extension $StudentRepaymentPlanExtension on StudentRepaymentPlan {
@@ -10612,8 +13558,8 @@ class PSLFStatus {
   factory PSLFStatus.fromJson(Map<String, dynamic> json) =>
       _$PSLFStatusFromJson(json);
 
-  @JsonKey(name: 'estimated_eligibility_date')
-  final String? estimatedEligibilityDate;
+  @JsonKey(name: 'estimated_eligibility_date', toJson: _dateToJson)
+  final DateTime? estimatedEligibilityDate;
   @JsonKey(name: 'payments_made')
   final double? paymentsMade;
   @JsonKey(name: 'payments_remaining')
@@ -10638,11 +13584,18 @@ class PSLFStatus {
                 const DeepCollectionEquality()
                     .equals(other.paymentsRemaining, paymentsRemaining)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(estimatedEligibilityDate) ^
+      const DeepCollectionEquality().hash(paymentsMade) ^
+      const DeepCollectionEquality().hash(paymentsRemaining) ^
+      runtimeType.hashCode;
 }
 
 extension $PSLFStatusExtension on PSLFStatus {
   PSLFStatus copyWith(
-      {String? estimatedEligibilityDate,
+      {DateTime? estimatedEligibilityDate,
       double? paymentsMade,
       double? paymentsRemaining}) {
     return PSLFStatus(
@@ -10696,6 +13649,15 @@ class ServicerAddressData {
             (identical(other.country, country) ||
                 const DeepCollectionEquality().equals(other.country, country)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
 }
 
 extension $ServicerAddressDataExtension on ServicerAddressData {
@@ -10755,6 +13717,14 @@ class Apr {
                 const DeepCollectionEquality()
                     .equals(other.interestChargeAmount, interestChargeAmount)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(aprPercentage) ^
+      const DeepCollectionEquality().hash(aprType) ^
+      const DeepCollectionEquality().hash(balanceSubjectToApr) ^
+      const DeepCollectionEquality().hash(interestChargeAmount) ^
+      runtimeType.hashCode;
 }
 
 extension $AprExtension on Apr {
@@ -10769,6 +13739,98 @@ extension $AprExtension on Apr {
         balanceSubjectToApr: balanceSubjectToApr ?? this.balanceSubjectToApr,
         interestChargeAmount:
             interestChargeAmount ?? this.interestChargeAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthMetadata {
+  AuthMetadata({
+    this.supportedMethods,
+  });
+
+  factory AuthMetadata.fromJson(Map<String, dynamic> json) =>
+      _$AuthMetadataFromJson(json);
+
+  @JsonKey(name: 'supported_methods')
+  final AuthSupportedMethods? supportedMethods;
+  static const fromJsonFactory = _$AuthMetadataFromJson;
+  static const toJsonFactory = _$AuthMetadataToJson;
+  Map<String, dynamic> toJson() => _$AuthMetadataToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AuthMetadata &&
+            (identical(other.supportedMethods, supportedMethods) ||
+                const DeepCollectionEquality()
+                    .equals(other.supportedMethods, supportedMethods)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(supportedMethods) ^
+      runtimeType.hashCode;
+}
+
+extension $AuthMetadataExtension on AuthMetadata {
+  AuthMetadata copyWith({AuthSupportedMethods? supportedMethods}) {
+    return AuthMetadata(
+        supportedMethods: supportedMethods ?? this.supportedMethods);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthSupportedMethods {
+  AuthSupportedMethods({
+    this.instantAuth,
+    this.instantMatch,
+    this.automatedMicroDeposits,
+  });
+
+  factory AuthSupportedMethods.fromJson(Map<String, dynamic> json) =>
+      _$AuthSupportedMethodsFromJson(json);
+
+  @JsonKey(name: 'instant_auth')
+  final bool? instantAuth;
+  @JsonKey(name: 'instant_match')
+  final bool? instantMatch;
+  @JsonKey(name: 'automated_micro_deposits')
+  final bool? automatedMicroDeposits;
+  static const fromJsonFactory = _$AuthSupportedMethodsFromJson;
+  static const toJsonFactory = _$AuthSupportedMethodsToJson;
+  Map<String, dynamic> toJson() => _$AuthSupportedMethodsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AuthSupportedMethods &&
+            (identical(other.instantAuth, instantAuth) ||
+                const DeepCollectionEquality()
+                    .equals(other.instantAuth, instantAuth)) &&
+            (identical(other.instantMatch, instantMatch) ||
+                const DeepCollectionEquality()
+                    .equals(other.instantMatch, instantMatch)) &&
+            (identical(other.automatedMicroDeposits, automatedMicroDeposits) ||
+                const DeepCollectionEquality().equals(
+                    other.automatedMicroDeposits, automatedMicroDeposits)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(instantAuth) ^
+      const DeepCollectionEquality().hash(instantMatch) ^
+      const DeepCollectionEquality().hash(automatedMicroDeposits) ^
+      runtimeType.hashCode;
+}
+
+extension $AuthSupportedMethodsExtension on AuthSupportedMethods {
+  AuthSupportedMethods copyWith(
+      {bool? instantAuth, bool? instantMatch, bool? automatedMicroDeposits}) {
+    return AuthSupportedMethods(
+        instantAuth: instantAuth ?? this.instantAuth,
+        instantMatch: instantMatch ?? this.instantMatch,
+        automatedMicroDeposits:
+            automatedMicroDeposits ?? this.automatedMicroDeposits);
   }
 }
 
@@ -10815,6 +13877,14 @@ class PaymentInitiationMetadata {
                 const DeepCollectionEquality().equals(
                     other.standingOrderMetadata, standingOrderMetadata)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(supportsInternationalPayments) ^
+      const DeepCollectionEquality().hash(maximumPaymentAmount) ^
+      const DeepCollectionEquality().hash(supportsRefundDetails) ^
+      const DeepCollectionEquality().hash(standingOrderMetadata) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationMetadataExtension on PaymentInitiationMetadata {
@@ -10881,6 +13951,14 @@ class PaymentInitiationStandingOrderMetadata {
                     other.validStandingOrderIntervals,
                     validStandingOrderIntervals)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(supportsStandingOrderEndDate) ^
+      const DeepCollectionEquality()
+          .hash(supportsStandingOrderNegativeExecutionDays) ^
+      const DeepCollectionEquality().hash(validStandingOrderIntervals) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationStandingOrderMetadataExtension
@@ -10938,6 +14016,14 @@ class PaymentInitiationAddress {
             (identical(other.country, country) ||
                 const DeepCollectionEquality().equals(other.country, country)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationAddressExtension on PaymentInitiationAddress {
@@ -11004,6 +14090,15 @@ class ExternalPaymentScheduleBase {
                 const DeepCollectionEquality()
                     .equals(other.adjustedStartDate, adjustedStartDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(interval) ^
+      const DeepCollectionEquality().hash(intervalExecutionDay) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(adjustedStartDate) ^
+      runtimeType.hashCode;
 }
 
 extension $ExternalPaymentScheduleBaseExtension on ExternalPaymentScheduleBase {
@@ -11032,6 +14127,9 @@ class ExternalPaymentScheduleRequest extends ExternalPaymentScheduleBase {
   static const fromJsonFactory = _$ExternalPaymentScheduleRequestFromJson;
   static const toJsonFactory = _$ExternalPaymentScheduleRequestToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentScheduleRequestToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -11040,7 +14138,7 @@ class ExternalPaymentOptions {
     this.requestRefundDetails,
     this.iban,
     this.bacs,
-    this.emiAccountId,
+    this.walletId,
   });
 
   factory ExternalPaymentOptions.fromJson(Map<String, dynamic> json) =>
@@ -11052,8 +14150,8 @@ class ExternalPaymentOptions {
   final String? iban;
   @JsonKey(name: 'bacs')
   final PaymentInitiationOptionalRestrictionBacs? bacs;
-  @JsonKey(name: 'emi_account_id')
-  final String? emiAccountId;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
   static const fromJsonFactory = _$ExternalPaymentOptionsFromJson;
   static const toJsonFactory = _$ExternalPaymentOptionsToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentOptionsToJson(this);
@@ -11069,10 +14167,18 @@ class ExternalPaymentOptions {
                 const DeepCollectionEquality().equals(other.iban, iban)) &&
             (identical(other.bacs, bacs) ||
                 const DeepCollectionEquality().equals(other.bacs, bacs)) &&
-            (identical(other.emiAccountId, emiAccountId) ||
+            (identical(other.walletId, walletId) ||
                 const DeepCollectionEquality()
-                    .equals(other.emiAccountId, emiAccountId)));
+                    .equals(other.walletId, walletId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestRefundDetails) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      runtimeType.hashCode;
 }
 
 extension $ExternalPaymentOptionsExtension on ExternalPaymentOptions {
@@ -11080,12 +14186,12 @@ extension $ExternalPaymentOptionsExtension on ExternalPaymentOptions {
       {bool? requestRefundDetails,
       String? iban,
       PaymentInitiationOptionalRestrictionBacs? bacs,
-      String? emiAccountId}) {
+      String? walletId}) {
     return ExternalPaymentOptions(
         requestRefundDetails: requestRefundDetails ?? this.requestRefundDetails,
         iban: iban ?? this.iban,
         bacs: bacs ?? this.bacs,
-        emiAccountId: emiAccountId ?? this.emiAccountId);
+        walletId: walletId ?? this.walletId);
   }
 }
 
@@ -11105,7 +14211,7 @@ class ExternalPaymentRefundDetails {
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'bacs')
-  final NullableRecipientBACS? bacs;
+  final RecipientBACSNullable? bacs;
   static const fromJsonFactory = _$ExternalPaymentRefundDetailsFromJson;
   static const toJsonFactory = _$ExternalPaymentRefundDetailsToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentRefundDetailsToJson(this);
@@ -11121,12 +14227,19 @@ class ExternalPaymentRefundDetails {
             (identical(other.bacs, bacs) ||
                 const DeepCollectionEquality().equals(other.bacs, bacs)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      runtimeType.hashCode;
 }
 
 extension $ExternalPaymentRefundDetailsExtension
     on ExternalPaymentRefundDetails {
   ExternalPaymentRefundDetails copyWith(
-      {String? name, String? iban, NullableRecipientBACS? bacs}) {
+      {String? name, String? iban, RecipientBACSNullable? bacs}) {
     return ExternalPaymentRefundDetails(
         name: name ?? this.name,
         iban: iban ?? this.iban,
@@ -11144,6 +14257,9 @@ class ExternalPaymentScheduleGet extends ExternalPaymentScheduleBase {
   static const fromJsonFactory = _$ExternalPaymentScheduleGetFromJson;
   static const toJsonFactory = _$ExternalPaymentScheduleGetToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentScheduleGetToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -11163,7 +14279,7 @@ class ProductStatus {
       fromJson: productStatusStatusFromJson)
   final enums.ProductStatusStatus? status;
   @JsonKey(name: 'last_status_change')
-  final String? lastStatusChange;
+  final DateTime? lastStatusChange;
   @JsonKey(name: 'breakdown')
   final ProductStatusBreakdown? breakdown;
   static const fromJsonFactory = _$ProductStatusFromJson;
@@ -11183,12 +14299,19 @@ class ProductStatus {
                 const DeepCollectionEquality()
                     .equals(other.breakdown, breakdown)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(lastStatusChange) ^
+      const DeepCollectionEquality().hash(breakdown) ^
+      runtimeType.hashCode;
 }
 
 extension $ProductStatusExtension on ProductStatus {
   ProductStatus copyWith(
       {enums.ProductStatusStatus? status,
-      String? lastStatusChange,
+      DateTime? lastStatusChange,
       ProductStatusBreakdown? breakdown}) {
     return ProductStatus(
         status: status ?? this.status,
@@ -11241,6 +14364,14 @@ class ProductStatusBreakdown {
                 const DeepCollectionEquality()
                     .equals(other.refreshInterval, refreshInterval)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(success) ^
+      const DeepCollectionEquality().hash(errorPlaid) ^
+      const DeepCollectionEquality().hash(errorInstitution) ^
+      const DeepCollectionEquality().hash(refreshInterval) ^
+      runtimeType.hashCode;
 }
 
 extension $ProductStatusBreakdownExtension on ProductStatusBreakdown {
@@ -11308,6 +14439,16 @@ class UserCustomPassword {
                 const DeepCollectionEquality()
                     .equals(other.forceError, forceError)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(version) ^
+      const DeepCollectionEquality().hash(seed) ^
+      const DeepCollectionEquality().hash(overrideAccounts) ^
+      const DeepCollectionEquality().hash(mfa) ^
+      const DeepCollectionEquality().hash(recaptcha) ^
+      const DeepCollectionEquality().hash(forceError) ^
+      runtimeType.hashCode;
 }
 
 extension $UserCustomPasswordExtension on UserCustomPassword {
@@ -11373,6 +14514,15 @@ class Mfa {
                 const DeepCollectionEquality().equals(
                     other.selectionsPerQuestion, selectionsPerQuestion)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(questionRounds) ^
+      const DeepCollectionEquality().hash(questionsPerRound) ^
+      const DeepCollectionEquality().hash(selectionRounds) ^
+      const DeepCollectionEquality().hash(selectionsPerQuestion) ^
+      runtimeType.hashCode;
 }
 
 extension $MfaExtension on Mfa {
@@ -11403,9 +14553,12 @@ class OverrideAccounts {
     this.meta,
     this.numbers,
     this.transactions,
+    this.holdings,
+    this.investmentTransactions,
     this.identity,
     this.liability,
     this.inflowModel,
+    this.income,
   });
 
   factory OverrideAccounts.fromJson(Map<String, dynamic> json) =>
@@ -11433,12 +14586,18 @@ class OverrideAccounts {
   final Numbers? numbers;
   @JsonKey(name: 'transactions', defaultValue: <TransactionOverride>[])
   final List<TransactionOverride>? transactions;
+  @JsonKey(name: 'holdings')
+  final HoldingsOverride? holdings;
+  @JsonKey(name: 'investment_transactions')
+  final InvestmentsTransactionsOverride? investmentTransactions;
   @JsonKey(name: 'identity')
   final OwnerOverride? identity;
   @JsonKey(name: 'liability')
   final LiabilityOverride? liability;
   @JsonKey(name: 'inflow_model')
   final InflowModel? inflowModel;
+  @JsonKey(name: 'income')
+  final IncomeOverride? income;
   static const fromJsonFactory = _$OverrideAccountsFromJson;
   static const toJsonFactory = _$OverrideAccountsToJson;
   Map<String, dynamic> toJson() => _$OverrideAccountsToJson(this);
@@ -11469,6 +14628,12 @@ class OverrideAccounts {
             (identical(other.transactions, transactions) ||
                 const DeepCollectionEquality()
                     .equals(other.transactions, transactions)) &&
+            (identical(other.holdings, holdings) ||
+                const DeepCollectionEquality()
+                    .equals(other.holdings, holdings)) &&
+            (identical(other.investmentTransactions, investmentTransactions) ||
+                const DeepCollectionEquality().equals(
+                    other.investmentTransactions, investmentTransactions)) &&
             (identical(other.identity, identity) ||
                 const DeepCollectionEquality()
                     .equals(other.identity, identity)) &&
@@ -11477,8 +14642,28 @@ class OverrideAccounts {
                     .equals(other.liability, liability)) &&
             (identical(other.inflowModel, inflowModel) ||
                 const DeepCollectionEquality()
-                    .equals(other.inflowModel, inflowModel)));
+                    .equals(other.inflowModel, inflowModel)) &&
+            (identical(other.income, income) ||
+                const DeepCollectionEquality().equals(other.income, income)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subtype) ^
+      const DeepCollectionEquality().hash(startingBalance) ^
+      const DeepCollectionEquality().hash(forceAvailableBalance) ^
+      const DeepCollectionEquality().hash(currency) ^
+      const DeepCollectionEquality().hash(meta) ^
+      const DeepCollectionEquality().hash(numbers) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      const DeepCollectionEquality().hash(holdings) ^
+      const DeepCollectionEquality().hash(investmentTransactions) ^
+      const DeepCollectionEquality().hash(identity) ^
+      const DeepCollectionEquality().hash(liability) ^
+      const DeepCollectionEquality().hash(inflowModel) ^
+      const DeepCollectionEquality().hash(income) ^
+      runtimeType.hashCode;
 }
 
 extension $OverrideAccountsExtension on OverrideAccounts {
@@ -11491,9 +14676,12 @@ extension $OverrideAccountsExtension on OverrideAccounts {
       Meta? meta,
       Numbers? numbers,
       List<TransactionOverride>? transactions,
+      HoldingsOverride? holdings,
+      InvestmentsTransactionsOverride? investmentTransactions,
       OwnerOverride? identity,
       LiabilityOverride? liability,
-      InflowModel? inflowModel}) {
+      InflowModel? inflowModel,
+      IncomeOverride? income}) {
     return OverrideAccounts(
         type: type ?? this.type,
         subtype: subtype ?? this.subtype,
@@ -11504,9 +14692,13 @@ extension $OverrideAccountsExtension on OverrideAccounts {
         meta: meta ?? this.meta,
         numbers: numbers ?? this.numbers,
         transactions: transactions ?? this.transactions,
+        holdings: holdings ?? this.holdings,
+        investmentTransactions:
+            investmentTransactions ?? this.investmentTransactions,
         identity: identity ?? this.identity,
         liability: liability ?? this.liability,
-        inflowModel: inflowModel ?? this.inflowModel);
+        inflowModel: inflowModel ?? this.inflowModel,
+        income: income ?? this.income);
   }
 }
 
@@ -11542,6 +14734,13 @@ class Meta {
             (identical(other.limit, limit) ||
                 const DeepCollectionEquality().equals(other.limit, limit)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(officialName) ^
+      const DeepCollectionEquality().hash(limit) ^
+      runtimeType.hashCode;
 }
 
 extension $MetaExtension on Meta {
@@ -11618,6 +14817,18 @@ class Numbers {
                 const DeepCollectionEquality()
                     .equals(other.bacsSortCode, bacsSortCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(achRouting) ^
+      const DeepCollectionEquality().hash(achWireRouting) ^
+      const DeepCollectionEquality().hash(eftInstitution) ^
+      const DeepCollectionEquality().hash(eftBranch) ^
+      const DeepCollectionEquality().hash(internationalBic) ^
+      const DeepCollectionEquality().hash(internationalIban) ^
+      const DeepCollectionEquality().hash(bacsSortCode) ^
+      runtimeType.hashCode;
 }
 
 extension $NumbersExtension on Numbers {
@@ -11655,10 +14866,10 @@ class TransactionOverride {
   factory TransactionOverride.fromJson(Map<String, dynamic> json) =>
       _$TransactionOverrideFromJson(json);
 
-  @JsonKey(name: 'date_transacted')
-  final String? dateTransacted;
-  @JsonKey(name: 'date_posted')
-  final String? datePosted;
+  @JsonKey(name: 'date_transacted', toJson: _dateToJson)
+  final DateTime? dateTransacted;
+  @JsonKey(name: 'date_posted', toJson: _dateToJson)
+  final DateTime? datePosted;
   @JsonKey(name: 'amount')
   final double? amount;
   @JsonKey(name: 'description')
@@ -11688,12 +14899,21 @@ class TransactionOverride {
                 const DeepCollectionEquality()
                     .equals(other.currency, currency)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dateTransacted) ^
+      const DeepCollectionEquality().hash(datePosted) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(currency) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionOverrideExtension on TransactionOverride {
   TransactionOverride copyWith(
-      {String? dateTransacted,
-      String? datePosted,
+      {DateTime? dateTransacted,
+      DateTime? datePosted,
       double? amount,
       String? description,
       String? currency}) {
@@ -11703,6 +14923,266 @@ extension $TransactionOverrideExtension on TransactionOverride {
         amount: amount ?? this.amount,
         description: description ?? this.description,
         currency: currency ?? this.currency);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SecurityOverride {
+  SecurityOverride({
+    this.isin,
+    this.cusip,
+    this.sedol,
+    this.name,
+    this.tickerSymbol,
+    this.currency,
+  });
+
+  factory SecurityOverride.fromJson(Map<String, dynamic> json) =>
+      _$SecurityOverrideFromJson(json);
+
+  @JsonKey(name: 'isin')
+  final String? isin;
+  @JsonKey(name: 'cusip')
+  final String? cusip;
+  @JsonKey(name: 'sedol')
+  final String? sedol;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'ticker_symbol')
+  final String? tickerSymbol;
+  @JsonKey(name: 'currency')
+  final String? currency;
+  static const fromJsonFactory = _$SecurityOverrideFromJson;
+  static const toJsonFactory = _$SecurityOverrideToJson;
+  Map<String, dynamic> toJson() => _$SecurityOverrideToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SecurityOverride &&
+            (identical(other.isin, isin) ||
+                const DeepCollectionEquality().equals(other.isin, isin)) &&
+            (identical(other.cusip, cusip) ||
+                const DeepCollectionEquality().equals(other.cusip, cusip)) &&
+            (identical(other.sedol, sedol) ||
+                const DeepCollectionEquality().equals(other.sedol, sedol)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.tickerSymbol, tickerSymbol) ||
+                const DeepCollectionEquality()
+                    .equals(other.tickerSymbol, tickerSymbol)) &&
+            (identical(other.currency, currency) ||
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isin) ^
+      const DeepCollectionEquality().hash(cusip) ^
+      const DeepCollectionEquality().hash(sedol) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(tickerSymbol) ^
+      const DeepCollectionEquality().hash(currency) ^
+      runtimeType.hashCode;
+}
+
+extension $SecurityOverrideExtension on SecurityOverride {
+  SecurityOverride copyWith(
+      {String? isin,
+      String? cusip,
+      String? sedol,
+      String? name,
+      String? tickerSymbol,
+      String? currency}) {
+    return SecurityOverride(
+        isin: isin ?? this.isin,
+        cusip: cusip ?? this.cusip,
+        sedol: sedol ?? this.sedol,
+        name: name ?? this.name,
+        tickerSymbol: tickerSymbol ?? this.tickerSymbol,
+        currency: currency ?? this.currency);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class HoldingsOverride {
+  HoldingsOverride({
+    this.institutionPrice,
+    this.institutionPriceAsOf,
+    this.costBasis,
+    this.quantity,
+    this.currency,
+    this.security,
+  });
+
+  factory HoldingsOverride.fromJson(Map<String, dynamic> json) =>
+      _$HoldingsOverrideFromJson(json);
+
+  @JsonKey(name: 'institution_price')
+  final double? institutionPrice;
+  @JsonKey(name: 'institution_price_as_of', toJson: _dateToJson)
+  final DateTime? institutionPriceAsOf;
+  @JsonKey(name: 'cost_basis')
+  final double? costBasis;
+  @JsonKey(name: 'quantity')
+  final double? quantity;
+  @JsonKey(name: 'currency')
+  final String? currency;
+  @JsonKey(name: 'security')
+  final SecurityOverride? security;
+  static const fromJsonFactory = _$HoldingsOverrideFromJson;
+  static const toJsonFactory = _$HoldingsOverrideToJson;
+  Map<String, dynamic> toJson() => _$HoldingsOverrideToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is HoldingsOverride &&
+            (identical(other.institutionPrice, institutionPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.institutionPrice, institutionPrice)) &&
+            (identical(other.institutionPriceAsOf, institutionPriceAsOf) ||
+                const DeepCollectionEquality().equals(
+                    other.institutionPriceAsOf, institutionPriceAsOf)) &&
+            (identical(other.costBasis, costBasis) ||
+                const DeepCollectionEquality()
+                    .equals(other.costBasis, costBasis)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.currency, currency) ||
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)) &&
+            (identical(other.security, security) ||
+                const DeepCollectionEquality()
+                    .equals(other.security, security)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(institutionPrice) ^
+      const DeepCollectionEquality().hash(institutionPriceAsOf) ^
+      const DeepCollectionEquality().hash(costBasis) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(currency) ^
+      const DeepCollectionEquality().hash(security) ^
+      runtimeType.hashCode;
+}
+
+extension $HoldingsOverrideExtension on HoldingsOverride {
+  HoldingsOverride copyWith(
+      {double? institutionPrice,
+      DateTime? institutionPriceAsOf,
+      double? costBasis,
+      double? quantity,
+      String? currency,
+      SecurityOverride? security}) {
+    return HoldingsOverride(
+        institutionPrice: institutionPrice ?? this.institutionPrice,
+        institutionPriceAsOf: institutionPriceAsOf ?? this.institutionPriceAsOf,
+        costBasis: costBasis ?? this.costBasis,
+        quantity: quantity ?? this.quantity,
+        currency: currency ?? this.currency,
+        security: security ?? this.security);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class InvestmentsTransactionsOverride {
+  InvestmentsTransactionsOverride({
+    this.date,
+    this.name,
+    this.quantity,
+    this.price,
+    this.fees,
+    this.type,
+    this.currency,
+    this.security,
+  });
+
+  factory InvestmentsTransactionsOverride.fromJson(Map<String, dynamic> json) =>
+      _$InvestmentsTransactionsOverrideFromJson(json);
+
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'quantity')
+  final double? quantity;
+  @JsonKey(name: 'price')
+  final double? price;
+  @JsonKey(name: 'fees')
+  final double? fees;
+  @JsonKey(name: 'type')
+  final String? type;
+  @JsonKey(name: 'currency')
+  final String? currency;
+  @JsonKey(name: 'security')
+  final SecurityOverride? security;
+  static const fromJsonFactory = _$InvestmentsTransactionsOverrideFromJson;
+  static const toJsonFactory = _$InvestmentsTransactionsOverrideToJson;
+  Map<String, dynamic> toJson() =>
+      _$InvestmentsTransactionsOverrideToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvestmentsTransactionsOverride &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.fees, fees) ||
+                const DeepCollectionEquality().equals(other.fees, fees)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.currency, currency) ||
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)) &&
+            (identical(other.security, security) ||
+                const DeepCollectionEquality()
+                    .equals(other.security, security)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(fees) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(currency) ^
+      const DeepCollectionEquality().hash(security) ^
+      runtimeType.hashCode;
+}
+
+extension $InvestmentsTransactionsOverrideExtension
+    on InvestmentsTransactionsOverride {
+  InvestmentsTransactionsOverride copyWith(
+      {DateTime? date,
+      String? name,
+      double? quantity,
+      double? price,
+      double? fees,
+      String? type,
+      String? currency,
+      SecurityOverride? security}) {
+    return InvestmentsTransactionsOverride(
+        date: date ?? this.date,
+        name: name ?? this.name,
+        quantity: quantity ?? this.quantity,
+        price: price ?? this.price,
+        fees: fees ?? this.fees,
+        type: type ?? this.type,
+        currency: currency ?? this.currency,
+        security: security ?? this.security);
   }
 }
 
@@ -11754,8 +15234,8 @@ class LiabilityOverride {
   final double? minimumPaymentAmount;
   @JsonKey(name: 'is_overdue')
   final bool? isOverdue;
-  @JsonKey(name: 'origination_date')
-  final String? originationDate;
+  @JsonKey(name: 'origination_date', toJson: _dateToJson)
+  final DateTime? originationDate;
   @JsonKey(name: 'principal')
   final double? principal;
   @JsonKey(name: 'nominal_apr')
@@ -11764,8 +15244,8 @@ class LiabilityOverride {
   final double? interestCapitalizationGracePeriodMonths;
   @JsonKey(name: 'repayment_model')
   final StudentLoanRepaymentModel? repaymentModel;
-  @JsonKey(name: 'expected_payoff_date')
-  final String? expectedPayoffDate;
+  @JsonKey(name: 'expected_payoff_date', toJson: _dateToJson)
+  final DateTime? expectedPayoffDate;
   @JsonKey(name: 'guarantor')
   final String? guarantor;
   @JsonKey(name: 'is_federal')
@@ -11858,6 +15338,35 @@ class LiabilityOverride {
             (identical(other.sequenceNumber, sequenceNumber) || const DeepCollectionEquality().equals(other.sequenceNumber, sequenceNumber)) &&
             (identical(other.servicerAddress, servicerAddress) || const DeepCollectionEquality().equals(other.servicerAddress, servicerAddress)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(purchaseApr) ^
+      const DeepCollectionEquality().hash(cashApr) ^
+      const DeepCollectionEquality().hash(balanceTransferApr) ^
+      const DeepCollectionEquality().hash(specialApr) ^
+      const DeepCollectionEquality().hash(lastPaymentAmount) ^
+      const DeepCollectionEquality().hash(minimumPaymentAmount) ^
+      const DeepCollectionEquality().hash(isOverdue) ^
+      const DeepCollectionEquality().hash(originationDate) ^
+      const DeepCollectionEquality().hash(principal) ^
+      const DeepCollectionEquality().hash(nominalApr) ^
+      const DeepCollectionEquality()
+          .hash(interestCapitalizationGracePeriodMonths) ^
+      const DeepCollectionEquality().hash(repaymentModel) ^
+      const DeepCollectionEquality().hash(expectedPayoffDate) ^
+      const DeepCollectionEquality().hash(guarantor) ^
+      const DeepCollectionEquality().hash(isFederal) ^
+      const DeepCollectionEquality().hash(loanName) ^
+      const DeepCollectionEquality().hash(loanStatus) ^
+      const DeepCollectionEquality().hash(paymentReferenceNumber) ^
+      const DeepCollectionEquality().hash(pslfStatus) ^
+      const DeepCollectionEquality().hash(repaymentPlanDescription) ^
+      const DeepCollectionEquality().hash(repaymentPlanType) ^
+      const DeepCollectionEquality().hash(sequenceNumber) ^
+      const DeepCollectionEquality().hash(servicerAddress) ^
+      runtimeType.hashCode;
 }
 
 extension $LiabilityOverrideExtension on LiabilityOverride {
@@ -11870,12 +15379,12 @@ extension $LiabilityOverrideExtension on LiabilityOverride {
       double? lastPaymentAmount,
       double? minimumPaymentAmount,
       bool? isOverdue,
-      String? originationDate,
+      DateTime? originationDate,
       double? principal,
       double? nominalApr,
       double? interestCapitalizationGracePeriodMonths,
       StudentLoanRepaymentModel? repaymentModel,
-      String? expectedPayoffDate,
+      DateTime? expectedPayoffDate,
       String? guarantor,
       bool? isFederal,
       String? loanName,
@@ -11952,6 +15461,13 @@ class StudentLoanRepaymentModel {
                 const DeepCollectionEquality()
                     .equals(other.repaymentMonths, repaymentMonths)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(nonRepaymentMonths) ^
+      const DeepCollectionEquality().hash(repaymentMonths) ^
+      runtimeType.hashCode;
 }
 
 extension $StudentLoanRepaymentModelExtension on StudentLoanRepaymentModel {
@@ -12010,6 +15526,15 @@ class InflowModel {
                 const DeepCollectionEquality()
                     .equals(other.statementDayOfMonth, statementDayOfMonth)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(incomeAmount) ^
+      const DeepCollectionEquality().hash(paymentDayOfMonth) ^
+      const DeepCollectionEquality().hash(transactionName) ^
+      const DeepCollectionEquality().hash(statementDayOfMonth) ^
+      runtimeType.hashCode;
 }
 
 extension $InflowModelExtension on InflowModel {
@@ -12025,6 +15550,106 @@ extension $InflowModelExtension on InflowModel {
         paymentDayOfMonth: paymentDayOfMonth ?? this.paymentDayOfMonth,
         transactionName: transactionName ?? this.transactionName,
         statementDayOfMonth: statementDayOfMonth ?? this.statementDayOfMonth);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeOverride {
+  IncomeOverride({
+    this.paystubs,
+  });
+
+  factory IncomeOverride.fromJson(Map<String, dynamic> json) =>
+      _$IncomeOverrideFromJson(json);
+
+  @JsonKey(name: 'paystubs', defaultValue: <PaystubOverride>[])
+  final List<PaystubOverride>? paystubs;
+  static const fromJsonFactory = _$IncomeOverrideFromJson;
+  static const toJsonFactory = _$IncomeOverrideToJson;
+  Map<String, dynamic> toJson() => _$IncomeOverrideToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeOverride &&
+            (identical(other.paystubs, paystubs) ||
+                const DeepCollectionEquality()
+                    .equals(other.paystubs, paystubs)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paystubs) ^ runtimeType.hashCode;
+}
+
+extension $IncomeOverrideExtension on IncomeOverride {
+  IncomeOverride copyWith({List<PaystubOverride>? paystubs}) {
+    return IncomeOverride(paystubs: paystubs ?? this.paystubs);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaystubOverride {
+  PaystubOverride({
+    this.employer,
+    this.employee,
+    this.incomeBreakdown,
+    this.payPeriodDetails,
+  });
+
+  factory PaystubOverride.fromJson(Map<String, dynamic> json) =>
+      _$PaystubOverrideFromJson(json);
+
+  @JsonKey(name: 'employer')
+  final PaystubOverride$Employer? employer;
+  @JsonKey(name: 'employee')
+  final PaystubOverride$Employee? employee;
+  @JsonKey(name: 'income_breakdown', defaultValue: <IncomeBreakdown>[])
+  final List<IncomeBreakdown>? incomeBreakdown;
+  @JsonKey(name: 'pay_period_details')
+  final PayPeriodDetails? payPeriodDetails;
+  static const fromJsonFactory = _$PaystubOverrideFromJson;
+  static const toJsonFactory = _$PaystubOverrideToJson;
+  Map<String, dynamic> toJson() => _$PaystubOverrideToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaystubOverride &&
+            (identical(other.employer, employer) ||
+                const DeepCollectionEquality()
+                    .equals(other.employer, employer)) &&
+            (identical(other.employee, employee) ||
+                const DeepCollectionEquality()
+                    .equals(other.employee, employee)) &&
+            (identical(other.incomeBreakdown, incomeBreakdown) ||
+                const DeepCollectionEquality()
+                    .equals(other.incomeBreakdown, incomeBreakdown)) &&
+            (identical(other.payPeriodDetails, payPeriodDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.payPeriodDetails, payPeriodDetails)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employer) ^
+      const DeepCollectionEquality().hash(employee) ^
+      const DeepCollectionEquality().hash(incomeBreakdown) ^
+      const DeepCollectionEquality().hash(payPeriodDetails) ^
+      runtimeType.hashCode;
+}
+
+extension $PaystubOverrideExtension on PaystubOverride {
+  PaystubOverride copyWith(
+      {PaystubOverride$Employer? employer,
+      PaystubOverride$Employee? employee,
+      List<IncomeBreakdown>? incomeBreakdown,
+      PayPeriodDetails? payPeriodDetails}) {
+    return PaystubOverride(
+        employer: employer ?? this.employer,
+        employee: employee ?? this.employee,
+        incomeBreakdown: incomeBreakdown ?? this.incomeBreakdown,
+        payPeriodDetails: payPeriodDetails ?? this.payPeriodDetails);
   }
 }
 
@@ -12068,6 +15693,14 @@ class AutomaticallyVerifiedWebhook {
             (identical(other.itemId, itemId) ||
                 const DeepCollectionEquality().equals(other.itemId, itemId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      runtimeType.hashCode;
 }
 
 extension $AutomaticallyVerifiedWebhookExtension
@@ -12107,6 +15740,10 @@ class JWTHeader {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^ runtimeType.hashCode;
 }
 
 extension $JWTHeaderExtension on JWTHeader {
@@ -12155,6 +15792,14 @@ class VerificationExpiredWebhook {
                 const DeepCollectionEquality()
                     .equals(other.accountId, accountId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      runtimeType.hashCode;
 }
 
 extension $VerificationExpiredWebhookExtension on VerificationExpiredWebhook {
@@ -12218,6 +15863,15 @@ class WebhookUpdateAcknowledgedWebhook {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(newWebhookUrl) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $WebhookUpdateAcknowledgedWebhookExtension
@@ -12256,7 +15910,7 @@ class PendingExpirationWebhook {
   @JsonKey(name: 'item_id')
   final String? itemId;
   @JsonKey(name: 'consent_expiration_time')
-  final String? consentExpirationTime;
+  final DateTime? consentExpirationTime;
   static const fromJsonFactory = _$PendingExpirationWebhookFromJson;
   static const toJsonFactory = _$PendingExpirationWebhookToJson;
   Map<String, dynamic> toJson() => _$PendingExpirationWebhookToJson(this);
@@ -12277,6 +15931,14 @@ class PendingExpirationWebhook {
                 const DeepCollectionEquality().equals(
                     other.consentExpirationTime, consentExpirationTime)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(consentExpirationTime) ^
+      runtimeType.hashCode;
 }
 
 extension $PendingExpirationWebhookExtension on PendingExpirationWebhook {
@@ -12284,7 +15946,7 @@ extension $PendingExpirationWebhookExtension on PendingExpirationWebhook {
       {String? webhookType,
       String? webhookCode,
       String? itemId,
-      String? consentExpirationTime}) {
+      DateTime? consentExpirationTime}) {
     return PendingExpirationWebhook(
         webhookType: webhookType ?? this.webhookType,
         webhookCode: webhookCode ?? this.webhookCode,
@@ -12333,6 +15995,14 @@ class ItemErrorWebhook {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemErrorWebhookExtension on ItemErrorWebhook {
@@ -12388,6 +16058,14 @@ class ItemProductReadyWebhook {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemProductReadyWebhookExtension on ItemProductReadyWebhook {
@@ -12463,6 +16141,17 @@ class RecaptchaRequiredError {
                 const DeepCollectionEquality()
                     .equals(other.troubleshootingSteps, troubleshootingSteps)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(errorType) ^
+      const DeepCollectionEquality().hash(errorCode) ^
+      const DeepCollectionEquality().hash(displayMessage) ^
+      const DeepCollectionEquality().hash(httpCode) ^
+      const DeepCollectionEquality().hash(linkUserExperience) ^
+      const DeepCollectionEquality().hash(commonCauses) ^
+      const DeepCollectionEquality().hash(troubleshootingSteps) ^
+      runtimeType.hashCode;
 }
 
 extension $RecaptchaRequiredErrorExtension on RecaptchaRequiredError {
@@ -12517,6 +16206,12 @@ class BankTransfersEventsUpdateWebhook {
                 const DeepCollectionEquality()
                     .equals(other.webhookCode, webhookCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransfersEventsUpdateWebhookExtension
@@ -12585,6 +16280,16 @@ class InvestmentsDefaultUpdateWebhook {
                     other.canceledInvestmentsTransactions,
                     canceledInvestmentsTransactions)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(newInvestmentsTransactions) ^
+      const DeepCollectionEquality().hash(canceledInvestmentsTransactions) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentsDefaultUpdateWebhookExtension
@@ -12659,6 +16364,16 @@ class HoldingsDefaultUpdateWebhook {
                 const DeepCollectionEquality()
                     .equals(other.updatedHoldings, updatedHoldings)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(newHoldings) ^
+      const DeepCollectionEquality().hash(updatedHoldings) ^
+      runtimeType.hashCode;
 }
 
 extension $HoldingsDefaultUpdateWebhookExtension
@@ -12736,6 +16451,16 @@ class LiabilitiesDefaultUpdateWebhook {
                     other.accountIdsWithUpdatedLiabilities,
                     accountIdsWithUpdatedLiabilities)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(accountIdsWithNewLiabilities) ^
+      const DeepCollectionEquality().hash(accountIdsWithUpdatedLiabilities) ^
+      runtimeType.hashCode;
 }
 
 extension $LiabilitiesDefaultUpdateWebhookExtension
@@ -12794,6 +16519,13 @@ class AssetsProductReadyWebhook {
                 const DeepCollectionEquality()
                     .equals(other.assetReportId, assetReportId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(assetReportId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetsProductReadyWebhookExtension on AssetsProductReadyWebhook {
@@ -12846,6 +16578,14 @@ class AssetsErrorWebhook {
                 const DeepCollectionEquality()
                     .equals(other.assetReportId, assetReportId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(assetReportId) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetsErrorWebhookExtension on AssetsErrorWebhook {
@@ -12888,6 +16628,12 @@ class Cause {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $CauseExtension on Cause {
@@ -12909,8 +16655,11 @@ class Warning {
 
   @JsonKey(name: 'warning_type')
   final String? warningType;
-  @JsonKey(name: 'warning_code')
-  final String? warningCode;
+  @JsonKey(
+      name: 'warning_code',
+      toJson: warningWarningCodeToJson,
+      fromJson: warningWarningCodeFromJson)
+  final enums.WarningWarningCode? warningCode;
   @JsonKey(name: 'cause')
   final Cause? cause;
   static const fromJsonFactory = _$WarningFromJson;
@@ -12930,10 +16679,20 @@ class Warning {
             (identical(other.cause, cause) ||
                 const DeepCollectionEquality().equals(other.cause, cause)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(warningType) ^
+      const DeepCollectionEquality().hash(warningCode) ^
+      const DeepCollectionEquality().hash(cause) ^
+      runtimeType.hashCode;
 }
 
 extension $WarningExtension on Warning {
-  Warning copyWith({String? warningType, String? warningCode, Cause? cause}) {
+  Warning copyWith(
+      {String? warningType,
+      enums.WarningWarningCode? warningCode,
+      Cause? cause}) {
     return Warning(
         warningType: warningType ?? this.warningType,
         warningCode: warningCode ?? this.warningCode,
@@ -12972,6 +16731,12 @@ class PaymentAmount {
             (identical(other.value, value) ||
                 const DeepCollectionEquality().equals(other.value, value)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currency) ^
+      const DeepCollectionEquality().hash(value) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentAmountExtension on PaymentAmount {
@@ -13039,6 +16804,17 @@ class AssetReportUser {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientUserId) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(middleName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(ssn) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(email) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportUserExtension on AssetReportUser {
@@ -13090,6 +16866,12 @@ class StandaloneCurrencyCodeList {
                 const DeepCollectionEquality().equals(
                     other.unofficialCurrencyCode, unofficialCurrencyCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
 }
 
 extension $StandaloneCurrencyCodeListExtension on StandaloneCurrencyCodeList {
@@ -13146,6 +16928,15 @@ class StandaloneAccountType {
             (identical(other.other, other) ||
                 const DeepCollectionEquality().equals(other.other, other)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(investment) ^
+      const DeepCollectionEquality().hash(other) ^
+      runtimeType.hashCode;
 }
 
 extension $StandaloneAccountTypeExtension on StandaloneAccountType {
@@ -13183,7 +16974,7 @@ class AssetReport {
   @JsonKey(name: 'client_report_id')
   final String? clientReportId;
   @JsonKey(name: 'date_generated')
-  final String? dateGenerated;
+  final DateTime? dateGenerated;
   @JsonKey(name: 'days_requested')
   final double? daysRequested;
   @JsonKey(name: 'user')
@@ -13215,13 +17006,23 @@ class AssetReport {
             (identical(other.items, items) ||
                 const DeepCollectionEquality().equals(other.items, items)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(assetReportId) ^
+      const DeepCollectionEquality().hash(clientReportId) ^
+      const DeepCollectionEquality().hash(dateGenerated) ^
+      const DeepCollectionEquality().hash(daysRequested) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportExtension on AssetReport {
   AssetReport copyWith(
       {String? assetReportId,
       String? clientReportId,
-      String? dateGenerated,
+      DateTime? dateGenerated,
       double? daysRequested,
       AssetReportUser? user,
       List<AssetReportItem>? items}) {
@@ -13255,7 +17056,7 @@ class AssetReportItem {
   @JsonKey(name: 'institution_id')
   final String? institutionId;
   @JsonKey(name: 'date_last_updated')
-  final String? dateLastUpdated;
+  final DateTime? dateLastUpdated;
   @JsonKey(name: 'accounts', defaultValue: <AccountAssets>[])
   final List<AccountAssets>? accounts;
   static const fromJsonFactory = _$AssetReportItemFromJson;
@@ -13281,6 +17082,15 @@ class AssetReportItem {
                 const DeepCollectionEquality()
                     .equals(other.accounts, accounts)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(institutionName) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(dateLastUpdated) ^
+      const DeepCollectionEquality().hash(accounts) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportItemExtension on AssetReportItem {
@@ -13288,7 +17098,7 @@ extension $AssetReportItemExtension on AssetReportItem {
       {String? itemId,
       String? institutionName,
       String? institutionId,
-      String? dateLastUpdated,
+      DateTime? dateLastUpdated,
       List<AccountAssets>? accounts}) {
     return AssetReportItem(
         itemId: itemId ?? this.itemId,
@@ -13343,7 +17153,7 @@ class PaymentStatusUpdateWebhook {
   @JsonKey(name: 'adjusted_start_date', toJson: _dateToJson)
   final DateTime? adjustedStartDate;
   @JsonKey(name: 'timestamp')
-  final String? timestamp;
+  final DateTime? timestamp;
   @JsonKey(name: 'error')
   final Error? error;
   static const fromJsonFactory = _$PaymentStatusUpdateWebhookFromJson;
@@ -13387,6 +17197,21 @@ class PaymentStatusUpdateWebhook {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(paymentId) ^
+      const DeepCollectionEquality().hash(newPaymentStatus) ^
+      const DeepCollectionEquality().hash(oldPaymentStatus) ^
+      const DeepCollectionEquality().hash(originalReference) ^
+      const DeepCollectionEquality().hash(adjustedReference) ^
+      const DeepCollectionEquality().hash(originalStartDate) ^
+      const DeepCollectionEquality().hash(adjustedStartDate) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentStatusUpdateWebhookExtension on PaymentStatusUpdateWebhook {
@@ -13400,7 +17225,7 @@ extension $PaymentStatusUpdateWebhookExtension on PaymentStatusUpdateWebhook {
       String? adjustedReference,
       DateTime? originalStartDate,
       DateTime? adjustedStartDate,
-      String? timestamp,
+      DateTime? timestamp,
       Error? error}) {
     return PaymentStatusUpdateWebhook(
         webhookType: webhookType ?? this.webhookType,
@@ -13488,6 +17313,19 @@ class Holding {
                 const DeepCollectionEquality().equals(
                     other.unofficialCurrencyCode, unofficialCurrencyCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(securityId) ^
+      const DeepCollectionEquality().hash(institutionPrice) ^
+      const DeepCollectionEquality().hash(institutionPriceAsOf) ^
+      const DeepCollectionEquality().hash(institutionValue) ^
+      const DeepCollectionEquality().hash(costBasis) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
 }
 
 extension $HoldingExtension on Holding {
@@ -13617,6 +17455,25 @@ class Security {
                 const DeepCollectionEquality().equals(
                     other.unofficialCurrencyCode, unofficialCurrencyCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(securityId) ^
+      const DeepCollectionEquality().hash(isin) ^
+      const DeepCollectionEquality().hash(cusip) ^
+      const DeepCollectionEquality().hash(sedol) ^
+      const DeepCollectionEquality().hash(institutionSecurityId) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(proxySecurityId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(tickerSymbol) ^
+      const DeepCollectionEquality().hash(isCashEquivalent) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(closePrice) ^
+      const DeepCollectionEquality().hash(closePriceAsOf) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
 }
 
 extension $SecurityExtension on Security {
@@ -13687,8 +17544,8 @@ class InvestmentTransaction {
   final String? accountId;
   @JsonKey(name: 'security_id')
   final String? securityId;
-  @JsonKey(name: 'date')
-  final String? date;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'quantity')
@@ -13759,6 +17616,24 @@ class InvestmentTransaction {
                 const DeepCollectionEquality().equals(
                     other.unofficialCurrencyCode, unofficialCurrencyCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(investmentTransactionId) ^
+      const DeepCollectionEquality().hash(cancelTransactionId) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(securityId) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(fees) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subtype) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentTransactionExtension on InvestmentTransaction {
@@ -13767,7 +17642,7 @@ extension $InvestmentTransactionExtension on InvestmentTransaction {
       String? cancelTransactionId,
       String? accountId,
       String? securityId,
-      String? date,
+      DateTime? date,
       String? name,
       double? quantity,
       double? amount,
@@ -13847,6 +17722,16 @@ class StandaloneInvestmentTransactionType {
                 const DeepCollectionEquality()
                     .equals(other.transfer, transfer)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(buy) ^
+      const DeepCollectionEquality().hash(sell) ^
+      const DeepCollectionEquality().hash(cancel) ^
+      const DeepCollectionEquality().hash(cash) ^
+      const DeepCollectionEquality().hash(fee) ^
+      const DeepCollectionEquality().hash(transfer) ^
+      runtimeType.hashCode;
 }
 
 extension $StandaloneInvestmentTransactionTypeExtension
@@ -13869,343 +17754,6 @@ extension $StandaloneInvestmentTransactionTypeExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class StandaloneInvestmentTransactionSubtype {
-  StandaloneInvestmentTransactionSubtype({
-    this.accountFee,
-    this.assignment,
-    this.buy,
-    this.buyToCover,
-    this.contribution,
-    this.deposit,
-    this.distribution,
-    this.dividend,
-    this.dividendReinvestment,
-    this.exercise,
-    this.expire,
-    this.fundFee,
-    this.interest,
-    this.interestReceivable,
-    this.interestReinvestment,
-    this.legalFee,
-    this.loanPayment,
-    this.longTermCapitalGain,
-    this.longTermCapitalGainReinvestment,
-    this.managementFee,
-    this.marginExpense,
-    this.merger,
-    this.miscellaneousFee,
-    this.nonQualifiedDividend,
-    this.nonResidentTax,
-    this.pendingCredit,
-    this.pendingDebit,
-    this.qualifiedDividend,
-    this.rebalance,
-    this.returnOfPrincipal,
-    this.sell,
-    this.sellShort,
-    this.shortTermCapitalGain,
-    this.shortTermCapitalGainReinvestment,
-    this.spinOff,
-    this.split,
-    this.stockDistribution,
-    this.tax,
-    this.taxWithheld,
-    this.transfer,
-    this.transferFee,
-    this.trustFee,
-    this.unqualifiedGain,
-    this.withdrawal,
-  });
-
-  factory StandaloneInvestmentTransactionSubtype.fromJson(
-          Map<String, dynamic> json) =>
-      _$StandaloneInvestmentTransactionSubtypeFromJson(json);
-
-  @JsonKey(name: 'account fee')
-  final String? accountFee;
-  @JsonKey(name: 'assignment')
-  final String? assignment;
-  @JsonKey(name: 'buy')
-  final String? buy;
-  @JsonKey(name: 'buy to cover')
-  final String? buyToCover;
-  @JsonKey(name: 'contribution')
-  final String? contribution;
-  @JsonKey(name: 'deposit')
-  final String? deposit;
-  @JsonKey(name: 'distribution')
-  final String? distribution;
-  @JsonKey(name: 'dividend')
-  final String? dividend;
-  @JsonKey(name: 'dividend reinvestment')
-  final String? dividendReinvestment;
-  @JsonKey(name: 'exercise')
-  final String? exercise;
-  @JsonKey(name: 'expire')
-  final String? expire;
-  @JsonKey(name: 'fund fee')
-  final String? fundFee;
-  @JsonKey(name: 'interest')
-  final String? interest;
-  @JsonKey(name: 'interest receivable')
-  final String? interestReceivable;
-  @JsonKey(name: 'interest reinvestment')
-  final String? interestReinvestment;
-  @JsonKey(name: 'legal fee')
-  final String? legalFee;
-  @JsonKey(name: 'loan payment')
-  final String? loanPayment;
-  @JsonKey(name: 'long-term capital gain')
-  final String? longTermCapitalGain;
-  @JsonKey(name: 'long-term capital gain reinvestment')
-  final String? longTermCapitalGainReinvestment;
-  @JsonKey(name: 'management fee')
-  final String? managementFee;
-  @JsonKey(name: 'margin expense')
-  final String? marginExpense;
-  @JsonKey(name: 'merger')
-  final String? merger;
-  @JsonKey(name: 'miscellaneous fee')
-  final String? miscellaneousFee;
-  @JsonKey(name: 'non-qualified dividend')
-  final String? nonQualifiedDividend;
-  @JsonKey(name: 'non-resident tax')
-  final String? nonResidentTax;
-  @JsonKey(name: 'pending credit')
-  final String? pendingCredit;
-  @JsonKey(name: 'pending debit')
-  final String? pendingDebit;
-  @JsonKey(name: 'qualified dividend')
-  final String? qualifiedDividend;
-  @JsonKey(name: 'rebalance')
-  final String? rebalance;
-  @JsonKey(name: 'return of principal')
-  final String? returnOfPrincipal;
-  @JsonKey(name: 'sell')
-  final String? sell;
-  @JsonKey(name: 'sell short')
-  final String? sellShort;
-  @JsonKey(name: 'short-term capital gain')
-  final String? shortTermCapitalGain;
-  @JsonKey(name: 'short-term capital gain reinvestment')
-  final String? shortTermCapitalGainReinvestment;
-  @JsonKey(name: 'spin off')
-  final String? spinOff;
-  @JsonKey(name: 'split')
-  final String? split;
-  @JsonKey(name: 'stock distribution')
-  final String? stockDistribution;
-  @JsonKey(name: 'tax')
-  final String? tax;
-  @JsonKey(name: 'tax withheld')
-  final String? taxWithheld;
-  @JsonKey(name: 'transfer')
-  final String? transfer;
-  @JsonKey(name: 'transfer fee')
-  final String? transferFee;
-  @JsonKey(name: 'trust fee')
-  final String? trustFee;
-  @JsonKey(name: 'unqualified gain')
-  final String? unqualifiedGain;
-  @JsonKey(name: 'withdrawal')
-  final String? withdrawal;
-  static const fromJsonFactory =
-      _$StandaloneInvestmentTransactionSubtypeFromJson;
-  static const toJsonFactory = _$StandaloneInvestmentTransactionSubtypeToJson;
-  Map<String, dynamic> toJson() =>
-      _$StandaloneInvestmentTransactionSubtypeToJson(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is StandaloneInvestmentTransactionSubtype &&
-            (identical(other.accountFee, accountFee) ||
-                const DeepCollectionEquality()
-                    .equals(other.accountFee, accountFee)) &&
-            (identical(other.assignment, assignment) ||
-                const DeepCollectionEquality()
-                    .equals(other.assignment, assignment)) &&
-            (identical(other.buy, buy) ||
-                const DeepCollectionEquality().equals(other.buy, buy)) &&
-            (identical(other.buyToCover, buyToCover) ||
-                const DeepCollectionEquality()
-                    .equals(other.buyToCover, buyToCover)) &&
-            (identical(other.contribution, contribution) ||
-                const DeepCollectionEquality()
-                    .equals(other.contribution, contribution)) &&
-            (identical(other.deposit, deposit) ||
-                const DeepCollectionEquality()
-                    .equals(other.deposit, deposit)) &&
-            (identical(other.distribution, distribution) ||
-                const DeepCollectionEquality()
-                    .equals(other.distribution, distribution)) &&
-            (identical(other.dividend, dividend) ||
-                const DeepCollectionEquality()
-                    .equals(other.dividend, dividend)) &&
-            (identical(other.dividendReinvestment, dividendReinvestment) ||
-                const DeepCollectionEquality().equals(
-                    other.dividendReinvestment, dividendReinvestment)) &&
-            (identical(other.exercise, exercise) ||
-                const DeepCollectionEquality()
-                    .equals(other.exercise, exercise)) &&
-            (identical(other.expire, expire) ||
-                const DeepCollectionEquality().equals(other.expire, expire)) &&
-            (identical(other.fundFee, fundFee) ||
-                const DeepCollectionEquality()
-                    .equals(other.fundFee, fundFee)) &&
-            (identical(other.interest, interest) ||
-                const DeepCollectionEquality()
-                    .equals(other.interest, interest)) &&
-            (identical(other.interestReceivable, interestReceivable) ||
-                const DeepCollectionEquality()
-                    .equals(other.interestReceivable, interestReceivable)) &&
-            (identical(other.interestReinvestment, interestReinvestment) ||
-                const DeepCollectionEquality().equals(
-                    other.interestReinvestment, interestReinvestment)) &&
-            (identical(other.legalFee, legalFee) ||
-                const DeepCollectionEquality()
-                    .equals(other.legalFee, legalFee)) &&
-            (identical(other.loanPayment, loanPayment) ||
-                const DeepCollectionEquality()
-                    .equals(other.loanPayment, loanPayment)) &&
-            (identical(other.longTermCapitalGain, longTermCapitalGain) ||
-                const DeepCollectionEquality()
-                    .equals(other.longTermCapitalGain, longTermCapitalGain)) &&
-            (identical(other.longTermCapitalGainReinvestment, longTermCapitalGainReinvestment) ||
-                const DeepCollectionEquality().equals(
-                    other.longTermCapitalGainReinvestment,
-                    longTermCapitalGainReinvestment)) &&
-            (identical(other.managementFee, managementFee) ||
-                const DeepCollectionEquality()
-                    .equals(other.managementFee, managementFee)) &&
-            (identical(other.marginExpense, marginExpense) ||
-                const DeepCollectionEquality()
-                    .equals(other.marginExpense, marginExpense)) &&
-            (identical(other.merger, merger) ||
-                const DeepCollectionEquality().equals(other.merger, merger)) &&
-            (identical(other.miscellaneousFee, miscellaneousFee) || const DeepCollectionEquality().equals(other.miscellaneousFee, miscellaneousFee)) &&
-            (identical(other.nonQualifiedDividend, nonQualifiedDividend) || const DeepCollectionEquality().equals(other.nonQualifiedDividend, nonQualifiedDividend)) &&
-            (identical(other.nonResidentTax, nonResidentTax) || const DeepCollectionEquality().equals(other.nonResidentTax, nonResidentTax)) &&
-            (identical(other.pendingCredit, pendingCredit) || const DeepCollectionEquality().equals(other.pendingCredit, pendingCredit)) &&
-            (identical(other.pendingDebit, pendingDebit) || const DeepCollectionEquality().equals(other.pendingDebit, pendingDebit)) &&
-            (identical(other.qualifiedDividend, qualifiedDividend) || const DeepCollectionEquality().equals(other.qualifiedDividend, qualifiedDividend)) &&
-            (identical(other.rebalance, rebalance) || const DeepCollectionEquality().equals(other.rebalance, rebalance)) &&
-            (identical(other.returnOfPrincipal, returnOfPrincipal) || const DeepCollectionEquality().equals(other.returnOfPrincipal, returnOfPrincipal)) &&
-            (identical(other.sell, sell) || const DeepCollectionEquality().equals(other.sell, sell)) &&
-            (identical(other.sellShort, sellShort) || const DeepCollectionEquality().equals(other.sellShort, sellShort)) &&
-            (identical(other.shortTermCapitalGain, shortTermCapitalGain) || const DeepCollectionEquality().equals(other.shortTermCapitalGain, shortTermCapitalGain)) &&
-            (identical(other.shortTermCapitalGainReinvestment, shortTermCapitalGainReinvestment) || const DeepCollectionEquality().equals(other.shortTermCapitalGainReinvestment, shortTermCapitalGainReinvestment)) &&
-            (identical(other.spinOff, spinOff) || const DeepCollectionEquality().equals(other.spinOff, spinOff)) &&
-            (identical(other.split, split) || const DeepCollectionEquality().equals(other.split, split)) &&
-            (identical(other.stockDistribution, stockDistribution) || const DeepCollectionEquality().equals(other.stockDistribution, stockDistribution)) &&
-            (identical(other.tax, tax) || const DeepCollectionEquality().equals(other.tax, tax)) &&
-            (identical(other.taxWithheld, taxWithheld) || const DeepCollectionEquality().equals(other.taxWithheld, taxWithheld)) &&
-            (identical(other.transfer, transfer) || const DeepCollectionEquality().equals(other.transfer, transfer)) &&
-            (identical(other.transferFee, transferFee) || const DeepCollectionEquality().equals(other.transferFee, transferFee)) &&
-            (identical(other.trustFee, trustFee) || const DeepCollectionEquality().equals(other.trustFee, trustFee)) &&
-            (identical(other.unqualifiedGain, unqualifiedGain) || const DeepCollectionEquality().equals(other.unqualifiedGain, unqualifiedGain)) &&
-            (identical(other.withdrawal, withdrawal) || const DeepCollectionEquality().equals(other.withdrawal, withdrawal)));
-  }
-}
-
-extension $StandaloneInvestmentTransactionSubtypeExtension
-    on StandaloneInvestmentTransactionSubtype {
-  StandaloneInvestmentTransactionSubtype copyWith(
-      {String? accountFee,
-      String? assignment,
-      String? buy,
-      String? buyToCover,
-      String? contribution,
-      String? deposit,
-      String? distribution,
-      String? dividend,
-      String? dividendReinvestment,
-      String? exercise,
-      String? expire,
-      String? fundFee,
-      String? interest,
-      String? interestReceivable,
-      String? interestReinvestment,
-      String? legalFee,
-      String? loanPayment,
-      String? longTermCapitalGain,
-      String? longTermCapitalGainReinvestment,
-      String? managementFee,
-      String? marginExpense,
-      String? merger,
-      String? miscellaneousFee,
-      String? nonQualifiedDividend,
-      String? nonResidentTax,
-      String? pendingCredit,
-      String? pendingDebit,
-      String? qualifiedDividend,
-      String? rebalance,
-      String? returnOfPrincipal,
-      String? sell,
-      String? sellShort,
-      String? shortTermCapitalGain,
-      String? shortTermCapitalGainReinvestment,
-      String? spinOff,
-      String? split,
-      String? stockDistribution,
-      String? tax,
-      String? taxWithheld,
-      String? transfer,
-      String? transferFee,
-      String? trustFee,
-      String? unqualifiedGain,
-      String? withdrawal}) {
-    return StandaloneInvestmentTransactionSubtype(
-        accountFee: accountFee ?? this.accountFee,
-        assignment: assignment ?? this.assignment,
-        buy: buy ?? this.buy,
-        buyToCover: buyToCover ?? this.buyToCover,
-        contribution: contribution ?? this.contribution,
-        deposit: deposit ?? this.deposit,
-        distribution: distribution ?? this.distribution,
-        dividend: dividend ?? this.dividend,
-        dividendReinvestment: dividendReinvestment ?? this.dividendReinvestment,
-        exercise: exercise ?? this.exercise,
-        expire: expire ?? this.expire,
-        fundFee: fundFee ?? this.fundFee,
-        interest: interest ?? this.interest,
-        interestReceivable: interestReceivable ?? this.interestReceivable,
-        interestReinvestment: interestReinvestment ?? this.interestReinvestment,
-        legalFee: legalFee ?? this.legalFee,
-        loanPayment: loanPayment ?? this.loanPayment,
-        longTermCapitalGain: longTermCapitalGain ?? this.longTermCapitalGain,
-        longTermCapitalGainReinvestment: longTermCapitalGainReinvestment ??
-            this.longTermCapitalGainReinvestment,
-        managementFee: managementFee ?? this.managementFee,
-        marginExpense: marginExpense ?? this.marginExpense,
-        merger: merger ?? this.merger,
-        miscellaneousFee: miscellaneousFee ?? this.miscellaneousFee,
-        nonQualifiedDividend: nonQualifiedDividend ?? this.nonQualifiedDividend,
-        nonResidentTax: nonResidentTax ?? this.nonResidentTax,
-        pendingCredit: pendingCredit ?? this.pendingCredit,
-        pendingDebit: pendingDebit ?? this.pendingDebit,
-        qualifiedDividend: qualifiedDividend ?? this.qualifiedDividend,
-        rebalance: rebalance ?? this.rebalance,
-        returnOfPrincipal: returnOfPrincipal ?? this.returnOfPrincipal,
-        sell: sell ?? this.sell,
-        sellShort: sellShort ?? this.sellShort,
-        shortTermCapitalGain: shortTermCapitalGain ?? this.shortTermCapitalGain,
-        shortTermCapitalGainReinvestment: shortTermCapitalGainReinvestment ??
-            this.shortTermCapitalGainReinvestment,
-        spinOff: spinOff ?? this.spinOff,
-        split: split ?? this.split,
-        stockDistribution: stockDistribution ?? this.stockDistribution,
-        tax: tax ?? this.tax,
-        taxWithheld: taxWithheld ?? this.taxWithheld,
-        transfer: transfer ?? this.transfer,
-        transferFee: transferFee ?? this.transferFee,
-        trustFee: trustFee ?? this.trustFee,
-        unqualifiedGain: unqualifiedGain ?? this.unqualifiedGain,
-        withdrawal: withdrawal ?? this.withdrawal);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class AccountSubtypes {
   AccountSubtypes();
 
@@ -14215,6 +17763,9 @@ class AccountSubtypes {
   static const fromJsonFactory = _$AccountSubtypesFromJson;
   static const toJsonFactory = _$AccountSubtypesToJson;
   Map<String, dynamic> toJson() => _$AccountSubtypesToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -14256,6 +17807,14 @@ class UserPermissionRevokedWebhook {
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
 }
 
 extension $UserPermissionRevokedWebhookExtension
@@ -14307,6 +17866,13 @@ class DepositSwitchGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.depositSwitchId, depositSwitchId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchGetRequestExtension on DepositSwitchGetRequest {
@@ -14439,6 +18005,26 @@ class DepositSwitchGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      const DeepCollectionEquality().hash(targetAccountId) ^
+      const DeepCollectionEquality().hash(targetItemId) ^
+      const DeepCollectionEquality().hash(state) ^
+      const DeepCollectionEquality().hash(switchMethod) ^
+      const DeepCollectionEquality().hash(accountHasMultipleAllocations) ^
+      const DeepCollectionEquality().hash(isAllocatedRemainder) ^
+      const DeepCollectionEquality().hash(percentAllocated) ^
+      const DeepCollectionEquality().hash(amountAllocated) ^
+      const DeepCollectionEquality().hash(employerName) ^
+      const DeepCollectionEquality().hash(employerId) ^
+      const DeepCollectionEquality().hash(institutionName) ^
+      const DeepCollectionEquality().hash(institutionId) ^
+      const DeepCollectionEquality().hash(dateCreated) ^
+      const DeepCollectionEquality().hash(dateCompleted) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchGetResponseExtension on DepositSwitchGetResponse {
@@ -14521,6 +18107,14 @@ class DepositSwitchStateUpdateWebhook {
                 const DeepCollectionEquality()
                     .equals(other.depositSwitchId, depositSwitchId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(state) ^
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchStateUpdateWebhookExtension
@@ -14572,6 +18166,13 @@ class AssetReportAuditCopyGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.auditCopyToken, auditCopyToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(auditCopyToken) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportAuditCopyGetRequestExtension
@@ -14582,6 +18183,59 @@ extension $AssetReportAuditCopyGetRequestExtension
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         auditCopyToken: auditCopyToken ?? this.auditCopyToken);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferGetRequest {
+  TransferGetRequest({
+    this.clientId,
+    this.secret,
+    this.transferId,
+  });
+
+  factory TransferGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  static const fromJsonFactory = _$TransferGetRequestFromJson;
+  static const toJsonFactory = _$TransferGetRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferGetRequestExtension on TransferGetRequest {
+  TransferGetRequest copyWith(
+      {String? clientId, String? secret, String? transferId}) {
+    return TransferGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        transferId: transferId ?? this.transferId);
   }
 }
 
@@ -14619,6 +18273,13 @@ class BankTransferGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.bankTransferId, bankTransferId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(bankTransferId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferGetRequestExtension on BankTransferGetRequest {
@@ -14628,6 +18289,51 @@ extension $BankTransferGetRequestExtension on BankTransferGetRequest {
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         bankTransferId: bankTransferId ?? this.bankTransferId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferGetResponse {
+  TransferGetResponse({
+    this.transfer,
+    this.requestId,
+  });
+
+  factory TransferGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferGetResponseFromJson(json);
+
+  @JsonKey(name: 'transfer')
+  final Transfer? transfer;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferGetResponseFromJson;
+  static const toJsonFactory = _$TransferGetResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferGetResponse &&
+            (identical(other.transfer, transfer) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfer, transfer)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transfer) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferGetResponseExtension on TransferGetResponse {
+  TransferGetResponse copyWith({Transfer? transfer, String? requestId}) {
+    return TransferGetResponse(
+        transfer: transfer ?? this.transfer,
+        requestId: requestId ?? this.requestId);
   }
 }
 
@@ -14660,6 +18366,12 @@ class BankTransferGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransfer) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferGetResponseExtension on BankTransferGetResponse {
@@ -14668,6 +18380,177 @@ extension $BankTransferGetResponseExtension on BankTransferGetResponse {
     return BankTransferGetResponse(
         bankTransfer: bankTransfer ?? this.bankTransfer,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Transfer {
+  Transfer({
+    this.id,
+    this.achClass,
+    this.accountId,
+    this.type,
+    this.user,
+    this.amount,
+    this.description,
+    this.created,
+    this.status,
+    this.sweepStatus,
+    this.network,
+    this.cancellable,
+    this.failureReason,
+    this.metadata,
+    this.originationAccountId,
+  });
+
+  factory Transfer.fromJson(Map<String, dynamic> json) =>
+      _$TransferFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(
+      name: 'type', toJson: transferTypeToJson, fromJson: transferTypeFromJson)
+  final enums.TransferType? type;
+  @JsonKey(name: 'user')
+  final TransferUserInResponse? user;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'created')
+  final DateTime? created;
+  @JsonKey(
+      name: 'status',
+      toJson: transferStatusToJson,
+      fromJson: transferStatusFromJson)
+  final enums.TransferStatus? status;
+  @JsonKey(
+      name: 'sweep_status',
+      toJson: transferSweepStatusToJson,
+      fromJson: transferSweepStatusFromJson)
+  final enums.TransferSweepStatus? sweepStatus;
+  @JsonKey(
+      name: 'network',
+      toJson: transferNetworkToJson,
+      fromJson: transferNetworkFromJson)
+  final enums.TransferNetwork? network;
+  @JsonKey(name: 'cancellable')
+  final bool? cancellable;
+  @JsonKey(name: 'failure_reason')
+  final TransferFailure? failureReason;
+  @JsonKey(name: 'metadata')
+  final TransferMetadata? metadata;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$TransferFromJson;
+  static const toJsonFactory = _$TransferToJson;
+  Map<String, dynamic> toJson() => _$TransferToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Transfer &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality()
+                    .equals(other.created, created)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.sweepStatus, sweepStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepStatus, sweepStatus)) &&
+            (identical(other.network, network) ||
+                const DeepCollectionEquality()
+                    .equals(other.network, network)) &&
+            (identical(other.cancellable, cancellable) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancellable, cancellable)) &&
+            (identical(other.failureReason, failureReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureReason, failureReason)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(created) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(sweepStatus) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(cancellable) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferExtension on Transfer {
+  Transfer copyWith(
+      {String? id,
+      enums.ACHClass? achClass,
+      String? accountId,
+      enums.TransferType? type,
+      TransferUserInResponse? user,
+      String? amount,
+      String? description,
+      DateTime? created,
+      enums.TransferStatus? status,
+      enums.TransferSweepStatus? sweepStatus,
+      enums.TransferNetwork? network,
+      bool? cancellable,
+      TransferFailure? failureReason,
+      TransferMetadata? metadata,
+      String? originationAccountId}) {
+    return Transfer(
+        id: id ?? this.id,
+        achClass: achClass ?? this.achClass,
+        accountId: accountId ?? this.accountId,
+        type: type ?? this.type,
+        user: user ?? this.user,
+        amount: amount ?? this.amount,
+        description: description ?? this.description,
+        created: created ?? this.created,
+        status: status ?? this.status,
+        sweepStatus: sweepStatus ?? this.sweepStatus,
+        network: network ?? this.network,
+        cancellable: cancellable ?? this.cancellable,
+        failureReason: failureReason ?? this.failureReason,
+        metadata: metadata ?? this.metadata,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
   }
 }
 
@@ -14717,7 +18600,7 @@ class BankTransfer {
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'created')
-  final String? created;
+  final DateTime? created;
   @JsonKey(
       name: 'status',
       toJson: bankTransferStatusToJson,
@@ -14798,6 +18681,27 @@ class BankTransfer {
                 const DeepCollectionEquality()
                     .equals(other.direction, direction)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(created) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(cancellable) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      const DeepCollectionEquality().hash(customTag) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(direction) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferExtension on BankTransfer {
@@ -14810,7 +18714,7 @@ extension $BankTransferExtension on BankTransfer {
       String? amount,
       String? isoCurrencyCode,
       String? description,
-      String? created,
+      DateTime? created,
       enums.BankTransferStatus? status,
       enums.BankTransferNetwork? network,
       bool? cancellable,
@@ -14837,6 +18741,331 @@ extension $BankTransferExtension on BankTransfer {
         metadata: metadata ?? this.metadata,
         originationAccountId: originationAccountId ?? this.originationAccountId,
         direction: direction ?? this.direction);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentGetFailureReason {
+  TransferIntentGetFailureReason({
+    this.errorType,
+    this.errorCode,
+    this.errorMessage,
+  });
+
+  factory TransferIntentGetFailureReason.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentGetFailureReasonFromJson(json);
+
+  @JsonKey(name: 'error_type')
+  final String? errorType;
+  @JsonKey(name: 'error_code')
+  final String? errorCode;
+  @JsonKey(name: 'error_message')
+  final String? errorMessage;
+  static const fromJsonFactory = _$TransferIntentGetFailureReasonFromJson;
+  static const toJsonFactory = _$TransferIntentGetFailureReasonToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentGetFailureReasonToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentGetFailureReason &&
+            (identical(other.errorType, errorType) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorType, errorType)) &&
+            (identical(other.errorCode, errorCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorCode, errorCode)) &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(errorType) ^
+      const DeepCollectionEquality().hash(errorCode) ^
+      const DeepCollectionEquality().hash(errorMessage) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentGetFailureReasonExtension
+    on TransferIntentGetFailureReason {
+  TransferIntentGetFailureReason copyWith(
+      {String? errorType, String? errorCode, String? errorMessage}) {
+    return TransferIntentGetFailureReason(
+        errorType: errorType ?? this.errorType,
+        errorCode: errorCode ?? this.errorCode,
+        errorMessage: errorMessage ?? this.errorMessage);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferUserInRequest {
+  TransferUserInRequest({
+    this.legalName,
+    this.phoneNumber,
+    this.emailAddress,
+    this.address,
+  });
+
+  factory TransferUserInRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferUserInRequestFromJson(json);
+
+  @JsonKey(name: 'legal_name')
+  final String? legalName;
+  @JsonKey(name: 'phone_number')
+  final String? phoneNumber;
+  @JsonKey(name: 'email_address')
+  final String? emailAddress;
+  @JsonKey(name: 'address')
+  final TransferUserAddressInRequest? address;
+  static const fromJsonFactory = _$TransferUserInRequestFromJson;
+  static const toJsonFactory = _$TransferUserInRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferUserInRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferUserInRequest &&
+            (identical(other.legalName, legalName) ||
+                const DeepCollectionEquality()
+                    .equals(other.legalName, legalName)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.emailAddress, emailAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailAddress, emailAddress)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(legalName) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferUserInRequestExtension on TransferUserInRequest {
+  TransferUserInRequest copyWith(
+      {String? legalName,
+      String? phoneNumber,
+      String? emailAddress,
+      TransferUserAddressInRequest? address}) {
+    return TransferUserInRequest(
+        legalName: legalName ?? this.legalName,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+        emailAddress: emailAddress ?? this.emailAddress,
+        address: address ?? this.address);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferUserInResponse {
+  TransferUserInResponse({
+    this.legalName,
+    this.phoneNumber,
+    this.emailAddress,
+    this.address,
+  });
+
+  factory TransferUserInResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferUserInResponseFromJson(json);
+
+  @JsonKey(name: 'legal_name')
+  final String? legalName;
+  @JsonKey(name: 'phone_number')
+  final String? phoneNumber;
+  @JsonKey(name: 'email_address')
+  final String? emailAddress;
+  @JsonKey(name: 'address')
+  final TransferUserAddressInResponse? address;
+  static const fromJsonFactory = _$TransferUserInResponseFromJson;
+  static const toJsonFactory = _$TransferUserInResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferUserInResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferUserInResponse &&
+            (identical(other.legalName, legalName) ||
+                const DeepCollectionEquality()
+                    .equals(other.legalName, legalName)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.emailAddress, emailAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailAddress, emailAddress)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(legalName) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferUserInResponseExtension on TransferUserInResponse {
+  TransferUserInResponse copyWith(
+      {String? legalName,
+      String? phoneNumber,
+      String? emailAddress,
+      TransferUserAddressInResponse? address}) {
+    return TransferUserInResponse(
+        legalName: legalName ?? this.legalName,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+        emailAddress: emailAddress ?? this.emailAddress,
+        address: address ?? this.address);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferUserAddressInRequest {
+  TransferUserAddressInRequest({
+    this.street,
+    this.city,
+    this.region,
+    this.postalCode,
+    this.country,
+  });
+
+  factory TransferUserAddressInRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferUserAddressInRequestFromJson(json);
+
+  @JsonKey(name: 'street')
+  final String? street;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'region')
+  final String? region;
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @JsonKey(name: 'country')
+  final String? country;
+  static const fromJsonFactory = _$TransferUserAddressInRequestFromJson;
+  static const toJsonFactory = _$TransferUserAddressInRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferUserAddressInRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferUserAddressInRequest &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.region, region) ||
+                const DeepCollectionEquality().equals(other.region, region)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality().equals(other.country, country)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferUserAddressInRequestExtension
+    on TransferUserAddressInRequest {
+  TransferUserAddressInRequest copyWith(
+      {String? street,
+      String? city,
+      String? region,
+      String? postalCode,
+      String? country}) {
+    return TransferUserAddressInRequest(
+        street: street ?? this.street,
+        city: city ?? this.city,
+        region: region ?? this.region,
+        postalCode: postalCode ?? this.postalCode,
+        country: country ?? this.country);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferUserAddressInResponse {
+  TransferUserAddressInResponse({
+    this.street,
+    this.city,
+    this.region,
+    this.postalCode,
+    this.country,
+  });
+
+  factory TransferUserAddressInResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferUserAddressInResponseFromJson(json);
+
+  @JsonKey(name: 'street')
+  final String? street;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'region')
+  final String? region;
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @JsonKey(name: 'country')
+  final String? country;
+  static const fromJsonFactory = _$TransferUserAddressInResponseFromJson;
+  static const toJsonFactory = _$TransferUserAddressInResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferUserAddressInResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferUserAddressInResponse &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.region, region) ||
+                const DeepCollectionEquality().equals(other.region, region)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality().equals(other.country, country)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferUserAddressInResponseExtension
+    on TransferUserAddressInResponse {
+  TransferUserAddressInResponse copyWith(
+      {String? street,
+      String? city,
+      String? region,
+      String? postalCode,
+      String? country}) {
+    return TransferUserAddressInResponse(
+        street: street ?? this.street,
+        city: city ?? this.city,
+        region: region ?? this.region,
+        postalCode: postalCode ?? this.postalCode,
+        country: country ?? this.country);
   }
 }
 
@@ -14875,6 +19104,13 @@ class BankTransferUser {
                 const DeepCollectionEquality()
                     .equals(other.routingNumber, routingNumber)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(legalName) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(routingNumber) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferUserExtension on BankTransferUser {
@@ -14888,6 +19124,214 @@ extension $BankTransferUserExtension on BankTransferUser {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TransferAuthorizationDecisionRationale {
+  TransferAuthorizationDecisionRationale({
+    this.code,
+    this.description,
+  });
+
+  factory TransferAuthorizationDecisionRationale.fromJson(
+          Map<String, dynamic> json) =>
+      _$TransferAuthorizationDecisionRationaleFromJson(json);
+
+  @JsonKey(
+      name: 'code',
+      toJson: transferAuthorizationDecisionRationaleCodeToJson,
+      fromJson: transferAuthorizationDecisionRationaleCodeFromJson)
+  final enums.TransferAuthorizationDecisionRationaleCode? code;
+  @JsonKey(name: 'description')
+  final String? description;
+  static const fromJsonFactory =
+      _$TransferAuthorizationDecisionRationaleFromJson;
+  static const toJsonFactory = _$TransferAuthorizationDecisionRationaleToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransferAuthorizationDecisionRationaleToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorizationDecisionRationale &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(description) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationDecisionRationaleExtension
+    on TransferAuthorizationDecisionRationale {
+  TransferAuthorizationDecisionRationale copyWith(
+      {enums.TransferAuthorizationDecisionRationaleCode? code,
+      String? description}) {
+    return TransferAuthorizationDecisionRationale(
+        code: code ?? this.code, description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferAuthorizationProposedTransfer {
+  TransferAuthorizationProposedTransfer({
+    this.achClass,
+    this.accountId,
+    this.type,
+    this.user,
+    this.amount,
+    this.network,
+    this.originationAccountId,
+  });
+
+  factory TransferAuthorizationProposedTransfer.fromJson(
+          Map<String, dynamic> json) =>
+      _$TransferAuthorizationProposedTransferFromJson(json);
+
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(
+      name: 'type', toJson: transferTypeToJson, fromJson: transferTypeFromJson)
+  final enums.TransferType? type;
+  @JsonKey(name: 'user')
+  final TransferUserInResponse? user;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'network')
+  final String? network;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory =
+      _$TransferAuthorizationProposedTransferFromJson;
+  static const toJsonFactory = _$TransferAuthorizationProposedTransferToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransferAuthorizationProposedTransferToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorizationProposedTransfer &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.network, network) ||
+                const DeepCollectionEquality()
+                    .equals(other.network, network)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationProposedTransferExtension
+    on TransferAuthorizationProposedTransfer {
+  TransferAuthorizationProposedTransfer copyWith(
+      {enums.ACHClass? achClass,
+      String? accountId,
+      enums.TransferType? type,
+      TransferUserInResponse? user,
+      String? amount,
+      String? network,
+      String? originationAccountId}) {
+    return TransferAuthorizationProposedTransfer(
+        achClass: achClass ?? this.achClass,
+        accountId: accountId ?? this.accountId,
+        type: type ?? this.type,
+        user: user ?? this.user,
+        amount: amount ?? this.amount,
+        network: network ?? this.network,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferAuthorizationDevice {
+  TransferAuthorizationDevice({
+    this.ipAddress,
+    this.userAgent,
+  });
+
+  factory TransferAuthorizationDevice.fromJson(Map<String, dynamic> json) =>
+      _$TransferAuthorizationDeviceFromJson(json);
+
+  @JsonKey(name: 'ip_address')
+  final String? ipAddress;
+  @JsonKey(name: 'user_agent')
+  final String? userAgent;
+  static const fromJsonFactory = _$TransferAuthorizationDeviceFromJson;
+  static const toJsonFactory = _$TransferAuthorizationDeviceToJson;
+  Map<String, dynamic> toJson() => _$TransferAuthorizationDeviceToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorizationDevice &&
+            (identical(other.ipAddress, ipAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.ipAddress, ipAddress)) &&
+            (identical(other.userAgent, userAgent) ||
+                const DeepCollectionEquality()
+                    .equals(other.userAgent, userAgent)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ipAddress) ^
+      const DeepCollectionEquality().hash(userAgent) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationDeviceExtension on TransferAuthorizationDevice {
+  TransferAuthorizationDevice copyWith({String? ipAddress, String? userAgent}) {
+    return TransferAuthorizationDevice(
+        ipAddress: ipAddress ?? this.ipAddress,
+        userAgent: userAgent ?? this.userAgent);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferMetadata {
+  TransferMetadata();
+
+  factory TransferMetadata.fromJson(Map<String, dynamic> json) =>
+      _$TransferMetadataFromJson(json);
+
+  static const fromJsonFactory = _$TransferMetadataFromJson;
+  static const toJsonFactory = _$TransferMetadataToJson;
+  Map<String, dynamic> toJson() => _$TransferMetadataToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
 class BankTransferMetadata {
   BankTransferMetadata();
 
@@ -14897,6 +19341,54 @@ class BankTransferMetadata {
   static const fromJsonFactory = _$BankTransferMetadataFromJson;
   static const toJsonFactory = _$BankTransferMetadataToJson;
   Map<String, dynamic> toJson() => _$BankTransferMetadataToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferFailure {
+  TransferFailure({
+    this.achReturnCode,
+    this.description,
+  });
+
+  factory TransferFailure.fromJson(Map<String, dynamic> json) =>
+      _$TransferFailureFromJson(json);
+
+  @JsonKey(name: 'ach_return_code')
+  final String? achReturnCode;
+  @JsonKey(name: 'description')
+  final String? description;
+  static const fromJsonFactory = _$TransferFailureFromJson;
+  static const toJsonFactory = _$TransferFailureToJson;
+  Map<String, dynamic> toJson() => _$TransferFailureToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferFailure &&
+            (identical(other.achReturnCode, achReturnCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.achReturnCode, achReturnCode)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(achReturnCode) ^
+      const DeepCollectionEquality().hash(description) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferFailureExtension on TransferFailure {
+  TransferFailure copyWith({String? achReturnCode, String? description}) {
+    return TransferFailure(
+        achReturnCode: achReturnCode ?? this.achReturnCode,
+        description: description ?? this.description);
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -14928,6 +19420,12 @@ class BankTransferFailure {
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(achReturnCode) ^
+      const DeepCollectionEquality().hash(description) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferFailureExtension on BankTransferFailure {
@@ -14935,6 +19433,295 @@ extension $BankTransferFailureExtension on BankTransferFailure {
     return BankTransferFailure(
         achReturnCode: achReturnCode ?? this.achReturnCode,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferAuthorizationCreateRequest {
+  TransferAuthorizationCreateRequest({
+    this.clientId,
+    this.secret,
+    this.accessToken,
+    this.accountId,
+    this.type,
+    this.network,
+    this.amount,
+    this.achClass,
+    this.user,
+    this.device,
+    this.originationAccountId,
+  });
+
+  factory TransferAuthorizationCreateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$TransferAuthorizationCreateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(
+      name: 'type', toJson: transferTypeToJson, fromJson: transferTypeFromJson)
+  final enums.TransferType? type;
+  @JsonKey(
+      name: 'network',
+      toJson: transferNetworkToJson,
+      fromJson: transferNetworkFromJson)
+  final enums.TransferNetwork? network;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'user')
+  final TransferUserInRequest? user;
+  @JsonKey(name: 'device')
+  final TransferAuthorizationDevice? device;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$TransferAuthorizationCreateRequestFromJson;
+  static const toJsonFactory = _$TransferAuthorizationCreateRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransferAuthorizationCreateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorizationCreateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.network, network) ||
+                const DeepCollectionEquality()
+                    .equals(other.network, network)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.device, device) ||
+                const DeepCollectionEquality().equals(other.device, device)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(device) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationCreateRequestExtension
+    on TransferAuthorizationCreateRequest {
+  TransferAuthorizationCreateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? accessToken,
+      String? accountId,
+      enums.TransferType? type,
+      enums.TransferNetwork? network,
+      String? amount,
+      enums.ACHClass? achClass,
+      TransferUserInRequest? user,
+      TransferAuthorizationDevice? device,
+      String? originationAccountId}) {
+    return TransferAuthorizationCreateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        accessToken: accessToken ?? this.accessToken,
+        accountId: accountId ?? this.accountId,
+        type: type ?? this.type,
+        network: network ?? this.network,
+        amount: amount ?? this.amount,
+        achClass: achClass ?? this.achClass,
+        user: user ?? this.user,
+        device: device ?? this.device,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferCreateRequest {
+  TransferCreateRequest({
+    this.clientId,
+    this.secret,
+    this.idempotencyKey,
+    this.accessToken,
+    this.accountId,
+    this.authorizationId,
+    this.type,
+    this.network,
+    this.amount,
+    this.description,
+    this.achClass,
+    this.user,
+    this.metadata,
+    this.originationAccountId,
+  });
+
+  factory TransferCreateRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferCreateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'idempotency_key')
+  final String? idempotencyKey;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'authorization_id')
+  final String? authorizationId;
+  @JsonKey(
+      name: 'type', toJson: transferTypeToJson, fromJson: transferTypeFromJson)
+  final enums.TransferType? type;
+  @JsonKey(
+      name: 'network',
+      toJson: transferNetworkToJson,
+      fromJson: transferNetworkFromJson)
+  final enums.TransferNetwork? network;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'user')
+  final TransferUserInRequest? user;
+  @JsonKey(name: 'metadata')
+  final TransferMetadata? metadata;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$TransferCreateRequestFromJson;
+  static const toJsonFactory = _$TransferCreateRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferCreateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferCreateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.idempotencyKey, idempotencyKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.idempotencyKey, idempotencyKey)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.authorizationId, authorizationId) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorizationId, authorizationId)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.network, network) ||
+                const DeepCollectionEquality()
+                    .equals(other.network, network)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(idempotencyKey) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(authorizationId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferCreateRequestExtension on TransferCreateRequest {
+  TransferCreateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? idempotencyKey,
+      String? accessToken,
+      String? accountId,
+      String? authorizationId,
+      enums.TransferType? type,
+      enums.TransferNetwork? network,
+      String? amount,
+      String? description,
+      enums.ACHClass? achClass,
+      TransferUserInRequest? user,
+      TransferMetadata? metadata,
+      String? originationAccountId}) {
+    return TransferCreateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        idempotencyKey: idempotencyKey ?? this.idempotencyKey,
+        accessToken: accessToken ?? this.accessToken,
+        accountId: accountId ?? this.accountId,
+        authorizationId: authorizationId ?? this.authorizationId,
+        type: type ?? this.type,
+        network: network ?? this.network,
+        amount: amount ?? this.amount,
+        description: description ?? this.description,
+        achClass: achClass ?? this.achClass,
+        user: user ?? this.user,
+        metadata: metadata ?? this.metadata,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
   }
 }
 
@@ -15048,6 +19835,25 @@ class BankTransferCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.originationAccountId, originationAccountId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(idempotencyKey) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(network) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(customTag) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferCreateRequestExtension on BankTransferCreateRequest {
@@ -15088,6 +19894,176 @@ extension $BankTransferCreateRequestExtension on BankTransferCreateRequest {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TransferAuthorizationCreateResponse {
+  TransferAuthorizationCreateResponse({
+    this.authorization,
+    this.requestId,
+  });
+
+  factory TransferAuthorizationCreateResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$TransferAuthorizationCreateResponseFromJson(json);
+
+  @JsonKey(name: 'authorization')
+  final TransferAuthorization? authorization;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferAuthorizationCreateResponseFromJson;
+  static const toJsonFactory = _$TransferAuthorizationCreateResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$TransferAuthorizationCreateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorizationCreateResponse &&
+            (identical(other.authorization, authorization) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorization, authorization)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(authorization) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationCreateResponseExtension
+    on TransferAuthorizationCreateResponse {
+  TransferAuthorizationCreateResponse copyWith(
+      {TransferAuthorization? authorization, String? requestId}) {
+    return TransferAuthorizationCreateResponse(
+        authorization: authorization ?? this.authorization,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferAuthorization {
+  TransferAuthorization({
+    this.id,
+    this.created,
+    this.decision,
+    this.decisionRationale,
+    this.proposedTransfer,
+  });
+
+  factory TransferAuthorization.fromJson(Map<String, dynamic> json) =>
+      _$TransferAuthorizationFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'created')
+  final String? created;
+  @JsonKey(
+      name: 'decision',
+      toJson: transferAuthorizationDecisionToJson,
+      fromJson: transferAuthorizationDecisionFromJson)
+  final enums.TransferAuthorizationDecision? decision;
+  @JsonKey(name: 'decision_rationale')
+  final TransferAuthorizationDecisionRationale? decisionRationale;
+  @JsonKey(name: 'proposed_transfer')
+  final TransferAuthorizationProposedTransfer? proposedTransfer;
+  static const fromJsonFactory = _$TransferAuthorizationFromJson;
+  static const toJsonFactory = _$TransferAuthorizationToJson;
+  Map<String, dynamic> toJson() => _$TransferAuthorizationToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferAuthorization &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality()
+                    .equals(other.created, created)) &&
+            (identical(other.decision, decision) ||
+                const DeepCollectionEquality()
+                    .equals(other.decision, decision)) &&
+            (identical(other.decisionRationale, decisionRationale) ||
+                const DeepCollectionEquality()
+                    .equals(other.decisionRationale, decisionRationale)) &&
+            (identical(other.proposedTransfer, proposedTransfer) ||
+                const DeepCollectionEquality()
+                    .equals(other.proposedTransfer, proposedTransfer)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(created) ^
+      const DeepCollectionEquality().hash(decision) ^
+      const DeepCollectionEquality().hash(decisionRationale) ^
+      const DeepCollectionEquality().hash(proposedTransfer) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferAuthorizationExtension on TransferAuthorization {
+  TransferAuthorization copyWith(
+      {String? id,
+      String? created,
+      enums.TransferAuthorizationDecision? decision,
+      TransferAuthorizationDecisionRationale? decisionRationale,
+      TransferAuthorizationProposedTransfer? proposedTransfer}) {
+    return TransferAuthorization(
+        id: id ?? this.id,
+        created: created ?? this.created,
+        decision: decision ?? this.decision,
+        decisionRationale: decisionRationale ?? this.decisionRationale,
+        proposedTransfer: proposedTransfer ?? this.proposedTransfer);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferCreateResponse {
+  TransferCreateResponse({
+    this.transfer,
+    this.requestId,
+  });
+
+  factory TransferCreateResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferCreateResponseFromJson(json);
+
+  @JsonKey(name: 'transfer')
+  final Transfer? transfer;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferCreateResponseFromJson;
+  static const toJsonFactory = _$TransferCreateResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferCreateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferCreateResponse &&
+            (identical(other.transfer, transfer) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfer, transfer)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transfer) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferCreateResponseExtension on TransferCreateResponse {
+  TransferCreateResponse copyWith({Transfer? transfer, String? requestId}) {
+    return TransferCreateResponse(
+        transfer: transfer ?? this.transfer,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class BankTransferCreateResponse {
   BankTransferCreateResponse({
     this.bankTransfer,
@@ -15116,6 +20092,12 @@ class BankTransferCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransfer) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferCreateResponseExtension on BankTransferCreateResponse {
@@ -15124,6 +20106,96 @@ extension $BankTransferCreateResponseExtension on BankTransferCreateResponse {
     return BankTransferCreateResponse(
         bankTransfer: bankTransfer ?? this.bankTransfer,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferListRequest {
+  TransferListRequest({
+    this.clientId,
+    this.secret,
+    this.startDate,
+    this.endDate,
+    this.count,
+    this.offset,
+    this.originationAccountId,
+  });
+
+  factory TransferListRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferListRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'start_date')
+  final DateTime? startDate;
+  @JsonKey(name: 'end_date')
+  final DateTime? endDate;
+  @JsonKey(name: 'count')
+  final int? count;
+  @JsonKey(name: 'offset')
+  final int? offset;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$TransferListRequestFromJson;
+  static const toJsonFactory = _$TransferListRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferListRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferListRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.offset, offset) ||
+                const DeepCollectionEquality().equals(other.offset, offset)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferListRequestExtension on TransferListRequest {
+  TransferListRequest copyWith(
+      {String? clientId,
+      String? secret,
+      DateTime? startDate,
+      DateTime? endDate,
+      int? count,
+      int? offset,
+      String? originationAccountId}) {
+    return TransferListRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        count: count ?? this.count,
+        offset: offset ?? this.offset,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
   }
 }
 
@@ -15192,6 +20264,18 @@ class BankTransferListRequest {
                 const DeepCollectionEquality()
                     .equals(other.direction, direction)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(direction) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferListRequestExtension on BankTransferListRequest {
@@ -15213,6 +20297,52 @@ extension $BankTransferListRequestExtension on BankTransferListRequest {
         offset: offset ?? this.offset,
         originationAccountId: originationAccountId ?? this.originationAccountId,
         direction: direction ?? this.direction);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferListResponse {
+  TransferListResponse({
+    this.transfers,
+    this.requestId,
+  });
+
+  factory TransferListResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferListResponseFromJson(json);
+
+  @JsonKey(name: 'transfers', defaultValue: <Transfer>[])
+  final List<Transfer>? transfers;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferListResponseFromJson;
+  static const toJsonFactory = _$TransferListResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferListResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferListResponse &&
+            (identical(other.transfers, transfers) ||
+                const DeepCollectionEquality()
+                    .equals(other.transfers, transfers)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transfers) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferListResponseExtension on TransferListResponse {
+  TransferListResponse copyWith(
+      {List<Transfer>? transfers, String? requestId}) {
+    return TransferListResponse(
+        transfers: transfers ?? this.transfers,
+        requestId: requestId ?? this.requestId);
   }
 }
 
@@ -15245,6 +20375,12 @@ class BankTransferListResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransfers) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferListResponseExtension on BankTransferListResponse {
@@ -15253,6 +20389,59 @@ extension $BankTransferListResponseExtension on BankTransferListResponse {
     return BankTransferListResponse(
         bankTransfers: bankTransfers ?? this.bankTransfers,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferCancelRequest {
+  TransferCancelRequest({
+    this.clientId,
+    this.secret,
+    this.transferId,
+  });
+
+  factory TransferCancelRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferCancelRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  static const fromJsonFactory = _$TransferCancelRequestFromJson;
+  static const toJsonFactory = _$TransferCancelRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferCancelRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferCancelRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferCancelRequestExtension on TransferCancelRequest {
+  TransferCancelRequest copyWith(
+      {String? clientId, String? secret, String? transferId}) {
+    return TransferCancelRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        transferId: transferId ?? this.transferId);
   }
 }
 
@@ -15290,6 +20479,13 @@ class BankTransferCancelRequest {
                 const DeepCollectionEquality()
                     .equals(other.bankTransferId, bankTransferId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(bankTransferId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferCancelRequestExtension on BankTransferCancelRequest {
@@ -15299,6 +20495,41 @@ extension $BankTransferCancelRequestExtension on BankTransferCancelRequest {
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         bankTransferId: bankTransferId ?? this.bankTransferId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferCancelResponse {
+  TransferCancelResponse({
+    this.requestId,
+  });
+
+  factory TransferCancelResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferCancelResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferCancelResponseFromJson;
+  static const toJsonFactory = _$TransferCancelResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferCancelResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferCancelResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+}
+
+extension $TransferCancelResponseExtension on TransferCancelResponse {
+  TransferCancelResponse copyWith({String? requestId}) {
+    return TransferCancelResponse(requestId: requestId ?? this.requestId);
   }
 }
 
@@ -15325,11 +20556,156 @@ class BankTransferCancelResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $BankTransferCancelResponseExtension on BankTransferCancelResponse {
   BankTransferCancelResponse copyWith({String? requestId}) {
     return BankTransferCancelResponse(requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferEventListRequest {
+  TransferEventListRequest({
+    this.clientId,
+    this.secret,
+    this.startDate,
+    this.endDate,
+    this.transferId,
+    this.accountId,
+    this.transferType,
+    this.eventTypes,
+    this.sweepId,
+    this.count,
+    this.offset,
+    this.originationAccountId,
+  });
+
+  factory TransferEventListRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferEventListRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'start_date')
+  final DateTime? startDate;
+  @JsonKey(name: 'end_date')
+  final DateTime? endDate;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(
+      name: 'transfer_type',
+      toJson: transferEventListRequestTransferTypeToJson,
+      fromJson: transferEventListRequestTransferTypeFromJson)
+  final enums.TransferEventListRequestTransferType? transferType;
+  @JsonKey(
+      name: 'event_types',
+      toJson: transferEventTypeListToJson,
+      fromJson: transferEventTypeListFromJson)
+  final List<enums.TransferEventType>? eventTypes;
+  @JsonKey(name: 'sweep_id')
+  final String? sweepId;
+  @JsonKey(name: 'count')
+  final int? count;
+  @JsonKey(name: 'offset')
+  final int? offset;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$TransferEventListRequestFromJson;
+  static const toJsonFactory = _$TransferEventListRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferEventListRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferEventListRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.transferType, transferType) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferType, transferType)) &&
+            (identical(other.eventTypes, eventTypes) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventTypes, eventTypes)) &&
+            (identical(other.sweepId, sweepId) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepId, sweepId)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.offset, offset) ||
+                const DeepCollectionEquality().equals(other.offset, offset)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(transferType) ^
+      const DeepCollectionEquality().hash(eventTypes) ^
+      const DeepCollectionEquality().hash(sweepId) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferEventListRequestExtension on TransferEventListRequest {
+  TransferEventListRequest copyWith(
+      {String? clientId,
+      String? secret,
+      DateTime? startDate,
+      DateTime? endDate,
+      String? transferId,
+      String? accountId,
+      enums.TransferEventListRequestTransferType? transferType,
+      List<enums.TransferEventType>? eventTypes,
+      String? sweepId,
+      int? count,
+      int? offset,
+      String? originationAccountId}) {
+    return TransferEventListRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        transferId: transferId ?? this.transferId,
+        accountId: accountId ?? this.accountId,
+        transferType: transferType ?? this.transferType,
+        eventTypes: eventTypes ?? this.eventTypes,
+        sweepId: sweepId ?? this.sweepId,
+        count: count ?? this.count,
+        offset: offset ?? this.offset,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
   }
 }
 
@@ -15428,6 +20804,22 @@ class BankTransferEventListRequest {
                 const DeepCollectionEquality()
                     .equals(other.direction, direction)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(bankTransferId) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(bankTransferType) ^
+      const DeepCollectionEquality().hash(eventTypes) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(offset) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(direction) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferEventListRequestExtension
@@ -15462,6 +20854,140 @@ extension $BankTransferEventListRequestExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class TransferEvent {
+  TransferEvent({
+    this.eventId,
+    this.timestamp,
+    this.eventType,
+    this.accountId,
+    this.transferId,
+    this.originationAccountId,
+    this.transferType,
+    this.transferAmount,
+    this.failureReason,
+    this.sweepId,
+    this.sweepAmount,
+  });
+
+  factory TransferEvent.fromJson(Map<String, dynamic> json) =>
+      _$TransferEventFromJson(json);
+
+  @JsonKey(name: 'event_id')
+  final int? eventId;
+  @JsonKey(name: 'timestamp')
+  final DateTime? timestamp;
+  @JsonKey(
+      name: 'event_type',
+      toJson: transferEventTypeToJson,
+      fromJson: transferEventTypeFromJson)
+  final enums.TransferEventType? eventType;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  @JsonKey(
+      name: 'transfer_type',
+      toJson: transferTypeToJson,
+      fromJson: transferTypeFromJson)
+  final enums.TransferType? transferType;
+  @JsonKey(name: 'transfer_amount')
+  final String? transferAmount;
+  @JsonKey(name: 'failure_reason')
+  final TransferFailure? failureReason;
+  @JsonKey(name: 'sweep_id')
+  final String? sweepId;
+  @JsonKey(name: 'sweep_amount')
+  final String? sweepAmount;
+  static const fromJsonFactory = _$TransferEventFromJson;
+  static const toJsonFactory = _$TransferEventToJson;
+  Map<String, dynamic> toJson() => _$TransferEventToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferEvent &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventId, eventId)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)) &&
+            (identical(other.eventType, eventType) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventType, eventType)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality().equals(
+                    other.originationAccountId, originationAccountId)) &&
+            (identical(other.transferType, transferType) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferType, transferType)) &&
+            (identical(other.transferAmount, transferAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferAmount, transferAmount)) &&
+            (identical(other.failureReason, failureReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureReason, failureReason)) &&
+            (identical(other.sweepId, sweepId) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepId, sweepId)) &&
+            (identical(other.sweepAmount, sweepAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepAmount, sweepAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(eventType) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(transferType) ^
+      const DeepCollectionEquality().hash(transferAmount) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      const DeepCollectionEquality().hash(sweepId) ^
+      const DeepCollectionEquality().hash(sweepAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferEventExtension on TransferEvent {
+  TransferEvent copyWith(
+      {int? eventId,
+      DateTime? timestamp,
+      enums.TransferEventType? eventType,
+      String? accountId,
+      String? transferId,
+      String? originationAccountId,
+      enums.TransferType? transferType,
+      String? transferAmount,
+      TransferFailure? failureReason,
+      String? sweepId,
+      String? sweepAmount}) {
+    return TransferEvent(
+        eventId: eventId ?? this.eventId,
+        timestamp: timestamp ?? this.timestamp,
+        eventType: eventType ?? this.eventType,
+        accountId: accountId ?? this.accountId,
+        transferId: transferId ?? this.transferId,
+        originationAccountId: originationAccountId ?? this.originationAccountId,
+        transferType: transferType ?? this.transferType,
+        transferAmount: transferAmount ?? this.transferAmount,
+        failureReason: failureReason ?? this.failureReason,
+        sweepId: sweepId ?? this.sweepId,
+        sweepAmount: sweepAmount ?? this.sweepAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class BankTransferEvent {
   BankTransferEvent({
     this.eventId,
@@ -15484,7 +21010,7 @@ class BankTransferEvent {
   @JsonKey(name: 'event_id')
   final int? eventId;
   @JsonKey(name: 'timestamp')
-  final String? timestamp;
+  final DateTime? timestamp;
   @JsonKey(
       name: 'event_type',
       toJson: bankTransferEventTypeToJson,
@@ -15561,12 +21087,28 @@ class BankTransferEvent {
                 const DeepCollectionEquality()
                     .equals(other.receiverDetails, receiverDetails)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(eventType) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(bankTransferId) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(bankTransferType) ^
+      const DeepCollectionEquality().hash(bankTransferAmount) ^
+      const DeepCollectionEquality().hash(bankTransferIsoCurrencyCode) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      const DeepCollectionEquality().hash(direction) ^
+      const DeepCollectionEquality().hash(receiverDetails) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferEventExtension on BankTransferEvent {
   BankTransferEvent copyWith(
       {int? eventId,
-      String? timestamp,
+      DateTime? timestamp,
       enums.BankTransferEventType? eventType,
       String? accountId,
       String? bankTransferId,
@@ -15591,6 +21133,52 @@ extension $BankTransferEventExtension on BankTransferEvent {
         failureReason: failureReason ?? this.failureReason,
         direction: direction ?? this.direction,
         receiverDetails: receiverDetails ?? this.receiverDetails);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferEventListResponse {
+  TransferEventListResponse({
+    this.transferEvents,
+    this.requestId,
+  });
+
+  factory TransferEventListResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferEventListResponseFromJson(json);
+
+  @JsonKey(name: 'transfer_events', defaultValue: <TransferEvent>[])
+  final List<TransferEvent>? transferEvents;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferEventListResponseFromJson;
+  static const toJsonFactory = _$TransferEventListResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferEventListResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferEventListResponse &&
+            (identical(other.transferEvents, transferEvents) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferEvents, transferEvents)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transferEvents) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferEventListResponseExtension on TransferEventListResponse {
+  TransferEventListResponse copyWith(
+      {List<TransferEvent>? transferEvents, String? requestId}) {
+    return TransferEventListResponse(
+        transferEvents: transferEvents ?? this.transferEvents,
+        requestId: requestId ?? this.requestId);
   }
 }
 
@@ -15623,6 +21211,12 @@ class BankTransferEventListResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransferEvents) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferEventListResponseExtension
@@ -15674,6 +21268,14 @@ class BankTransferEventSyncRequest {
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(afterId) ^
+      const DeepCollectionEquality().hash(count) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferEventSyncRequestExtension
@@ -15681,6 +21283,66 @@ extension $BankTransferEventSyncRequestExtension
   BankTransferEventSyncRequest copyWith(
       {String? clientId, String? secret, int? afterId, int? count}) {
     return BankTransferEventSyncRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        afterId: afterId ?? this.afterId,
+        count: count ?? this.count);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferEventSyncRequest {
+  TransferEventSyncRequest({
+    this.clientId,
+    this.secret,
+    this.afterId,
+    this.count,
+  });
+
+  factory TransferEventSyncRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferEventSyncRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'after_id')
+  final int? afterId;
+  @JsonKey(name: 'count')
+  final int? count;
+  static const fromJsonFactory = _$TransferEventSyncRequestFromJson;
+  static const toJsonFactory = _$TransferEventSyncRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferEventSyncRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferEventSyncRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.afterId, afterId) ||
+                const DeepCollectionEquality()
+                    .equals(other.afterId, afterId)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(afterId) ^
+      const DeepCollectionEquality().hash(count) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferEventSyncRequestExtension on TransferEventSyncRequest {
+  TransferEventSyncRequest copyWith(
+      {String? clientId, String? secret, int? afterId, int? count}) {
+    return TransferEventSyncRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         afterId: afterId ?? this.afterId,
@@ -15717,6 +21379,12 @@ class BankTransferEventSyncResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bankTransferEvents) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferEventSyncResponseExtension
@@ -15726,6 +21394,695 @@ extension $BankTransferEventSyncResponseExtension
     return BankTransferEventSyncResponse(
         bankTransferEvents: bankTransferEvents ?? this.bankTransferEvents,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferEventSyncResponse {
+  TransferEventSyncResponse({
+    this.transferEvents,
+    this.requestId,
+  });
+
+  factory TransferEventSyncResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferEventSyncResponseFromJson(json);
+
+  @JsonKey(name: 'transfer_events', defaultValue: <TransferEvent>[])
+  final List<TransferEvent>? transferEvents;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferEventSyncResponseFromJson;
+  static const toJsonFactory = _$TransferEventSyncResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferEventSyncResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferEventSyncResponse &&
+            (identical(other.transferEvents, transferEvents) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferEvents, transferEvents)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transferEvents) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferEventSyncResponseExtension on TransferEventSyncResponse {
+  TransferEventSyncResponse copyWith(
+      {List<TransferEvent>? transferEvents, String? requestId}) {
+    return TransferEventSyncResponse(
+        transferEvents: transferEvents ?? this.transferEvents,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweepGetRequest {
+  BankTransferSweepGetRequest({
+    this.clientId,
+    this.secret,
+    this.sweepId,
+    this.originationAccountId,
+  });
+
+  factory BankTransferSweepGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'sweep_id')
+  final String? sweepId;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  static const fromJsonFactory = _$BankTransferSweepGetRequestFromJson;
+  static const toJsonFactory = _$BankTransferSweepGetRequestToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweepGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.sweepId, sweepId) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepId, sweepId)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.originationAccountId, originationAccountId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(sweepId) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepGetRequestExtension on BankTransferSweepGetRequest {
+  BankTransferSweepGetRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? sweepId,
+      String? originationAccountId}) {
+    return BankTransferSweepGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        sweepId: sweepId ?? this.sweepId,
+        originationAccountId:
+            originationAccountId ?? this.originationAccountId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferSweepGetRequest {
+  TransferSweepGetRequest({
+    this.clientId,
+    this.secret,
+    this.sweepId,
+  });
+
+  factory TransferSweepGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferSweepGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'sweep_id')
+  final String? sweepId;
+  static const fromJsonFactory = _$TransferSweepGetRequestFromJson;
+  static const toJsonFactory = _$TransferSweepGetRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferSweepGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferSweepGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.sweepId, sweepId) ||
+                const DeepCollectionEquality().equals(other.sweepId, sweepId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(sweepId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferSweepGetRequestExtension on TransferSweepGetRequest {
+  TransferSweepGetRequest copyWith(
+      {String? clientId, String? secret, String? sweepId}) {
+    return TransferSweepGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        sweepId: sweepId ?? this.sweepId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweepGetResponse {
+  BankTransferSweepGetResponse({
+    this.sweep,
+    this.requestId,
+  });
+
+  factory BankTransferSweepGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepGetResponseFromJson(json);
+
+  @JsonKey(name: 'sweep')
+  final BankTransferSweep? sweep;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$BankTransferSweepGetResponseFromJson;
+  static const toJsonFactory = _$BankTransferSweepGetResponseToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweepGetResponse &&
+            (identical(other.sweep, sweep) ||
+                const DeepCollectionEquality().equals(other.sweep, sweep)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sweep) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepGetResponseExtension
+    on BankTransferSweepGetResponse {
+  BankTransferSweepGetResponse copyWith(
+      {BankTransferSweep? sweep, String? requestId}) {
+    return BankTransferSweepGetResponse(
+        sweep: sweep ?? this.sweep, requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferSweepGetResponse {
+  TransferSweepGetResponse({
+    this.sweep,
+    this.requestId,
+  });
+
+  factory TransferSweepGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferSweepGetResponseFromJson(json);
+
+  @JsonKey(name: 'sweep')
+  final TransferSweep? sweep;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferSweepGetResponseFromJson;
+  static const toJsonFactory = _$TransferSweepGetResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferSweepGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferSweepGetResponse &&
+            (identical(other.sweep, sweep) ||
+                const DeepCollectionEquality().equals(other.sweep, sweep)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sweep) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferSweepGetResponseExtension on TransferSweepGetResponse {
+  TransferSweepGetResponse copyWith({TransferSweep? sweep, String? requestId}) {
+    return TransferSweepGetResponse(
+        sweep: sweep ?? this.sweep, requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweepListRequest {
+  BankTransferSweepListRequest({
+    this.clientId,
+    this.secret,
+    this.originationAccountId,
+    this.startTime,
+    this.endTime,
+    this.count,
+  });
+
+  factory BankTransferSweepListRequest.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepListRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  @JsonKey(name: 'start_time')
+  final DateTime? startTime;
+  @JsonKey(name: 'end_time')
+  final DateTime? endTime;
+  @JsonKey(name: 'count')
+  final int? count;
+  static const fromJsonFactory = _$BankTransferSweepListRequestFromJson;
+  static const toJsonFactory = _$BankTransferSweepListRequestToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepListRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweepListRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality().equals(
+                    other.originationAccountId, originationAccountId)) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.startTime, startTime)) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.endTime, endTime)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(count) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepListRequestExtension
+    on BankTransferSweepListRequest {
+  BankTransferSweepListRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? originationAccountId,
+      DateTime? startTime,
+      DateTime? endTime,
+      int? count}) {
+    return BankTransferSweepListRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        originationAccountId: originationAccountId ?? this.originationAccountId,
+        startTime: startTime ?? this.startTime,
+        endTime: endTime ?? this.endTime,
+        count: count ?? this.count);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferSweepListRequest {
+  TransferSweepListRequest({
+    this.clientId,
+    this.secret,
+    this.startTime,
+    this.endTime,
+    this.count,
+    this.transferId,
+    this.offset,
+  });
+
+  factory TransferSweepListRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferSweepListRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'start_time')
+  final DateTime? startTime;
+  @JsonKey(name: 'end_time')
+  final DateTime? endTime;
+  @JsonKey(name: 'count')
+  final int? count;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'offset')
+  final int? offset;
+  static const fromJsonFactory = _$TransferSweepListRequestFromJson;
+  static const toJsonFactory = _$TransferSweepListRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferSweepListRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferSweepListRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.startTime, startTime)) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.endTime, endTime)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.offset, offset) ||
+                const DeepCollectionEquality().equals(other.offset, offset)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(offset) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferSweepListRequestExtension on TransferSweepListRequest {
+  TransferSweepListRequest copyWith(
+      {String? clientId,
+      String? secret,
+      DateTime? startTime,
+      DateTime? endTime,
+      int? count,
+      String? transferId,
+      int? offset}) {
+    return TransferSweepListRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        startTime: startTime ?? this.startTime,
+        endTime: endTime ?? this.endTime,
+        count: count ?? this.count,
+        transferId: transferId ?? this.transferId,
+        offset: offset ?? this.offset);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferSweepListResponse {
+  TransferSweepListResponse({
+    this.sweeps,
+    this.requestId,
+  });
+
+  factory TransferSweepListResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferSweepListResponseFromJson(json);
+
+  @JsonKey(name: 'sweeps', defaultValue: <TransferSweep>[])
+  final List<TransferSweep>? sweeps;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferSweepListResponseFromJson;
+  static const toJsonFactory = _$TransferSweepListResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferSweepListResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferSweepListResponse &&
+            (identical(other.sweeps, sweeps) ||
+                const DeepCollectionEquality().equals(other.sweeps, sweeps)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sweeps) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferSweepListResponseExtension on TransferSweepListResponse {
+  TransferSweepListResponse copyWith(
+      {List<TransferSweep>? sweeps, String? requestId}) {
+    return TransferSweepListResponse(
+        sweeps: sweeps ?? this.sweeps, requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweepListResponse {
+  BankTransferSweepListResponse({
+    this.sweeps,
+    this.requestId,
+  });
+
+  factory BankTransferSweepListResponse.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepListResponseFromJson(json);
+
+  @JsonKey(name: 'sweeps', defaultValue: <BankTransferSweep>[])
+  final List<BankTransferSweep>? sweeps;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$BankTransferSweepListResponseFromJson;
+  static const toJsonFactory = _$BankTransferSweepListResponseToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepListResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweepListResponse &&
+            (identical(other.sweeps, sweeps) ||
+                const DeepCollectionEquality().equals(other.sweeps, sweeps)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sweeps) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepListResponseExtension
+    on BankTransferSweepListResponse {
+  BankTransferSweepListResponse copyWith(
+      {List<BankTransferSweep>? sweeps, String? requestId}) {
+    return BankTransferSweepListResponse(
+        sweeps: sweeps ?? this.sweeps, requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweep {
+  BankTransferSweep({
+    this.id,
+    this.transferId,
+    this.createdAt,
+    this.amount,
+    this.isoCurrencyCode,
+    this.sweepAccount,
+  });
+
+  factory BankTransferSweep.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'sweep_account')
+  final BankTransferSweepAccount? sweepAccount;
+  static const fromJsonFactory = _$BankTransferSweepFromJson;
+  static const toJsonFactory = _$BankTransferSweepToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweep &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.sweepAccount, sweepAccount) ||
+                const DeepCollectionEquality()
+                    .equals(other.sweepAccount, sweepAccount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(sweepAccount) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepExtension on BankTransferSweep {
+  BankTransferSweep copyWith(
+      {String? id,
+      String? transferId,
+      DateTime? createdAt,
+      String? amount,
+      String? isoCurrencyCode,
+      BankTransferSweepAccount? sweepAccount}) {
+    return BankTransferSweep(
+        id: id ?? this.id,
+        transferId: transferId ?? this.transferId,
+        createdAt: createdAt ?? this.createdAt,
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        sweepAccount: sweepAccount ?? this.sweepAccount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferSweep {
+  TransferSweep({
+    this.id,
+    this.createdAt,
+    this.amount,
+  });
+
+  factory TransferSweep.fromJson(Map<String, dynamic> json) =>
+      _$TransferSweepFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  static const fromJsonFactory = _$TransferSweepFromJson;
+  static const toJsonFactory = _$TransferSweepToJson;
+  Map<String, dynamic> toJson() => _$TransferSweepToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferSweep &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(amount) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferSweepExtension on TransferSweep {
+  TransferSweep copyWith({String? id, DateTime? createdAt, String? amount}) {
+    return TransferSweep(
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        amount: amount ?? this.amount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankTransferSweepAccount {
+  BankTransferSweepAccount({
+    this.accountNumber,
+    this.routingNumber,
+  });
+
+  factory BankTransferSweepAccount.fromJson(Map<String, dynamic> json) =>
+      _$BankTransferSweepAccountFromJson(json);
+
+  @JsonKey(name: 'account_number')
+  final String? accountNumber;
+  @JsonKey(name: 'routing_number')
+  final String? routingNumber;
+  static const fromJsonFactory = _$BankTransferSweepAccountFromJson;
+  static const toJsonFactory = _$BankTransferSweepAccountToJson;
+  Map<String, dynamic> toJson() => _$BankTransferSweepAccountToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankTransferSweepAccount &&
+            (identical(other.accountNumber, accountNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountNumber, accountNumber)) &&
+            (identical(other.routingNumber, routingNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.routingNumber, routingNumber)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountNumber) ^
+      const DeepCollectionEquality().hash(routingNumber) ^
+      runtimeType.hashCode;
+}
+
+extension $BankTransferSweepAccountExtension on BankTransferSweepAccount {
+  BankTransferSweepAccount copyWith(
+      {String? accountNumber, String? routingNumber}) {
+    return BankTransferSweepAccount(
+        accountNumber: accountNumber ?? this.accountNumber,
+        routingNumber: routingNumber ?? this.routingNumber);
   }
 }
 
@@ -15763,6 +22120,13 @@ class BankTransferBalanceGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.originationAccountId, originationAccountId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferBalanceGetRequestExtension
@@ -15812,6 +22176,13 @@ class BankTransferBalanceGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(balance) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferBalanceGetResponseExtension
@@ -15856,6 +22227,12 @@ class BankTransferBalance {
                 const DeepCollectionEquality()
                     .equals(other.transactable, transactable)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(available) ^
+      const DeepCollectionEquality().hash(transactable) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferBalanceExtension on BankTransferBalance {
@@ -15914,6 +22291,15 @@ class BankTransferMigrateAccountRequest {
                 const DeepCollectionEquality()
                     .equals(other.accountType, accountType)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accountNumber) ^
+      const DeepCollectionEquality().hash(routingNumber) ^
+      const DeepCollectionEquality().hash(accountType) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferMigrateAccountRequestExtension
@@ -15970,6 +22356,13 @@ class BankTransferMigrateAccountResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferMigrateAccountResponseExtension
@@ -15979,6 +22372,574 @@ extension $BankTransferMigrateAccountResponseExtension
     return BankTransferMigrateAccountResponse(
         accessToken: accessToken ?? this.accessToken,
         accountId: accountId ?? this.accountId,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentCreateRequest {
+  TransferIntentCreateRequest({
+    this.clientId,
+    this.secret,
+    this.accountId,
+    this.mode,
+    this.amount,
+    this.description,
+    this.achClass,
+    this.originationAccountId,
+    this.user,
+    this.metadata,
+  });
+
+  factory TransferIntentCreateRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentCreateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(
+      name: 'mode',
+      toJson: transferIntentCreateModeToJson,
+      fromJson: transferIntentCreateModeFromJson)
+  final enums.TransferIntentCreateMode? mode;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  @JsonKey(name: 'user')
+  final TransferUserInRequest? user;
+  @JsonKey(name: 'metadata')
+  final TransferMetadata? metadata;
+  static const fromJsonFactory = _$TransferIntentCreateRequestFromJson;
+  static const toJsonFactory = _$TransferIntentCreateRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentCreateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentCreateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.mode, mode) ||
+                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality().equals(
+                    other.originationAccountId, originationAccountId)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentCreateRequestExtension on TransferIntentCreateRequest {
+  TransferIntentCreateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? accountId,
+      enums.TransferIntentCreateMode? mode,
+      String? amount,
+      String? description,
+      enums.ACHClass? achClass,
+      String? originationAccountId,
+      TransferUserInRequest? user,
+      TransferMetadata? metadata}) {
+    return TransferIntentCreateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        accountId: accountId ?? this.accountId,
+        mode: mode ?? this.mode,
+        amount: amount ?? this.amount,
+        description: description ?? this.description,
+        achClass: achClass ?? this.achClass,
+        originationAccountId: originationAccountId ?? this.originationAccountId,
+        user: user ?? this.user,
+        metadata: metadata ?? this.metadata);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentCreate {
+  TransferIntentCreate({
+    this.id,
+    this.created,
+    this.status,
+    this.accountId,
+    this.originationAccountId,
+    this.amount,
+    this.mode,
+    this.achClass,
+    this.user,
+    this.description,
+    this.metadata,
+  });
+
+  factory TransferIntentCreate.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentCreateFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'created')
+  final DateTime? created;
+  @JsonKey(
+      name: 'status',
+      toJson: transferIntentCreateStatusToJson,
+      fromJson: transferIntentCreateStatusFromJson)
+  final enums.TransferIntentCreateStatus? status;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(
+      name: 'mode',
+      toJson: transferIntentCreateModeToJson,
+      fromJson: transferIntentCreateModeFromJson)
+  final enums.TransferIntentCreateMode? mode;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'user')
+  final TransferUserInResponse? user;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'metadata')
+  final TransferMetadata? metadata;
+  static const fromJsonFactory = _$TransferIntentCreateFromJson;
+  static const toJsonFactory = _$TransferIntentCreateToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentCreateToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentCreate &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality()
+                    .equals(other.created, created)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality().equals(
+                    other.originationAccountId, originationAccountId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.mode, mode) ||
+                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(created) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentCreateExtension on TransferIntentCreate {
+  TransferIntentCreate copyWith(
+      {String? id,
+      DateTime? created,
+      enums.TransferIntentCreateStatus? status,
+      String? accountId,
+      String? originationAccountId,
+      String? amount,
+      enums.TransferIntentCreateMode? mode,
+      enums.ACHClass? achClass,
+      TransferUserInResponse? user,
+      String? description,
+      TransferMetadata? metadata}) {
+    return TransferIntentCreate(
+        id: id ?? this.id,
+        created: created ?? this.created,
+        status: status ?? this.status,
+        accountId: accountId ?? this.accountId,
+        originationAccountId: originationAccountId ?? this.originationAccountId,
+        amount: amount ?? this.amount,
+        mode: mode ?? this.mode,
+        achClass: achClass ?? this.achClass,
+        user: user ?? this.user,
+        description: description ?? this.description,
+        metadata: metadata ?? this.metadata);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentCreateResponse {
+  TransferIntentCreateResponse({
+    this.transferIntent,
+    this.requestId,
+  });
+
+  factory TransferIntentCreateResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentCreateResponseFromJson(json);
+
+  @JsonKey(name: 'transfer_intent')
+  final TransferIntentCreate? transferIntent;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferIntentCreateResponseFromJson;
+  static const toJsonFactory = _$TransferIntentCreateResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentCreateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentCreateResponse &&
+            (identical(other.transferIntent, transferIntent) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferIntent, transferIntent)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transferIntent) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentCreateResponseExtension
+    on TransferIntentCreateResponse {
+  TransferIntentCreateResponse copyWith(
+      {TransferIntentCreate? transferIntent, String? requestId}) {
+    return TransferIntentCreateResponse(
+        transferIntent: transferIntent ?? this.transferIntent,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentGetRequest {
+  TransferIntentGetRequest({
+    this.clientId,
+    this.secret,
+    this.transferIntentId,
+  });
+
+  factory TransferIntentGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'transfer_intent_id')
+  final String? transferIntentId;
+  static const fromJsonFactory = _$TransferIntentGetRequestFromJson;
+  static const toJsonFactory = _$TransferIntentGetRequestToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.transferIntentId, transferIntentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferIntentId, transferIntentId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(transferIntentId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentGetRequestExtension on TransferIntentGetRequest {
+  TransferIntentGetRequest copyWith(
+      {String? clientId, String? secret, String? transferIntentId}) {
+    return TransferIntentGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        transferIntentId: transferIntentId ?? this.transferIntentId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentGet {
+  TransferIntentGet({
+    this.id,
+    this.created,
+    this.status,
+    this.transferId,
+    this.failureReason,
+    this.authorizationDecision,
+    this.authorizationDecisionRationale,
+    this.accountId,
+    this.originationAccountId,
+    this.amount,
+    this.mode,
+    this.achClass,
+    this.user,
+    this.description,
+    this.metadata,
+  });
+
+  factory TransferIntentGet.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentGetFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'created')
+  final DateTime? created;
+  @JsonKey(
+      name: 'status',
+      toJson: transferIntentGetStatusToJson,
+      fromJson: transferIntentGetStatusFromJson)
+  final enums.TransferIntentGetStatus? status;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'failure_reason')
+  final TransferIntentGetFailureReason? failureReason;
+  @JsonKey(
+      name: 'authorization_decision',
+      toJson: transferIntentGetAuthorizationDecisionToJson,
+      fromJson: transferIntentGetAuthorizationDecisionFromJson)
+  final enums.TransferIntentGetAuthorizationDecision? authorizationDecision;
+  @JsonKey(name: 'authorization_decision_rationale')
+  final TransferAuthorizationDecisionRationale? authorizationDecisionRationale;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'origination_account_id')
+  final String? originationAccountId;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  @JsonKey(
+      name: 'mode',
+      toJson: transferIntentCreateModeToJson,
+      fromJson: transferIntentCreateModeFromJson)
+  final enums.TransferIntentCreateMode? mode;
+  @JsonKey(
+      name: 'ach_class', toJson: aCHClassToJson, fromJson: aCHClassFromJson)
+  final enums.ACHClass? achClass;
+  @JsonKey(name: 'user')
+  final TransferUserInResponse? user;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'metadata')
+  final TransferMetadata? metadata;
+  static const fromJsonFactory = _$TransferIntentGetFromJson;
+  static const toJsonFactory = _$TransferIntentGetToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentGetToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentGet &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality()
+                    .equals(other.created, created)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.failureReason, failureReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureReason, failureReason)) &&
+            (identical(other.authorizationDecision, authorizationDecision) ||
+                const DeepCollectionEquality().equals(
+                    other.authorizationDecision, authorizationDecision)) &&
+            (identical(other.authorizationDecisionRationale,
+                    authorizationDecisionRationale) ||
+                const DeepCollectionEquality().equals(
+                    other.authorizationDecisionRationale,
+                    authorizationDecisionRationale)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.originationAccountId, originationAccountId) ||
+                const DeepCollectionEquality().equals(
+                    other.originationAccountId, originationAccountId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.mode, mode) ||
+                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.achClass, achClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.achClass, achClass)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(created) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      const DeepCollectionEquality().hash(authorizationDecision) ^
+      const DeepCollectionEquality().hash(authorizationDecisionRationale) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(originationAccountId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(achClass) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentGetExtension on TransferIntentGet {
+  TransferIntentGet copyWith(
+      {String? id,
+      DateTime? created,
+      enums.TransferIntentGetStatus? status,
+      String? transferId,
+      TransferIntentGetFailureReason? failureReason,
+      enums.TransferIntentGetAuthorizationDecision? authorizationDecision,
+      TransferAuthorizationDecisionRationale? authorizationDecisionRationale,
+      String? accountId,
+      String? originationAccountId,
+      String? amount,
+      enums.TransferIntentCreateMode? mode,
+      enums.ACHClass? achClass,
+      TransferUserInResponse? user,
+      String? description,
+      TransferMetadata? metadata}) {
+    return TransferIntentGet(
+        id: id ?? this.id,
+        created: created ?? this.created,
+        status: status ?? this.status,
+        transferId: transferId ?? this.transferId,
+        failureReason: failureReason ?? this.failureReason,
+        authorizationDecision:
+            authorizationDecision ?? this.authorizationDecision,
+        authorizationDecisionRationale: authorizationDecisionRationale ??
+            this.authorizationDecisionRationale,
+        accountId: accountId ?? this.accountId,
+        originationAccountId: originationAccountId ?? this.originationAccountId,
+        amount: amount ?? this.amount,
+        mode: mode ?? this.mode,
+        achClass: achClass ?? this.achClass,
+        user: user ?? this.user,
+        description: description ?? this.description,
+        metadata: metadata ?? this.metadata);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransferIntentGetResponse {
+  TransferIntentGetResponse({
+    this.transferIntent,
+    this.requestId,
+  });
+
+  factory TransferIntentGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransferIntentGetResponseFromJson(json);
+
+  @JsonKey(name: 'transfer_intent')
+  final TransferIntentGet? transferIntent;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$TransferIntentGetResponseFromJson;
+  static const toJsonFactory = _$TransferIntentGetResponseToJson;
+  Map<String, dynamic> toJson() => _$TransferIntentGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TransferIntentGetResponse &&
+            (identical(other.transferIntent, transferIntent) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferIntent, transferIntent)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transferIntent) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferIntentGetResponseExtension on TransferIntentGetResponse {
+  TransferIntentGetResponse copyWith(
+      {TransferIntentGet? transferIntent, String? requestId}) {
+    return TransferIntentGetResponse(
+        transferIntent: transferIntent ?? this.transferIntent,
         requestId: requestId ?? this.requestId);
   }
 }
@@ -16031,6 +22992,15 @@ class SandboxBankTransferSimulateRequest {
                 const DeepCollectionEquality()
                     .equals(other.failureReason, failureReason)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(bankTransferId) ^
+      const DeepCollectionEquality().hash(eventType) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxBankTransferSimulateRequestExtension
@@ -16047,6 +23017,146 @@ extension $SandboxBankTransferSimulateRequestExtension
         bankTransferId: bankTransferId ?? this.bankTransferId,
         eventType: eventType ?? this.eventType,
         failureReason: failureReason ?? this.failureReason);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxTransferSimulateRequest {
+  SandboxTransferSimulateRequest({
+    this.clientId,
+    this.secret,
+    this.transferId,
+    this.eventType,
+    this.failureReason,
+  });
+
+  factory SandboxTransferSimulateRequest.fromJson(Map<String, dynamic> json) =>
+      _$SandboxTransferSimulateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'transfer_id')
+  final String? transferId;
+  @JsonKey(name: 'event_type')
+  final String? eventType;
+  @JsonKey(name: 'failure_reason')
+  final TransferFailure? failureReason;
+  static const fromJsonFactory = _$SandboxTransferSimulateRequestFromJson;
+  static const toJsonFactory = _$SandboxTransferSimulateRequestToJson;
+  Map<String, dynamic> toJson() => _$SandboxTransferSimulateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SandboxTransferSimulateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.transferId, transferId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transferId, transferId)) &&
+            (identical(other.eventType, eventType) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventType, eventType)) &&
+            (identical(other.failureReason, failureReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureReason, failureReason)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(transferId) ^
+      const DeepCollectionEquality().hash(eventType) ^
+      const DeepCollectionEquality().hash(failureReason) ^
+      runtimeType.hashCode;
+}
+
+extension $SandboxTransferSimulateRequestExtension
+    on SandboxTransferSimulateRequest {
+  SandboxTransferSimulateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? transferId,
+      String? eventType,
+      TransferFailure? failureReason}) {
+    return SandboxTransferSimulateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        transferId: transferId ?? this.transferId,
+        eventType: eventType ?? this.eventType,
+        failureReason: failureReason ?? this.failureReason);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxTransferSweepSimulateRequest {
+  SandboxTransferSweepSimulateRequest({
+    this.clientId,
+    this.secret,
+    this.swept,
+    this.reverseSwept,
+  });
+
+  factory SandboxTransferSweepSimulateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$SandboxTransferSweepSimulateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'swept', defaultValue: <String>[])
+  final List<String>? swept;
+  @JsonKey(name: 'reverse_swept', defaultValue: <String>[])
+  final List<String>? reverseSwept;
+  static const fromJsonFactory = _$SandboxTransferSweepSimulateRequestFromJson;
+  static const toJsonFactory = _$SandboxTransferSweepSimulateRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$SandboxTransferSweepSimulateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SandboxTransferSweepSimulateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.swept, swept) ||
+                const DeepCollectionEquality().equals(other.swept, swept)) &&
+            (identical(other.reverseSwept, reverseSwept) ||
+                const DeepCollectionEquality()
+                    .equals(other.reverseSwept, reverseSwept)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(swept) ^
+      const DeepCollectionEquality().hash(reverseSwept) ^
+      runtimeType.hashCode;
+}
+
+extension $SandboxTransferSweepSimulateRequestExtension
+    on SandboxTransferSweepSimulateRequest {
+  SandboxTransferSweepSimulateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      List<String>? swept,
+      List<String>? reverseSwept}) {
+    return SandboxTransferSweepSimulateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        swept: swept ?? this.swept,
+        reverseSwept: reverseSwept ?? this.reverseSwept);
   }
 }
 
@@ -16075,6 +23185,10 @@ class SandboxBankTransferSimulateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $SandboxBankTransferSimulateResponseExtension
@@ -16082,6 +23196,91 @@ extension $SandboxBankTransferSimulateResponseExtension
   SandboxBankTransferSimulateResponse copyWith({String? requestId}) {
     return SandboxBankTransferSimulateResponse(
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxTransferSimulateResponse {
+  SandboxTransferSimulateResponse({
+    this.requestId,
+  });
+
+  factory SandboxTransferSimulateResponse.fromJson(Map<String, dynamic> json) =>
+      _$SandboxTransferSimulateResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$SandboxTransferSimulateResponseFromJson;
+  static const toJsonFactory = _$SandboxTransferSimulateResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$SandboxTransferSimulateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SandboxTransferSimulateResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+}
+
+extension $SandboxTransferSimulateResponseExtension
+    on SandboxTransferSimulateResponse {
+  SandboxTransferSimulateResponse copyWith({String? requestId}) {
+    return SandboxTransferSimulateResponse(
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxTransferSweepSimulateResponse {
+  SandboxTransferSweepSimulateResponse({
+    this.sweep,
+    this.requestId,
+  });
+
+  factory SandboxTransferSweepSimulateResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$SandboxTransferSweepSimulateResponseFromJson(json);
+
+  @JsonKey(name: 'sweep')
+  final TransferSweep? sweep;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$SandboxTransferSweepSimulateResponseFromJson;
+  static const toJsonFactory = _$SandboxTransferSweepSimulateResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$SandboxTransferSweepSimulateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SandboxTransferSweepSimulateResponse &&
+            (identical(other.sweep, sweep) ||
+                const DeepCollectionEquality().equals(other.sweep, sweep)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sweep) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $SandboxTransferSweepSimulateResponseExtension
+    on SandboxTransferSweepSimulateResponse {
+  SandboxTransferSweepSimulateResponse copyWith(
+      {TransferSweep? sweep, String? requestId}) {
+    return SandboxTransferSweepSimulateResponse(
+        sweep: sweep ?? this.sweep, requestId: requestId ?? this.requestId);
   }
 }
 
@@ -16111,6 +23310,11 @@ class BankTransferReceiverDetails {
                 const DeepCollectionEquality()
                     .equals(other.availableBalance, availableBalance)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(availableBalance) ^
+      runtimeType.hashCode;
 }
 
 extension $BankTransferReceiverDetailsExtension on BankTransferReceiverDetails {
@@ -16160,6 +23364,14 @@ class AccountFiltersResponse {
                 const DeepCollectionEquality()
                     .equals(other.investment, investment)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(investment) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountFiltersResponseExtension on AccountFiltersResponse {
@@ -16228,6 +23440,14 @@ class InstitutionsSearchAccountFilter {
                 const DeepCollectionEquality()
                     .equals(other.investment, investment)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(investment) ^
+      runtimeType.hashCode;
 }
 
 extension $InstitutionsSearchAccountFilterExtension
@@ -16267,6 +23487,10 @@ class AccountIdentity extends AccountBase {
             (identical(other.owners, owners) ||
                 const DeepCollectionEquality().equals(other.owners, owners)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(owners) ^ runtimeType.hashCode;
 }
 
 extension $AccountIdentityExtension on AccountIdentity {
@@ -16315,6 +23539,14 @@ class AccountAssets extends AccountBase {
                 const DeepCollectionEquality()
                     .equals(other.historicalBalances, historicalBalances)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(daysAvailable) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      const DeepCollectionEquality().hash(owners) ^
+      const DeepCollectionEquality().hash(historicalBalances) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountAssetsExtension on AccountAssets {
@@ -16354,6 +23586,11 @@ class DepositoryFilter {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositoryFilterExtension on DepositoryFilter {
@@ -16386,6 +23623,11 @@ class CreditFilter {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $CreditFilterExtension on CreditFilter {
@@ -16418,6 +23660,11 @@ class LoanFilter {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $LoanFilterExtension on LoanFilter {
@@ -16449,6 +23696,11 @@ class InvestmentFilter {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $InvestmentFilterExtension on InvestmentFilter {
@@ -16497,6 +23749,14 @@ class EmployersSearchRequest {
                 const DeepCollectionEquality()
                     .equals(other.products, products)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(query) ^
+      const DeepCollectionEquality().hash(products) ^
+      runtimeType.hashCode;
 }
 
 extension $EmployersSearchRequestExtension on EmployersSearchRequest {
@@ -16542,6 +23802,12 @@ class EmployersSearchResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employers) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $EmployersSearchResponseExtension on EmployersSearchResponse {
@@ -16570,7 +23836,7 @@ class Employer {
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'address')
-  final NullableAddressData? address;
+  final AddressDataNullable? address;
   @JsonKey(name: 'confidence_score')
   final double? confidenceScore;
   static const fromJsonFactory = _$EmployerFromJson;
@@ -16593,13 +23859,21 @@ class Employer {
                 const DeepCollectionEquality()
                     .equals(other.confidenceScore, confidenceScore)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employerId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(confidenceScore) ^
+      runtimeType.hashCode;
 }
 
 extension $EmployerExtension on Employer {
   Employer copyWith(
       {String? employerId,
       String? name,
-      NullableAddressData? address,
+      AddressDataNullable? address,
       double? confidenceScore}) {
     return Employer(
         employerId: employerId ?? this.employerId,
@@ -16615,6 +23889,8 @@ class IncomeVerificationCreateRequest {
     this.clientId,
     this.secret,
     this.webhook,
+    this.precheckId,
+    this.options,
   });
 
   factory IncomeVerificationCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -16626,6 +23902,10 @@ class IncomeVerificationCreateRequest {
   final String? secret;
   @JsonKey(name: 'webhook')
   final String? webhook;
+  @JsonKey(name: 'precheck_id')
+  final String? precheckId;
+  @JsonKey(name: 'options')
+  final IncomeVerificationCreateRequestOptions? options;
   static const fromJsonFactory = _$IncomeVerificationCreateRequestFromJson;
   static const toJsonFactory = _$IncomeVerificationCreateRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -16641,18 +23921,80 @@ class IncomeVerificationCreateRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)) &&
             (identical(other.webhook, webhook) ||
-                const DeepCollectionEquality().equals(other.webhook, webhook)));
+                const DeepCollectionEquality()
+                    .equals(other.webhook, webhook)) &&
+            (identical(other.precheckId, precheckId) ||
+                const DeepCollectionEquality()
+                    .equals(other.precheckId, precheckId)) &&
+            (identical(other.options, options) ||
+                const DeepCollectionEquality().equals(other.options, options)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(precheckId) ^
+      const DeepCollectionEquality().hash(options) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationCreateRequestExtension
     on IncomeVerificationCreateRequest {
   IncomeVerificationCreateRequest copyWith(
-      {String? clientId, String? secret, String? webhook}) {
+      {String? clientId,
+      String? secret,
+      String? webhook,
+      String? precheckId,
+      IncomeVerificationCreateRequestOptions? options}) {
     return IncomeVerificationCreateRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
-        webhook: webhook ?? this.webhook);
+        webhook: webhook ?? this.webhook,
+        precheckId: precheckId ?? this.precheckId,
+        options: options ?? this.options);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationCreateRequestOptions {
+  IncomeVerificationCreateRequestOptions({
+    this.accessTokens,
+  });
+
+  factory IncomeVerificationCreateRequestOptions.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationCreateRequestOptionsFromJson(json);
+
+  @JsonKey(name: 'access_tokens', defaultValue: <String>[])
+  final List<String>? accessTokens;
+  static const fromJsonFactory =
+      _$IncomeVerificationCreateRequestOptionsFromJson;
+  static const toJsonFactory = _$IncomeVerificationCreateRequestOptionsToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationCreateRequestOptionsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationCreateRequestOptions &&
+            (identical(other.accessTokens, accessTokens) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessTokens, accessTokens)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accessTokens) ^ runtimeType.hashCode;
+}
+
+extension $IncomeVerificationCreateRequestOptionsExtension
+    on IncomeVerificationCreateRequestOptions {
+  IncomeVerificationCreateRequestOptions copyWith(
+      {List<String>? accessTokens}) {
+    return IncomeVerificationCreateRequestOptions(
+        accessTokens: accessTokens ?? this.accessTokens);
   }
 }
 
@@ -16687,6 +24029,12 @@ class IncomeVerificationCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationCreateResponseExtension
@@ -16700,10 +24048,375 @@ extension $IncomeVerificationCreateResponseExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckRequest {
+  IncomeVerificationPrecheckRequest({
+    this.clientId,
+    this.secret,
+    this.user,
+    this.employer,
+    this.transactionsAccessToken,
+    this.transactionsAccessTokens,
+    this.usMilitaryInfo,
+  });
+
+  factory IncomeVerificationPrecheckRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'user')
+  final IncomeVerificationPrecheckUser? user;
+  @JsonKey(name: 'employer')
+  final IncomeVerificationPrecheckEmployer? employer;
+  @JsonKey(name: 'transactions_access_token')
+  final String? transactionsAccessToken;
+  @JsonKey(name: 'transactions_access_tokens', defaultValue: <String>[])
+  final List<String>? transactionsAccessTokens;
+  @JsonKey(name: 'us_military_info')
+  final IncomeVerificationPrecheckMilitaryInfo? usMilitaryInfo;
+  static const fromJsonFactory = _$IncomeVerificationPrecheckRequestFromJson;
+  static const toJsonFactory = _$IncomeVerificationPrecheckRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPrecheckRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPrecheckRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.employer, employer) ||
+                const DeepCollectionEquality()
+                    .equals(other.employer, employer)) &&
+            (identical(
+                    other.transactionsAccessToken, transactionsAccessToken) ||
+                const DeepCollectionEquality().equals(
+                    other.transactionsAccessToken, transactionsAccessToken)) &&
+            (identical(
+                    other.transactionsAccessTokens, transactionsAccessTokens) ||
+                const DeepCollectionEquality().equals(
+                    other.transactionsAccessTokens,
+                    transactionsAccessTokens)) &&
+            (identical(other.usMilitaryInfo, usMilitaryInfo) ||
+                const DeepCollectionEquality()
+                    .equals(other.usMilitaryInfo, usMilitaryInfo)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(employer) ^
+      const DeepCollectionEquality().hash(transactionsAccessToken) ^
+      const DeepCollectionEquality().hash(transactionsAccessTokens) ^
+      const DeepCollectionEquality().hash(usMilitaryInfo) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPrecheckRequestExtension
+    on IncomeVerificationPrecheckRequest {
+  IncomeVerificationPrecheckRequest copyWith(
+      {String? clientId,
+      String? secret,
+      IncomeVerificationPrecheckUser? user,
+      IncomeVerificationPrecheckEmployer? employer,
+      String? transactionsAccessToken,
+      List<String>? transactionsAccessTokens,
+      IncomeVerificationPrecheckMilitaryInfo? usMilitaryInfo}) {
+    return IncomeVerificationPrecheckRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        user: user ?? this.user,
+        employer: employer ?? this.employer,
+        transactionsAccessToken:
+            transactionsAccessToken ?? this.transactionsAccessToken,
+        transactionsAccessTokens:
+            transactionsAccessTokens ?? this.transactionsAccessTokens,
+        usMilitaryInfo: usMilitaryInfo ?? this.usMilitaryInfo);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckEmployer {
+  IncomeVerificationPrecheckEmployer({
+    this.name,
+    this.address,
+    this.taxId,
+    this.url,
+  });
+
+  factory IncomeVerificationPrecheckEmployer.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckEmployerFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'address')
+  final IncomeVerificationPrecheckEmployerAddress? address;
+  @JsonKey(name: 'tax_id')
+  final String? taxId;
+  @JsonKey(name: 'url')
+  final String? url;
+  static const fromJsonFactory = _$IncomeVerificationPrecheckEmployerFromJson;
+  static const toJsonFactory = _$IncomeVerificationPrecheckEmployerToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPrecheckEmployerToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPrecheckEmployer &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.taxId, taxId) ||
+                const DeepCollectionEquality().equals(other.taxId, taxId)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(taxId) ^
+      const DeepCollectionEquality().hash(url) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPrecheckEmployerExtension
+    on IncomeVerificationPrecheckEmployer {
+  IncomeVerificationPrecheckEmployer copyWith(
+      {String? name,
+      IncomeVerificationPrecheckEmployerAddress? address,
+      String? taxId,
+      String? url}) {
+    return IncomeVerificationPrecheckEmployer(
+        name: name ?? this.name,
+        address: address ?? this.address,
+        taxId: taxId ?? this.taxId,
+        url: url ?? this.url);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckEmployerAddress extends AddressData {
+  IncomeVerificationPrecheckEmployerAddress();
+
+  factory IncomeVerificationPrecheckEmployerAddress.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckEmployerAddressFromJson(json);
+
+  static const fromJsonFactory =
+      _$IncomeVerificationPrecheckEmployerAddressFromJson;
+  static const toJsonFactory =
+      _$IncomeVerificationPrecheckEmployerAddressToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPrecheckEmployerAddressToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckMilitaryInfo {
+  IncomeVerificationPrecheckMilitaryInfo({
+    this.isActiveDuty,
+    this.branch,
+  });
+
+  factory IncomeVerificationPrecheckMilitaryInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckMilitaryInfoFromJson(json);
+
+  @JsonKey(name: 'is_active_duty')
+  final bool? isActiveDuty;
+  @JsonKey(
+      name: 'branch',
+      toJson: incomeVerificationPrecheckMilitaryInfoBranchToJson,
+      fromJson: incomeVerificationPrecheckMilitaryInfoBranchFromJson)
+  final enums.IncomeVerificationPrecheckMilitaryInfoBranch? branch;
+  static const fromJsonFactory =
+      _$IncomeVerificationPrecheckMilitaryInfoFromJson;
+  static const toJsonFactory = _$IncomeVerificationPrecheckMilitaryInfoToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPrecheckMilitaryInfoToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPrecheckMilitaryInfo &&
+            (identical(other.isActiveDuty, isActiveDuty) ||
+                const DeepCollectionEquality()
+                    .equals(other.isActiveDuty, isActiveDuty)) &&
+            (identical(other.branch, branch) ||
+                const DeepCollectionEquality().equals(other.branch, branch)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isActiveDuty) ^
+      const DeepCollectionEquality().hash(branch) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPrecheckMilitaryInfoExtension
+    on IncomeVerificationPrecheckMilitaryInfo {
+  IncomeVerificationPrecheckMilitaryInfo copyWith(
+      {bool? isActiveDuty,
+      enums.IncomeVerificationPrecheckMilitaryInfoBranch? branch}) {
+    return IncomeVerificationPrecheckMilitaryInfo(
+        isActiveDuty: isActiveDuty ?? this.isActiveDuty,
+        branch: branch ?? this.branch);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckUser {
+  IncomeVerificationPrecheckUser({
+    this.firstName,
+    this.lastName,
+    this.emailAddress,
+    this.homeAddress,
+  });
+
+  factory IncomeVerificationPrecheckUser.fromJson(Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckUserFromJson(json);
+
+  @JsonKey(name: 'first_name')
+  final String? firstName;
+  @JsonKey(name: 'last_name')
+  final String? lastName;
+  @JsonKey(name: 'email_address')
+  final String? emailAddress;
+  @JsonKey(name: 'home_address')
+  final SignalAddressData? homeAddress;
+  static const fromJsonFactory = _$IncomeVerificationPrecheckUserFromJson;
+  static const toJsonFactory = _$IncomeVerificationPrecheckUserToJson;
+  Map<String, dynamic> toJson() => _$IncomeVerificationPrecheckUserToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPrecheckUser &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.emailAddress, emailAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailAddress, emailAddress)) &&
+            (identical(other.homeAddress, homeAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.homeAddress, homeAddress)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(homeAddress) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPrecheckUserExtension
+    on IncomeVerificationPrecheckUser {
+  IncomeVerificationPrecheckUser copyWith(
+      {String? firstName,
+      String? lastName,
+      String? emailAddress,
+      SignalAddressData? homeAddress}) {
+    return IncomeVerificationPrecheckUser(
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        emailAddress: emailAddress ?? this.emailAddress,
+        homeAddress: homeAddress ?? this.homeAddress);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPrecheckResponse {
+  IncomeVerificationPrecheckResponse({
+    this.precheckId,
+    this.requestId,
+    this.confidence,
+  });
+
+  factory IncomeVerificationPrecheckResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPrecheckResponseFromJson(json);
+
+  @JsonKey(name: 'precheck_id')
+  final String? precheckId;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  @JsonKey(
+      name: 'confidence',
+      toJson: incomeVerificationPrecheckConfidenceToJson,
+      fromJson: incomeVerificationPrecheckConfidenceFromJson)
+  final enums.IncomeVerificationPrecheckConfidence? confidence;
+  static const fromJsonFactory = _$IncomeVerificationPrecheckResponseFromJson;
+  static const toJsonFactory = _$IncomeVerificationPrecheckResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPrecheckResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPrecheckResponse &&
+            (identical(other.precheckId, precheckId) ||
+                const DeepCollectionEquality()
+                    .equals(other.precheckId, precheckId)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.confidence, confidence) ||
+                const DeepCollectionEquality()
+                    .equals(other.confidence, confidence)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(precheckId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(confidence) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPrecheckResponseExtension
+    on IncomeVerificationPrecheckResponse {
+  IncomeVerificationPrecheckResponse copyWith(
+      {String? precheckId,
+      String? requestId,
+      enums.IncomeVerificationPrecheckConfidence? confidence}) {
+    return IncomeVerificationPrecheckResponse(
+        precheckId: precheckId ?? this.precheckId,
+        requestId: requestId ?? this.requestId,
+        confidence: confidence ?? this.confidence);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LinkTokenCreateRequestIncomeVerification {
   LinkTokenCreateRequestIncomeVerification({
     this.incomeVerificationId,
     this.assetReportId,
+    this.precheckId,
+    this.accessTokens,
   });
 
   factory LinkTokenCreateRequestIncomeVerification.fromJson(
@@ -16714,6 +24427,10 @@ class LinkTokenCreateRequestIncomeVerification {
   final String? incomeVerificationId;
   @JsonKey(name: 'asset_report_id')
   final String? assetReportId;
+  @JsonKey(name: 'precheck_id')
+  final String? precheckId;
+  @JsonKey(name: 'access_tokens', defaultValue: <String>[])
+  final List<String>? accessTokens;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestIncomeVerificationFromJson;
   static const toJsonFactory = _$LinkTokenCreateRequestIncomeVerificationToJson;
@@ -16729,17 +24446,36 @@ class LinkTokenCreateRequestIncomeVerification {
                     other.incomeVerificationId, incomeVerificationId)) &&
             (identical(other.assetReportId, assetReportId) ||
                 const DeepCollectionEquality()
-                    .equals(other.assetReportId, assetReportId)));
+                    .equals(other.assetReportId, assetReportId)) &&
+            (identical(other.precheckId, precheckId) ||
+                const DeepCollectionEquality()
+                    .equals(other.precheckId, precheckId)) &&
+            (identical(other.accessTokens, accessTokens) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessTokens, accessTokens)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(assetReportId) ^
+      const DeepCollectionEquality().hash(precheckId) ^
+      const DeepCollectionEquality().hash(accessTokens) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestIncomeVerificationExtension
     on LinkTokenCreateRequestIncomeVerification {
   LinkTokenCreateRequestIncomeVerification copyWith(
-      {String? incomeVerificationId, String? assetReportId}) {
+      {String? incomeVerificationId,
+      String? assetReportId,
+      String? precheckId,
+      List<String>? accessTokens}) {
     return LinkTokenCreateRequestIncomeVerification(
         incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
-        assetReportId: assetReportId ?? this.assetReportId);
+        assetReportId: assetReportId ?? this.assetReportId,
+        precheckId: precheckId ?? this.precheckId,
+        accessTokens: accessTokens ?? this.accessTokens);
   }
 }
 
@@ -16749,6 +24485,7 @@ class IncomeVerificationStatusWebhook {
     this.webhookType,
     this.webhookCode,
     this.incomeVerificationId,
+    this.itemId,
     this.verificationStatus,
   });
 
@@ -16761,6 +24498,8 @@ class IncomeVerificationStatusWebhook {
   final String? webhookCode;
   @JsonKey(name: 'income_verification_id')
   final String? incomeVerificationId;
+  @JsonKey(name: 'item_id')
+  final String? itemId;
   @JsonKey(name: 'verification_status')
   final String? verificationStatus;
   static const fromJsonFactory = _$IncomeVerificationStatusWebhookFromJson;
@@ -16781,10 +24520,21 @@ class IncomeVerificationStatusWebhook {
             (identical(other.incomeVerificationId, incomeVerificationId) ||
                 const DeepCollectionEquality().equals(
                     other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.itemId, itemId) ||
+                const DeepCollectionEquality().equals(other.itemId, itemId)) &&
             (identical(other.verificationStatus, verificationStatus) ||
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationStatusWebhookExtension
@@ -16793,11 +24543,13 @@ extension $IncomeVerificationStatusWebhookExtension
       {String? webhookType,
       String? webhookCode,
       String? incomeVerificationId,
+      String? itemId,
       String? verificationStatus}) {
     return IncomeVerificationStatusWebhook(
         webhookType: webhookType ?? this.webhookType,
         webhookCode: webhookCode ?? this.webhookCode,
         incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        itemId: itemId ?? this.itemId,
         verificationStatus: verificationStatus ?? this.verificationStatus);
   }
 }
@@ -16808,6 +24560,7 @@ class IncomeVerificationSummaryGetRequest {
     this.clientId,
     this.secret,
     this.incomeVerificationId,
+    this.accessToken,
   });
 
   factory IncomeVerificationSummaryGetRequest.fromJson(
@@ -16820,6 +24573,8 @@ class IncomeVerificationSummaryGetRequest {
   final String? secret;
   @JsonKey(name: 'income_verification_id')
   final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
   static const fromJsonFactory = _$IncomeVerificationSummaryGetRequestFromJson;
   static const toJsonFactory = _$IncomeVerificationSummaryGetRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -16835,20 +24590,34 @@ class IncomeVerificationSummaryGetRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)) &&
             (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.incomeVerificationId, incomeVerificationId)));
+                    .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationSummaryGetRequestExtension
     on IncomeVerificationSummaryGetRequest {
   IncomeVerificationSummaryGetRequest copyWith(
-      {String? clientId, String? secret, String? incomeVerificationId}) {
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken}) {
     return IncomeVerificationSummaryGetRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
-        incomeVerificationId:
-            incomeVerificationId ?? this.incomeVerificationId);
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken);
   }
 }
 
@@ -16888,6 +24657,13 @@ class IncomeVerificationSummaryGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(incomeSummaries) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationSummaryGetResponseExtension
@@ -16898,6 +24674,129 @@ extension $IncomeVerificationSummaryGetResponseExtension
         incomeSummaries: incomeSummaries ?? this.incomeSummaries,
         error: error ?? this.error,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationRefreshRequest {
+  IncomeVerificationRefreshRequest({
+    this.clientId,
+    this.secret,
+    this.incomeVerificationId,
+    this.accessToken,
+  });
+
+  factory IncomeVerificationRefreshRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationRefreshRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'income_verification_id')
+  final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  static const fromJsonFactory = _$IncomeVerificationRefreshRequestFromJson;
+  static const toJsonFactory = _$IncomeVerificationRefreshRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationRefreshRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationRefreshRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationRefreshRequestExtension
+    on IncomeVerificationRefreshRequest {
+  IncomeVerificationRefreshRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken}) {
+    return IncomeVerificationRefreshRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationRefreshResponse {
+  IncomeVerificationRefreshResponse({
+    this.requestId,
+    this.verificationRefreshStatus,
+  });
+
+  factory IncomeVerificationRefreshResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationRefreshResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  @JsonKey(
+      name: 'verification_refresh_status',
+      toJson: verificationRefreshStatusToJson,
+      fromJson: verificationRefreshStatusFromJson)
+  final enums.VerificationRefreshStatus? verificationRefreshStatus;
+  static const fromJsonFactory = _$IncomeVerificationRefreshResponseFromJson;
+  static const toJsonFactory = _$IncomeVerificationRefreshResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationRefreshResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationRefreshResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.verificationRefreshStatus,
+                    verificationRefreshStatus) ||
+                const DeepCollectionEquality().equals(
+                    other.verificationRefreshStatus,
+                    verificationRefreshStatus)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(verificationRefreshStatus) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationRefreshResponseExtension
+    on IncomeVerificationRefreshResponse {
+  IncomeVerificationRefreshResponse copyWith(
+      {String? requestId,
+      enums.VerificationRefreshStatus? verificationRefreshStatus}) {
+    return IncomeVerificationRefreshResponse(
+        requestId: requestId ?? this.requestId,
+        verificationRefreshStatus:
+            verificationRefreshStatus ?? this.verificationRefreshStatus);
   }
 }
 
@@ -16960,6 +24859,17 @@ class IncomeSummary {
                 const DeepCollectionEquality()
                     .equals(other.verifiedTransaction, verifiedTransaction)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employerName) ^
+      const DeepCollectionEquality().hash(employeeName) ^
+      const DeepCollectionEquality().hash(ytdGrossIncome) ^
+      const DeepCollectionEquality().hash(ytdNetIncome) ^
+      const DeepCollectionEquality().hash(payFrequency) ^
+      const DeepCollectionEquality().hash(projectedWage) ^
+      const DeepCollectionEquality().hash(verifiedTransaction) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeSummaryExtension on IncomeSummary {
@@ -16999,8 +24909,8 @@ class TransactionData {
   final String? description;
   @JsonKey(name: 'amount')
   final double? amount;
-  @JsonKey(name: 'date')
-  final String? date;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
   @JsonKey(name: 'account_id')
   final String? accountId;
   @JsonKey(name: 'transaction_id')
@@ -17027,13 +24937,22 @@ class TransactionData {
                 const DeepCollectionEquality()
                     .equals(other.transactionId, transactionId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(transactionId) ^
+      runtimeType.hashCode;
 }
 
 extension $TransactionDataExtension on TransactionData {
   TransactionData copyWith(
       {String? description,
       double? amount,
-      String? date,
+      DateTime? date,
       String? accountId,
       String? transactionId}) {
     return TransactionData(
@@ -17076,6 +24995,12 @@ class IncomeSummaryFieldString {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(value) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeSummaryFieldStringExtension on IncomeSummaryFieldString {
@@ -17099,6 +25024,9 @@ class EmployerIncomeSummaryFieldString extends IncomeSummaryFieldString {
   static const toJsonFactory = _$EmployerIncomeSummaryFieldStringToJson;
   Map<String, dynamic> toJson() =>
       _$EmployerIncomeSummaryFieldStringToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -17113,6 +25041,9 @@ class EmployeeIncomeSummaryFieldString extends IncomeSummaryFieldString {
   static const toJsonFactory = _$EmployeeIncomeSummaryFieldStringToJson;
   Map<String, dynamic> toJson() =>
       _$EmployeeIncomeSummaryFieldStringToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -17146,6 +25077,12 @@ class IncomeSummaryFieldNumber {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(value) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeSummaryFieldNumberExtension on IncomeSummaryFieldNumber {
@@ -17169,6 +25106,9 @@ class YTDGrossIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
   static const toJsonFactory = _$YTDGrossIncomeSummaryFieldNumberToJson;
   Map<String, dynamic> toJson() =>
       _$YTDGrossIncomeSummaryFieldNumberToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -17181,6 +25121,9 @@ class YTDNetIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
   static const fromJsonFactory = _$YTDNetIncomeSummaryFieldNumberFromJson;
   static const toJsonFactory = _$YTDNetIncomeSummaryFieldNumberToJson;
   Map<String, dynamic> toJson() => _$YTDNetIncomeSummaryFieldNumberToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -17195,6 +25138,9 @@ class ProjectedIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
   static const toJsonFactory = _$ProjectedIncomeSummaryFieldNumberToJson;
   Map<String, dynamic> toJson() =>
       _$ProjectedIncomeSummaryFieldNumberToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -17231,6 +25177,12 @@ class PayFrequency {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(value) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $PayFrequencyExtension on PayFrequency {
@@ -17244,11 +25196,135 @@ extension $PayFrequencyExtension on PayFrequency {
 }
 
 @JsonSerializable(explicitToJson: true)
+class IncomeVerificationPaystubGetRequest {
+  IncomeVerificationPaystubGetRequest({
+    this.clientId,
+    this.secret,
+    this.incomeVerificationId,
+    this.accessToken,
+  });
+
+  factory IncomeVerificationPaystubGetRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPaystubGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'income_verification_id')
+  final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  static const fromJsonFactory = _$IncomeVerificationPaystubGetRequestFromJson;
+  static const toJsonFactory = _$IncomeVerificationPaystubGetRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPaystubGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPaystubGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPaystubGetRequestExtension
+    on IncomeVerificationPaystubGetRequest {
+  IncomeVerificationPaystubGetRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken}) {
+    return IncomeVerificationPaystubGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationPaystubGetResponse {
+  IncomeVerificationPaystubGetResponse({
+    this.paystub,
+    this.error,
+    this.requestId,
+  });
+
+  factory IncomeVerificationPaystubGetResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationPaystubGetResponseFromJson(json);
+
+  @JsonKey(name: 'paystub')
+  final Paystub? paystub;
+  @JsonKey(name: 'error')
+  final Error? error;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$IncomeVerificationPaystubGetResponseFromJson;
+  static const toJsonFactory = _$IncomeVerificationPaystubGetResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationPaystubGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationPaystubGetResponse &&
+            (identical(other.paystub, paystub) ||
+                const DeepCollectionEquality()
+                    .equals(other.paystub, paystub)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(paystub) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationPaystubGetResponseExtension
+    on IncomeVerificationPaystubGetResponse {
+  IncomeVerificationPaystubGetResponse copyWith(
+      {Paystub? paystub, Error? error, String? requestId}) {
+    return IncomeVerificationPaystubGetResponse(
+        paystub: paystub ?? this.paystub,
+        error: error ?? this.error,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class IncomeVerificationPaystubsGetRequest {
   IncomeVerificationPaystubsGetRequest({
     this.clientId,
     this.secret,
     this.incomeVerificationId,
+    this.accessToken,
   });
 
   factory IncomeVerificationPaystubsGetRequest.fromJson(
@@ -17261,6 +25337,8 @@ class IncomeVerificationPaystubsGetRequest {
   final String? secret;
   @JsonKey(name: 'income_verification_id')
   final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
   static const fromJsonFactory = _$IncomeVerificationPaystubsGetRequestFromJson;
   static const toJsonFactory = _$IncomeVerificationPaystubsGetRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -17276,27 +25354,43 @@ class IncomeVerificationPaystubsGetRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)) &&
             (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.incomeVerificationId, incomeVerificationId)));
+                    .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationPaystubsGetRequestExtension
     on IncomeVerificationPaystubsGetRequest {
   IncomeVerificationPaystubsGetRequest copyWith(
-      {String? clientId, String? secret, String? incomeVerificationId}) {
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken}) {
     return IncomeVerificationPaystubsGetRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
-        incomeVerificationId:
-            incomeVerificationId ?? this.incomeVerificationId);
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class IncomeVerificationPaystubsGetResponse {
   IncomeVerificationPaystubsGetResponse({
+    this.documentMetadata,
     this.paystubs,
+    this.error,
     this.requestId,
   });
 
@@ -17304,8 +25398,12 @@ class IncomeVerificationPaystubsGetResponse {
           Map<String, dynamic> json) =>
       _$IncomeVerificationPaystubsGetResponseFromJson(json);
 
+  @JsonKey(name: 'document_metadata', defaultValue: <DocumentMetadata>[])
+  final List<DocumentMetadata>? documentMetadata;
   @JsonKey(name: 'paystubs', defaultValue: <Paystub>[])
   final List<Paystub>? paystubs;
+  @JsonKey(name: 'error')
+  final Error? error;
   @JsonKey(name: 'request_id')
   final String? requestId;
   static const fromJsonFactory =
@@ -17318,51 +25416,145 @@ class IncomeVerificationPaystubsGetResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is IncomeVerificationPaystubsGetResponse &&
+            (identical(other.documentMetadata, documentMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.documentMetadata, documentMetadata)) &&
             (identical(other.paystubs, paystubs) ||
                 const DeepCollectionEquality()
                     .equals(other.paystubs, paystubs)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
             (identical(other.requestId, requestId) ||
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(documentMetadata) ^
+      const DeepCollectionEquality().hash(paystubs) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationPaystubsGetResponseExtension
     on IncomeVerificationPaystubsGetResponse {
   IncomeVerificationPaystubsGetResponse copyWith(
-      {List<Paystub>? paystubs, String? requestId}) {
+      {List<DocumentMetadata>? documentMetadata,
+      List<Paystub>? paystubs,
+      Error? error,
+      String? requestId}) {
     return IncomeVerificationPaystubsGetResponse(
+        documentMetadata: documentMetadata ?? this.documentMetadata,
         paystubs: paystubs ?? this.paystubs,
+        error: error ?? this.error,
         requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DocumentMetadata {
+  DocumentMetadata({
+    this.name,
+    this.status,
+    this.docId,
+    this.docType,
+  });
+
+  factory DocumentMetadata.fromJson(Map<String, dynamic> json) =>
+      _$DocumentMetadataFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'status')
+  final String? status;
+  @JsonKey(name: 'doc_id')
+  final String? docId;
+  @JsonKey(name: 'doc_type', toJson: docTypeToJson, fromJson: docTypeFromJson)
+  final enums.DocType? docType;
+  static const fromJsonFactory = _$DocumentMetadataFromJson;
+  static const toJsonFactory = _$DocumentMetadataToJson;
+  Map<String, dynamic> toJson() => _$DocumentMetadataToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DocumentMetadata &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.docType, docType) ||
+                const DeepCollectionEquality().equals(other.docType, docType)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(docType) ^
+      runtimeType.hashCode;
+}
+
+extension $DocumentMetadataExtension on DocumentMetadata {
+  DocumentMetadata copyWith(
+      {String? name, String? status, String? docId, enums.DocType? docType}) {
+    return DocumentMetadata(
+        name: name ?? this.name,
+        status: status ?? this.status,
+        docId: docId ?? this.docId,
+        docType: docType ?? this.docType);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class Paystub {
   Paystub({
-    this.accountId,
-    this.employer,
+    this.deductions,
+    this.docId,
+    this.earnings,
     this.employee,
+    this.employer,
+    this.employmentDetails,
+    this.netPay,
     this.payPeriodDetails,
+    this.paystubDetails,
     this.incomeBreakdown,
     this.ytdEarnings,
+    this.verification,
   });
 
   factory Paystub.fromJson(Map<String, dynamic> json) =>
       _$PaystubFromJson(json);
 
-  @JsonKey(name: 'account_id')
-  final String? accountId;
-  @JsonKey(name: 'employer')
-  final PaystubEmployer? employer;
+  @JsonKey(name: 'deductions')
+  final Deductions? deductions;
+  @JsonKey(name: 'doc_id')
+  final String? docId;
+  @JsonKey(name: 'earnings')
+  final Earnings? earnings;
   @JsonKey(name: 'employee')
   final Employee? employee;
+  @JsonKey(name: 'employer')
+  final PaystubEmployer? employer;
+  @JsonKey(name: 'employment_details')
+  final EmploymentDetails? employmentDetails;
+  @JsonKey(name: 'net_pay')
+  final NetPay? netPay;
   @JsonKey(name: 'pay_period_details')
   final PayPeriodDetails? payPeriodDetails;
-  @JsonKey(name: 'income_breakdown')
-  final IncomeBreakdown? incomeBreakdown;
+  @JsonKey(name: 'paystub_details')
+  final PaystubDetails? paystubDetails;
+  @JsonKey(name: 'income_breakdown', defaultValue: <IncomeBreakdown>[])
+  final List<IncomeBreakdown>? incomeBreakdown;
   @JsonKey(name: 'ytd_earnings')
-  final dynamic? ytdEarnings;
+  final PaystubYTDDetails? ytdEarnings;
+  @JsonKey(name: 'verification')
+  final PaystubVerification? verification;
   static const fromJsonFactory = _$PaystubFromJson;
   static const toJsonFactory = _$PaystubToJson;
   Map<String, dynamic> toJson() => _$PaystubToJson(this);
@@ -17371,42 +25563,859 @@ class Paystub {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Paystub &&
-            (identical(other.accountId, accountId) ||
+            (identical(other.deductions, deductions) ||
                 const DeepCollectionEquality()
-                    .equals(other.accountId, accountId)) &&
-            (identical(other.employer, employer) ||
+                    .equals(other.deductions, deductions)) &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.earnings, earnings) ||
                 const DeepCollectionEquality()
-                    .equals(other.employer, employer)) &&
+                    .equals(other.earnings, earnings)) &&
             (identical(other.employee, employee) ||
                 const DeepCollectionEquality()
                     .equals(other.employee, employee)) &&
+            (identical(other.employer, employer) ||
+                const DeepCollectionEquality()
+                    .equals(other.employer, employer)) &&
+            (identical(other.employmentDetails, employmentDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.employmentDetails, employmentDetails)) &&
+            (identical(other.netPay, netPay) ||
+                const DeepCollectionEquality().equals(other.netPay, netPay)) &&
             (identical(other.payPeriodDetails, payPeriodDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.payPeriodDetails, payPeriodDetails)) &&
+            (identical(other.paystubDetails, paystubDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.paystubDetails, paystubDetails)) &&
             (identical(other.incomeBreakdown, incomeBreakdown) ||
                 const DeepCollectionEquality()
                     .equals(other.incomeBreakdown, incomeBreakdown)) &&
             (identical(other.ytdEarnings, ytdEarnings) ||
                 const DeepCollectionEquality()
-                    .equals(other.ytdEarnings, ytdEarnings)));
+                    .equals(other.ytdEarnings, ytdEarnings)) &&
+            (identical(other.verification, verification) ||
+                const DeepCollectionEquality()
+                    .equals(other.verification, verification)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(deductions) ^
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(earnings) ^
+      const DeepCollectionEquality().hash(employee) ^
+      const DeepCollectionEquality().hash(employer) ^
+      const DeepCollectionEquality().hash(employmentDetails) ^
+      const DeepCollectionEquality().hash(netPay) ^
+      const DeepCollectionEquality().hash(payPeriodDetails) ^
+      const DeepCollectionEquality().hash(paystubDetails) ^
+      const DeepCollectionEquality().hash(incomeBreakdown) ^
+      const DeepCollectionEquality().hash(ytdEarnings) ^
+      const DeepCollectionEquality().hash(verification) ^
+      runtimeType.hashCode;
 }
 
 extension $PaystubExtension on Paystub {
   Paystub copyWith(
-      {String? accountId,
-      PaystubEmployer? employer,
+      {Deductions? deductions,
+      String? docId,
+      Earnings? earnings,
       Employee? employee,
+      PaystubEmployer? employer,
+      EmploymentDetails? employmentDetails,
+      NetPay? netPay,
       PayPeriodDetails? payPeriodDetails,
-      IncomeBreakdown? incomeBreakdown,
-      dynamic? ytdEarnings}) {
+      PaystubDetails? paystubDetails,
+      List<IncomeBreakdown>? incomeBreakdown,
+      PaystubYTDDetails? ytdEarnings,
+      PaystubVerification? verification}) {
     return Paystub(
-        accountId: accountId ?? this.accountId,
-        employer: employer ?? this.employer,
+        deductions: deductions ?? this.deductions,
+        docId: docId ?? this.docId,
+        earnings: earnings ?? this.earnings,
         employee: employee ?? this.employee,
+        employer: employer ?? this.employer,
+        employmentDetails: employmentDetails ?? this.employmentDetails,
+        netPay: netPay ?? this.netPay,
         payPeriodDetails: payPeriodDetails ?? this.payPeriodDetails,
+        paystubDetails: paystubDetails ?? this.paystubDetails,
         incomeBreakdown: incomeBreakdown ?? this.incomeBreakdown,
-        ytdEarnings: ytdEarnings ?? this.ytdEarnings);
+        ytdEarnings: ytdEarnings ?? this.ytdEarnings,
+        verification: verification ?? this.verification);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Deductions {
+  Deductions({
+    this.subtotals,
+    this.breakdown,
+    this.totals,
+    this.total,
+  });
+
+  factory Deductions.fromJson(Map<String, dynamic> json) =>
+      _$DeductionsFromJson(json);
+
+  @JsonKey(name: 'subtotals', defaultValue: <Total>[])
+  final List<Total>? subtotals;
+  @JsonKey(name: 'breakdown', defaultValue: <DeductionsBreakdown>[])
+  final List<DeductionsBreakdown>? breakdown;
+  @JsonKey(name: 'totals', defaultValue: <Total>[])
+  final List<Total>? totals;
+  @JsonKey(name: 'total')
+  final DeductionsTotal? total;
+  static const fromJsonFactory = _$DeductionsFromJson;
+  static const toJsonFactory = _$DeductionsToJson;
+  Map<String, dynamic> toJson() => _$DeductionsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Deductions &&
+            (identical(other.subtotals, subtotals) ||
+                const DeepCollectionEquality()
+                    .equals(other.subtotals, subtotals)) &&
+            (identical(other.breakdown, breakdown) ||
+                const DeepCollectionEquality()
+                    .equals(other.breakdown, breakdown)) &&
+            (identical(other.totals, totals) ||
+                const DeepCollectionEquality().equals(other.totals, totals)) &&
+            (identical(other.total, total) ||
+                const DeepCollectionEquality().equals(other.total, total)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(subtotals) ^
+      const DeepCollectionEquality().hash(breakdown) ^
+      const DeepCollectionEquality().hash(totals) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
+}
+
+extension $DeductionsExtension on Deductions {
+  Deductions copyWith(
+      {List<Total>? subtotals,
+      List<DeductionsBreakdown>? breakdown,
+      List<Total>? totals,
+      DeductionsTotal? total}) {
+    return Deductions(
+        subtotals: subtotals ?? this.subtotals,
+        breakdown: breakdown ?? this.breakdown,
+        totals: totals ?? this.totals,
+        total: total ?? this.total);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeductionsBreakdown {
+  DeductionsBreakdown({
+    this.currentAmount,
+    this.description,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.ytdAmount,
+  });
+
+  factory DeductionsBreakdown.fromJson(Map<String, dynamic> json) =>
+      _$DeductionsBreakdownFromJson(json);
+
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'ytd_amount')
+  final double? ytdAmount;
+  static const fromJsonFactory = _$DeductionsBreakdownFromJson;
+  static const toJsonFactory = _$DeductionsBreakdownToJson;
+  Map<String, dynamic> toJson() => _$DeductionsBreakdownToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeductionsBreakdown &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.ytdAmount, ytdAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ytdAmount, ytdAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(ytdAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $DeductionsBreakdownExtension on DeductionsBreakdown {
+  DeductionsBreakdown copyWith(
+      {double? currentAmount,
+      String? description,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      double? ytdAmount}) {
+    return DeductionsBreakdown(
+        currentAmount: currentAmount ?? this.currentAmount,
+        description: description ?? this.description,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        ytdAmount: ytdAmount ?? this.ytdAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeductionsTotal {
+  DeductionsTotal({
+    this.currentAmount,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.ytdAmount,
+  });
+
+  factory DeductionsTotal.fromJson(Map<String, dynamic> json) =>
+      _$DeductionsTotalFromJson(json);
+
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'ytd_amount')
+  final double? ytdAmount;
+  static const fromJsonFactory = _$DeductionsTotalFromJson;
+  static const toJsonFactory = _$DeductionsTotalToJson;
+  Map<String, dynamic> toJson() => _$DeductionsTotalToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeductionsTotal &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.ytdAmount, ytdAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ytdAmount, ytdAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(ytdAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $DeductionsTotalExtension on DeductionsTotal {
+  DeductionsTotal copyWith(
+      {double? currentAmount,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      double? ytdAmount}) {
+    return DeductionsTotal(
+        currentAmount: currentAmount ?? this.currentAmount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        ytdAmount: ytdAmount ?? this.ytdAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Total {
+  Total({
+    this.canonicalDescription,
+    this.description,
+    this.currentPay,
+    this.ytdPay,
+  });
+
+  factory Total.fromJson(Map<String, dynamic> json) => _$TotalFromJson(json);
+
+  @JsonKey(
+      name: 'canonical_description',
+      toJson: totalCanonicalDescriptionToJson,
+      fromJson: totalCanonicalDescriptionFromJson)
+  final enums.TotalCanonicalDescription? canonicalDescription;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'current_pay')
+  final Pay? currentPay;
+  @JsonKey(name: 'ytd_pay')
+  final Pay? ytdPay;
+  static const fromJsonFactory = _$TotalFromJson;
+  static const toJsonFactory = _$TotalToJson;
+  Map<String, dynamic> toJson() => _$TotalToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Total &&
+            (identical(other.canonicalDescription, canonicalDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.canonicalDescription, canonicalDescription)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.currentPay, currentPay) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentPay, currentPay)) &&
+            (identical(other.ytdPay, ytdPay) ||
+                const DeepCollectionEquality().equals(other.ytdPay, ytdPay)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(canonicalDescription) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(currentPay) ^
+      const DeepCollectionEquality().hash(ytdPay) ^
+      runtimeType.hashCode;
+}
+
+extension $TotalExtension on Total {
+  Total copyWith(
+      {enums.TotalCanonicalDescription? canonicalDescription,
+      String? description,
+      Pay? currentPay,
+      Pay? ytdPay}) {
+    return Total(
+        canonicalDescription: canonicalDescription ?? this.canonicalDescription,
+        description: description ?? this.description,
+        currentPay: currentPay ?? this.currentPay,
+        ytdPay: ytdPay ?? this.ytdPay);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Pay {
+  Pay({
+    this.amount,
+    this.currency,
+  });
+
+  factory Pay.fromJson(Map<String, dynamic> json) => _$PayFromJson(json);
+
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'currency')
+  final String? currency;
+  static const fromJsonFactory = _$PayFromJson;
+  static const toJsonFactory = _$PayToJson;
+  Map<String, dynamic> toJson() => _$PayToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Pay &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.currency, currency) ||
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(currency) ^
+      runtimeType.hashCode;
+}
+
+extension $PayExtension on Pay {
+  Pay copyWith({double? amount, String? currency}) {
+    return Pay(
+        amount: amount ?? this.amount, currency: currency ?? this.currency);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Earnings {
+  Earnings({
+    this.subtotals,
+    this.totals,
+    this.breakdown,
+    this.total,
+  });
+
+  factory Earnings.fromJson(Map<String, dynamic> json) =>
+      _$EarningsFromJson(json);
+
+  @JsonKey(name: 'subtotals', defaultValue: <EarningsTotal>[])
+  final List<EarningsTotal>? subtotals;
+  @JsonKey(name: 'totals', defaultValue: <EarningsTotal>[])
+  final List<EarningsTotal>? totals;
+  @JsonKey(name: 'breakdown', defaultValue: <EarningsBreakdown>[])
+  final List<EarningsBreakdown>? breakdown;
+  @JsonKey(name: 'total')
+  final EarningsTotal? total;
+  static const fromJsonFactory = _$EarningsFromJson;
+  static const toJsonFactory = _$EarningsToJson;
+  Map<String, dynamic> toJson() => _$EarningsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Earnings &&
+            (identical(other.subtotals, subtotals) ||
+                const DeepCollectionEquality()
+                    .equals(other.subtotals, subtotals)) &&
+            (identical(other.totals, totals) ||
+                const DeepCollectionEquality().equals(other.totals, totals)) &&
+            (identical(other.breakdown, breakdown) ||
+                const DeepCollectionEquality()
+                    .equals(other.breakdown, breakdown)) &&
+            (identical(other.total, total) ||
+                const DeepCollectionEquality().equals(other.total, total)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(subtotals) ^
+      const DeepCollectionEquality().hash(totals) ^
+      const DeepCollectionEquality().hash(breakdown) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
+}
+
+extension $EarningsExtension on Earnings {
+  Earnings copyWith(
+      {List<EarningsTotal>? subtotals,
+      List<EarningsTotal>? totals,
+      List<EarningsBreakdown>? breakdown,
+      EarningsTotal? total}) {
+    return Earnings(
+        subtotals: subtotals ?? this.subtotals,
+        totals: totals ?? this.totals,
+        breakdown: breakdown ?? this.breakdown,
+        total: total ?? this.total);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EarningsBreakdown {
+  EarningsBreakdown({
+    this.canonicalDescription,
+    this.currentAmount,
+    this.description,
+    this.hours,
+    this.isoCurrencyCode,
+    this.rate,
+    this.unofficialCurrencyCode,
+    this.ytdAmount,
+  });
+
+  factory EarningsBreakdown.fromJson(Map<String, dynamic> json) =>
+      _$EarningsBreakdownFromJson(json);
+
+  @JsonKey(
+      name: 'canonical_description',
+      toJson: earningsBreakdownCanonicalDescriptionToJson,
+      fromJson: earningsBreakdownCanonicalDescriptionFromJson)
+  final enums.EarningsBreakdownCanonicalDescription? canonicalDescription;
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'hours')
+  final double? hours;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'rate')
+  final double? rate;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'ytd_amount')
+  final double? ytdAmount;
+  static const fromJsonFactory = _$EarningsBreakdownFromJson;
+  static const toJsonFactory = _$EarningsBreakdownToJson;
+  Map<String, dynamic> toJson() => _$EarningsBreakdownToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EarningsBreakdown &&
+            (identical(other.canonicalDescription, canonicalDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.canonicalDescription, canonicalDescription)) &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.hours, hours) ||
+                const DeepCollectionEquality().equals(other.hours, hours)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.rate, rate) ||
+                const DeepCollectionEquality().equals(other.rate, rate)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.ytdAmount, ytdAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ytdAmount, ytdAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(canonicalDescription) ^
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(hours) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(rate) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(ytdAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $EarningsBreakdownExtension on EarningsBreakdown {
+  EarningsBreakdown copyWith(
+      {enums.EarningsBreakdownCanonicalDescription? canonicalDescription,
+      double? currentAmount,
+      String? description,
+      double? hours,
+      String? isoCurrencyCode,
+      double? rate,
+      String? unofficialCurrencyCode,
+      double? ytdAmount}) {
+    return EarningsBreakdown(
+        canonicalDescription: canonicalDescription ?? this.canonicalDescription,
+        currentAmount: currentAmount ?? this.currentAmount,
+        description: description ?? this.description,
+        hours: hours ?? this.hours,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        rate: rate ?? this.rate,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        ytdAmount: ytdAmount ?? this.ytdAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EarningsTotal {
+  EarningsTotal({
+    this.currentAmount,
+    this.currentPay,
+    this.ytdPay,
+    this.hours,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.ytdAmount,
+  });
+
+  factory EarningsTotal.fromJson(Map<String, dynamic> json) =>
+      _$EarningsTotalFromJson(json);
+
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'current_pay')
+  final Pay? currentPay;
+  @JsonKey(name: 'ytd_pay')
+  final Pay? ytdPay;
+  @JsonKey(name: 'hours')
+  final double? hours;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'ytd_amount')
+  final double? ytdAmount;
+  static const fromJsonFactory = _$EarningsTotalFromJson;
+  static const toJsonFactory = _$EarningsTotalToJson;
+  Map<String, dynamic> toJson() => _$EarningsTotalToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EarningsTotal &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.currentPay, currentPay) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentPay, currentPay)) &&
+            (identical(other.ytdPay, ytdPay) ||
+                const DeepCollectionEquality().equals(other.ytdPay, ytdPay)) &&
+            (identical(other.hours, hours) ||
+                const DeepCollectionEquality().equals(other.hours, hours)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.ytdAmount, ytdAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ytdAmount, ytdAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(currentPay) ^
+      const DeepCollectionEquality().hash(ytdPay) ^
+      const DeepCollectionEquality().hash(hours) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(ytdAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $EarningsTotalExtension on EarningsTotal {
+  EarningsTotal copyWith(
+      {double? currentAmount,
+      Pay? currentPay,
+      Pay? ytdPay,
+      double? hours,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      double? ytdAmount}) {
+    return EarningsTotal(
+        currentAmount: currentAmount ?? this.currentAmount,
+        currentPay: currentPay ?? this.currentPay,
+        ytdPay: ytdPay ?? this.ytdPay,
+        hours: hours ?? this.hours,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        ytdAmount: ytdAmount ?? this.ytdAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EmploymentDetails {
+  EmploymentDetails({
+    this.annualSalary,
+    this.hireDate,
+  });
+
+  factory EmploymentDetails.fromJson(Map<String, dynamic> json) =>
+      _$EmploymentDetailsFromJson(json);
+
+  @JsonKey(name: 'annual_salary')
+  final Pay? annualSalary;
+  @JsonKey(name: 'hire_date', toJson: _dateToJson)
+  final DateTime? hireDate;
+  static const fromJsonFactory = _$EmploymentDetailsFromJson;
+  static const toJsonFactory = _$EmploymentDetailsToJson;
+  Map<String, dynamic> toJson() => _$EmploymentDetailsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EmploymentDetails &&
+            (identical(other.annualSalary, annualSalary) ||
+                const DeepCollectionEquality()
+                    .equals(other.annualSalary, annualSalary)) &&
+            (identical(other.hireDate, hireDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.hireDate, hireDate)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(annualSalary) ^
+      const DeepCollectionEquality().hash(hireDate) ^
+      runtimeType.hashCode;
+}
+
+extension $EmploymentDetailsExtension on EmploymentDetails {
+  EmploymentDetails copyWith({Pay? annualSalary, DateTime? hireDate}) {
+    return EmploymentDetails(
+        annualSalary: annualSalary ?? this.annualSalary,
+        hireDate: hireDate ?? this.hireDate);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NetPay {
+  NetPay({
+    this.currentAmount,
+    this.description,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.ytdAmount,
+    this.total,
+  });
+
+  factory NetPay.fromJson(Map<String, dynamic> json) => _$NetPayFromJson(json);
+
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'ytd_amount')
+  final double? ytdAmount;
+  @JsonKey(name: 'total')
+  final Total? total;
+  static const fromJsonFactory = _$NetPayFromJson;
+  static const toJsonFactory = _$NetPayToJson;
+  Map<String, dynamic> toJson() => _$NetPayToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NetPay &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.ytdAmount, ytdAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ytdAmount, ytdAmount)) &&
+            (identical(other.total, total) ||
+                const DeepCollectionEquality().equals(other.total, total)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(ytdAmount) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
+}
+
+extension $NetPayExtension on NetPay {
+  NetPay copyWith(
+      {double? currentAmount,
+      String? description,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      double? ytdAmount,
+      Total? total}) {
+    return NetPay(
+        currentAmount: currentAmount ?? this.currentAmount,
+        description: description ?? this.description,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        ytdAmount: ytdAmount ?? this.ytdAmount,
+        total: total ?? this.total);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaystubDetails {
+  PaystubDetails({
+    this.payPeriodStartDate,
+    this.payPeriodEndDate,
+    this.payDate,
+    this.paystubProvider,
+    this.payFrequency,
+  });
+
+  factory PaystubDetails.fromJson(Map<String, dynamic> json) =>
+      _$PaystubDetailsFromJson(json);
+
+  @JsonKey(name: 'pay_period_start_date', toJson: _dateToJson)
+  final DateTime? payPeriodStartDate;
+  @JsonKey(name: 'pay_period_end_date', toJson: _dateToJson)
+  final DateTime? payPeriodEndDate;
+  @JsonKey(name: 'pay_date', toJson: _dateToJson)
+  final DateTime? payDate;
+  @JsonKey(name: 'paystub_provider')
+  final String? paystubProvider;
+  @JsonKey(
+      name: 'pay_frequency',
+      toJson: paystubPayFrequencyToJson,
+      fromJson: paystubPayFrequencyFromJson)
+  final enums.PaystubPayFrequency? payFrequency;
+  static const fromJsonFactory = _$PaystubDetailsFromJson;
+  static const toJsonFactory = _$PaystubDetailsToJson;
+  Map<String, dynamic> toJson() => _$PaystubDetailsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaystubDetails &&
+            (identical(other.payPeriodStartDate, payPeriodStartDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.payPeriodStartDate, payPeriodStartDate)) &&
+            (identical(other.payPeriodEndDate, payPeriodEndDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.payPeriodEndDate, payPeriodEndDate)) &&
+            (identical(other.payDate, payDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.payDate, payDate)) &&
+            (identical(other.paystubProvider, paystubProvider) ||
+                const DeepCollectionEquality()
+                    .equals(other.paystubProvider, paystubProvider)) &&
+            (identical(other.payFrequency, payFrequency) ||
+                const DeepCollectionEquality()
+                    .equals(other.payFrequency, payFrequency)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(payPeriodStartDate) ^
+      const DeepCollectionEquality().hash(payPeriodEndDate) ^
+      const DeepCollectionEquality().hash(payDate) ^
+      const DeepCollectionEquality().hash(paystubProvider) ^
+      const DeepCollectionEquality().hash(payFrequency) ^
+      runtimeType.hashCode;
+}
+
+extension $PaystubDetailsExtension on PaystubDetails {
+  PaystubDetails copyWith(
+      {DateTime? payPeriodStartDate,
+      DateTime? payPeriodEndDate,
+      DateTime? payDate,
+      String? paystubProvider,
+      enums.PaystubPayFrequency? payFrequency}) {
+    return PaystubDetails(
+        payPeriodStartDate: payPeriodStartDate ?? this.payPeriodStartDate,
+        payPeriodEndDate: payPeriodEndDate ?? this.payPeriodEndDate,
+        payDate: payDate ?? this.payDate,
+        paystubProvider: paystubProvider ?? this.paystubProvider,
+        payFrequency: payFrequency ?? this.payFrequency);
   }
 }
 
@@ -17450,6 +26459,14 @@ class IncomeBreakdown {
             (identical(other.total, total) ||
                 const DeepCollectionEquality().equals(other.total, total)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(rate) ^
+      const DeepCollectionEquality().hash(hours) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeBreakdownExtension on IncomeBreakdown {
@@ -17469,17 +26486,23 @@ extension $IncomeBreakdownExtension on IncomeBreakdown {
 @JsonSerializable(explicitToJson: true)
 class Employee {
   Employee({
-    this.name,
     this.address,
+    this.name,
+    this.maritalStatus,
+    this.taxpayerId,
   });
 
   factory Employee.fromJson(Map<String, dynamic> json) =>
       _$EmployeeFromJson(json);
 
+  @JsonKey(name: 'address')
+  final PaystubAddress? address;
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'address')
-  final NullableAddressData? address;
+  @JsonKey(name: 'marital_status')
+  final String? maritalStatus;
+  @JsonKey(name: 'taxpayer_id')
+  final TaxpayerID? taxpayerId;
   static const fromJsonFactory = _$EmployeeFromJson;
   static const toJsonFactory = _$EmployeeToJson;
   Map<String, dynamic> toJson() => _$EmployeeToJson(this);
@@ -17488,28 +26511,105 @@ class Employee {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Employee &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
+            (identical(other.maritalStatus, maritalStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.maritalStatus, maritalStatus)) &&
+            (identical(other.taxpayerId, taxpayerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.taxpayerId, taxpayerId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(maritalStatus) ^
+      const DeepCollectionEquality().hash(taxpayerId) ^
+      runtimeType.hashCode;
 }
 
 extension $EmployeeExtension on Employee {
-  Employee copyWith({String? name, NullableAddressData? address}) {
-    return Employee(name: name ?? this.name, address: address ?? this.address);
+  Employee copyWith(
+      {PaystubAddress? address,
+      String? name,
+      String? maritalStatus,
+      TaxpayerID? taxpayerId}) {
+    return Employee(
+        address: address ?? this.address,
+        name: name ?? this.name,
+        maritalStatus: maritalStatus ?? this.maritalStatus,
+        taxpayerId: taxpayerId ?? this.taxpayerId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TaxpayerID {
+  TaxpayerID({
+    this.idType,
+    this.idMask,
+    this.last4Digits,
+  });
+
+  factory TaxpayerID.fromJson(Map<String, dynamic> json) =>
+      _$TaxpayerIDFromJson(json);
+
+  @JsonKey(name: 'id_type')
+  final String? idType;
+  @JsonKey(name: 'id_mask')
+  final String? idMask;
+  @JsonKey(name: 'last_4_digits')
+  final String? last4Digits;
+  static const fromJsonFactory = _$TaxpayerIDFromJson;
+  static const toJsonFactory = _$TaxpayerIDToJson;
+  Map<String, dynamic> toJson() => _$TaxpayerIDToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TaxpayerID &&
+            (identical(other.idType, idType) ||
+                const DeepCollectionEquality().equals(other.idType, idType)) &&
+            (identical(other.idMask, idMask) ||
+                const DeepCollectionEquality().equals(other.idMask, idMask)) &&
+            (identical(other.last4Digits, last4Digits) ||
+                const DeepCollectionEquality()
+                    .equals(other.last4Digits, last4Digits)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(idType) ^
+      const DeepCollectionEquality().hash(idMask) ^
+      const DeepCollectionEquality().hash(last4Digits) ^
+      runtimeType.hashCode;
+}
+
+extension $TaxpayerIDExtension on TaxpayerID {
+  TaxpayerID copyWith({String? idType, String? idMask, String? last4Digits}) {
+    return TaxpayerID(
+        idType: idType ?? this.idType,
+        idMask: idMask ?? this.idMask,
+        last4Digits: last4Digits ?? this.last4Digits);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class PaystubEmployer {
   PaystubEmployer({
+    this.address,
     this.name,
   });
 
   factory PaystubEmployer.fromJson(Map<String, dynamic> json) =>
       _$PaystubEmployerFromJson(json);
 
+  @JsonKey(name: 'address')
+  final PaystubAddress? address;
   @JsonKey(name: 'name')
   final String? name;
   static const fromJsonFactory = _$PaystubEmployerFromJson;
@@ -17520,40 +26620,159 @@ class PaystubEmployer {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PaystubEmployer &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(name) ^
+      runtimeType.hashCode;
 }
 
 extension $PaystubEmployerExtension on PaystubEmployer {
-  PaystubEmployer copyWith({String? name}) {
-    return PaystubEmployer(name: name ?? this.name);
+  PaystubEmployer copyWith({PaystubAddress? address, String? name}) {
+    return PaystubEmployer(
+        address: address ?? this.address, name: name ?? this.name);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PaystubAddress {
+  PaystubAddress({
+    this.city,
+    this.country,
+    this.postalCode,
+    this.region,
+    this.street,
+    this.line1,
+    this.line2,
+    this.stateCode,
+  });
+
+  factory PaystubAddress.fromJson(Map<String, dynamic> json) =>
+      _$PaystubAddressFromJson(json);
+
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'country')
+  final String? country;
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @JsonKey(name: 'region')
+  final String? region;
+  @JsonKey(name: 'street')
+  final String? street;
+  @JsonKey(name: 'line1')
+  final String? line1;
+  @JsonKey(name: 'line2')
+  final String? line2;
+  @JsonKey(name: 'state_code')
+  final String? stateCode;
+  static const fromJsonFactory = _$PaystubAddressFromJson;
+  static const toJsonFactory = _$PaystubAddressToJson;
+  Map<String, dynamic> toJson() => _$PaystubAddressToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaystubAddress &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.region, region) ||
+                const DeepCollectionEquality().equals(other.region, region)) &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.line1, line1) ||
+                const DeepCollectionEquality().equals(other.line1, line1)) &&
+            (identical(other.line2, line2) ||
+                const DeepCollectionEquality().equals(other.line2, line2)) &&
+            (identical(other.stateCode, stateCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateCode, stateCode)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(line1) ^
+      const DeepCollectionEquality().hash(line2) ^
+      const DeepCollectionEquality().hash(stateCode) ^
+      runtimeType.hashCode;
+}
+
+extension $PaystubAddressExtension on PaystubAddress {
+  PaystubAddress copyWith(
+      {String? city,
+      String? country,
+      String? postalCode,
+      String? region,
+      String? street,
+      String? line1,
+      String? line2,
+      String? stateCode}) {
+    return PaystubAddress(
+        city: city ?? this.city,
+        country: country ?? this.country,
+        postalCode: postalCode ?? this.postalCode,
+        region: region ?? this.region,
+        street: street ?? this.street,
+        line1: line1 ?? this.line1,
+        line2: line2 ?? this.line2,
+        stateCode: stateCode ?? this.stateCode);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class PayPeriodDetails {
   PayPeriodDetails({
-    this.startDate,
-    this.endDate,
-    this.payDay,
-    this.grossEarnings,
     this.checkAmount,
+    this.distributionBreakdown,
+    this.endDate,
+    this.grossEarnings,
+    this.payDate,
+    this.payFrequency,
+    this.payDay,
+    this.startDate,
   });
 
   factory PayPeriodDetails.fromJson(Map<String, dynamic> json) =>
       _$PayPeriodDetailsFromJson(json);
 
-  @JsonKey(name: 'start_date')
-  final String? startDate;
-  @JsonKey(name: 'end_date')
-  final String? endDate;
-  @JsonKey(name: 'pay_day')
-  final String? payDay;
-  @JsonKey(name: 'gross_earnings')
-  final double? grossEarnings;
   @JsonKey(name: 'check_amount')
   final double? checkAmount;
+  @JsonKey(
+      name: 'distribution_breakdown', defaultValue: <DistributionBreakdown>[])
+  final List<DistributionBreakdown>? distributionBreakdown;
+  @JsonKey(name: 'end_date', toJson: _dateToJson)
+  final DateTime? endDate;
+  @JsonKey(name: 'gross_earnings')
+  final double? grossEarnings;
+  @JsonKey(name: 'pay_date', toJson: _dateToJson)
+  final DateTime? payDate;
+  @JsonKey(
+      name: 'pay_frequency',
+      toJson: payPeriodDetailsPayFrequencyToJson,
+      fromJson: payPeriodDetailsPayFrequencyFromJson)
+  final enums.PayPeriodDetailsPayFrequency? payFrequency;
+  @JsonKey(name: 'pay_day', toJson: _dateToJson)
+  final DateTime? payDay;
+  @JsonKey(name: 'start_date', toJson: _dateToJson)
+  final DateTime? startDate;
   static const fromJsonFactory = _$PayPeriodDetailsFromJson;
   static const toJsonFactory = _$PayPeriodDetailsToJson;
   Map<String, dynamic> toJson() => _$PayPeriodDetailsToJson(this);
@@ -17562,36 +26781,164 @@ class PayPeriodDetails {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PayPeriodDetails &&
-            (identical(other.startDate, startDate) ||
+            (identical(other.checkAmount, checkAmount) ||
                 const DeepCollectionEquality()
-                    .equals(other.startDate, startDate)) &&
+                    .equals(other.checkAmount, checkAmount)) &&
+            (identical(other.distributionBreakdown, distributionBreakdown) ||
+                const DeepCollectionEquality().equals(
+                    other.distributionBreakdown, distributionBreakdown)) &&
             (identical(other.endDate, endDate) ||
                 const DeepCollectionEquality()
                     .equals(other.endDate, endDate)) &&
-            (identical(other.payDay, payDay) ||
-                const DeepCollectionEquality().equals(other.payDay, payDay)) &&
             (identical(other.grossEarnings, grossEarnings) ||
                 const DeepCollectionEquality()
                     .equals(other.grossEarnings, grossEarnings)) &&
-            (identical(other.checkAmount, checkAmount) ||
+            (identical(other.payDate, payDate) ||
                 const DeepCollectionEquality()
-                    .equals(other.checkAmount, checkAmount)));
+                    .equals(other.payDate, payDate)) &&
+            (identical(other.payFrequency, payFrequency) ||
+                const DeepCollectionEquality()
+                    .equals(other.payFrequency, payFrequency)) &&
+            (identical(other.payDay, payDay) ||
+                const DeepCollectionEquality().equals(other.payDay, payDay)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(checkAmount) ^
+      const DeepCollectionEquality().hash(distributionBreakdown) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(grossEarnings) ^
+      const DeepCollectionEquality().hash(payDate) ^
+      const DeepCollectionEquality().hash(payFrequency) ^
+      const DeepCollectionEquality().hash(payDay) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      runtimeType.hashCode;
 }
 
 extension $PayPeriodDetailsExtension on PayPeriodDetails {
   PayPeriodDetails copyWith(
-      {String? startDate,
-      String? endDate,
-      String? payDay,
+      {double? checkAmount,
+      List<DistributionBreakdown>? distributionBreakdown,
+      DateTime? endDate,
       double? grossEarnings,
-      double? checkAmount}) {
+      DateTime? payDate,
+      enums.PayPeriodDetailsPayFrequency? payFrequency,
+      DateTime? payDay,
+      DateTime? startDate}) {
     return PayPeriodDetails(
-        startDate: startDate ?? this.startDate,
+        checkAmount: checkAmount ?? this.checkAmount,
+        distributionBreakdown:
+            distributionBreakdown ?? this.distributionBreakdown,
         endDate: endDate ?? this.endDate,
-        payDay: payDay ?? this.payDay,
         grossEarnings: grossEarnings ?? this.grossEarnings,
-        checkAmount: checkAmount ?? this.checkAmount);
+        payDate: payDate ?? this.payDate,
+        payFrequency: payFrequency ?? this.payFrequency,
+        payDay: payDay ?? this.payDay,
+        startDate: startDate ?? this.startDate);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DistributionBreakdown {
+  DistributionBreakdown({
+    this.accountName,
+    this.bankName,
+    this.currentAmount,
+    this.isoCurrencyCode,
+    this.mask,
+    this.type,
+    this.unofficialCurrencyCode,
+    this.currentPay,
+  });
+
+  factory DistributionBreakdown.fromJson(Map<String, dynamic> json) =>
+      _$DistributionBreakdownFromJson(json);
+
+  @JsonKey(name: 'account_name')
+  final String? accountName;
+  @JsonKey(name: 'bank_name')
+  final String? bankName;
+  @JsonKey(name: 'current_amount')
+  final double? currentAmount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'mask')
+  final String? mask;
+  @JsonKey(name: 'type')
+  final String? type;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'current_pay')
+  final Pay? currentPay;
+  static const fromJsonFactory = _$DistributionBreakdownFromJson;
+  static const toJsonFactory = _$DistributionBreakdownToJson;
+  Map<String, dynamic> toJson() => _$DistributionBreakdownToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DistributionBreakdown &&
+            (identical(other.accountName, accountName) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountName, accountName)) &&
+            (identical(other.bankName, bankName) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankName, bankName)) &&
+            (identical(other.currentAmount, currentAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentAmount, currentAmount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.mask, mask) ||
+                const DeepCollectionEquality().equals(other.mask, mask)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.currentPay, currentPay) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentPay, currentPay)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountName) ^
+      const DeepCollectionEquality().hash(bankName) ^
+      const DeepCollectionEquality().hash(currentAmount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(mask) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(currentPay) ^
+      runtimeType.hashCode;
+}
+
+extension $DistributionBreakdownExtension on DistributionBreakdown {
+  DistributionBreakdown copyWith(
+      {String? accountName,
+      String? bankName,
+      double? currentAmount,
+      String? isoCurrencyCode,
+      String? mask,
+      String? type,
+      String? unofficialCurrencyCode,
+      Pay? currentPay}) {
+    return DistributionBreakdown(
+        accountName: accountName ?? this.accountName,
+        bankName: bankName ?? this.bankName,
+        currentAmount: currentAmount ?? this.currentAmount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        mask: mask ?? this.mask,
+        type: type ?? this.type,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        currentPay: currentPay ?? this.currentPay);
   }
 }
 
@@ -17628,6 +26975,13 @@ class PaystubDeduction {
             (identical(other.total, total) ||
                 const DeepCollectionEquality().equals(other.total, total)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(isPretax) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
 }
 
 extension $PaystubDeductionExtension on PaystubDeduction {
@@ -17668,6 +27022,12 @@ class PaystubYTDDetails {
                 const DeepCollectionEquality()
                     .equals(other.netEarnings, netEarnings)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(grossEarnings) ^
+      const DeepCollectionEquality().hash(netEarnings) ^
+      runtimeType.hashCode;
 }
 
 extension $PaystubYTDDetailsExtension on PaystubYTDDetails {
@@ -17679,11 +27039,102 @@ extension $PaystubYTDDetailsExtension on PaystubYTDDetails {
 }
 
 @JsonSerializable(explicitToJson: true)
+class PaystubVerification {
+  PaystubVerification({
+    this.verificationStatus,
+    this.verificationAttributes,
+  });
+
+  factory PaystubVerification.fromJson(Map<String, dynamic> json) =>
+      _$PaystubVerificationFromJson(json);
+
+  @JsonKey(
+      name: 'verification_status',
+      toJson: paystubVerificationStatusToJson,
+      fromJson: paystubVerificationStatusFromJson)
+  final enums.PaystubVerificationStatus? verificationStatus;
+  @JsonKey(
+      name: 'verification_attributes', defaultValue: <VerificationAttribute>[])
+  final List<VerificationAttribute>? verificationAttributes;
+  static const fromJsonFactory = _$PaystubVerificationFromJson;
+  static const toJsonFactory = _$PaystubVerificationToJson;
+  Map<String, dynamic> toJson() => _$PaystubVerificationToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaystubVerification &&
+            (identical(other.verificationStatus, verificationStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.verificationStatus, verificationStatus)) &&
+            (identical(other.verificationAttributes, verificationAttributes) ||
+                const DeepCollectionEquality().equals(
+                    other.verificationAttributes, verificationAttributes)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      const DeepCollectionEquality().hash(verificationAttributes) ^
+      runtimeType.hashCode;
+}
+
+extension $PaystubVerificationExtension on PaystubVerification {
+  PaystubVerification copyWith(
+      {enums.PaystubVerificationStatus? verificationStatus,
+      List<VerificationAttribute>? verificationAttributes}) {
+    return PaystubVerification(
+        verificationStatus: verificationStatus ?? this.verificationStatus,
+        verificationAttributes:
+            verificationAttributes ?? this.verificationAttributes);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VerificationAttribute {
+  VerificationAttribute({
+    this.type,
+  });
+
+  factory VerificationAttribute.fromJson(Map<String, dynamic> json) =>
+      _$VerificationAttributeFromJson(json);
+
+  @JsonKey(
+      name: 'type',
+      toJson: verificationAttributeTypeToJson,
+      fromJson: verificationAttributeTypeFromJson)
+  final enums.VerificationAttributeType? type;
+  static const fromJsonFactory = _$VerificationAttributeFromJson;
+  static const toJsonFactory = _$VerificationAttributeToJson;
+  Map<String, dynamic> toJson() => _$VerificationAttributeToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VerificationAttribute &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^ runtimeType.hashCode;
+}
+
+extension $VerificationAttributeExtension on VerificationAttribute {
+  VerificationAttribute copyWith({enums.VerificationAttributeType? type}) {
+    return VerificationAttribute(type: type ?? this.type);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class IncomeVerificationDocumentsDownloadRequest {
   IncomeVerificationDocumentsDownloadRequest({
     this.clientId,
     this.secret,
     this.incomeVerificationId,
+    this.accessToken,
+    this.documentId,
   });
 
   factory IncomeVerificationDocumentsDownloadRequest.fromJson(
@@ -17696,6 +27147,10 @@ class IncomeVerificationDocumentsDownloadRequest {
   final String? secret;
   @JsonKey(name: 'income_verification_id')
   final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'document_id')
+  final String? documentId;
   static const fromJsonFactory =
       _$IncomeVerificationDocumentsDownloadRequestFromJson;
   static const toJsonFactory =
@@ -17713,55 +27168,569 @@ class IncomeVerificationDocumentsDownloadRequest {
             (identical(other.secret, secret) ||
                 const DeepCollectionEquality().equals(other.secret, secret)) &&
             (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.incomeVerificationId, incomeVerificationId)));
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.documentId, documentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.documentId, documentId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(documentId) ^
+      runtimeType.hashCode;
 }
 
 extension $IncomeVerificationDocumentsDownloadRequestExtension
     on IncomeVerificationDocumentsDownloadRequest {
   IncomeVerificationDocumentsDownloadRequest copyWith(
-      {String? clientId, String? secret, String? incomeVerificationId}) {
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken,
+      String? documentId}) {
     return IncomeVerificationDocumentsDownloadRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
-        incomeVerificationId:
-            incomeVerificationId ?? this.incomeVerificationId);
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken,
+        documentId: documentId ?? this.documentId);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class IncomeVerificationDocumentsDownloadResponse {
-  IncomeVerificationDocumentsDownloadResponse({
-    this.id,
+class IncomeVerificationTaxformsGetRequest {
+  IncomeVerificationTaxformsGetRequest({
+    this.clientId,
+    this.secret,
+    this.incomeVerificationId,
+    this.accessToken,
   });
 
-  factory IncomeVerificationDocumentsDownloadResponse.fromJson(
+  factory IncomeVerificationTaxformsGetRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$IncomeVerificationDocumentsDownloadResponseFromJson(json);
+      _$IncomeVerificationTaxformsGetRequestFromJson(json);
 
-  @JsonKey(name: 'id')
-  final String? id;
-  static const fromJsonFactory =
-      _$IncomeVerificationDocumentsDownloadResponseFromJson;
-  static const toJsonFactory =
-      _$IncomeVerificationDocumentsDownloadResponseToJson;
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'income_verification_id')
+  final String? incomeVerificationId;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  static const fromJsonFactory = _$IncomeVerificationTaxformsGetRequestFromJson;
+  static const toJsonFactory = _$IncomeVerificationTaxformsGetRequestToJson;
   Map<String, dynamic> toJson() =>
-      _$IncomeVerificationDocumentsDownloadResponseToJson(this);
+      _$IncomeVerificationTaxformsGetRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is IncomeVerificationDocumentsDownloadResponse &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other is IncomeVerificationTaxformsGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.incomeVerificationId, incomeVerificationId) ||
+                const DeepCollectionEquality().equals(
+                    other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationTaxformsGetRequestExtension
+    on IncomeVerificationTaxformsGetRequest {
+  IncomeVerificationTaxformsGetRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? incomeVerificationId,
+      String? accessToken}) {
+    return IncomeVerificationTaxformsGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        accessToken: accessToken ?? this.accessToken);
   }
 }
 
-extension $IncomeVerificationDocumentsDownloadResponseExtension
-    on IncomeVerificationDocumentsDownloadResponse {
-  IncomeVerificationDocumentsDownloadResponse copyWith({String? id}) {
-    return IncomeVerificationDocumentsDownloadResponse(id: id ?? this.id);
+@JsonSerializable(explicitToJson: true)
+class IncomeVerificationTaxformsGetResponse {
+  IncomeVerificationTaxformsGetResponse({
+    this.requestId,
+    this.documentMetadata,
+    this.taxforms,
+    this.error,
+  });
+
+  factory IncomeVerificationTaxformsGetResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$IncomeVerificationTaxformsGetResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  @JsonKey(name: 'document_metadata', defaultValue: <DocumentMetadata>[])
+  final List<DocumentMetadata>? documentMetadata;
+  @JsonKey(name: 'taxforms', defaultValue: <Taxform>[])
+  final List<Taxform>? taxforms;
+  @JsonKey(name: 'error')
+  final Error? error;
+  static const fromJsonFactory =
+      _$IncomeVerificationTaxformsGetResponseFromJson;
+  static const toJsonFactory = _$IncomeVerificationTaxformsGetResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$IncomeVerificationTaxformsGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is IncomeVerificationTaxformsGetResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.documentMetadata, documentMetadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.documentMetadata, documentMetadata)) &&
+            (identical(other.taxforms, taxforms) ||
+                const DeepCollectionEquality()
+                    .equals(other.taxforms, taxforms)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(documentMetadata) ^
+      const DeepCollectionEquality().hash(taxforms) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
+}
+
+extension $IncomeVerificationTaxformsGetResponseExtension
+    on IncomeVerificationTaxformsGetResponse {
+  IncomeVerificationTaxformsGetResponse copyWith(
+      {String? requestId,
+      List<DocumentMetadata>? documentMetadata,
+      List<Taxform>? taxforms,
+      Error? error}) {
+    return IncomeVerificationTaxformsGetResponse(
+        requestId: requestId ?? this.requestId,
+        documentMetadata: documentMetadata ?? this.documentMetadata,
+        taxforms: taxforms ?? this.taxforms,
+        error: error ?? this.error);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class Taxform {
+  Taxform({
+    this.docId,
+    this.documentType,
+    this.w2,
+  });
+
+  factory Taxform.fromJson(Map<String, dynamic> json) =>
+      _$TaxformFromJson(json);
+
+  @JsonKey(name: 'doc_id')
+  final String? docId;
+  @JsonKey(name: 'document_type')
+  final String? documentType;
+  @JsonKey(name: 'w2')
+  final W2? w2;
+  static const fromJsonFactory = _$TaxformFromJson;
+  static const toJsonFactory = _$TaxformToJson;
+  Map<String, dynamic> toJson() => _$TaxformToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Taxform &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.documentType, documentType) ||
+                const DeepCollectionEquality()
+                    .equals(other.documentType, documentType)) &&
+            (identical(other.w2, w2) ||
+                const DeepCollectionEquality().equals(other.w2, w2)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(documentType) ^
+      const DeepCollectionEquality().hash(w2) ^
+      runtimeType.hashCode;
+}
+
+extension $TaxformExtension on Taxform {
+  Taxform copyWith({String? docId, String? documentType, W2? w2}) {
+    return Taxform(
+        docId: docId ?? this.docId,
+        documentType: documentType ?? this.documentType,
+        w2: w2 ?? this.w2);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class W2 {
+  W2({
+    this.employer,
+    this.employee,
+    this.taxYear,
+    this.employerIdNumber,
+    this.wagesTipsOtherComp,
+    this.federalIncomeTaxWithheld,
+    this.socialSecurityWages,
+    this.socialSecurityTaxWithheld,
+    this.medicareWagesAndTips,
+    this.medicareTaxWithheld,
+    this.socialSecurityTips,
+    this.allocatedTips,
+    this.box9,
+    this.dependentCareBenefits,
+    this.nonqualifiedPlans,
+    this.box12,
+    this.statutoryEmployee,
+    this.retirementPlan,
+    this.thirdPartySickPay,
+    this.other,
+    this.stateAndLocalWages,
+  });
+
+  factory W2.fromJson(Map<String, dynamic> json) => _$W2FromJson(json);
+
+  @JsonKey(name: 'employer')
+  final PaystubEmployer? employer;
+  @JsonKey(name: 'employee')
+  final Employee? employee;
+  @JsonKey(name: 'tax_year')
+  final String? taxYear;
+  @JsonKey(name: 'employer_id_number')
+  final String? employerIdNumber;
+  @JsonKey(name: 'wages_tips_other_comp')
+  final String? wagesTipsOtherComp;
+  @JsonKey(name: 'federal_income_tax_withheld')
+  final String? federalIncomeTaxWithheld;
+  @JsonKey(name: 'social_security_wages')
+  final String? socialSecurityWages;
+  @JsonKey(name: 'social_security_tax_withheld')
+  final String? socialSecurityTaxWithheld;
+  @JsonKey(name: 'medicare_wages_and_tips')
+  final String? medicareWagesAndTips;
+  @JsonKey(name: 'medicare_tax_withheld')
+  final String? medicareTaxWithheld;
+  @JsonKey(name: 'social_security_tips')
+  final String? socialSecurityTips;
+  @JsonKey(name: 'allocated_tips')
+  final String? allocatedTips;
+  @JsonKey(name: 'box_9')
+  final String? box9;
+  @JsonKey(name: 'dependent_care_benefits')
+  final String? dependentCareBenefits;
+  @JsonKey(name: 'nonqualified_plans')
+  final String? nonqualifiedPlans;
+  @JsonKey(name: 'box_12', defaultValue: <W2Box12>[])
+  final List<W2Box12>? box12;
+  @JsonKey(name: 'statutory_employee')
+  final String? statutoryEmployee;
+  @JsonKey(name: 'retirement_plan')
+  final String? retirementPlan;
+  @JsonKey(name: 'third_party_sick_pay')
+  final String? thirdPartySickPay;
+  @JsonKey(name: 'other')
+  final String? other;
+  @JsonKey(
+      name: 'state_and_local_wages', defaultValue: <W2StateAndLocalWages>[])
+  final List<W2StateAndLocalWages>? stateAndLocalWages;
+  static const fromJsonFactory = _$W2FromJson;
+  static const toJsonFactory = _$W2ToJson;
+  Map<String, dynamic> toJson() => _$W2ToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is W2 &&
+            (identical(other.employer, employer) ||
+                const DeepCollectionEquality()
+                    .equals(other.employer, employer)) &&
+            (identical(other.employee, employee) ||
+                const DeepCollectionEquality()
+                    .equals(other.employee, employee)) &&
+            (identical(other.taxYear, taxYear) ||
+                const DeepCollectionEquality()
+                    .equals(other.taxYear, taxYear)) &&
+            (identical(other.employerIdNumber, employerIdNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.employerIdNumber, employerIdNumber)) &&
+            (identical(other.wagesTipsOtherComp, wagesTipsOtherComp) ||
+                const DeepCollectionEquality()
+                    .equals(other.wagesTipsOtherComp, wagesTipsOtherComp)) &&
+            (identical(other.federalIncomeTaxWithheld, federalIncomeTaxWithheld) ||
+                const DeepCollectionEquality().equals(
+                    other.federalIncomeTaxWithheld,
+                    federalIncomeTaxWithheld)) &&
+            (identical(other.socialSecurityWages, socialSecurityWages) ||
+                const DeepCollectionEquality()
+                    .equals(other.socialSecurityWages, socialSecurityWages)) &&
+            (identical(other.socialSecurityTaxWithheld, socialSecurityTaxWithheld) ||
+                const DeepCollectionEquality().equals(
+                    other.socialSecurityTaxWithheld,
+                    socialSecurityTaxWithheld)) &&
+            (identical(other.medicareWagesAndTips, medicareWagesAndTips) ||
+                const DeepCollectionEquality().equals(
+                    other.medicareWagesAndTips, medicareWagesAndTips)) &&
+            (identical(other.medicareTaxWithheld, medicareTaxWithheld) ||
+                const DeepCollectionEquality()
+                    .equals(other.medicareTaxWithheld, medicareTaxWithheld)) &&
+            (identical(other.socialSecurityTips, socialSecurityTips) ||
+                const DeepCollectionEquality()
+                    .equals(other.socialSecurityTips, socialSecurityTips)) &&
+            (identical(other.allocatedTips, allocatedTips) ||
+                const DeepCollectionEquality()
+                    .equals(other.allocatedTips, allocatedTips)) &&
+            (identical(other.box9, box9) ||
+                const DeepCollectionEquality().equals(other.box9, box9)) &&
+            (identical(other.dependentCareBenefits, dependentCareBenefits) ||
+                const DeepCollectionEquality().equals(
+                    other.dependentCareBenefits, dependentCareBenefits)) &&
+            (identical(other.nonqualifiedPlans, nonqualifiedPlans) ||
+                const DeepCollectionEquality()
+                    .equals(other.nonqualifiedPlans, nonqualifiedPlans)) &&
+            (identical(other.box12, box12) || const DeepCollectionEquality().equals(other.box12, box12)) &&
+            (identical(other.statutoryEmployee, statutoryEmployee) || const DeepCollectionEquality().equals(other.statutoryEmployee, statutoryEmployee)) &&
+            (identical(other.retirementPlan, retirementPlan) || const DeepCollectionEquality().equals(other.retirementPlan, retirementPlan)) &&
+            (identical(other.thirdPartySickPay, thirdPartySickPay) || const DeepCollectionEquality().equals(other.thirdPartySickPay, thirdPartySickPay)) &&
+            (identical(other.other, other) || const DeepCollectionEquality().equals(other.other, other)) &&
+            (identical(other.stateAndLocalWages, stateAndLocalWages) || const DeepCollectionEquality().equals(other.stateAndLocalWages, stateAndLocalWages)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employer) ^
+      const DeepCollectionEquality().hash(employee) ^
+      const DeepCollectionEquality().hash(taxYear) ^
+      const DeepCollectionEquality().hash(employerIdNumber) ^
+      const DeepCollectionEquality().hash(wagesTipsOtherComp) ^
+      const DeepCollectionEquality().hash(federalIncomeTaxWithheld) ^
+      const DeepCollectionEquality().hash(socialSecurityWages) ^
+      const DeepCollectionEquality().hash(socialSecurityTaxWithheld) ^
+      const DeepCollectionEquality().hash(medicareWagesAndTips) ^
+      const DeepCollectionEquality().hash(medicareTaxWithheld) ^
+      const DeepCollectionEquality().hash(socialSecurityTips) ^
+      const DeepCollectionEquality().hash(allocatedTips) ^
+      const DeepCollectionEquality().hash(box9) ^
+      const DeepCollectionEquality().hash(dependentCareBenefits) ^
+      const DeepCollectionEquality().hash(nonqualifiedPlans) ^
+      const DeepCollectionEquality().hash(box12) ^
+      const DeepCollectionEquality().hash(statutoryEmployee) ^
+      const DeepCollectionEquality().hash(retirementPlan) ^
+      const DeepCollectionEquality().hash(thirdPartySickPay) ^
+      const DeepCollectionEquality().hash(other) ^
+      const DeepCollectionEquality().hash(stateAndLocalWages) ^
+      runtimeType.hashCode;
+}
+
+extension $W2Extension on W2 {
+  W2 copyWith(
+      {PaystubEmployer? employer,
+      Employee? employee,
+      String? taxYear,
+      String? employerIdNumber,
+      String? wagesTipsOtherComp,
+      String? federalIncomeTaxWithheld,
+      String? socialSecurityWages,
+      String? socialSecurityTaxWithheld,
+      String? medicareWagesAndTips,
+      String? medicareTaxWithheld,
+      String? socialSecurityTips,
+      String? allocatedTips,
+      String? box9,
+      String? dependentCareBenefits,
+      String? nonqualifiedPlans,
+      List<W2Box12>? box12,
+      String? statutoryEmployee,
+      String? retirementPlan,
+      String? thirdPartySickPay,
+      String? other,
+      List<W2StateAndLocalWages>? stateAndLocalWages}) {
+    return W2(
+        employer: employer ?? this.employer,
+        employee: employee ?? this.employee,
+        taxYear: taxYear ?? this.taxYear,
+        employerIdNumber: employerIdNumber ?? this.employerIdNumber,
+        wagesTipsOtherComp: wagesTipsOtherComp ?? this.wagesTipsOtherComp,
+        federalIncomeTaxWithheld:
+            federalIncomeTaxWithheld ?? this.federalIncomeTaxWithheld,
+        socialSecurityWages: socialSecurityWages ?? this.socialSecurityWages,
+        socialSecurityTaxWithheld:
+            socialSecurityTaxWithheld ?? this.socialSecurityTaxWithheld,
+        medicareWagesAndTips: medicareWagesAndTips ?? this.medicareWagesAndTips,
+        medicareTaxWithheld: medicareTaxWithheld ?? this.medicareTaxWithheld,
+        socialSecurityTips: socialSecurityTips ?? this.socialSecurityTips,
+        allocatedTips: allocatedTips ?? this.allocatedTips,
+        box9: box9 ?? this.box9,
+        dependentCareBenefits:
+            dependentCareBenefits ?? this.dependentCareBenefits,
+        nonqualifiedPlans: nonqualifiedPlans ?? this.nonqualifiedPlans,
+        box12: box12 ?? this.box12,
+        statutoryEmployee: statutoryEmployee ?? this.statutoryEmployee,
+        retirementPlan: retirementPlan ?? this.retirementPlan,
+        thirdPartySickPay: thirdPartySickPay ?? this.thirdPartySickPay,
+        other: other ?? this.other,
+        stateAndLocalWages: stateAndLocalWages ?? this.stateAndLocalWages);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class W2Box12 {
+  W2Box12({
+    this.code,
+    this.amount,
+  });
+
+  factory W2Box12.fromJson(Map<String, dynamic> json) =>
+      _$W2Box12FromJson(json);
+
+  @JsonKey(name: 'code')
+  final String? code;
+  @JsonKey(name: 'amount')
+  final String? amount;
+  static const fromJsonFactory = _$W2Box12FromJson;
+  static const toJsonFactory = _$W2Box12ToJson;
+  Map<String, dynamic> toJson() => _$W2Box12ToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is W2Box12 &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(amount) ^
+      runtimeType.hashCode;
+}
+
+extension $W2Box12Extension on W2Box12 {
+  W2Box12 copyWith({String? code, String? amount}) {
+    return W2Box12(code: code ?? this.code, amount: amount ?? this.amount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class W2StateAndLocalWages {
+  W2StateAndLocalWages({
+    this.state,
+    this.employerStateIdNumber,
+    this.stateWagesTips,
+    this.stateIncomeTax,
+    this.localWagesTips,
+    this.localIncomeTax,
+    this.localityName,
+  });
+
+  factory W2StateAndLocalWages.fromJson(Map<String, dynamic> json) =>
+      _$W2StateAndLocalWagesFromJson(json);
+
+  @JsonKey(name: 'state')
+  final String? state;
+  @JsonKey(name: 'employer_state_id_number')
+  final String? employerStateIdNumber;
+  @JsonKey(name: 'state_wages_tips')
+  final String? stateWagesTips;
+  @JsonKey(name: 'state_income_tax')
+  final String? stateIncomeTax;
+  @JsonKey(name: 'local_wages_tips')
+  final String? localWagesTips;
+  @JsonKey(name: 'local_income_tax')
+  final String? localIncomeTax;
+  @JsonKey(name: 'locality_name')
+  final String? localityName;
+  static const fromJsonFactory = _$W2StateAndLocalWagesFromJson;
+  static const toJsonFactory = _$W2StateAndLocalWagesToJson;
+  Map<String, dynamic> toJson() => _$W2StateAndLocalWagesToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is W2StateAndLocalWages &&
+            (identical(other.state, state) ||
+                const DeepCollectionEquality().equals(other.state, state)) &&
+            (identical(other.employerStateIdNumber, employerStateIdNumber) ||
+                const DeepCollectionEquality().equals(
+                    other.employerStateIdNumber, employerStateIdNumber)) &&
+            (identical(other.stateWagesTips, stateWagesTips) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateWagesTips, stateWagesTips)) &&
+            (identical(other.stateIncomeTax, stateIncomeTax) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateIncomeTax, stateIncomeTax)) &&
+            (identical(other.localWagesTips, localWagesTips) ||
+                const DeepCollectionEquality()
+                    .equals(other.localWagesTips, localWagesTips)) &&
+            (identical(other.localIncomeTax, localIncomeTax) ||
+                const DeepCollectionEquality()
+                    .equals(other.localIncomeTax, localIncomeTax)) &&
+            (identical(other.localityName, localityName) ||
+                const DeepCollectionEquality()
+                    .equals(other.localityName, localityName)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(state) ^
+      const DeepCollectionEquality().hash(employerStateIdNumber) ^
+      const DeepCollectionEquality().hash(stateWagesTips) ^
+      const DeepCollectionEquality().hash(stateIncomeTax) ^
+      const DeepCollectionEquality().hash(localWagesTips) ^
+      const DeepCollectionEquality().hash(localIncomeTax) ^
+      const DeepCollectionEquality().hash(localityName) ^
+      runtimeType.hashCode;
+}
+
+extension $W2StateAndLocalWagesExtension on W2StateAndLocalWages {
+  W2StateAndLocalWages copyWith(
+      {String? state,
+      String? employerStateIdNumber,
+      String? stateWagesTips,
+      String? stateIncomeTax,
+      String? localWagesTips,
+      String? localIncomeTax,
+      String? localityName}) {
+    return W2StateAndLocalWages(
+        state: state ?? this.state,
+        employerStateIdNumber:
+            employerStateIdNumber ?? this.employerStateIdNumber,
+        stateWagesTips: stateWagesTips ?? this.stateWagesTips,
+        stateIncomeTax: stateIncomeTax ?? this.stateIncomeTax,
+        localWagesTips: localWagesTips ?? this.localWagesTips,
+        localIncomeTax: localIncomeTax ?? this.localIncomeTax,
+        localityName: localityName ?? this.localityName);
   }
 }
 
@@ -17788,6 +27757,10 @@ class IncomeVerificationWebhookStatus {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^ runtimeType.hashCode;
 }
 
 extension $IncomeVerificationWebhookStatusExtension
@@ -17798,7 +27771,293 @@ extension $IncomeVerificationWebhookStatusExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class AssetReportTransaction extends Transaction {
+class EmploymentVerificationGetRequest {
+  EmploymentVerificationGetRequest({
+    this.clientId,
+    this.secret,
+    this.accessToken,
+  });
+
+  factory EmploymentVerificationGetRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$EmploymentVerificationGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  static const fromJsonFactory = _$EmploymentVerificationGetRequestFromJson;
+  static const toJsonFactory = _$EmploymentVerificationGetRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$EmploymentVerificationGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EmploymentVerificationGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
+}
+
+extension $EmploymentVerificationGetRequestExtension
+    on EmploymentVerificationGetRequest {
+  EmploymentVerificationGetRequest copyWith(
+      {String? clientId, String? secret, String? accessToken}) {
+    return EmploymentVerificationGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        accessToken: accessToken ?? this.accessToken);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EmploymentVerificationGetResponse {
+  EmploymentVerificationGetResponse({
+    this.employments,
+    this.error,
+    this.requestId,
+  });
+
+  factory EmploymentVerificationGetResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$EmploymentVerificationGetResponseFromJson(json);
+
+  @JsonKey(name: 'employments', defaultValue: <EmploymentVerification>[])
+  final List<EmploymentVerification>? employments;
+  @JsonKey(name: 'error')
+  final Error? error;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$EmploymentVerificationGetResponseFromJson;
+  static const toJsonFactory = _$EmploymentVerificationGetResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$EmploymentVerificationGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EmploymentVerificationGetResponse &&
+            (identical(other.employments, employments) ||
+                const DeepCollectionEquality()
+                    .equals(other.employments, employments)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employments) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $EmploymentVerificationGetResponseExtension
+    on EmploymentVerificationGetResponse {
+  EmploymentVerificationGetResponse copyWith(
+      {List<EmploymentVerification>? employments,
+      Error? error,
+      String? requestId}) {
+    return EmploymentVerificationGetResponse(
+        employments: employments ?? this.employments,
+        error: error ?? this.error,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EmploymentVerification {
+  EmploymentVerification({
+    this.status,
+    this.startDate,
+    this.endDate,
+    this.employer,
+    this.title,
+    this.platformIds,
+  });
+
+  factory EmploymentVerification.fromJson(Map<String, dynamic> json) =>
+      _$EmploymentVerificationFromJson(json);
+
+  @JsonKey(
+      name: 'status',
+      toJson: employmentVerificationStatusToJson,
+      fromJson: employmentVerificationStatusFromJson)
+  final enums.EmploymentVerificationStatus? status;
+  @JsonKey(name: 'start_date', toJson: _dateToJson)
+  final DateTime? startDate;
+  @JsonKey(name: 'end_date', toJson: _dateToJson)
+  final DateTime? endDate;
+  @JsonKey(name: 'employer')
+  final EmployerVerification? employer;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'platform_ids')
+  final PlatformIds? platformIds;
+  static const fromJsonFactory = _$EmploymentVerificationFromJson;
+  static const toJsonFactory = _$EmploymentVerificationToJson;
+  Map<String, dynamic> toJson() => _$EmploymentVerificationToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EmploymentVerification &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.employer, employer) ||
+                const DeepCollectionEquality()
+                    .equals(other.employer, employer)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.platformIds, platformIds) ||
+                const DeepCollectionEquality()
+                    .equals(other.platformIds, platformIds)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(employer) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(platformIds) ^
+      runtimeType.hashCode;
+}
+
+extension $EmploymentVerificationExtension on EmploymentVerification {
+  EmploymentVerification copyWith(
+      {enums.EmploymentVerificationStatus? status,
+      DateTime? startDate,
+      DateTime? endDate,
+      EmployerVerification? employer,
+      String? title,
+      PlatformIds? platformIds}) {
+    return EmploymentVerification(
+        status: status ?? this.status,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        employer: employer ?? this.employer,
+        title: title ?? this.title,
+        platformIds: platformIds ?? this.platformIds);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EmployerVerification {
+  EmployerVerification({
+    this.name,
+  });
+
+  factory EmployerVerification.fromJson(Map<String, dynamic> json) =>
+      _$EmployerVerificationFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  static const fromJsonFactory = _$EmployerVerificationFromJson;
+  static const toJsonFactory = _$EmployerVerificationToJson;
+  Map<String, dynamic> toJson() => _$EmployerVerificationToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EmployerVerification &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
+}
+
+extension $EmployerVerificationExtension on EmployerVerification {
+  EmployerVerification copyWith({String? name}) {
+    return EmployerVerification(name: name ?? this.name);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PlatformIds {
+  PlatformIds({
+    this.employeeId,
+    this.payrollId,
+    this.positionId,
+  });
+
+  factory PlatformIds.fromJson(Map<String, dynamic> json) =>
+      _$PlatformIdsFromJson(json);
+
+  @JsonKey(name: 'employee_id')
+  final String? employeeId;
+  @JsonKey(name: 'payroll_id')
+  final String? payrollId;
+  @JsonKey(name: 'position_id')
+  final String? positionId;
+  static const fromJsonFactory = _$PlatformIdsFromJson;
+  static const toJsonFactory = _$PlatformIdsToJson;
+  Map<String, dynamic> toJson() => _$PlatformIdsToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PlatformIds &&
+            (identical(other.employeeId, employeeId) ||
+                const DeepCollectionEquality()
+                    .equals(other.employeeId, employeeId)) &&
+            (identical(other.payrollId, payrollId) ||
+                const DeepCollectionEquality()
+                    .equals(other.payrollId, payrollId)) &&
+            (identical(other.positionId, positionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.positionId, positionId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(employeeId) ^
+      const DeepCollectionEquality().hash(payrollId) ^
+      const DeepCollectionEquality().hash(positionId) ^
+      runtimeType.hashCode;
+}
+
+extension $PlatformIdsExtension on PlatformIds {
+  PlatformIds copyWith(
+      {String? employeeId, String? payrollId, String? positionId}) {
+    return PlatformIds(
+        employeeId: employeeId ?? this.employeeId,
+        payrollId: payrollId ?? this.payrollId,
+        positionId: positionId ?? this.positionId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class AssetReportTransaction extends TransactionBase {
   AssetReportTransaction({
     this.dateTransacted,
   });
@@ -17820,6 +28079,11 @@ class AssetReportTransaction extends Transaction {
                 const DeepCollectionEquality()
                     .equals(other.dateTransacted, dateTransacted)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dateTransacted) ^
+      runtimeType.hashCode;
 }
 
 extension $AssetReportTransactionExtension on AssetReportTransaction {
@@ -17842,9 +28106,9 @@ class HealthIncident {
       _$HealthIncidentFromJson(json);
 
   @JsonKey(name: 'start_date')
-  final String? startDate;
+  final DateTime? startDate;
   @JsonKey(name: 'end_date')
-  final String? endDate;
+  final DateTime? endDate;
   @JsonKey(name: 'title')
   final String? title;
   @JsonKey(name: 'incident_updates', defaultValue: <IncidentUpdate>[])
@@ -17869,12 +28133,20 @@ class HealthIncident {
                 const DeepCollectionEquality()
                     .equals(other.incidentUpdates, incidentUpdates)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(incidentUpdates) ^
+      runtimeType.hashCode;
 }
 
 extension $HealthIncidentExtension on HealthIncident {
   HealthIncident copyWith(
-      {String? startDate,
-      String? endDate,
+      {DateTime? startDate,
+      DateTime? endDate,
       String? title,
       List<IncidentUpdate>? incidentUpdates}) {
     return HealthIncident(
@@ -17904,7 +28176,7 @@ class IncidentUpdate {
       fromJson: incidentUpdateStatusFromJson)
   final enums.IncidentUpdateStatus? status;
   @JsonKey(name: 'updated_date')
-  final String? updatedDate;
+  final DateTime? updatedDate;
   static const fromJsonFactory = _$IncidentUpdateFromJson;
   static const toJsonFactory = _$IncidentUpdateToJson;
   Map<String, dynamic> toJson() => _$IncidentUpdateToJson(this);
@@ -17922,13 +28194,20 @@ class IncidentUpdate {
                 const DeepCollectionEquality()
                     .equals(other.updatedDate, updatedDate)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(updatedDate) ^
+      runtimeType.hashCode;
 }
 
 extension $IncidentUpdateExtension on IncidentUpdate {
   IncidentUpdate copyWith(
       {String? description,
       enums.IncidentUpdateStatus? status,
-      String? updatedDate}) {
+      DateTime? updatedDate}) {
     return IncidentUpdate(
         description: description ?? this.description,
         status: status ?? this.status,
@@ -17991,6 +28270,16 @@ class DepositSwitchAltCreateRequest {
                 const DeepCollectionEquality()
                     .equals(other.countryCode, countryCode)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(targetAccount) ^
+      const DeepCollectionEquality().hash(targetUser) ^
+      const DeepCollectionEquality().hash(options) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchAltCreateRequestExtension
@@ -18041,6 +28330,12 @@ class DepositSwitchAltCreateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depositSwitchId) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchAltCreateResponseExtension
@@ -18097,6 +28392,14 @@ class DepositSwitchTargetAccount {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtype, accountSubtype)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountNumber) ^
+      const DeepCollectionEquality().hash(routingNumber) ^
+      const DeepCollectionEquality().hash(accountName) ^
+      const DeepCollectionEquality().hash(accountSubtype) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchTargetAccountExtension on DepositSwitchTargetAccount {
@@ -18164,6 +28467,16 @@ class DepositSwitchTargetUser {
                 const DeepCollectionEquality()
                     .equals(other.taxPayerId, taxPayerId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(givenName) ^
+      const DeepCollectionEquality().hash(familyName) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(taxPayerId) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchTargetUserExtension on DepositSwitchTargetUser {
@@ -18227,6 +28540,15 @@ class DepositSwitchAddressData {
             (identical(other.country, country) ||
                 const DeepCollectionEquality().equals(other.country, country)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
 }
 
 extension $DepositSwitchAddressDataExtension on DepositSwitchAddressData {
@@ -18281,6 +28603,13 @@ class SandboxBankTransferFireWebhookRequest {
             (identical(other.webhook, webhook) ||
                 const DeepCollectionEquality().equals(other.webhook, webhook)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxBankTransferFireWebhookRequestExtension
@@ -18320,6 +28649,10 @@ class SandboxBankTransferFireWebhookResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $SandboxBankTransferFireWebhookResponseExtension
@@ -18348,8 +28681,8 @@ class Application {
   final String? applicationId;
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
+  @JsonKey(name: 'created_at', toJson: _dateToJson)
+  final DateTime? createdAt;
   @JsonKey(name: 'logo_url')
   final String? logoUrl;
   @JsonKey(name: 'application_url')
@@ -18382,13 +28715,23 @@ class Application {
                 const DeepCollectionEquality()
                     .equals(other.reasonForAccess, reasonForAccess)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(applicationId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(logoUrl) ^
+      const DeepCollectionEquality().hash(applicationUrl) ^
+      const DeepCollectionEquality().hash(reasonForAccess) ^
+      runtimeType.hashCode;
 }
 
 extension $ApplicationExtension on Application {
   Application copyWith(
       {String? applicationId,
       String? name,
-      String? createdAt,
+      DateTime? createdAt,
       String? logoUrl,
       String? applicationUrl,
       String? reasonForAccess}) {
@@ -18436,6 +28779,13 @@ class ApplicationGetRequest {
                 const DeepCollectionEquality()
                     .equals(other.applicationId, applicationId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(applicationId) ^
+      runtimeType.hashCode;
 }
 
 extension $ApplicationGetRequestExtension on ApplicationGetRequest {
@@ -18477,6 +28827,12 @@ class ApplicationGetResponse {
                 const DeepCollectionEquality()
                     .equals(other.application, application)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(application) ^
+      runtimeType.hashCode;
 }
 
 extension $ApplicationGetResponseExtension on ApplicationGetResponse {
@@ -18528,6 +28884,14 @@ class ProductAccess {
                 const DeepCollectionEquality()
                     .equals(other.transactions, transactions)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(statements) ^
+      const DeepCollectionEquality().hash(identity) ^
+      const DeepCollectionEquality().hash(auth) ^
+      const DeepCollectionEquality().hash(transactions) ^
+      runtimeType.hashCode;
 }
 
 extension $ProductAccessExtension on ProductAccess {
@@ -18546,6 +28910,7 @@ class AccountAccess {
   AccountAccess({
     this.uniqueId,
     this.authorized,
+    this.accountProductAccess,
   });
 
   factory AccountAccess.fromJson(Map<String, dynamic> json) =>
@@ -18555,6 +28920,8 @@ class AccountAccess {
   final String? uniqueId;
   @JsonKey(name: 'authorized', defaultValue: true)
   final bool? authorized;
+  @JsonKey(name: 'account_product_access')
+  final AccountProductAccessNullable? accountProductAccess;
   static const fromJsonFactory = _$AccountAccessFromJson;
   static const toJsonFactory = _$AccountAccessToJson;
   Map<String, dynamic> toJson() => _$AccountAccessToJson(this);
@@ -18568,28 +28935,115 @@ class AccountAccess {
                     .equals(other.uniqueId, uniqueId)) &&
             (identical(other.authorized, authorized) ||
                 const DeepCollectionEquality()
-                    .equals(other.authorized, authorized)));
+                    .equals(other.authorized, authorized)) &&
+            (identical(other.accountProductAccess, accountProductAccess) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountProductAccess, accountProductAccess)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(uniqueId) ^
+      const DeepCollectionEquality().hash(authorized) ^
+      const DeepCollectionEquality().hash(accountProductAccess) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountAccessExtension on AccountAccess {
-  AccountAccess copyWith({String? uniqueId, bool? authorized}) {
+  AccountAccess copyWith(
+      {String? uniqueId,
+      bool? authorized,
+      AccountProductAccessNullable? accountProductAccess}) {
     return AccountAccess(
         uniqueId: uniqueId ?? this.uniqueId,
-        authorized: authorized ?? this.authorized);
+        authorized: authorized ?? this.authorized,
+        accountProductAccess:
+            accountProductAccess ?? this.accountProductAccess);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class NullableScopes extends Scopes {
-  NullableScopes();
+class AccountProductAccessNullable extends AccountProductAccess {
+  AccountProductAccessNullable();
 
-  factory NullableScopes.fromJson(Map<String, dynamic> json) =>
-      _$NullableScopesFromJson(json);
+  factory AccountProductAccessNullable.fromJson(Map<String, dynamic> json) =>
+      _$AccountProductAccessNullableFromJson(json);
 
-  static const fromJsonFactory = _$NullableScopesFromJson;
-  static const toJsonFactory = _$NullableScopesToJson;
-  Map<String, dynamic> toJson() => _$NullableScopesToJson(this);
+  static const fromJsonFactory = _$AccountProductAccessNullableFromJson;
+  static const toJsonFactory = _$AccountProductAccessNullableToJson;
+  Map<String, dynamic> toJson() => _$AccountProductAccessNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class AccountProductAccess {
+  AccountProductAccess({
+    this.accountData,
+    this.statements,
+    this.taxDocuments,
+  });
+
+  factory AccountProductAccess.fromJson(Map<String, dynamic> json) =>
+      _$AccountProductAccessFromJson(json);
+
+  @JsonKey(name: 'account_data', defaultValue: true)
+  final bool? accountData;
+  @JsonKey(name: 'statements', defaultValue: true)
+  final bool? statements;
+  @JsonKey(name: 'tax_documents', defaultValue: true)
+  final bool? taxDocuments;
+  static const fromJsonFactory = _$AccountProductAccessFromJson;
+  static const toJsonFactory = _$AccountProductAccessToJson;
+  Map<String, dynamic> toJson() => _$AccountProductAccessToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AccountProductAccess &&
+            (identical(other.accountData, accountData) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountData, accountData)) &&
+            (identical(other.statements, statements) ||
+                const DeepCollectionEquality()
+                    .equals(other.statements, statements)) &&
+            (identical(other.taxDocuments, taxDocuments) ||
+                const DeepCollectionEquality()
+                    .equals(other.taxDocuments, taxDocuments)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountData) ^
+      const DeepCollectionEquality().hash(statements) ^
+      const DeepCollectionEquality().hash(taxDocuments) ^
+      runtimeType.hashCode;
+}
+
+extension $AccountProductAccessExtension on AccountProductAccess {
+  AccountProductAccess copyWith(
+      {bool? accountData, bool? statements, bool? taxDocuments}) {
+    return AccountProductAccess(
+        accountData: accountData ?? this.accountData,
+        statements: statements ?? this.statements,
+        taxDocuments: taxDocuments ?? this.taxDocuments);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ScopesNullable extends Scopes {
+  ScopesNullable();
+
+  factory ScopesNullable.fromJson(Map<String, dynamic> json) =>
+      _$ScopesNullableFromJson(json);
+
+  static const fromJsonFactory = _$ScopesNullableFromJson;
+  static const toJsonFactory = _$ScopesNullableToJson;
+  Map<String, dynamic> toJson() => _$ScopesNullableToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -18626,6 +29080,13 @@ class Scopes {
                 const DeepCollectionEquality()
                     .equals(other.newAccounts, newAccounts)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(productAccess) ^
+      const DeepCollectionEquality().hash(accounts) ^
+      const DeepCollectionEquality().hash(newAccounts) ^
+      runtimeType.hashCode;
 }
 
 extension $ScopesExtension on Scopes {
@@ -18686,6 +29147,14 @@ class RequestedScopes {
                     other.accountSelectionCardinality,
                     accountSelectionCardinality)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requiredProductAccess) ^
+      const DeepCollectionEquality().hash(optionalProductAccess) ^
+      const DeepCollectionEquality().hash(accountFilters) ^
+      const DeepCollectionEquality().hash(accountSelectionCardinality) ^
+      runtimeType.hashCode;
 }
 
 extension $RequestedScopesExtension on RequestedScopes {
@@ -18713,6 +29182,8 @@ class ItemApplicationScopesUpdateRequest {
     this.accessToken,
     this.applicationId,
     this.scopes,
+    this.state,
+    this.context,
   });
 
   factory ItemApplicationScopesUpdateRequest.fromJson(
@@ -18729,6 +29200,13 @@ class ItemApplicationScopesUpdateRequest {
   final String? applicationId;
   @JsonKey(name: 'scopes')
   final Scopes? scopes;
+  @JsonKey(name: 'state')
+  final String? state;
+  @JsonKey(
+      name: 'context',
+      toJson: scopesContextToJson,
+      fromJson: scopesContextFromJson)
+  final enums.ScopesContext? context;
   static const fromJsonFactory = _$ItemApplicationScopesUpdateRequestFromJson;
   static const toJsonFactory = _$ItemApplicationScopesUpdateRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -18750,8 +29228,23 @@ class ItemApplicationScopesUpdateRequest {
                 const DeepCollectionEquality()
                     .equals(other.applicationId, applicationId)) &&
             (identical(other.scopes, scopes) ||
-                const DeepCollectionEquality().equals(other.scopes, scopes)));
+                const DeepCollectionEquality().equals(other.scopes, scopes)) &&
+            (identical(other.state, state) ||
+                const DeepCollectionEquality().equals(other.state, state)) &&
+            (identical(other.context, context) ||
+                const DeepCollectionEquality().equals(other.context, context)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(applicationId) ^
+      const DeepCollectionEquality().hash(scopes) ^
+      const DeepCollectionEquality().hash(state) ^
+      const DeepCollectionEquality().hash(context) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemApplicationScopesUpdateRequestExtension
@@ -18761,13 +29254,17 @@ extension $ItemApplicationScopesUpdateRequestExtension
       String? secret,
       String? accessToken,
       String? applicationId,
-      Scopes? scopes}) {
+      Scopes? scopes,
+      String? state,
+      enums.ScopesContext? context}) {
     return ItemApplicationScopesUpdateRequest(
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         accessToken: accessToken ?? this.accessToken,
         applicationId: applicationId ?? this.applicationId,
-        scopes: scopes ?? this.scopes);
+        scopes: scopes ?? this.scopes,
+        state: state ?? this.state,
+        context: context ?? this.context);
   }
 }
 
@@ -18796,6 +29293,10 @@ class ItemApplicationScopesUpdateResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $ItemApplicationScopesUpdateResponseExtension
@@ -18840,6 +29341,13 @@ class ItemApplicationListRequest {
                 const DeepCollectionEquality()
                     .equals(other.accessToken, accessToken)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemApplicationListRequestExtension on ItemApplicationListRequest {
@@ -18881,6 +29389,12 @@ class ItemApplicationListResponse {
                 const DeepCollectionEquality()
                     .equals(other.applications, applications)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(applications) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemApplicationListResponseExtension on ItemApplicationListResponse {
@@ -18898,6 +29412,7 @@ class ConnectedApplication {
     this.applicationId,
     this.name,
     this.logo,
+    this.logoUrl,
     this.applicationUrl,
     this.reasonForAccess,
     this.createdAt,
@@ -18915,19 +29430,21 @@ class ConnectedApplication {
   final String? name;
   @JsonKey(name: 'logo')
   final String? logo;
+  @JsonKey(name: 'logo_url')
+  final String? logoUrl;
   @JsonKey(name: 'application_url')
   final String? applicationUrl;
   @JsonKey(name: 'reason_for_access')
   final String? reasonForAccess;
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
+  @JsonKey(name: 'created_at', toJson: _dateToJson)
+  final DateTime? createdAt;
   @JsonKey(
       name: 'product_data_types',
       toJson: connectedApplicationProductDataTypesListToJson,
       fromJson: connectedApplicationProductDataTypesListFromJson)
   final List<enums.ConnectedApplicationProductDataTypes>? productDataTypes;
   @JsonKey(name: 'scopes')
-  final NullableScopes? scopes;
+  final ScopesNullable? scopes;
   @JsonKey(name: 'requested_scopes')
   final RequestedScopes? requestedScopes;
   static const fromJsonFactory = _$ConnectedApplicationFromJson;
@@ -18945,6 +29462,9 @@ class ConnectedApplication {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.logo, logo) ||
                 const DeepCollectionEquality().equals(other.logo, logo)) &&
+            (identical(other.logoUrl, logoUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.logoUrl, logoUrl)) &&
             (identical(other.applicationUrl, applicationUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.applicationUrl, applicationUrl)) &&
@@ -18963,6 +29483,20 @@ class ConnectedApplication {
                 const DeepCollectionEquality()
                     .equals(other.requestedScopes, requestedScopes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(applicationId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(logo) ^
+      const DeepCollectionEquality().hash(logoUrl) ^
+      const DeepCollectionEquality().hash(applicationUrl) ^
+      const DeepCollectionEquality().hash(reasonForAccess) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(productDataTypes) ^
+      const DeepCollectionEquality().hash(scopes) ^
+      const DeepCollectionEquality().hash(requestedScopes) ^
+      runtimeType.hashCode;
 }
 
 extension $ConnectedApplicationExtension on ConnectedApplication {
@@ -18970,16 +29504,18 @@ extension $ConnectedApplicationExtension on ConnectedApplication {
       {String? applicationId,
       String? name,
       String? logo,
+      String? logoUrl,
       String? applicationUrl,
       String? reasonForAccess,
-      String? createdAt,
+      DateTime? createdAt,
       List<enums.ConnectedApplicationProductDataTypes>? productDataTypes,
-      NullableScopes? scopes,
+      ScopesNullable? scopes,
       RequestedScopes? requestedScopes}) {
     return ConnectedApplication(
         applicationId: applicationId ?? this.applicationId,
         name: name ?? this.name,
         logo: logo ?? this.logo,
+        logoUrl: logoUrl ?? this.logoUrl,
         applicationUrl: applicationUrl ?? this.applicationUrl,
         reasonForAccess: reasonForAccess ?? this.reasonForAccess,
         createdAt: createdAt ?? this.createdAt,
@@ -19028,6 +29564,14 @@ class AccountFilter {
                 const DeepCollectionEquality()
                     .equals(other.investment, investment)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(depository) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(loan) ^
+      const DeepCollectionEquality().hash(investment) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountFilterExtension on AccountFilter {
@@ -19054,6 +29598,9 @@ class AccountFilterSubtypes {
   static const fromJsonFactory = _$AccountFilterSubtypesFromJson;
   static const toJsonFactory = _$AccountFilterSubtypesToJson;
   Map<String, dynamic> toJson() => _$AccountFilterSubtypesToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -19062,6 +29609,7 @@ class SandboxIncomeFireWebhookRequest {
     this.clientId,
     this.secret,
     this.incomeVerificationId,
+    this.itemId,
     this.webhook,
     this.verificationStatus,
   });
@@ -19075,6 +29623,8 @@ class SandboxIncomeFireWebhookRequest {
   final String? secret;
   @JsonKey(name: 'income_verification_id')
   final String? incomeVerificationId;
+  @JsonKey(name: 'item_id')
+  final String? itemId;
   @JsonKey(name: 'webhook')
   final String? webhook;
   @JsonKey(
@@ -19100,6 +29650,8 @@ class SandboxIncomeFireWebhookRequest {
             (identical(other.incomeVerificationId, incomeVerificationId) ||
                 const DeepCollectionEquality().equals(
                     other.incomeVerificationId, incomeVerificationId)) &&
+            (identical(other.itemId, itemId) ||
+                const DeepCollectionEquality().equals(other.itemId, itemId)) &&
             (identical(other.webhook, webhook) ||
                 const DeepCollectionEquality()
                     .equals(other.webhook, webhook)) &&
@@ -19107,6 +29659,16 @@ class SandboxIncomeFireWebhookRequest {
                 const DeepCollectionEquality()
                     .equals(other.verificationStatus, verificationStatus)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(incomeVerificationId) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(webhook) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $SandboxIncomeFireWebhookRequestExtension
@@ -19115,6 +29677,7 @@ extension $SandboxIncomeFireWebhookRequestExtension
       {String? clientId,
       String? secret,
       String? incomeVerificationId,
+      String? itemId,
       String? webhook,
       enums.SandboxIncomeFireWebhookRequestVerificationStatus?
           verificationStatus}) {
@@ -19122,6 +29685,7 @@ extension $SandboxIncomeFireWebhookRequestExtension
         clientId: clientId ?? this.clientId,
         secret: secret ?? this.secret,
         incomeVerificationId: incomeVerificationId ?? this.incomeVerificationId,
+        itemId: itemId ?? this.itemId,
         webhook: webhook ?? this.webhook,
         verificationStatus: verificationStatus ?? this.verificationStatus);
   }
@@ -19152,6 +29716,10 @@ class SandboxIncomeFireWebhookResponse {
                 const DeepCollectionEquality()
                     .equals(other.requestId, requestId)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
 }
 
 extension $SandboxIncomeFireWebhookResponseExtension
@@ -19190,6 +29758,12 @@ class ItemApplicationListUserAuth {
                 const DeepCollectionEquality()
                     .equals(other.fiUsernameHash, fiUsernameHash)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(fiUsernameHash) ^
+      runtimeType.hashCode;
 }
 
 extension $ItemApplicationListUserAuthExtension on ItemApplicationListUserAuth {
@@ -19198,6 +29772,1902 @@ extension $ItemApplicationListUserAuthExtension on ItemApplicationListUserAuth {
     return ItemApplicationListUserAuth(
         userId: userId ?? this.userId,
         fiUsernameHash: fiUsernameHash ?? this.fiUsernameHash);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalEvaluateRequest {
+  SignalEvaluateRequest({
+    this.clientId,
+    this.secret,
+    this.accessToken,
+    this.accountId,
+    this.clientTransactionId,
+    this.amount,
+    this.userPresent,
+    this.clientUserId,
+    this.user,
+    this.device,
+  });
+
+  factory SignalEvaluateRequest.fromJson(Map<String, dynamic> json) =>
+      _$SignalEvaluateRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'access_token')
+  final String? accessToken;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'client_transaction_id')
+  final String? clientTransactionId;
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'user_present')
+  final bool? userPresent;
+  @JsonKey(name: 'client_user_id')
+  final String? clientUserId;
+  @JsonKey(name: 'user')
+  final SignalUser? user;
+  @JsonKey(name: 'device')
+  final SignalDevice? device;
+  static const fromJsonFactory = _$SignalEvaluateRequestFromJson;
+  static const toJsonFactory = _$SignalEvaluateRequestToJson;
+  Map<String, dynamic> toJson() => _$SignalEvaluateRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalEvaluateRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.accessToken, accessToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessToken, accessToken)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.clientTransactionId, clientTransactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientTransactionId, clientTransactionId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.userPresent, userPresent) ||
+                const DeepCollectionEquality()
+                    .equals(other.userPresent, userPresent)) &&
+            (identical(other.clientUserId, clientUserId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientUserId, clientUserId)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.device, device) ||
+                const DeepCollectionEquality().equals(other.device, device)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(accessToken) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(clientTransactionId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(userPresent) ^
+      const DeepCollectionEquality().hash(clientUserId) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(device) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalEvaluateRequestExtension on SignalEvaluateRequest {
+  SignalEvaluateRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? accessToken,
+      String? accountId,
+      String? clientTransactionId,
+      double? amount,
+      bool? userPresent,
+      String? clientUserId,
+      SignalUser? user,
+      SignalDevice? device}) {
+    return SignalEvaluateRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        accessToken: accessToken ?? this.accessToken,
+        accountId: accountId ?? this.accountId,
+        clientTransactionId: clientTransactionId ?? this.clientTransactionId,
+        amount: amount ?? this.amount,
+        userPresent: userPresent ?? this.userPresent,
+        clientUserId: clientUserId ?? this.clientUserId,
+        user: user ?? this.user,
+        device: device ?? this.device);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalUser {
+  SignalUser({
+    this.name,
+    this.phoneNumber,
+    this.emailAddress,
+    this.address,
+  });
+
+  factory SignalUser.fromJson(Map<String, dynamic> json) =>
+      _$SignalUserFromJson(json);
+
+  @JsonKey(name: 'name')
+  final SignalPersonName? name;
+  @JsonKey(name: 'phone_number')
+  final String? phoneNumber;
+  @JsonKey(name: 'email_address')
+  final String? emailAddress;
+  @JsonKey(name: 'address')
+  final SignalAddressData? address;
+  static const fromJsonFactory = _$SignalUserFromJson;
+  static const toJsonFactory = _$SignalUserToJson;
+  Map<String, dynamic> toJson() => _$SignalUserToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalUser &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.emailAddress, emailAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailAddress, emailAddress)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalUserExtension on SignalUser {
+  SignalUser copyWith(
+      {SignalPersonName? name,
+      String? phoneNumber,
+      String? emailAddress,
+      SignalAddressData? address}) {
+    return SignalUser(
+        name: name ?? this.name,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+        emailAddress: emailAddress ?? this.emailAddress,
+        address: address ?? this.address);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalPersonName {
+  SignalPersonName({
+    this.prefix,
+    this.givenName,
+    this.middleName,
+    this.familyName,
+    this.suffix,
+  });
+
+  factory SignalPersonName.fromJson(Map<String, dynamic> json) =>
+      _$SignalPersonNameFromJson(json);
+
+  @JsonKey(name: 'prefix')
+  final String? prefix;
+  @JsonKey(name: 'given_name')
+  final String? givenName;
+  @JsonKey(name: 'middle_name')
+  final String? middleName;
+  @JsonKey(name: 'family_name')
+  final String? familyName;
+  @JsonKey(name: 'suffix')
+  final String? suffix;
+  static const fromJsonFactory = _$SignalPersonNameFromJson;
+  static const toJsonFactory = _$SignalPersonNameToJson;
+  Map<String, dynamic> toJson() => _$SignalPersonNameToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalPersonName &&
+            (identical(other.prefix, prefix) ||
+                const DeepCollectionEquality().equals(other.prefix, prefix)) &&
+            (identical(other.givenName, givenName) ||
+                const DeepCollectionEquality()
+                    .equals(other.givenName, givenName)) &&
+            (identical(other.middleName, middleName) ||
+                const DeepCollectionEquality()
+                    .equals(other.middleName, middleName)) &&
+            (identical(other.familyName, familyName) ||
+                const DeepCollectionEquality()
+                    .equals(other.familyName, familyName)) &&
+            (identical(other.suffix, suffix) ||
+                const DeepCollectionEquality().equals(other.suffix, suffix)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(prefix) ^
+      const DeepCollectionEquality().hash(givenName) ^
+      const DeepCollectionEquality().hash(middleName) ^
+      const DeepCollectionEquality().hash(familyName) ^
+      const DeepCollectionEquality().hash(suffix) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalPersonNameExtension on SignalPersonName {
+  SignalPersonName copyWith(
+      {String? prefix,
+      String? givenName,
+      String? middleName,
+      String? familyName,
+      String? suffix}) {
+    return SignalPersonName(
+        prefix: prefix ?? this.prefix,
+        givenName: givenName ?? this.givenName,
+        middleName: middleName ?? this.middleName,
+        familyName: familyName ?? this.familyName,
+        suffix: suffix ?? this.suffix);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalAddressData {
+  SignalAddressData({
+    this.city,
+    this.region,
+    this.street,
+    this.postalCode,
+    this.country,
+  });
+
+  factory SignalAddressData.fromJson(Map<String, dynamic> json) =>
+      _$SignalAddressDataFromJson(json);
+
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'region')
+  final String? region;
+  @JsonKey(name: 'street')
+  final String? street;
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @JsonKey(name: 'country')
+  final String? country;
+  static const fromJsonFactory = _$SignalAddressDataFromJson;
+  static const toJsonFactory = _$SignalAddressDataToJson;
+  Map<String, dynamic> toJson() => _$SignalAddressDataToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalAddressData &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.region, region) ||
+                const DeepCollectionEquality().equals(other.region, region)) &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality().equals(other.country, country)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalAddressDataExtension on SignalAddressData {
+  SignalAddressData copyWith(
+      {String? city,
+      String? region,
+      String? street,
+      String? postalCode,
+      String? country}) {
+    return SignalAddressData(
+        city: city ?? this.city,
+        region: region ?? this.region,
+        street: street ?? this.street,
+        postalCode: postalCode ?? this.postalCode,
+        country: country ?? this.country);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalDevice {
+  SignalDevice({
+    this.ipAddress,
+    this.userAgent,
+  });
+
+  factory SignalDevice.fromJson(Map<String, dynamic> json) =>
+      _$SignalDeviceFromJson(json);
+
+  @JsonKey(name: 'ip_address')
+  final String? ipAddress;
+  @JsonKey(name: 'user_agent')
+  final String? userAgent;
+  static const fromJsonFactory = _$SignalDeviceFromJson;
+  static const toJsonFactory = _$SignalDeviceToJson;
+  Map<String, dynamic> toJson() => _$SignalDeviceToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalDevice &&
+            (identical(other.ipAddress, ipAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.ipAddress, ipAddress)) &&
+            (identical(other.userAgent, userAgent) ||
+                const DeepCollectionEquality()
+                    .equals(other.userAgent, userAgent)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ipAddress) ^
+      const DeepCollectionEquality().hash(userAgent) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalDeviceExtension on SignalDevice {
+  SignalDevice copyWith({String? ipAddress, String? userAgent}) {
+    return SignalDevice(
+        ipAddress: ipAddress ?? this.ipAddress,
+        userAgent: userAgent ?? this.userAgent);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalEvaluateResponse {
+  SignalEvaluateResponse({
+    this.requestId,
+    this.scores,
+    this.coreAttributes,
+  });
+
+  factory SignalEvaluateResponse.fromJson(Map<String, dynamic> json) =>
+      _$SignalEvaluateResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  @JsonKey(name: 'scores')
+  final SignalScores? scores;
+  @JsonKey(name: 'core_attributes')
+  final SignalEvaluateCoreAttributes? coreAttributes;
+  static const fromJsonFactory = _$SignalEvaluateResponseFromJson;
+  static const toJsonFactory = _$SignalEvaluateResponseToJson;
+  Map<String, dynamic> toJson() => _$SignalEvaluateResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalEvaluateResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.scores, scores) ||
+                const DeepCollectionEquality().equals(other.scores, scores)) &&
+            (identical(other.coreAttributes, coreAttributes) ||
+                const DeepCollectionEquality()
+                    .equals(other.coreAttributes, coreAttributes)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(scores) ^
+      const DeepCollectionEquality().hash(coreAttributes) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalEvaluateResponseExtension on SignalEvaluateResponse {
+  SignalEvaluateResponse copyWith(
+      {String? requestId,
+      SignalScores? scores,
+      SignalEvaluateCoreAttributes? coreAttributes}) {
+    return SignalEvaluateResponse(
+        requestId: requestId ?? this.requestId,
+        scores: scores ?? this.scores,
+        coreAttributes: coreAttributes ?? this.coreAttributes);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalScores {
+  SignalScores({
+    this.customerInitiatedReturnRisk,
+    this.bankInitiatedReturnRisk,
+  });
+
+  factory SignalScores.fromJson(Map<String, dynamic> json) =>
+      _$SignalScoresFromJson(json);
+
+  @JsonKey(name: 'customer_initiated_return_risk')
+  final CustomerInitiatedReturnRisk? customerInitiatedReturnRisk;
+  @JsonKey(name: 'bank_initiated_return_risk')
+  final BankInitiatedReturnRisk? bankInitiatedReturnRisk;
+  static const fromJsonFactory = _$SignalScoresFromJson;
+  static const toJsonFactory = _$SignalScoresToJson;
+  Map<String, dynamic> toJson() => _$SignalScoresToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalScores &&
+            (identical(other.customerInitiatedReturnRisk,
+                    customerInitiatedReturnRisk) ||
+                const DeepCollectionEquality().equals(
+                    other.customerInitiatedReturnRisk,
+                    customerInitiatedReturnRisk)) &&
+            (identical(
+                    other.bankInitiatedReturnRisk, bankInitiatedReturnRisk) ||
+                const DeepCollectionEquality().equals(
+                    other.bankInitiatedReturnRisk, bankInitiatedReturnRisk)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(customerInitiatedReturnRisk) ^
+      const DeepCollectionEquality().hash(bankInitiatedReturnRisk) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalScoresExtension on SignalScores {
+  SignalScores copyWith(
+      {CustomerInitiatedReturnRisk? customerInitiatedReturnRisk,
+      BankInitiatedReturnRisk? bankInitiatedReturnRisk}) {
+    return SignalScores(
+        customerInitiatedReturnRisk:
+            customerInitiatedReturnRisk ?? this.customerInitiatedReturnRisk,
+        bankInitiatedReturnRisk:
+            bankInitiatedReturnRisk ?? this.bankInitiatedReturnRisk);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CustomerInitiatedReturnRisk {
+  CustomerInitiatedReturnRisk({
+    this.score,
+    this.riskTier,
+  });
+
+  factory CustomerInitiatedReturnRisk.fromJson(Map<String, dynamic> json) =>
+      _$CustomerInitiatedReturnRiskFromJson(json);
+
+  @JsonKey(name: 'score')
+  final int? score;
+  @JsonKey(name: 'risk_tier')
+  final int? riskTier;
+  static const fromJsonFactory = _$CustomerInitiatedReturnRiskFromJson;
+  static const toJsonFactory = _$CustomerInitiatedReturnRiskToJson;
+  Map<String, dynamic> toJson() => _$CustomerInitiatedReturnRiskToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CustomerInitiatedReturnRisk &&
+            (identical(other.score, score) ||
+                const DeepCollectionEquality().equals(other.score, score)) &&
+            (identical(other.riskTier, riskTier) ||
+                const DeepCollectionEquality()
+                    .equals(other.riskTier, riskTier)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(score) ^
+      const DeepCollectionEquality().hash(riskTier) ^
+      runtimeType.hashCode;
+}
+
+extension $CustomerInitiatedReturnRiskExtension on CustomerInitiatedReturnRisk {
+  CustomerInitiatedReturnRisk copyWith({int? score, int? riskTier}) {
+    return CustomerInitiatedReturnRisk(
+        score: score ?? this.score, riskTier: riskTier ?? this.riskTier);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BankInitiatedReturnRisk {
+  BankInitiatedReturnRisk({
+    this.score,
+    this.riskTier,
+  });
+
+  factory BankInitiatedReturnRisk.fromJson(Map<String, dynamic> json) =>
+      _$BankInitiatedReturnRiskFromJson(json);
+
+  @JsonKey(name: 'score')
+  final int? score;
+  @JsonKey(name: 'risk_tier')
+  final int? riskTier;
+  static const fromJsonFactory = _$BankInitiatedReturnRiskFromJson;
+  static const toJsonFactory = _$BankInitiatedReturnRiskToJson;
+  Map<String, dynamic> toJson() => _$BankInitiatedReturnRiskToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BankInitiatedReturnRisk &&
+            (identical(other.score, score) ||
+                const DeepCollectionEquality().equals(other.score, score)) &&
+            (identical(other.riskTier, riskTier) ||
+                const DeepCollectionEquality()
+                    .equals(other.riskTier, riskTier)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(score) ^
+      const DeepCollectionEquality().hash(riskTier) ^
+      runtimeType.hashCode;
+}
+
+extension $BankInitiatedReturnRiskExtension on BankInitiatedReturnRisk {
+  BankInitiatedReturnRisk copyWith({int? score, int? riskTier}) {
+    return BankInitiatedReturnRisk(
+        score: score ?? this.score, riskTier: riskTier ?? this.riskTier);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalEvaluateCoreAttributes {
+  SignalEvaluateCoreAttributes({
+    this.unauthorizedTransactionsCount7d,
+    this.unauthorizedTransactionsCount30d,
+    this.unauthorizedTransactionsCount60d,
+    this.unauthorizedTransactionsCount90d,
+    this.nsfOverdraftTransactionsCount7d,
+    this.nsfOverdraftTransactionsCount30d,
+    this.nsfOverdraftTransactionsCount60d,
+    this.nsfOverdraftTransactionsCount90d,
+    this.daysSinceFirstPlaidConnection,
+    this.plaidConnectionsCount7d,
+    this.plaidConnectionsCount30d,
+    this.totalPlaidConnectionsCount,
+    this.isSavingsOrMoneyMarketAccount,
+    this.totalCreditTransactionsAmount10d,
+    this.totalDebitTransactionsAmount10d,
+    this.p50CreditTransactionsAmount28d,
+    this.p50DebitTransactionsAmount28d,
+    this.p95CreditTransactionsAmount28d,
+    this.p95DebitTransactionsAmount28d,
+    this.daysWithNegativeBalanceCount90d,
+    this.p90EodBalance30d,
+    this.p90EodBalance60d,
+    this.p90EodBalance90d,
+    this.p10EodBalance30d,
+    this.p10EodBalance60d,
+    this.p10EodBalance90d,
+    this.availableBalance,
+    this.currentBalance,
+    this.balanceLastUpdated,
+    this.phoneChangeCount28d,
+    this.phoneChangeCount90d,
+    this.emailChangeCount28d,
+    this.emailChangeCount90d,
+    this.addressChangeCount28d,
+    this.addressChangeCount90d,
+  });
+
+  factory SignalEvaluateCoreAttributes.fromJson(Map<String, dynamic> json) =>
+      _$SignalEvaluateCoreAttributesFromJson(json);
+
+  @JsonKey(name: 'unauthorized_transactions_count_7d')
+  final int? unauthorizedTransactionsCount7d;
+  @JsonKey(name: 'unauthorized_transactions_count_30d')
+  final int? unauthorizedTransactionsCount30d;
+  @JsonKey(name: 'unauthorized_transactions_count_60d')
+  final int? unauthorizedTransactionsCount60d;
+  @JsonKey(name: 'unauthorized_transactions_count_90d')
+  final int? unauthorizedTransactionsCount90d;
+  @JsonKey(name: 'nsf_overdraft_transactions_count_7d')
+  final int? nsfOverdraftTransactionsCount7d;
+  @JsonKey(name: 'nsf_overdraft_transactions_count_30d')
+  final int? nsfOverdraftTransactionsCount30d;
+  @JsonKey(name: 'nsf_overdraft_transactions_count_60d')
+  final int? nsfOverdraftTransactionsCount60d;
+  @JsonKey(name: 'nsf_overdraft_transactions_count_90d')
+  final int? nsfOverdraftTransactionsCount90d;
+  @JsonKey(name: 'days_since_first_plaid_connection')
+  final int? daysSinceFirstPlaidConnection;
+  @JsonKey(name: 'plaid_connections_count_7d')
+  final int? plaidConnectionsCount7d;
+  @JsonKey(name: 'plaid_connections_count_30d')
+  final int? plaidConnectionsCount30d;
+  @JsonKey(name: 'total_plaid_connections_count')
+  final int? totalPlaidConnectionsCount;
+  @JsonKey(name: 'is_savings_or_money_market_account')
+  final bool? isSavingsOrMoneyMarketAccount;
+  @JsonKey(name: 'total_credit_transactions_amount_10d')
+  final double? totalCreditTransactionsAmount10d;
+  @JsonKey(name: 'total_debit_transactions_amount_10d')
+  final double? totalDebitTransactionsAmount10d;
+  @JsonKey(name: 'p50_credit_transactions_amount_28d')
+  final double? p50CreditTransactionsAmount28d;
+  @JsonKey(name: 'p50_debit_transactions_amount_28d')
+  final double? p50DebitTransactionsAmount28d;
+  @JsonKey(name: 'p95_credit_transactions_amount_28d')
+  final double? p95CreditTransactionsAmount28d;
+  @JsonKey(name: 'p95_debit_transactions_amount_28d')
+  final double? p95DebitTransactionsAmount28d;
+  @JsonKey(name: 'days_with_negative_balance_count_90d')
+  final int? daysWithNegativeBalanceCount90d;
+  @JsonKey(name: 'p90_eod_balance_30d')
+  final double? p90EodBalance30d;
+  @JsonKey(name: 'p90_eod_balance_60d')
+  final double? p90EodBalance60d;
+  @JsonKey(name: 'p90_eod_balance_90d')
+  final double? p90EodBalance90d;
+  @JsonKey(name: 'p10_eod_balance_30d')
+  final double? p10EodBalance30d;
+  @JsonKey(name: 'p10_eod_balance_60d')
+  final double? p10EodBalance60d;
+  @JsonKey(name: 'p10_eod_balance_90d')
+  final double? p10EodBalance90d;
+  @JsonKey(name: 'available_balance')
+  final double? availableBalance;
+  @JsonKey(name: 'current_balance')
+  final double? currentBalance;
+  @JsonKey(name: 'balance_last_updated')
+  final DateTime? balanceLastUpdated;
+  @JsonKey(name: 'phone_change_count_28d')
+  final int? phoneChangeCount28d;
+  @JsonKey(name: 'phone_change_count_90d')
+  final int? phoneChangeCount90d;
+  @JsonKey(name: 'email_change_count_28d')
+  final int? emailChangeCount28d;
+  @JsonKey(name: 'email_change_count_90d')
+  final int? emailChangeCount90d;
+  @JsonKey(name: 'address_change_count_28d')
+  final int? addressChangeCount28d;
+  @JsonKey(name: 'address_change_count_90d')
+  final int? addressChangeCount90d;
+  static const fromJsonFactory = _$SignalEvaluateCoreAttributesFromJson;
+  static const toJsonFactory = _$SignalEvaluateCoreAttributesToJson;
+  Map<String, dynamic> toJson() => _$SignalEvaluateCoreAttributesToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalEvaluateCoreAttributes &&
+            (identical(other.unauthorizedTransactionsCount7d, unauthorizedTransactionsCount7d) ||
+                const DeepCollectionEquality().equals(
+                    other.unauthorizedTransactionsCount7d,
+                    unauthorizedTransactionsCount7d)) &&
+            (identical(other.unauthorizedTransactionsCount30d, unauthorizedTransactionsCount30d) ||
+                const DeepCollectionEquality().equals(
+                    other.unauthorizedTransactionsCount30d,
+                    unauthorizedTransactionsCount30d)) &&
+            (identical(other.unauthorizedTransactionsCount60d, unauthorizedTransactionsCount60d) ||
+                const DeepCollectionEquality().equals(
+                    other.unauthorizedTransactionsCount60d,
+                    unauthorizedTransactionsCount60d)) &&
+            (identical(other.unauthorizedTransactionsCount90d, unauthorizedTransactionsCount90d) ||
+                const DeepCollectionEquality().equals(
+                    other.unauthorizedTransactionsCount90d,
+                    unauthorizedTransactionsCount90d)) &&
+            (identical(other.nsfOverdraftTransactionsCount7d, nsfOverdraftTransactionsCount7d) ||
+                const DeepCollectionEquality().equals(
+                    other.nsfOverdraftTransactionsCount7d,
+                    nsfOverdraftTransactionsCount7d)) &&
+            (identical(other.nsfOverdraftTransactionsCount30d, nsfOverdraftTransactionsCount30d) ||
+                const DeepCollectionEquality().equals(
+                    other.nsfOverdraftTransactionsCount30d,
+                    nsfOverdraftTransactionsCount30d)) &&
+            (identical(other.nsfOverdraftTransactionsCount60d, nsfOverdraftTransactionsCount60d) ||
+                const DeepCollectionEquality().equals(
+                    other.nsfOverdraftTransactionsCount60d,
+                    nsfOverdraftTransactionsCount60d)) &&
+            (identical(other.nsfOverdraftTransactionsCount90d, nsfOverdraftTransactionsCount90d) ||
+                const DeepCollectionEquality().equals(
+                    other.nsfOverdraftTransactionsCount90d,
+                    nsfOverdraftTransactionsCount90d)) &&
+            (identical(other.daysSinceFirstPlaidConnection, daysSinceFirstPlaidConnection) ||
+                const DeepCollectionEquality().equals(
+                    other.daysSinceFirstPlaidConnection,
+                    daysSinceFirstPlaidConnection)) &&
+            (identical(other.plaidConnectionsCount7d, plaidConnectionsCount7d) ||
+                const DeepCollectionEquality().equals(other.plaidConnectionsCount7d, plaidConnectionsCount7d)) &&
+            (identical(other.plaidConnectionsCount30d, plaidConnectionsCount30d) || const DeepCollectionEquality().equals(other.plaidConnectionsCount30d, plaidConnectionsCount30d)) &&
+            (identical(other.totalPlaidConnectionsCount, totalPlaidConnectionsCount) || const DeepCollectionEquality().equals(other.totalPlaidConnectionsCount, totalPlaidConnectionsCount)) &&
+            (identical(other.isSavingsOrMoneyMarketAccount, isSavingsOrMoneyMarketAccount) || const DeepCollectionEquality().equals(other.isSavingsOrMoneyMarketAccount, isSavingsOrMoneyMarketAccount)) &&
+            (identical(other.totalCreditTransactionsAmount10d, totalCreditTransactionsAmount10d) || const DeepCollectionEquality().equals(other.totalCreditTransactionsAmount10d, totalCreditTransactionsAmount10d)) &&
+            (identical(other.totalDebitTransactionsAmount10d, totalDebitTransactionsAmount10d) || const DeepCollectionEquality().equals(other.totalDebitTransactionsAmount10d, totalDebitTransactionsAmount10d)) &&
+            (identical(other.p50CreditTransactionsAmount28d, p50CreditTransactionsAmount28d) || const DeepCollectionEquality().equals(other.p50CreditTransactionsAmount28d, p50CreditTransactionsAmount28d)) &&
+            (identical(other.p50DebitTransactionsAmount28d, p50DebitTransactionsAmount28d) || const DeepCollectionEquality().equals(other.p50DebitTransactionsAmount28d, p50DebitTransactionsAmount28d)) &&
+            (identical(other.p95CreditTransactionsAmount28d, p95CreditTransactionsAmount28d) || const DeepCollectionEquality().equals(other.p95CreditTransactionsAmount28d, p95CreditTransactionsAmount28d)) &&
+            (identical(other.p95DebitTransactionsAmount28d, p95DebitTransactionsAmount28d) || const DeepCollectionEquality().equals(other.p95DebitTransactionsAmount28d, p95DebitTransactionsAmount28d)) &&
+            (identical(other.daysWithNegativeBalanceCount90d, daysWithNegativeBalanceCount90d) || const DeepCollectionEquality().equals(other.daysWithNegativeBalanceCount90d, daysWithNegativeBalanceCount90d)) &&
+            (identical(other.p90EodBalance30d, p90EodBalance30d) || const DeepCollectionEquality().equals(other.p90EodBalance30d, p90EodBalance30d)) &&
+            (identical(other.p90EodBalance60d, p90EodBalance60d) || const DeepCollectionEquality().equals(other.p90EodBalance60d, p90EodBalance60d)) &&
+            (identical(other.p90EodBalance90d, p90EodBalance90d) || const DeepCollectionEquality().equals(other.p90EodBalance90d, p90EodBalance90d)) &&
+            (identical(other.p10EodBalance30d, p10EodBalance30d) || const DeepCollectionEquality().equals(other.p10EodBalance30d, p10EodBalance30d)) &&
+            (identical(other.p10EodBalance60d, p10EodBalance60d) || const DeepCollectionEquality().equals(other.p10EodBalance60d, p10EodBalance60d)) &&
+            (identical(other.p10EodBalance90d, p10EodBalance90d) || const DeepCollectionEquality().equals(other.p10EodBalance90d, p10EodBalance90d)) &&
+            (identical(other.availableBalance, availableBalance) || const DeepCollectionEquality().equals(other.availableBalance, availableBalance)) &&
+            (identical(other.currentBalance, currentBalance) || const DeepCollectionEquality().equals(other.currentBalance, currentBalance)) &&
+            (identical(other.balanceLastUpdated, balanceLastUpdated) || const DeepCollectionEquality().equals(other.balanceLastUpdated, balanceLastUpdated)) &&
+            (identical(other.phoneChangeCount28d, phoneChangeCount28d) || const DeepCollectionEquality().equals(other.phoneChangeCount28d, phoneChangeCount28d)) &&
+            (identical(other.phoneChangeCount90d, phoneChangeCount90d) || const DeepCollectionEquality().equals(other.phoneChangeCount90d, phoneChangeCount90d)) &&
+            (identical(other.emailChangeCount28d, emailChangeCount28d) || const DeepCollectionEquality().equals(other.emailChangeCount28d, emailChangeCount28d)) &&
+            (identical(other.emailChangeCount90d, emailChangeCount90d) || const DeepCollectionEquality().equals(other.emailChangeCount90d, emailChangeCount90d)) &&
+            (identical(other.addressChangeCount28d, addressChangeCount28d) || const DeepCollectionEquality().equals(other.addressChangeCount28d, addressChangeCount28d)) &&
+            (identical(other.addressChangeCount90d, addressChangeCount90d) || const DeepCollectionEquality().equals(other.addressChangeCount90d, addressChangeCount90d)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(unauthorizedTransactionsCount7d) ^
+      const DeepCollectionEquality().hash(unauthorizedTransactionsCount30d) ^
+      const DeepCollectionEquality().hash(unauthorizedTransactionsCount60d) ^
+      const DeepCollectionEquality().hash(unauthorizedTransactionsCount90d) ^
+      const DeepCollectionEquality().hash(nsfOverdraftTransactionsCount7d) ^
+      const DeepCollectionEquality().hash(nsfOverdraftTransactionsCount30d) ^
+      const DeepCollectionEquality().hash(nsfOverdraftTransactionsCount60d) ^
+      const DeepCollectionEquality().hash(nsfOverdraftTransactionsCount90d) ^
+      const DeepCollectionEquality().hash(daysSinceFirstPlaidConnection) ^
+      const DeepCollectionEquality().hash(plaidConnectionsCount7d) ^
+      const DeepCollectionEquality().hash(plaidConnectionsCount30d) ^
+      const DeepCollectionEquality().hash(totalPlaidConnectionsCount) ^
+      const DeepCollectionEquality().hash(isSavingsOrMoneyMarketAccount) ^
+      const DeepCollectionEquality().hash(totalCreditTransactionsAmount10d) ^
+      const DeepCollectionEquality().hash(totalDebitTransactionsAmount10d) ^
+      const DeepCollectionEquality().hash(p50CreditTransactionsAmount28d) ^
+      const DeepCollectionEquality().hash(p50DebitTransactionsAmount28d) ^
+      const DeepCollectionEquality().hash(p95CreditTransactionsAmount28d) ^
+      const DeepCollectionEquality().hash(p95DebitTransactionsAmount28d) ^
+      const DeepCollectionEquality().hash(daysWithNegativeBalanceCount90d) ^
+      const DeepCollectionEquality().hash(p90EodBalance30d) ^
+      const DeepCollectionEquality().hash(p90EodBalance60d) ^
+      const DeepCollectionEquality().hash(p90EodBalance90d) ^
+      const DeepCollectionEquality().hash(p10EodBalance30d) ^
+      const DeepCollectionEquality().hash(p10EodBalance60d) ^
+      const DeepCollectionEquality().hash(p10EodBalance90d) ^
+      const DeepCollectionEquality().hash(availableBalance) ^
+      const DeepCollectionEquality().hash(currentBalance) ^
+      const DeepCollectionEquality().hash(balanceLastUpdated) ^
+      const DeepCollectionEquality().hash(phoneChangeCount28d) ^
+      const DeepCollectionEquality().hash(phoneChangeCount90d) ^
+      const DeepCollectionEquality().hash(emailChangeCount28d) ^
+      const DeepCollectionEquality().hash(emailChangeCount90d) ^
+      const DeepCollectionEquality().hash(addressChangeCount28d) ^
+      const DeepCollectionEquality().hash(addressChangeCount90d) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalEvaluateCoreAttributesExtension
+    on SignalEvaluateCoreAttributes {
+  SignalEvaluateCoreAttributes copyWith(
+      {int? unauthorizedTransactionsCount7d,
+      int? unauthorizedTransactionsCount30d,
+      int? unauthorizedTransactionsCount60d,
+      int? unauthorizedTransactionsCount90d,
+      int? nsfOverdraftTransactionsCount7d,
+      int? nsfOverdraftTransactionsCount30d,
+      int? nsfOverdraftTransactionsCount60d,
+      int? nsfOverdraftTransactionsCount90d,
+      int? daysSinceFirstPlaidConnection,
+      int? plaidConnectionsCount7d,
+      int? plaidConnectionsCount30d,
+      int? totalPlaidConnectionsCount,
+      bool? isSavingsOrMoneyMarketAccount,
+      double? totalCreditTransactionsAmount10d,
+      double? totalDebitTransactionsAmount10d,
+      double? p50CreditTransactionsAmount28d,
+      double? p50DebitTransactionsAmount28d,
+      double? p95CreditTransactionsAmount28d,
+      double? p95DebitTransactionsAmount28d,
+      int? daysWithNegativeBalanceCount90d,
+      double? p90EodBalance30d,
+      double? p90EodBalance60d,
+      double? p90EodBalance90d,
+      double? p10EodBalance30d,
+      double? p10EodBalance60d,
+      double? p10EodBalance90d,
+      double? availableBalance,
+      double? currentBalance,
+      DateTime? balanceLastUpdated,
+      int? phoneChangeCount28d,
+      int? phoneChangeCount90d,
+      int? emailChangeCount28d,
+      int? emailChangeCount90d,
+      int? addressChangeCount28d,
+      int? addressChangeCount90d}) {
+    return SignalEvaluateCoreAttributes(
+        unauthorizedTransactionsCount7d: unauthorizedTransactionsCount7d ??
+            this.unauthorizedTransactionsCount7d,
+        unauthorizedTransactionsCount30d: unauthorizedTransactionsCount30d ??
+            this.unauthorizedTransactionsCount30d,
+        unauthorizedTransactionsCount60d: unauthorizedTransactionsCount60d ??
+            this.unauthorizedTransactionsCount60d,
+        unauthorizedTransactionsCount90d: unauthorizedTransactionsCount90d ??
+            this.unauthorizedTransactionsCount90d,
+        nsfOverdraftTransactionsCount7d: nsfOverdraftTransactionsCount7d ??
+            this.nsfOverdraftTransactionsCount7d,
+        nsfOverdraftTransactionsCount30d: nsfOverdraftTransactionsCount30d ??
+            this.nsfOverdraftTransactionsCount30d,
+        nsfOverdraftTransactionsCount60d: nsfOverdraftTransactionsCount60d ??
+            this.nsfOverdraftTransactionsCount60d,
+        nsfOverdraftTransactionsCount90d: nsfOverdraftTransactionsCount90d ??
+            this.nsfOverdraftTransactionsCount90d,
+        daysSinceFirstPlaidConnection:
+            daysSinceFirstPlaidConnection ?? this.daysSinceFirstPlaidConnection,
+        plaidConnectionsCount7d:
+            plaidConnectionsCount7d ?? this.plaidConnectionsCount7d,
+        plaidConnectionsCount30d:
+            plaidConnectionsCount30d ?? this.plaidConnectionsCount30d,
+        totalPlaidConnectionsCount:
+            totalPlaidConnectionsCount ?? this.totalPlaidConnectionsCount,
+        isSavingsOrMoneyMarketAccount:
+            isSavingsOrMoneyMarketAccount ?? this.isSavingsOrMoneyMarketAccount,
+        totalCreditTransactionsAmount10d: totalCreditTransactionsAmount10d ??
+            this.totalCreditTransactionsAmount10d,
+        totalDebitTransactionsAmount10d: totalDebitTransactionsAmount10d ??
+            this.totalDebitTransactionsAmount10d,
+        p50CreditTransactionsAmount28d: p50CreditTransactionsAmount28d ??
+            this.p50CreditTransactionsAmount28d,
+        p50DebitTransactionsAmount28d:
+            p50DebitTransactionsAmount28d ?? this.p50DebitTransactionsAmount28d,
+        p95CreditTransactionsAmount28d: p95CreditTransactionsAmount28d ??
+            this.p95CreditTransactionsAmount28d,
+        p95DebitTransactionsAmount28d:
+            p95DebitTransactionsAmount28d ?? this.p95DebitTransactionsAmount28d,
+        daysWithNegativeBalanceCount90d: daysWithNegativeBalanceCount90d ??
+            this.daysWithNegativeBalanceCount90d,
+        p90EodBalance30d: p90EodBalance30d ?? this.p90EodBalance30d,
+        p90EodBalance60d: p90EodBalance60d ?? this.p90EodBalance60d,
+        p90EodBalance90d: p90EodBalance90d ?? this.p90EodBalance90d,
+        p10EodBalance30d: p10EodBalance30d ?? this.p10EodBalance30d,
+        p10EodBalance60d: p10EodBalance60d ?? this.p10EodBalance60d,
+        p10EodBalance90d: p10EodBalance90d ?? this.p10EodBalance90d,
+        availableBalance: availableBalance ?? this.availableBalance,
+        currentBalance: currentBalance ?? this.currentBalance,
+        balanceLastUpdated: balanceLastUpdated ?? this.balanceLastUpdated,
+        phoneChangeCount28d: phoneChangeCount28d ?? this.phoneChangeCount28d,
+        phoneChangeCount90d: phoneChangeCount90d ?? this.phoneChangeCount90d,
+        emailChangeCount28d: emailChangeCount28d ?? this.emailChangeCount28d,
+        emailChangeCount90d: emailChangeCount90d ?? this.emailChangeCount90d,
+        addressChangeCount28d:
+            addressChangeCount28d ?? this.addressChangeCount28d,
+        addressChangeCount90d:
+            addressChangeCount90d ?? this.addressChangeCount90d);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalDecisionReportRequest {
+  SignalDecisionReportRequest({
+    this.clientId,
+    this.secret,
+    this.clientTransactionId,
+    this.initiated,
+    this.daysFundsOnHold,
+  });
+
+  factory SignalDecisionReportRequest.fromJson(Map<String, dynamic> json) =>
+      _$SignalDecisionReportRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'client_transaction_id')
+  final String? clientTransactionId;
+  @JsonKey(name: 'initiated')
+  final bool? initiated;
+  @JsonKey(name: 'days_funds_on_hold')
+  final int? daysFundsOnHold;
+  static const fromJsonFactory = _$SignalDecisionReportRequestFromJson;
+  static const toJsonFactory = _$SignalDecisionReportRequestToJson;
+  Map<String, dynamic> toJson() => _$SignalDecisionReportRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalDecisionReportRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.clientTransactionId, clientTransactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientTransactionId, clientTransactionId)) &&
+            (identical(other.initiated, initiated) ||
+                const DeepCollectionEquality()
+                    .equals(other.initiated, initiated)) &&
+            (identical(other.daysFundsOnHold, daysFundsOnHold) ||
+                const DeepCollectionEquality()
+                    .equals(other.daysFundsOnHold, daysFundsOnHold)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(clientTransactionId) ^
+      const DeepCollectionEquality().hash(initiated) ^
+      const DeepCollectionEquality().hash(daysFundsOnHold) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalDecisionReportRequestExtension on SignalDecisionReportRequest {
+  SignalDecisionReportRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? clientTransactionId,
+      bool? initiated,
+      int? daysFundsOnHold}) {
+    return SignalDecisionReportRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        clientTransactionId: clientTransactionId ?? this.clientTransactionId,
+        initiated: initiated ?? this.initiated,
+        daysFundsOnHold: daysFundsOnHold ?? this.daysFundsOnHold);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalDecisionReportResponse {
+  SignalDecisionReportResponse({
+    this.requestId,
+  });
+
+  factory SignalDecisionReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$SignalDecisionReportResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$SignalDecisionReportResponseFromJson;
+  static const toJsonFactory = _$SignalDecisionReportResponseToJson;
+  Map<String, dynamic> toJson() => _$SignalDecisionReportResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalDecisionReportResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+}
+
+extension $SignalDecisionReportResponseExtension
+    on SignalDecisionReportResponse {
+  SignalDecisionReportResponse copyWith({String? requestId}) {
+    return SignalDecisionReportResponse(requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalReturnReportRequest {
+  SignalReturnReportRequest({
+    this.clientId,
+    this.secret,
+    this.clientTransactionId,
+    this.returnCode,
+  });
+
+  factory SignalReturnReportRequest.fromJson(Map<String, dynamic> json) =>
+      _$SignalReturnReportRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'client_transaction_id')
+  final String? clientTransactionId;
+  @JsonKey(name: 'return_code')
+  final String? returnCode;
+  static const fromJsonFactory = _$SignalReturnReportRequestFromJson;
+  static const toJsonFactory = _$SignalReturnReportRequestToJson;
+  Map<String, dynamic> toJson() => _$SignalReturnReportRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalReturnReportRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.clientTransactionId, clientTransactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientTransactionId, clientTransactionId)) &&
+            (identical(other.returnCode, returnCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.returnCode, returnCode)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(clientTransactionId) ^
+      const DeepCollectionEquality().hash(returnCode) ^
+      runtimeType.hashCode;
+}
+
+extension $SignalReturnReportRequestExtension on SignalReturnReportRequest {
+  SignalReturnReportRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? clientTransactionId,
+      String? returnCode}) {
+    return SignalReturnReportRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        clientTransactionId: clientTransactionId ?? this.clientTransactionId,
+        returnCode: returnCode ?? this.returnCode);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignalReturnReportResponse {
+  SignalReturnReportResponse({
+    this.requestId,
+  });
+
+  factory SignalReturnReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$SignalReturnReportResponseFromJson(json);
+
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$SignalReturnReportResponseFromJson;
+  static const toJsonFactory = _$SignalReturnReportResponseToJson;
+  Map<String, dynamic> toJson() => _$SignalReturnReportResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SignalReturnReportResponse &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+}
+
+extension $SignalReturnReportResponseExtension on SignalReturnReportResponse {
+  SignalReturnReportResponse copyWith({String? requestId}) {
+    return SignalReturnReportResponse(requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxOauthSelectAccountsRequest {
+  SandboxOauthSelectAccountsRequest({
+    this.oauthStateId,
+    this.accounts,
+  });
+
+  factory SandboxOauthSelectAccountsRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$SandboxOauthSelectAccountsRequestFromJson(json);
+
+  @JsonKey(name: 'oauth_state_id')
+  final String? oauthStateId;
+  @JsonKey(name: 'accounts', defaultValue: <String>[])
+  final List<String>? accounts;
+  static const fromJsonFactory = _$SandboxOauthSelectAccountsRequestFromJson;
+  static const toJsonFactory = _$SandboxOauthSelectAccountsRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$SandboxOauthSelectAccountsRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SandboxOauthSelectAccountsRequest &&
+            (identical(other.oauthStateId, oauthStateId) ||
+                const DeepCollectionEquality()
+                    .equals(other.oauthStateId, oauthStateId)) &&
+            (identical(other.accounts, accounts) ||
+                const DeepCollectionEquality()
+                    .equals(other.accounts, accounts)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(oauthStateId) ^
+      const DeepCollectionEquality().hash(accounts) ^
+      runtimeType.hashCode;
+}
+
+extension $SandboxOauthSelectAccountsRequestExtension
+    on SandboxOauthSelectAccountsRequest {
+  SandboxOauthSelectAccountsRequest copyWith(
+      {String? oauthStateId, List<String>? accounts}) {
+    return SandboxOauthSelectAccountsRequest(
+        oauthStateId: oauthStateId ?? this.oauthStateId,
+        accounts: accounts ?? this.accounts);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SandboxOauthSelectAccountsResponse {
+  SandboxOauthSelectAccountsResponse();
+
+  factory SandboxOauthSelectAccountsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$SandboxOauthSelectAccountsResponseFromJson(json);
+
+  static const fromJsonFactory = _$SandboxOauthSelectAccountsResponseFromJson;
+  static const toJsonFactory = _$SandboxOauthSelectAccountsResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$SandboxOauthSelectAccountsResponseToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class NewAccountsAvailableWebhook {
+  NewAccountsAvailableWebhook({
+    this.webhookType,
+    this.webhookCode,
+    this.itemId,
+    this.error,
+  });
+
+  factory NewAccountsAvailableWebhook.fromJson(Map<String, dynamic> json) =>
+      _$NewAccountsAvailableWebhookFromJson(json);
+
+  @JsonKey(name: 'webhook_type')
+  final String? webhookType;
+  @JsonKey(name: 'webhook_code')
+  final String? webhookCode;
+  @JsonKey(name: 'item_id')
+  final String? itemId;
+  @JsonKey(name: 'error')
+  final Error? error;
+  static const fromJsonFactory = _$NewAccountsAvailableWebhookFromJson;
+  static const toJsonFactory = _$NewAccountsAvailableWebhookToJson;
+  Map<String, dynamic> toJson() => _$NewAccountsAvailableWebhookToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NewAccountsAvailableWebhook &&
+            (identical(other.webhookType, webhookType) ||
+                const DeepCollectionEquality()
+                    .equals(other.webhookType, webhookType)) &&
+            (identical(other.webhookCode, webhookCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.webhookCode, webhookCode)) &&
+            (identical(other.itemId, itemId) ||
+                const DeepCollectionEquality().equals(other.itemId, itemId)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(webhookType) ^
+      const DeepCollectionEquality().hash(webhookCode) ^
+      const DeepCollectionEquality().hash(itemId) ^
+      const DeepCollectionEquality().hash(error) ^
+      runtimeType.hashCode;
+}
+
+extension $NewAccountsAvailableWebhookExtension on NewAccountsAvailableWebhook {
+  NewAccountsAvailableWebhook copyWith(
+      {String? webhookType,
+      String? webhookCode,
+      String? itemId,
+      Error? error}) {
+    return NewAccountsAvailableWebhook(
+        webhookType: webhookType ?? this.webhookType,
+        webhookCode: webhookCode ?? this.webhookCode,
+        itemId: itemId ?? this.itemId,
+        error: error ?? this.error);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletGetRequest {
+  WalletGetRequest({
+    this.clientId,
+    this.secret,
+    this.walletId,
+  });
+
+  factory WalletGetRequest.fromJson(Map<String, dynamic> json) =>
+      _$WalletGetRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
+  static const fromJsonFactory = _$WalletGetRequestFromJson;
+  static const toJsonFactory = _$WalletGetRequestToJson;
+  Map<String, dynamic> toJson() => _$WalletGetRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletGetRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletGetRequestExtension on WalletGetRequest {
+  WalletGetRequest copyWith(
+      {String? clientId, String? secret, String? walletId}) {
+    return WalletGetRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        walletId: walletId ?? this.walletId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletGetResponse {
+  WalletGetResponse({
+    this.walletId,
+    this.balance,
+    this.requestId,
+  });
+
+  factory WalletGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$WalletGetResponseFromJson(json);
+
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
+  @JsonKey(name: 'balance')
+  final WalletBalance? balance;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$WalletGetResponseFromJson;
+  static const toJsonFactory = _$WalletGetResponseToJson;
+  Map<String, dynamic> toJson() => _$WalletGetResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletGetResponse &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)) &&
+            (identical(other.balance, balance) ||
+                const DeepCollectionEquality()
+                    .equals(other.balance, balance)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(walletId) ^
+      const DeepCollectionEquality().hash(balance) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletGetResponseExtension on WalletGetResponse {
+  WalletGetResponse copyWith(
+      {String? walletId, WalletBalance? balance, String? requestId}) {
+    return WalletGetResponse(
+        walletId: walletId ?? this.walletId,
+        balance: balance ?? this.balance,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletBalance {
+  WalletBalance({
+    this.isoCurrencyCode,
+    this.current,
+  });
+
+  factory WalletBalance.fromJson(Map<String, dynamic> json) =>
+      _$WalletBalanceFromJson(json);
+
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'current')
+  final double? current;
+  static const fromJsonFactory = _$WalletBalanceFromJson;
+  static const toJsonFactory = _$WalletBalanceToJson;
+  Map<String, dynamic> toJson() => _$WalletBalanceToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletBalance &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.current, current) ||
+                const DeepCollectionEquality().equals(other.current, current)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(current) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletBalanceExtension on WalletBalance {
+  WalletBalance copyWith({String? isoCurrencyCode, double? current}) {
+    return WalletBalance(
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        current: current ?? this.current);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionExecuteRequest {
+  WalletTransactionExecuteRequest({
+    this.clientId,
+    this.secret,
+    this.idempotencyKey,
+    this.walletId,
+    this.counterparty,
+    this.amount,
+    this.reference,
+  });
+
+  factory WalletTransactionExecuteRequest.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionExecuteRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'idempotency_key')
+  final String? idempotencyKey;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
+  @JsonKey(name: 'counterparty')
+  final WalletTransactionCounterparty? counterparty;
+  @JsonKey(name: 'amount')
+  final WalletTransactionAmount? amount;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  static const fromJsonFactory = _$WalletTransactionExecuteRequestFromJson;
+  static const toJsonFactory = _$WalletTransactionExecuteRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$WalletTransactionExecuteRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionExecuteRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.idempotencyKey, idempotencyKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.idempotencyKey, idempotencyKey)) &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)) &&
+            (identical(other.counterparty, counterparty) ||
+                const DeepCollectionEquality()
+                    .equals(other.counterparty, counterparty)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(idempotencyKey) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      const DeepCollectionEquality().hash(counterparty) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(reference) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionExecuteRequestExtension
+    on WalletTransactionExecuteRequest {
+  WalletTransactionExecuteRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? idempotencyKey,
+      String? walletId,
+      WalletTransactionCounterparty? counterparty,
+      WalletTransactionAmount? amount,
+      String? reference}) {
+    return WalletTransactionExecuteRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        idempotencyKey: idempotencyKey ?? this.idempotencyKey,
+        walletId: walletId ?? this.walletId,
+        counterparty: counterparty ?? this.counterparty,
+        amount: amount ?? this.amount,
+        reference: reference ?? this.reference);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionCounterparty {
+  WalletTransactionCounterparty({
+    this.name,
+    this.numbers,
+  });
+
+  factory WalletTransactionCounterparty.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionCounterpartyFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'numbers')
+  final WalletTransactionCounterpartyNumbers? numbers;
+  static const fromJsonFactory = _$WalletTransactionCounterpartyFromJson;
+  static const toJsonFactory = _$WalletTransactionCounterpartyToJson;
+  Map<String, dynamic> toJson() => _$WalletTransactionCounterpartyToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionCounterparty &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.numbers, numbers) ||
+                const DeepCollectionEquality().equals(other.numbers, numbers)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(numbers) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionCounterpartyExtension
+    on WalletTransactionCounterparty {
+  WalletTransactionCounterparty copyWith(
+      {String? name, WalletTransactionCounterpartyNumbers? numbers}) {
+    return WalletTransactionCounterparty(
+        name: name ?? this.name, numbers: numbers ?? this.numbers);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionCounterpartyNumbers {
+  WalletTransactionCounterpartyNumbers({
+    this.bacs,
+  });
+
+  factory WalletTransactionCounterpartyNumbers.fromJson(
+          Map<String, dynamic> json) =>
+      _$WalletTransactionCounterpartyNumbersFromJson(json);
+
+  @JsonKey(name: 'bacs')
+  final WalletTransactionCounterpartyBACS? bacs;
+  static const fromJsonFactory = _$WalletTransactionCounterpartyNumbersFromJson;
+  static const toJsonFactory = _$WalletTransactionCounterpartyNumbersToJson;
+  Map<String, dynamic> toJson() =>
+      _$WalletTransactionCounterpartyNumbersToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionCounterpartyNumbers &&
+            (identical(other.bacs, bacs) ||
+                const DeepCollectionEquality().equals(other.bacs, bacs)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bacs) ^ runtimeType.hashCode;
+}
+
+extension $WalletTransactionCounterpartyNumbersExtension
+    on WalletTransactionCounterpartyNumbers {
+  WalletTransactionCounterpartyNumbers copyWith(
+      {WalletTransactionCounterpartyBACS? bacs}) {
+    return WalletTransactionCounterpartyNumbers(bacs: bacs ?? this.bacs);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionCounterpartyBACS extends RecipientBACS {
+  WalletTransactionCounterpartyBACS();
+
+  factory WalletTransactionCounterpartyBACS.fromJson(
+          Map<String, dynamic> json) =>
+      _$WalletTransactionCounterpartyBACSFromJson(json);
+
+  static const fromJsonFactory = _$WalletTransactionCounterpartyBACSFromJson;
+  static const toJsonFactory = _$WalletTransactionCounterpartyBACSToJson;
+  Map<String, dynamic> toJson() =>
+      _$WalletTransactionCounterpartyBACSToJson(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionAmount {
+  WalletTransactionAmount({
+    this.isoCurrencyCode,
+    this.value,
+  });
+
+  factory WalletTransactionAmount.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionAmountFromJson(json);
+
+  @JsonKey(
+      name: 'iso_currency_code',
+      toJson: walletTransactionAmountIsoCurrencyCodeToJson,
+      fromJson: walletTransactionAmountIsoCurrencyCodeFromJson)
+  final enums.WalletTransactionAmountIsoCurrencyCode? isoCurrencyCode;
+  @JsonKey(name: 'value')
+  final double? value;
+  static const fromJsonFactory = _$WalletTransactionAmountFromJson;
+  static const toJsonFactory = _$WalletTransactionAmountToJson;
+  Map<String, dynamic> toJson() => _$WalletTransactionAmountToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionAmount &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(value) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionAmountExtension on WalletTransactionAmount {
+  WalletTransactionAmount copyWith(
+      {enums.WalletTransactionAmountIsoCurrencyCode? isoCurrencyCode,
+      double? value}) {
+    return WalletTransactionAmount(
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        value: value ?? this.value);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionExecuteResponse {
+  WalletTransactionExecuteResponse({
+    this.transactionId,
+    this.status,
+    this.requestId,
+  });
+
+  factory WalletTransactionExecuteResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$WalletTransactionExecuteResponseFromJson(json);
+
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(
+      name: 'status',
+      toJson: walletTransactionStatusToJson,
+      fromJson: walletTransactionStatusFromJson)
+  final enums.WalletTransactionStatus? status;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$WalletTransactionExecuteResponseFromJson;
+  static const toJsonFactory = _$WalletTransactionExecuteResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$WalletTransactionExecuteResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionExecuteResponse &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionId, transactionId)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transactionId) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionExecuteResponseExtension
+    on WalletTransactionExecuteResponse {
+  WalletTransactionExecuteResponse copyWith(
+      {String? transactionId,
+      enums.WalletTransactionStatus? status,
+      String? requestId}) {
+    return WalletTransactionExecuteResponse(
+        transactionId: transactionId ?? this.transactionId,
+        status: status ?? this.status,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionsListRequest {
+  WalletTransactionsListRequest({
+    this.clientId,
+    this.secret,
+    this.walletId,
+    this.cursor,
+    this.count,
+  });
+
+  factory WalletTransactionsListRequest.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionsListRequestFromJson(json);
+
+  @JsonKey(name: 'client_id')
+  final String? clientId;
+  @JsonKey(name: 'secret')
+  final String? secret;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'count')
+  final int? count;
+  static const fromJsonFactory = _$WalletTransactionsListRequestFromJson;
+  static const toJsonFactory = _$WalletTransactionsListRequestToJson;
+  Map<String, dynamic> toJson() => _$WalletTransactionsListRequestToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionsListRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.secret, secret) ||
+                const DeepCollectionEquality().equals(other.secret, secret)) &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)) &&
+            (identical(other.cursor, cursor) ||
+                const DeepCollectionEquality().equals(other.cursor, cursor)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(secret) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      const DeepCollectionEquality().hash(cursor) ^
+      const DeepCollectionEquality().hash(count) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionsListRequestExtension
+    on WalletTransactionsListRequest {
+  WalletTransactionsListRequest copyWith(
+      {String? clientId,
+      String? secret,
+      String? walletId,
+      String? cursor,
+      int? count}) {
+    return WalletTransactionsListRequest(
+        clientId: clientId ?? this.clientId,
+        secret: secret ?? this.secret,
+        walletId: walletId ?? this.walletId,
+        cursor: cursor ?? this.cursor,
+        count: count ?? this.count);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransactionsListResponse {
+  WalletTransactionsListResponse({
+    this.transactions,
+    this.nextCursor,
+    this.requestId,
+  });
+
+  factory WalletTransactionsListResponse.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionsListResponseFromJson(json);
+
+  @JsonKey(name: 'transactions', defaultValue: <WalletTransaction>[])
+  final List<WalletTransaction>? transactions;
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'request_id')
+  final String? requestId;
+  static const fromJsonFactory = _$WalletTransactionsListResponseFromJson;
+  static const toJsonFactory = _$WalletTransactionsListResponseToJson;
+  Map<String, dynamic> toJson() => _$WalletTransactionsListResponseToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransactionsListResponse &&
+            (identical(other.transactions, transactions) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactions, transactions)) &&
+            (identical(other.nextCursor, nextCursor) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextCursor, nextCursor)) &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transactions) ^
+      const DeepCollectionEquality().hash(nextCursor) ^
+      const DeepCollectionEquality().hash(requestId) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionsListResponseExtension
+    on WalletTransactionsListResponse {
+  WalletTransactionsListResponse copyWith(
+      {List<WalletTransaction>? transactions,
+      String? nextCursor,
+      String? requestId}) {
+    return WalletTransactionsListResponse(
+        transactions: transactions ?? this.transactions,
+        nextCursor: nextCursor ?? this.nextCursor,
+        requestId: requestId ?? this.requestId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WalletTransaction {
+  WalletTransaction({
+    this.transactionId,
+    this.reference,
+    this.type,
+    this.amount,
+    this.counterparty,
+    this.status,
+    this.createdAt,
+  });
+
+  factory WalletTransaction.fromJson(Map<String, dynamic> json) =>
+      _$WalletTransactionFromJson(json);
+
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  @JsonKey(
+      name: 'type',
+      toJson: walletTransactionTypeToJson,
+      fromJson: walletTransactionTypeFromJson)
+  final enums.WalletTransactionType? type;
+  @JsonKey(name: 'amount')
+  final WalletTransactionAmount? amount;
+  @JsonKey(name: 'counterparty')
+  final WalletTransactionCounterparty? counterparty;
+  @JsonKey(
+      name: 'status',
+      toJson: walletTransactionStatusToJson,
+      fromJson: walletTransactionStatusFromJson)
+  final enums.WalletTransactionStatus? status;
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  static const fromJsonFactory = _$WalletTransactionFromJson;
+  static const toJsonFactory = _$WalletTransactionToJson;
+  Map<String, dynamic> toJson() => _$WalletTransactionToJson(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WalletTransaction &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionId, transactionId)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.counterparty, counterparty) ||
+                const DeepCollectionEquality()
+                    .equals(other.counterparty, counterparty)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(transactionId) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(counterparty) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      runtimeType.hashCode;
+}
+
+extension $WalletTransactionExtension on WalletTransaction {
+  WalletTransaction copyWith(
+      {String? transactionId,
+      String? reference,
+      enums.WalletTransactionType? type,
+      WalletTransactionAmount? amount,
+      WalletTransactionCounterparty? counterparty,
+      enums.WalletTransactionStatus? status,
+      DateTime? createdAt}) {
+    return WalletTransaction(
+        transactionId: transactionId ?? this.transactionId,
+        reference: reference ?? this.reference,
+        type: type ?? this.type,
+        amount: amount ?? this.amount,
+        counterparty: counterparty ?? this.counterparty,
+        status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt);
   }
 }
 
@@ -19228,6 +31698,11 @@ class LinkTokenCreateRequestAccountSubtypes$Depository {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAccountSubtypes$DepositoryExtension
@@ -19266,6 +31741,11 @@ class LinkTokenCreateRequestAccountSubtypes$Credit {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAccountSubtypes$CreditExtension
@@ -19304,6 +31784,11 @@ class LinkTokenCreateRequestAccountSubtypes$Loan {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAccountSubtypes$LoanExtension
@@ -19342,6 +31827,11 @@ class LinkTokenCreateRequestAccountSubtypes$Investment {
                 const DeepCollectionEquality()
                     .equals(other.accountSubtypes, accountSubtypes)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(accountSubtypes) ^
+      runtimeType.hashCode;
 }
 
 extension $LinkTokenCreateRequestAccountSubtypes$InvestmentExtension
@@ -19354,119 +31844,152 @@ extension $LinkTokenCreateRequestAccountSubtypes$InvestmentExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ItemStatus$Investments {
-  ItemStatus$Investments({
-    this.lastSuccessfulUpdate,
-    this.lastFailedUpdate,
+class PaystubOverride$Employer {
+  PaystubOverride$Employer({
+    this.name,
   });
 
-  factory ItemStatus$Investments.fromJson(Map<String, dynamic> json) =>
-      _$ItemStatus$InvestmentsFromJson(json);
+  factory PaystubOverride$Employer.fromJson(Map<String, dynamic> json) =>
+      _$PaystubOverride$EmployerFromJson(json);
 
-  @JsonKey(name: 'last_successful_update')
-  final String? lastSuccessfulUpdate;
-  @JsonKey(name: 'last_failed_update')
-  final String? lastFailedUpdate;
-  static const fromJsonFactory = _$ItemStatus$InvestmentsFromJson;
-  static const toJsonFactory = _$ItemStatus$InvestmentsToJson;
-  Map<String, dynamic> toJson() => _$ItemStatus$InvestmentsToJson(this);
+  @JsonKey(name: 'name')
+  final String? name;
+  static const fromJsonFactory = _$PaystubOverride$EmployerFromJson;
+  static const toJsonFactory = _$PaystubOverride$EmployerToJson;
+  Map<String, dynamic> toJson() => _$PaystubOverride$EmployerToJson(this);
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ItemStatus$Investments &&
-            (identical(other.lastSuccessfulUpdate, lastSuccessfulUpdate) ||
-                const DeepCollectionEquality().equals(
-                    other.lastSuccessfulUpdate, lastSuccessfulUpdate)) &&
-            (identical(other.lastFailedUpdate, lastFailedUpdate) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastFailedUpdate, lastFailedUpdate)));
+        (other is PaystubOverride$Employer &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
 }
 
-extension $ItemStatus$InvestmentsExtension on ItemStatus$Investments {
-  ItemStatus$Investments copyWith(
-      {String? lastSuccessfulUpdate, String? lastFailedUpdate}) {
-    return ItemStatus$Investments(
-        lastSuccessfulUpdate: lastSuccessfulUpdate ?? this.lastSuccessfulUpdate,
-        lastFailedUpdate: lastFailedUpdate ?? this.lastFailedUpdate);
+extension $PaystubOverride$EmployerExtension on PaystubOverride$Employer {
+  PaystubOverride$Employer copyWith({String? name}) {
+    return PaystubOverride$Employer(name: name ?? this.name);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ItemStatus$Transactions {
-  ItemStatus$Transactions({
-    this.lastSuccessfulUpdate,
-    this.lastFailedUpdate,
+class PaystubOverride$Employee {
+  PaystubOverride$Employee({
+    this.name,
+    this.address,
   });
 
-  factory ItemStatus$Transactions.fromJson(Map<String, dynamic> json) =>
-      _$ItemStatus$TransactionsFromJson(json);
+  factory PaystubOverride$Employee.fromJson(Map<String, dynamic> json) =>
+      _$PaystubOverride$EmployeeFromJson(json);
 
-  @JsonKey(name: 'last_successful_update')
-  final String? lastSuccessfulUpdate;
-  @JsonKey(name: 'last_failed_update')
-  final String? lastFailedUpdate;
-  static const fromJsonFactory = _$ItemStatus$TransactionsFromJson;
-  static const toJsonFactory = _$ItemStatus$TransactionsToJson;
-  Map<String, dynamic> toJson() => _$ItemStatus$TransactionsToJson(this);
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'address')
+  final PaystubOverride$Employee$Address? address;
+  static const fromJsonFactory = _$PaystubOverride$EmployeeFromJson;
+  static const toJsonFactory = _$PaystubOverride$EmployeeToJson;
+  Map<String, dynamic> toJson() => _$PaystubOverride$EmployeeToJson(this);
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ItemStatus$Transactions &&
-            (identical(other.lastSuccessfulUpdate, lastSuccessfulUpdate) ||
-                const DeepCollectionEquality().equals(
-                    other.lastSuccessfulUpdate, lastSuccessfulUpdate)) &&
-            (identical(other.lastFailedUpdate, lastFailedUpdate) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastFailedUpdate, lastFailedUpdate)));
+        (other is PaystubOverride$Employee &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
 }
 
-extension $ItemStatus$TransactionsExtension on ItemStatus$Transactions {
-  ItemStatus$Transactions copyWith(
-      {String? lastSuccessfulUpdate, String? lastFailedUpdate}) {
-    return ItemStatus$Transactions(
-        lastSuccessfulUpdate: lastSuccessfulUpdate ?? this.lastSuccessfulUpdate,
-        lastFailedUpdate: lastFailedUpdate ?? this.lastFailedUpdate);
+extension $PaystubOverride$EmployeeExtension on PaystubOverride$Employee {
+  PaystubOverride$Employee copyWith(
+      {String? name, PaystubOverride$Employee$Address? address}) {
+    return PaystubOverride$Employee(
+        name: name ?? this.name, address: address ?? this.address);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ItemStatus$LastWebhook {
-  ItemStatus$LastWebhook({
-    this.sentAt,
-    this.codeSent,
+class PaystubOverride$Employee$Address {
+  PaystubOverride$Employee$Address({
+    this.city,
+    this.region,
+    this.street,
+    this.postalCode,
+    this.country,
   });
 
-  factory ItemStatus$LastWebhook.fromJson(Map<String, dynamic> json) =>
-      _$ItemStatus$LastWebhookFromJson(json);
+  factory PaystubOverride$Employee$Address.fromJson(
+          Map<String, dynamic> json) =>
+      _$PaystubOverride$Employee$AddressFromJson(json);
 
-  @JsonKey(name: 'sent_at')
-  final String? sentAt;
-  @JsonKey(name: 'code_sent')
-  final String? codeSent;
-  static const fromJsonFactory = _$ItemStatus$LastWebhookFromJson;
-  static const toJsonFactory = _$ItemStatus$LastWebhookToJson;
-  Map<String, dynamic> toJson() => _$ItemStatus$LastWebhookToJson(this);
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'region')
+  final String? region;
+  @JsonKey(name: 'street')
+  final String? street;
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @JsonKey(name: 'country')
+  final String? country;
+  static const fromJsonFactory = _$PaystubOverride$Employee$AddressFromJson;
+  static const toJsonFactory = _$PaystubOverride$Employee$AddressToJson;
+  Map<String, dynamic> toJson() =>
+      _$PaystubOverride$Employee$AddressToJson(this);
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ItemStatus$LastWebhook &&
-            (identical(other.sentAt, sentAt) ||
-                const DeepCollectionEquality().equals(other.sentAt, sentAt)) &&
-            (identical(other.codeSent, codeSent) ||
+        (other is PaystubOverride$Employee$Address &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.region, region) ||
+                const DeepCollectionEquality().equals(other.region, region)) &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.postalCode, postalCode) ||
                 const DeepCollectionEquality()
-                    .equals(other.codeSent, codeSent)));
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality().equals(other.country, country)));
   }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(region) ^
+      const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(country) ^
+      runtimeType.hashCode;
 }
 
-extension $ItemStatus$LastWebhookExtension on ItemStatus$LastWebhook {
-  ItemStatus$LastWebhook copyWith({String? sentAt, String? codeSent}) {
-    return ItemStatus$LastWebhook(
-        sentAt: sentAt ?? this.sentAt, codeSent: codeSent ?? this.codeSent);
+extension $PaystubOverride$Employee$AddressExtension
+    on PaystubOverride$Employee$Address {
+  PaystubOverride$Employee$Address copyWith(
+      {String? city,
+      String? region,
+      String? street,
+      String? postalCode,
+      String? country}) {
+    return PaystubOverride$Employee$Address(
+        city: city ?? this.city,
+        region: region ?? this.region,
+        street: street ?? this.street,
+        postalCode: postalCode ?? this.postalCode,
+        country: country ?? this.country);
   }
 }
 
@@ -19519,6 +32042,110 @@ List<enums.SandboxItemFireWebhookRequestWebhookCode>
   return sandboxItemFireWebhookRequestWebhookCode
       .map(
           (e) => sandboxItemFireWebhookRequestWebhookCodeFromJson(e.toString()))
+      .toList();
+}
+
+String? paymentInitiationPaymentReverseResponseStatusToJson(
+    enums.PaymentInitiationPaymentReverseResponseStatus?
+        paymentInitiationPaymentReverseResponseStatus) {
+  return enums.$PaymentInitiationPaymentReverseResponseStatusMap[
+      paymentInitiationPaymentReverseResponseStatus];
+}
+
+enums.PaymentInitiationPaymentReverseResponseStatus
+    paymentInitiationPaymentReverseResponseStatusFromJson(
+        String? paymentInitiationPaymentReverseResponseStatus) {
+  if (paymentInitiationPaymentReverseResponseStatus == null) {
+    return enums
+        .PaymentInitiationPaymentReverseResponseStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PaymentInitiationPaymentReverseResponseStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              paymentInitiationPaymentReverseResponseStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PaymentInitiationPaymentReverseResponseStatus
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> paymentInitiationPaymentReverseResponseStatusListToJson(
+    List<enums.PaymentInitiationPaymentReverseResponseStatus>?
+        paymentInitiationPaymentReverseResponseStatus) {
+  if (paymentInitiationPaymentReverseResponseStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationPaymentReverseResponseStatus
+      .map((e) => enums.$PaymentInitiationPaymentReverseResponseStatusMap[e]!)
+      .toList();
+}
+
+List<enums.PaymentInitiationPaymentReverseResponseStatus>
+    paymentInitiationPaymentReverseResponseStatusListFromJson(
+        List? paymentInitiationPaymentReverseResponseStatus) {
+  if (paymentInitiationPaymentReverseResponseStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationPaymentReverseResponseStatus
+      .map((e) =>
+          paymentInitiationPaymentReverseResponseStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? paymentInitiationPaymentCreateResponseStatusToJson(
+    enums.PaymentInitiationPaymentCreateResponseStatus?
+        paymentInitiationPaymentCreateResponseStatus) {
+  return enums.$PaymentInitiationPaymentCreateResponseStatusMap[
+      paymentInitiationPaymentCreateResponseStatus];
+}
+
+enums.PaymentInitiationPaymentCreateResponseStatus
+    paymentInitiationPaymentCreateResponseStatusFromJson(
+        String? paymentInitiationPaymentCreateResponseStatus) {
+  if (paymentInitiationPaymentCreateResponseStatus == null) {
+    return enums
+        .PaymentInitiationPaymentCreateResponseStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PaymentInitiationPaymentCreateResponseStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              paymentInitiationPaymentCreateResponseStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PaymentInitiationPaymentCreateResponseStatus
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> paymentInitiationPaymentCreateResponseStatusListToJson(
+    List<enums.PaymentInitiationPaymentCreateResponseStatus>?
+        paymentInitiationPaymentCreateResponseStatus) {
+  if (paymentInitiationPaymentCreateResponseStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationPaymentCreateResponseStatus
+      .map((e) => enums.$PaymentInitiationPaymentCreateResponseStatusMap[e]!)
+      .toList();
+}
+
+List<enums.PaymentInitiationPaymentCreateResponseStatus>
+    paymentInitiationPaymentCreateResponseStatusListFromJson(
+        List? paymentInitiationPaymentCreateResponseStatus) {
+  if (paymentInitiationPaymentCreateResponseStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationPaymentCreateResponseStatus
+      .map((e) =>
+          paymentInitiationPaymentCreateResponseStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -19622,6 +32249,100 @@ List<enums.PaymentInitiationPaymentStatus>
 
   return paymentInitiationPaymentStatus
       .map((e) => paymentInitiationPaymentStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? paymentInitiationRefundStatusToJson(
+    enums.PaymentInitiationRefundStatus? paymentInitiationRefundStatus) {
+  return enums.$PaymentInitiationRefundStatusMap[paymentInitiationRefundStatus];
+}
+
+enums.PaymentInitiationRefundStatus paymentInitiationRefundStatusFromJson(
+    String? paymentInitiationRefundStatus) {
+  if (paymentInitiationRefundStatus == null) {
+    return enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PaymentInitiationRefundStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              paymentInitiationRefundStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> paymentInitiationRefundStatusListToJson(
+    List<enums.PaymentInitiationRefundStatus>? paymentInitiationRefundStatus) {
+  if (paymentInitiationRefundStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationRefundStatus
+      .map((e) => enums.$PaymentInitiationRefundStatusMap[e]!)
+      .toList();
+}
+
+List<enums.PaymentInitiationRefundStatus>
+    paymentInitiationRefundStatusListFromJson(
+        List? paymentInitiationRefundStatus) {
+  if (paymentInitiationRefundStatus == null) {
+    return [];
+  }
+
+  return paymentInitiationRefundStatus
+      .map((e) => paymentInitiationRefundStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? processorTokenCreateRequestProcessorToJson(
+    enums.ProcessorTokenCreateRequestProcessor?
+        processorTokenCreateRequestProcessor) {
+  return enums.$ProcessorTokenCreateRequestProcessorMap[
+      processorTokenCreateRequestProcessor];
+}
+
+enums.ProcessorTokenCreateRequestProcessor
+    processorTokenCreateRequestProcessorFromJson(
+        String? processorTokenCreateRequestProcessor) {
+  if (processorTokenCreateRequestProcessor == null) {
+    return enums.ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown;
+  }
+
+  return enums.$ProcessorTokenCreateRequestProcessorMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              processorTokenCreateRequestProcessor.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums
+                  .ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> processorTokenCreateRequestProcessorListToJson(
+    List<enums.ProcessorTokenCreateRequestProcessor>?
+        processorTokenCreateRequestProcessor) {
+  if (processorTokenCreateRequestProcessor == null) {
+    return [];
+  }
+
+  return processorTokenCreateRequestProcessor
+      .map((e) => enums.$ProcessorTokenCreateRequestProcessorMap[e]!)
+      .toList();
+}
+
+List<enums.ProcessorTokenCreateRequestProcessor>
+    processorTokenCreateRequestProcessorListFromJson(
+        List? processorTokenCreateRequestProcessor) {
+  if (processorTokenCreateRequestProcessor == null) {
+    return [];
+  }
+
+  return processorTokenCreateRequestProcessor
+      .map((e) => processorTokenCreateRequestProcessorFromJson(e.toString()))
       .toList();
 }
 
@@ -19954,46 +32675,49 @@ List<enums.AccountSubtype> accountSubtypeListFromJson(List? accountSubtype) {
       .toList();
 }
 
-String? transactionTransactionTypeToJson(
-    enums.TransactionTransactionType? transactionTransactionType) {
-  return enums.$TransactionTransactionTypeMap[transactionTransactionType];
+String? transactionBaseTransactionTypeToJson(
+    enums.TransactionBaseTransactionType? transactionBaseTransactionType) {
+  return enums
+      .$TransactionBaseTransactionTypeMap[transactionBaseTransactionType];
 }
 
-enums.TransactionTransactionType transactionTransactionTypeFromJson(
-    String? transactionTransactionType) {
-  if (transactionTransactionType == null) {
-    return enums.TransactionTransactionType.swaggerGeneratedUnknown;
+enums.TransactionBaseTransactionType transactionBaseTransactionTypeFromJson(
+    String? transactionBaseTransactionType) {
+  if (transactionBaseTransactionType == null) {
+    return enums.TransactionBaseTransactionType.swaggerGeneratedUnknown;
   }
 
-  return enums.$TransactionTransactionTypeMap.entries
+  return enums.$TransactionBaseTransactionTypeMap.entries
       .firstWhere(
           (element) =>
               element.value.toLowerCase() ==
-              transactionTransactionType.toLowerCase(),
+              transactionBaseTransactionType.toLowerCase(),
           orElse: () => const MapEntry(
-              enums.TransactionTransactionType.swaggerGeneratedUnknown, ''))
+              enums.TransactionBaseTransactionType.swaggerGeneratedUnknown, ''))
       .key;
 }
 
-List<String> transactionTransactionTypeListToJson(
-    List<enums.TransactionTransactionType>? transactionTransactionType) {
-  if (transactionTransactionType == null) {
+List<String> transactionBaseTransactionTypeListToJson(
+    List<enums.TransactionBaseTransactionType>?
+        transactionBaseTransactionType) {
+  if (transactionBaseTransactionType == null) {
     return [];
   }
 
-  return transactionTransactionType
-      .map((e) => enums.$TransactionTransactionTypeMap[e]!)
+  return transactionBaseTransactionType
+      .map((e) => enums.$TransactionBaseTransactionTypeMap[e]!)
       .toList();
 }
 
-List<enums.TransactionTransactionType> transactionTransactionTypeListFromJson(
-    List? transactionTransactionType) {
-  if (transactionTransactionType == null) {
+List<enums.TransactionBaseTransactionType>
+    transactionBaseTransactionTypeListFromJson(
+        List? transactionBaseTransactionType) {
+  if (transactionBaseTransactionType == null) {
     return [];
   }
 
-  return transactionTransactionType
-      .map((e) => transactionTransactionTypeFromJson(e.toString()))
+  return transactionBaseTransactionType
+      .map((e) => transactionBaseTransactionTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -20037,6 +32761,50 @@ List<enums.TransactionPaymentChannel> transactionPaymentChannelListFromJson(
 
   return transactionPaymentChannel
       .map((e) => transactionPaymentChannelFromJson(e.toString()))
+      .toList();
+}
+
+String? recurringTransactionFrequencyToJson(
+    enums.RecurringTransactionFrequency? recurringTransactionFrequency) {
+  return enums.$RecurringTransactionFrequencyMap[recurringTransactionFrequency];
+}
+
+enums.RecurringTransactionFrequency recurringTransactionFrequencyFromJson(
+    String? recurringTransactionFrequency) {
+  if (recurringTransactionFrequency == null) {
+    return enums.RecurringTransactionFrequency.swaggerGeneratedUnknown;
+  }
+
+  return enums.$RecurringTransactionFrequencyMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              recurringTransactionFrequency.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.RecurringTransactionFrequency.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> recurringTransactionFrequencyListToJson(
+    List<enums.RecurringTransactionFrequency>? recurringTransactionFrequency) {
+  if (recurringTransactionFrequency == null) {
+    return [];
+  }
+
+  return recurringTransactionFrequency
+      .map((e) => enums.$RecurringTransactionFrequencyMap[e]!)
+      .toList();
+}
+
+List<enums.RecurringTransactionFrequency>
+    recurringTransactionFrequencyListFromJson(
+        List? recurringTransactionFrequency) {
+  if (recurringTransactionFrequency == null) {
+    return [];
+  }
+
+  return recurringTransactionFrequency
+      .map((e) => recurringTransactionFrequencyFromJson(e.toString()))
       .toList();
 }
 
@@ -20467,6 +33235,47 @@ List<enums.ProductStatusBreakdownRefreshInterval>
       .toList();
 }
 
+String? warningWarningCodeToJson(enums.WarningWarningCode? warningWarningCode) {
+  return enums.$WarningWarningCodeMap[warningWarningCode];
+}
+
+enums.WarningWarningCode warningWarningCodeFromJson(
+    String? warningWarningCode) {
+  if (warningWarningCode == null) {
+    return enums.WarningWarningCode.swaggerGeneratedUnknown;
+  }
+
+  return enums.$WarningWarningCodeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == warningWarningCode.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.WarningWarningCode.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> warningWarningCodeListToJson(
+    List<enums.WarningWarningCode>? warningWarningCode) {
+  if (warningWarningCode == null) {
+    return [];
+  }
+
+  return warningWarningCode
+      .map((e) => enums.$WarningWarningCodeMap[e]!)
+      .toList();
+}
+
+List<enums.WarningWarningCode> warningWarningCodeListFromJson(
+    List? warningWarningCode) {
+  if (warningWarningCode == null) {
+    return [];
+  }
+
+  return warningWarningCode
+      .map((e) => warningWarningCodeFromJson(e.toString()))
+      .toList();
+}
+
 String? paymentAmountCurrencyToJson(
     enums.PaymentAmountCurrency? paymentAmountCurrency) {
   return enums.$PaymentAmountCurrencyMap[paymentAmountCurrency];
@@ -20828,6 +33637,135 @@ List<enums.ACHClass> aCHClassListFromJson(List? aCHClass) {
   return aCHClass.map((e) => aCHClassFromJson(e.toString())).toList();
 }
 
+String? transferIntentCreateModeToJson(
+    enums.TransferIntentCreateMode? transferIntentCreateMode) {
+  return enums.$TransferIntentCreateModeMap[transferIntentCreateMode];
+}
+
+enums.TransferIntentCreateMode transferIntentCreateModeFromJson(
+    String? transferIntentCreateMode) {
+  if (transferIntentCreateMode == null) {
+    return enums.TransferIntentCreateMode.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferIntentCreateModeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferIntentCreateMode.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferIntentCreateMode.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferIntentCreateModeListToJson(
+    List<enums.TransferIntentCreateMode>? transferIntentCreateMode) {
+  if (transferIntentCreateMode == null) {
+    return [];
+  }
+
+  return transferIntentCreateMode
+      .map((e) => enums.$TransferIntentCreateModeMap[e]!)
+      .toList();
+}
+
+List<enums.TransferIntentCreateMode> transferIntentCreateModeListFromJson(
+    List? transferIntentCreateMode) {
+  if (transferIntentCreateMode == null) {
+    return [];
+  }
+
+  return transferIntentCreateMode
+      .map((e) => transferIntentCreateModeFromJson(e.toString()))
+      .toList();
+}
+
+String? transferAuthorizationDecisionRationaleCodeToJson(
+    enums.TransferAuthorizationDecisionRationaleCode?
+        transferAuthorizationDecisionRationaleCode) {
+  return enums.$TransferAuthorizationDecisionRationaleCodeMap[
+      transferAuthorizationDecisionRationaleCode];
+}
+
+enums.TransferAuthorizationDecisionRationaleCode
+    transferAuthorizationDecisionRationaleCodeFromJson(
+        String? transferAuthorizationDecisionRationaleCode) {
+  if (transferAuthorizationDecisionRationaleCode == null) {
+    return enums
+        .TransferAuthorizationDecisionRationaleCode.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferAuthorizationDecisionRationaleCodeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferAuthorizationDecisionRationaleCode.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferAuthorizationDecisionRationaleCode
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> transferAuthorizationDecisionRationaleCodeListToJson(
+    List<enums.TransferAuthorizationDecisionRationaleCode>?
+        transferAuthorizationDecisionRationaleCode) {
+  if (transferAuthorizationDecisionRationaleCode == null) {
+    return [];
+  }
+
+  return transferAuthorizationDecisionRationaleCode
+      .map((e) => enums.$TransferAuthorizationDecisionRationaleCodeMap[e]!)
+      .toList();
+}
+
+List<enums.TransferAuthorizationDecisionRationaleCode>
+    transferAuthorizationDecisionRationaleCodeListFromJson(
+        List? transferAuthorizationDecisionRationaleCode) {
+  if (transferAuthorizationDecisionRationaleCode == null) {
+    return [];
+  }
+
+  return transferAuthorizationDecisionRationaleCode
+      .map((e) =>
+          transferAuthorizationDecisionRationaleCodeFromJson(e.toString()))
+      .toList();
+}
+
+String? transferTypeToJson(enums.TransferType? transferType) {
+  return enums.$TransferTypeMap[transferType];
+}
+
+enums.TransferType transferTypeFromJson(String? transferType) {
+  if (transferType == null) {
+    return enums.TransferType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferTypeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == transferType.toLowerCase(),
+          orElse: () =>
+              const MapEntry(enums.TransferType.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferTypeListToJson(List<enums.TransferType>? transferType) {
+  if (transferType == null) {
+    return [];
+  }
+
+  return transferType.map((e) => enums.$TransferTypeMap[e]!).toList();
+}
+
+List<enums.TransferType> transferTypeListFromJson(List? transferType) {
+  if (transferType == null) {
+    return [];
+  }
+
+  return transferType.map((e) => transferTypeFromJson(e.toString())).toList();
+}
+
 String? bankTransferTypeToJson(enums.BankTransferType? bankTransferType) {
   return enums.$BankTransferTypeMap[bankTransferType];
 }
@@ -20863,6 +33801,85 @@ List<enums.BankTransferType> bankTransferTypeListFromJson(
 
   return bankTransferType
       .map((e) => bankTransferTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? transferStatusToJson(enums.TransferStatus? transferStatus) {
+  return enums.$TransferStatusMap[transferStatus];
+}
+
+enums.TransferStatus transferStatusFromJson(String? transferStatus) {
+  if (transferStatus == null) {
+    return enums.TransferStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == transferStatus.toLowerCase(),
+          orElse: () =>
+              const MapEntry(enums.TransferStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferStatusListToJson(
+    List<enums.TransferStatus>? transferStatus) {
+  if (transferStatus == null) {
+    return [];
+  }
+
+  return transferStatus.map((e) => enums.$TransferStatusMap[e]!).toList();
+}
+
+List<enums.TransferStatus> transferStatusListFromJson(List? transferStatus) {
+  if (transferStatus == null) {
+    return [];
+  }
+
+  return transferStatus
+      .map((e) => transferStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? transferSweepStatusToJson(
+    enums.TransferSweepStatus? transferSweepStatus) {
+  return enums.$TransferSweepStatusMap[transferSweepStatus];
+}
+
+enums.TransferSweepStatus transferSweepStatusFromJson(
+    String? transferSweepStatus) {
+  if (transferSweepStatus == null) {
+    return enums.TransferSweepStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferSweepStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == transferSweepStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferSweepStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferSweepStatusListToJson(
+    List<enums.TransferSweepStatus>? transferSweepStatus) {
+  if (transferSweepStatus == null) {
+    return [];
+  }
+
+  return transferSweepStatus
+      .map((e) => enums.$TransferSweepStatusMap[e]!)
+      .toList();
+}
+
+List<enums.TransferSweepStatus> transferSweepStatusListFromJson(
+    List? transferSweepStatus) {
+  if (transferSweepStatus == null) {
+    return [];
+  }
+
+  return transferSweepStatus
+      .map((e) => transferSweepStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -20904,6 +33921,43 @@ List<enums.BankTransferStatus> bankTransferStatusListFromJson(
 
   return bankTransferStatus
       .map((e) => bankTransferStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? transferNetworkToJson(enums.TransferNetwork? transferNetwork) {
+  return enums.$TransferNetworkMap[transferNetwork];
+}
+
+enums.TransferNetwork transferNetworkFromJson(String? transferNetwork) {
+  if (transferNetwork == null) {
+    return enums.TransferNetwork.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferNetworkMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == transferNetwork.toLowerCase(),
+          orElse: () =>
+              const MapEntry(enums.TransferNetwork.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferNetworkListToJson(
+    List<enums.TransferNetwork>? transferNetwork) {
+  if (transferNetwork == null) {
+    return [];
+  }
+
+  return transferNetwork.map((e) => enums.$TransferNetworkMap[e]!).toList();
+}
+
+List<enums.TransferNetwork> transferNetworkListFromJson(List? transferNetwork) {
+  if (transferNetwork == null) {
+    return [];
+  }
+
+  return transferNetwork
+      .map((e) => transferNetworkFromJson(e.toString()))
       .toList();
 }
 
@@ -20949,6 +34003,50 @@ List<enums.BankTransferNetwork> bankTransferNetworkListFromJson(
       .toList();
 }
 
+String? transferAuthorizationDecisionToJson(
+    enums.TransferAuthorizationDecision? transferAuthorizationDecision) {
+  return enums.$TransferAuthorizationDecisionMap[transferAuthorizationDecision];
+}
+
+enums.TransferAuthorizationDecision transferAuthorizationDecisionFromJson(
+    String? transferAuthorizationDecision) {
+  if (transferAuthorizationDecision == null) {
+    return enums.TransferAuthorizationDecision.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferAuthorizationDecisionMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferAuthorizationDecision.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferAuthorizationDecision.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferAuthorizationDecisionListToJson(
+    List<enums.TransferAuthorizationDecision>? transferAuthorizationDecision) {
+  if (transferAuthorizationDecision == null) {
+    return [];
+  }
+
+  return transferAuthorizationDecision
+      .map((e) => enums.$TransferAuthorizationDecisionMap[e]!)
+      .toList();
+}
+
+List<enums.TransferAuthorizationDecision>
+    transferAuthorizationDecisionListFromJson(
+        List? transferAuthorizationDecision) {
+  if (transferAuthorizationDecision == null) {
+    return [];
+  }
+
+  return transferAuthorizationDecision
+      .map((e) => transferAuthorizationDecisionFromJson(e.toString()))
+      .toList();
+}
+
 String? bankTransferDirectionToJson(
     enums.BankTransferDirection? bankTransferDirection) {
   return enums.$BankTransferDirectionMap[bankTransferDirection];
@@ -20989,6 +34087,56 @@ List<enums.BankTransferDirection> bankTransferDirectionListFromJson(
 
   return bankTransferDirection
       .map((e) => bankTransferDirectionFromJson(e.toString()))
+      .toList();
+}
+
+String? transferEventListRequestTransferTypeToJson(
+    enums.TransferEventListRequestTransferType?
+        transferEventListRequestTransferType) {
+  return enums.$TransferEventListRequestTransferTypeMap[
+      transferEventListRequestTransferType];
+}
+
+enums.TransferEventListRequestTransferType
+    transferEventListRequestTransferTypeFromJson(
+        String? transferEventListRequestTransferType) {
+  if (transferEventListRequestTransferType == null) {
+    return enums.TransferEventListRequestTransferType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferEventListRequestTransferTypeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferEventListRequestTransferType.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums
+                  .TransferEventListRequestTransferType.swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> transferEventListRequestTransferTypeListToJson(
+    List<enums.TransferEventListRequestTransferType>?
+        transferEventListRequestTransferType) {
+  if (transferEventListRequestTransferType == null) {
+    return [];
+  }
+
+  return transferEventListRequestTransferType
+      .map((e) => enums.$TransferEventListRequestTransferTypeMap[e]!)
+      .toList();
+}
+
+List<enums.TransferEventListRequestTransferType>
+    transferEventListRequestTransferTypeListFromJson(
+        List? transferEventListRequestTransferType) {
+  if (transferEventListRequestTransferType == null) {
+    return [];
+  }
+
+  return transferEventListRequestTransferType
+      .map((e) => transferEventListRequestTransferTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -21094,6 +34242,44 @@ List<enums.BankTransferEventListRequestDirection>
       .toList();
 }
 
+String? transferEventTypeToJson(enums.TransferEventType? transferEventType) {
+  return enums.$TransferEventTypeMap[transferEventType];
+}
+
+enums.TransferEventType transferEventTypeFromJson(String? transferEventType) {
+  if (transferEventType == null) {
+    return enums.TransferEventType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferEventTypeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == transferEventType.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferEventType.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferEventTypeListToJson(
+    List<enums.TransferEventType>? transferEventType) {
+  if (transferEventType == null) {
+    return [];
+  }
+
+  return transferEventType.map((e) => enums.$TransferEventTypeMap[e]!).toList();
+}
+
+List<enums.TransferEventType> transferEventTypeListFromJson(
+    List? transferEventType) {
+  if (transferEventType == null) {
+    return [];
+  }
+
+  return transferEventType
+      .map((e) => transferEventTypeFromJson(e.toString()))
+      .toList();
+}
+
 String? bankTransferEventTypeToJson(
     enums.BankTransferEventType? bankTransferEventType) {
   return enums.$BankTransferEventTypeMap[bankTransferEventType];
@@ -21134,6 +34320,142 @@ List<enums.BankTransferEventType> bankTransferEventTypeListFromJson(
 
   return bankTransferEventType
       .map((e) => bankTransferEventTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? transferIntentCreateStatusToJson(
+    enums.TransferIntentCreateStatus? transferIntentCreateStatus) {
+  return enums.$TransferIntentCreateStatusMap[transferIntentCreateStatus];
+}
+
+enums.TransferIntentCreateStatus transferIntentCreateStatusFromJson(
+    String? transferIntentCreateStatus) {
+  if (transferIntentCreateStatus == null) {
+    return enums.TransferIntentCreateStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferIntentCreateStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferIntentCreateStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferIntentCreateStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferIntentCreateStatusListToJson(
+    List<enums.TransferIntentCreateStatus>? transferIntentCreateStatus) {
+  if (transferIntentCreateStatus == null) {
+    return [];
+  }
+
+  return transferIntentCreateStatus
+      .map((e) => enums.$TransferIntentCreateStatusMap[e]!)
+      .toList();
+}
+
+List<enums.TransferIntentCreateStatus> transferIntentCreateStatusListFromJson(
+    List? transferIntentCreateStatus) {
+  if (transferIntentCreateStatus == null) {
+    return [];
+  }
+
+  return transferIntentCreateStatus
+      .map((e) => transferIntentCreateStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? transferIntentGetStatusToJson(
+    enums.TransferIntentGetStatus? transferIntentGetStatus) {
+  return enums.$TransferIntentGetStatusMap[transferIntentGetStatus];
+}
+
+enums.TransferIntentGetStatus transferIntentGetStatusFromJson(
+    String? transferIntentGetStatus) {
+  if (transferIntentGetStatus == null) {
+    return enums.TransferIntentGetStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferIntentGetStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferIntentGetStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferIntentGetStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> transferIntentGetStatusListToJson(
+    List<enums.TransferIntentGetStatus>? transferIntentGetStatus) {
+  if (transferIntentGetStatus == null) {
+    return [];
+  }
+
+  return transferIntentGetStatus
+      .map((e) => enums.$TransferIntentGetStatusMap[e]!)
+      .toList();
+}
+
+List<enums.TransferIntentGetStatus> transferIntentGetStatusListFromJson(
+    List? transferIntentGetStatus) {
+  if (transferIntentGetStatus == null) {
+    return [];
+  }
+
+  return transferIntentGetStatus
+      .map((e) => transferIntentGetStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? transferIntentGetAuthorizationDecisionToJson(
+    enums.TransferIntentGetAuthorizationDecision?
+        transferIntentGetAuthorizationDecision) {
+  return enums.$TransferIntentGetAuthorizationDecisionMap[
+      transferIntentGetAuthorizationDecision];
+}
+
+enums.TransferIntentGetAuthorizationDecision
+    transferIntentGetAuthorizationDecisionFromJson(
+        String? transferIntentGetAuthorizationDecision) {
+  if (transferIntentGetAuthorizationDecision == null) {
+    return enums.TransferIntentGetAuthorizationDecision.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TransferIntentGetAuthorizationDecisionMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              transferIntentGetAuthorizationDecision.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TransferIntentGetAuthorizationDecision
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> transferIntentGetAuthorizationDecisionListToJson(
+    List<enums.TransferIntentGetAuthorizationDecision>?
+        transferIntentGetAuthorizationDecision) {
+  if (transferIntentGetAuthorizationDecision == null) {
+    return [];
+  }
+
+  return transferIntentGetAuthorizationDecision
+      .map((e) => enums.$TransferIntentGetAuthorizationDecisionMap[e]!)
+      .toList();
+}
+
+List<enums.TransferIntentGetAuthorizationDecision>
+    transferIntentGetAuthorizationDecisionListFromJson(
+        List? transferIntentGetAuthorizationDecision) {
+  if (transferIntentGetAuthorizationDecision == null) {
+    return [];
+  }
+
+  return transferIntentGetAuthorizationDecision
+      .map((e) => transferIntentGetAuthorizationDecisionFromJson(e.toString()))
       .toList();
 }
 
@@ -21186,6 +34508,108 @@ List<enums.BankTransferReceiverDetailsAvailableBalance>
   return bankTransferReceiverDetailsAvailableBalance
       .map((e) =>
           bankTransferReceiverDetailsAvailableBalanceFromJson(e.toString()))
+      .toList();
+}
+
+String? incomeVerificationPrecheckMilitaryInfoBranchToJson(
+    enums.IncomeVerificationPrecheckMilitaryInfoBranch?
+        incomeVerificationPrecheckMilitaryInfoBranch) {
+  return enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap[
+      incomeVerificationPrecheckMilitaryInfoBranch];
+}
+
+enums.IncomeVerificationPrecheckMilitaryInfoBranch
+    incomeVerificationPrecheckMilitaryInfoBranchFromJson(
+        String? incomeVerificationPrecheckMilitaryInfoBranch) {
+  if (incomeVerificationPrecheckMilitaryInfoBranch == null) {
+    return enums
+        .IncomeVerificationPrecheckMilitaryInfoBranch.swaggerGeneratedUnknown;
+  }
+
+  return enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              incomeVerificationPrecheckMilitaryInfoBranch.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.IncomeVerificationPrecheckMilitaryInfoBranch
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> incomeVerificationPrecheckMilitaryInfoBranchListToJson(
+    List<enums.IncomeVerificationPrecheckMilitaryInfoBranch>?
+        incomeVerificationPrecheckMilitaryInfoBranch) {
+  if (incomeVerificationPrecheckMilitaryInfoBranch == null) {
+    return [];
+  }
+
+  return incomeVerificationPrecheckMilitaryInfoBranch
+      .map((e) => enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap[e]!)
+      .toList();
+}
+
+List<enums.IncomeVerificationPrecheckMilitaryInfoBranch>
+    incomeVerificationPrecheckMilitaryInfoBranchListFromJson(
+        List? incomeVerificationPrecheckMilitaryInfoBranch) {
+  if (incomeVerificationPrecheckMilitaryInfoBranch == null) {
+    return [];
+  }
+
+  return incomeVerificationPrecheckMilitaryInfoBranch
+      .map((e) =>
+          incomeVerificationPrecheckMilitaryInfoBranchFromJson(e.toString()))
+      .toList();
+}
+
+String? incomeVerificationPrecheckConfidenceToJson(
+    enums.IncomeVerificationPrecheckConfidence?
+        incomeVerificationPrecheckConfidence) {
+  return enums.$IncomeVerificationPrecheckConfidenceMap[
+      incomeVerificationPrecheckConfidence];
+}
+
+enums.IncomeVerificationPrecheckConfidence
+    incomeVerificationPrecheckConfidenceFromJson(
+        String? incomeVerificationPrecheckConfidence) {
+  if (incomeVerificationPrecheckConfidence == null) {
+    return enums.IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown;
+  }
+
+  return enums.$IncomeVerificationPrecheckConfidenceMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              incomeVerificationPrecheckConfidence.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums
+                  .IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> incomeVerificationPrecheckConfidenceListToJson(
+    List<enums.IncomeVerificationPrecheckConfidence>?
+        incomeVerificationPrecheckConfidence) {
+  if (incomeVerificationPrecheckConfidence == null) {
+    return [];
+  }
+
+  return incomeVerificationPrecheckConfidence
+      .map((e) => enums.$IncomeVerificationPrecheckConfidenceMap[e]!)
+      .toList();
+}
+
+List<enums.IncomeVerificationPrecheckConfidence>
+    incomeVerificationPrecheckConfidenceListFromJson(
+        List? incomeVerificationPrecheckConfidence) {
+  if (incomeVerificationPrecheckConfidence == null) {
+    return [];
+  }
+
+  return incomeVerificationPrecheckConfidence
+      .map((e) => incomeVerificationPrecheckConfidenceFromJson(e.toString()))
       .toList();
 }
 
@@ -21268,6 +34692,217 @@ List<enums.VerificationStatus> verificationStatusListFromJson(
       .toList();
 }
 
+String? verificationRefreshStatusToJson(
+    enums.VerificationRefreshStatus? verificationRefreshStatus) {
+  return enums.$VerificationRefreshStatusMap[verificationRefreshStatus];
+}
+
+enums.VerificationRefreshStatus verificationRefreshStatusFromJson(
+    String? verificationRefreshStatus) {
+  if (verificationRefreshStatus == null) {
+    return enums.VerificationRefreshStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$VerificationRefreshStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              verificationRefreshStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.VerificationRefreshStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> verificationRefreshStatusListToJson(
+    List<enums.VerificationRefreshStatus>? verificationRefreshStatus) {
+  if (verificationRefreshStatus == null) {
+    return [];
+  }
+
+  return verificationRefreshStatus
+      .map((e) => enums.$VerificationRefreshStatusMap[e]!)
+      .toList();
+}
+
+List<enums.VerificationRefreshStatus> verificationRefreshStatusListFromJson(
+    List? verificationRefreshStatus) {
+  if (verificationRefreshStatus == null) {
+    return [];
+  }
+
+  return verificationRefreshStatus
+      .map((e) => verificationRefreshStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? docTypeToJson(enums.DocType? docType) {
+  return enums.$DocTypeMap[docType];
+}
+
+enums.DocType docTypeFromJson(String? docType) {
+  if (docType == null) {
+    return enums.DocType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$DocTypeMap.entries
+      .firstWhere(
+          (element) => element.value.toLowerCase() == docType.toLowerCase(),
+          orElse: () =>
+              const MapEntry(enums.DocType.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> docTypeListToJson(List<enums.DocType>? docType) {
+  if (docType == null) {
+    return [];
+  }
+
+  return docType.map((e) => enums.$DocTypeMap[e]!).toList();
+}
+
+List<enums.DocType> docTypeListFromJson(List? docType) {
+  if (docType == null) {
+    return [];
+  }
+
+  return docType.map((e) => docTypeFromJson(e.toString())).toList();
+}
+
+String? totalCanonicalDescriptionToJson(
+    enums.TotalCanonicalDescription? totalCanonicalDescription) {
+  return enums.$TotalCanonicalDescriptionMap[totalCanonicalDescription];
+}
+
+enums.TotalCanonicalDescription totalCanonicalDescriptionFromJson(
+    String? totalCanonicalDescription) {
+  if (totalCanonicalDescription == null) {
+    return enums.TotalCanonicalDescription.swaggerGeneratedUnknown;
+  }
+
+  return enums.$TotalCanonicalDescriptionMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              totalCanonicalDescription.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.TotalCanonicalDescription.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> totalCanonicalDescriptionListToJson(
+    List<enums.TotalCanonicalDescription>? totalCanonicalDescription) {
+  if (totalCanonicalDescription == null) {
+    return [];
+  }
+
+  return totalCanonicalDescription
+      .map((e) => enums.$TotalCanonicalDescriptionMap[e]!)
+      .toList();
+}
+
+List<enums.TotalCanonicalDescription> totalCanonicalDescriptionListFromJson(
+    List? totalCanonicalDescription) {
+  if (totalCanonicalDescription == null) {
+    return [];
+  }
+
+  return totalCanonicalDescription
+      .map((e) => totalCanonicalDescriptionFromJson(e.toString()))
+      .toList();
+}
+
+String? earningsBreakdownCanonicalDescriptionToJson(
+    enums.EarningsBreakdownCanonicalDescription?
+        earningsBreakdownCanonicalDescription) {
+  return enums.$EarningsBreakdownCanonicalDescriptionMap[
+      earningsBreakdownCanonicalDescription];
+}
+
+enums.EarningsBreakdownCanonicalDescription
+    earningsBreakdownCanonicalDescriptionFromJson(
+        String? earningsBreakdownCanonicalDescription) {
+  if (earningsBreakdownCanonicalDescription == null) {
+    return enums.EarningsBreakdownCanonicalDescription.swaggerGeneratedUnknown;
+  }
+
+  return enums.$EarningsBreakdownCanonicalDescriptionMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              earningsBreakdownCanonicalDescription.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.EarningsBreakdownCanonicalDescription
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> earningsBreakdownCanonicalDescriptionListToJson(
+    List<enums.EarningsBreakdownCanonicalDescription>?
+        earningsBreakdownCanonicalDescription) {
+  if (earningsBreakdownCanonicalDescription == null) {
+    return [];
+  }
+
+  return earningsBreakdownCanonicalDescription
+      .map((e) => enums.$EarningsBreakdownCanonicalDescriptionMap[e]!)
+      .toList();
+}
+
+List<enums.EarningsBreakdownCanonicalDescription>
+    earningsBreakdownCanonicalDescriptionListFromJson(
+        List? earningsBreakdownCanonicalDescription) {
+  if (earningsBreakdownCanonicalDescription == null) {
+    return [];
+  }
+
+  return earningsBreakdownCanonicalDescription
+      .map((e) => earningsBreakdownCanonicalDescriptionFromJson(e.toString()))
+      .toList();
+}
+
+String? paystubPayFrequencyToJson(
+    enums.PaystubPayFrequency? paystubPayFrequency) {
+  return enums.$PaystubPayFrequencyMap[paystubPayFrequency];
+}
+
+enums.PaystubPayFrequency paystubPayFrequencyFromJson(
+    String? paystubPayFrequency) {
+  if (paystubPayFrequency == null) {
+    return enums.PaystubPayFrequency.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PaystubPayFrequencyMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == paystubPayFrequency.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PaystubPayFrequency.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> paystubPayFrequencyListToJson(
+    List<enums.PaystubPayFrequency>? paystubPayFrequency) {
+  if (paystubPayFrequency == null) {
+    return [];
+  }
+
+  return paystubPayFrequency
+      .map((e) => enums.$PaystubPayFrequencyMap[e]!)
+      .toList();
+}
+
+List<enums.PaystubPayFrequency> paystubPayFrequencyListFromJson(
+    List? paystubPayFrequency) {
+  if (paystubPayFrequency == null) {
+    return [];
+  }
+
+  return paystubPayFrequency
+      .map((e) => paystubPayFrequencyFromJson(e.toString()))
+      .toList();
+}
+
 String? incomeBreakdownTypeToJson(
     enums.IncomeBreakdownType? incomeBreakdownType) {
   return enums.$IncomeBreakdownTypeMap[incomeBreakdownType];
@@ -21307,6 +34942,180 @@ List<enums.IncomeBreakdownType> incomeBreakdownTypeListFromJson(
 
   return incomeBreakdownType
       .map((e) => incomeBreakdownTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? payPeriodDetailsPayFrequencyToJson(
+    enums.PayPeriodDetailsPayFrequency? payPeriodDetailsPayFrequency) {
+  return enums.$PayPeriodDetailsPayFrequencyMap[payPeriodDetailsPayFrequency];
+}
+
+enums.PayPeriodDetailsPayFrequency payPeriodDetailsPayFrequencyFromJson(
+    String? payPeriodDetailsPayFrequency) {
+  if (payPeriodDetailsPayFrequency == null) {
+    return enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PayPeriodDetailsPayFrequencyMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              payPeriodDetailsPayFrequency.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> payPeriodDetailsPayFrequencyListToJson(
+    List<enums.PayPeriodDetailsPayFrequency>? payPeriodDetailsPayFrequency) {
+  if (payPeriodDetailsPayFrequency == null) {
+    return [];
+  }
+
+  return payPeriodDetailsPayFrequency
+      .map((e) => enums.$PayPeriodDetailsPayFrequencyMap[e]!)
+      .toList();
+}
+
+List<enums.PayPeriodDetailsPayFrequency>
+    payPeriodDetailsPayFrequencyListFromJson(
+        List? payPeriodDetailsPayFrequency) {
+  if (payPeriodDetailsPayFrequency == null) {
+    return [];
+  }
+
+  return payPeriodDetailsPayFrequency
+      .map((e) => payPeriodDetailsPayFrequencyFromJson(e.toString()))
+      .toList();
+}
+
+String? paystubVerificationStatusToJson(
+    enums.PaystubVerificationStatus? paystubVerificationStatus) {
+  return enums.$PaystubVerificationStatusMap[paystubVerificationStatus];
+}
+
+enums.PaystubVerificationStatus paystubVerificationStatusFromJson(
+    String? paystubVerificationStatus) {
+  if (paystubVerificationStatus == null) {
+    return enums.PaystubVerificationStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$PaystubVerificationStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              paystubVerificationStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.PaystubVerificationStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> paystubVerificationStatusListToJson(
+    List<enums.PaystubVerificationStatus>? paystubVerificationStatus) {
+  if (paystubVerificationStatus == null) {
+    return [];
+  }
+
+  return paystubVerificationStatus
+      .map((e) => enums.$PaystubVerificationStatusMap[e]!)
+      .toList();
+}
+
+List<enums.PaystubVerificationStatus> paystubVerificationStatusListFromJson(
+    List? paystubVerificationStatus) {
+  if (paystubVerificationStatus == null) {
+    return [];
+  }
+
+  return paystubVerificationStatus
+      .map((e) => paystubVerificationStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? verificationAttributeTypeToJson(
+    enums.VerificationAttributeType? verificationAttributeType) {
+  return enums.$VerificationAttributeTypeMap[verificationAttributeType];
+}
+
+enums.VerificationAttributeType verificationAttributeTypeFromJson(
+    String? verificationAttributeType) {
+  if (verificationAttributeType == null) {
+    return enums.VerificationAttributeType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$VerificationAttributeTypeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              verificationAttributeType.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.VerificationAttributeType.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> verificationAttributeTypeListToJson(
+    List<enums.VerificationAttributeType>? verificationAttributeType) {
+  if (verificationAttributeType == null) {
+    return [];
+  }
+
+  return verificationAttributeType
+      .map((e) => enums.$VerificationAttributeTypeMap[e]!)
+      .toList();
+}
+
+List<enums.VerificationAttributeType> verificationAttributeTypeListFromJson(
+    List? verificationAttributeType) {
+  if (verificationAttributeType == null) {
+    return [];
+  }
+
+  return verificationAttributeType
+      .map((e) => verificationAttributeTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? employmentVerificationStatusToJson(
+    enums.EmploymentVerificationStatus? employmentVerificationStatus) {
+  return enums.$EmploymentVerificationStatusMap[employmentVerificationStatus];
+}
+
+enums.EmploymentVerificationStatus employmentVerificationStatusFromJson(
+    String? employmentVerificationStatus) {
+  if (employmentVerificationStatus == null) {
+    return enums.EmploymentVerificationStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$EmploymentVerificationStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              employmentVerificationStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.EmploymentVerificationStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> employmentVerificationStatusListToJson(
+    List<enums.EmploymentVerificationStatus>? employmentVerificationStatus) {
+  if (employmentVerificationStatus == null) {
+    return [];
+  }
+
+  return employmentVerificationStatus
+      .map((e) => enums.$EmploymentVerificationStatusMap[e]!)
+      .toList();
+}
+
+List<enums.EmploymentVerificationStatus>
+    employmentVerificationStatusListFromJson(
+        List? employmentVerificationStatus) {
+  if (employmentVerificationStatus == null) {
+    return [];
+  }
+
+  return employmentVerificationStatus
+      .map((e) => employmentVerificationStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -21456,6 +35265,40 @@ List<enums.DepositSwitchTargetAccountAccountSubtype>
       .toList();
 }
 
+String? scopesContextToJson(enums.ScopesContext? scopesContext) {
+  return enums.$ScopesContextMap[scopesContext];
+}
+
+enums.ScopesContext scopesContextFromJson(String? scopesContext) {
+  if (scopesContext == null) {
+    return enums.ScopesContext.swaggerGeneratedUnknown;
+  }
+
+  return enums.$ScopesContextMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() == scopesContext.toLowerCase(),
+          orElse: () =>
+              const MapEntry(enums.ScopesContext.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> scopesContextListToJson(List<enums.ScopesContext>? scopesContext) {
+  if (scopesContext == null) {
+    return [];
+  }
+
+  return scopesContext.map((e) => enums.$ScopesContextMap[e]!).toList();
+}
+
+List<enums.ScopesContext> scopesContextListFromJson(List? scopesContext) {
+  if (scopesContext == null) {
+    return [];
+  }
+
+  return scopesContext.map((e) => scopesContextFromJson(e.toString())).toList();
+}
+
 String? connectedApplicationProductDataTypesToJson(
     enums.ConnectedApplicationProductDataTypes?
         connectedApplicationProductDataTypes) {
@@ -21602,12 +35445,148 @@ List<enums.SandboxIncomeFireWebhookRequestVerificationStatus>
       .toList();
 }
 
-typedef JsonFactory<T> = T Function(Map<String, dynamic> json);
+String? walletTransactionAmountIsoCurrencyCodeToJson(
+    enums.WalletTransactionAmountIsoCurrencyCode?
+        walletTransactionAmountIsoCurrencyCode) {
+  return enums.$WalletTransactionAmountIsoCurrencyCodeMap[
+      walletTransactionAmountIsoCurrencyCode];
+}
 
-class CustomJsonDecoder {
-  CustomJsonDecoder(this.factories);
+enums.WalletTransactionAmountIsoCurrencyCode
+    walletTransactionAmountIsoCurrencyCodeFromJson(
+        String? walletTransactionAmountIsoCurrencyCode) {
+  if (walletTransactionAmountIsoCurrencyCode == null) {
+    return enums.WalletTransactionAmountIsoCurrencyCode.swaggerGeneratedUnknown;
+  }
 
-  final Map<Type, JsonFactory> factories;
+  return enums.$WalletTransactionAmountIsoCurrencyCodeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              walletTransactionAmountIsoCurrencyCode.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.WalletTransactionAmountIsoCurrencyCode
+                  .swaggerGeneratedUnknown,
+              ''))
+      .key;
+}
+
+List<String> walletTransactionAmountIsoCurrencyCodeListToJson(
+    List<enums.WalletTransactionAmountIsoCurrencyCode>?
+        walletTransactionAmountIsoCurrencyCode) {
+  if (walletTransactionAmountIsoCurrencyCode == null) {
+    return [];
+  }
+
+  return walletTransactionAmountIsoCurrencyCode
+      .map((e) => enums.$WalletTransactionAmountIsoCurrencyCodeMap[e]!)
+      .toList();
+}
+
+List<enums.WalletTransactionAmountIsoCurrencyCode>
+    walletTransactionAmountIsoCurrencyCodeListFromJson(
+        List? walletTransactionAmountIsoCurrencyCode) {
+  if (walletTransactionAmountIsoCurrencyCode == null) {
+    return [];
+  }
+
+  return walletTransactionAmountIsoCurrencyCode
+      .map((e) => walletTransactionAmountIsoCurrencyCodeFromJson(e.toString()))
+      .toList();
+}
+
+String? walletTransactionStatusToJson(
+    enums.WalletTransactionStatus? walletTransactionStatus) {
+  return enums.$WalletTransactionStatusMap[walletTransactionStatus];
+}
+
+enums.WalletTransactionStatus walletTransactionStatusFromJson(
+    String? walletTransactionStatus) {
+  if (walletTransactionStatus == null) {
+    return enums.WalletTransactionStatus.swaggerGeneratedUnknown;
+  }
+
+  return enums.$WalletTransactionStatusMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              walletTransactionStatus.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.WalletTransactionStatus.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> walletTransactionStatusListToJson(
+    List<enums.WalletTransactionStatus>? walletTransactionStatus) {
+  if (walletTransactionStatus == null) {
+    return [];
+  }
+
+  return walletTransactionStatus
+      .map((e) => enums.$WalletTransactionStatusMap[e]!)
+      .toList();
+}
+
+List<enums.WalletTransactionStatus> walletTransactionStatusListFromJson(
+    List? walletTransactionStatus) {
+  if (walletTransactionStatus == null) {
+    return [];
+  }
+
+  return walletTransactionStatus
+      .map((e) => walletTransactionStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? walletTransactionTypeToJson(
+    enums.WalletTransactionType? walletTransactionType) {
+  return enums.$WalletTransactionTypeMap[walletTransactionType];
+}
+
+enums.WalletTransactionType walletTransactionTypeFromJson(
+    String? walletTransactionType) {
+  if (walletTransactionType == null) {
+    return enums.WalletTransactionType.swaggerGeneratedUnknown;
+  }
+
+  return enums.$WalletTransactionTypeMap.entries
+      .firstWhere(
+          (element) =>
+              element.value.toLowerCase() ==
+              walletTransactionType.toLowerCase(),
+          orElse: () => const MapEntry(
+              enums.WalletTransactionType.swaggerGeneratedUnknown, ''))
+      .key;
+}
+
+List<String> walletTransactionTypeListToJson(
+    List<enums.WalletTransactionType>? walletTransactionType) {
+  if (walletTransactionType == null) {
+    return [];
+  }
+
+  return walletTransactionType
+      .map((e) => enums.$WalletTransactionTypeMap[e]!)
+      .toList();
+}
+
+List<enums.WalletTransactionType> walletTransactionTypeListFromJson(
+    List? walletTransactionType) {
+  if (walletTransactionType == null) {
+    return [];
+  }
+
+  return walletTransactionType
+      .map((e) => walletTransactionTypeFromJson(e.toString()))
+      .toList();
+}
+
+typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);
+
+class $CustomJsonDecoder {
+  $CustomJsonDecoder(this.factories);
+
+  final Map<Type, $JsonFactory> factories;
 
   dynamic decode<T>(dynamic entity) {
     if (entity is Iterable) {
@@ -21627,7 +35606,7 @@ class CustomJsonDecoder {
 
   T _decodeMap<T>(Map<String, dynamic> values) {
     final jsonFactory = factories[T];
-    if (jsonFactory == null || jsonFactory is! JsonFactory<T>) {
+    if (jsonFactory == null || jsonFactory is! $JsonFactory<T>) {
       return throw "Could not find factory for type $T. Is '$T: $T.fromJsonFactory' included in the CustomJsonDecoder instance creation in bootstrapper.dart?";
     }
 
@@ -21638,7 +35617,7 @@ class CustomJsonDecoder {
       values.where((v) => v != null).map<T>((v) => decode<T>(v) as T).toList();
 }
 
-class JsonSerializableConverter extends chopper.JsonConverter {
+class $JsonSerializableConverter extends chopper.JsonConverter {
   @override
   chopper.Response<ResultType> convertResponse<ResultType, Item>(
       chopper.Response response) {
@@ -21650,11 +35629,11 @@ class JsonSerializableConverter extends chopper.JsonConverter {
 
     final jsonRes = super.convertResponse(response);
     return jsonRes.copyWith<ResultType>(
-        body: jsonDecoder.decode<Item>(jsonRes.body) as ResultType);
+        body: $jsonDecoder.decode<Item>(jsonRes.body) as ResultType);
   }
 }
 
-final jsonDecoder = CustomJsonDecoder(PlaidServiceJsonDecoderMappings);
+final $jsonDecoder = $CustomJsonDecoder(PlaidServiceJsonDecoderMappings);
 
 // ignore: unused_element
 String? _dateToJson(DateTime? date) {

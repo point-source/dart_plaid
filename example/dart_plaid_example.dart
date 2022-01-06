@@ -17,7 +17,7 @@ Future<void> main() async {
   );
 
   // Create a new institution instance and get the public token
-  final publicTokenRes = await plaid.sandboxPublicTokenCreate(
+  final publicTokenRes = await plaid.sandboxPublicTokenCreatePost(
     body: SandboxPublicTokenCreateRequest(
       institutionId: 'ins_10',
       initialProducts: [Products.assets],
@@ -30,7 +30,7 @@ Future<void> main() async {
   final publicToken = publicTokenRes.body?.publicToken;
 
   // Exchange public token for private access token
-  final accessTokenRes = await plaid.itemPublicTokenExchange(
+  final accessTokenRes = await plaid.itemPublicTokenExchangePost(
     body: ItemPublicTokenExchangeRequest(publicToken: publicToken),
   );
 
@@ -40,7 +40,7 @@ Future<void> main() async {
   final accessToken = accessTokenRes.body?.accessToken;
 
   // Use the access token to get a list of accounts
-  final accountsRes = await plaid.accountsGet(
+  final accountsRes = await plaid.accountsGetPost(
     body: AccountsGetRequest(accessToken: accessToken),
   );
 

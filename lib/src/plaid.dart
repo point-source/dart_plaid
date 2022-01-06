@@ -20,7 +20,6 @@ class Plaid {
     return ChopperClient(
       services: [PlaidService.create()],
       interceptors: [interceptor],
-      converter: JsonSerializableConverter(),
       baseUrl: 'https://$env.plaid.com',
     ).getService<PlaidService>();
   }
