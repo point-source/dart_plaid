@@ -10,13 +10,19 @@ Future<void> main() async {
   }
 
   // Create an instance of the Plaid service using a clientId and secret
-  PlaidService plaid = Plaid.create('my-client-id', 'my-secret',
-      environment: PlaidEnvironment.sandbox);
+  PlaidService plaid = Plaid.create(
+    'my-client-id',
+    'my-secret',
+    environment: PlaidEnvironment.sandbox,
+  );
 
   // Create a new institution instance and get the public token
   final publicTokenRes = await plaid.sandboxPublicTokenCreate(
-      body: SandboxPublicTokenCreateRequest(
-          institutionId: 'ins_10', initialProducts: [Products.assets]));
+    body: SandboxPublicTokenCreateRequest(
+      institutionId: 'ins_10',
+      initialProducts: [Products.assets],
+    ),
+  );
 
   // Check for errors in the response
   checkResponse(publicTokenRes);
@@ -25,7 +31,8 @@ Future<void> main() async {
 
   // Exchange public token for private access token
   final accessTokenRes = await plaid.itemPublicTokenExchange(
-      body: ItemPublicTokenExchangeRequest(publicToken: publicToken));
+    body: ItemPublicTokenExchangeRequest(publicToken: publicToken),
+  );
 
   // Check for errors in the response
   checkResponse(accessTokenRes);
@@ -34,7 +41,8 @@ Future<void> main() async {
 
   // Use the access token to get a list of accounts
   final accountsRes = await plaid.accountsGet(
-      body: AccountsGetRequest(accessToken: accessToken));
+    body: AccountsGetRequest(accessToken: accessToken),
+  );
 
   // Check for errors in the response
   checkResponse(accountsRes);
