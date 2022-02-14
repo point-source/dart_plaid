@@ -782,7 +782,7 @@ SandboxItemFireWebhookRequest _$SandboxItemFireWebhookRequestFromJson(
       secret: json['secret'] as String?,
       accessToken: json['access_token'] as String?,
       webhookCode: sandboxItemFireWebhookRequestWebhookCodeFromJson(
-          json['webhook_code'] as String?),
+          json['webhook_code']),
     );
 
 Map<String, dynamic> _$SandboxItemFireWebhookRequestToJson(
@@ -947,12 +947,12 @@ ProcessorBankTransferCreateRequest _$ProcessorBankTransferCreateRequestFromJson(
       secret: json['secret'] as String?,
       idempotencyKey: json['idempotency_key'] as String?,
       processorToken: json['processor_token'] as String?,
-      type: bankTransferTypeFromJson(json['type'] as String?),
-      network: bankTransferNetworkFromJson(json['network'] as String?),
+      type: bankTransferTypeFromJson(json['type']),
+      network: bankTransferNetworkFromJson(json['network']),
       amount: json['amount'] as String?,
       isoCurrencyCode: json['iso_currency_code'] as String?,
       description: json['description'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : BankTransferUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -1342,7 +1342,7 @@ PaymentInitiationPaymentReverseResponse
         PaymentInitiationPaymentReverseResponse(
           refundId: json['refund_id'] as String?,
           status: paymentInitiationPaymentReverseResponseStatusFromJson(
-              json['status'] as String?),
+              json['status']),
           requestId: json['request_id'] as String?,
         );
 
@@ -1376,12 +1376,30 @@ PaymentInitiationRecipientGetResponse
             Map<String, dynamic> json) =>
         PaymentInitiationRecipientGetResponse(
           requestId: json['request_id'] as String?,
+          recipientId: json['recipient_id'] as String?,
+          name: json['name'] as String?,
+          address: json['address'] == null
+              ? null
+              : PaymentInitiationAddress.fromJson(
+                  json['address'] as Map<String, dynamic>),
+          iban: json['iban'] as String?,
+          bacs: json['bacs'] == null
+              ? null
+              : RecipientBACSNullable.fromJson(
+                  json['bacs'] as Map<String, dynamic>),
+          emiRecipientId: json['emi_recipient_id'] as String?,
         );
 
 Map<String, dynamic> _$PaymentInitiationRecipientGetResponseToJson(
         PaymentInitiationRecipientGetResponse instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
+      'recipient_id': instance.recipientId,
+      'name': instance.name,
+      'address': instance.address?.toJson(),
+      'iban': instance.iban,
+      'bacs': instance.bacs?.toJson(),
+      'emi_recipient_id': instance.emiRecipientId,
     };
 
 PaymentInitiationRecipient _$PaymentInitiationRecipientFromJson(
@@ -1502,7 +1520,7 @@ PaymentInitiationPaymentCreateResponse
         PaymentInitiationPaymentCreateResponse(
           paymentId: json['payment_id'] as String?,
           status: paymentInitiationPaymentCreateResponseStatusFromJson(
-              json['status'] as String?),
+              json['status']),
           requestId: json['request_id'] as String?,
         );
 
@@ -1555,7 +1573,7 @@ SandboxItemSetVerificationStatusRequest
           accountId: json['account_id'] as String?,
           verificationStatus:
               sandboxItemSetVerificationStatusRequestVerificationStatusFromJson(
-                  json['verification_status'] as String?),
+                  json['verification_status']),
         );
 
 Map<String, dynamic> _$SandboxItemSetVerificationStatusRequestToJson(
@@ -1669,12 +1687,56 @@ PaymentInitiationPaymentGetResponse
     _$PaymentInitiationPaymentGetResponseFromJson(Map<String, dynamic> json) =>
         PaymentInitiationPaymentGetResponse(
           requestId: json['request_id'] as String?,
+          paymentId: json['payment_id'] as String?,
+          amount: json['amount'] == null
+              ? null
+              : PaymentAmount.fromJson(json['amount'] as Map<String, dynamic>),
+          status: paymentInitiationPaymentStatusFromJson(json['status']),
+          recipientId: json['recipient_id'] as String?,
+          reference: json['reference'] as String?,
+          adjustedReference: json['adjusted_reference'] as String?,
+          lastStatusUpdate: json['last_status_update'] == null
+              ? null
+              : DateTime.parse(json['last_status_update'] as String),
+          schedule: json['schedule'] == null
+              ? null
+              : ExternalPaymentScheduleGet.fromJson(
+                  json['schedule'] as Map<String, dynamic>),
+          refundDetails: json['refund_details'] == null
+              ? null
+              : ExternalPaymentRefundDetails.fromJson(
+                  json['refund_details'] as Map<String, dynamic>),
+          bacs: json['bacs'] == null
+              ? null
+              : SenderBACSNullable.fromJson(
+                  json['bacs'] as Map<String, dynamic>),
+          iban: json['iban'] as String?,
+          initiatedRefunds: (json['initiated_refunds'] as List<dynamic>?)
+                  ?.map((e) => PaymentInitiationRefund.fromJson(
+                      e as Map<String, dynamic>))
+                  .toList() ??
+              [],
+          walletId: json['wallet_id'] as String?,
         );
 
 Map<String, dynamic> _$PaymentInitiationPaymentGetResponseToJson(
         PaymentInitiationPaymentGetResponse instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
+      'payment_id': instance.paymentId,
+      'amount': instance.amount?.toJson(),
+      'status': paymentInitiationPaymentStatusToJson(instance.status),
+      'recipient_id': instance.recipientId,
+      'reference': instance.reference,
+      'adjusted_reference': instance.adjustedReference,
+      'last_status_update': instance.lastStatusUpdate?.toIso8601String(),
+      'schedule': instance.schedule?.toJson(),
+      'refund_details': instance.refundDetails?.toJson(),
+      'bacs': instance.bacs?.toJson(),
+      'iban': instance.iban,
+      'initiated_refunds':
+          instance.initiatedRefunds?.map((e) => e.toJson()).toList(),
+      'wallet_id': instance.walletId,
     };
 
 PaymentInitiationPayment _$PaymentInitiationPaymentFromJson(
@@ -1684,7 +1746,7 @@ PaymentInitiationPayment _$PaymentInitiationPaymentFromJson(
       amount: json['amount'] == null
           ? null
           : PaymentAmount.fromJson(json['amount'] as Map<String, dynamic>),
-      status: paymentInitiationPaymentStatusFromJson(json['status'] as String?),
+      status: paymentInitiationPaymentStatusFromJson(json['status']),
       recipientId: json['recipient_id'] as String?,
       reference: json['reference'] as String?,
       adjustedReference: json['adjusted_reference'] as String?,
@@ -1737,7 +1799,7 @@ PaymentInitiationRefund _$PaymentInitiationRefundFromJson(
       amount: json['amount'] == null
           ? null
           : PaymentAmount.fromJson(json['amount'] as Map<String, dynamic>),
-      status: paymentInitiationRefundStatusFromJson(json['status'] as String?),
+      status: paymentInitiationRefundStatusFromJson(json['status']),
       lastStatusUpdate: json['last_status_update'] == null
           ? null
           : DateTime.parse(json['last_status_update'] as String),
@@ -2293,8 +2355,8 @@ ProcessorTokenCreateRequest _$ProcessorTokenCreateRequestFromJson(
       secret: json['secret'] as String?,
       accessToken: json['access_token'] as String?,
       accountId: json['account_id'] as String?,
-      processor: processorTokenCreateRequestProcessorFromJson(
-          json['processor'] as String?),
+      processor:
+          processorTokenCreateRequestProcessorFromJson(json['processor']),
     );
 
 Map<String, dynamic> _$ProcessorTokenCreateRequestToJson(
@@ -2382,8 +2444,8 @@ DepositSwitchCreateRequest _$DepositSwitchCreateRequestFromJson(
       secret: json['secret'] as String?,
       targetAccessToken: json['target_access_token'] as String?,
       targetAccountId: json['target_account_id'] as String?,
-      countryCode: depositSwitchCreateRequestCountryCodeFromJson(
-          json['country_code'] as String?),
+      countryCode:
+          depositSwitchCreateRequestCountryCodeFromJson(json['country_code']),
       options: json['options'] == null
           ? null
           : DepositSwitchCreateRequestOptions.fromJson(
@@ -2702,8 +2764,7 @@ Map<String, dynamic> _$LinkTokenCreateRequestTransferToJson(
 LinkTokenCreateRequestAuth _$LinkTokenCreateRequestAuthFromJson(
         Map<String, dynamic> json) =>
     LinkTokenCreateRequestAuth(
-      flowType: linkTokenCreateRequestAuthFlowTypeFromJson(
-          json['flow_type'] as String?),
+      flowType: linkTokenCreateRequestAuthFlowTypeFromJson(json['flow_type']),
     );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAuthToJson(
@@ -2763,31 +2824,19 @@ LinkTokenCreateRequestAccountSubtypes
     _$LinkTokenCreateRequestAccountSubtypesFromJson(
             Map<String, dynamic> json) =>
         LinkTokenCreateRequestAccountSubtypes(
-          depository: json['depository'] == null
-              ? null
-              : LinkTokenCreateRequestAccountSubtypes$Depository.fromJson(
-                  json['depository'] as Map<String, dynamic>),
-          credit: json['credit'] == null
-              ? null
-              : LinkTokenCreateRequestAccountSubtypes$Credit.fromJson(
-                  json['credit'] as Map<String, dynamic>),
-          loan: json['loan'] == null
-              ? null
-              : LinkTokenCreateRequestAccountSubtypes$Loan.fromJson(
-                  json['loan'] as Map<String, dynamic>),
-          investment: json['investment'] == null
-              ? null
-              : LinkTokenCreateRequestAccountSubtypes$Investment.fromJson(
-                  json['investment'] as Map<String, dynamic>),
+          depository: json['depository'] as Map<String, dynamic>?,
+          credit: json['credit'] as Map<String, dynamic>?,
+          loan: json['loan'] as Map<String, dynamic>?,
+          investment: json['investment'] as Map<String, dynamic>?,
         );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAccountSubtypesToJson(
         LinkTokenCreateRequestAccountSubtypes instance) =>
     <String, dynamic>{
-      'depository': instance.depository?.toJson(),
-      'credit': instance.credit?.toJson(),
-      'loan': instance.loan?.toJson(),
-      'investment': instance.investment?.toJson(),
+      'depository': instance.depository,
+      'credit': instance.credit,
+      'loan': instance.loan,
+      'investment': instance.investment,
     };
 
 LinkTokenGetResponse _$LinkTokenGetResponseFromJson(
@@ -2876,7 +2925,7 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       consentExpirationTime: json['consent_expiration_time'] == null
           ? null
           : DateTime.parse(json['consent_expiration_time'] as String),
-      updateType: itemUpdateTypeFromJson(json['update_type'] as String?),
+      updateType: itemUpdateTypeFromJson(json['update_type']),
     );
 
 Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
@@ -2893,7 +2942,7 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
     };
 
 Error _$ErrorFromJson(Map<String, dynamic> json) => Error(
-      errorType: errorErrorTypeFromJson(json['error_type'] as String?),
+      errorType: errorErrorTypeFromJson(json['error_type']),
       errorCode: json['error_code'] as String?,
       errorMessage: json['error_message'] as String?,
       displayMessage: json['display_message'] as String?,
@@ -3009,10 +3058,10 @@ AccountBase _$AccountBaseFromJson(Map<String, dynamic> json) => AccountBase(
       mask: json['mask'] as String?,
       name: json['name'] as String?,
       officialName: json['official_name'] as String?,
-      type: accountTypeFromJson(json['type'] as String?),
-      subtype: accountSubtypeFromJson(json['subtype'] as String?),
-      verificationStatus: accountBaseVerificationStatusFromJson(
-          json['verification_status'] as String?),
+      type: accountTypeFromJson(json['type']),
+      subtype: accountSubtypeFromJson(json['subtype']),
+      verificationStatus:
+          accountBaseVerificationStatusFromJson(json['verification_status']),
     );
 
 Map<String, dynamic> _$AccountBaseToJson(AccountBase instance) =>
@@ -3183,8 +3232,8 @@ Map<String, dynamic> _$RemovedTransactionToJson(RemovedTransaction instance) =>
 
 TransactionBase _$TransactionBaseFromJson(Map<String, dynamic> json) =>
     TransactionBase(
-      transactionType: transactionBaseTransactionTypeFromJson(
-          json['transaction_type'] as String?),
+      transactionType:
+          transactionBaseTransactionTypeFromJson(json['transaction_type']),
       pendingTransactionId: json['pending_transaction_id'] as String?,
       categoryId: json['category_id'] as String?,
       category: (json['category'] as List<dynamic>?)
@@ -3237,7 +3286,7 @@ Map<String, dynamic> _$TransactionBaseToJson(TransactionBase instance) =>
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       paymentChannel:
-          transactionPaymentChannelFromJson(json['payment_channel'] as String?),
+          transactionPaymentChannelFromJson(json['payment_channel']),
       authorizedDate: json['authorized_date'] == null
           ? null
           : DateTime.parse(json['authorized_date'] as String),
@@ -3247,9 +3296,35 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       datetime: json['datetime'] == null
           ? null
           : DateTime.parse(json['datetime'] as String),
-      transactionCode:
-          transactionCodeFromJson(json['transaction_code'] as String?),
-      personalFinanceCategory: json['personalFinanceCategory'],
+      transactionCode: transactionCodeFromJson(json['transaction_code']),
+      personalFinanceCategory: json['personal_finance_category'],
+      transactionType:
+          transactionTransactionTypeFromJson(json['transaction_type']),
+      pendingTransactionId: json['pending_transaction_id'] as String?,
+      categoryId: json['category_id'] as String?,
+      category: (json['category'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, dynamic>),
+      paymentMeta: json['payment_meta'] == null
+          ? null
+          : PaymentMeta.fromJson(json['payment_meta'] as Map<String, dynamic>),
+      accountOwner: json['account_owner'] as String?,
+      name: json['name'] as String?,
+      originalDescription: json['original_description'] as String?,
+      accountId: json['account_id'] as String?,
+      amount: (json['amount'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      pending: json['pending'] as bool?,
+      transactionId: json['transaction_id'] as String?,
+      merchantName: json['merchant_name'] as String?,
+      checkNumber: json['check_number'] as String?,
     );
 
 Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
@@ -3260,7 +3335,26 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       'authorized_datetime': instance.authorizedDatetime?.toIso8601String(),
       'datetime': instance.datetime?.toIso8601String(),
       'transaction_code': transactionCodeToJson(instance.transactionCode),
-      'personalFinanceCategory': instance.personalFinanceCategory,
+      'personal_finance_category': instance.personalFinanceCategory,
+      'transaction_type':
+          transactionTransactionTypeToJson(instance.transactionType),
+      'pending_transaction_id': instance.pendingTransactionId,
+      'category_id': instance.categoryId,
+      'category': instance.category,
+      'location': instance.location?.toJson(),
+      'payment_meta': instance.paymentMeta?.toJson(),
+      'account_owner': instance.accountOwner,
+      'name': instance.name,
+      'original_description': instance.originalDescription,
+      'account_id': instance.accountId,
+      'amount': instance.amount,
+      'iso_currency_code': instance.isoCurrencyCode,
+      'unofficial_currency_code': instance.unofficialCurrencyCode,
+      'date': _dateToJson(instance.date),
+      'pending': instance.pending,
+      'transaction_id': instance.transactionId,
+      'merchant_name': instance.merchantName,
+      'check_number': instance.checkNumber,
     };
 
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
@@ -3301,8 +3395,7 @@ TransactionStream _$TransactionStreamFromJson(Map<String, dynamic> json) =>
       lastDate: json['last_date'] == null
           ? null
           : DateTime.parse(json['last_date'] as String),
-      frequency:
-          recurringTransactionFrequencyFromJson(json['frequency'] as String?),
+      frequency: recurringTransactionFrequencyFromJson(json['frequency']),
       transactionIds: (json['transaction_ids'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -3585,26 +3678,26 @@ Map<String, dynamic> _$InitialUpdateWebhookToJson(
 PhoneNumber _$PhoneNumberFromJson(Map<String, dynamic> json) => PhoneNumber(
       data: json['data'] as String?,
       primary: json['primary'] as bool?,
-      type: phoneNumberTypeFromJson(json['type'] as String?),
+      type: phoneNumberType$FromJson(json['type']),
     );
 
 Map<String, dynamic> _$PhoneNumberToJson(PhoneNumber instance) =>
     <String, dynamic>{
       'data': instance.data,
       'primary': instance.primary,
-      'type': phoneNumberTypeToJson(instance.type),
+      'type': phoneNumberType$ToJson(instance.type),
     };
 
 Email _$EmailFromJson(Map<String, dynamic> json) => Email(
       data: json['data'] as String?,
       primary: json['primary'] as bool?,
-      type: emailTypeFromJson(json['type'] as String?),
+      type: emailType$FromJson(json['type']),
     );
 
 Map<String, dynamic> _$EmailToJson(Email instance) => <String, dynamic>{
       'data': instance.data,
       'primary': instance.primary,
-      'type': emailTypeToJson(instance.type),
+      'type': emailType$ToJson(instance.type),
     };
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
@@ -3967,27 +4060,27 @@ StudentLoanStatus _$StudentLoanStatusFromJson(Map<String, dynamic> json) =>
       endDate: json['end_date'] == null
           ? null
           : DateTime.parse(json['end_date'] as String),
-      type: studentLoanStatusTypeFromJson(json['type'] as String?),
+      type: studentLoanStatusType$FromJson(json['type']),
     );
 
 Map<String, dynamic> _$StudentLoanStatusToJson(StudentLoanStatus instance) =>
     <String, dynamic>{
       'end_date': _dateToJson(instance.endDate),
-      'type': studentLoanStatusTypeToJson(instance.type),
+      'type': studentLoanStatusType$ToJson(instance.type),
     };
 
 StudentRepaymentPlan _$StudentRepaymentPlanFromJson(
         Map<String, dynamic> json) =>
     StudentRepaymentPlan(
       description: json['description'] as String?,
-      type: studentRepaymentPlanTypeFromJson(json['type'] as String?),
+      type: studentRepaymentPlanType$FromJson(json['type']),
     );
 
 Map<String, dynamic> _$StudentRepaymentPlanToJson(
         StudentRepaymentPlan instance) =>
     <String, dynamic>{
       'description': instance.description,
-      'type': studentRepaymentPlanTypeToJson(instance.type),
+      'type': studentRepaymentPlanType$ToJson(instance.type),
     };
 
 PSLFStatus _$PSLFStatusFromJson(Map<String, dynamic> json) => PSLFStatus(
@@ -4027,7 +4120,7 @@ Map<String, dynamic> _$ServicerAddressDataToJson(
 
 Apr _$AprFromJson(Map<String, dynamic> json) => Apr(
       aprPercentage: (json['apr_percentage'] as num?)?.toDouble(),
-      aprType: aprAprTypeFromJson(json['apr_type'] as String?),
+      aprType: aprAprTypeFromJson(json['apr_type']),
       balanceSubjectToApr: (json['balance_subject_to_apr'] as num?)?.toDouble(),
       interestChargeAmount:
           (json['interest_charge_amount'] as num?)?.toDouble(),
@@ -4073,7 +4166,8 @@ PaymentInitiationMetadata _$PaymentInitiationMetadataFromJson(
     PaymentInitiationMetadata(
       supportsInternationalPayments:
           json['supports_international_payments'] as bool?,
-      maximumPaymentAmount: json['maximum_payment_amount'],
+      maximumPaymentAmount:
+          json['maximum_payment_amount'] as Map<String, dynamic>?,
       supportsRefundDetails: json['supports_refund_details'] as bool?,
       standingOrderMetadata: json['standing_order_metadata'] == null
           ? null
@@ -4136,7 +4230,7 @@ Map<String, dynamic> _$PaymentInitiationAddressToJson(
 ExternalPaymentScheduleBase _$ExternalPaymentScheduleBaseFromJson(
         Map<String, dynamic> json) =>
     ExternalPaymentScheduleBase(
-      interval: paymentScheduleIntervalFromJson(json['interval'] as String?),
+      interval: paymentScheduleIntervalFromJson(json['interval']),
       intervalExecutionDay: json['interval_execution_day'] as int?,
       startDate: json['start_date'] == null
           ? null
@@ -4217,7 +4311,7 @@ Map<String, dynamic> _$ExternalPaymentScheduleGetToJson(
 
 ProductStatus _$ProductStatusFromJson(Map<String, dynamic> json) =>
     ProductStatus(
-      status: productStatusStatusFromJson(json['status'] as String?),
+      status: productStatusStatusFromJson(json['status']),
       lastStatusChange: json['last_status_change'] == null
           ? null
           : DateTime.parse(json['last_status_change'] as String),
@@ -4241,7 +4335,7 @@ ProductStatusBreakdown _$ProductStatusBreakdownFromJson(
       errorPlaid: (json['error_plaid'] as num?)?.toDouble(),
       errorInstitution: (json['error_institution'] as num?)?.toDouble(),
       refreshInterval: productStatusBreakdownRefreshIntervalFromJson(
-          json['refresh_interval'] as String?),
+          json['refresh_interval']),
     );
 
 Map<String, dynamic> _$ProductStatusBreakdownToJson(
@@ -4299,8 +4393,8 @@ Map<String, dynamic> _$MfaToJson(Mfa instance) => <String, dynamic>{
 
 OverrideAccounts _$OverrideAccountsFromJson(Map<String, dynamic> json) =>
     OverrideAccounts(
-      type: overrideAccountTypeFromJson(json['type'] as String?),
-      subtype: accountSubtypeFromJson(json['subtype'] as String?),
+      type: overrideAccountTypeFromJson(json['type']),
+      subtype: accountSubtypeFromJson(json['subtype']),
       startingBalance: (json['starting_balance'] as num?)?.toDouble(),
       forceAvailableBalance:
           (json['force_available_balance'] as num?)?.toDouble(),
@@ -4864,7 +4958,7 @@ LiabilitiesDefaultUpdateWebhook _$LiabilitiesDefaultUpdateWebhookFromJson(
                   .toList() ??
               [],
       accountIdsWithUpdatedLiabilities:
-          json['account_ids_with_updated_liabilities'],
+          json['account_ids_with_updated_liabilities'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$LiabilitiesDefaultUpdateWebhookToJson(
@@ -4927,7 +5021,7 @@ Map<String, dynamic> _$CauseToJson(Cause instance) => <String, dynamic>{
 
 Warning _$WarningFromJson(Map<String, dynamic> json) => Warning(
       warningType: json['warning_type'] as String?,
-      warningCode: warningWarningCodeFromJson(json['warning_code'] as String?),
+      warningCode: warningWarningCodeFromJson(json['warning_code']),
       cause: json['cause'] == null
           ? null
           : Cause.fromJson(json['cause'] as Map<String, dynamic>),
@@ -4941,7 +5035,7 @@ Map<String, dynamic> _$WarningToJson(Warning instance) => <String, dynamic>{
 
 PaymentAmount _$PaymentAmountFromJson(Map<String, dynamic> json) =>
     PaymentAmount(
-      currency: paymentAmountCurrencyFromJson(json['currency'] as String?),
+      currency: paymentAmountCurrencyFromJson(json['currency']),
       value: (json['value'] as num?)?.toDouble(),
     );
 
@@ -5063,9 +5157,9 @@ PaymentStatusUpdateWebhook _$PaymentStatusUpdateWebhookFromJson(
       webhookCode: json['webhook_code'] as String?,
       paymentId: json['payment_id'] as String?,
       newPaymentStatus: paymentStatusUpdateWebhookNewPaymentStatusFromJson(
-          json['new_payment_status'] as String?),
+          json['new_payment_status']),
       oldPaymentStatus: paymentStatusUpdateWebhookOldPaymentStatusFromJson(
-          json['old_payment_status'] as String?),
+          json['old_payment_status']),
       originalReference: json['original_reference'] as String?,
       adjustedReference: json['adjusted_reference'] as String?,
       originalStartDate: json['original_start_date'] == null
@@ -5178,8 +5272,8 @@ InvestmentTransaction _$InvestmentTransactionFromJson(
       amount: (json['amount'] as num?)?.toDouble(),
       price: (json['price'] as num?)?.toDouble(),
       fees: (json['fees'] as num?)?.toDouble(),
-      type: investmentTransactionTypeFromJson(json['type'] as String?),
-      subtype: investmentTransactionSubtypeFromJson(json['subtype'] as String?),
+      type: investmentTransactionType$FromJson(json['type']),
+      subtype: investmentTransactionSubtypeFromJson(json['subtype']),
       isoCurrencyCode: json['iso_currency_code'] as String?,
       unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
@@ -5197,7 +5291,7 @@ Map<String, dynamic> _$InvestmentTransactionToJson(
       'amount': instance.amount,
       'price': instance.price,
       'fees': instance.fees,
-      'type': investmentTransactionTypeToJson(instance.type),
+      'type': investmentTransactionType$ToJson(instance.type),
       'subtype': investmentTransactionSubtypeToJson(instance.subtype),
       'iso_currency_code': instance.isoCurrencyCode,
       'unofficial_currency_code': instance.unofficialCurrencyCode,
@@ -5273,9 +5367,9 @@ DepositSwitchGetResponse _$DepositSwitchGetResponseFromJson(
       depositSwitchId: json['deposit_switch_id'] as String?,
       targetAccountId: json['target_account_id'] as String?,
       targetItemId: json['target_item_id'] as String?,
-      state: depositSwitchGetResponseStateFromJson(json['state'] as String?),
-      switchMethod: depositSwitchGetResponseSwitchMethodFromJson(
-          json['switch_method'] as String?),
+      state: depositSwitchGetResponseStateFromJson(json['state']),
+      switchMethod:
+          depositSwitchGetResponseSwitchMethodFromJson(json['switch_method']),
       accountHasMultipleAllocations:
           json['account_has_multiple_allocations'] as bool?,
       isAllocatedRemainder: json['is_allocated_remainder'] as bool?,
@@ -5415,9 +5509,9 @@ Map<String, dynamic> _$BankTransferGetResponseToJson(
 
 Transfer _$TransferFromJson(Map<String, dynamic> json) => Transfer(
       id: json['id'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       accountId: json['account_id'] as String?,
-      type: transferTypeFromJson(json['type'] as String?),
+      type: transferTypeFromJson(json['type']),
       user: json['user'] == null
           ? null
           : TransferUserInResponse.fromJson(
@@ -5427,9 +5521,9 @@ Transfer _$TransferFromJson(Map<String, dynamic> json) => Transfer(
       created: json['created'] == null
           ? null
           : DateTime.parse(json['created'] as String),
-      status: transferStatusFromJson(json['status'] as String?),
-      sweepStatus: transferSweepStatusFromJson(json['sweep_status'] as String?),
-      network: transferNetworkFromJson(json['network'] as String?),
+      status: transferStatusFromJson(json['status']),
+      sweepStatus: transferSweepStatusFromJson(json['sweep_status']),
+      network: transferNetworkFromJson(json['network']),
       cancellable: json['cancellable'] as bool?,
       failureReason: json['failure_reason'] == null
           ? null
@@ -5461,9 +5555,9 @@ Map<String, dynamic> _$TransferToJson(Transfer instance) => <String, dynamic>{
 
 BankTransfer _$BankTransferFromJson(Map<String, dynamic> json) => BankTransfer(
       id: json['id'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       accountId: json['account_id'] as String?,
-      type: bankTransferTypeFromJson(json['type'] as String?),
+      type: bankTransferTypeFromJson(json['type']),
       user: json['user'] == null
           ? null
           : BankTransferUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -5473,8 +5567,8 @@ BankTransfer _$BankTransferFromJson(Map<String, dynamic> json) => BankTransfer(
       created: json['created'] == null
           ? null
           : DateTime.parse(json['created'] as String),
-      status: bankTransferStatusFromJson(json['status'] as String?),
-      network: bankTransferNetworkFromJson(json['network'] as String?),
+      status: bankTransferStatusFromJson(json['status']),
+      network: bankTransferNetworkFromJson(json['network']),
       cancellable: json['cancellable'] as bool?,
       failureReason: json['failure_reason'] == null
           ? null
@@ -5486,7 +5580,7 @@ BankTransfer _$BankTransferFromJson(Map<String, dynamic> json) => BankTransfer(
           : BankTransferMetadata.fromJson(
               json['metadata'] as Map<String, dynamic>),
       originationAccountId: json['origination_account_id'] as String?,
-      direction: bankTransferDirectionFromJson(json['direction'] as String?),
+      direction: bankTransferDirectionFromJson(json['direction']),
     );
 
 Map<String, dynamic> _$BankTransferToJson(BankTransfer instance) =>
@@ -5626,8 +5720,8 @@ TransferAuthorizationDecisionRationale
     _$TransferAuthorizationDecisionRationaleFromJson(
             Map<String, dynamic> json) =>
         TransferAuthorizationDecisionRationale(
-          code: transferAuthorizationDecisionRationaleCodeFromJson(
-              json['code'] as String?),
+          code:
+              transferAuthorizationDecisionRationaleCodeFromJson(json['code']),
           description: json['description'] as String?,
         );
 
@@ -5642,9 +5736,9 @@ TransferAuthorizationProposedTransfer
     _$TransferAuthorizationProposedTransferFromJson(
             Map<String, dynamic> json) =>
         TransferAuthorizationProposedTransfer(
-          achClass: aCHClassFromJson(json['ach_class'] as String?),
+          achClass: aCHClassFromJson(json['ach_class']),
           accountId: json['account_id'] as String?,
-          type: transferTypeFromJson(json['type'] as String?),
+          type: transferTypeFromJson(json['type']),
           user: json['user'] == null
               ? null
               : TransferUserInResponse.fromJson(
@@ -5726,10 +5820,10 @@ TransferAuthorizationCreateRequest _$TransferAuthorizationCreateRequestFromJson(
       secret: json['secret'] as String?,
       accessToken: json['access_token'] as String?,
       accountId: json['account_id'] as String?,
-      type: transferTypeFromJson(json['type'] as String?),
-      network: transferNetworkFromJson(json['network'] as String?),
+      type: transferTypeFromJson(json['type']),
+      network: transferNetworkFromJson(json['network']),
       amount: json['amount'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : TransferUserInRequest.fromJson(
@@ -5766,11 +5860,11 @@ TransferCreateRequest _$TransferCreateRequestFromJson(
       accessToken: json['access_token'] as String?,
       accountId: json['account_id'] as String?,
       authorizationId: json['authorization_id'] as String?,
-      type: transferTypeFromJson(json['type'] as String?),
-      network: transferNetworkFromJson(json['network'] as String?),
+      type: transferTypeFromJson(json['type']),
+      network: transferNetworkFromJson(json['network']),
       amount: json['amount'] as String?,
       description: json['description'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : TransferUserInRequest.fromJson(
@@ -5808,12 +5902,12 @@ BankTransferCreateRequest _$BankTransferCreateRequestFromJson(
       idempotencyKey: json['idempotency_key'] as String?,
       accessToken: json['access_token'] as String?,
       accountId: json['account_id'] as String?,
-      type: bankTransferTypeFromJson(json['type'] as String?),
-      network: bankTransferNetworkFromJson(json['network'] as String?),
+      type: bankTransferTypeFromJson(json['type']),
+      network: bankTransferNetworkFromJson(json['network']),
       amount: json['amount'] as String?,
       isoCurrencyCode: json['iso_currency_code'] as String?,
       description: json['description'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : BankTransferUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -5867,8 +5961,7 @@ TransferAuthorization _$TransferAuthorizationFromJson(
     TransferAuthorization(
       id: json['id'] as String?,
       created: json['created'] as String?,
-      decision:
-          transferAuthorizationDecisionFromJson(json['decision'] as String?),
+      decision: transferAuthorizationDecisionFromJson(json['decision']),
       decisionRationale: json['decision_rationale'] == null
           ? null
           : TransferAuthorizationDecisionRationale.fromJson(
@@ -5963,7 +6056,7 @@ BankTransferListRequest _$BankTransferListRequestFromJson(
       count: json['count'] as int?,
       offset: json['offset'] as int?,
       originationAccountId: json['origination_account_id'] as String?,
-      direction: bankTransferDirectionFromJson(json['direction'] as String?),
+      direction: bankTransferDirectionFromJson(json['direction']),
     );
 
 Map<String, dynamic> _$BankTransferListRequestToJson(
@@ -6082,8 +6175,8 @@ TransferEventListRequest _$TransferEventListRequestFromJson(
           : DateTime.parse(json['end_date'] as String),
       transferId: json['transfer_id'] as String?,
       accountId: json['account_id'] as String?,
-      transferType: transferEventListRequestTransferTypeFromJson(
-          json['transfer_type'] as String?),
+      transferType:
+          transferEventListRequestTransferTypeFromJson(json['transfer_type']),
       eventTypes: transferEventTypeListFromJson(json['event_types'] as List?),
       sweepId: json['sweep_id'] as String?,
       count: json['count'] as int?,
@@ -6123,14 +6216,14 @@ BankTransferEventListRequest _$BankTransferEventListRequestFromJson(
       bankTransferId: json['bank_transfer_id'] as String?,
       accountId: json['account_id'] as String?,
       bankTransferType: bankTransferEventListRequestBankTransferTypeFromJson(
-          json['bank_transfer_type'] as String?),
+          json['bank_transfer_type']),
       eventTypes:
           bankTransferEventTypeListFromJson(json['event_types'] as List?),
       count: json['count'] as int?,
       offset: json['offset'] as int?,
       originationAccountId: json['origination_account_id'] as String?,
-      direction: bankTransferEventListRequestDirectionFromJson(
-          json['direction'] as String?),
+      direction:
+          bankTransferEventListRequestDirectionFromJson(json['direction']),
     );
 
 Map<String, dynamic> _$BankTransferEventListRequestToJson(
@@ -6158,11 +6251,11 @@ TransferEvent _$TransferEventFromJson(Map<String, dynamic> json) =>
       timestamp: json['timestamp'] == null
           ? null
           : DateTime.parse(json['timestamp'] as String),
-      eventType: transferEventTypeFromJson(json['event_type'] as String?),
+      eventType: transferEventTypeFromJson(json['event_type']),
       accountId: json['account_id'] as String?,
       transferId: json['transfer_id'] as String?,
       originationAccountId: json['origination_account_id'] as String?,
-      transferType: transferTypeFromJson(json['transfer_type'] as String?),
+      transferType: transferTypeFromJson(json['transfer_type']),
       transferAmount: json['transfer_amount'] as String?,
       failureReason: json['failure_reason'] == null
           ? null
@@ -6193,12 +6286,11 @@ BankTransferEvent _$BankTransferEventFromJson(Map<String, dynamic> json) =>
       timestamp: json['timestamp'] == null
           ? null
           : DateTime.parse(json['timestamp'] as String),
-      eventType: bankTransferEventTypeFromJson(json['event_type'] as String?),
+      eventType: bankTransferEventTypeFromJson(json['event_type']),
       accountId: json['account_id'] as String?,
       bankTransferId: json['bank_transfer_id'] as String?,
       originationAccountId: json['origination_account_id'] as String?,
-      bankTransferType:
-          bankTransferTypeFromJson(json['bank_transfer_type'] as String?),
+      bankTransferType: bankTransferTypeFromJson(json['bank_transfer_type']),
       bankTransferAmount: json['bank_transfer_amount'] as String?,
       bankTransferIsoCurrencyCode:
           json['bank_transfer_iso_currency_code'] as String?,
@@ -6206,7 +6298,7 @@ BankTransferEvent _$BankTransferEventFromJson(Map<String, dynamic> json) =>
           ? null
           : BankTransferFailure.fromJson(
               json['failure_reason'] as Map<String, dynamic>),
-      direction: bankTransferDirectionFromJson(json['direction'] as String?),
+      direction: bankTransferDirectionFromJson(json['direction']),
       receiverDetails: json['receiver_details'] == null
           ? null
           : BankTransferReceiverDetails.fromJson(
@@ -6639,10 +6731,10 @@ TransferIntentCreateRequest _$TransferIntentCreateRequestFromJson(
       clientId: json['client_id'] as String?,
       secret: json['secret'] as String?,
       accountId: json['account_id'] as String?,
-      mode: transferIntentCreateModeFromJson(json['mode'] as String?),
+      mode: transferIntentCreateModeFromJson(json['mode']),
       amount: json['amount'] as String?,
       description: json['description'] as String?,
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      achClass: aCHClassFromJson(json['ach_class']),
       originationAccountId: json['origination_account_id'] as String?,
       user: json['user'] == null
           ? null
@@ -6675,12 +6767,12 @@ TransferIntentCreate _$TransferIntentCreateFromJson(
       created: json['created'] == null
           ? null
           : DateTime.parse(json['created'] as String),
-      status: transferIntentCreateStatusFromJson(json['status'] as String?),
+      status: transferIntentCreateStatusFromJson(json['status']),
       accountId: json['account_id'] as String?,
       originationAccountId: json['origination_account_id'] as String?,
       amount: json['amount'] as String?,
-      mode: transferIntentCreateModeFromJson(json['mode'] as String?),
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      mode: transferIntentCreateModeFromJson(json['mode']),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : TransferUserInResponse.fromJson(
@@ -6746,14 +6838,14 @@ TransferIntentGet _$TransferIntentGetFromJson(Map<String, dynamic> json) =>
       created: json['created'] == null
           ? null
           : DateTime.parse(json['created'] as String),
-      status: transferIntentGetStatusFromJson(json['status'] as String?),
+      status: transferIntentGetStatusFromJson(json['status']),
       transferId: json['transfer_id'] as String?,
       failureReason: json['failure_reason'] == null
           ? null
           : TransferIntentGetFailureReason.fromJson(
               json['failure_reason'] as Map<String, dynamic>),
       authorizationDecision: transferIntentGetAuthorizationDecisionFromJson(
-          json['authorization_decision'] as String?),
+          json['authorization_decision']),
       authorizationDecisionRationale:
           json['authorization_decision_rationale'] == null
               ? null
@@ -6763,8 +6855,8 @@ TransferIntentGet _$TransferIntentGetFromJson(Map<String, dynamic> json) =>
       accountId: json['account_id'] as String?,
       originationAccountId: json['origination_account_id'] as String?,
       amount: json['amount'] as String?,
-      mode: transferIntentCreateModeFromJson(json['mode'] as String?),
-      achClass: aCHClassFromJson(json['ach_class'] as String?),
+      mode: transferIntentCreateModeFromJson(json['mode']),
+      achClass: aCHClassFromJson(json['ach_class']),
       user: json['user'] == null
           ? null
           : TransferUserInResponse.fromJson(
@@ -6927,7 +7019,7 @@ BankTransferReceiverDetails _$BankTransferReceiverDetailsFromJson(
         Map<String, dynamic> json) =>
     BankTransferReceiverDetails(
       availableBalance: bankTransferReceiverDetailsAvailableBalanceFromJson(
-          json['available_balance'] as String?),
+          json['available_balance']),
     );
 
 Map<String, dynamic> _$BankTransferReceiverDetailsToJson(
@@ -6989,11 +7081,31 @@ AccountIdentity _$AccountIdentityFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Owner.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      accountId: json['account_id'] as String?,
+      balances: json['balances'] == null
+          ? null
+          : AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
+      mask: json['mask'] as String?,
+      name: json['name'] as String?,
+      officialName: json['official_name'] as String?,
+      type: accountTypeFromJson(json['type']),
+      subtype: accountSubtypeFromJson(json['subtype']),
+      verificationStatus: accountIdentityVerificationStatusFromJson(
+          json['verification_status']),
     );
 
 Map<String, dynamic> _$AccountIdentityToJson(AccountIdentity instance) =>
     <String, dynamic>{
       'owners': instance.owners?.map((e) => e.toJson()).toList(),
+      'account_id': instance.accountId,
+      'balances': instance.balances?.toJson(),
+      'mask': instance.mask,
+      'name': instance.name,
+      'official_name': instance.officialName,
+      'type': accountTypeToJson(instance.type),
+      'subtype': accountSubtypeToJson(instance.subtype),
+      'verification_status':
+          accountIdentityVerificationStatusToJson(instance.verificationStatus),
     };
 
 AccountAssets _$AccountAssetsFromJson(Map<String, dynamic> json) =>
@@ -7013,6 +7125,17 @@ AccountAssets _$AccountAssetsFromJson(Map<String, dynamic> json) =>
                   (e) => HistoricalBalance.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      accountId: json['account_id'] as String?,
+      balances: json['balances'] == null
+          ? null
+          : AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
+      mask: json['mask'] as String?,
+      name: json['name'] as String?,
+      officialName: json['official_name'] as String?,
+      type: accountTypeFromJson(json['type']),
+      subtype: accountSubtypeFromJson(json['subtype']),
+      verificationStatus:
+          accountAssetsVerificationStatusFromJson(json['verification_status']),
     );
 
 Map<String, dynamic> _$AccountAssetsToJson(AccountAssets instance) =>
@@ -7022,56 +7145,53 @@ Map<String, dynamic> _$AccountAssetsToJson(AccountAssets instance) =>
       'owners': instance.owners?.map((e) => e.toJson()).toList(),
       'historical_balances':
           instance.historicalBalances?.map((e) => e.toJson()).toList(),
+      'account_id': instance.accountId,
+      'balances': instance.balances?.toJson(),
+      'mask': instance.mask,
+      'name': instance.name,
+      'official_name': instance.officialName,
+      'type': accountTypeToJson(instance.type),
+      'subtype': accountSubtypeToJson(instance.subtype),
+      'verification_status':
+          accountAssetsVerificationStatusToJson(instance.verificationStatus),
     };
 
 DepositoryFilter _$DepositoryFilterFromJson(Map<String, dynamic> json) =>
     DepositoryFilter(
-      accountSubtypes: json['account_subtypes'] == null
-          ? null
-          : AccountSubtypes.fromJson(
-              json['account_subtypes'] as Map<String, dynamic>),
+      accountSubtypes: json['account_subtypes'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$DepositoryFilterToJson(DepositoryFilter instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 CreditFilter _$CreditFilterFromJson(Map<String, dynamic> json) => CreditFilter(
-      accountSubtypes: json['account_subtypes'] == null
-          ? null
-          : AccountSubtypes.fromJson(
-              json['account_subtypes'] as Map<String, dynamic>),
+      accountSubtypes: json['account_subtypes'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$CreditFilterToJson(CreditFilter instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 LoanFilter _$LoanFilterFromJson(Map<String, dynamic> json) => LoanFilter(
-      accountSubtypes: json['account_subtypes'] == null
-          ? null
-          : AccountSubtypes.fromJson(
-              json['account_subtypes'] as Map<String, dynamic>),
+      accountSubtypes: json['account_subtypes'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$LoanFilterToJson(LoanFilter instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 InvestmentFilter _$InvestmentFilterFromJson(Map<String, dynamic> json) =>
     InvestmentFilter(
-      accountSubtypes: json['account_subtypes'] == null
-          ? null
-          : AccountSubtypes.fromJson(
-              json['account_subtypes'] as Map<String, dynamic>),
+      accountSubtypes: json['account_subtypes'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$InvestmentFilterToJson(InvestmentFilter instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 EmployersSearchRequest _$EmployersSearchRequestFromJson(
@@ -7255,7 +7375,7 @@ IncomeVerificationPrecheckMilitaryInfo
         IncomeVerificationPrecheckMilitaryInfo(
           isActiveDuty: json['is_active_duty'] as bool?,
           branch: incomeVerificationPrecheckMilitaryInfoBranchFromJson(
-              json['branch'] as String?),
+              json['branch']),
         );
 
 Map<String, dynamic> _$IncomeVerificationPrecheckMilitaryInfoToJson(
@@ -7292,8 +7412,8 @@ IncomeVerificationPrecheckResponse _$IncomeVerificationPrecheckResponseFromJson(
     IncomeVerificationPrecheckResponse(
       precheckId: json['precheck_id'] as String?,
       requestId: json['request_id'] as String?,
-      confidence: incomeVerificationPrecheckConfidenceFromJson(
-          json['confidence'] as String?),
+      confidence:
+          incomeVerificationPrecheckConfidenceFromJson(json['confidence']),
     );
 
 Map<String, dynamic> _$IncomeVerificationPrecheckResponseToJson(
@@ -7411,7 +7531,7 @@ IncomeVerificationRefreshResponse _$IncomeVerificationRefreshResponseFromJson(
     IncomeVerificationRefreshResponse(
       requestId: json['request_id'] as String?,
       verificationRefreshStatus: verificationRefreshStatusFromJson(
-          json['verification_refresh_status'] as String?),
+          json['verification_refresh_status']),
     );
 
 Map<String, dynamic> _$IncomeVerificationRefreshResponseToJson(
@@ -7489,7 +7609,7 @@ IncomeSummaryFieldString _$IncomeSummaryFieldStringFromJson(
     IncomeSummaryFieldString(
       value: json['value'] as String?,
       verificationStatus:
-          verificationStatusFromJson(json['verification_status'] as String?),
+          verificationStatusFromJson(json['verification_status']),
     );
 
 Map<String, dynamic> _$IncomeSummaryFieldStringToJson(
@@ -7521,7 +7641,7 @@ IncomeSummaryFieldNumber _$IncomeSummaryFieldNumberFromJson(
     IncomeSummaryFieldNumber(
       value: (json['value'] as num?)?.toDouble(),
       verificationStatus:
-          verificationStatusFromJson(json['verification_status'] as String?),
+          verificationStatusFromJson(json['verification_status']),
     );
 
 Map<String, dynamic> _$IncomeSummaryFieldNumberToJson(
@@ -7557,9 +7677,9 @@ Map<String, dynamic> _$ProjectedIncomeSummaryFieldNumberToJson(
     <String, dynamic>{};
 
 PayFrequency _$PayFrequencyFromJson(Map<String, dynamic> json) => PayFrequency(
-      value: payFrequencyValueFromJson(json['value'] as String?),
+      value: payFrequencyValueFromJson(json['value']),
       verificationStatus:
-          verificationStatusFromJson(json['verification_status'] as String?),
+          verificationStatusFromJson(json['verification_status']),
     );
 
 Map<String, dynamic> _$PayFrequencyToJson(PayFrequency instance) =>
@@ -7659,7 +7779,7 @@ DocumentMetadata _$DocumentMetadataFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       status: json['status'] as String?,
       docId: json['doc_id'] as String?,
-      docType: docTypeFromJson(json['doc_type'] as String?),
+      docType: docTypeFromJson(json['doc_type']),
     );
 
 Map<String, dynamic> _$DocumentMetadataToJson(DocumentMetadata instance) =>
@@ -7792,8 +7912,8 @@ Map<String, dynamic> _$DeductionsTotalToJson(DeductionsTotal instance) =>
     };
 
 Total _$TotalFromJson(Map<String, dynamic> json) => Total(
-      canonicalDescription: totalCanonicalDescriptionFromJson(
-          json['canonical_description'] as String?),
+      canonicalDescription:
+          totalCanonicalDescriptionFromJson(json['canonical_description']),
       description: json['description'] as String?,
       currentPay: json['current_pay'] == null
           ? null
@@ -7850,7 +7970,7 @@ Map<String, dynamic> _$EarningsToJson(Earnings instance) => <String, dynamic>{
 EarningsBreakdown _$EarningsBreakdownFromJson(Map<String, dynamic> json) =>
     EarningsBreakdown(
       canonicalDescription: earningsBreakdownCanonicalDescriptionFromJson(
-          json['canonical_description'] as String?),
+          json['canonical_description']),
       currentAmount: (json['current_amount'] as num?)?.toDouble(),
       description: json['description'] as String?,
       hours: (json['hours'] as num?)?.toDouble(),
@@ -7947,8 +8067,7 @@ PaystubDetails _$PaystubDetailsFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['pay_date'] as String),
       paystubProvider: json['paystub_provider'] as String?,
-      payFrequency:
-          paystubPayFrequencyFromJson(json['pay_frequency'] as String?),
+      payFrequency: paystubPayFrequencyFromJson(json['pay_frequency']),
     );
 
 Map<String, dynamic> _$PaystubDetailsToJson(PaystubDetails instance) =>
@@ -7962,7 +8081,7 @@ Map<String, dynamic> _$PaystubDetailsToJson(PaystubDetails instance) =>
 
 IncomeBreakdown _$IncomeBreakdownFromJson(Map<String, dynamic> json) =>
     IncomeBreakdown(
-      type: incomeBreakdownTypeFromJson(json['type'] as String?),
+      type: incomeBreakdownTypeFromJson(json['type']),
       rate: (json['rate'] as num?)?.toDouble(),
       hours: (json['hours'] as num?)?.toDouble(),
       total: (json['total'] as num?)?.toDouble(),
@@ -8060,8 +8179,7 @@ PayPeriodDetails _$PayPeriodDetailsFromJson(Map<String, dynamic> json) =>
       payDate: json['pay_date'] == null
           ? null
           : DateTime.parse(json['pay_date'] as String),
-      payFrequency: payPeriodDetailsPayFrequencyFromJson(
-          json['pay_frequency'] as String?),
+      payFrequency: payPeriodDetailsPayFrequencyFromJson(json['pay_frequency']),
       payDay: json['pay_day'] == null
           ? null
           : DateTime.parse(json['pay_day'] as String),
@@ -8140,8 +8258,8 @@ Map<String, dynamic> _$PaystubYTDDetailsToJson(PaystubYTDDetails instance) =>
 
 PaystubVerification _$PaystubVerificationFromJson(Map<String, dynamic> json) =>
     PaystubVerification(
-      verificationStatus: paystubVerificationStatusFromJson(
-          json['verification_status'] as String?),
+      verificationStatus:
+          paystubVerificationStatusFromJson(json['verification_status']),
       verificationAttributes:
           (json['verification_attributes'] as List<dynamic>?)
                   ?.map((e) =>
@@ -8162,13 +8280,13 @@ Map<String, dynamic> _$PaystubVerificationToJson(
 VerificationAttribute _$VerificationAttributeFromJson(
         Map<String, dynamic> json) =>
     VerificationAttribute(
-      type: verificationAttributeTypeFromJson(json['type'] as String?),
+      type: verificationAttributeType$FromJson(json['type']),
     );
 
 Map<String, dynamic> _$VerificationAttributeToJson(
         VerificationAttribute instance) =>
     <String, dynamic>{
-      'type': verificationAttributeTypeToJson(instance.type),
+      'type': verificationAttributeType$ToJson(instance.type),
     };
 
 IncomeVerificationDocumentsDownloadRequest
@@ -8401,7 +8519,7 @@ Map<String, dynamic> _$EmploymentVerificationGetResponseToJson(
 EmploymentVerification _$EmploymentVerificationFromJson(
         Map<String, dynamic> json) =>
     EmploymentVerification(
-      status: employmentVerificationStatusFromJson(json['status'] as String?),
+      status: employmentVerificationStatusFromJson(json['status']),
       startDate: json['start_date'] == null
           ? null
           : DateTime.parse(json['start_date'] as String),
@@ -8458,12 +8576,58 @@ AssetReportTransaction _$AssetReportTransactionFromJson(
         Map<String, dynamic> json) =>
     AssetReportTransaction(
       dateTransacted: json['date_transacted'] as String?,
+      transactionType: assetReportTransactionTransactionTypeFromJson(
+          json['transaction_type']),
+      pendingTransactionId: json['pending_transaction_id'] as String?,
+      categoryId: json['category_id'] as String?,
+      category: (json['category'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, dynamic>),
+      paymentMeta: json['payment_meta'] == null
+          ? null
+          : PaymentMeta.fromJson(json['payment_meta'] as Map<String, dynamic>),
+      accountOwner: json['account_owner'] as String?,
+      name: json['name'] as String?,
+      originalDescription: json['original_description'] as String?,
+      accountId: json['account_id'] as String?,
+      amount: (json['amount'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      pending: json['pending'] as bool?,
+      transactionId: json['transaction_id'] as String?,
+      merchantName: json['merchant_name'] as String?,
+      checkNumber: json['check_number'] as String?,
     );
 
 Map<String, dynamic> _$AssetReportTransactionToJson(
         AssetReportTransaction instance) =>
     <String, dynamic>{
       'date_transacted': instance.dateTransacted,
+      'transaction_type':
+          assetReportTransactionTransactionTypeToJson(instance.transactionType),
+      'pending_transaction_id': instance.pendingTransactionId,
+      'category_id': instance.categoryId,
+      'category': instance.category,
+      'location': instance.location?.toJson(),
+      'payment_meta': instance.paymentMeta?.toJson(),
+      'account_owner': instance.accountOwner,
+      'name': instance.name,
+      'original_description': instance.originalDescription,
+      'account_id': instance.accountId,
+      'amount': instance.amount,
+      'iso_currency_code': instance.isoCurrencyCode,
+      'unofficial_currency_code': instance.unofficialCurrencyCode,
+      'date': _dateToJson(instance.date),
+      'pending': instance.pending,
+      'transaction_id': instance.transactionId,
+      'merchant_name': instance.merchantName,
+      'check_number': instance.checkNumber,
     };
 
 HealthIncident _$HealthIncidentFromJson(Map<String, dynamic> json) =>
@@ -8493,7 +8657,7 @@ Map<String, dynamic> _$HealthIncidentToJson(HealthIncident instance) =>
 IncidentUpdate _$IncidentUpdateFromJson(Map<String, dynamic> json) =>
     IncidentUpdate(
       description: json['description'] as String?,
-      status: incidentUpdateStatusFromJson(json['status'] as String?),
+      status: incidentUpdateStatusFromJson(json['status']),
       updatedDate: json['updated_date'] == null
           ? null
           : DateTime.parse(json['updated_date'] as String),
@@ -8524,7 +8688,7 @@ DepositSwitchAltCreateRequest _$DepositSwitchAltCreateRequestFromJson(
           : DepositSwitchCreateRequestOptions.fromJson(
               json['options'] as Map<String, dynamic>),
       countryCode: depositSwitchAltCreateRequestCountryCodeFromJson(
-          json['country_code'] as String?),
+          json['country_code']),
     );
 
 Map<String, dynamic> _$DepositSwitchAltCreateRequestToJson(
@@ -8560,7 +8724,7 @@ DepositSwitchTargetAccount _$DepositSwitchTargetAccountFromJson(
       routingNumber: json['routing_number'] as String?,
       accountName: json['account_name'] as String?,
       accountSubtype: depositSwitchTargetAccountAccountSubtypeFromJson(
-          json['account_subtype'] as String?),
+          json['account_subtype']),
     );
 
 Map<String, dynamic> _$DepositSwitchTargetAccountToJson(
@@ -8797,7 +8961,7 @@ RequestedScopes _$RequestedScopesFromJson(Map<String, dynamic> json) =>
           : AccountFilter.fromJson(
               json['account_filters'] as Map<String, dynamic>),
       accountSelectionCardinality: accountSelectionCardinalityFromJson(
-          json['account_selection_cardinality'] as String?),
+          json['account_selection_cardinality']),
     );
 
 Map<String, dynamic> _$RequestedScopesToJson(RequestedScopes instance) =>
@@ -8820,7 +8984,7 @@ ItemApplicationScopesUpdateRequest _$ItemApplicationScopesUpdateRequestFromJson(
           ? null
           : Scopes.fromJson(json['scopes'] as Map<String, dynamic>),
       state: json['state'] as String?,
-      context: scopesContextFromJson(json['context'] as String?),
+      context: scopesContextFromJson(json['context']),
     );
 
 Map<String, dynamic> _$ItemApplicationScopesUpdateRequestToJson(
@@ -8966,7 +9130,7 @@ SandboxIncomeFireWebhookRequest _$SandboxIncomeFireWebhookRequestFromJson(
       webhook: json['webhook'] as String?,
       verificationStatus:
           sandboxIncomeFireWebhookRequestVerificationStatusFromJson(
-              json['verification_status'] as String?),
+              json['verification_status']),
     );
 
 Map<String, dynamic> _$SandboxIncomeFireWebhookRequestToJson(
@@ -9515,7 +9679,7 @@ WalletTransactionAmount _$WalletTransactionAmountFromJson(
         Map<String, dynamic> json) =>
     WalletTransactionAmount(
       isoCurrencyCode: walletTransactionAmountIsoCurrencyCodeFromJson(
-          json['iso_currency_code'] as String?),
+          json['iso_currency_code']),
       value: (json['value'] as num?)?.toDouble(),
     );
 
@@ -9531,7 +9695,7 @@ WalletTransactionExecuteResponse _$WalletTransactionExecuteResponseFromJson(
         Map<String, dynamic> json) =>
     WalletTransactionExecuteResponse(
       transactionId: json['transaction_id'] as String?,
-      status: walletTransactionStatusFromJson(json['status'] as String?),
+      status: walletTransactionStatusFromJson(json['status']),
       requestId: json['request_id'] as String?,
     );
 
@@ -9587,7 +9751,7 @@ WalletTransaction _$WalletTransactionFromJson(Map<String, dynamic> json) =>
     WalletTransaction(
       transactionId: json['transaction_id'] as String?,
       reference: json['reference'] as String?,
-      type: walletTransactionTypeFromJson(json['type'] as String?),
+      type: walletTransactionType$FromJson(json['type']),
       amount: json['amount'] == null
           ? null
           : WalletTransactionAmount.fromJson(
@@ -9596,7 +9760,7 @@ WalletTransaction _$WalletTransactionFromJson(Map<String, dynamic> json) =>
           ? null
           : WalletTransactionCounterparty.fromJson(
               json['counterparty'] as Map<String, dynamic>),
-      status: walletTransactionStatusFromJson(json['status'] as String?),
+      status: walletTransactionStatusFromJson(json['status']),
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -9606,7 +9770,7 @@ Map<String, dynamic> _$WalletTransactionToJson(WalletTransaction instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'reference': instance.reference,
-      'type': walletTransactionTypeToJson(instance.type),
+      'type': walletTransactionType$ToJson(instance.type),
       'amount': instance.amount?.toJson(),
       'counterparty': instance.counterparty?.toJson(),
       'status': walletTransactionStatusToJson(instance.status),
@@ -9617,64 +9781,52 @@ LinkTokenCreateRequestAccountSubtypes$Depository
     _$LinkTokenCreateRequestAccountSubtypes$DepositoryFromJson(
             Map<String, dynamic> json) =>
         LinkTokenCreateRequestAccountSubtypes$Depository(
-          accountSubtypes: json['account_subtypes'] == null
-              ? null
-              : AccountSubtypes.fromJson(
-                  json['account_subtypes'] as Map<String, dynamic>),
+          accountSubtypes: json['account_subtypes'] as List<dynamic>?,
         );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAccountSubtypes$DepositoryToJson(
         LinkTokenCreateRequestAccountSubtypes$Depository instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 LinkTokenCreateRequestAccountSubtypes$Credit
     _$LinkTokenCreateRequestAccountSubtypes$CreditFromJson(
             Map<String, dynamic> json) =>
         LinkTokenCreateRequestAccountSubtypes$Credit(
-          accountSubtypes: json['account_subtypes'] == null
-              ? null
-              : AccountSubtypes.fromJson(
-                  json['account_subtypes'] as Map<String, dynamic>),
+          accountSubtypes: json['account_subtypes'] as List<dynamic>?,
         );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAccountSubtypes$CreditToJson(
         LinkTokenCreateRequestAccountSubtypes$Credit instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 LinkTokenCreateRequestAccountSubtypes$Loan
     _$LinkTokenCreateRequestAccountSubtypes$LoanFromJson(
             Map<String, dynamic> json) =>
         LinkTokenCreateRequestAccountSubtypes$Loan(
-          accountSubtypes: json['account_subtypes'] == null
-              ? null
-              : AccountSubtypes.fromJson(
-                  json['account_subtypes'] as Map<String, dynamic>),
+          accountSubtypes: json['account_subtypes'] as List<dynamic>?,
         );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAccountSubtypes$LoanToJson(
         LinkTokenCreateRequestAccountSubtypes$Loan instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 LinkTokenCreateRequestAccountSubtypes$Investment
     _$LinkTokenCreateRequestAccountSubtypes$InvestmentFromJson(
             Map<String, dynamic> json) =>
         LinkTokenCreateRequestAccountSubtypes$Investment(
-          accountSubtypes: json['account_subtypes'] == null
-              ? null
-              : AccountSubtypes.fromJson(
-                  json['account_subtypes'] as Map<String, dynamic>),
+          accountSubtypes: json['account_subtypes'] as List<dynamic>?,
         );
 
 Map<String, dynamic> _$LinkTokenCreateRequestAccountSubtypes$InvestmentToJson(
         LinkTokenCreateRequestAccountSubtypes$Investment instance) =>
     <String, dynamic>{
-      'account_subtypes': instance.accountSubtypes?.toJson(),
+      'account_subtypes': instance.accountSubtypes,
     };
 
 PaystubOverride$Employer _$PaystubOverride$EmployerFromJson(

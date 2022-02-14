@@ -6,7 +6,7 @@ part of 'plaid_service.swagger.dart';
 // ChopperGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations
+// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 class _$PlaidService extends PlaidService {
   _$PlaidService([ChopperClient? client]) {
     if (client == null) return;
@@ -17,7 +17,7 @@ class _$PlaidService extends PlaidService {
   final definitionType = PlaidService;
 
   @override
-  Future<Response<ItemApplicationListResponse>> itemApplicationListPost(
+  Future<Response<ItemApplicationListResponse>> _itemApplicationListPost(
       {required ItemApplicationListRequest? body}) {
     final $url = '/item/application/list';
     final $body = body;
@@ -28,7 +28,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<ItemApplicationScopesUpdateResponse>>
-      itemApplicationScopesUpdatePost(
+      _itemApplicationScopesUpdatePost(
           {required ItemApplicationScopesUpdateRequest? body}) {
     final $url = '/item/application/scopes/update';
     final $body = body;
@@ -38,7 +38,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ApplicationGetResponse>> applicationGetPost(
+  Future<Response<ApplicationGetResponse>> _applicationGetPost(
       {required ApplicationGetRequest? body}) {
     final $url = '/application/get';
     final $body = body;
@@ -48,7 +48,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemGetResponse>> itemGetPost(
+  Future<Response<ItemGetResponse>> _itemGetPost(
       {required ItemGetRequest? body}) {
     final $url = '/item/get';
     final $body = body;
@@ -57,7 +57,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AuthGetResponse>> authGetPost(
+  Future<Response<AuthGetResponse>> _authGetPost(
       {required AuthGetRequest? body}) {
     final $url = '/auth/get';
     final $body = body;
@@ -66,7 +66,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransactionsGetResponse>> transactionsGetPost(
+  Future<Response<TransactionsGetResponse>> _transactionsGetPost(
       {required TransactionsGetRequest? body}) {
     final $url = '/transactions/get';
     final $body = body;
@@ -76,7 +76,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransactionsRefreshResponse>> transactionsRefreshPost(
+  Future<Response<TransactionsRefreshResponse>> _transactionsRefreshPost(
       {required TransactionsRefreshRequest? body}) {
     final $url = '/transactions/refresh';
     final $body = body;
@@ -87,7 +87,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<TransactionsRecurringGetResponse>>
-      transactionsRecurringGetPost(
+      _transactionsRecurringGetPost(
           {required TransactionsRecurringGetRequest? body}) {
     final $url = '/transactions/recurring/get';
     final $body = body;
@@ -97,7 +97,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransactionsSyncResponse>> transactionsSyncPost(
+  Future<Response<TransactionsSyncResponse>> _transactionsSyncPost(
       {required TransactionsSyncRequest? body}) {
     final $url = '/transactions/sync';
     final $body = body;
@@ -107,7 +107,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<InstitutionsGetResponse>> institutionsGetPost(
+  Future<Response<InstitutionsGetResponse>> _institutionsGetPost(
       {required InstitutionsGetRequest? body}) {
     final $url = '/institutions/get';
     final $body = body;
@@ -117,7 +117,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<InstitutionsSearchResponse>> institutionsSearchPost(
+  Future<Response<InstitutionsSearchResponse>> _institutionsSearchPost(
       {required InstitutionsSearchRequest? body}) {
     final $url = '/institutions/search';
     final $body = body;
@@ -127,7 +127,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<InstitutionsGetByIdResponse>> institutionsGetByIdPost(
+  Future<Response<InstitutionsGetByIdResponse>> _institutionsGetByIdPost(
       {required InstitutionsGetByIdRequest? body}) {
     final $url = '/institutions/get_by_id';
     final $body = body;
@@ -137,7 +137,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemRemoveResponse>> itemRemovePost(
+  Future<Response<ItemRemoveResponse>> _itemRemovePost(
       {required ItemRemoveRequest? body}) {
     final $url = '/item/remove';
     final $body = body;
@@ -146,7 +146,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AccountsGetResponse>> accountsGetPost(
+  Future<Response<AccountsGetResponse>> _accountsGetPost(
       {required AccountsGetRequest? body}) {
     final $url = '/accounts/get';
     final $body = body;
@@ -155,7 +155,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<CategoriesGetResponse>> categoriesGetPost(
+  Future<Response<CategoriesGetResponse>> _categoriesGetPost(
       {required CategoriesGetRequest? body}) {
     final $url = '/categories/get';
     final $body = body;
@@ -165,7 +165,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxProcessorTokenCreateResponse>>
-      sandboxProcessorTokenCreatePost(
+      _sandboxProcessorTokenCreatePost(
           {required SandboxProcessorTokenCreateRequest? body}) {
     final $url = '/sandbox/processor_token/create';
     final $body = body;
@@ -176,7 +176,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxPublicTokenCreateResponse>>
-      sandboxPublicTokenCreatePost(
+      _sandboxPublicTokenCreatePost(
           {required SandboxPublicTokenCreateRequest? body}) {
     final $url = '/sandbox/public_token/create';
     final $body = body;
@@ -186,7 +186,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SandboxItemFireWebhookResponse>> sandboxItemFireWebhookPost(
+  Future<Response<SandboxItemFireWebhookResponse>> _sandboxItemFireWebhookPost(
       {required SandboxItemFireWebhookRequest? body}) {
     final $url = '/sandbox/item/fire_webhook';
     final $body = body;
@@ -196,7 +196,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AccountsGetResponse>> accountsBalanceGetPost(
+  Future<Response<AccountsGetResponse>> _accountsBalanceGetPost(
       {required AccountsBalanceGetRequest? body}) {
     final $url = '/accounts/balance/get';
     final $body = body;
@@ -205,7 +205,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<IdentityGetResponse>> identityGetPost(
+  Future<Response<IdentityGetResponse>> _identityGetPost(
       {required IdentityGetRequest? body}) {
     final $url = '/identity/get';
     final $body = body;
@@ -214,7 +214,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ProcessorAuthGetResponse>> processorAuthGetPost(
+  Future<Response<ProcessorAuthGetResponse>> _processorAuthGetPost(
       {required ProcessorAuthGetRequest? body}) {
     final $url = '/processor/auth/get';
     final $body = body;
@@ -225,7 +225,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<ProcessorBankTransferCreateResponse>>
-      processorBankTransferCreatePost(
+      _processorBankTransferCreatePost(
           {required ProcessorBankTransferCreateRequest? body}) {
     final $url = '/processor/bank_transfer/create';
     final $body = body;
@@ -235,7 +235,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ProcessorIdentityGetResponse>> processorIdentityGetPost(
+  Future<Response<ProcessorIdentityGetResponse>> _processorIdentityGetPost(
       {required ProcessorIdentityGetRequest? body}) {
     final $url = '/processor/identity/get';
     final $body = body;
@@ -245,7 +245,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ProcessorBalanceGetResponse>> processorBalanceGetPost(
+  Future<Response<ProcessorBalanceGetResponse>> _processorBalanceGetPost(
       {required ProcessorBalanceGetRequest? body}) {
     final $url = '/processor/balance/get';
     final $body = body;
@@ -255,7 +255,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemWebhookUpdateResponse>> itemWebhookUpdatePost(
+  Future<Response<ItemWebhookUpdateResponse>> _itemWebhookUpdatePost(
       {required ItemWebhookUpdateRequest? body}) {
     final $url = '/item/webhook/update';
     final $body = body;
@@ -266,7 +266,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<ItemAccessTokenInvalidateResponse>>
-      itemAccessTokenInvalidatePost(
+      _itemAccessTokenInvalidatePost(
           {required ItemAccessTokenInvalidateRequest? body}) {
     final $url = '/item/access_token/invalidate';
     final $body = body;
@@ -277,7 +277,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<WebhookVerificationKeyGetResponse>>
-      webhookVerificationKeyGetPost(
+      _webhookVerificationKeyGetPost(
           {required WebhookVerificationKeyGetRequest? body}) {
     final $url = '/webhook_verification_key/get';
     final $body = body;
@@ -287,7 +287,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<LiabilitiesGetResponse>> liabilitiesGetPost(
+  Future<Response<LiabilitiesGetResponse>> _liabilitiesGetPost(
       {required LiabilitiesGetRequest? body}) {
     final $url = '/liabilities/get';
     final $body = body;
@@ -298,7 +298,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationRecipientCreateResponse>>
-      paymentInitiationRecipientCreatePost(
+      _paymentInitiationRecipientCreatePost(
           {required PaymentInitiationRecipientCreateRequest? body}) {
     final $url = '/payment_initiation/recipient/create';
     final $body = body;
@@ -309,7 +309,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationPaymentReverseResponse>>
-      paymentInitiationPaymentReversePost(
+      _paymentInitiationPaymentReversePost(
           {required PaymentInitiationPaymentReverseRequest? body}) {
     final $url = '/payment_initiation/payment/reverse';
     final $body = body;
@@ -320,7 +320,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationRecipientGetResponse>>
-      paymentInitiationRecipientGetPost(
+      _paymentInitiationRecipientGetPost(
           {required PaymentInitiationRecipientGetRequest? body}) {
     final $url = '/payment_initiation/recipient/get';
     final $body = body;
@@ -331,7 +331,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationRecipientListResponse>>
-      paymentInitiationRecipientListPost(
+      _paymentInitiationRecipientListPost(
           {required PaymentInitiationRecipientListRequest? body}) {
     final $url = '/payment_initiation/recipient/list';
     final $body = body;
@@ -342,7 +342,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationPaymentCreateResponse>>
-      paymentInitiationPaymentCreatePost(
+      _paymentInitiationPaymentCreatePost(
           {required PaymentInitiationPaymentCreateRequest? body}) {
     final $url = '/payment_initiation/payment/create';
     final $body = body;
@@ -353,7 +353,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationPaymentTokenCreateResponse>>
-      paymentInitiationPaymentTokenCreatePost(
+      _paymentInitiationPaymentTokenCreatePost(
           {required PaymentInitiationPaymentTokenCreateRequest? body}) {
     final $url = '/payment_initiation/payment/token/create';
     final $body = body;
@@ -363,7 +363,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SandboxItemResetLoginResponse>> sandboxItemResetLoginPost(
+  Future<Response<SandboxItemResetLoginResponse>> _sandboxItemResetLoginPost(
       {required SandboxItemResetLoginRequest? body}) {
     final $url = '/sandbox/item/reset_login';
     final $body = body;
@@ -374,7 +374,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxItemSetVerificationStatusResponse>>
-      sandboxItemSetVerificationStatusPost(
+      _sandboxItemSetVerificationStatusPost(
           {required SandboxItemSetVerificationStatusRequest? body}) {
     final $url = '/sandbox/item/set_verification_status';
     final $body = body;
@@ -384,8 +384,9 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemPublicTokenExchangeResponse>> itemPublicTokenExchangePost(
-      {required ItemPublicTokenExchangeRequest? body}) {
+  Future<Response<ItemPublicTokenExchangeResponse>>
+      _itemPublicTokenExchangePost(
+          {required ItemPublicTokenExchangeRequest? body}) {
     final $url = '/item/public_token/exchange';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -394,7 +395,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemPublicTokenCreateResponse>> itemPublicTokenCreatePost(
+  Future<Response<ItemPublicTokenCreateResponse>> _itemPublicTokenCreatePost(
       {required ItemPublicTokenCreateRequest? body}) {
     final $url = '/item/public_token/create';
     final $body = body;
@@ -405,7 +406,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationPaymentGetResponse>>
-      paymentInitiationPaymentGetPost(
+      _paymentInitiationPaymentGetPost(
           {required PaymentInitiationPaymentGetRequest? body}) {
     final $url = '/payment_initiation/payment/get';
     final $body = body;
@@ -416,7 +417,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<PaymentInitiationPaymentListResponse>>
-      paymentInitiationPaymentListPost(
+      _paymentInitiationPaymentListPost(
           {required PaymentInitiationPaymentListRequest? body}) {
     final $url = '/payment_initiation/payment/list';
     final $body = body;
@@ -426,7 +427,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportCreateResponse>> assetReportCreatePost(
+  Future<Response<AssetReportCreateResponse>> _assetReportCreatePost(
       {required AssetReportCreateRequest? body}) {
     final $url = '/asset_report/create';
     final $body = body;
@@ -436,7 +437,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportRefreshResponse>> assetReportRefreshPost(
+  Future<Response<AssetReportRefreshResponse>> _assetReportRefreshPost(
       {required AssetReportRefreshRequest? body}) {
     final $url = '/asset_report/refresh';
     final $body = body;
@@ -446,7 +447,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportRemoveResponse>> assetReportRemovePost(
+  Future<Response<AssetReportRemoveResponse>> _assetReportRemovePost(
       {required AssetReportRemoveRequest? body}) {
     final $url = '/asset_report/remove';
     final $body = body;
@@ -456,7 +457,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportFilterResponse>> assetReportFilterPost(
+  Future<Response<AssetReportFilterResponse>> _assetReportFilterPost(
       {required AssetReportFilterRequest? body}) {
     final $url = '/asset_report/filter';
     final $body = body;
@@ -466,7 +467,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportGetResponse>> assetReportGetPost(
+  Future<Response<AssetReportGetResponse>> _assetReportGetPost(
       {required AssetReportGetRequest? body}) {
     final $url = '/asset_report/get';
     final $body = body;
@@ -476,7 +477,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<Object>> assetReportPdfGetPost(
+  Future<Response<Object>> _assetReportPdfGetPost(
       {required AssetReportPDFGetRequest? body}) {
     final $url = '/asset_report/pdf/get';
     final $body = body;
@@ -486,7 +487,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<AssetReportAuditCopyCreateResponse>>
-      assetReportAuditCopyCreatePost(
+      _assetReportAuditCopyCreatePost(
           {required AssetReportAuditCopyCreateRequest? body}) {
     final $url = '/asset_report/audit_copy/create';
     final $body = body;
@@ -497,7 +498,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<AssetReportAuditCopyRemoveResponse>>
-      assetReportAuditCopyRemovePost(
+      _assetReportAuditCopyRemovePost(
           {required AssetReportAuditCopyRemoveRequest? body}) {
     final $url = '/asset_report/audit_copy/remove';
     final $body = body;
@@ -507,7 +508,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<InvestmentsHoldingsGetResponse>> investmentsHoldingsGetPost(
+  Future<Response<InvestmentsHoldingsGetResponse>> _investmentsHoldingsGetPost(
       {required InvestmentsHoldingsGetRequest? body}) {
     final $url = '/investments/holdings/get';
     final $body = body;
@@ -518,7 +519,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<InvestmentsTransactionsGetResponse>>
-      investmentsTransactionsGetPost(
+      _investmentsTransactionsGetPost(
           {required InvestmentsTransactionsGetRequest? body}) {
     final $url = '/investments/transactions/get';
     final $body = body;
@@ -528,7 +529,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ProcessorTokenCreateResponse>> processorTokenCreatePost(
+  Future<Response<ProcessorTokenCreateResponse>> _processorTokenCreatePost(
       {required ProcessorTokenCreateRequest? body}) {
     final $url = '/processor/token/create';
     final $body = body;
@@ -539,7 +540,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<ProcessorStripeBankAccountTokenCreateResponse>>
-      processorStripeBankAccountTokenCreatePost(
+      _processorStripeBankAccountTokenCreatePost(
           {required ProcessorStripeBankAccountTokenCreateRequest? body}) {
     final $url = '/processor/stripe/bank_account_token/create';
     final $body = body;
@@ -550,7 +551,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<ProcessorTokenCreateResponse>>
-      processorApexProcessorTokenCreatePost(
+      _processorApexProcessorTokenCreatePost(
           {required ProcessorApexProcessorTokenCreateRequest? body}) {
     final $url = '/processor/apex/processor_token/create';
     final $body = body;
@@ -560,7 +561,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<DepositSwitchCreateResponse>> depositSwitchCreatePost(
+  Future<Response<DepositSwitchCreateResponse>> _depositSwitchCreatePost(
       {required DepositSwitchCreateRequest? body}) {
     final $url = '/deposit_switch/create';
     final $body = body;
@@ -570,7 +571,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<ItemImportResponse>> itemImportPost(
+  Future<Response<ItemImportResponse>> _itemImportPost(
       {required ItemImportRequest? body}) {
     final $url = '/item/import';
     final $body = body;
@@ -580,7 +581,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<DepositSwitchTokenCreateResponse>>
-      depositSwitchTokenCreatePost(
+      _depositSwitchTokenCreatePost(
           {required DepositSwitchTokenCreateRequest? body}) {
     final $url = '/deposit_switch/token/create';
     final $body = body;
@@ -590,7 +591,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<LinkTokenCreateResponse>> linkTokenCreatePost(
+  Future<Response<LinkTokenCreateResponse>> _linkTokenCreatePost(
       {required LinkTokenCreateRequest? body}) {
     final $url = '/link/token/create';
     final $body = body;
@@ -600,7 +601,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<LinkTokenGetResponse>> linkTokenGetPost(
+  Future<Response<LinkTokenGetResponse>> _linkTokenGetPost(
       {required LinkTokenGetRequest? body}) {
     final $url = '/link/token/get';
     final $body = body;
@@ -609,7 +610,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<AssetReportGetResponse>> assetReportAuditCopyGetPost(
+  Future<Response<AssetReportGetResponse>> _assetReportAuditCopyGetPost(
       {required AssetReportAuditCopyGetRequest? body}) {
     final $url = '/asset_report/audit_copy/get';
     final $body = body;
@@ -619,7 +620,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<DepositSwitchGetResponse>> depositSwitchGetPost(
+  Future<Response<DepositSwitchGetResponse>> _depositSwitchGetPost(
       {required DepositSwitchGetRequest? body}) {
     final $url = '/deposit_switch/get';
     final $body = body;
@@ -629,7 +630,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferGetResponse>> transferGetPost(
+  Future<Response<TransferGetResponse>> _transferGetPost(
       {required TransferGetRequest? body}) {
     final $url = '/transfer/get';
     final $body = body;
@@ -638,7 +639,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferGetResponse>> bankTransferGetPost(
+  Future<Response<BankTransferGetResponse>> _bankTransferGetPost(
       {required BankTransferGetRequest? body}) {
     final $url = '/bank_transfer/get';
     final $body = body;
@@ -649,7 +650,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<TransferAuthorizationCreateResponse>>
-      transferAuthorizationCreatePost(
+      _transferAuthorizationCreatePost(
           {required TransferAuthorizationCreateRequest? body}) {
     final $url = '/transfer/authorization/create';
     final $body = body;
@@ -659,7 +660,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferCreateResponse>> transferCreatePost(
+  Future<Response<TransferCreateResponse>> _transferCreatePost(
       {required TransferCreateRequest? body}) {
     final $url = '/transfer/create';
     final $body = body;
@@ -669,7 +670,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferCreateResponse>> bankTransferCreatePost(
+  Future<Response<BankTransferCreateResponse>> _bankTransferCreatePost(
       {required BankTransferCreateRequest? body}) {
     final $url = '/bank_transfer/create';
     final $body = body;
@@ -679,7 +680,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferListResponse>> transferListPost(
+  Future<Response<TransferListResponse>> _transferListPost(
       {required TransferListRequest? body}) {
     final $url = '/transfer/list';
     final $body = body;
@@ -688,7 +689,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferListResponse>> bankTransferListPost(
+  Future<Response<BankTransferListResponse>> _bankTransferListPost(
       {required BankTransferListRequest? body}) {
     final $url = '/bank_transfer/list';
     final $body = body;
@@ -698,7 +699,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferCancelResponse>> transferCancelPost(
+  Future<Response<TransferCancelResponse>> _transferCancelPost(
       {required TransferCancelRequest? body}) {
     final $url = '/transfer/cancel';
     final $body = body;
@@ -708,7 +709,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferCancelResponse>> bankTransferCancelPost(
+  Future<Response<BankTransferCancelResponse>> _bankTransferCancelPost(
       {required BankTransferCancelRequest? body}) {
     final $url = '/bank_transfer/cancel';
     final $body = body;
@@ -718,7 +719,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferEventListResponse>> transferEventListPost(
+  Future<Response<TransferEventListResponse>> _transferEventListPost(
       {required TransferEventListRequest? body}) {
     final $url = '/transfer/event/list';
     final $body = body;
@@ -728,7 +729,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferEventListResponse>> bankTransferEventListPost(
+  Future<Response<BankTransferEventListResponse>> _bankTransferEventListPost(
       {required BankTransferEventListRequest? body}) {
     final $url = '/bank_transfer/event/list';
     final $body = body;
@@ -738,7 +739,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferEventSyncResponse>> transferEventSyncPost(
+  Future<Response<TransferEventSyncResponse>> _transferEventSyncPost(
       {required TransferEventSyncRequest? body}) {
     final $url = '/transfer/event/sync';
     final $body = body;
@@ -748,7 +749,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferEventSyncResponse>> bankTransferEventSyncPost(
+  Future<Response<BankTransferEventSyncResponse>> _bankTransferEventSyncPost(
       {required BankTransferEventSyncRequest? body}) {
     final $url = '/bank_transfer/event/sync';
     final $body = body;
@@ -758,7 +759,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferSweepGetResponse>> transferSweepGetPost(
+  Future<Response<TransferSweepGetResponse>> _transferSweepGetPost(
       {required TransferSweepGetRequest? body}) {
     final $url = '/transfer/sweep/get';
     final $body = body;
@@ -768,7 +769,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferSweepGetResponse>> bankTransferSweepGetPost(
+  Future<Response<BankTransferSweepGetResponse>> _bankTransferSweepGetPost(
       {required BankTransferSweepGetRequest? body}) {
     final $url = '/bank_transfer/sweep/get';
     final $body = body;
@@ -778,7 +779,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferSweepListResponse>> transferSweepListPost(
+  Future<Response<TransferSweepListResponse>> _transferSweepListPost(
       {required TransferSweepListRequest? body}) {
     final $url = '/transfer/sweep/list';
     final $body = body;
@@ -788,7 +789,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferSweepListResponse>> bankTransferSweepListPost(
+  Future<Response<BankTransferSweepListResponse>> _bankTransferSweepListPost(
       {required BankTransferSweepListRequest? body}) {
     final $url = '/bank_transfer/sweep/list';
     final $body = body;
@@ -798,7 +799,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<BankTransferBalanceGetResponse>> bankTransferBalanceGetPost(
+  Future<Response<BankTransferBalanceGetResponse>> _bankTransferBalanceGetPost(
       {required BankTransferBalanceGetRequest? body}) {
     final $url = '/bank_transfer/balance/get';
     final $body = body;
@@ -809,7 +810,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<BankTransferMigrateAccountResponse>>
-      bankTransferMigrateAccountPost(
+      _bankTransferMigrateAccountPost(
           {required BankTransferMigrateAccountRequest? body}) {
     final $url = '/bank_transfer/migrate_account';
     final $body = body;
@@ -819,7 +820,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferIntentCreateResponse>> transferIntentCreatePost(
+  Future<Response<TransferIntentCreateResponse>> _transferIntentCreatePost(
       {required TransferIntentCreateRequest? body}) {
     final $url = '/transfer/intent/create';
     final $body = body;
@@ -829,7 +830,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<TransferIntentGetResponse>> transferIntentGetPost(
+  Future<Response<TransferIntentGetResponse>> _transferIntentGetPost(
       {required TransferIntentGetRequest? body}) {
     final $url = '/transfer/intent/get';
     final $body = body;
@@ -840,7 +841,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxBankTransferSimulateResponse>>
-      sandboxBankTransferSimulatePost(
+      _sandboxBankTransferSimulatePost(
           {required SandboxBankTransferSimulateRequest? body}) {
     final $url = '/sandbox/bank_transfer/simulate';
     final $body = body;
@@ -851,7 +852,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxTransferSweepSimulateResponse>>
-      sandboxTransferSweepSimulatePost(
+      _sandboxTransferSweepSimulatePost(
           {required SandboxTransferSweepSimulateRequest? body}) {
     final $url = '/sandbox/transfer/sweep/simulate';
     final $body = body;
@@ -861,8 +862,9 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SandboxTransferSimulateResponse>> sandboxTransferSimulatePost(
-      {required SandboxTransferSimulateRequest? body}) {
+  Future<Response<SandboxTransferSimulateResponse>>
+      _sandboxTransferSimulatePost(
+          {required SandboxTransferSimulateRequest? body}) {
     final $url = '/sandbox/transfer/simulate';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -871,7 +873,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<EmployersSearchResponse>> employersSearchPost(
+  Future<Response<EmployersSearchResponse>> _employersSearchPost(
       {required EmployersSearchRequest? body}) {
     final $url = '/employers/search';
     final $body = body;
@@ -882,7 +884,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationCreateResponse>>
-      incomeVerificationCreatePost(
+      _incomeVerificationCreatePost(
           {required IncomeVerificationCreateRequest? body}) {
     final $url = '/income/verification/create';
     final $body = body;
@@ -893,7 +895,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationSummaryGetResponse>>
-      incomeVerificationSummaryGetPost(
+      _incomeVerificationSummaryGetPost(
           {required IncomeVerificationSummaryGetRequest? body}) {
     final $url = '/income/verification/summary/get';
     final $body = body;
@@ -904,7 +906,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationPaystubGetResponse>>
-      incomeVerificationPaystubGetPost(
+      _incomeVerificationPaystubGetPost(
           {required IncomeVerificationPaystubGetRequest? body}) {
     final $url = '/income/verification/paystub/get';
     final $body = body;
@@ -915,7 +917,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationPaystubsGetResponse>>
-      incomeVerificationPaystubsGetPost(
+      _incomeVerificationPaystubsGetPost(
           {required IncomeVerificationPaystubsGetRequest? body}) {
     final $url = '/income/verification/paystubs/get';
     final $body = body;
@@ -925,7 +927,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<String>> incomeVerificationDocumentsDownloadPost(
+  Future<Response<String>> _incomeVerificationDocumentsDownloadPost(
       {required IncomeVerificationDocumentsDownloadRequest? body}) {
     final $url = '/income/verification/documents/download';
     final $body = body;
@@ -935,7 +937,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationRefreshResponse>>
-      incomeVerificationRefreshPost(
+      _incomeVerificationRefreshPost(
           {required IncomeVerificationRefreshRequest? body}) {
     final $url = '/income/verification/refresh';
     final $body = body;
@@ -946,7 +948,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationTaxformsGetResponse>>
-      incomeVerificationTaxformsGetPost(
+      _incomeVerificationTaxformsGetPost(
           {required IncomeVerificationTaxformsGetRequest? body}) {
     final $url = '/income/verification/taxforms/get';
     final $body = body;
@@ -957,7 +959,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<IncomeVerificationPrecheckResponse>>
-      incomeVerificationPrecheckPost(
+      _incomeVerificationPrecheckPost(
           {required IncomeVerificationPrecheckRequest? body}) {
     final $url = '/income/verification/precheck';
     final $body = body;
@@ -968,7 +970,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<EmploymentVerificationGetResponse>>
-      employmentVerificationGetPost(
+      _employmentVerificationGetPost(
           {required EmploymentVerificationGetRequest? body}) {
     final $url = '/employment/verification/get';
     final $body = body;
@@ -978,7 +980,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<DepositSwitchAltCreateResponse>> depositSwitchAltCreatePost(
+  Future<Response<DepositSwitchAltCreateResponse>> _depositSwitchAltCreatePost(
       {required DepositSwitchAltCreateRequest? body}) {
     final $url = '/deposit_switch/alt/create';
     final $body = body;
@@ -989,7 +991,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxBankTransferFireWebhookResponse>>
-      sandboxBankTransferFireWebhookPost(
+      _sandboxBankTransferFireWebhookPost(
           {required SandboxBankTransferFireWebhookRequest? body}) {
     final $url = '/sandbox/bank_transfer/fire_webhook';
     final $body = body;
@@ -1000,7 +1002,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxIncomeFireWebhookResponse>>
-      sandboxIncomeFireWebhookPost(
+      _sandboxIncomeFireWebhookPost(
           {required SandboxIncomeFireWebhookRequest? body}) {
     final $url = '/sandbox/income/fire_webhook';
     final $body = body;
@@ -1011,7 +1013,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<SandboxOauthSelectAccountsResponse>>
-      sandboxOauthSelectAccountsPost(
+      _sandboxOauthSelectAccountsPost(
           {required SandboxOauthSelectAccountsRequest? body}) {
     final $url = '/sandbox/oauth/select_accounts';
     final $body = body;
@@ -1021,7 +1023,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SignalEvaluateResponse>> signalEvaluatePost(
+  Future<Response<SignalEvaluateResponse>> _signalEvaluatePost(
       {required SignalEvaluateRequest? body}) {
     final $url = '/signal/evaluate';
     final $body = body;
@@ -1031,7 +1033,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SignalDecisionReportResponse>> signalDecisionReportPost(
+  Future<Response<SignalDecisionReportResponse>> _signalDecisionReportPost(
       {required SignalDecisionReportRequest? body}) {
     final $url = '/signal/decision/report';
     final $body = body;
@@ -1041,7 +1043,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<SignalReturnReportResponse>> signalReturnReportPost(
+  Future<Response<SignalReturnReportResponse>> _signalReturnReportPost(
       {required SignalReturnReportRequest? body}) {
     final $url = '/signal/return/report';
     final $body = body;
@@ -1051,7 +1053,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<WalletGetResponse>> walletGetPost(
+  Future<Response<WalletGetResponse>> _walletGetPost(
       {required WalletGetRequest? body}) {
     final $url = '/wallet/get';
     final $body = body;
@@ -1061,7 +1063,7 @@ class _$PlaidService extends PlaidService {
 
   @override
   Future<Response<WalletTransactionExecuteResponse>>
-      walletTransactionExecutePost(
+      _walletTransactionExecutePost(
           {required WalletTransactionExecuteRequest? body}) {
     final $url = '/wallet/transaction/execute';
     final $body = body;
@@ -1071,7 +1073,7 @@ class _$PlaidService extends PlaidService {
   }
 
   @override
-  Future<Response<WalletTransactionsListResponse>> walletTransactionsListPost(
+  Future<Response<WalletTransactionsListResponse>> _walletTransactionsListPost(
       {required WalletTransactionsListRequest? body}) {
     final $url = '/wallet/transactions/list';
     final $body = body;

@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
 import 'package:chopper/chopper.dart';
+import 'client_mapping.dart';
 import 'package:chopper/chopper.dart' as chopper;
 import 'plaid_service.enums.swagger.dart' as enums;
 export 'plaid_service.enums.swagger.dart';
@@ -15,7 +16,7 @@ part 'plaid_service.swagger.g.dart';
 
 @ChopperApi()
 abstract class PlaidService extends ChopperService {
-  static PlaidService create([ChopperClient? client]) {
+  static PlaidService create({ChopperClient? client, String? baseUrl}) {
     if (client != null) {
       return _$PlaidService(client);
     }
@@ -23,1190 +24,1566 @@ abstract class PlaidService extends ChopperService {
     final newClient = ChopperClient(
         services: [_$PlaidService()],
         converter: $JsonSerializableConverter(),
-        baseUrl: 'https://');
+        baseUrl: baseUrl ?? 'http://');
     return _$PlaidService(newClient);
   }
 
   ///List a user’s connected applications
-  @Post(path: '/item/application/list')
   Future<chopper.Response<ItemApplicationListResponse>> itemApplicationListPost(
-      {@Body() required ItemApplicationListRequest? body});
+      {required ItemApplicationListRequest? body}) {
+    generatedMapping.putIfAbsent(ItemApplicationListResponse,
+        () => ItemApplicationListResponse.fromJsonFactory);
+
+    return _itemApplicationListPost(body: body);
+  }
+
+  ///List a user’s connected applications
+  @Post(path: '/item/application/list')
+  Future<chopper.Response<ItemApplicationListResponse>>
+      _itemApplicationListPost(
+          {@Body() required ItemApplicationListRequest? body});
+
+  ///Update the scopes of access for a particular application
+  Future<chopper.Response<ItemApplicationScopesUpdateResponse>>
+      itemApplicationScopesUpdatePost(
+          {required ItemApplicationScopesUpdateRequest? body}) {
+    generatedMapping.putIfAbsent(ItemApplicationScopesUpdateResponse,
+        () => ItemApplicationScopesUpdateResponse.fromJsonFactory);
+
+    return _itemApplicationScopesUpdatePost(body: body);
+  }
 
   ///Update the scopes of access for a particular application
   @Post(path: '/item/application/scopes/update')
   Future<chopper.Response<ItemApplicationScopesUpdateResponse>>
-      itemApplicationScopesUpdatePost(
+      _itemApplicationScopesUpdatePost(
           {@Body() required ItemApplicationScopesUpdateRequest? body});
 
   ///Retrieve information about a Plaid application
-  @Post(path: '/application/get')
   Future<chopper.Response<ApplicationGetResponse>> applicationGetPost(
+      {required ApplicationGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        ApplicationGetResponse, () => ApplicationGetResponse.fromJsonFactory);
+
+    return _applicationGetPost(body: body);
+  }
+
+  ///Retrieve information about a Plaid application
+  @Post(path: '/application/get')
+  Future<chopper.Response<ApplicationGetResponse>> _applicationGetPost(
       {@Body() required ApplicationGetRequest? body});
 
   ///Retrieve an Item
-  @Post(path: '/item/get')
   Future<chopper.Response<ItemGetResponse>> itemGetPost(
+      {required ItemGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        ItemGetResponse, () => ItemGetResponse.fromJsonFactory);
+
+    return _itemGetPost(body: body);
+  }
+
+  ///Retrieve an Item
+  @Post(path: '/item/get')
+  Future<chopper.Response<ItemGetResponse>> _itemGetPost(
       {@Body() required ItemGetRequest? body});
 
   ///Retrieve auth data
-  @Post(path: '/auth/get')
   Future<chopper.Response<AuthGetResponse>> authGetPost(
+      {required AuthGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        AuthGetResponse, () => AuthGetResponse.fromJsonFactory);
+
+    return _authGetPost(body: body);
+  }
+
+  ///Retrieve auth data
+  @Post(path: '/auth/get')
+  Future<chopper.Response<AuthGetResponse>> _authGetPost(
       {@Body() required AuthGetRequest? body});
 
   ///Get transaction data
-  @Post(path: '/transactions/get')
   Future<chopper.Response<TransactionsGetResponse>> transactionsGetPost(
+      {required TransactionsGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        TransactionsGetResponse, () => TransactionsGetResponse.fromJsonFactory);
+
+    return _transactionsGetPost(body: body);
+  }
+
+  ///Get transaction data
+  @Post(path: '/transactions/get')
+  Future<chopper.Response<TransactionsGetResponse>> _transactionsGetPost(
       {@Body() required TransactionsGetRequest? body});
 
   ///Refresh transaction data
-  @Post(path: '/transactions/refresh')
   Future<chopper.Response<TransactionsRefreshResponse>> transactionsRefreshPost(
-      {@Body() required TransactionsRefreshRequest? body});
+      {required TransactionsRefreshRequest? body}) {
+    generatedMapping.putIfAbsent(TransactionsRefreshResponse,
+        () => TransactionsRefreshResponse.fromJsonFactory);
+
+    return _transactionsRefreshPost(body: body);
+  }
+
+  ///Refresh transaction data
+  @Post(path: '/transactions/refresh')
+  Future<chopper.Response<TransactionsRefreshResponse>>
+      _transactionsRefreshPost(
+          {@Body() required TransactionsRefreshRequest? body});
+
+  ///Get streams of recurring transactions
+  Future<chopper.Response<TransactionsRecurringGetResponse>>
+      transactionsRecurringGetPost(
+          {required TransactionsRecurringGetRequest? body}) {
+    generatedMapping.putIfAbsent(TransactionsRecurringGetResponse,
+        () => TransactionsRecurringGetResponse.fromJsonFactory);
+
+    return _transactionsRecurringGetPost(body: body);
+  }
 
   ///Get streams of recurring transactions
   @Post(path: '/transactions/recurring/get')
   Future<chopper.Response<TransactionsRecurringGetResponse>>
-      transactionsRecurringGetPost(
+      _transactionsRecurringGetPost(
           {@Body() required TransactionsRecurringGetRequest? body});
 
   ///Get incremental transaction updates on an item
-  @Post(path: '/transactions/sync')
   Future<chopper.Response<TransactionsSyncResponse>> transactionsSyncPost(
+      {required TransactionsSyncRequest? body}) {
+    generatedMapping.putIfAbsent(TransactionsSyncResponse,
+        () => TransactionsSyncResponse.fromJsonFactory);
+
+    return _transactionsSyncPost(body: body);
+  }
+
+  ///Get incremental transaction updates on an item
+  @Post(path: '/transactions/sync')
+  Future<chopper.Response<TransactionsSyncResponse>> _transactionsSyncPost(
       {@Body() required TransactionsSyncRequest? body});
 
   ///Get details of all supported institutions
-  @Post(path: '/institutions/get')
   Future<chopper.Response<InstitutionsGetResponse>> institutionsGetPost(
+      {required InstitutionsGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        InstitutionsGetResponse, () => InstitutionsGetResponse.fromJsonFactory);
+
+    return _institutionsGetPost(body: body);
+  }
+
+  ///Get details of all supported institutions
+  @Post(path: '/institutions/get')
+  Future<chopper.Response<InstitutionsGetResponse>> _institutionsGetPost(
       {@Body() required InstitutionsGetRequest? body});
 
   ///Search institutions
-  @Post(path: '/institutions/search')
   Future<chopper.Response<InstitutionsSearchResponse>> institutionsSearchPost(
+      {required InstitutionsSearchRequest? body}) {
+    generatedMapping.putIfAbsent(InstitutionsSearchResponse,
+        () => InstitutionsSearchResponse.fromJsonFactory);
+
+    return _institutionsSearchPost(body: body);
+  }
+
+  ///Search institutions
+  @Post(path: '/institutions/search')
+  Future<chopper.Response<InstitutionsSearchResponse>> _institutionsSearchPost(
       {@Body() required InstitutionsSearchRequest? body});
 
   ///Get details of an institution
-  @Post(path: '/institutions/get_by_id')
   Future<chopper.Response<InstitutionsGetByIdResponse>> institutionsGetByIdPost(
-      {@Body() required InstitutionsGetByIdRequest? body});
+      {required InstitutionsGetByIdRequest? body}) {
+    generatedMapping.putIfAbsent(InstitutionsGetByIdResponse,
+        () => InstitutionsGetByIdResponse.fromJsonFactory);
+
+    return _institutionsGetByIdPost(body: body);
+  }
+
+  ///Get details of an institution
+  @Post(path: '/institutions/get_by_id')
+  Future<chopper.Response<InstitutionsGetByIdResponse>>
+      _institutionsGetByIdPost(
+          {@Body() required InstitutionsGetByIdRequest? body});
+
+  ///Remove an Item
+  Future<chopper.Response<ItemRemoveResponse>> itemRemovePost(
+      {required ItemRemoveRequest? body}) {
+    generatedMapping.putIfAbsent(
+        ItemRemoveResponse, () => ItemRemoveResponse.fromJsonFactory);
+
+    return _itemRemovePost(body: body);
+  }
 
   ///Remove an Item
   @Post(path: '/item/remove')
-  Future<chopper.Response<ItemRemoveResponse>> itemRemovePost(
+  Future<chopper.Response<ItemRemoveResponse>> _itemRemovePost(
       {@Body() required ItemRemoveRequest? body});
 
   ///Retrieve accounts
-  @Post(path: '/accounts/get')
   Future<chopper.Response<AccountsGetResponse>> accountsGetPost(
+      {required AccountsGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        AccountsGetResponse, () => AccountsGetResponse.fromJsonFactory);
+
+    return _accountsGetPost(body: body);
+  }
+
+  ///Retrieve accounts
+  @Post(path: '/accounts/get')
+  Future<chopper.Response<AccountsGetResponse>> _accountsGetPost(
       {@Body() required AccountsGetRequest? body});
 
   ///Get Categories
-  @Post(path: '/categories/get')
   Future<chopper.Response<CategoriesGetResponse>> categoriesGetPost(
+      {required CategoriesGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        CategoriesGetResponse, () => CategoriesGetResponse.fromJsonFactory);
+
+    return _categoriesGetPost(body: body);
+  }
+
+  ///Get Categories
+  @Post(path: '/categories/get')
+  Future<chopper.Response<CategoriesGetResponse>> _categoriesGetPost(
       {@Body() required CategoriesGetRequest? body});
+
+  ///Create a test Item and processor token
+  Future<chopper.Response<SandboxProcessorTokenCreateResponse>>
+      sandboxProcessorTokenCreatePost(
+          {required SandboxProcessorTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxProcessorTokenCreateResponse,
+        () => SandboxProcessorTokenCreateResponse.fromJsonFactory);
+
+    return _sandboxProcessorTokenCreatePost(body: body);
+  }
 
   ///Create a test Item and processor token
   @Post(path: '/sandbox/processor_token/create')
   Future<chopper.Response<SandboxProcessorTokenCreateResponse>>
-      sandboxProcessorTokenCreatePost(
+      _sandboxProcessorTokenCreatePost(
           {@Body() required SandboxProcessorTokenCreateRequest? body});
+
+  ///Create a test Item
+  Future<chopper.Response<SandboxPublicTokenCreateResponse>>
+      sandboxPublicTokenCreatePost(
+          {required SandboxPublicTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxPublicTokenCreateResponse,
+        () => SandboxPublicTokenCreateResponse.fromJsonFactory);
+
+    return _sandboxPublicTokenCreatePost(body: body);
+  }
 
   ///Create a test Item
   @Post(path: '/sandbox/public_token/create')
   Future<chopper.Response<SandboxPublicTokenCreateResponse>>
-      sandboxPublicTokenCreatePost(
+      _sandboxPublicTokenCreatePost(
           {@Body() required SandboxPublicTokenCreateRequest? body});
+
+  ///Fire a test webhook
+  Future<chopper.Response<SandboxItemFireWebhookResponse>>
+      sandboxItemFireWebhookPost(
+          {required SandboxItemFireWebhookRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxItemFireWebhookResponse,
+        () => SandboxItemFireWebhookResponse.fromJsonFactory);
+
+    return _sandboxItemFireWebhookPost(body: body);
+  }
 
   ///Fire a test webhook
   @Post(path: '/sandbox/item/fire_webhook')
   Future<chopper.Response<SandboxItemFireWebhookResponse>>
-      sandboxItemFireWebhookPost(
+      _sandboxItemFireWebhookPost(
           {@Body() required SandboxItemFireWebhookRequest? body});
 
   ///Retrieve real-time balance data
-  @Post(path: '/accounts/balance/get')
   Future<chopper.Response<AccountsGetResponse>> accountsBalanceGetPost(
+      {required AccountsBalanceGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        AccountsGetResponse, () => AccountsGetResponse.fromJsonFactory);
+
+    return _accountsBalanceGetPost(body: body);
+  }
+
+  ///Retrieve real-time balance data
+  @Post(path: '/accounts/balance/get')
+  Future<chopper.Response<AccountsGetResponse>> _accountsBalanceGetPost(
       {@Body() required AccountsBalanceGetRequest? body});
 
   ///Retrieve identity data
-  @Post(path: '/identity/get')
   Future<chopper.Response<IdentityGetResponse>> identityGetPost(
+      {required IdentityGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        IdentityGetResponse, () => IdentityGetResponse.fromJsonFactory);
+
+    return _identityGetPost(body: body);
+  }
+
+  ///Retrieve identity data
+  @Post(path: '/identity/get')
+  Future<chopper.Response<IdentityGetResponse>> _identityGetPost(
       {@Body() required IdentityGetRequest? body});
 
   ///Retrieve Auth data
-  @Post(path: '/processor/auth/get')
   Future<chopper.Response<ProcessorAuthGetResponse>> processorAuthGetPost(
+      {required ProcessorAuthGetRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorAuthGetResponse,
+        () => ProcessorAuthGetResponse.fromJsonFactory);
+
+    return _processorAuthGetPost(body: body);
+  }
+
+  ///Retrieve Auth data
+  @Post(path: '/processor/auth/get')
+  Future<chopper.Response<ProcessorAuthGetResponse>> _processorAuthGetPost(
       {@Body() required ProcessorAuthGetRequest? body});
+
+  ///Create a bank transfer as a processor
+  Future<chopper.Response<ProcessorBankTransferCreateResponse>>
+      processorBankTransferCreatePost(
+          {required ProcessorBankTransferCreateRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorBankTransferCreateResponse,
+        () => ProcessorBankTransferCreateResponse.fromJsonFactory);
+
+    return _processorBankTransferCreatePost(body: body);
+  }
 
   ///Create a bank transfer as a processor
   @Post(path: '/processor/bank_transfer/create')
   Future<chopper.Response<ProcessorBankTransferCreateResponse>>
-      processorBankTransferCreatePost(
+      _processorBankTransferCreatePost(
           {@Body() required ProcessorBankTransferCreateRequest? body});
+
+  ///Retrieve Identity data
+  Future<chopper.Response<ProcessorIdentityGetResponse>>
+      processorIdentityGetPost({required ProcessorIdentityGetRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorIdentityGetResponse,
+        () => ProcessorIdentityGetResponse.fromJsonFactory);
+
+    return _processorIdentityGetPost(body: body);
+  }
 
   ///Retrieve Identity data
   @Post(path: '/processor/identity/get')
   Future<chopper.Response<ProcessorIdentityGetResponse>>
-      processorIdentityGetPost(
+      _processorIdentityGetPost(
           {@Body() required ProcessorIdentityGetRequest? body});
 
   ///Retrieve Balance data
-  @Post(path: '/processor/balance/get')
   Future<chopper.Response<ProcessorBalanceGetResponse>> processorBalanceGetPost(
-      {@Body() required ProcessorBalanceGetRequest? body});
+      {required ProcessorBalanceGetRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorBalanceGetResponse,
+        () => ProcessorBalanceGetResponse.fromJsonFactory);
+
+    return _processorBalanceGetPost(body: body);
+  }
+
+  ///Retrieve Balance data
+  @Post(path: '/processor/balance/get')
+  Future<chopper.Response<ProcessorBalanceGetResponse>>
+      _processorBalanceGetPost(
+          {@Body() required ProcessorBalanceGetRequest? body});
+
+  ///Update Webhook URL
+  Future<chopper.Response<ItemWebhookUpdateResponse>> itemWebhookUpdatePost(
+      {required ItemWebhookUpdateRequest? body}) {
+    generatedMapping.putIfAbsent(ItemWebhookUpdateResponse,
+        () => ItemWebhookUpdateResponse.fromJsonFactory);
+
+    return _itemWebhookUpdatePost(body: body);
+  }
 
   ///Update Webhook URL
   @Post(path: '/item/webhook/update')
-  Future<chopper.Response<ItemWebhookUpdateResponse>> itemWebhookUpdatePost(
+  Future<chopper.Response<ItemWebhookUpdateResponse>> _itemWebhookUpdatePost(
       {@Body() required ItemWebhookUpdateRequest? body});
+
+  ///Invalidate access_token
+  Future<chopper.Response<ItemAccessTokenInvalidateResponse>>
+      itemAccessTokenInvalidatePost(
+          {required ItemAccessTokenInvalidateRequest? body}) {
+    generatedMapping.putIfAbsent(ItemAccessTokenInvalidateResponse,
+        () => ItemAccessTokenInvalidateResponse.fromJsonFactory);
+
+    return _itemAccessTokenInvalidatePost(body: body);
+  }
 
   ///Invalidate access_token
   @Post(path: '/item/access_token/invalidate')
   Future<chopper.Response<ItemAccessTokenInvalidateResponse>>
-      itemAccessTokenInvalidatePost(
+      _itemAccessTokenInvalidatePost(
           {@Body() required ItemAccessTokenInvalidateRequest? body});
+
+  ///Get webhook verification key
+  Future<chopper.Response<WebhookVerificationKeyGetResponse>>
+      webhookVerificationKeyGetPost(
+          {required WebhookVerificationKeyGetRequest? body}) {
+    generatedMapping.putIfAbsent(WebhookVerificationKeyGetResponse,
+        () => WebhookVerificationKeyGetResponse.fromJsonFactory);
+
+    return _webhookVerificationKeyGetPost(body: body);
+  }
 
   ///Get webhook verification key
   @Post(path: '/webhook_verification_key/get')
   Future<chopper.Response<WebhookVerificationKeyGetResponse>>
-      webhookVerificationKeyGetPost(
+      _webhookVerificationKeyGetPost(
           {@Body() required WebhookVerificationKeyGetRequest? body});
 
   ///Retrieve Liabilities data
-  @Post(path: '/liabilities/get')
   Future<chopper.Response<LiabilitiesGetResponse>> liabilitiesGetPost(
+      {required LiabilitiesGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        LiabilitiesGetResponse, () => LiabilitiesGetResponse.fromJsonFactory);
+
+    return _liabilitiesGetPost(body: body);
+  }
+
+  ///Retrieve Liabilities data
+  @Post(path: '/liabilities/get')
+  Future<chopper.Response<LiabilitiesGetResponse>> _liabilitiesGetPost(
       {@Body() required LiabilitiesGetRequest? body});
+
+  ///Create payment recipient
+  Future<chopper.Response<PaymentInitiationRecipientCreateResponse>>
+      paymentInitiationRecipientCreatePost(
+          {required PaymentInitiationRecipientCreateRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationRecipientCreateResponse,
+        () => PaymentInitiationRecipientCreateResponse.fromJsonFactory);
+
+    return _paymentInitiationRecipientCreatePost(body: body);
+  }
 
   ///Create payment recipient
   @Post(path: '/payment_initiation/recipient/create')
   Future<chopper.Response<PaymentInitiationRecipientCreateResponse>>
-      paymentInitiationRecipientCreatePost(
+      _paymentInitiationRecipientCreatePost(
           {@Body() required PaymentInitiationRecipientCreateRequest? body});
+
+  ///Reverse an existing payment
+  Future<chopper.Response<PaymentInitiationPaymentReverseResponse>>
+      paymentInitiationPaymentReversePost(
+          {required PaymentInitiationPaymentReverseRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationPaymentReverseResponse,
+        () => PaymentInitiationPaymentReverseResponse.fromJsonFactory);
+
+    return _paymentInitiationPaymentReversePost(body: body);
+  }
 
   ///Reverse an existing payment
   @Post(path: '/payment_initiation/payment/reverse')
   Future<chopper.Response<PaymentInitiationPaymentReverseResponse>>
-      paymentInitiationPaymentReversePost(
+      _paymentInitiationPaymentReversePost(
           {@Body() required PaymentInitiationPaymentReverseRequest? body});
+
+  ///Get payment recipient
+  Future<chopper.Response<PaymentInitiationRecipientGetResponse>>
+      paymentInitiationRecipientGetPost(
+          {required PaymentInitiationRecipientGetRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationRecipientGetResponse,
+        () => PaymentInitiationRecipientGetResponse.fromJsonFactory);
+
+    return _paymentInitiationRecipientGetPost(body: body);
+  }
 
   ///Get payment recipient
   @Post(path: '/payment_initiation/recipient/get')
   Future<chopper.Response<PaymentInitiationRecipientGetResponse>>
-      paymentInitiationRecipientGetPost(
+      _paymentInitiationRecipientGetPost(
           {@Body() required PaymentInitiationRecipientGetRequest? body});
+
+  ///List payment recipients
+  Future<chopper.Response<PaymentInitiationRecipientListResponse>>
+      paymentInitiationRecipientListPost(
+          {required PaymentInitiationRecipientListRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationRecipientListResponse,
+        () => PaymentInitiationRecipientListResponse.fromJsonFactory);
+
+    return _paymentInitiationRecipientListPost(body: body);
+  }
 
   ///List payment recipients
   @Post(path: '/payment_initiation/recipient/list')
   Future<chopper.Response<PaymentInitiationRecipientListResponse>>
-      paymentInitiationRecipientListPost(
+      _paymentInitiationRecipientListPost(
           {@Body() required PaymentInitiationRecipientListRequest? body});
+
+  ///Create a payment
+  Future<chopper.Response<PaymentInitiationPaymentCreateResponse>>
+      paymentInitiationPaymentCreatePost(
+          {required PaymentInitiationPaymentCreateRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationPaymentCreateResponse,
+        () => PaymentInitiationPaymentCreateResponse.fromJsonFactory);
+
+    return _paymentInitiationPaymentCreatePost(body: body);
+  }
 
   ///Create a payment
   @Post(path: '/payment_initiation/payment/create')
   Future<chopper.Response<PaymentInitiationPaymentCreateResponse>>
-      paymentInitiationPaymentCreatePost(
+      _paymentInitiationPaymentCreatePost(
           {@Body() required PaymentInitiationPaymentCreateRequest? body});
+
+  ///Create payment token
+  Future<chopper.Response<PaymentInitiationPaymentTokenCreateResponse>>
+      paymentInitiationPaymentTokenCreatePost(
+          {required PaymentInitiationPaymentTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationPaymentTokenCreateResponse,
+        () => PaymentInitiationPaymentTokenCreateResponse.fromJsonFactory);
+
+    return _paymentInitiationPaymentTokenCreatePost(body: body);
+  }
 
   ///Create payment token
   @Post(path: '/payment_initiation/payment/token/create')
   Future<chopper.Response<PaymentInitiationPaymentTokenCreateResponse>>
-      paymentInitiationPaymentTokenCreatePost(
+      _paymentInitiationPaymentTokenCreatePost(
           {@Body() required PaymentInitiationPaymentTokenCreateRequest? body});
+
+  ///Force a Sandbox Item into an error state
+  Future<chopper.Response<SandboxItemResetLoginResponse>>
+      sandboxItemResetLoginPost({required SandboxItemResetLoginRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxItemResetLoginResponse,
+        () => SandboxItemResetLoginResponse.fromJsonFactory);
+
+    return _sandboxItemResetLoginPost(body: body);
+  }
 
   ///Force a Sandbox Item into an error state
   @Post(path: '/sandbox/item/reset_login')
   Future<chopper.Response<SandboxItemResetLoginResponse>>
-      sandboxItemResetLoginPost(
+      _sandboxItemResetLoginPost(
           {@Body() required SandboxItemResetLoginRequest? body});
+
+  ///Set verification status for Sandbox account
+  Future<chopper.Response<SandboxItemSetVerificationStatusResponse>>
+      sandboxItemSetVerificationStatusPost(
+          {required SandboxItemSetVerificationStatusRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxItemSetVerificationStatusResponse,
+        () => SandboxItemSetVerificationStatusResponse.fromJsonFactory);
+
+    return _sandboxItemSetVerificationStatusPost(body: body);
+  }
 
   ///Set verification status for Sandbox account
   @Post(path: '/sandbox/item/set_verification_status')
   Future<chopper.Response<SandboxItemSetVerificationStatusResponse>>
-      sandboxItemSetVerificationStatusPost(
+      _sandboxItemSetVerificationStatusPost(
           {@Body() required SandboxItemSetVerificationStatusRequest? body});
+
+  ///Exchange public token for an access token
+  Future<chopper.Response<ItemPublicTokenExchangeResponse>>
+      itemPublicTokenExchangePost(
+          {required ItemPublicTokenExchangeRequest? body}) {
+    generatedMapping.putIfAbsent(ItemPublicTokenExchangeResponse,
+        () => ItemPublicTokenExchangeResponse.fromJsonFactory);
+
+    return _itemPublicTokenExchangePost(body: body);
+  }
 
   ///Exchange public token for an access token
   @Post(path: '/item/public_token/exchange')
   Future<chopper.Response<ItemPublicTokenExchangeResponse>>
-      itemPublicTokenExchangePost(
+      _itemPublicTokenExchangePost(
           {@Body() required ItemPublicTokenExchangeRequest? body});
+
+  ///Create public token
+  Future<chopper.Response<ItemPublicTokenCreateResponse>>
+      itemPublicTokenCreatePost({required ItemPublicTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(ItemPublicTokenCreateResponse,
+        () => ItemPublicTokenCreateResponse.fromJsonFactory);
+
+    return _itemPublicTokenCreatePost(body: body);
+  }
 
   ///Create public token
   @Post(path: '/item/public_token/create')
   Future<chopper.Response<ItemPublicTokenCreateResponse>>
-      itemPublicTokenCreatePost(
+      _itemPublicTokenCreatePost(
           {@Body() required ItemPublicTokenCreateRequest? body});
+
+  ///Get payment details
+  Future<chopper.Response<PaymentInitiationPaymentGetResponse>>
+      paymentInitiationPaymentGetPost(
+          {required PaymentInitiationPaymentGetRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationPaymentGetResponse,
+        () => PaymentInitiationPaymentGetResponse.fromJsonFactory);
+
+    return _paymentInitiationPaymentGetPost(body: body);
+  }
 
   ///Get payment details
   @Post(path: '/payment_initiation/payment/get')
   Future<chopper.Response<PaymentInitiationPaymentGetResponse>>
-      paymentInitiationPaymentGetPost(
+      _paymentInitiationPaymentGetPost(
           {@Body() required PaymentInitiationPaymentGetRequest? body});
+
+  ///List payments
+  Future<chopper.Response<PaymentInitiationPaymentListResponse>>
+      paymentInitiationPaymentListPost(
+          {required PaymentInitiationPaymentListRequest? body}) {
+    generatedMapping.putIfAbsent(PaymentInitiationPaymentListResponse,
+        () => PaymentInitiationPaymentListResponse.fromJsonFactory);
+
+    return _paymentInitiationPaymentListPost(body: body);
+  }
 
   ///List payments
   @Post(path: '/payment_initiation/payment/list')
   Future<chopper.Response<PaymentInitiationPaymentListResponse>>
-      paymentInitiationPaymentListPost(
+      _paymentInitiationPaymentListPost(
           {@Body() required PaymentInitiationPaymentListRequest? body});
 
   ///Create an Asset Report
-  @Post(path: '/asset_report/create')
   Future<chopper.Response<AssetReportCreateResponse>> assetReportCreatePost(
+      {required AssetReportCreateRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportCreateResponse,
+        () => AssetReportCreateResponse.fromJsonFactory);
+
+    return _assetReportCreatePost(body: body);
+  }
+
+  ///Create an Asset Report
+  @Post(path: '/asset_report/create')
+  Future<chopper.Response<AssetReportCreateResponse>> _assetReportCreatePost(
       {@Body() required AssetReportCreateRequest? body});
 
   ///Refresh an Asset Report
-  @Post(path: '/asset_report/refresh')
   Future<chopper.Response<AssetReportRefreshResponse>> assetReportRefreshPost(
+      {required AssetReportRefreshRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportRefreshResponse,
+        () => AssetReportRefreshResponse.fromJsonFactory);
+
+    return _assetReportRefreshPost(body: body);
+  }
+
+  ///Refresh an Asset Report
+  @Post(path: '/asset_report/refresh')
+  Future<chopper.Response<AssetReportRefreshResponse>> _assetReportRefreshPost(
       {@Body() required AssetReportRefreshRequest? body});
 
   ///Delete an Asset Report
-  @Post(path: '/asset_report/remove')
   Future<chopper.Response<AssetReportRemoveResponse>> assetReportRemovePost(
+      {required AssetReportRemoveRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportRemoveResponse,
+        () => AssetReportRemoveResponse.fromJsonFactory);
+
+    return _assetReportRemovePost(body: body);
+  }
+
+  ///Delete an Asset Report
+  @Post(path: '/asset_report/remove')
+  Future<chopper.Response<AssetReportRemoveResponse>> _assetReportRemovePost(
       {@Body() required AssetReportRemoveRequest? body});
 
   ///Filter Asset Report
-  @Post(path: '/asset_report/filter')
   Future<chopper.Response<AssetReportFilterResponse>> assetReportFilterPost(
+      {required AssetReportFilterRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportFilterResponse,
+        () => AssetReportFilterResponse.fromJsonFactory);
+
+    return _assetReportFilterPost(body: body);
+  }
+
+  ///Filter Asset Report
+  @Post(path: '/asset_report/filter')
+  Future<chopper.Response<AssetReportFilterResponse>> _assetReportFilterPost(
       {@Body() required AssetReportFilterRequest? body});
 
   ///Retrieve an Asset Report
-  @Post(path: '/asset_report/get')
   Future<chopper.Response<AssetReportGetResponse>> assetReportGetPost(
+      {required AssetReportGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        AssetReportGetResponse, () => AssetReportGetResponse.fromJsonFactory);
+
+    return _assetReportGetPost(body: body);
+  }
+
+  ///Retrieve an Asset Report
+  @Post(path: '/asset_report/get')
+  Future<chopper.Response<AssetReportGetResponse>> _assetReportGetPost(
       {@Body() required AssetReportGetRequest? body});
 
   ///Retrieve a PDF Asset Report
-  @Post(path: '/asset_report/pdf/get')
   Future<chopper.Response<Object>> assetReportPdfGetPost(
+      {required AssetReportPDFGetRequest? body}) {
+    return _assetReportPdfGetPost(body: body);
+  }
+
+  ///Retrieve a PDF Asset Report
+  @Post(path: '/asset_report/pdf/get')
+  Future<chopper.Response<Object>> _assetReportPdfGetPost(
       {@Body() required AssetReportPDFGetRequest? body});
+
+  ///Create Asset Report Audit Copy
+  Future<chopper.Response<AssetReportAuditCopyCreateResponse>>
+      assetReportAuditCopyCreatePost(
+          {required AssetReportAuditCopyCreateRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportAuditCopyCreateResponse,
+        () => AssetReportAuditCopyCreateResponse.fromJsonFactory);
+
+    return _assetReportAuditCopyCreatePost(body: body);
+  }
 
   ///Create Asset Report Audit Copy
   @Post(path: '/asset_report/audit_copy/create')
   Future<chopper.Response<AssetReportAuditCopyCreateResponse>>
-      assetReportAuditCopyCreatePost(
+      _assetReportAuditCopyCreatePost(
           {@Body() required AssetReportAuditCopyCreateRequest? body});
+
+  ///Remove Asset Report Audit Copy
+  Future<chopper.Response<AssetReportAuditCopyRemoveResponse>>
+      assetReportAuditCopyRemovePost(
+          {required AssetReportAuditCopyRemoveRequest? body}) {
+    generatedMapping.putIfAbsent(AssetReportAuditCopyRemoveResponse,
+        () => AssetReportAuditCopyRemoveResponse.fromJsonFactory);
+
+    return _assetReportAuditCopyRemovePost(body: body);
+  }
 
   ///Remove Asset Report Audit Copy
   @Post(path: '/asset_report/audit_copy/remove')
   Future<chopper.Response<AssetReportAuditCopyRemoveResponse>>
-      assetReportAuditCopyRemovePost(
+      _assetReportAuditCopyRemovePost(
           {@Body() required AssetReportAuditCopyRemoveRequest? body});
+
+  ///Get Investment holdings
+  Future<chopper.Response<InvestmentsHoldingsGetResponse>>
+      investmentsHoldingsGetPost(
+          {required InvestmentsHoldingsGetRequest? body}) {
+    generatedMapping.putIfAbsent(InvestmentsHoldingsGetResponse,
+        () => InvestmentsHoldingsGetResponse.fromJsonFactory);
+
+    return _investmentsHoldingsGetPost(body: body);
+  }
 
   ///Get Investment holdings
   @Post(path: '/investments/holdings/get')
   Future<chopper.Response<InvestmentsHoldingsGetResponse>>
-      investmentsHoldingsGetPost(
+      _investmentsHoldingsGetPost(
           {@Body() required InvestmentsHoldingsGetRequest? body});
+
+  ///Get investment transactions
+  Future<chopper.Response<InvestmentsTransactionsGetResponse>>
+      investmentsTransactionsGetPost(
+          {required InvestmentsTransactionsGetRequest? body}) {
+    generatedMapping.putIfAbsent(InvestmentsTransactionsGetResponse,
+        () => InvestmentsTransactionsGetResponse.fromJsonFactory);
+
+    return _investmentsTransactionsGetPost(body: body);
+  }
 
   ///Get investment transactions
   @Post(path: '/investments/transactions/get')
   Future<chopper.Response<InvestmentsTransactionsGetResponse>>
-      investmentsTransactionsGetPost(
+      _investmentsTransactionsGetPost(
           {@Body() required InvestmentsTransactionsGetRequest? body});
+
+  ///Create processor token
+  Future<chopper.Response<ProcessorTokenCreateResponse>>
+      processorTokenCreatePost({required ProcessorTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorTokenCreateResponse,
+        () => ProcessorTokenCreateResponse.fromJsonFactory);
+
+    return _processorTokenCreatePost(body: body);
+  }
 
   ///Create processor token
   @Post(path: '/processor/token/create')
   Future<chopper.Response<ProcessorTokenCreateResponse>>
-      processorTokenCreatePost(
+      _processorTokenCreatePost(
           {@Body() required ProcessorTokenCreateRequest? body});
+
+  ///Create Stripe bank account token
+  Future<chopper.Response<ProcessorStripeBankAccountTokenCreateResponse>>
+      processorStripeBankAccountTokenCreatePost(
+          {required ProcessorStripeBankAccountTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorStripeBankAccountTokenCreateResponse,
+        () => ProcessorStripeBankAccountTokenCreateResponse.fromJsonFactory);
+
+    return _processorStripeBankAccountTokenCreatePost(body: body);
+  }
 
   ///Create Stripe bank account token
   @Post(path: '/processor/stripe/bank_account_token/create')
   Future<chopper.Response<ProcessorStripeBankAccountTokenCreateResponse>>
-      processorStripeBankAccountTokenCreatePost(
+      _processorStripeBankAccountTokenCreatePost(
           {@Body()
               required ProcessorStripeBankAccountTokenCreateRequest? body});
 
   ///Create Apex bank account token
-  @Post(path: '/processor/apex/processor_token/create')
   Future<chopper.Response<ProcessorTokenCreateResponse>>
       processorApexProcessorTokenCreatePost(
+          {required ProcessorApexProcessorTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(ProcessorTokenCreateResponse,
+        () => ProcessorTokenCreateResponse.fromJsonFactory);
+
+    return _processorApexProcessorTokenCreatePost(body: body);
+  }
+
+  ///Create Apex bank account token
+  @Post(path: '/processor/apex/processor_token/create')
+  Future<chopper.Response<ProcessorTokenCreateResponse>>
+      _processorApexProcessorTokenCreatePost(
           {@Body() required ProcessorApexProcessorTokenCreateRequest? body});
 
   ///Create a deposit switch
-  @Post(path: '/deposit_switch/create')
   Future<chopper.Response<DepositSwitchCreateResponse>> depositSwitchCreatePost(
-      {@Body() required DepositSwitchCreateRequest? body});
+      {required DepositSwitchCreateRequest? body}) {
+    generatedMapping.putIfAbsent(DepositSwitchCreateResponse,
+        () => DepositSwitchCreateResponse.fromJsonFactory);
+
+    return _depositSwitchCreatePost(body: body);
+  }
+
+  ///Create a deposit switch
+  @Post(path: '/deposit_switch/create')
+  Future<chopper.Response<DepositSwitchCreateResponse>>
+      _depositSwitchCreatePost(
+          {@Body() required DepositSwitchCreateRequest? body});
+
+  ///Import Item
+  Future<chopper.Response<ItemImportResponse>> itemImportPost(
+      {required ItemImportRequest? body}) {
+    generatedMapping.putIfAbsent(
+        ItemImportResponse, () => ItemImportResponse.fromJsonFactory);
+
+    return _itemImportPost(body: body);
+  }
 
   ///Import Item
   @Post(path: '/item/import')
-  Future<chopper.Response<ItemImportResponse>> itemImportPost(
+  Future<chopper.Response<ItemImportResponse>> _itemImportPost(
       {@Body() required ItemImportRequest? body});
+
+  ///Create a deposit switch token
+  Future<chopper.Response<DepositSwitchTokenCreateResponse>>
+      depositSwitchTokenCreatePost(
+          {required DepositSwitchTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(DepositSwitchTokenCreateResponse,
+        () => DepositSwitchTokenCreateResponse.fromJsonFactory);
+
+    return _depositSwitchTokenCreatePost(body: body);
+  }
 
   ///Create a deposit switch token
   @Post(path: '/deposit_switch/token/create')
   Future<chopper.Response<DepositSwitchTokenCreateResponse>>
-      depositSwitchTokenCreatePost(
+      _depositSwitchTokenCreatePost(
           {@Body() required DepositSwitchTokenCreateRequest? body});
 
   ///Create Link Token
-  @Post(path: '/link/token/create')
   Future<chopper.Response<LinkTokenCreateResponse>> linkTokenCreatePost(
+      {required LinkTokenCreateRequest? body}) {
+    generatedMapping.putIfAbsent(
+        LinkTokenCreateResponse, () => LinkTokenCreateResponse.fromJsonFactory);
+
+    return _linkTokenCreatePost(body: body);
+  }
+
+  ///Create Link Token
+  @Post(path: '/link/token/create')
+  Future<chopper.Response<LinkTokenCreateResponse>> _linkTokenCreatePost(
       {@Body() required LinkTokenCreateRequest? body});
 
   ///Get Link Token
-  @Post(path: '/link/token/get')
   Future<chopper.Response<LinkTokenGetResponse>> linkTokenGetPost(
+      {required LinkTokenGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        LinkTokenGetResponse, () => LinkTokenGetResponse.fromJsonFactory);
+
+    return _linkTokenGetPost(body: body);
+  }
+
+  ///Get Link Token
+  @Post(path: '/link/token/get')
+  Future<chopper.Response<LinkTokenGetResponse>> _linkTokenGetPost(
       {@Body() required LinkTokenGetRequest? body});
 
   ///Retrieve an Asset Report Audit Copy
-  @Post(path: '/asset_report/audit_copy/get')
   Future<chopper.Response<AssetReportGetResponse>> assetReportAuditCopyGetPost(
+      {required AssetReportAuditCopyGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        AssetReportGetResponse, () => AssetReportGetResponse.fromJsonFactory);
+
+    return _assetReportAuditCopyGetPost(body: body);
+  }
+
+  ///Retrieve an Asset Report Audit Copy
+  @Post(path: '/asset_report/audit_copy/get')
+  Future<chopper.Response<AssetReportGetResponse>> _assetReportAuditCopyGetPost(
       {@Body() required AssetReportAuditCopyGetRequest? body});
 
   ///Retrieve a deposit switch
-  @Post(path: '/deposit_switch/get')
   Future<chopper.Response<DepositSwitchGetResponse>> depositSwitchGetPost(
+      {required DepositSwitchGetRequest? body}) {
+    generatedMapping.putIfAbsent(DepositSwitchGetResponse,
+        () => DepositSwitchGetResponse.fromJsonFactory);
+
+    return _depositSwitchGetPost(body: body);
+  }
+
+  ///Retrieve a deposit switch
+  @Post(path: '/deposit_switch/get')
+  Future<chopper.Response<DepositSwitchGetResponse>> _depositSwitchGetPost(
       {@Body() required DepositSwitchGetRequest? body});
 
   ///Retrieve a transfer
-  @Post(path: '/transfer/get')
   Future<chopper.Response<TransferGetResponse>> transferGetPost(
+      {required TransferGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        TransferGetResponse, () => TransferGetResponse.fromJsonFactory);
+
+    return _transferGetPost(body: body);
+  }
+
+  ///Retrieve a transfer
+  @Post(path: '/transfer/get')
+  Future<chopper.Response<TransferGetResponse>> _transferGetPost(
       {@Body() required TransferGetRequest? body});
 
   ///Retrieve a bank transfer
-  @Post(path: '/bank_transfer/get')
   Future<chopper.Response<BankTransferGetResponse>> bankTransferGetPost(
+      {required BankTransferGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        BankTransferGetResponse, () => BankTransferGetResponse.fromJsonFactory);
+
+    return _bankTransferGetPost(body: body);
+  }
+
+  ///Retrieve a bank transfer
+  @Post(path: '/bank_transfer/get')
+  Future<chopper.Response<BankTransferGetResponse>> _bankTransferGetPost(
       {@Body() required BankTransferGetRequest? body});
+
+  ///Create a transfer authorization
+  Future<chopper.Response<TransferAuthorizationCreateResponse>>
+      transferAuthorizationCreatePost(
+          {required TransferAuthorizationCreateRequest? body}) {
+    generatedMapping.putIfAbsent(TransferAuthorizationCreateResponse,
+        () => TransferAuthorizationCreateResponse.fromJsonFactory);
+
+    return _transferAuthorizationCreatePost(body: body);
+  }
 
   ///Create a transfer authorization
   @Post(path: '/transfer/authorization/create')
   Future<chopper.Response<TransferAuthorizationCreateResponse>>
-      transferAuthorizationCreatePost(
+      _transferAuthorizationCreatePost(
           {@Body() required TransferAuthorizationCreateRequest? body});
 
   ///Create a transfer
-  @Post(path: '/transfer/create')
   Future<chopper.Response<TransferCreateResponse>> transferCreatePost(
+      {required TransferCreateRequest? body}) {
+    generatedMapping.putIfAbsent(
+        TransferCreateResponse, () => TransferCreateResponse.fromJsonFactory);
+
+    return _transferCreatePost(body: body);
+  }
+
+  ///Create a transfer
+  @Post(path: '/transfer/create')
+  Future<chopper.Response<TransferCreateResponse>> _transferCreatePost(
       {@Body() required TransferCreateRequest? body});
 
   ///Create a bank transfer
-  @Post(path: '/bank_transfer/create')
   Future<chopper.Response<BankTransferCreateResponse>> bankTransferCreatePost(
+      {required BankTransferCreateRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferCreateResponse,
+        () => BankTransferCreateResponse.fromJsonFactory);
+
+    return _bankTransferCreatePost(body: body);
+  }
+
+  ///Create a bank transfer
+  @Post(path: '/bank_transfer/create')
+  Future<chopper.Response<BankTransferCreateResponse>> _bankTransferCreatePost(
       {@Body() required BankTransferCreateRequest? body});
 
   ///List transfers
-  @Post(path: '/transfer/list')
   Future<chopper.Response<TransferListResponse>> transferListPost(
+      {required TransferListRequest? body}) {
+    generatedMapping.putIfAbsent(
+        TransferListResponse, () => TransferListResponse.fromJsonFactory);
+
+    return _transferListPost(body: body);
+  }
+
+  ///List transfers
+  @Post(path: '/transfer/list')
+  Future<chopper.Response<TransferListResponse>> _transferListPost(
       {@Body() required TransferListRequest? body});
 
   ///List bank transfers
-  @Post(path: '/bank_transfer/list')
   Future<chopper.Response<BankTransferListResponse>> bankTransferListPost(
+      {required BankTransferListRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferListResponse,
+        () => BankTransferListResponse.fromJsonFactory);
+
+    return _bankTransferListPost(body: body);
+  }
+
+  ///List bank transfers
+  @Post(path: '/bank_transfer/list')
+  Future<chopper.Response<BankTransferListResponse>> _bankTransferListPost(
       {@Body() required BankTransferListRequest? body});
 
   ///Cancel a transfer
-  @Post(path: '/transfer/cancel')
   Future<chopper.Response<TransferCancelResponse>> transferCancelPost(
+      {required TransferCancelRequest? body}) {
+    generatedMapping.putIfAbsent(
+        TransferCancelResponse, () => TransferCancelResponse.fromJsonFactory);
+
+    return _transferCancelPost(body: body);
+  }
+
+  ///Cancel a transfer
+  @Post(path: '/transfer/cancel')
+  Future<chopper.Response<TransferCancelResponse>> _transferCancelPost(
       {@Body() required TransferCancelRequest? body});
 
   ///Cancel a bank transfer
-  @Post(path: '/bank_transfer/cancel')
   Future<chopper.Response<BankTransferCancelResponse>> bankTransferCancelPost(
+      {required BankTransferCancelRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferCancelResponse,
+        () => BankTransferCancelResponse.fromJsonFactory);
+
+    return _bankTransferCancelPost(body: body);
+  }
+
+  ///Cancel a bank transfer
+  @Post(path: '/bank_transfer/cancel')
+  Future<chopper.Response<BankTransferCancelResponse>> _bankTransferCancelPost(
       {@Body() required BankTransferCancelRequest? body});
 
   ///List transfer events
-  @Post(path: '/transfer/event/list')
   Future<chopper.Response<TransferEventListResponse>> transferEventListPost(
+      {required TransferEventListRequest? body}) {
+    generatedMapping.putIfAbsent(TransferEventListResponse,
+        () => TransferEventListResponse.fromJsonFactory);
+
+    return _transferEventListPost(body: body);
+  }
+
+  ///List transfer events
+  @Post(path: '/transfer/event/list')
+  Future<chopper.Response<TransferEventListResponse>> _transferEventListPost(
       {@Body() required TransferEventListRequest? body});
+
+  ///List bank transfer events
+  Future<chopper.Response<BankTransferEventListResponse>>
+      bankTransferEventListPost({required BankTransferEventListRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferEventListResponse,
+        () => BankTransferEventListResponse.fromJsonFactory);
+
+    return _bankTransferEventListPost(body: body);
+  }
 
   ///List bank transfer events
   @Post(path: '/bank_transfer/event/list')
   Future<chopper.Response<BankTransferEventListResponse>>
-      bankTransferEventListPost(
+      _bankTransferEventListPost(
           {@Body() required BankTransferEventListRequest? body});
 
   ///Sync transfer events
-  @Post(path: '/transfer/event/sync')
   Future<chopper.Response<TransferEventSyncResponse>> transferEventSyncPost(
+      {required TransferEventSyncRequest? body}) {
+    generatedMapping.putIfAbsent(TransferEventSyncResponse,
+        () => TransferEventSyncResponse.fromJsonFactory);
+
+    return _transferEventSyncPost(body: body);
+  }
+
+  ///Sync transfer events
+  @Post(path: '/transfer/event/sync')
+  Future<chopper.Response<TransferEventSyncResponse>> _transferEventSyncPost(
       {@Body() required TransferEventSyncRequest? body});
+
+  ///Sync bank transfer events
+  Future<chopper.Response<BankTransferEventSyncResponse>>
+      bankTransferEventSyncPost({required BankTransferEventSyncRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferEventSyncResponse,
+        () => BankTransferEventSyncResponse.fromJsonFactory);
+
+    return _bankTransferEventSyncPost(body: body);
+  }
 
   ///Sync bank transfer events
   @Post(path: '/bank_transfer/event/sync')
   Future<chopper.Response<BankTransferEventSyncResponse>>
-      bankTransferEventSyncPost(
+      _bankTransferEventSyncPost(
           {@Body() required BankTransferEventSyncRequest? body});
 
   ///Retrieve a sweep
-  @Post(path: '/transfer/sweep/get')
   Future<chopper.Response<TransferSweepGetResponse>> transferSweepGetPost(
+      {required TransferSweepGetRequest? body}) {
+    generatedMapping.putIfAbsent(TransferSweepGetResponse,
+        () => TransferSweepGetResponse.fromJsonFactory);
+
+    return _transferSweepGetPost(body: body);
+  }
+
+  ///Retrieve a sweep
+  @Post(path: '/transfer/sweep/get')
+  Future<chopper.Response<TransferSweepGetResponse>> _transferSweepGetPost(
       {@Body() required TransferSweepGetRequest? body});
+
+  ///Retrieve a sweep
+  Future<chopper.Response<BankTransferSweepGetResponse>>
+      bankTransferSweepGetPost({required BankTransferSweepGetRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferSweepGetResponse,
+        () => BankTransferSweepGetResponse.fromJsonFactory);
+
+    return _bankTransferSweepGetPost(body: body);
+  }
 
   ///Retrieve a sweep
   @Post(path: '/bank_transfer/sweep/get')
   Future<chopper.Response<BankTransferSweepGetResponse>>
-      bankTransferSweepGetPost(
+      _bankTransferSweepGetPost(
           {@Body() required BankTransferSweepGetRequest? body});
 
   ///List sweeps
-  @Post(path: '/transfer/sweep/list')
   Future<chopper.Response<TransferSweepListResponse>> transferSweepListPost(
+      {required TransferSweepListRequest? body}) {
+    generatedMapping.putIfAbsent(TransferSweepListResponse,
+        () => TransferSweepListResponse.fromJsonFactory);
+
+    return _transferSweepListPost(body: body);
+  }
+
+  ///List sweeps
+  @Post(path: '/transfer/sweep/list')
+  Future<chopper.Response<TransferSweepListResponse>> _transferSweepListPost(
       {@Body() required TransferSweepListRequest? body});
+
+  ///List sweeps
+  Future<chopper.Response<BankTransferSweepListResponse>>
+      bankTransferSweepListPost({required BankTransferSweepListRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferSweepListResponse,
+        () => BankTransferSweepListResponse.fromJsonFactory);
+
+    return _bankTransferSweepListPost(body: body);
+  }
 
   ///List sweeps
   @Post(path: '/bank_transfer/sweep/list')
   Future<chopper.Response<BankTransferSweepListResponse>>
-      bankTransferSweepListPost(
+      _bankTransferSweepListPost(
           {@Body() required BankTransferSweepListRequest? body});
+
+  ///Get balance of your Bank Transfer account
+  Future<chopper.Response<BankTransferBalanceGetResponse>>
+      bankTransferBalanceGetPost(
+          {required BankTransferBalanceGetRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferBalanceGetResponse,
+        () => BankTransferBalanceGetResponse.fromJsonFactory);
+
+    return _bankTransferBalanceGetPost(body: body);
+  }
 
   ///Get balance of your Bank Transfer account
   @Post(path: '/bank_transfer/balance/get')
   Future<chopper.Response<BankTransferBalanceGetResponse>>
-      bankTransferBalanceGetPost(
+      _bankTransferBalanceGetPost(
           {@Body() required BankTransferBalanceGetRequest? body});
+
+  ///Migrate account into Bank Transfers
+  Future<chopper.Response<BankTransferMigrateAccountResponse>>
+      bankTransferMigrateAccountPost(
+          {required BankTransferMigrateAccountRequest? body}) {
+    generatedMapping.putIfAbsent(BankTransferMigrateAccountResponse,
+        () => BankTransferMigrateAccountResponse.fromJsonFactory);
+
+    return _bankTransferMigrateAccountPost(body: body);
+  }
 
   ///Migrate account into Bank Transfers
   @Post(path: '/bank_transfer/migrate_account')
   Future<chopper.Response<BankTransferMigrateAccountResponse>>
-      bankTransferMigrateAccountPost(
+      _bankTransferMigrateAccountPost(
           {@Body() required BankTransferMigrateAccountRequest? body});
+
+  ///Create a transfer intent object to invoke the Transfer UI
+  Future<chopper.Response<TransferIntentCreateResponse>>
+      transferIntentCreatePost({required TransferIntentCreateRequest? body}) {
+    generatedMapping.putIfAbsent(TransferIntentCreateResponse,
+        () => TransferIntentCreateResponse.fromJsonFactory);
+
+    return _transferIntentCreatePost(body: body);
+  }
 
   ///Create a transfer intent object to invoke the Transfer UI
   @Post(path: '/transfer/intent/create')
   Future<chopper.Response<TransferIntentCreateResponse>>
-      transferIntentCreatePost(
+      _transferIntentCreatePost(
           {@Body() required TransferIntentCreateRequest? body});
 
   ///Retrieve more information about a transfer intent
-  @Post(path: '/transfer/intent/get')
   Future<chopper.Response<TransferIntentGetResponse>> transferIntentGetPost(
+      {required TransferIntentGetRequest? body}) {
+    generatedMapping.putIfAbsent(TransferIntentGetResponse,
+        () => TransferIntentGetResponse.fromJsonFactory);
+
+    return _transferIntentGetPost(body: body);
+  }
+
+  ///Retrieve more information about a transfer intent
+  @Post(path: '/transfer/intent/get')
+  Future<chopper.Response<TransferIntentGetResponse>> _transferIntentGetPost(
       {@Body() required TransferIntentGetRequest? body});
+
+  ///Simulate a bank transfer event in Sandbox
+  Future<chopper.Response<SandboxBankTransferSimulateResponse>>
+      sandboxBankTransferSimulatePost(
+          {required SandboxBankTransferSimulateRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxBankTransferSimulateResponse,
+        () => SandboxBankTransferSimulateResponse.fromJsonFactory);
+
+    return _sandboxBankTransferSimulatePost(body: body);
+  }
 
   ///Simulate a bank transfer event in Sandbox
   @Post(path: '/sandbox/bank_transfer/simulate')
   Future<chopper.Response<SandboxBankTransferSimulateResponse>>
-      sandboxBankTransferSimulatePost(
+      _sandboxBankTransferSimulatePost(
           {@Body() required SandboxBankTransferSimulateRequest? body});
+
+  ///Simulate creating a sweep for a set of transfers
+  Future<chopper.Response<SandboxTransferSweepSimulateResponse>>
+      sandboxTransferSweepSimulatePost(
+          {required SandboxTransferSweepSimulateRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxTransferSweepSimulateResponse,
+        () => SandboxTransferSweepSimulateResponse.fromJsonFactory);
+
+    return _sandboxTransferSweepSimulatePost(body: body);
+  }
 
   ///Simulate creating a sweep for a set of transfers
   @Post(path: '/sandbox/transfer/sweep/simulate')
   Future<chopper.Response<SandboxTransferSweepSimulateResponse>>
-      sandboxTransferSweepSimulatePost(
+      _sandboxTransferSweepSimulatePost(
           {@Body() required SandboxTransferSweepSimulateRequest? body});
+
+  ///Simulate a transfer event in Sandbox
+  Future<chopper.Response<SandboxTransferSimulateResponse>>
+      sandboxTransferSimulatePost(
+          {required SandboxTransferSimulateRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxTransferSimulateResponse,
+        () => SandboxTransferSimulateResponse.fromJsonFactory);
+
+    return _sandboxTransferSimulatePost(body: body);
+  }
 
   ///Simulate a transfer event in Sandbox
   @Post(path: '/sandbox/transfer/simulate')
   Future<chopper.Response<SandboxTransferSimulateResponse>>
-      sandboxTransferSimulatePost(
+      _sandboxTransferSimulatePost(
           {@Body() required SandboxTransferSimulateRequest? body});
 
   ///Search employer database
-  @Post(path: '/employers/search')
   Future<chopper.Response<EmployersSearchResponse>> employersSearchPost(
+      {required EmployersSearchRequest? body}) {
+    generatedMapping.putIfAbsent(
+        EmployersSearchResponse, () => EmployersSearchResponse.fromJsonFactory);
+
+    return _employersSearchPost(body: body);
+  }
+
+  ///Search employer database
+  @Post(path: '/employers/search')
+  Future<chopper.Response<EmployersSearchResponse>> _employersSearchPost(
       {@Body() required EmployersSearchRequest? body});
+
+  ///(Deprecated) Create an income verification instance
+  Future<chopper.Response<IncomeVerificationCreateResponse>>
+      incomeVerificationCreatePost(
+          {required IncomeVerificationCreateRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationCreateResponse,
+        () => IncomeVerificationCreateResponse.fromJsonFactory);
+
+    return _incomeVerificationCreatePost(body: body);
+  }
 
   ///(Deprecated) Create an income verification instance
   @Post(path: '/income/verification/create')
   Future<chopper.Response<IncomeVerificationCreateResponse>>
-      incomeVerificationCreatePost(
+      _incomeVerificationCreatePost(
           {@Body() required IncomeVerificationCreateRequest? body});
+
+  ///(Deprecated) Retrieve a summary of information derived from income verification
+  Future<chopper.Response<IncomeVerificationSummaryGetResponse>>
+      incomeVerificationSummaryGetPost(
+          {required IncomeVerificationSummaryGetRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationSummaryGetResponse,
+        () => IncomeVerificationSummaryGetResponse.fromJsonFactory);
+
+    return _incomeVerificationSummaryGetPost(body: body);
+  }
 
   ///(Deprecated) Retrieve a summary of information derived from income verification
   @Post(path: '/income/verification/summary/get')
   Future<chopper.Response<IncomeVerificationSummaryGetResponse>>
-      incomeVerificationSummaryGetPost(
+      _incomeVerificationSummaryGetPost(
           {@Body() required IncomeVerificationSummaryGetRequest? body});
+
+  ///(Deprecated) Retrieve information from a single paystub used for income verification
+  Future<chopper.Response<IncomeVerificationPaystubGetResponse>>
+      incomeVerificationPaystubGetPost(
+          {required IncomeVerificationPaystubGetRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationPaystubGetResponse,
+        () => IncomeVerificationPaystubGetResponse.fromJsonFactory);
+
+    return _incomeVerificationPaystubGetPost(body: body);
+  }
 
   ///(Deprecated) Retrieve information from a single paystub used for income verification
   @Post(path: '/income/verification/paystub/get')
   Future<chopper.Response<IncomeVerificationPaystubGetResponse>>
-      incomeVerificationPaystubGetPost(
+      _incomeVerificationPaystubGetPost(
           {@Body() required IncomeVerificationPaystubGetRequest? body});
+
+  ///Retrieve information from the paystubs used for income verification
+  Future<chopper.Response<IncomeVerificationPaystubsGetResponse>>
+      incomeVerificationPaystubsGetPost(
+          {required IncomeVerificationPaystubsGetRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationPaystubsGetResponse,
+        () => IncomeVerificationPaystubsGetResponse.fromJsonFactory);
+
+    return _incomeVerificationPaystubsGetPost(body: body);
+  }
 
   ///Retrieve information from the paystubs used for income verification
   @Post(path: '/income/verification/paystubs/get')
   Future<chopper.Response<IncomeVerificationPaystubsGetResponse>>
-      incomeVerificationPaystubsGetPost(
+      _incomeVerificationPaystubsGetPost(
           {@Body() required IncomeVerificationPaystubsGetRequest? body});
 
   ///Download the original documents used for income verification
-  @Post(path: '/income/verification/documents/download')
   Future<chopper.Response<String>> incomeVerificationDocumentsDownloadPost(
+      {required IncomeVerificationDocumentsDownloadRequest? body}) {
+    return _incomeVerificationDocumentsDownloadPost(body: body);
+  }
+
+  ///Download the original documents used for income verification
+  @Post(path: '/income/verification/documents/download')
+  Future<chopper.Response<String>> _incomeVerificationDocumentsDownloadPost(
       {@Body() required IncomeVerificationDocumentsDownloadRequest? body});
+
+  ///Refresh an income verification
+  Future<chopper.Response<IncomeVerificationRefreshResponse>>
+      incomeVerificationRefreshPost(
+          {required IncomeVerificationRefreshRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationRefreshResponse,
+        () => IncomeVerificationRefreshResponse.fromJsonFactory);
+
+    return _incomeVerificationRefreshPost(body: body);
+  }
 
   ///Refresh an income verification
   @Post(path: '/income/verification/refresh')
   Future<chopper.Response<IncomeVerificationRefreshResponse>>
-      incomeVerificationRefreshPost(
+      _incomeVerificationRefreshPost(
           {@Body() required IncomeVerificationRefreshRequest? body});
+
+  ///Retrieve information from the tax documents used for income verification
+  Future<chopper.Response<IncomeVerificationTaxformsGetResponse>>
+      incomeVerificationTaxformsGetPost(
+          {required IncomeVerificationTaxformsGetRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationTaxformsGetResponse,
+        () => IncomeVerificationTaxformsGetResponse.fromJsonFactory);
+
+    return _incomeVerificationTaxformsGetPost(body: body);
+  }
 
   ///Retrieve information from the tax documents used for income verification
   @Post(path: '/income/verification/taxforms/get')
   Future<chopper.Response<IncomeVerificationTaxformsGetResponse>>
-      incomeVerificationTaxformsGetPost(
+      _incomeVerificationTaxformsGetPost(
           {@Body() required IncomeVerificationTaxformsGetRequest? body});
+
+  ///Check a user's eligibility for the income verification product
+  Future<chopper.Response<IncomeVerificationPrecheckResponse>>
+      incomeVerificationPrecheckPost(
+          {required IncomeVerificationPrecheckRequest? body}) {
+    generatedMapping.putIfAbsent(IncomeVerificationPrecheckResponse,
+        () => IncomeVerificationPrecheckResponse.fromJsonFactory);
+
+    return _incomeVerificationPrecheckPost(body: body);
+  }
 
   ///Check a user's eligibility for the income verification product
   @Post(path: '/income/verification/precheck')
   Future<chopper.Response<IncomeVerificationPrecheckResponse>>
-      incomeVerificationPrecheckPost(
+      _incomeVerificationPrecheckPost(
           {@Body() required IncomeVerificationPrecheckRequest? body});
+
+  ///Retrieve a summary of an individual's employment information.
+  Future<chopper.Response<EmploymentVerificationGetResponse>>
+      employmentVerificationGetPost(
+          {required EmploymentVerificationGetRequest? body}) {
+    generatedMapping.putIfAbsent(EmploymentVerificationGetResponse,
+        () => EmploymentVerificationGetResponse.fromJsonFactory);
+
+    return _employmentVerificationGetPost(body: body);
+  }
 
   ///Retrieve a summary of an individual's employment information.
   @Post(path: '/employment/verification/get')
   Future<chopper.Response<EmploymentVerificationGetResponse>>
-      employmentVerificationGetPost(
+      _employmentVerificationGetPost(
           {@Body() required EmploymentVerificationGetRequest? body});
+
+  ///Create a deposit switch without using Plaid Exchange
+  Future<chopper.Response<DepositSwitchAltCreateResponse>>
+      depositSwitchAltCreatePost(
+          {required DepositSwitchAltCreateRequest? body}) {
+    generatedMapping.putIfAbsent(DepositSwitchAltCreateResponse,
+        () => DepositSwitchAltCreateResponse.fromJsonFactory);
+
+    return _depositSwitchAltCreatePost(body: body);
+  }
 
   ///Create a deposit switch without using Plaid Exchange
   @Post(path: '/deposit_switch/alt/create')
   Future<chopper.Response<DepositSwitchAltCreateResponse>>
-      depositSwitchAltCreatePost(
+      _depositSwitchAltCreatePost(
           {@Body() required DepositSwitchAltCreateRequest? body});
+
+  ///Manually fire a Bank Transfer webhook
+  Future<chopper.Response<SandboxBankTransferFireWebhookResponse>>
+      sandboxBankTransferFireWebhookPost(
+          {required SandboxBankTransferFireWebhookRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxBankTransferFireWebhookResponse,
+        () => SandboxBankTransferFireWebhookResponse.fromJsonFactory);
+
+    return _sandboxBankTransferFireWebhookPost(body: body);
+  }
 
   ///Manually fire a Bank Transfer webhook
   @Post(path: '/sandbox/bank_transfer/fire_webhook')
   Future<chopper.Response<SandboxBankTransferFireWebhookResponse>>
-      sandboxBankTransferFireWebhookPost(
+      _sandboxBankTransferFireWebhookPost(
           {@Body() required SandboxBankTransferFireWebhookRequest? body});
+
+  ///Manually fire an Income webhook
+  Future<chopper.Response<SandboxIncomeFireWebhookResponse>>
+      sandboxIncomeFireWebhookPost(
+          {required SandboxIncomeFireWebhookRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxIncomeFireWebhookResponse,
+        () => SandboxIncomeFireWebhookResponse.fromJsonFactory);
+
+    return _sandboxIncomeFireWebhookPost(body: body);
+  }
 
   ///Manually fire an Income webhook
   @Post(path: '/sandbox/income/fire_webhook')
   Future<chopper.Response<SandboxIncomeFireWebhookResponse>>
-      sandboxIncomeFireWebhookPost(
+      _sandboxIncomeFireWebhookPost(
           {@Body() required SandboxIncomeFireWebhookRequest? body});
+
+  ///Save the selected accounts when connecting to the Platypus Oauth institution
+  Future<chopper.Response<SandboxOauthSelectAccountsResponse>>
+      sandboxOauthSelectAccountsPost(
+          {required SandboxOauthSelectAccountsRequest? body}) {
+    generatedMapping.putIfAbsent(SandboxOauthSelectAccountsResponse,
+        () => SandboxOauthSelectAccountsResponse.fromJsonFactory);
+
+    return _sandboxOauthSelectAccountsPost(body: body);
+  }
 
   ///Save the selected accounts when connecting to the Platypus Oauth institution
   @Post(path: '/sandbox/oauth/select_accounts')
   Future<chopper.Response<SandboxOauthSelectAccountsResponse>>
-      sandboxOauthSelectAccountsPost(
+      _sandboxOauthSelectAccountsPost(
           {@Body() required SandboxOauthSelectAccountsRequest? body});
 
   ///Evaluate a planned ACH transaction
-  @Post(path: '/signal/evaluate')
   Future<chopper.Response<SignalEvaluateResponse>> signalEvaluatePost(
+      {required SignalEvaluateRequest? body}) {
+    generatedMapping.putIfAbsent(
+        SignalEvaluateResponse, () => SignalEvaluateResponse.fromJsonFactory);
+
+    return _signalEvaluatePost(body: body);
+  }
+
+  ///Evaluate a planned ACH transaction
+  @Post(path: '/signal/evaluate')
+  Future<chopper.Response<SignalEvaluateResponse>> _signalEvaluatePost(
       {@Body() required SignalEvaluateRequest? body});
+
+  ///Report whether you initiated an ACH transaction
+  Future<chopper.Response<SignalDecisionReportResponse>>
+      signalDecisionReportPost({required SignalDecisionReportRequest? body}) {
+    generatedMapping.putIfAbsent(SignalDecisionReportResponse,
+        () => SignalDecisionReportResponse.fromJsonFactory);
+
+    return _signalDecisionReportPost(body: body);
+  }
 
   ///Report whether you initiated an ACH transaction
   @Post(path: '/signal/decision/report')
   Future<chopper.Response<SignalDecisionReportResponse>>
-      signalDecisionReportPost(
+      _signalDecisionReportPost(
           {@Body() required SignalDecisionReportRequest? body});
 
   ///Report a return for an ACH transaction
-  @Post(path: '/signal/return/report')
   Future<chopper.Response<SignalReturnReportResponse>> signalReturnReportPost(
+      {required SignalReturnReportRequest? body}) {
+    generatedMapping.putIfAbsent(SignalReturnReportResponse,
+        () => SignalReturnReportResponse.fromJsonFactory);
+
+    return _signalReturnReportPost(body: body);
+  }
+
+  ///Report a return for an ACH transaction
+  @Post(path: '/signal/return/report')
+  Future<chopper.Response<SignalReturnReportResponse>> _signalReturnReportPost(
       {@Body() required SignalReturnReportRequest? body});
 
   ///Fetch an e-wallet
-  @Post(path: '/wallet/get')
   Future<chopper.Response<WalletGetResponse>> walletGetPost(
+      {required WalletGetRequest? body}) {
+    generatedMapping.putIfAbsent(
+        WalletGetResponse, () => WalletGetResponse.fromJsonFactory);
+
+    return _walletGetPost(body: body);
+  }
+
+  ///Fetch an e-wallet
+  @Post(path: '/wallet/get')
+  Future<chopper.Response<WalletGetResponse>> _walletGetPost(
       {@Body() required WalletGetRequest? body});
+
+  ///Execute a transaction using an e-wallet
+  Future<chopper.Response<WalletTransactionExecuteResponse>>
+      walletTransactionExecutePost(
+          {required WalletTransactionExecuteRequest? body}) {
+    generatedMapping.putIfAbsent(WalletTransactionExecuteResponse,
+        () => WalletTransactionExecuteResponse.fromJsonFactory);
+
+    return _walletTransactionExecutePost(body: body);
+  }
 
   ///Execute a transaction using an e-wallet
   @Post(path: '/wallet/transaction/execute')
   Future<chopper.Response<WalletTransactionExecuteResponse>>
-      walletTransactionExecutePost(
+      _walletTransactionExecutePost(
           {@Body() required WalletTransactionExecuteRequest? body});
+
+  ///List e-wallet transactions
+  Future<chopper.Response<WalletTransactionsListResponse>>
+      walletTransactionsListPost(
+          {required WalletTransactionsListRequest? body}) {
+    generatedMapping.putIfAbsent(WalletTransactionsListResponse,
+        () => WalletTransactionsListResponse.fromJsonFactory);
+
+    return _walletTransactionsListPost(body: body);
+  }
 
   ///List e-wallet transactions
   @Post(path: '/wallet/transactions/list')
   Future<chopper.Response<WalletTransactionsListResponse>>
-      walletTransactionsListPost(
+      _walletTransactionsListPost(
           {@Body() required WalletTransactionsListRequest? body});
 }
-
-final Map<Type, Object Function(Map<String, dynamic>)>
-    PlaidServiceJsonDecoderMappings = {
-  ItemGetRequest: ItemGetRequest.fromJsonFactory,
-  ItemGetResponse: ItemGetResponse.fromJsonFactory,
-  AuthGetRequest: AuthGetRequest.fromJsonFactory,
-  AuthGetRequestOptions: AuthGetRequestOptions.fromJsonFactory,
-  AuthGetResponse: AuthGetResponse.fromJsonFactory,
-  AuthGetNumbers: AuthGetNumbers.fromJsonFactory,
-  TransactionsGetRequest: TransactionsGetRequest.fromJsonFactory,
-  TransactionsGetRequestOptions: TransactionsGetRequestOptions.fromJsonFactory,
-  TransactionsGetResponse: TransactionsGetResponse.fromJsonFactory,
-  TransactionsRefreshRequest: TransactionsRefreshRequest.fromJsonFactory,
-  TransactionsRefreshResponse: TransactionsRefreshResponse.fromJsonFactory,
-  TransactionsRecurringGetRequest:
-      TransactionsRecurringGetRequest.fromJsonFactory,
-  TransactionsRecurringGetResponse:
-      TransactionsRecurringGetResponse.fromJsonFactory,
-  TransactionsSyncRequest: TransactionsSyncRequest.fromJsonFactory,
-  TransactionsSyncResponse: TransactionsSyncResponse.fromJsonFactory,
-  InstitutionsGetRequest: InstitutionsGetRequest.fromJsonFactory,
-  InstitutionsGetRequestOptions: InstitutionsGetRequestOptions.fromJsonFactory,
-  InstitutionsGetResponse: InstitutionsGetResponse.fromJsonFactory,
-  InstitutionsSearchRequest: InstitutionsSearchRequest.fromJsonFactory,
-  InstitutionsSearchRequestOptions:
-      InstitutionsSearchRequestOptions.fromJsonFactory,
-  InstitutionsSearchPaymentInitiationOptions:
-      InstitutionsSearchPaymentInitiationOptions.fromJsonFactory,
-  InstitutionsSearchResponse: InstitutionsSearchResponse.fromJsonFactory,
-  InstitutionsGetByIdRequest: InstitutionsGetByIdRequest.fromJsonFactory,
-  InstitutionsGetByIdRequestOptions:
-      InstitutionsGetByIdRequestOptions.fromJsonFactory,
-  InstitutionsGetByIdResponse: InstitutionsGetByIdResponse.fromJsonFactory,
-  ItemRemoveRequest: ItemRemoveRequest.fromJsonFactory,
-  ItemRemoveResponse: ItemRemoveResponse.fromJsonFactory,
-  AccountsGetRequest: AccountsGetRequest.fromJsonFactory,
-  AccountsGetRequestOptions: AccountsGetRequestOptions.fromJsonFactory,
-  AccountsGetResponse: AccountsGetResponse.fromJsonFactory,
-  CategoriesGetRequest: CategoriesGetRequest.fromJsonFactory,
-  CategoriesGetResponse: CategoriesGetResponse.fromJsonFactory,
-  SandboxProcessorTokenCreateRequest:
-      SandboxProcessorTokenCreateRequest.fromJsonFactory,
-  SandboxProcessorTokenCreateRequestOptions:
-      SandboxProcessorTokenCreateRequestOptions.fromJsonFactory,
-  SandboxProcessorTokenCreateResponse:
-      SandboxProcessorTokenCreateResponse.fromJsonFactory,
-  SandboxPublicTokenCreateRequest:
-      SandboxPublicTokenCreateRequest.fromJsonFactory,
-  SandboxPublicTokenCreateRequestOptions:
-      SandboxPublicTokenCreateRequestOptions.fromJsonFactory,
-  SandboxPublicTokenCreateRequestOptionsTransactions:
-      SandboxPublicTokenCreateRequestOptionsTransactions.fromJsonFactory,
-  SandboxPublicTokenCreateResponse:
-      SandboxPublicTokenCreateResponse.fromJsonFactory,
-  SandboxItemFireWebhookRequest: SandboxItemFireWebhookRequest.fromJsonFactory,
-  SandboxItemFireWebhookResponse:
-      SandboxItemFireWebhookResponse.fromJsonFactory,
-  AccountsBalanceGetRequest: AccountsBalanceGetRequest.fromJsonFactory,
-  AccountsBalanceGetRequestOptions:
-      AccountsBalanceGetRequestOptions.fromJsonFactory,
-  IdentityGetRequest: IdentityGetRequest.fromJsonFactory,
-  IdentityGetRequestOptions: IdentityGetRequestOptions.fromJsonFactory,
-  IdentityGetResponse: IdentityGetResponse.fromJsonFactory,
-  ProcessorAuthGetRequest: ProcessorAuthGetRequest.fromJsonFactory,
-  ProcessorAuthGetResponse: ProcessorAuthGetResponse.fromJsonFactory,
-  ProcessorBankTransferCreateRequest:
-      ProcessorBankTransferCreateRequest.fromJsonFactory,
-  ProcessorBankTransferCreateResponse:
-      ProcessorBankTransferCreateResponse.fromJsonFactory,
-  ProcessorNumber: ProcessorNumber.fromJsonFactory,
-  ProcessorIdentityGetRequest: ProcessorIdentityGetRequest.fromJsonFactory,
-  ProcessorIdentityGetResponse: ProcessorIdentityGetResponse.fromJsonFactory,
-  ProcessorBalanceGetRequest: ProcessorBalanceGetRequest.fromJsonFactory,
-  ProcessorBalanceGetRequestOptions:
-      ProcessorBalanceGetRequestOptions.fromJsonFactory,
-  ProcessorBalanceGetResponse: ProcessorBalanceGetResponse.fromJsonFactory,
-  ItemWebhookUpdateRequest: ItemWebhookUpdateRequest.fromJsonFactory,
-  ItemWebhookUpdateResponse: ItemWebhookUpdateResponse.fromJsonFactory,
-  ItemAccessTokenInvalidateRequest:
-      ItemAccessTokenInvalidateRequest.fromJsonFactory,
-  ItemAccessTokenInvalidateResponse:
-      ItemAccessTokenInvalidateResponse.fromJsonFactory,
-  WebhookVerificationKeyGetRequest:
-      WebhookVerificationKeyGetRequest.fromJsonFactory,
-  WebhookVerificationKeyGetResponse:
-      WebhookVerificationKeyGetResponse.fromJsonFactory,
-  JWKPublicKey: JWKPublicKey.fromJsonFactory,
-  LiabilitiesGetRequest: LiabilitiesGetRequest.fromJsonFactory,
-  LiabilitiesGetRequestOptions: LiabilitiesGetRequestOptions.fromJsonFactory,
-  LiabilitiesGetResponse: LiabilitiesGetResponse.fromJsonFactory,
-  PaymentInitiationRecipientCreateRequest:
-      PaymentInitiationRecipientCreateRequest.fromJsonFactory,
-  PaymentInitiationRecipientCreateResponse:
-      PaymentInitiationRecipientCreateResponse.fromJsonFactory,
-  PaymentInitiationPaymentReverseResponse:
-      PaymentInitiationPaymentReverseResponse.fromJsonFactory,
-  PaymentInitiationRecipientGetRequest:
-      PaymentInitiationRecipientGetRequest.fromJsonFactory,
-  PaymentInitiationRecipientGetResponse:
-      PaymentInitiationRecipientGetResponse.fromJsonFactory,
-  PaymentInitiationRecipient: PaymentInitiationRecipient.fromJsonFactory,
-  PaymentInitiationRecipientListRequest:
-      PaymentInitiationRecipientListRequest.fromJsonFactory,
-  PaymentInitiationRecipientListResponse:
-      PaymentInitiationRecipientListResponse.fromJsonFactory,
-  PaymentInitiationPaymentCreateRequest:
-      PaymentInitiationPaymentCreateRequest.fromJsonFactory,
-  PaymentInitiationPaymentReverseRequest:
-      PaymentInitiationPaymentReverseRequest.fromJsonFactory,
-  PaymentInitiationPaymentCreateResponse:
-      PaymentInitiationPaymentCreateResponse.fromJsonFactory,
-  SandboxItemResetLoginRequest: SandboxItemResetLoginRequest.fromJsonFactory,
-  SandboxItemResetLoginResponse: SandboxItemResetLoginResponse.fromJsonFactory,
-  SandboxItemSetVerificationStatusRequest:
-      SandboxItemSetVerificationStatusRequest.fromJsonFactory,
-  SandboxItemSetVerificationStatusResponse:
-      SandboxItemSetVerificationStatusResponse.fromJsonFactory,
-  ItemPublicTokenExchangeRequest:
-      ItemPublicTokenExchangeRequest.fromJsonFactory,
-  ItemPublicTokenExchangeResponse:
-      ItemPublicTokenExchangeResponse.fromJsonFactory,
-  ItemPublicTokenCreateRequest: ItemPublicTokenCreateRequest.fromJsonFactory,
-  ItemPublicTokenCreateResponse: ItemPublicTokenCreateResponse.fromJsonFactory,
-  PaymentInitiationPaymentGetRequest:
-      PaymentInitiationPaymentGetRequest.fromJsonFactory,
-  PaymentInitiationPaymentGetResponse:
-      PaymentInitiationPaymentGetResponse.fromJsonFactory,
-  PaymentInitiationPayment: PaymentInitiationPayment.fromJsonFactory,
-  PaymentInitiationRefund: PaymentInitiationRefund.fromJsonFactory,
-  PaymentInitiationPaymentTokenCreateRequest:
-      PaymentInitiationPaymentTokenCreateRequest.fromJsonFactory,
-  PaymentInitiationPaymentTokenCreateResponse:
-      PaymentInitiationPaymentTokenCreateResponse.fromJsonFactory,
-  PaymentInitiationPaymentListRequest:
-      PaymentInitiationPaymentListRequest.fromJsonFactory,
-  PaymentInitiationPaymentListResponse:
-      PaymentInitiationPaymentListResponse.fromJsonFactory,
-  AssetReportCreateRequest: AssetReportCreateRequest.fromJsonFactory,
-  AssetReportCreateRequestOptions:
-      AssetReportCreateRequestOptions.fromJsonFactory,
-  AssetReportCreateResponse: AssetReportCreateResponse.fromJsonFactory,
-  AssetReportRefreshRequest: AssetReportRefreshRequest.fromJsonFactory,
-  AssetReportRefreshRequestOptions:
-      AssetReportRefreshRequestOptions.fromJsonFactory,
-  AssetReportRefreshResponse: AssetReportRefreshResponse.fromJsonFactory,
-  AssetReportRemoveRequest: AssetReportRemoveRequest.fromJsonFactory,
-  AssetReportRemoveResponse: AssetReportRemoveResponse.fromJsonFactory,
-  AssetReportFilterRequest: AssetReportFilterRequest.fromJsonFactory,
-  AssetReportFilterResponse: AssetReportFilterResponse.fromJsonFactory,
-  AssetReportGetRequest: AssetReportGetRequest.fromJsonFactory,
-  AssetReportGetResponse: AssetReportGetResponse.fromJsonFactory,
-  AssetReportPDFGetRequest: AssetReportPDFGetRequest.fromJsonFactory,
-  AssetReportAuditCopyCreateRequest:
-      AssetReportAuditCopyCreateRequest.fromJsonFactory,
-  AssetReportAuditCopyCreateResponse:
-      AssetReportAuditCopyCreateResponse.fromJsonFactory,
-  AssetReportAuditCopyRemoveRequest:
-      AssetReportAuditCopyRemoveRequest.fromJsonFactory,
-  AssetReportAuditCopyRemoveResponse:
-      AssetReportAuditCopyRemoveResponse.fromJsonFactory,
-  InvestmentsHoldingsGetRequest: InvestmentsHoldingsGetRequest.fromJsonFactory,
-  InvestmentHoldingsGetRequestOptions:
-      InvestmentHoldingsGetRequestOptions.fromJsonFactory,
-  InvestmentsHoldingsGetResponse:
-      InvestmentsHoldingsGetResponse.fromJsonFactory,
-  InvestmentsTransactionsGetRequest:
-      InvestmentsTransactionsGetRequest.fromJsonFactory,
-  InvestmentsTransactionsGetRequestOptions:
-      InvestmentsTransactionsGetRequestOptions.fromJsonFactory,
-  InvestmentsTransactionsGetResponse:
-      InvestmentsTransactionsGetResponse.fromJsonFactory,
-  ProcessorTokenCreateRequest: ProcessorTokenCreateRequest.fromJsonFactory,
-  ProcessorTokenCreateResponse: ProcessorTokenCreateResponse.fromJsonFactory,
-  ProcessorStripeBankAccountTokenCreateRequest:
-      ProcessorStripeBankAccountTokenCreateRequest.fromJsonFactory,
-  ProcessorStripeBankAccountTokenCreateResponse:
-      ProcessorStripeBankAccountTokenCreateResponse.fromJsonFactory,
-  ProcessorApexProcessorTokenCreateRequest:
-      ProcessorApexProcessorTokenCreateRequest.fromJsonFactory,
-  DepositSwitchCreateRequest: DepositSwitchCreateRequest.fromJsonFactory,
-  DepositSwitchCreateRequestOptions:
-      DepositSwitchCreateRequestOptions.fromJsonFactory,
-  DepositSwitchCreateResponse: DepositSwitchCreateResponse.fromJsonFactory,
-  ItemImportRequest: ItemImportRequest.fromJsonFactory,
-  ItemImportRequestOptions: ItemImportRequestOptions.fromJsonFactory,
-  ItemImportRequestUserAuth: ItemImportRequestUserAuth.fromJsonFactory,
-  ItemImportResponse: ItemImportResponse.fromJsonFactory,
-  DepositSwitchTokenCreateRequest:
-      DepositSwitchTokenCreateRequest.fromJsonFactory,
-  DepositSwitchTokenCreateResponse:
-      DepositSwitchTokenCreateResponse.fromJsonFactory,
-  LinkTokenGetRequest: LinkTokenGetRequest.fromJsonFactory,
-  LinkTokenCreateRequest: LinkTokenCreateRequest.fromJsonFactory,
-  LinkTokenAccountFilters: LinkTokenAccountFilters.fromJsonFactory,
-  LinkTokenEUConfig: LinkTokenEUConfig.fromJsonFactory,
-  LinkTokenCreateRequestPaymentInitiation:
-      LinkTokenCreateRequestPaymentInitiation.fromJsonFactory,
-  LinkTokenCreateRequestDepositSwitch:
-      LinkTokenCreateRequestDepositSwitch.fromJsonFactory,
-  LinkTokenCreateRequestTransfer:
-      LinkTokenCreateRequestTransfer.fromJsonFactory,
-  LinkTokenCreateRequestAuth: LinkTokenCreateRequestAuth.fromJsonFactory,
-  LinkTokenCreateRequestUser: LinkTokenCreateRequestUser.fromJsonFactory,
-  LinkTokenCreateRequestUpdate: LinkTokenCreateRequestUpdate.fromJsonFactory,
-  LinkTokenCreateRequestAccountSubtypes:
-      LinkTokenCreateRequestAccountSubtypes.fromJsonFactory,
-  LinkTokenGetResponse: LinkTokenGetResponse.fromJsonFactory,
-  LinkTokenGetMetadataResponse: LinkTokenGetMetadataResponse.fromJsonFactory,
-  LinkTokenCreateResponse: LinkTokenCreateResponse.fromJsonFactory,
-  Item: Item.fromJsonFactory,
-  Error: Error.fromJsonFactory,
-  ItemStatusNullable: ItemStatusNullable.fromJsonFactory,
-  ItemStatusTransactions: ItemStatusTransactions.fromJsonFactory,
-  ItemStatusInvestments: ItemStatusInvestments.fromJsonFactory,
-  ItemStatusLastWebhook: ItemStatusLastWebhook.fromJsonFactory,
-  ItemStatus: ItemStatus.fromJsonFactory,
-  AccountBase: AccountBase.fromJsonFactory,
-  AccountBalance: AccountBalance.fromJsonFactory,
-  NumbersACH: NumbersACH.fromJsonFactory,
-  NumbersACHNullable: NumbersACHNullable.fromJsonFactory,
-  NumbersEFT: NumbersEFT.fromJsonFactory,
-  NumbersEFTNullable: NumbersEFTNullable.fromJsonFactory,
-  NumbersInternational: NumbersInternational.fromJsonFactory,
-  NumbersInternationalNullable: NumbersInternationalNullable.fromJsonFactory,
-  NumbersBACS: NumbersBACS.fromJsonFactory,
-  NumbersBACSNullable: NumbersBACSNullable.fromJsonFactory,
-  RecipientBACS: RecipientBACS.fromJsonFactory,
-  RecipientBACSNullable: RecipientBACSNullable.fromJsonFactory,
-  SenderBACSNullable: SenderBACSNullable.fromJsonFactory,
-  PaymentInitiationOptionalRestrictionBacs:
-      PaymentInitiationOptionalRestrictionBacs.fromJsonFactory,
-  RemovedTransaction: RemovedTransaction.fromJsonFactory,
-  TransactionBase: TransactionBase.fromJsonFactory,
-  Transaction: Transaction.fromJsonFactory,
-  Location: Location.fromJsonFactory,
-  TransactionStream: TransactionStream.fromJsonFactory,
-  TransactionStreamAmount: TransactionStreamAmount.fromJsonFactory,
-  Institution: Institution.fromJsonFactory,
-  InstitutionStatus: InstitutionStatus.fromJsonFactory,
-  PaymentMeta: PaymentMeta.fromJsonFactory,
-  Category: Category.fromJsonFactory,
-  PersonalFinanceCategory: PersonalFinanceCategory.fromJsonFactory,
-  TransactionsRemovedWebhook: TransactionsRemovedWebhook.fromJsonFactory,
-  DefaultUpdateWebhook: DefaultUpdateWebhook.fromJsonFactory,
-  HistoricalUpdateWebhook: HistoricalUpdateWebhook.fromJsonFactory,
-  InitialUpdateWebhook: InitialUpdateWebhook.fromJsonFactory,
-  PhoneNumber: PhoneNumber.fromJsonFactory,
-  Email: Email.fromJsonFactory,
-  Address: Address.fromJsonFactory,
-  AddressNullable: AddressNullable.fromJsonFactory,
-  AddressDataNullable: AddressDataNullable.fromJsonFactory,
-  AddressData: AddressData.fromJsonFactory,
-  HistoricalBalance: HistoricalBalance.fromJsonFactory,
-  Owner: Owner.fromJsonFactory,
-  OwnerOverride: OwnerOverride.fromJsonFactory,
-  LiabilitiesObject: LiabilitiesObject.fromJsonFactory,
-  StudentLoan: StudentLoan.fromJsonFactory,
-  CreditCardLiability: CreditCardLiability.fromJsonFactory,
-  MortgageLiability: MortgageLiability.fromJsonFactory,
-  MortgageInterestRate: MortgageInterestRate.fromJsonFactory,
-  MortgagePropertyAddress: MortgagePropertyAddress.fromJsonFactory,
-  StudentLoanStatus: StudentLoanStatus.fromJsonFactory,
-  StudentRepaymentPlan: StudentRepaymentPlan.fromJsonFactory,
-  PSLFStatus: PSLFStatus.fromJsonFactory,
-  ServicerAddressData: ServicerAddressData.fromJsonFactory,
-  Apr: Apr.fromJsonFactory,
-  AuthMetadata: AuthMetadata.fromJsonFactory,
-  AuthSupportedMethods: AuthSupportedMethods.fromJsonFactory,
-  PaymentInitiationMetadata: PaymentInitiationMetadata.fromJsonFactory,
-  PaymentInitiationStandingOrderMetadata:
-      PaymentInitiationStandingOrderMetadata.fromJsonFactory,
-  PaymentInitiationAddress: PaymentInitiationAddress.fromJsonFactory,
-  ExternalPaymentScheduleBase: ExternalPaymentScheduleBase.fromJsonFactory,
-  ExternalPaymentScheduleRequest:
-      ExternalPaymentScheduleRequest.fromJsonFactory,
-  ExternalPaymentOptions: ExternalPaymentOptions.fromJsonFactory,
-  ExternalPaymentRefundDetails: ExternalPaymentRefundDetails.fromJsonFactory,
-  ExternalPaymentScheduleGet: ExternalPaymentScheduleGet.fromJsonFactory,
-  ProductStatus: ProductStatus.fromJsonFactory,
-  ProductStatusBreakdown: ProductStatusBreakdown.fromJsonFactory,
-  UserCustomPassword: UserCustomPassword.fromJsonFactory,
-  Mfa: Mfa.fromJsonFactory,
-  OverrideAccounts: OverrideAccounts.fromJsonFactory,
-  Meta: Meta.fromJsonFactory,
-  Numbers: Numbers.fromJsonFactory,
-  TransactionOverride: TransactionOverride.fromJsonFactory,
-  SecurityOverride: SecurityOverride.fromJsonFactory,
-  HoldingsOverride: HoldingsOverride.fromJsonFactory,
-  InvestmentsTransactionsOverride:
-      InvestmentsTransactionsOverride.fromJsonFactory,
-  LiabilityOverride: LiabilityOverride.fromJsonFactory,
-  StudentLoanRepaymentModel: StudentLoanRepaymentModel.fromJsonFactory,
-  InflowModel: InflowModel.fromJsonFactory,
-  IncomeOverride: IncomeOverride.fromJsonFactory,
-  PaystubOverride: PaystubOverride.fromJsonFactory,
-  AutomaticallyVerifiedWebhook: AutomaticallyVerifiedWebhook.fromJsonFactory,
-  JWTHeader: JWTHeader.fromJsonFactory,
-  VerificationExpiredWebhook: VerificationExpiredWebhook.fromJsonFactory,
-  WebhookUpdateAcknowledgedWebhook:
-      WebhookUpdateAcknowledgedWebhook.fromJsonFactory,
-  PendingExpirationWebhook: PendingExpirationWebhook.fromJsonFactory,
-  ItemErrorWebhook: ItemErrorWebhook.fromJsonFactory,
-  ItemProductReadyWebhook: ItemProductReadyWebhook.fromJsonFactory,
-  RecaptchaRequiredError: RecaptchaRequiredError.fromJsonFactory,
-  BankTransfersEventsUpdateWebhook:
-      BankTransfersEventsUpdateWebhook.fromJsonFactory,
-  InvestmentsDefaultUpdateWebhook:
-      InvestmentsDefaultUpdateWebhook.fromJsonFactory,
-  HoldingsDefaultUpdateWebhook: HoldingsDefaultUpdateWebhook.fromJsonFactory,
-  LiabilitiesDefaultUpdateWebhook:
-      LiabilitiesDefaultUpdateWebhook.fromJsonFactory,
-  AssetsProductReadyWebhook: AssetsProductReadyWebhook.fromJsonFactory,
-  AssetsErrorWebhook: AssetsErrorWebhook.fromJsonFactory,
-  Cause: Cause.fromJsonFactory,
-  Warning: Warning.fromJsonFactory,
-  PaymentAmount: PaymentAmount.fromJsonFactory,
-  AssetReportUser: AssetReportUser.fromJsonFactory,
-  StandaloneCurrencyCodeList: StandaloneCurrencyCodeList.fromJsonFactory,
-  StandaloneAccountType: StandaloneAccountType.fromJsonFactory,
-  AssetReport: AssetReport.fromJsonFactory,
-  AssetReportItem: AssetReportItem.fromJsonFactory,
-  PaymentStatusUpdateWebhook: PaymentStatusUpdateWebhook.fromJsonFactory,
-  Holding: Holding.fromJsonFactory,
-  Security: Security.fromJsonFactory,
-  InvestmentTransaction: InvestmentTransaction.fromJsonFactory,
-  StandaloneInvestmentTransactionType:
-      StandaloneInvestmentTransactionType.fromJsonFactory,
-  AccountSubtypes: AccountSubtypes.fromJsonFactory,
-  UserPermissionRevokedWebhook: UserPermissionRevokedWebhook.fromJsonFactory,
-  DepositSwitchGetRequest: DepositSwitchGetRequest.fromJsonFactory,
-  DepositSwitchGetResponse: DepositSwitchGetResponse.fromJsonFactory,
-  DepositSwitchStateUpdateWebhook:
-      DepositSwitchStateUpdateWebhook.fromJsonFactory,
-  AssetReportAuditCopyGetRequest:
-      AssetReportAuditCopyGetRequest.fromJsonFactory,
-  TransferGetRequest: TransferGetRequest.fromJsonFactory,
-  BankTransferGetRequest: BankTransferGetRequest.fromJsonFactory,
-  TransferGetResponse: TransferGetResponse.fromJsonFactory,
-  BankTransferGetResponse: BankTransferGetResponse.fromJsonFactory,
-  Transfer: Transfer.fromJsonFactory,
-  BankTransfer: BankTransfer.fromJsonFactory,
-  TransferIntentGetFailureReason:
-      TransferIntentGetFailureReason.fromJsonFactory,
-  TransferUserInRequest: TransferUserInRequest.fromJsonFactory,
-  TransferUserInResponse: TransferUserInResponse.fromJsonFactory,
-  TransferUserAddressInRequest: TransferUserAddressInRequest.fromJsonFactory,
-  TransferUserAddressInResponse: TransferUserAddressInResponse.fromJsonFactory,
-  BankTransferUser: BankTransferUser.fromJsonFactory,
-  TransferAuthorizationDecisionRationale:
-      TransferAuthorizationDecisionRationale.fromJsonFactory,
-  TransferAuthorizationProposedTransfer:
-      TransferAuthorizationProposedTransfer.fromJsonFactory,
-  TransferAuthorizationDevice: TransferAuthorizationDevice.fromJsonFactory,
-  TransferMetadata: TransferMetadata.fromJsonFactory,
-  BankTransferMetadata: BankTransferMetadata.fromJsonFactory,
-  TransferFailure: TransferFailure.fromJsonFactory,
-  BankTransferFailure: BankTransferFailure.fromJsonFactory,
-  TransferAuthorizationCreateRequest:
-      TransferAuthorizationCreateRequest.fromJsonFactory,
-  TransferCreateRequest: TransferCreateRequest.fromJsonFactory,
-  BankTransferCreateRequest: BankTransferCreateRequest.fromJsonFactory,
-  TransferAuthorizationCreateResponse:
-      TransferAuthorizationCreateResponse.fromJsonFactory,
-  TransferAuthorization: TransferAuthorization.fromJsonFactory,
-  TransferCreateResponse: TransferCreateResponse.fromJsonFactory,
-  BankTransferCreateResponse: BankTransferCreateResponse.fromJsonFactory,
-  TransferListRequest: TransferListRequest.fromJsonFactory,
-  BankTransferListRequest: BankTransferListRequest.fromJsonFactory,
-  TransferListResponse: TransferListResponse.fromJsonFactory,
-  BankTransferListResponse: BankTransferListResponse.fromJsonFactory,
-  TransferCancelRequest: TransferCancelRequest.fromJsonFactory,
-  BankTransferCancelRequest: BankTransferCancelRequest.fromJsonFactory,
-  TransferCancelResponse: TransferCancelResponse.fromJsonFactory,
-  BankTransferCancelResponse: BankTransferCancelResponse.fromJsonFactory,
-  TransferEventListRequest: TransferEventListRequest.fromJsonFactory,
-  BankTransferEventListRequest: BankTransferEventListRequest.fromJsonFactory,
-  TransferEvent: TransferEvent.fromJsonFactory,
-  BankTransferEvent: BankTransferEvent.fromJsonFactory,
-  TransferEventListResponse: TransferEventListResponse.fromJsonFactory,
-  BankTransferEventListResponse: BankTransferEventListResponse.fromJsonFactory,
-  BankTransferEventSyncRequest: BankTransferEventSyncRequest.fromJsonFactory,
-  TransferEventSyncRequest: TransferEventSyncRequest.fromJsonFactory,
-  BankTransferEventSyncResponse: BankTransferEventSyncResponse.fromJsonFactory,
-  TransferEventSyncResponse: TransferEventSyncResponse.fromJsonFactory,
-  BankTransferSweepGetRequest: BankTransferSweepGetRequest.fromJsonFactory,
-  TransferSweepGetRequest: TransferSweepGetRequest.fromJsonFactory,
-  BankTransferSweepGetResponse: BankTransferSweepGetResponse.fromJsonFactory,
-  TransferSweepGetResponse: TransferSweepGetResponse.fromJsonFactory,
-  BankTransferSweepListRequest: BankTransferSweepListRequest.fromJsonFactory,
-  TransferSweepListRequest: TransferSweepListRequest.fromJsonFactory,
-  TransferSweepListResponse: TransferSweepListResponse.fromJsonFactory,
-  BankTransferSweepListResponse: BankTransferSweepListResponse.fromJsonFactory,
-  BankTransferSweep: BankTransferSweep.fromJsonFactory,
-  TransferSweep: TransferSweep.fromJsonFactory,
-  BankTransferSweepAccount: BankTransferSweepAccount.fromJsonFactory,
-  BankTransferBalanceGetRequest: BankTransferBalanceGetRequest.fromJsonFactory,
-  BankTransferBalanceGetResponse:
-      BankTransferBalanceGetResponse.fromJsonFactory,
-  BankTransferBalance: BankTransferBalance.fromJsonFactory,
-  BankTransferMigrateAccountRequest:
-      BankTransferMigrateAccountRequest.fromJsonFactory,
-  BankTransferMigrateAccountResponse:
-      BankTransferMigrateAccountResponse.fromJsonFactory,
-  TransferIntentCreateRequest: TransferIntentCreateRequest.fromJsonFactory,
-  TransferIntentCreate: TransferIntentCreate.fromJsonFactory,
-  TransferIntentCreateResponse: TransferIntentCreateResponse.fromJsonFactory,
-  TransferIntentGetRequest: TransferIntentGetRequest.fromJsonFactory,
-  TransferIntentGet: TransferIntentGet.fromJsonFactory,
-  TransferIntentGetResponse: TransferIntentGetResponse.fromJsonFactory,
-  SandboxBankTransferSimulateRequest:
-      SandboxBankTransferSimulateRequest.fromJsonFactory,
-  SandboxTransferSimulateRequest:
-      SandboxTransferSimulateRequest.fromJsonFactory,
-  SandboxTransferSweepSimulateRequest:
-      SandboxTransferSweepSimulateRequest.fromJsonFactory,
-  SandboxBankTransferSimulateResponse:
-      SandboxBankTransferSimulateResponse.fromJsonFactory,
-  SandboxTransferSimulateResponse:
-      SandboxTransferSimulateResponse.fromJsonFactory,
-  SandboxTransferSweepSimulateResponse:
-      SandboxTransferSweepSimulateResponse.fromJsonFactory,
-  BankTransferReceiverDetails: BankTransferReceiverDetails.fromJsonFactory,
-  AccountFiltersResponse: AccountFiltersResponse.fromJsonFactory,
-  InstitutionsSearchAccountFilter:
-      InstitutionsSearchAccountFilter.fromJsonFactory,
-  AccountIdentity: AccountIdentity.fromJsonFactory,
-  AccountAssets: AccountAssets.fromJsonFactory,
-  DepositoryFilter: DepositoryFilter.fromJsonFactory,
-  CreditFilter: CreditFilter.fromJsonFactory,
-  LoanFilter: LoanFilter.fromJsonFactory,
-  InvestmentFilter: InvestmentFilter.fromJsonFactory,
-  EmployersSearchRequest: EmployersSearchRequest.fromJsonFactory,
-  EmployersSearchResponse: EmployersSearchResponse.fromJsonFactory,
-  Employer: Employer.fromJsonFactory,
-  IncomeVerificationCreateRequest:
-      IncomeVerificationCreateRequest.fromJsonFactory,
-  IncomeVerificationCreateRequestOptions:
-      IncomeVerificationCreateRequestOptions.fromJsonFactory,
-  IncomeVerificationCreateResponse:
-      IncomeVerificationCreateResponse.fromJsonFactory,
-  IncomeVerificationPrecheckRequest:
-      IncomeVerificationPrecheckRequest.fromJsonFactory,
-  IncomeVerificationPrecheckEmployer:
-      IncomeVerificationPrecheckEmployer.fromJsonFactory,
-  IncomeVerificationPrecheckEmployerAddress:
-      IncomeVerificationPrecheckEmployerAddress.fromJsonFactory,
-  IncomeVerificationPrecheckMilitaryInfo:
-      IncomeVerificationPrecheckMilitaryInfo.fromJsonFactory,
-  IncomeVerificationPrecheckUser:
-      IncomeVerificationPrecheckUser.fromJsonFactory,
-  IncomeVerificationPrecheckResponse:
-      IncomeVerificationPrecheckResponse.fromJsonFactory,
-  LinkTokenCreateRequestIncomeVerification:
-      LinkTokenCreateRequestIncomeVerification.fromJsonFactory,
-  IncomeVerificationStatusWebhook:
-      IncomeVerificationStatusWebhook.fromJsonFactory,
-  IncomeVerificationSummaryGetRequest:
-      IncomeVerificationSummaryGetRequest.fromJsonFactory,
-  IncomeVerificationSummaryGetResponse:
-      IncomeVerificationSummaryGetResponse.fromJsonFactory,
-  IncomeVerificationRefreshRequest:
-      IncomeVerificationRefreshRequest.fromJsonFactory,
-  IncomeVerificationRefreshResponse:
-      IncomeVerificationRefreshResponse.fromJsonFactory,
-  IncomeSummary: IncomeSummary.fromJsonFactory,
-  TransactionData: TransactionData.fromJsonFactory,
-  IncomeSummaryFieldString: IncomeSummaryFieldString.fromJsonFactory,
-  EmployerIncomeSummaryFieldString:
-      EmployerIncomeSummaryFieldString.fromJsonFactory,
-  EmployeeIncomeSummaryFieldString:
-      EmployeeIncomeSummaryFieldString.fromJsonFactory,
-  IncomeSummaryFieldNumber: IncomeSummaryFieldNumber.fromJsonFactory,
-  YTDGrossIncomeSummaryFieldNumber:
-      YTDGrossIncomeSummaryFieldNumber.fromJsonFactory,
-  YTDNetIncomeSummaryFieldNumber:
-      YTDNetIncomeSummaryFieldNumber.fromJsonFactory,
-  ProjectedIncomeSummaryFieldNumber:
-      ProjectedIncomeSummaryFieldNumber.fromJsonFactory,
-  PayFrequency: PayFrequency.fromJsonFactory,
-  IncomeVerificationPaystubGetRequest:
-      IncomeVerificationPaystubGetRequest.fromJsonFactory,
-  IncomeVerificationPaystubGetResponse:
-      IncomeVerificationPaystubGetResponse.fromJsonFactory,
-  IncomeVerificationPaystubsGetRequest:
-      IncomeVerificationPaystubsGetRequest.fromJsonFactory,
-  IncomeVerificationPaystubsGetResponse:
-      IncomeVerificationPaystubsGetResponse.fromJsonFactory,
-  DocumentMetadata: DocumentMetadata.fromJsonFactory,
-  Paystub: Paystub.fromJsonFactory,
-  Deductions: Deductions.fromJsonFactory,
-  DeductionsBreakdown: DeductionsBreakdown.fromJsonFactory,
-  DeductionsTotal: DeductionsTotal.fromJsonFactory,
-  Total: Total.fromJsonFactory,
-  Pay: Pay.fromJsonFactory,
-  Earnings: Earnings.fromJsonFactory,
-  EarningsBreakdown: EarningsBreakdown.fromJsonFactory,
-  EarningsTotal: EarningsTotal.fromJsonFactory,
-  EmploymentDetails: EmploymentDetails.fromJsonFactory,
-  NetPay: NetPay.fromJsonFactory,
-  PaystubDetails: PaystubDetails.fromJsonFactory,
-  IncomeBreakdown: IncomeBreakdown.fromJsonFactory,
-  Employee: Employee.fromJsonFactory,
-  TaxpayerID: TaxpayerID.fromJsonFactory,
-  PaystubEmployer: PaystubEmployer.fromJsonFactory,
-  PaystubAddress: PaystubAddress.fromJsonFactory,
-  PayPeriodDetails: PayPeriodDetails.fromJsonFactory,
-  DistributionBreakdown: DistributionBreakdown.fromJsonFactory,
-  PaystubDeduction: PaystubDeduction.fromJsonFactory,
-  PaystubYTDDetails: PaystubYTDDetails.fromJsonFactory,
-  PaystubVerification: PaystubVerification.fromJsonFactory,
-  VerificationAttribute: VerificationAttribute.fromJsonFactory,
-  IncomeVerificationDocumentsDownloadRequest:
-      IncomeVerificationDocumentsDownloadRequest.fromJsonFactory,
-  IncomeVerificationTaxformsGetRequest:
-      IncomeVerificationTaxformsGetRequest.fromJsonFactory,
-  IncomeVerificationTaxformsGetResponse:
-      IncomeVerificationTaxformsGetResponse.fromJsonFactory,
-  Taxform: Taxform.fromJsonFactory,
-  W2: W2.fromJsonFactory,
-  W2Box12: W2Box12.fromJsonFactory,
-  W2StateAndLocalWages: W2StateAndLocalWages.fromJsonFactory,
-  IncomeVerificationWebhookStatus:
-      IncomeVerificationWebhookStatus.fromJsonFactory,
-  EmploymentVerificationGetRequest:
-      EmploymentVerificationGetRequest.fromJsonFactory,
-  EmploymentVerificationGetResponse:
-      EmploymentVerificationGetResponse.fromJsonFactory,
-  EmploymentVerification: EmploymentVerification.fromJsonFactory,
-  EmployerVerification: EmployerVerification.fromJsonFactory,
-  PlatformIds: PlatformIds.fromJsonFactory,
-  AssetReportTransaction: AssetReportTransaction.fromJsonFactory,
-  HealthIncident: HealthIncident.fromJsonFactory,
-  IncidentUpdate: IncidentUpdate.fromJsonFactory,
-  DepositSwitchAltCreateRequest: DepositSwitchAltCreateRequest.fromJsonFactory,
-  DepositSwitchAltCreateResponse:
-      DepositSwitchAltCreateResponse.fromJsonFactory,
-  DepositSwitchTargetAccount: DepositSwitchTargetAccount.fromJsonFactory,
-  DepositSwitchTargetUser: DepositSwitchTargetUser.fromJsonFactory,
-  DepositSwitchAddressData: DepositSwitchAddressData.fromJsonFactory,
-  SandboxBankTransferFireWebhookRequest:
-      SandboxBankTransferFireWebhookRequest.fromJsonFactory,
-  SandboxBankTransferFireWebhookResponse:
-      SandboxBankTransferFireWebhookResponse.fromJsonFactory,
-  Application: Application.fromJsonFactory,
-  ApplicationGetRequest: ApplicationGetRequest.fromJsonFactory,
-  ApplicationGetResponse: ApplicationGetResponse.fromJsonFactory,
-  ProductAccess: ProductAccess.fromJsonFactory,
-  AccountAccess: AccountAccess.fromJsonFactory,
-  AccountProductAccessNullable: AccountProductAccessNullable.fromJsonFactory,
-  AccountProductAccess: AccountProductAccess.fromJsonFactory,
-  ScopesNullable: ScopesNullable.fromJsonFactory,
-  Scopes: Scopes.fromJsonFactory,
-  RequestedScopes: RequestedScopes.fromJsonFactory,
-  ItemApplicationScopesUpdateRequest:
-      ItemApplicationScopesUpdateRequest.fromJsonFactory,
-  ItemApplicationScopesUpdateResponse:
-      ItemApplicationScopesUpdateResponse.fromJsonFactory,
-  ItemApplicationListRequest: ItemApplicationListRequest.fromJsonFactory,
-  ItemApplicationListResponse: ItemApplicationListResponse.fromJsonFactory,
-  ConnectedApplication: ConnectedApplication.fromJsonFactory,
-  AccountFilter: AccountFilter.fromJsonFactory,
-  AccountFilterSubtypes: AccountFilterSubtypes.fromJsonFactory,
-  SandboxIncomeFireWebhookRequest:
-      SandboxIncomeFireWebhookRequest.fromJsonFactory,
-  SandboxIncomeFireWebhookResponse:
-      SandboxIncomeFireWebhookResponse.fromJsonFactory,
-  ItemApplicationListUserAuth: ItemApplicationListUserAuth.fromJsonFactory,
-  SignalEvaluateRequest: SignalEvaluateRequest.fromJsonFactory,
-  SignalUser: SignalUser.fromJsonFactory,
-  SignalPersonName: SignalPersonName.fromJsonFactory,
-  SignalAddressData: SignalAddressData.fromJsonFactory,
-  SignalDevice: SignalDevice.fromJsonFactory,
-  SignalEvaluateResponse: SignalEvaluateResponse.fromJsonFactory,
-  SignalScores: SignalScores.fromJsonFactory,
-  CustomerInitiatedReturnRisk: CustomerInitiatedReturnRisk.fromJsonFactory,
-  BankInitiatedReturnRisk: BankInitiatedReturnRisk.fromJsonFactory,
-  SignalEvaluateCoreAttributes: SignalEvaluateCoreAttributes.fromJsonFactory,
-  SignalDecisionReportRequest: SignalDecisionReportRequest.fromJsonFactory,
-  SignalDecisionReportResponse: SignalDecisionReportResponse.fromJsonFactory,
-  SignalReturnReportRequest: SignalReturnReportRequest.fromJsonFactory,
-  SignalReturnReportResponse: SignalReturnReportResponse.fromJsonFactory,
-  SandboxOauthSelectAccountsRequest:
-      SandboxOauthSelectAccountsRequest.fromJsonFactory,
-  SandboxOauthSelectAccountsResponse:
-      SandboxOauthSelectAccountsResponse.fromJsonFactory,
-  NewAccountsAvailableWebhook: NewAccountsAvailableWebhook.fromJsonFactory,
-  WalletGetRequest: WalletGetRequest.fromJsonFactory,
-  WalletGetResponse: WalletGetResponse.fromJsonFactory,
-  WalletBalance: WalletBalance.fromJsonFactory,
-  WalletTransactionExecuteRequest:
-      WalletTransactionExecuteRequest.fromJsonFactory,
-  WalletTransactionCounterparty: WalletTransactionCounterparty.fromJsonFactory,
-  WalletTransactionCounterpartyNumbers:
-      WalletTransactionCounterpartyNumbers.fromJsonFactory,
-  WalletTransactionCounterpartyBACS:
-      WalletTransactionCounterpartyBACS.fromJsonFactory,
-  WalletTransactionAmount: WalletTransactionAmount.fromJsonFactory,
-  WalletTransactionExecuteResponse:
-      WalletTransactionExecuteResponse.fromJsonFactory,
-  WalletTransactionsListRequest: WalletTransactionsListRequest.fromJsonFactory,
-  WalletTransactionsListResponse:
-      WalletTransactionsListResponse.fromJsonFactory,
-  WalletTransaction: WalletTransaction.fromJsonFactory,
-};
 
 @JsonSerializable(explicitToJson: true)
 class ItemGetRequest {
@@ -5362,9 +5739,15 @@ extension $PaymentInitiationRecipientGetRequestExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class PaymentInitiationRecipientGetResponse extends PaymentInitiationRecipient {
+class PaymentInitiationRecipientGetResponse {
   PaymentInitiationRecipientGetResponse({
     this.requestId,
+    this.recipientId,
+    this.name,
+    this.address,
+    this.iban,
+    this.bacs,
+    this.emiRecipientId,
   });
 
   factory PaymentInitiationRecipientGetResponse.fromJson(
@@ -5373,6 +5756,18 @@ class PaymentInitiationRecipientGetResponse extends PaymentInitiationRecipient {
 
   @JsonKey(name: 'request_id')
   final String? requestId;
+  @JsonKey(name: 'recipient_id')
+  final String? recipientId;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'address')
+  final PaymentInitiationAddress? address;
+  @JsonKey(name: 'iban')
+  final String? iban;
+  @JsonKey(name: 'bacs')
+  final RecipientBACSNullable? bacs;
+  @JsonKey(name: 'emi_recipient_id')
+  final String? emiRecipientId;
   static const fromJsonFactory =
       _$PaymentInitiationRecipientGetResponseFromJson;
   static const toJsonFactory = _$PaymentInitiationRecipientGetResponseToJson;
@@ -5385,19 +5780,54 @@ class PaymentInitiationRecipientGetResponse extends PaymentInitiationRecipient {
         (other is PaymentInitiationRecipientGetResponse &&
             (identical(other.requestId, requestId) ||
                 const DeepCollectionEquality()
-                    .equals(other.requestId, requestId)));
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.recipientId, recipientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.recipientId, recipientId)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.iban, iban) ||
+                const DeepCollectionEquality().equals(other.iban, iban)) &&
+            (identical(other.bacs, bacs) ||
+                const DeepCollectionEquality().equals(other.bacs, bacs)) &&
+            (identical(other.emiRecipientId, emiRecipientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.emiRecipientId, emiRecipientId)));
   }
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(emiRecipientId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationRecipientGetResponseExtension
     on PaymentInitiationRecipientGetResponse {
-  PaymentInitiationRecipientGetResponse copyWith({String? requestId}) {
+  PaymentInitiationRecipientGetResponse copyWith(
+      {String? requestId,
+      String? recipientId,
+      String? name,
+      PaymentInitiationAddress? address,
+      String? iban,
+      RecipientBACSNullable? bacs,
+      String? emiRecipientId}) {
     return PaymentInitiationRecipientGetResponse(
-        requestId: requestId ?? this.requestId);
+        requestId: requestId ?? this.requestId,
+        recipientId: recipientId ?? this.recipientId,
+        name: name ?? this.name,
+        address: address ?? this.address,
+        iban: iban ?? this.iban,
+        bacs: bacs ?? this.bacs,
+        emiRecipientId: emiRecipientId ?? this.emiRecipientId);
   }
 }
 
@@ -6290,9 +6720,22 @@ extension $PaymentInitiationPaymentGetRequestExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class PaymentInitiationPaymentGetResponse extends PaymentInitiationPayment {
+class PaymentInitiationPaymentGetResponse {
   PaymentInitiationPaymentGetResponse({
     this.requestId,
+    this.paymentId,
+    this.amount,
+    this.status,
+    this.recipientId,
+    this.reference,
+    this.adjustedReference,
+    this.lastStatusUpdate,
+    this.schedule,
+    this.refundDetails,
+    this.bacs,
+    this.iban,
+    this.initiatedRefunds,
+    this.walletId,
   });
 
   factory PaymentInitiationPaymentGetResponse.fromJson(
@@ -6301,6 +6744,35 @@ class PaymentInitiationPaymentGetResponse extends PaymentInitiationPayment {
 
   @JsonKey(name: 'request_id')
   final String? requestId;
+  @JsonKey(name: 'payment_id')
+  final String? paymentId;
+  @JsonKey(name: 'amount')
+  final PaymentAmount? amount;
+  @JsonKey(
+      name: 'status',
+      toJson: paymentInitiationPaymentStatusToJson,
+      fromJson: paymentInitiationPaymentStatusFromJson)
+  final enums.PaymentInitiationPaymentStatus? status;
+  @JsonKey(name: 'recipient_id')
+  final String? recipientId;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  @JsonKey(name: 'adjusted_reference')
+  final String? adjustedReference;
+  @JsonKey(name: 'last_status_update')
+  final DateTime? lastStatusUpdate;
+  @JsonKey(name: 'schedule')
+  final ExternalPaymentScheduleGet? schedule;
+  @JsonKey(name: 'refund_details')
+  final ExternalPaymentRefundDetails? refundDetails;
+  @JsonKey(name: 'bacs')
+  final SenderBACSNullable? bacs;
+  @JsonKey(name: 'iban')
+  final String? iban;
+  @JsonKey(name: 'initiated_refunds', defaultValue: <PaymentInitiationRefund>[])
+  final List<PaymentInitiationRefund>? initiatedRefunds;
+  @JsonKey(name: 'wallet_id')
+  final String? walletId;
   static const fromJsonFactory = _$PaymentInitiationPaymentGetResponseFromJson;
   static const toJsonFactory = _$PaymentInitiationPaymentGetResponseToJson;
   Map<String, dynamic> toJson() =>
@@ -6312,19 +6784,95 @@ class PaymentInitiationPaymentGetResponse extends PaymentInitiationPayment {
         (other is PaymentInitiationPaymentGetResponse &&
             (identical(other.requestId, requestId) ||
                 const DeepCollectionEquality()
-                    .equals(other.requestId, requestId)));
+                    .equals(other.requestId, requestId)) &&
+            (identical(other.paymentId, paymentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentId, paymentId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.recipientId, recipientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.recipientId, recipientId)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
+            (identical(other.adjustedReference, adjustedReference) ||
+                const DeepCollectionEquality()
+                    .equals(other.adjustedReference, adjustedReference)) &&
+            (identical(other.lastStatusUpdate, lastStatusUpdate) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastStatusUpdate, lastStatusUpdate)) &&
+            (identical(other.schedule, schedule) ||
+                const DeepCollectionEquality()
+                    .equals(other.schedule, schedule)) &&
+            (identical(other.refundDetails, refundDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.refundDetails, refundDetails)) &&
+            (identical(other.bacs, bacs) ||
+                const DeepCollectionEquality().equals(other.bacs, bacs)) &&
+            (identical(other.iban, iban) ||
+                const DeepCollectionEquality().equals(other.iban, iban)) &&
+            (identical(other.initiatedRefunds, initiatedRefunds) ||
+                const DeepCollectionEquality()
+                    .equals(other.initiatedRefunds, initiatedRefunds)) &&
+            (identical(other.walletId, walletId) ||
+                const DeepCollectionEquality()
+                    .equals(other.walletId, walletId)));
   }
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(requestId) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(requestId) ^
+      const DeepCollectionEquality().hash(paymentId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(recipientId) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(adjustedReference) ^
+      const DeepCollectionEquality().hash(lastStatusUpdate) ^
+      const DeepCollectionEquality().hash(schedule) ^
+      const DeepCollectionEquality().hash(refundDetails) ^
+      const DeepCollectionEquality().hash(bacs) ^
+      const DeepCollectionEquality().hash(iban) ^
+      const DeepCollectionEquality().hash(initiatedRefunds) ^
+      const DeepCollectionEquality().hash(walletId) ^
+      runtimeType.hashCode;
 }
 
 extension $PaymentInitiationPaymentGetResponseExtension
     on PaymentInitiationPaymentGetResponse {
-  PaymentInitiationPaymentGetResponse copyWith({String? requestId}) {
+  PaymentInitiationPaymentGetResponse copyWith(
+      {String? requestId,
+      String? paymentId,
+      PaymentAmount? amount,
+      enums.PaymentInitiationPaymentStatus? status,
+      String? recipientId,
+      String? reference,
+      String? adjustedReference,
+      DateTime? lastStatusUpdate,
+      ExternalPaymentScheduleGet? schedule,
+      ExternalPaymentRefundDetails? refundDetails,
+      SenderBACSNullable? bacs,
+      String? iban,
+      List<PaymentInitiationRefund>? initiatedRefunds,
+      String? walletId}) {
     return PaymentInitiationPaymentGetResponse(
-        requestId: requestId ?? this.requestId);
+        requestId: requestId ?? this.requestId,
+        paymentId: paymentId ?? this.paymentId,
+        amount: amount ?? this.amount,
+        status: status ?? this.status,
+        recipientId: recipientId ?? this.recipientId,
+        reference: reference ?? this.reference,
+        adjustedReference: adjustedReference ?? this.adjustedReference,
+        lastStatusUpdate: lastStatusUpdate ?? this.lastStatusUpdate,
+        schedule: schedule ?? this.schedule,
+        refundDetails: refundDetails ?? this.refundDetails,
+        bacs: bacs ?? this.bacs,
+        iban: iban ?? this.iban,
+        initiatedRefunds: initiatedRefunds ?? this.initiatedRefunds,
+        walletId: walletId ?? this.walletId);
   }
 }
 
@@ -9653,13 +10201,13 @@ class LinkTokenCreateRequestAccountSubtypes {
       _$LinkTokenCreateRequestAccountSubtypesFromJson(json);
 
   @JsonKey(name: 'depository')
-  final LinkTokenCreateRequestAccountSubtypes$Depository? depository;
+  final Map<String, dynamic>? depository;
   @JsonKey(name: 'credit')
-  final LinkTokenCreateRequestAccountSubtypes$Credit? credit;
+  final Map<String, dynamic>? credit;
   @JsonKey(name: 'loan')
-  final LinkTokenCreateRequestAccountSubtypes$Loan? loan;
+  final Map<String, dynamic>? loan;
   @JsonKey(name: 'investment')
-  final LinkTokenCreateRequestAccountSubtypes$Investment? investment;
+  final Map<String, dynamic>? investment;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestAccountSubtypesFromJson;
   static const toJsonFactory = _$LinkTokenCreateRequestAccountSubtypesToJson;
@@ -9694,10 +10242,10 @@ class LinkTokenCreateRequestAccountSubtypes {
 extension $LinkTokenCreateRequestAccountSubtypesExtension
     on LinkTokenCreateRequestAccountSubtypes {
   LinkTokenCreateRequestAccountSubtypes copyWith(
-      {LinkTokenCreateRequestAccountSubtypes$Depository? depository,
-      LinkTokenCreateRequestAccountSubtypes$Credit? credit,
-      LinkTokenCreateRequestAccountSubtypes$Loan? loan,
-      LinkTokenCreateRequestAccountSubtypes$Investment? investment}) {
+      {Map<String, dynamic>? depository,
+      Map<String, dynamic>? credit,
+      Map<String, dynamic>? loan,
+      Map<String, dynamic>? investment}) {
     return LinkTokenCreateRequestAccountSubtypes(
         depository: depository ?? this.depository,
         credit: credit ?? this.credit,
@@ -10164,7 +10712,7 @@ extension $ErrorExtension on Error {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ItemStatusNullable extends ItemStatus {
+class ItemStatusNullable {
   ItemStatusNullable();
 
   factory ItemStatusNullable.fromJson(Map<String, dynamic> json) =>
@@ -10623,7 +11171,7 @@ extension $NumbersACHExtension on NumbersACH {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NumbersACHNullable extends NumbersACH {
+class NumbersACHNullable {
   NumbersACHNullable();
 
   factory NumbersACHNullable.fromJson(Map<String, dynamic> json) =>
@@ -10702,7 +11250,7 @@ extension $NumbersEFTExtension on NumbersEFT {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NumbersEFTNullable extends NumbersEFT {
+class NumbersEFTNullable {
   NumbersEFTNullable();
 
   factory NumbersEFTNullable.fromJson(Map<String, dynamic> json) =>
@@ -10769,7 +11317,7 @@ extension $NumbersInternationalExtension on NumbersInternational {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NumbersInternationalNullable extends NumbersInternational {
+class NumbersInternationalNullable {
   NumbersInternationalNullable();
 
   factory NumbersInternationalNullable.fromJson(Map<String, dynamic> json) =>
@@ -10837,7 +11385,7 @@ extension $NumbersBACSExtension on NumbersBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NumbersBACSNullable extends NumbersBACS {
+class NumbersBACSNullable {
   NumbersBACSNullable();
 
   factory NumbersBACSNullable.fromJson(Map<String, dynamic> json) =>
@@ -10896,7 +11444,7 @@ extension $RecipientBACSExtension on RecipientBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class RecipientBACSNullable extends RecipientBACS {
+class RecipientBACSNullable {
   RecipientBACSNullable();
 
   factory RecipientBACSNullable.fromJson(Map<String, dynamic> json) =>
@@ -10911,7 +11459,7 @@ class RecipientBACSNullable extends RecipientBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SenderBACSNullable extends RecipientBACS {
+class SenderBACSNullable {
   SenderBACSNullable();
 
   factory SenderBACSNullable.fromJson(Map<String, dynamic> json) =>
@@ -10926,7 +11474,7 @@ class SenderBACSNullable extends RecipientBACS {
 }
 
 @JsonSerializable(explicitToJson: true)
-class PaymentInitiationOptionalRestrictionBacs extends RecipientBACS {
+class PaymentInitiationOptionalRestrictionBacs {
   PaymentInitiationOptionalRestrictionBacs();
 
   factory PaymentInitiationOptionalRestrictionBacs.fromJson(
@@ -11172,7 +11720,7 @@ extension $TransactionBaseExtension on TransactionBase {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Transaction extends TransactionBase {
+class Transaction {
   Transaction({
     this.paymentChannel,
     this.authorizedDate,
@@ -11180,6 +11728,24 @@ class Transaction extends TransactionBase {
     this.datetime,
     this.transactionCode,
     this.personalFinanceCategory,
+    this.transactionType,
+    this.pendingTransactionId,
+    this.categoryId,
+    this.category,
+    this.location,
+    this.paymentMeta,
+    this.accountOwner,
+    this.name,
+    this.originalDescription,
+    this.accountId,
+    this.amount,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.date,
+    this.pending,
+    this.transactionId,
+    this.merchantName,
+    this.checkNumber,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -11201,8 +11767,47 @@ class Transaction extends TransactionBase {
       toJson: transactionCodeToJson,
       fromJson: transactionCodeFromJson)
   final enums.TransactionCode? transactionCode;
-  @JsonKey(name: 'personalFinanceCategory')
-  final dynamic personalFinanceCategory;
+  @JsonKey(name: 'personal_finance_category')
+  final dynamic? personalFinanceCategory;
+  @JsonKey(
+      name: 'transaction_type',
+      toJson: transactionTransactionTypeToJson,
+      fromJson: transactionTransactionTypeFromJson)
+  final enums.TransactionTransactionType? transactionType;
+  @JsonKey(name: 'pending_transaction_id')
+  final String? pendingTransactionId;
+  @JsonKey(name: 'category_id')
+  final String? categoryId;
+  @JsonKey(name: 'category', defaultValue: <String>[])
+  final List<String>? category;
+  @JsonKey(name: 'location')
+  final Location? location;
+  @JsonKey(name: 'payment_meta')
+  final PaymentMeta? paymentMeta;
+  @JsonKey(name: 'account_owner')
+  final String? accountOwner;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'original_description')
+  final String? originalDescription;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
+  @JsonKey(name: 'pending')
+  final bool? pending;
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(name: 'merchant_name')
+  final String? merchantName;
+  @JsonKey(name: 'check_number')
+  final String? checkNumber;
   static const fromJsonFactory = _$TransactionFromJson;
   static const toJsonFactory = _$TransactionToJson;
   Map<String, dynamic> toJson() => _$TransactionToJson(this);
@@ -11226,10 +11831,49 @@ class Transaction extends TransactionBase {
             (identical(other.transactionCode, transactionCode) ||
                 const DeepCollectionEquality()
                     .equals(other.transactionCode, transactionCode)) &&
-            (identical(
-                    other.personalFinanceCategory, personalFinanceCategory) ||
+            (identical(other.personalFinanceCategory, personalFinanceCategory) ||
                 const DeepCollectionEquality().equals(
-                    other.personalFinanceCategory, personalFinanceCategory)));
+                    other.personalFinanceCategory, personalFinanceCategory)) &&
+            (identical(other.transactionType, transactionType) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionType, transactionType)) &&
+            (identical(other.pendingTransactionId, pendingTransactionId) ||
+                const DeepCollectionEquality().equals(
+                    other.pendingTransactionId, pendingTransactionId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.category, category) ||
+                const DeepCollectionEquality()
+                    .equals(other.category, category)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)) &&
+            (identical(other.paymentMeta, paymentMeta) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentMeta, paymentMeta)) &&
+            (identical(other.accountOwner, accountOwner) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountOwner, accountOwner)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.originalDescription, originalDescription) ||
+                const DeepCollectionEquality()
+                    .equals(other.originalDescription, originalDescription)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) || const DeepCollectionEquality().equals(other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.date, date) || const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.pending, pending) || const DeepCollectionEquality().equals(other.pending, pending)) &&
+            (identical(other.transactionId, transactionId) || const DeepCollectionEquality().equals(other.transactionId, transactionId)) &&
+            (identical(other.merchantName, merchantName) || const DeepCollectionEquality().equals(other.merchantName, merchantName)) &&
+            (identical(other.checkNumber, checkNumber) || const DeepCollectionEquality().equals(other.checkNumber, checkNumber)));
   }
 
   @override
@@ -11240,6 +11884,24 @@ class Transaction extends TransactionBase {
       const DeepCollectionEquality().hash(datetime) ^
       const DeepCollectionEquality().hash(transactionCode) ^
       const DeepCollectionEquality().hash(personalFinanceCategory) ^
+      const DeepCollectionEquality().hash(transactionType) ^
+      const DeepCollectionEquality().hash(pendingTransactionId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(location) ^
+      const DeepCollectionEquality().hash(paymentMeta) ^
+      const DeepCollectionEquality().hash(accountOwner) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(originalDescription) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(pending) ^
+      const DeepCollectionEquality().hash(transactionId) ^
+      const DeepCollectionEquality().hash(merchantName) ^
+      const DeepCollectionEquality().hash(checkNumber) ^
       runtimeType.hashCode;
 }
 
@@ -11250,7 +11912,25 @@ extension $TransactionExtension on Transaction {
       DateTime? authorizedDatetime,
       DateTime? datetime,
       enums.TransactionCode? transactionCode,
-      dynamic? personalFinanceCategory}) {
+      dynamic? personalFinanceCategory,
+      enums.TransactionTransactionType? transactionType,
+      String? pendingTransactionId,
+      String? categoryId,
+      List<String>? category,
+      Location? location,
+      PaymentMeta? paymentMeta,
+      String? accountOwner,
+      String? name,
+      String? originalDescription,
+      String? accountId,
+      double? amount,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      DateTime? date,
+      bool? pending,
+      String? transactionId,
+      String? merchantName,
+      String? checkNumber}) {
     return Transaction(
         paymentChannel: paymentChannel ?? this.paymentChannel,
         authorizedDate: authorizedDate ?? this.authorizedDate,
@@ -11258,7 +11938,26 @@ extension $TransactionExtension on Transaction {
         datetime: datetime ?? this.datetime,
         transactionCode: transactionCode ?? this.transactionCode,
         personalFinanceCategory:
-            personalFinanceCategory ?? this.personalFinanceCategory);
+            personalFinanceCategory ?? this.personalFinanceCategory,
+        transactionType: transactionType ?? this.transactionType,
+        pendingTransactionId: pendingTransactionId ?? this.pendingTransactionId,
+        categoryId: categoryId ?? this.categoryId,
+        category: category ?? this.category,
+        location: location ?? this.location,
+        paymentMeta: paymentMeta ?? this.paymentMeta,
+        accountOwner: accountOwner ?? this.accountOwner,
+        name: name ?? this.name,
+        originalDescription: originalDescription ?? this.originalDescription,
+        accountId: accountId ?? this.accountId,
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        date: date ?? this.date,
+        pending: pending ?? this.pending,
+        transactionId: transactionId ?? this.transactionId,
+        merchantName: merchantName ?? this.merchantName,
+        checkNumber: checkNumber ?? this.checkNumber);
   }
 }
 
@@ -12304,9 +13003,9 @@ class PhoneNumber {
   final bool? primary;
   @JsonKey(
       name: 'type',
-      toJson: phoneNumberTypeToJson,
-      fromJson: phoneNumberTypeFromJson)
-  final enums.PhoneNumberType? type;
+      toJson: phoneNumberType$ToJson,
+      fromJson: phoneNumberType$FromJson)
+  final enums.PhoneNumberType$? type;
   static const fromJsonFactory = _$PhoneNumberFromJson;
   static const toJsonFactory = _$PhoneNumberToJson;
   Map<String, dynamic> toJson() => _$PhoneNumberToJson(this);
@@ -12334,7 +13033,7 @@ class PhoneNumber {
 
 extension $PhoneNumberExtension on PhoneNumber {
   PhoneNumber copyWith(
-      {String? data, bool? primary, enums.PhoneNumberType? type}) {
+      {String? data, bool? primary, enums.PhoneNumberType$? type}) {
     return PhoneNumber(
         data: data ?? this.data,
         primary: primary ?? this.primary,
@@ -12356,8 +13055,8 @@ class Email {
   final String? data;
   @JsonKey(name: 'primary')
   final bool? primary;
-  @JsonKey(name: 'type', toJson: emailTypeToJson, fromJson: emailTypeFromJson)
-  final enums.EmailType? type;
+  @JsonKey(name: 'type', toJson: emailType$ToJson, fromJson: emailType$FromJson)
+  final enums.EmailType$? type;
   static const fromJsonFactory = _$EmailFromJson;
   static const toJsonFactory = _$EmailToJson;
   Map<String, dynamic> toJson() => _$EmailToJson(this);
@@ -12384,7 +13083,7 @@ class Email {
 }
 
 extension $EmailExtension on Email {
-  Email copyWith({String? data, bool? primary, enums.EmailType? type}) {
+  Email copyWith({String? data, bool? primary, enums.EmailType$? type}) {
     return Email(
         data: data ?? this.data,
         primary: primary ?? this.primary,
@@ -12434,7 +13133,7 @@ extension $AddressExtension on Address {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AddressNullable extends Address {
+class AddressNullable {
   AddressNullable();
 
   factory AddressNullable.fromJson(Map<String, dynamic> json) =>
@@ -12449,7 +13148,7 @@ class AddressNullable extends Address {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AddressDataNullable extends AddressData {
+class AddressDataNullable {
   AddressDataNullable();
 
   factory AddressDataNullable.fromJson(Map<String, dynamic> json) =>
@@ -13467,9 +14166,9 @@ class StudentLoanStatus {
   final DateTime? endDate;
   @JsonKey(
       name: 'type',
-      toJson: studentLoanStatusTypeToJson,
-      fromJson: studentLoanStatusTypeFromJson)
-  final enums.StudentLoanStatusType? type;
+      toJson: studentLoanStatusType$ToJson,
+      fromJson: studentLoanStatusType$FromJson)
+  final enums.StudentLoanStatusType$? type;
   static const fromJsonFactory = _$StudentLoanStatusFromJson;
   static const toJsonFactory = _$StudentLoanStatusToJson;
   Map<String, dynamic> toJson() => _$StudentLoanStatusToJson(this);
@@ -13494,7 +14193,7 @@ class StudentLoanStatus {
 
 extension $StudentLoanStatusExtension on StudentLoanStatus {
   StudentLoanStatus copyWith(
-      {DateTime? endDate, enums.StudentLoanStatusType? type}) {
+      {DateTime? endDate, enums.StudentLoanStatusType$? type}) {
     return StudentLoanStatus(
         endDate: endDate ?? this.endDate, type: type ?? this.type);
   }
@@ -13514,9 +14213,9 @@ class StudentRepaymentPlan {
   final String? description;
   @JsonKey(
       name: 'type',
-      toJson: studentRepaymentPlanTypeToJson,
-      fromJson: studentRepaymentPlanTypeFromJson)
-  final enums.StudentRepaymentPlanType? type;
+      toJson: studentRepaymentPlanType$ToJson,
+      fromJson: studentRepaymentPlanType$FromJson)
+  final enums.StudentRepaymentPlanType$? type;
   static const fromJsonFactory = _$StudentRepaymentPlanFromJson;
   static const toJsonFactory = _$StudentRepaymentPlanToJson;
   Map<String, dynamic> toJson() => _$StudentRepaymentPlanToJson(this);
@@ -13541,7 +14240,7 @@ class StudentRepaymentPlan {
 
 extension $StudentRepaymentPlanExtension on StudentRepaymentPlan {
   StudentRepaymentPlan copyWith(
-      {String? description, enums.StudentRepaymentPlanType? type}) {
+      {String? description, enums.StudentRepaymentPlanType$? type}) {
     return StudentRepaymentPlan(
         description: description ?? this.description, type: type ?? this.type);
   }
@@ -13849,7 +14548,7 @@ class PaymentInitiationMetadata {
   @JsonKey(name: 'supports_international_payments')
   final bool? supportsInternationalPayments;
   @JsonKey(name: 'maximum_payment_amount')
-  final Object? maximumPaymentAmount;
+  final Map<String, dynamic>? maximumPaymentAmount;
   @JsonKey(name: 'supports_refund_details')
   final bool? supportsRefundDetails;
   @JsonKey(name: 'standing_order_metadata')
@@ -13890,7 +14589,7 @@ class PaymentInitiationMetadata {
 extension $PaymentInitiationMetadataExtension on PaymentInitiationMetadata {
   PaymentInitiationMetadata copyWith(
       {bool? supportsInternationalPayments,
-      Object? maximumPaymentAmount,
+      Map<String, dynamic>? maximumPaymentAmount,
       bool? supportsRefundDetails,
       PaymentInitiationStandingOrderMetadata? standingOrderMetadata}) {
     return PaymentInitiationMetadata(
@@ -14118,7 +14817,7 @@ extension $ExternalPaymentScheduleBaseExtension on ExternalPaymentScheduleBase {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ExternalPaymentScheduleRequest extends ExternalPaymentScheduleBase {
+class ExternalPaymentScheduleRequest {
   ExternalPaymentScheduleRequest();
 
   factory ExternalPaymentScheduleRequest.fromJson(Map<String, dynamic> json) =>
@@ -14248,7 +14947,7 @@ extension $ExternalPaymentRefundDetailsExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ExternalPaymentScheduleGet extends ExternalPaymentScheduleBase {
+class ExternalPaymentScheduleGet {
   ExternalPaymentScheduleGet();
 
   factory ExternalPaymentScheduleGet.fromJson(Map<String, dynamic> json) =>
@@ -16420,7 +17119,7 @@ class LiabilitiesDefaultUpdateWebhook {
   @JsonKey(name: 'account_ids_with_new_liabilities', defaultValue: <String>[])
   final List<String>? accountIdsWithNewLiabilities;
   @JsonKey(name: 'account_ids_with_updated_liabilities')
-  final Object? accountIdsWithUpdatedLiabilities;
+  final Map<String, dynamic>? accountIdsWithUpdatedLiabilities;
   static const fromJsonFactory = _$LiabilitiesDefaultUpdateWebhookFromJson;
   static const toJsonFactory = _$LiabilitiesDefaultUpdateWebhookToJson;
   Map<String, dynamic> toJson() =>
@@ -16471,7 +17170,7 @@ extension $LiabilitiesDefaultUpdateWebhookExtension
       String? itemId,
       Error? error,
       List<String>? accountIdsWithNewLiabilities,
-      Object? accountIdsWithUpdatedLiabilities}) {
+      Map<String, dynamic>? accountIdsWithUpdatedLiabilities}) {
     return LiabilitiesDefaultUpdateWebhook(
         webhookType: webhookType ?? this.webhookType,
         webhookCode: webhookCode ?? this.webhookCode,
@@ -17558,9 +18257,9 @@ class InvestmentTransaction {
   final double? fees;
   @JsonKey(
       name: 'type',
-      toJson: investmentTransactionTypeToJson,
-      fromJson: investmentTransactionTypeFromJson)
-  final enums.InvestmentTransactionType? type;
+      toJson: investmentTransactionType$ToJson,
+      fromJson: investmentTransactionType$FromJson)
+  final enums.InvestmentTransactionType$? type;
   @JsonKey(
       name: 'subtype',
       toJson: investmentTransactionSubtypeToJson,
@@ -17648,7 +18347,7 @@ extension $InvestmentTransactionExtension on InvestmentTransaction {
       double? amount,
       double? price,
       double? fees,
-      enums.InvestmentTransactionType? type,
+      enums.InvestmentTransactionType$? type,
       enums.InvestmentTransactionSubtype? subtype,
       String? isoCurrencyCode,
       String? unofficialCurrencyCode}) {
@@ -23466,9 +24165,17 @@ extension $InstitutionsSearchAccountFilterExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class AccountIdentity extends AccountBase {
+class AccountIdentity {
   AccountIdentity({
     this.owners,
+    this.accountId,
+    this.balances,
+    this.mask,
+    this.name,
+    this.officialName,
+    this.type,
+    this.subtype,
+    this.verificationStatus,
   });
 
   factory AccountIdentity.fromJson(Map<String, dynamic> json) =>
@@ -23476,6 +24183,29 @@ class AccountIdentity extends AccountBase {
 
   @JsonKey(name: 'owners', defaultValue: <Owner>[])
   final List<Owner>? owners;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'balances')
+  final AccountBalance? balances;
+  @JsonKey(name: 'mask')
+  final String? mask;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'official_name')
+  final String? officialName;
+  @JsonKey(
+      name: 'type', toJson: accountTypeToJson, fromJson: accountTypeFromJson)
+  final enums.AccountType? type;
+  @JsonKey(
+      name: 'subtype',
+      toJson: accountSubtypeToJson,
+      fromJson: accountSubtypeFromJson)
+  final enums.AccountSubtype? subtype;
+  @JsonKey(
+      name: 'verification_status',
+      toJson: accountIdentityVerificationStatusToJson,
+      fromJson: accountIdentityVerificationStatusFromJson)
+  final enums.AccountIdentityVerificationStatus? verificationStatus;
   static const fromJsonFactory = _$AccountIdentityFromJson;
   static const toJsonFactory = _$AccountIdentityToJson;
   Map<String, dynamic> toJson() => _$AccountIdentityToJson(this);
@@ -23485,27 +24215,83 @@ class AccountIdentity extends AccountBase {
     return identical(this, other) ||
         (other is AccountIdentity &&
             (identical(other.owners, owners) ||
-                const DeepCollectionEquality().equals(other.owners, owners)));
+                const DeepCollectionEquality().equals(other.owners, owners)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.balances, balances) ||
+                const DeepCollectionEquality()
+                    .equals(other.balances, balances)) &&
+            (identical(other.mask, mask) ||
+                const DeepCollectionEquality().equals(other.mask, mask)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.officialName, officialName) ||
+                const DeepCollectionEquality()
+                    .equals(other.officialName, officialName)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.subtype, subtype) ||
+                const DeepCollectionEquality()
+                    .equals(other.subtype, subtype)) &&
+            (identical(other.verificationStatus, verificationStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.verificationStatus, verificationStatus)));
   }
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(owners) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(owners) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(balances) ^
+      const DeepCollectionEquality().hash(mask) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(officialName) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subtype) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
+      runtimeType.hashCode;
 }
 
 extension $AccountIdentityExtension on AccountIdentity {
-  AccountIdentity copyWith({List<Owner>? owners}) {
-    return AccountIdentity(owners: owners ?? this.owners);
+  AccountIdentity copyWith(
+      {List<Owner>? owners,
+      String? accountId,
+      AccountBalance? balances,
+      String? mask,
+      String? name,
+      String? officialName,
+      enums.AccountType? type,
+      enums.AccountSubtype? subtype,
+      enums.AccountIdentityVerificationStatus? verificationStatus}) {
+    return AccountIdentity(
+        owners: owners ?? this.owners,
+        accountId: accountId ?? this.accountId,
+        balances: balances ?? this.balances,
+        mask: mask ?? this.mask,
+        name: name ?? this.name,
+        officialName: officialName ?? this.officialName,
+        type: type ?? this.type,
+        subtype: subtype ?? this.subtype,
+        verificationStatus: verificationStatus ?? this.verificationStatus);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class AccountAssets extends AccountBase {
+class AccountAssets {
   AccountAssets({
     this.daysAvailable,
     this.transactions,
     this.owners,
     this.historicalBalances,
+    this.accountId,
+    this.balances,
+    this.mask,
+    this.name,
+    this.officialName,
+    this.type,
+    this.subtype,
+    this.verificationStatus,
   });
 
   factory AccountAssets.fromJson(Map<String, dynamic> json) =>
@@ -23519,6 +24305,29 @@ class AccountAssets extends AccountBase {
   final List<Owner>? owners;
   @JsonKey(name: 'historical_balances', defaultValue: <HistoricalBalance>[])
   final List<HistoricalBalance>? historicalBalances;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'balances')
+  final AccountBalance? balances;
+  @JsonKey(name: 'mask')
+  final String? mask;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'official_name')
+  final String? officialName;
+  @JsonKey(
+      name: 'type', toJson: accountTypeToJson, fromJson: accountTypeFromJson)
+  final enums.AccountType? type;
+  @JsonKey(
+      name: 'subtype',
+      toJson: accountSubtypeToJson,
+      fromJson: accountSubtypeFromJson)
+  final enums.AccountSubtype? subtype;
+  @JsonKey(
+      name: 'verification_status',
+      toJson: accountAssetsVerificationStatusToJson,
+      fromJson: accountAssetsVerificationStatusFromJson)
+  final enums.AccountAssetsVerificationStatus? verificationStatus;
   static const fromJsonFactory = _$AccountAssetsFromJson;
   static const toJsonFactory = _$AccountAssetsToJson;
   Map<String, dynamic> toJson() => _$AccountAssetsToJson(this);
@@ -23537,7 +24346,28 @@ class AccountAssets extends AccountBase {
                 const DeepCollectionEquality().equals(other.owners, owners)) &&
             (identical(other.historicalBalances, historicalBalances) ||
                 const DeepCollectionEquality()
-                    .equals(other.historicalBalances, historicalBalances)));
+                    .equals(other.historicalBalances, historicalBalances)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.balances, balances) ||
+                const DeepCollectionEquality()
+                    .equals(other.balances, balances)) &&
+            (identical(other.mask, mask) ||
+                const DeepCollectionEquality().equals(other.mask, mask)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.officialName, officialName) ||
+                const DeepCollectionEquality()
+                    .equals(other.officialName, officialName)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.subtype, subtype) ||
+                const DeepCollectionEquality()
+                    .equals(other.subtype, subtype)) &&
+            (identical(other.verificationStatus, verificationStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.verificationStatus, verificationStatus)));
   }
 
   @override
@@ -23546,6 +24376,14 @@ class AccountAssets extends AccountBase {
       const DeepCollectionEquality().hash(transactions) ^
       const DeepCollectionEquality().hash(owners) ^
       const DeepCollectionEquality().hash(historicalBalances) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(balances) ^
+      const DeepCollectionEquality().hash(mask) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(officialName) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subtype) ^
+      const DeepCollectionEquality().hash(verificationStatus) ^
       runtimeType.hashCode;
 }
 
@@ -23554,12 +24392,28 @@ extension $AccountAssetsExtension on AccountAssets {
       {double? daysAvailable,
       List<AssetReportTransaction>? transactions,
       List<Owner>? owners,
-      List<HistoricalBalance>? historicalBalances}) {
+      List<HistoricalBalance>? historicalBalances,
+      String? accountId,
+      AccountBalance? balances,
+      String? mask,
+      String? name,
+      String? officialName,
+      enums.AccountType? type,
+      enums.AccountSubtype? subtype,
+      enums.AccountAssetsVerificationStatus? verificationStatus}) {
     return AccountAssets(
         daysAvailable: daysAvailable ?? this.daysAvailable,
         transactions: transactions ?? this.transactions,
         owners: owners ?? this.owners,
-        historicalBalances: historicalBalances ?? this.historicalBalances);
+        historicalBalances: historicalBalances ?? this.historicalBalances,
+        accountId: accountId ?? this.accountId,
+        balances: balances ?? this.balances,
+        mask: mask ?? this.mask,
+        name: name ?? this.name,
+        officialName: officialName ?? this.officialName,
+        type: type ?? this.type,
+        subtype: subtype ?? this.subtype,
+        verificationStatus: verificationStatus ?? this.verificationStatus);
   }
 }
 
@@ -23573,7 +24427,7 @@ class DepositoryFilter {
       _$DepositoryFilterFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory = _$DepositoryFilterFromJson;
   static const toJsonFactory = _$DepositoryFilterToJson;
   Map<String, dynamic> toJson() => _$DepositoryFilterToJson(this);
@@ -23594,7 +24448,7 @@ class DepositoryFilter {
 }
 
 extension $DepositoryFilterExtension on DepositoryFilter {
-  DepositoryFilter copyWith({AccountSubtypes? accountSubtypes}) {
+  DepositoryFilter copyWith({List<AccountSubtype>? accountSubtypes}) {
     return DepositoryFilter(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -23610,7 +24464,7 @@ class CreditFilter {
       _$CreditFilterFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory = _$CreditFilterFromJson;
   static const toJsonFactory = _$CreditFilterToJson;
   Map<String, dynamic> toJson() => _$CreditFilterToJson(this);
@@ -23631,7 +24485,7 @@ class CreditFilter {
 }
 
 extension $CreditFilterExtension on CreditFilter {
-  CreditFilter copyWith({AccountSubtypes? accountSubtypes}) {
+  CreditFilter copyWith({List<AccountSubtype>? accountSubtypes}) {
     return CreditFilter(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -23647,7 +24501,7 @@ class LoanFilter {
       _$LoanFilterFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory = _$LoanFilterFromJson;
   static const toJsonFactory = _$LoanFilterToJson;
   Map<String, dynamic> toJson() => _$LoanFilterToJson(this);
@@ -23668,7 +24522,7 @@ class LoanFilter {
 }
 
 extension $LoanFilterExtension on LoanFilter {
-  LoanFilter copyWith({AccountSubtypes? accountSubtypes}) {
+  LoanFilter copyWith({List<AccountSubtype>? accountSubtypes}) {
     return LoanFilter(accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
 }
@@ -23683,7 +24537,7 @@ class InvestmentFilter {
       _$InvestmentFilterFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory = _$InvestmentFilterFromJson;
   static const toJsonFactory = _$InvestmentFilterToJson;
   Map<String, dynamic> toJson() => _$InvestmentFilterToJson(this);
@@ -23704,7 +24558,7 @@ class InvestmentFilter {
 }
 
 extension $InvestmentFilterExtension on InvestmentFilter {
-  InvestmentFilter copyWith({AccountSubtypes? accountSubtypes}) {
+  InvestmentFilter copyWith({List<AccountSubtype>? accountSubtypes}) {
     return InvestmentFilter(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -24211,7 +25065,7 @@ extension $IncomeVerificationPrecheckEmployerExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class IncomeVerificationPrecheckEmployerAddress extends AddressData {
+class IncomeVerificationPrecheckEmployerAddress {
   IncomeVerificationPrecheckEmployerAddress();
 
   factory IncomeVerificationPrecheckEmployerAddress.fromJson(
@@ -25013,7 +25867,7 @@ extension $IncomeSummaryFieldStringExtension on IncomeSummaryFieldString {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EmployerIncomeSummaryFieldString extends IncomeSummaryFieldString {
+class EmployerIncomeSummaryFieldString {
   EmployerIncomeSummaryFieldString();
 
   factory EmployerIncomeSummaryFieldString.fromJson(
@@ -25030,7 +25884,7 @@ class EmployerIncomeSummaryFieldString extends IncomeSummaryFieldString {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EmployeeIncomeSummaryFieldString extends IncomeSummaryFieldString {
+class EmployeeIncomeSummaryFieldString {
   EmployeeIncomeSummaryFieldString();
 
   factory EmployeeIncomeSummaryFieldString.fromJson(
@@ -25095,7 +25949,7 @@ extension $IncomeSummaryFieldNumberExtension on IncomeSummaryFieldNumber {
 }
 
 @JsonSerializable(explicitToJson: true)
-class YTDGrossIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
+class YTDGrossIncomeSummaryFieldNumber {
   YTDGrossIncomeSummaryFieldNumber();
 
   factory YTDGrossIncomeSummaryFieldNumber.fromJson(
@@ -25112,7 +25966,7 @@ class YTDGrossIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
 }
 
 @JsonSerializable(explicitToJson: true)
-class YTDNetIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
+class YTDNetIncomeSummaryFieldNumber {
   YTDNetIncomeSummaryFieldNumber();
 
   factory YTDNetIncomeSummaryFieldNumber.fromJson(Map<String, dynamic> json) =>
@@ -25127,7 +25981,7 @@ class YTDNetIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ProjectedIncomeSummaryFieldNumber extends IncomeSummaryFieldNumber {
+class ProjectedIncomeSummaryFieldNumber {
   ProjectedIncomeSummaryFieldNumber();
 
   factory ProjectedIncomeSummaryFieldNumber.fromJson(
@@ -27101,9 +27955,9 @@ class VerificationAttribute {
 
   @JsonKey(
       name: 'type',
-      toJson: verificationAttributeTypeToJson,
-      fromJson: verificationAttributeTypeFromJson)
-  final enums.VerificationAttributeType? type;
+      toJson: verificationAttributeType$ToJson,
+      fromJson: verificationAttributeType$FromJson)
+  final enums.VerificationAttributeType$? type;
   static const fromJsonFactory = _$VerificationAttributeFromJson;
   static const toJsonFactory = _$VerificationAttributeToJson;
   Map<String, dynamic> toJson() => _$VerificationAttributeToJson(this);
@@ -27122,7 +27976,7 @@ class VerificationAttribute {
 }
 
 extension $VerificationAttributeExtension on VerificationAttribute {
-  VerificationAttribute copyWith({enums.VerificationAttributeType? type}) {
+  VerificationAttribute copyWith({enums.VerificationAttributeType$? type}) {
     return VerificationAttribute(type: type ?? this.type);
   }
 }
@@ -28057,9 +28911,27 @@ extension $PlatformIdsExtension on PlatformIds {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AssetReportTransaction extends TransactionBase {
+class AssetReportTransaction {
   AssetReportTransaction({
     this.dateTransacted,
+    this.transactionType,
+    this.pendingTransactionId,
+    this.categoryId,
+    this.category,
+    this.location,
+    this.paymentMeta,
+    this.accountOwner,
+    this.name,
+    this.originalDescription,
+    this.accountId,
+    this.amount,
+    this.isoCurrencyCode,
+    this.unofficialCurrencyCode,
+    this.date,
+    this.pending,
+    this.transactionId,
+    this.merchantName,
+    this.checkNumber,
   });
 
   factory AssetReportTransaction.fromJson(Map<String, dynamic> json) =>
@@ -28067,6 +28939,45 @@ class AssetReportTransaction extends TransactionBase {
 
   @JsonKey(name: 'date_transacted')
   final String? dateTransacted;
+  @JsonKey(
+      name: 'transaction_type',
+      toJson: assetReportTransactionTransactionTypeToJson,
+      fromJson: assetReportTransactionTransactionTypeFromJson)
+  final enums.AssetReportTransactionTransactionType? transactionType;
+  @JsonKey(name: 'pending_transaction_id')
+  final String? pendingTransactionId;
+  @JsonKey(name: 'category_id')
+  final String? categoryId;
+  @JsonKey(name: 'category', defaultValue: <String>[])
+  final List<String>? category;
+  @JsonKey(name: 'location')
+  final Location? location;
+  @JsonKey(name: 'payment_meta')
+  final PaymentMeta? paymentMeta;
+  @JsonKey(name: 'account_owner')
+  final String? accountOwner;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'original_description')
+  final String? originalDescription;
+  @JsonKey(name: 'account_id')
+  final String? accountId;
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'iso_currency_code')
+  final String? isoCurrencyCode;
+  @JsonKey(name: 'unofficial_currency_code')
+  final String? unofficialCurrencyCode;
+  @JsonKey(name: 'date', toJson: _dateToJson)
+  final DateTime? date;
+  @JsonKey(name: 'pending')
+  final bool? pending;
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(name: 'merchant_name')
+  final String? merchantName;
+  @JsonKey(name: 'check_number')
+  final String? checkNumber;
   static const fromJsonFactory = _$AssetReportTransactionFromJson;
   static const toJsonFactory = _$AssetReportTransactionToJson;
   Map<String, dynamic> toJson() => _$AssetReportTransactionToJson(this);
@@ -28077,19 +28988,126 @@ class AssetReportTransaction extends TransactionBase {
         (other is AssetReportTransaction &&
             (identical(other.dateTransacted, dateTransacted) ||
                 const DeepCollectionEquality()
-                    .equals(other.dateTransacted, dateTransacted)));
+                    .equals(other.dateTransacted, dateTransacted)) &&
+            (identical(other.transactionType, transactionType) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionType, transactionType)) &&
+            (identical(other.pendingTransactionId, pendingTransactionId) ||
+                const DeepCollectionEquality().equals(
+                    other.pendingTransactionId, pendingTransactionId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.category, category) ||
+                const DeepCollectionEquality()
+                    .equals(other.category, category)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)) &&
+            (identical(other.paymentMeta, paymentMeta) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentMeta, paymentMeta)) &&
+            (identical(other.accountOwner, accountOwner) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountOwner, accountOwner)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.originalDescription, originalDescription) ||
+                const DeepCollectionEquality()
+                    .equals(other.originalDescription, originalDescription)) &&
+            (identical(other.accountId, accountId) ||
+                const DeepCollectionEquality()
+                    .equals(other.accountId, accountId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.isoCurrencyCode, isoCurrencyCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.isoCurrencyCode, isoCurrencyCode)) &&
+            (identical(other.unofficialCurrencyCode, unofficialCurrencyCode) ||
+                const DeepCollectionEquality().equals(
+                    other.unofficialCurrencyCode, unofficialCurrencyCode)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.pending, pending) ||
+                const DeepCollectionEquality()
+                    .equals(other.pending, pending)) &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionId, transactionId)) &&
+            (identical(other.merchantName, merchantName) ||
+                const DeepCollectionEquality()
+                    .equals(other.merchantName, merchantName)) &&
+            (identical(other.checkNumber, checkNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.checkNumber, checkNumber)));
   }
 
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(dateTransacted) ^
+      const DeepCollectionEquality().hash(transactionType) ^
+      const DeepCollectionEquality().hash(pendingTransactionId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(location) ^
+      const DeepCollectionEquality().hash(paymentMeta) ^
+      const DeepCollectionEquality().hash(accountOwner) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(originalDescription) ^
+      const DeepCollectionEquality().hash(accountId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(isoCurrencyCode) ^
+      const DeepCollectionEquality().hash(unofficialCurrencyCode) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(pending) ^
+      const DeepCollectionEquality().hash(transactionId) ^
+      const DeepCollectionEquality().hash(merchantName) ^
+      const DeepCollectionEquality().hash(checkNumber) ^
       runtimeType.hashCode;
 }
 
 extension $AssetReportTransactionExtension on AssetReportTransaction {
-  AssetReportTransaction copyWith({String? dateTransacted}) {
+  AssetReportTransaction copyWith(
+      {String? dateTransacted,
+      enums.AssetReportTransactionTransactionType? transactionType,
+      String? pendingTransactionId,
+      String? categoryId,
+      List<String>? category,
+      Location? location,
+      PaymentMeta? paymentMeta,
+      String? accountOwner,
+      String? name,
+      String? originalDescription,
+      String? accountId,
+      double? amount,
+      String? isoCurrencyCode,
+      String? unofficialCurrencyCode,
+      DateTime? date,
+      bool? pending,
+      String? transactionId,
+      String? merchantName,
+      String? checkNumber}) {
     return AssetReportTransaction(
-        dateTransacted: dateTransacted ?? this.dateTransacted);
+        dateTransacted: dateTransacted ?? this.dateTransacted,
+        transactionType: transactionType ?? this.transactionType,
+        pendingTransactionId: pendingTransactionId ?? this.pendingTransactionId,
+        categoryId: categoryId ?? this.categoryId,
+        category: category ?? this.category,
+        location: location ?? this.location,
+        paymentMeta: paymentMeta ?? this.paymentMeta,
+        accountOwner: accountOwner ?? this.accountOwner,
+        name: name ?? this.name,
+        originalDescription: originalDescription ?? this.originalDescription,
+        accountId: accountId ?? this.accountId,
+        amount: amount ?? this.amount,
+        isoCurrencyCode: isoCurrencyCode ?? this.isoCurrencyCode,
+        unofficialCurrencyCode:
+            unofficialCurrencyCode ?? this.unofficialCurrencyCode,
+        date: date ?? this.date,
+        pending: pending ?? this.pending,
+        transactionId: transactionId ?? this.transactionId,
+        merchantName: merchantName ?? this.merchantName,
+        checkNumber: checkNumber ?? this.checkNumber);
   }
 }
 
@@ -28963,7 +29981,7 @@ extension $AccountAccessExtension on AccountAccess {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AccountProductAccessNullable extends AccountProductAccess {
+class AccountProductAccessNullable {
   AccountProductAccessNullable();
 
   factory AccountProductAccessNullable.fromJson(Map<String, dynamic> json) =>
@@ -29032,7 +30050,7 @@ extension $AccountProductAccessExtension on AccountProductAccess {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ScopesNullable extends Scopes {
+class ScopesNullable {
   ScopesNullable();
 
   factory ScopesNullable.fromJson(Map<String, dynamic> json) =>
@@ -31321,7 +32339,7 @@ extension $WalletTransactionCounterpartyNumbersExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class WalletTransactionCounterpartyBACS extends RecipientBACS {
+class WalletTransactionCounterpartyBACS {
   WalletTransactionCounterpartyBACS();
 
   factory WalletTransactionCounterpartyBACS.fromJson(
@@ -31597,9 +32615,9 @@ class WalletTransaction {
   final String? reference;
   @JsonKey(
       name: 'type',
-      toJson: walletTransactionTypeToJson,
-      fromJson: walletTransactionTypeFromJson)
-  final enums.WalletTransactionType? type;
+      toJson: walletTransactionType$ToJson,
+      fromJson: walletTransactionType$FromJson)
+  final enums.WalletTransactionType$? type;
   @JsonKey(name: 'amount')
   final WalletTransactionAmount? amount;
   @JsonKey(name: 'counterparty')
@@ -31655,7 +32673,7 @@ extension $WalletTransactionExtension on WalletTransaction {
   WalletTransaction copyWith(
       {String? transactionId,
       String? reference,
-      enums.WalletTransactionType? type,
+      enums.WalletTransactionType$? type,
       WalletTransactionAmount? amount,
       WalletTransactionCounterparty? counterparty,
       enums.WalletTransactionStatus? status,
@@ -31682,7 +32700,7 @@ class LinkTokenCreateRequestAccountSubtypes$Depository {
       _$LinkTokenCreateRequestAccountSubtypes$DepositoryFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestAccountSubtypes$DepositoryFromJson;
   static const toJsonFactory =
@@ -31708,7 +32726,7 @@ class LinkTokenCreateRequestAccountSubtypes$Depository {
 extension $LinkTokenCreateRequestAccountSubtypes$DepositoryExtension
     on LinkTokenCreateRequestAccountSubtypes$Depository {
   LinkTokenCreateRequestAccountSubtypes$Depository copyWith(
-      {AccountSubtypes? accountSubtypes}) {
+      {List<AccountSubtype>? accountSubtypes}) {
     return LinkTokenCreateRequestAccountSubtypes$Depository(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -31725,7 +32743,7 @@ class LinkTokenCreateRequestAccountSubtypes$Credit {
       _$LinkTokenCreateRequestAccountSubtypes$CreditFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestAccountSubtypes$CreditFromJson;
   static const toJsonFactory =
@@ -31751,7 +32769,7 @@ class LinkTokenCreateRequestAccountSubtypes$Credit {
 extension $LinkTokenCreateRequestAccountSubtypes$CreditExtension
     on LinkTokenCreateRequestAccountSubtypes$Credit {
   LinkTokenCreateRequestAccountSubtypes$Credit copyWith(
-      {AccountSubtypes? accountSubtypes}) {
+      {List<AccountSubtype>? accountSubtypes}) {
     return LinkTokenCreateRequestAccountSubtypes$Credit(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -31768,7 +32786,7 @@ class LinkTokenCreateRequestAccountSubtypes$Loan {
       _$LinkTokenCreateRequestAccountSubtypes$LoanFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestAccountSubtypes$LoanFromJson;
   static const toJsonFactory =
@@ -31794,7 +32812,7 @@ class LinkTokenCreateRequestAccountSubtypes$Loan {
 extension $LinkTokenCreateRequestAccountSubtypes$LoanExtension
     on LinkTokenCreateRequestAccountSubtypes$Loan {
   LinkTokenCreateRequestAccountSubtypes$Loan copyWith(
-      {AccountSubtypes? accountSubtypes}) {
+      {List<AccountSubtype>? accountSubtypes}) {
     return LinkTokenCreateRequestAccountSubtypes$Loan(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -31811,7 +32829,7 @@ class LinkTokenCreateRequestAccountSubtypes$Investment {
       _$LinkTokenCreateRequestAccountSubtypes$InvestmentFromJson(json);
 
   @JsonKey(name: 'account_subtypes')
-  final AccountSubtypes? accountSubtypes;
+  final List<AccountSubtype>? accountSubtypes;
   static const fromJsonFactory =
       _$LinkTokenCreateRequestAccountSubtypes$InvestmentFromJson;
   static const toJsonFactory =
@@ -31837,7 +32855,7 @@ class LinkTokenCreateRequestAccountSubtypes$Investment {
 extension $LinkTokenCreateRequestAccountSubtypes$InvestmentExtension
     on LinkTokenCreateRequestAccountSubtypes$Investment {
   LinkTokenCreateRequestAccountSubtypes$Investment copyWith(
-      {AccountSubtypes? accountSubtypes}) {
+      {List<AccountSubtype>? accountSubtypes}) {
     return LinkTokenCreateRequestAccountSubtypes$Investment(
         accountSubtypes: accountSubtypes ?? this.accountSubtypes);
   }
@@ -32002,22 +33020,34 @@ String? sandboxItemFireWebhookRequestWebhookCodeToJson(
 
 enums.SandboxItemFireWebhookRequestWebhookCode
     sandboxItemFireWebhookRequestWebhookCodeFromJson(
-        String? sandboxItemFireWebhookRequestWebhookCode) {
-  if (sandboxItemFireWebhookRequestWebhookCode == null) {
-    return enums
-        .SandboxItemFireWebhookRequestWebhookCode.swaggerGeneratedUnknown;
+        Object? sandboxItemFireWebhookRequestWebhookCode) {
+  if (sandboxItemFireWebhookRequestWebhookCode is int) {
+    return enums.$SandboxItemFireWebhookRequestWebhookCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxItemFireWebhookRequestWebhookCode.toString(),
+            orElse: () => const MapEntry(
+                enums.SandboxItemFireWebhookRequestWebhookCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$SandboxItemFireWebhookRequestWebhookCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              sandboxItemFireWebhookRequestWebhookCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.SandboxItemFireWebhookRequestWebhookCode
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (sandboxItemFireWebhookRequestWebhookCode is String) {
+    return enums.$SandboxItemFireWebhookRequestWebhookCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxItemFireWebhookRequestWebhookCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.SandboxItemFireWebhookRequestWebhookCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.SandboxItemFireWebhookRequestWebhookCode.swaggerGeneratedUnknown;
 }
 
 List<String> sandboxItemFireWebhookRequestWebhookCodeListToJson(
@@ -32054,22 +33084,35 @@ String? paymentInitiationPaymentReverseResponseStatusToJson(
 
 enums.PaymentInitiationPaymentReverseResponseStatus
     paymentInitiationPaymentReverseResponseStatusFromJson(
-        String? paymentInitiationPaymentReverseResponseStatus) {
-  if (paymentInitiationPaymentReverseResponseStatus == null) {
-    return enums
-        .PaymentInitiationPaymentReverseResponseStatus.swaggerGeneratedUnknown;
+        Object? paymentInitiationPaymentReverseResponseStatus) {
+  if (paymentInitiationPaymentReverseResponseStatus is int) {
+    return enums.$PaymentInitiationPaymentReverseResponseStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentReverseResponseStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentReverseResponseStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentInitiationPaymentReverseResponseStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentInitiationPaymentReverseResponseStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentInitiationPaymentReverseResponseStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (paymentInitiationPaymentReverseResponseStatus is String) {
+    return enums.$PaymentInitiationPaymentReverseResponseStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentReverseResponseStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentReverseResponseStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .PaymentInitiationPaymentReverseResponseStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentInitiationPaymentReverseResponseStatusListToJson(
@@ -32106,22 +33149,35 @@ String? paymentInitiationPaymentCreateResponseStatusToJson(
 
 enums.PaymentInitiationPaymentCreateResponseStatus
     paymentInitiationPaymentCreateResponseStatusFromJson(
-        String? paymentInitiationPaymentCreateResponseStatus) {
-  if (paymentInitiationPaymentCreateResponseStatus == null) {
-    return enums
-        .PaymentInitiationPaymentCreateResponseStatus.swaggerGeneratedUnknown;
+        Object? paymentInitiationPaymentCreateResponseStatus) {
+  if (paymentInitiationPaymentCreateResponseStatus is int) {
+    return enums.$PaymentInitiationPaymentCreateResponseStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentCreateResponseStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentCreateResponseStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentInitiationPaymentCreateResponseStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentInitiationPaymentCreateResponseStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentInitiationPaymentCreateResponseStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (paymentInitiationPaymentCreateResponseStatus is String) {
+    return enums.$PaymentInitiationPaymentCreateResponseStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentCreateResponseStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentCreateResponseStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .PaymentInitiationPaymentCreateResponseStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentInitiationPaymentCreateResponseStatusListToJson(
@@ -32158,24 +33214,39 @@ String? sandboxItemSetVerificationStatusRequestVerificationStatusToJson(
 
 enums.SandboxItemSetVerificationStatusRequestVerificationStatus
     sandboxItemSetVerificationStatusRequestVerificationStatusFromJson(
-        String? sandboxItemSetVerificationStatusRequestVerificationStatus) {
-  if (sandboxItemSetVerificationStatusRequestVerificationStatus == null) {
-    return enums.SandboxItemSetVerificationStatusRequestVerificationStatus
-        .swaggerGeneratedUnknown;
+        Object? sandboxItemSetVerificationStatusRequestVerificationStatus) {
+  if (sandboxItemSetVerificationStatusRequestVerificationStatus is int) {
+    return enums
+        .$SandboxItemSetVerificationStatusRequestVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxItemSetVerificationStatusRequestVerificationStatus
+                    .toString(),
+            orElse: () => const MapEntry(
+                enums.SandboxItemSetVerificationStatusRequestVerificationStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums
-      .$SandboxItemSetVerificationStatusRequestVerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              sandboxItemSetVerificationStatusRequestVerificationStatus
-                  .toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.SandboxItemSetVerificationStatusRequestVerificationStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (sandboxItemSetVerificationStatusRequestVerificationStatus is String) {
+    return enums
+        .$SandboxItemSetVerificationStatusRequestVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxItemSetVerificationStatusRequestVerificationStatus
+                    .toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.SandboxItemSetVerificationStatusRequestVerificationStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.SandboxItemSetVerificationStatusRequestVerificationStatus
+      .swaggerGeneratedUnknown;
 }
 
 List<String>
@@ -32213,19 +33284,32 @@ String? paymentInitiationPaymentStatusToJson(
 }
 
 enums.PaymentInitiationPaymentStatus paymentInitiationPaymentStatusFromJson(
-    String? paymentInitiationPaymentStatus) {
-  if (paymentInitiationPaymentStatus == null) {
-    return enums.PaymentInitiationPaymentStatus.swaggerGeneratedUnknown;
+    Object? paymentInitiationPaymentStatus) {
+  if (paymentInitiationPaymentStatus is int) {
+    return enums.$PaymentInitiationPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentInitiationPaymentStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentInitiationPaymentStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentInitiationPaymentStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paymentInitiationPaymentStatus is String) {
+    return enums.$PaymentInitiationPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationPaymentStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationPaymentStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.PaymentInitiationPaymentStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentInitiationPaymentStatusListToJson(
@@ -32258,19 +33342,32 @@ String? paymentInitiationRefundStatusToJson(
 }
 
 enums.PaymentInitiationRefundStatus paymentInitiationRefundStatusFromJson(
-    String? paymentInitiationRefundStatus) {
-  if (paymentInitiationRefundStatus == null) {
-    return enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown;
+    Object? paymentInitiationRefundStatus) {
+  if (paymentInitiationRefundStatus is int) {
+    return enums.$PaymentInitiationRefundStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationRefundStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentInitiationRefundStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentInitiationRefundStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paymentInitiationRefundStatus is String) {
+    return enums.$PaymentInitiationRefundStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentInitiationRefundStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.PaymentInitiationRefundStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentInitiationRefundStatusListToJson(
@@ -32305,21 +33402,34 @@ String? processorTokenCreateRequestProcessorToJson(
 
 enums.ProcessorTokenCreateRequestProcessor
     processorTokenCreateRequestProcessorFromJson(
-        String? processorTokenCreateRequestProcessor) {
-  if (processorTokenCreateRequestProcessor == null) {
-    return enums.ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown;
+        Object? processorTokenCreateRequestProcessor) {
+  if (processorTokenCreateRequestProcessor is int) {
+    return enums.$ProcessorTokenCreateRequestProcessorMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                processorTokenCreateRequestProcessor.toString(),
+            orElse: () => const MapEntry(
+                enums.ProcessorTokenCreateRequestProcessor
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$ProcessorTokenCreateRequestProcessorMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              processorTokenCreateRequestProcessor.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums
-                  .ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (processorTokenCreateRequestProcessor is String) {
+    return enums.$ProcessorTokenCreateRequestProcessorMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                processorTokenCreateRequestProcessor.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ProcessorTokenCreateRequestProcessor
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.ProcessorTokenCreateRequestProcessor.swaggerGeneratedUnknown;
 }
 
 List<String> processorTokenCreateRequestProcessorListToJson(
@@ -32355,21 +33465,34 @@ String? depositSwitchCreateRequestCountryCodeToJson(
 
 enums.DepositSwitchCreateRequestCountryCode
     depositSwitchCreateRequestCountryCodeFromJson(
-        String? depositSwitchCreateRequestCountryCode) {
-  if (depositSwitchCreateRequestCountryCode == null) {
-    return enums.DepositSwitchCreateRequestCountryCode.swaggerGeneratedUnknown;
+        Object? depositSwitchCreateRequestCountryCode) {
+  if (depositSwitchCreateRequestCountryCode is int) {
+    return enums.$DepositSwitchCreateRequestCountryCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchCreateRequestCountryCode.toString(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchCreateRequestCountryCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$DepositSwitchCreateRequestCountryCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              depositSwitchCreateRequestCountryCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.DepositSwitchCreateRequestCountryCode
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (depositSwitchCreateRequestCountryCode is String) {
+    return enums.$DepositSwitchCreateRequestCountryCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchCreateRequestCountryCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchCreateRequestCountryCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.DepositSwitchCreateRequestCountryCode.swaggerGeneratedUnknown;
 }
 
 List<String> depositSwitchCreateRequestCountryCodeListToJson(
@@ -32405,20 +33528,34 @@ String? linkTokenCreateRequestAuthFlowTypeToJson(
 
 enums.LinkTokenCreateRequestAuthFlowType
     linkTokenCreateRequestAuthFlowTypeFromJson(
-        String? linkTokenCreateRequestAuthFlowType) {
-  if (linkTokenCreateRequestAuthFlowType == null) {
-    return enums.LinkTokenCreateRequestAuthFlowType.swaggerGeneratedUnknown;
+        Object? linkTokenCreateRequestAuthFlowType) {
+  if (linkTokenCreateRequestAuthFlowType is int) {
+    return enums.$LinkTokenCreateRequestAuthFlowTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                linkTokenCreateRequestAuthFlowType.toString(),
+            orElse: () => const MapEntry(
+                enums
+                    .LinkTokenCreateRequestAuthFlowType.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$LinkTokenCreateRequestAuthFlowTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              linkTokenCreateRequestAuthFlowType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.LinkTokenCreateRequestAuthFlowType.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (linkTokenCreateRequestAuthFlowType is String) {
+    return enums.$LinkTokenCreateRequestAuthFlowTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                linkTokenCreateRequestAuthFlowType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums
+                    .LinkTokenCreateRequestAuthFlowType.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.LinkTokenCreateRequestAuthFlowType.swaggerGeneratedUnknown;
 }
 
 List<String> linkTokenCreateRequestAuthFlowTypeListToJson(
@@ -32449,18 +33586,28 @@ String? itemUpdateTypeToJson(enums.ItemUpdateType? itemUpdateType) {
   return enums.$ItemUpdateTypeMap[itemUpdateType];
 }
 
-enums.ItemUpdateType itemUpdateTypeFromJson(String? itemUpdateType) {
-  if (itemUpdateType == null) {
-    return enums.ItemUpdateType.swaggerGeneratedUnknown;
+enums.ItemUpdateType itemUpdateTypeFromJson(Object? itemUpdateType) {
+  if (itemUpdateType is int) {
+    return enums.$ItemUpdateTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == itemUpdateType.toString(),
+            orElse: () => const MapEntry(
+                enums.ItemUpdateType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ItemUpdateTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == itemUpdateType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.ItemUpdateType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (itemUpdateType is String) {
+    return enums.$ItemUpdateTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == itemUpdateType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ItemUpdateType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.ItemUpdateType.swaggerGeneratedUnknown;
 }
 
 List<String> itemUpdateTypeListToJson(
@@ -32486,18 +33633,28 @@ String? errorErrorTypeToJson(enums.ErrorErrorType? errorErrorType) {
   return enums.$ErrorErrorTypeMap[errorErrorType];
 }
 
-enums.ErrorErrorType errorErrorTypeFromJson(String? errorErrorType) {
-  if (errorErrorType == null) {
-    return enums.ErrorErrorType.swaggerGeneratedUnknown;
+enums.ErrorErrorType errorErrorTypeFromJson(Object? errorErrorType) {
+  if (errorErrorType is int) {
+    return enums.$ErrorErrorTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == errorErrorType.toString(),
+            orElse: () => const MapEntry(
+                enums.ErrorErrorType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ErrorErrorTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == errorErrorType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.ErrorErrorType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (errorErrorType is String) {
+    return enums.$ErrorErrorTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == errorErrorType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ErrorErrorType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.ErrorErrorType.swaggerGeneratedUnknown;
 }
 
 List<String> errorErrorTypeListToJson(
@@ -32523,17 +33680,27 @@ String? accountTypeToJson(enums.AccountType? accountType) {
   return enums.$AccountTypeMap[accountType];
 }
 
-enums.AccountType accountTypeFromJson(String? accountType) {
-  if (accountType == null) {
-    return enums.AccountType.swaggerGeneratedUnknown;
+enums.AccountType accountTypeFromJson(Object? accountType) {
+  if (accountType is int) {
+    return enums.$AccountTypeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == accountType.toString(),
+            orElse: () =>
+                const MapEntry(enums.AccountType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$AccountTypeMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == accountType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.AccountType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (accountType is String) {
+    return enums.$AccountTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == accountType.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.AccountType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.AccountType.swaggerGeneratedUnknown;
 }
 
 List<String> accountTypeListToJson(List<enums.AccountType>? accountType) {
@@ -32558,18 +33725,29 @@ String? overrideAccountTypeToJson(
 }
 
 enums.OverrideAccountType overrideAccountTypeFromJson(
-    String? overrideAccountType) {
-  if (overrideAccountType == null) {
-    return enums.OverrideAccountType.swaggerGeneratedUnknown;
+    Object? overrideAccountType) {
+  if (overrideAccountType is int) {
+    return enums.$OverrideAccountTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == overrideAccountType.toString(),
+            orElse: () => const MapEntry(
+                enums.OverrideAccountType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$OverrideAccountTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == overrideAccountType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.OverrideAccountType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (overrideAccountType is String) {
+    return enums.$OverrideAccountTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                overrideAccountType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.OverrideAccountType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.OverrideAccountType.swaggerGeneratedUnknown;
 }
 
 List<String> overrideAccountTypeListToJson(
@@ -32600,19 +33778,32 @@ String? accountBaseVerificationStatusToJson(
 }
 
 enums.AccountBaseVerificationStatus accountBaseVerificationStatusFromJson(
-    String? accountBaseVerificationStatus) {
-  if (accountBaseVerificationStatus == null) {
-    return enums.AccountBaseVerificationStatus.swaggerGeneratedUnknown;
+    Object? accountBaseVerificationStatus) {
+  if (accountBaseVerificationStatus is int) {
+    return enums.$AccountBaseVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountBaseVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.AccountBaseVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$AccountBaseVerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              accountBaseVerificationStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.AccountBaseVerificationStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (accountBaseVerificationStatus is String) {
+    return enums.$AccountBaseVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountBaseVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AccountBaseVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.AccountBaseVerificationStatus.swaggerGeneratedUnknown;
 }
 
 List<String> accountBaseVerificationStatusListToJson(
@@ -32642,18 +33833,28 @@ String? accountSubtypeToJson(enums.AccountSubtype? accountSubtype) {
   return enums.$AccountSubtypeMap[accountSubtype];
 }
 
-enums.AccountSubtype accountSubtypeFromJson(String? accountSubtype) {
-  if (accountSubtype == null) {
-    return enums.AccountSubtype.swaggerGeneratedUnknown;
+enums.AccountSubtype accountSubtypeFromJson(Object? accountSubtype) {
+  if (accountSubtype is int) {
+    return enums.$AccountSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == accountSubtype.toString(),
+            orElse: () => const MapEntry(
+                enums.AccountSubtype.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$AccountSubtypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == accountSubtype.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.AccountSubtype.swaggerGeneratedUnknown, ''))
-      .key;
+  if (accountSubtype is String) {
+    return enums.$AccountSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == accountSubtype.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AccountSubtype.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.AccountSubtype.swaggerGeneratedUnknown;
 }
 
 List<String> accountSubtypeListToJson(
@@ -32682,19 +33883,32 @@ String? transactionBaseTransactionTypeToJson(
 }
 
 enums.TransactionBaseTransactionType transactionBaseTransactionTypeFromJson(
-    String? transactionBaseTransactionType) {
-  if (transactionBaseTransactionType == null) {
-    return enums.TransactionBaseTransactionType.swaggerGeneratedUnknown;
+    Object? transactionBaseTransactionType) {
+  if (transactionBaseTransactionType is int) {
+    return enums.$TransactionBaseTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionBaseTransactionType.toString(),
+            orElse: () => const MapEntry(
+                enums.TransactionBaseTransactionType.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$TransactionBaseTransactionTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transactionBaseTransactionType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransactionBaseTransactionType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transactionBaseTransactionType is String) {
+    return enums.$TransactionBaseTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionBaseTransactionType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransactionBaseTransactionType.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.TransactionBaseTransactionType.swaggerGeneratedUnknown;
 }
 
 List<String> transactionBaseTransactionTypeListToJson(
@@ -32727,19 +33941,30 @@ String? transactionPaymentChannelToJson(
 }
 
 enums.TransactionPaymentChannel transactionPaymentChannelFromJson(
-    String? transactionPaymentChannel) {
-  if (transactionPaymentChannel == null) {
-    return enums.TransactionPaymentChannel.swaggerGeneratedUnknown;
+    Object? transactionPaymentChannel) {
+  if (transactionPaymentChannel is int) {
+    return enums.$TransactionPaymentChannelMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionPaymentChannel.toString(),
+            orElse: () => const MapEntry(
+                enums.TransactionPaymentChannel.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransactionPaymentChannelMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transactionPaymentChannel.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransactionPaymentChannel.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transactionPaymentChannel is String) {
+    return enums.$TransactionPaymentChannelMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionPaymentChannel.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransactionPaymentChannel.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransactionPaymentChannel.swaggerGeneratedUnknown;
 }
 
 List<String> transactionPaymentChannelListToJson(
@@ -32764,25 +33989,92 @@ List<enums.TransactionPaymentChannel> transactionPaymentChannelListFromJson(
       .toList();
 }
 
+String? transactionTransactionTypeToJson(
+    enums.TransactionTransactionType? transactionTransactionType) {
+  return enums.$TransactionTransactionTypeMap[transactionTransactionType];
+}
+
+enums.TransactionTransactionType transactionTransactionTypeFromJson(
+    Object? transactionTransactionType) {
+  if (transactionTransactionType is int) {
+    return enums.$TransactionTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionTransactionType.toString(),
+            orElse: () => const MapEntry(
+                enums.TransactionTransactionType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  if (transactionTransactionType is String) {
+    return enums.$TransactionTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transactionTransactionType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransactionTransactionType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransactionTransactionType.swaggerGeneratedUnknown;
+}
+
+List<String> transactionTransactionTypeListToJson(
+    List<enums.TransactionTransactionType>? transactionTransactionType) {
+  if (transactionTransactionType == null) {
+    return [];
+  }
+
+  return transactionTransactionType
+      .map((e) => enums.$TransactionTransactionTypeMap[e]!)
+      .toList();
+}
+
+List<enums.TransactionTransactionType> transactionTransactionTypeListFromJson(
+    List? transactionTransactionType) {
+  if (transactionTransactionType == null) {
+    return [];
+  }
+
+  return transactionTransactionType
+      .map((e) => transactionTransactionTypeFromJson(e.toString()))
+      .toList();
+}
+
 String? recurringTransactionFrequencyToJson(
     enums.RecurringTransactionFrequency? recurringTransactionFrequency) {
   return enums.$RecurringTransactionFrequencyMap[recurringTransactionFrequency];
 }
 
 enums.RecurringTransactionFrequency recurringTransactionFrequencyFromJson(
-    String? recurringTransactionFrequency) {
-  if (recurringTransactionFrequency == null) {
-    return enums.RecurringTransactionFrequency.swaggerGeneratedUnknown;
+    Object? recurringTransactionFrequency) {
+  if (recurringTransactionFrequency is int) {
+    return enums.$RecurringTransactionFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                recurringTransactionFrequency.toString(),
+            orElse: () => const MapEntry(
+                enums.RecurringTransactionFrequency.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$RecurringTransactionFrequencyMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              recurringTransactionFrequency.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.RecurringTransactionFrequency.swaggerGeneratedUnknown, ''))
-      .key;
+  if (recurringTransactionFrequency is String) {
+    return enums.$RecurringTransactionFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                recurringTransactionFrequency.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.RecurringTransactionFrequency.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.RecurringTransactionFrequency.swaggerGeneratedUnknown;
 }
 
 List<String> recurringTransactionFrequencyListToJson(
@@ -32812,17 +34104,27 @@ String? countryCodeToJson(enums.CountryCode? countryCode) {
   return enums.$CountryCodeMap[countryCode];
 }
 
-enums.CountryCode countryCodeFromJson(String? countryCode) {
-  if (countryCode == null) {
-    return enums.CountryCode.swaggerGeneratedUnknown;
+enums.CountryCode countryCodeFromJson(Object? countryCode) {
+  if (countryCode is int) {
+    return enums.$CountryCodeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == countryCode.toString(),
+            orElse: () =>
+                const MapEntry(enums.CountryCode.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$CountryCodeMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == countryCode.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.CountryCode.swaggerGeneratedUnknown, ''))
-      .key;
+  if (countryCode is String) {
+    return enums.$CountryCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == countryCode.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.CountryCode.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.CountryCode.swaggerGeneratedUnknown;
 }
 
 List<String> countryCodeListToJson(List<enums.CountryCode>? countryCode) {
@@ -32845,18 +34147,28 @@ String? transactionCodeToJson(enums.TransactionCode? transactionCode) {
   return enums.$TransactionCodeMap[transactionCode];
 }
 
-enums.TransactionCode transactionCodeFromJson(String? transactionCode) {
-  if (transactionCode == null) {
-    return enums.TransactionCode.swaggerGeneratedUnknown;
+enums.TransactionCode transactionCodeFromJson(Object? transactionCode) {
+  if (transactionCode is int) {
+    return enums.$TransactionCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transactionCode.toString(),
+            orElse: () => const MapEntry(
+                enums.TransactionCode.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransactionCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transactionCode.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.TransactionCode.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transactionCode is String) {
+    return enums.$TransactionCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transactionCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransactionCode.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransactionCode.swaggerGeneratedUnknown;
 }
 
 List<String> transactionCodeListToJson(
@@ -32878,159 +34190,202 @@ List<enums.TransactionCode> transactionCodeListFromJson(List? transactionCode) {
       .toList();
 }
 
-String? phoneNumberTypeToJson(enums.PhoneNumberType? phoneNumberType) {
-  return enums.$PhoneNumberTypeMap[phoneNumberType];
+String? phoneNumberType$ToJson(enums.PhoneNumberType$? phoneNumberType$) {
+  return enums.$PhoneNumberType$Map[phoneNumberType$];
 }
 
-enums.PhoneNumberType phoneNumberTypeFromJson(String? phoneNumberType) {
-  if (phoneNumberType == null) {
-    return enums.PhoneNumberType.swaggerGeneratedUnknown;
+enums.PhoneNumberType$ phoneNumberType$FromJson(Object? phoneNumberType$) {
+  if (phoneNumberType$ is int) {
+    return enums.$PhoneNumberType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == phoneNumberType$.toString(),
+            orElse: () => const MapEntry(
+                enums.PhoneNumberType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PhoneNumberTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == phoneNumberType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.PhoneNumberType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (phoneNumberType$ is String) {
+    return enums.$PhoneNumberType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == phoneNumberType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PhoneNumberType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PhoneNumberType$.swaggerGeneratedUnknown;
 }
 
-List<String> phoneNumberTypeListToJson(
-    List<enums.PhoneNumberType>? phoneNumberType) {
-  if (phoneNumberType == null) {
+List<String> phoneNumberType$ListToJson(
+    List<enums.PhoneNumberType$>? phoneNumberType$) {
+  if (phoneNumberType$ == null) {
     return [];
   }
 
-  return phoneNumberType.map((e) => enums.$PhoneNumberTypeMap[e]!).toList();
+  return phoneNumberType$.map((e) => enums.$PhoneNumberType$Map[e]!).toList();
 }
 
-List<enums.PhoneNumberType> phoneNumberTypeListFromJson(List? phoneNumberType) {
-  if (phoneNumberType == null) {
+List<enums.PhoneNumberType$> phoneNumberType$ListFromJson(
+    List? phoneNumberType$) {
+  if (phoneNumberType$ == null) {
     return [];
   }
 
-  return phoneNumberType
-      .map((e) => phoneNumberTypeFromJson(e.toString()))
+  return phoneNumberType$
+      .map((e) => phoneNumberType$FromJson(e.toString()))
       .toList();
 }
 
-String? emailTypeToJson(enums.EmailType? emailType) {
-  return enums.$EmailTypeMap[emailType];
+String? emailType$ToJson(enums.EmailType$? emailType$) {
+  return enums.$EmailType$Map[emailType$];
 }
 
-enums.EmailType emailTypeFromJson(String? emailType) {
-  if (emailType == null) {
-    return enums.EmailType.swaggerGeneratedUnknown;
+enums.EmailType$ emailType$FromJson(Object? emailType$) {
+  if (emailType$ is int) {
+    return enums.$EmailType$Map.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == emailType$.toString(),
+            orElse: () =>
+                const MapEntry(enums.EmailType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$EmailTypeMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == emailType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.EmailType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (emailType$ is String) {
+    return enums.$EmailType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == emailType$.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.EmailType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.EmailType$.swaggerGeneratedUnknown;
 }
 
-List<String> emailTypeListToJson(List<enums.EmailType>? emailType) {
-  if (emailType == null) {
+List<String> emailType$ListToJson(List<enums.EmailType$>? emailType$) {
+  if (emailType$ == null) {
     return [];
   }
 
-  return emailType.map((e) => enums.$EmailTypeMap[e]!).toList();
+  return emailType$.map((e) => enums.$EmailType$Map[e]!).toList();
 }
 
-List<enums.EmailType> emailTypeListFromJson(List? emailType) {
-  if (emailType == null) {
+List<enums.EmailType$> emailType$ListFromJson(List? emailType$) {
+  if (emailType$ == null) {
     return [];
   }
 
-  return emailType.map((e) => emailTypeFromJson(e.toString())).toList();
+  return emailType$.map((e) => emailType$FromJson(e.toString())).toList();
 }
 
-String? studentLoanStatusTypeToJson(
-    enums.StudentLoanStatusType? studentLoanStatusType) {
-  return enums.$StudentLoanStatusTypeMap[studentLoanStatusType];
+String? studentLoanStatusType$ToJson(
+    enums.StudentLoanStatusType$? studentLoanStatusType$) {
+  return enums.$StudentLoanStatusType$Map[studentLoanStatusType$];
 }
 
-enums.StudentLoanStatusType studentLoanStatusTypeFromJson(
-    String? studentLoanStatusType) {
-  if (studentLoanStatusType == null) {
-    return enums.StudentLoanStatusType.swaggerGeneratedUnknown;
+enums.StudentLoanStatusType$ studentLoanStatusType$FromJson(
+    Object? studentLoanStatusType$) {
+  if (studentLoanStatusType$ is int) {
+    return enums.$StudentLoanStatusType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                studentLoanStatusType$.toString(),
+            orElse: () => const MapEntry(
+                enums.StudentLoanStatusType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$StudentLoanStatusTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              studentLoanStatusType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.StudentLoanStatusType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (studentLoanStatusType$ is String) {
+    return enums.$StudentLoanStatusType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                studentLoanStatusType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.StudentLoanStatusType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.StudentLoanStatusType$.swaggerGeneratedUnknown;
 }
 
-List<String> studentLoanStatusTypeListToJson(
-    List<enums.StudentLoanStatusType>? studentLoanStatusType) {
-  if (studentLoanStatusType == null) {
+List<String> studentLoanStatusType$ListToJson(
+    List<enums.StudentLoanStatusType$>? studentLoanStatusType$) {
+  if (studentLoanStatusType$ == null) {
     return [];
   }
 
-  return studentLoanStatusType
-      .map((e) => enums.$StudentLoanStatusTypeMap[e]!)
+  return studentLoanStatusType$
+      .map((e) => enums.$StudentLoanStatusType$Map[e]!)
       .toList();
 }
 
-List<enums.StudentLoanStatusType> studentLoanStatusTypeListFromJson(
-    List? studentLoanStatusType) {
-  if (studentLoanStatusType == null) {
+List<enums.StudentLoanStatusType$> studentLoanStatusType$ListFromJson(
+    List? studentLoanStatusType$) {
+  if (studentLoanStatusType$ == null) {
     return [];
   }
 
-  return studentLoanStatusType
-      .map((e) => studentLoanStatusTypeFromJson(e.toString()))
+  return studentLoanStatusType$
+      .map((e) => studentLoanStatusType$FromJson(e.toString()))
       .toList();
 }
 
-String? studentRepaymentPlanTypeToJson(
-    enums.StudentRepaymentPlanType? studentRepaymentPlanType) {
-  return enums.$StudentRepaymentPlanTypeMap[studentRepaymentPlanType];
+String? studentRepaymentPlanType$ToJson(
+    enums.StudentRepaymentPlanType$? studentRepaymentPlanType$) {
+  return enums.$StudentRepaymentPlanType$Map[studentRepaymentPlanType$];
 }
 
-enums.StudentRepaymentPlanType studentRepaymentPlanTypeFromJson(
-    String? studentRepaymentPlanType) {
-  if (studentRepaymentPlanType == null) {
-    return enums.StudentRepaymentPlanType.swaggerGeneratedUnknown;
+enums.StudentRepaymentPlanType$ studentRepaymentPlanType$FromJson(
+    Object? studentRepaymentPlanType$) {
+  if (studentRepaymentPlanType$ is int) {
+    return enums.$StudentRepaymentPlanType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                studentRepaymentPlanType$.toString(),
+            orElse: () => const MapEntry(
+                enums.StudentRepaymentPlanType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$StudentRepaymentPlanTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              studentRepaymentPlanType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.StudentRepaymentPlanType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (studentRepaymentPlanType$ is String) {
+    return enums.$StudentRepaymentPlanType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                studentRepaymentPlanType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.StudentRepaymentPlanType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.StudentRepaymentPlanType$.swaggerGeneratedUnknown;
 }
 
-List<String> studentRepaymentPlanTypeListToJson(
-    List<enums.StudentRepaymentPlanType>? studentRepaymentPlanType) {
-  if (studentRepaymentPlanType == null) {
+List<String> studentRepaymentPlanType$ListToJson(
+    List<enums.StudentRepaymentPlanType$>? studentRepaymentPlanType$) {
+  if (studentRepaymentPlanType$ == null) {
     return [];
   }
 
-  return studentRepaymentPlanType
-      .map((e) => enums.$StudentRepaymentPlanTypeMap[e]!)
+  return studentRepaymentPlanType$
+      .map((e) => enums.$StudentRepaymentPlanType$Map[e]!)
       .toList();
 }
 
-List<enums.StudentRepaymentPlanType> studentRepaymentPlanTypeListFromJson(
-    List? studentRepaymentPlanType) {
-  if (studentRepaymentPlanType == null) {
+List<enums.StudentRepaymentPlanType$> studentRepaymentPlanType$ListFromJson(
+    List? studentRepaymentPlanType$) {
+  if (studentRepaymentPlanType$ == null) {
     return [];
   }
 
-  return studentRepaymentPlanType
-      .map((e) => studentRepaymentPlanTypeFromJson(e.toString()))
+  return studentRepaymentPlanType$
+      .map((e) => studentRepaymentPlanType$FromJson(e.toString()))
       .toList();
 }
 
@@ -33038,17 +34393,27 @@ String? aprAprTypeToJson(enums.AprAprType? aprAprType) {
   return enums.$AprAprTypeMap[aprAprType];
 }
 
-enums.AprAprType aprAprTypeFromJson(String? aprAprType) {
-  if (aprAprType == null) {
-    return enums.AprAprType.swaggerGeneratedUnknown;
+enums.AprAprType aprAprTypeFromJson(Object? aprAprType) {
+  if (aprAprType is int) {
+    return enums.$AprAprTypeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == aprAprType.toString(),
+            orElse: () =>
+                const MapEntry(enums.AprAprType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$AprAprTypeMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == aprAprType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.AprAprType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (aprAprType is String) {
+    return enums.$AprAprTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == aprAprType.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.AprAprType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.AprAprType.swaggerGeneratedUnknown;
 }
 
 List<String> aprAprTypeListToJson(List<enums.AprAprType>? aprAprType) {
@@ -33073,19 +34438,30 @@ String? paymentScheduleIntervalToJson(
 }
 
 enums.PaymentScheduleInterval paymentScheduleIntervalFromJson(
-    String? paymentScheduleInterval) {
-  if (paymentScheduleInterval == null) {
-    return enums.PaymentScheduleInterval.swaggerGeneratedUnknown;
+    Object? paymentScheduleInterval) {
+  if (paymentScheduleInterval is int) {
+    return enums.$PaymentScheduleIntervalMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentScheduleInterval.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentScheduleInterval.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PaymentScheduleIntervalMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentScheduleInterval.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentScheduleInterval.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paymentScheduleInterval is String) {
+    return enums.$PaymentScheduleIntervalMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentScheduleInterval.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentScheduleInterval.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PaymentScheduleInterval.swaggerGeneratedUnknown;
 }
 
 List<String> paymentScheduleIntervalListToJson(
@@ -33114,17 +34490,26 @@ String? productsToJson(enums.Products? products) {
   return enums.$ProductsMap[products];
 }
 
-enums.Products productsFromJson(String? products) {
-  if (products == null) {
-    return enums.Products.swaggerGeneratedUnknown;
+enums.Products productsFromJson(Object? products) {
+  if (products is int) {
+    return enums.$ProductsMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == products.toString(),
+            orElse: () =>
+                const MapEntry(enums.Products.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ProductsMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == products.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.Products.swaggerGeneratedUnknown, ''))
-      .key;
+  if (products is String) {
+    return enums.$ProductsMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == products.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.Products.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.Products.swaggerGeneratedUnknown;
 }
 
 List<String> productsListToJson(List<enums.Products>? products) {
@@ -33149,18 +34534,29 @@ String? productStatusStatusToJson(
 }
 
 enums.ProductStatusStatus productStatusStatusFromJson(
-    String? productStatusStatus) {
-  if (productStatusStatus == null) {
-    return enums.ProductStatusStatus.swaggerGeneratedUnknown;
+    Object? productStatusStatus) {
+  if (productStatusStatus is int) {
+    return enums.$ProductStatusStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == productStatusStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.ProductStatusStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ProductStatusStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == productStatusStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.ProductStatusStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (productStatusStatus is String) {
+    return enums.$ProductStatusStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                productStatusStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ProductStatusStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.ProductStatusStatus.swaggerGeneratedUnknown;
 }
 
 List<String> productStatusStatusListToJson(
@@ -33194,21 +34590,34 @@ String? productStatusBreakdownRefreshIntervalToJson(
 
 enums.ProductStatusBreakdownRefreshInterval
     productStatusBreakdownRefreshIntervalFromJson(
-        String? productStatusBreakdownRefreshInterval) {
-  if (productStatusBreakdownRefreshInterval == null) {
-    return enums.ProductStatusBreakdownRefreshInterval.swaggerGeneratedUnknown;
+        Object? productStatusBreakdownRefreshInterval) {
+  if (productStatusBreakdownRefreshInterval is int) {
+    return enums.$ProductStatusBreakdownRefreshIntervalMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                productStatusBreakdownRefreshInterval.toString(),
+            orElse: () => const MapEntry(
+                enums.ProductStatusBreakdownRefreshInterval
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$ProductStatusBreakdownRefreshIntervalMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              productStatusBreakdownRefreshInterval.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.ProductStatusBreakdownRefreshInterval
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (productStatusBreakdownRefreshInterval is String) {
+    return enums.$ProductStatusBreakdownRefreshIntervalMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                productStatusBreakdownRefreshInterval.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ProductStatusBreakdownRefreshInterval
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.ProductStatusBreakdownRefreshInterval.swaggerGeneratedUnknown;
 }
 
 List<String> productStatusBreakdownRefreshIntervalListToJson(
@@ -33240,18 +34649,28 @@ String? warningWarningCodeToJson(enums.WarningWarningCode? warningWarningCode) {
 }
 
 enums.WarningWarningCode warningWarningCodeFromJson(
-    String? warningWarningCode) {
-  if (warningWarningCode == null) {
-    return enums.WarningWarningCode.swaggerGeneratedUnknown;
+    Object? warningWarningCode) {
+  if (warningWarningCode is int) {
+    return enums.$WarningWarningCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == warningWarningCode.toString(),
+            orElse: () => const MapEntry(
+                enums.WarningWarningCode.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$WarningWarningCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == warningWarningCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.WarningWarningCode.swaggerGeneratedUnknown, ''))
-      .key;
+  if (warningWarningCode is String) {
+    return enums.$WarningWarningCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == warningWarningCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.WarningWarningCode.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.WarningWarningCode.swaggerGeneratedUnknown;
 }
 
 List<String> warningWarningCodeListToJson(
@@ -33282,19 +34701,29 @@ String? paymentAmountCurrencyToJson(
 }
 
 enums.PaymentAmountCurrency paymentAmountCurrencyFromJson(
-    String? paymentAmountCurrency) {
-  if (paymentAmountCurrency == null) {
-    return enums.PaymentAmountCurrency.swaggerGeneratedUnknown;
+    Object? paymentAmountCurrency) {
+  if (paymentAmountCurrency is int) {
+    return enums.$PaymentAmountCurrencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == paymentAmountCurrency.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentAmountCurrency.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PaymentAmountCurrencyMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentAmountCurrency.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentAmountCurrency.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paymentAmountCurrency is String) {
+    return enums.$PaymentAmountCurrencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentAmountCurrency.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentAmountCurrency.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PaymentAmountCurrency.swaggerGeneratedUnknown;
 }
 
 List<String> paymentAmountCurrencyListToJson(
@@ -33328,22 +34757,35 @@ String? paymentStatusUpdateWebhookNewPaymentStatusToJson(
 
 enums.PaymentStatusUpdateWebhookNewPaymentStatus
     paymentStatusUpdateWebhookNewPaymentStatusFromJson(
-        String? paymentStatusUpdateWebhookNewPaymentStatus) {
-  if (paymentStatusUpdateWebhookNewPaymentStatus == null) {
-    return enums
-        .PaymentStatusUpdateWebhookNewPaymentStatus.swaggerGeneratedUnknown;
+        Object? paymentStatusUpdateWebhookNewPaymentStatus) {
+  if (paymentStatusUpdateWebhookNewPaymentStatus is int) {
+    return enums.$PaymentStatusUpdateWebhookNewPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentStatusUpdateWebhookNewPaymentStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentStatusUpdateWebhookNewPaymentStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentStatusUpdateWebhookNewPaymentStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentStatusUpdateWebhookNewPaymentStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentStatusUpdateWebhookNewPaymentStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (paymentStatusUpdateWebhookNewPaymentStatus is String) {
+    return enums.$PaymentStatusUpdateWebhookNewPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentStatusUpdateWebhookNewPaymentStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentStatusUpdateWebhookNewPaymentStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .PaymentStatusUpdateWebhookNewPaymentStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentStatusUpdateWebhookNewPaymentStatusListToJson(
@@ -33380,22 +34822,35 @@ String? paymentStatusUpdateWebhookOldPaymentStatusToJson(
 
 enums.PaymentStatusUpdateWebhookOldPaymentStatus
     paymentStatusUpdateWebhookOldPaymentStatusFromJson(
-        String? paymentStatusUpdateWebhookOldPaymentStatus) {
-  if (paymentStatusUpdateWebhookOldPaymentStatus == null) {
-    return enums
-        .PaymentStatusUpdateWebhookOldPaymentStatus.swaggerGeneratedUnknown;
+        Object? paymentStatusUpdateWebhookOldPaymentStatus) {
+  if (paymentStatusUpdateWebhookOldPaymentStatus is int) {
+    return enums.$PaymentStatusUpdateWebhookOldPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentStatusUpdateWebhookOldPaymentStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaymentStatusUpdateWebhookOldPaymentStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$PaymentStatusUpdateWebhookOldPaymentStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paymentStatusUpdateWebhookOldPaymentStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaymentStatusUpdateWebhookOldPaymentStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (paymentStatusUpdateWebhookOldPaymentStatus is String) {
+    return enums.$PaymentStatusUpdateWebhookOldPaymentStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paymentStatusUpdateWebhookOldPaymentStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaymentStatusUpdateWebhookOldPaymentStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .PaymentStatusUpdateWebhookOldPaymentStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paymentStatusUpdateWebhookOldPaymentStatusListToJson(
@@ -33423,46 +34878,57 @@ List<enums.PaymentStatusUpdateWebhookOldPaymentStatus>
       .toList();
 }
 
-String? investmentTransactionTypeToJson(
-    enums.InvestmentTransactionType? investmentTransactionType) {
-  return enums.$InvestmentTransactionTypeMap[investmentTransactionType];
+String? investmentTransactionType$ToJson(
+    enums.InvestmentTransactionType$? investmentTransactionType$) {
+  return enums.$InvestmentTransactionType$Map[investmentTransactionType$];
 }
 
-enums.InvestmentTransactionType investmentTransactionTypeFromJson(
-    String? investmentTransactionType) {
-  if (investmentTransactionType == null) {
-    return enums.InvestmentTransactionType.swaggerGeneratedUnknown;
+enums.InvestmentTransactionType$ investmentTransactionType$FromJson(
+    Object? investmentTransactionType$) {
+  if (investmentTransactionType$ is int) {
+    return enums.$InvestmentTransactionType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                investmentTransactionType$.toString(),
+            orElse: () => const MapEntry(
+                enums.InvestmentTransactionType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$InvestmentTransactionTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              investmentTransactionType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.InvestmentTransactionType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (investmentTransactionType$ is String) {
+    return enums.$InvestmentTransactionType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                investmentTransactionType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.InvestmentTransactionType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.InvestmentTransactionType$.swaggerGeneratedUnknown;
 }
 
-List<String> investmentTransactionTypeListToJson(
-    List<enums.InvestmentTransactionType>? investmentTransactionType) {
-  if (investmentTransactionType == null) {
+List<String> investmentTransactionType$ListToJson(
+    List<enums.InvestmentTransactionType$>? investmentTransactionType$) {
+  if (investmentTransactionType$ == null) {
     return [];
   }
 
-  return investmentTransactionType
-      .map((e) => enums.$InvestmentTransactionTypeMap[e]!)
+  return investmentTransactionType$
+      .map((e) => enums.$InvestmentTransactionType$Map[e]!)
       .toList();
 }
 
-List<enums.InvestmentTransactionType> investmentTransactionTypeListFromJson(
-    List? investmentTransactionType) {
-  if (investmentTransactionType == null) {
+List<enums.InvestmentTransactionType$> investmentTransactionType$ListFromJson(
+    List? investmentTransactionType$) {
+  if (investmentTransactionType$ == null) {
     return [];
   }
 
-  return investmentTransactionType
-      .map((e) => investmentTransactionTypeFromJson(e.toString()))
+  return investmentTransactionType$
+      .map((e) => investmentTransactionType$FromJson(e.toString()))
       .toList();
 }
 
@@ -33472,19 +34938,30 @@ String? investmentTransactionSubtypeToJson(
 }
 
 enums.InvestmentTransactionSubtype investmentTransactionSubtypeFromJson(
-    String? investmentTransactionSubtype) {
-  if (investmentTransactionSubtype == null) {
-    return enums.InvestmentTransactionSubtype.swaggerGeneratedUnknown;
+    Object? investmentTransactionSubtype) {
+  if (investmentTransactionSubtype is int) {
+    return enums.$InvestmentTransactionSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                investmentTransactionSubtype.toString(),
+            orElse: () => const MapEntry(
+                enums.InvestmentTransactionSubtype.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$InvestmentTransactionSubtypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              investmentTransactionSubtype.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.InvestmentTransactionSubtype.swaggerGeneratedUnknown, ''))
-      .key;
+  if (investmentTransactionSubtype is String) {
+    return enums.$InvestmentTransactionSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                investmentTransactionSubtype.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.InvestmentTransactionSubtype.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.InvestmentTransactionSubtype.swaggerGeneratedUnknown;
 }
 
 List<String> investmentTransactionSubtypeListToJson(
@@ -33516,19 +34993,32 @@ String? depositSwitchGetResponseStateToJson(
 }
 
 enums.DepositSwitchGetResponseState depositSwitchGetResponseStateFromJson(
-    String? depositSwitchGetResponseState) {
-  if (depositSwitchGetResponseState == null) {
-    return enums.DepositSwitchGetResponseState.swaggerGeneratedUnknown;
+    Object? depositSwitchGetResponseState) {
+  if (depositSwitchGetResponseState is int) {
+    return enums.$DepositSwitchGetResponseStateMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchGetResponseState.toString(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchGetResponseState.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$DepositSwitchGetResponseStateMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              depositSwitchGetResponseState.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.DepositSwitchGetResponseState.swaggerGeneratedUnknown, ''))
-      .key;
+  if (depositSwitchGetResponseState is String) {
+    return enums.$DepositSwitchGetResponseStateMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchGetResponseState.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchGetResponseState.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.DepositSwitchGetResponseState.swaggerGeneratedUnknown;
 }
 
 List<String> depositSwitchGetResponseStateListToJson(
@@ -33563,21 +35053,34 @@ String? depositSwitchGetResponseSwitchMethodToJson(
 
 enums.DepositSwitchGetResponseSwitchMethod
     depositSwitchGetResponseSwitchMethodFromJson(
-        String? depositSwitchGetResponseSwitchMethod) {
-  if (depositSwitchGetResponseSwitchMethod == null) {
-    return enums.DepositSwitchGetResponseSwitchMethod.swaggerGeneratedUnknown;
+        Object? depositSwitchGetResponseSwitchMethod) {
+  if (depositSwitchGetResponseSwitchMethod is int) {
+    return enums.$DepositSwitchGetResponseSwitchMethodMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchGetResponseSwitchMethod.toString(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchGetResponseSwitchMethod
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$DepositSwitchGetResponseSwitchMethodMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              depositSwitchGetResponseSwitchMethod.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums
-                  .DepositSwitchGetResponseSwitchMethod.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (depositSwitchGetResponseSwitchMethod is String) {
+    return enums.$DepositSwitchGetResponseSwitchMethodMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchGetResponseSwitchMethod.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchGetResponseSwitchMethod
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.DepositSwitchGetResponseSwitchMethod.swaggerGeneratedUnknown;
 }
 
 List<String> depositSwitchGetResponseSwitchMethodListToJson(
@@ -33608,17 +35111,26 @@ String? aCHClassToJson(enums.ACHClass? aCHClass) {
   return enums.$ACHClassMap[aCHClass];
 }
 
-enums.ACHClass aCHClassFromJson(String? aCHClass) {
-  if (aCHClass == null) {
-    return enums.ACHClass.swaggerGeneratedUnknown;
+enums.ACHClass aCHClassFromJson(Object? aCHClass) {
+  if (aCHClass is int) {
+    return enums.$ACHClassMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == aCHClass.toString(),
+            orElse: () =>
+                const MapEntry(enums.ACHClass.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ACHClassMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == aCHClass.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.ACHClass.swaggerGeneratedUnknown, ''))
-      .key;
+  if (aCHClass is String) {
+    return enums.$ACHClassMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == aCHClass.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.ACHClass.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.ACHClass.swaggerGeneratedUnknown;
 }
 
 List<String> aCHClassListToJson(List<enums.ACHClass>? aCHClass) {
@@ -33643,19 +35155,30 @@ String? transferIntentCreateModeToJson(
 }
 
 enums.TransferIntentCreateMode transferIntentCreateModeFromJson(
-    String? transferIntentCreateMode) {
-  if (transferIntentCreateMode == null) {
-    return enums.TransferIntentCreateMode.swaggerGeneratedUnknown;
+    Object? transferIntentCreateMode) {
+  if (transferIntentCreateMode is int) {
+    return enums.$TransferIntentCreateModeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentCreateMode.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentCreateMode.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferIntentCreateModeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferIntentCreateMode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferIntentCreateMode.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferIntentCreateMode is String) {
+    return enums.$TransferIntentCreateModeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentCreateMode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentCreateMode.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferIntentCreateMode.swaggerGeneratedUnknown;
 }
 
 List<String> transferIntentCreateModeListToJson(
@@ -33689,22 +35212,35 @@ String? transferAuthorizationDecisionRationaleCodeToJson(
 
 enums.TransferAuthorizationDecisionRationaleCode
     transferAuthorizationDecisionRationaleCodeFromJson(
-        String? transferAuthorizationDecisionRationaleCode) {
-  if (transferAuthorizationDecisionRationaleCode == null) {
-    return enums
-        .TransferAuthorizationDecisionRationaleCode.swaggerGeneratedUnknown;
+        Object? transferAuthorizationDecisionRationaleCode) {
+  if (transferAuthorizationDecisionRationaleCode is int) {
+    return enums.$TransferAuthorizationDecisionRationaleCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferAuthorizationDecisionRationaleCode.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferAuthorizationDecisionRationaleCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$TransferAuthorizationDecisionRationaleCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferAuthorizationDecisionRationaleCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferAuthorizationDecisionRationaleCode
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (transferAuthorizationDecisionRationaleCode is String) {
+    return enums.$TransferAuthorizationDecisionRationaleCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferAuthorizationDecisionRationaleCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferAuthorizationDecisionRationaleCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .TransferAuthorizationDecisionRationaleCode.swaggerGeneratedUnknown;
 }
 
 List<String> transferAuthorizationDecisionRationaleCodeListToJson(
@@ -33736,18 +35272,27 @@ String? transferTypeToJson(enums.TransferType? transferType) {
   return enums.$TransferTypeMap[transferType];
 }
 
-enums.TransferType transferTypeFromJson(String? transferType) {
-  if (transferType == null) {
-    return enums.TransferType.swaggerGeneratedUnknown;
+enums.TransferType transferTypeFromJson(Object? transferType) {
+  if (transferType is int) {
+    return enums.$TransferTypeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == transferType.toString(),
+            orElse: () =>
+                const MapEntry(enums.TransferType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transferType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.TransferType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferType is String) {
+    return enums.$TransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferType.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.TransferType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferType.swaggerGeneratedUnknown;
 }
 
 List<String> transferTypeListToJson(List<enums.TransferType>? transferType) {
@@ -33770,18 +35315,28 @@ String? bankTransferTypeToJson(enums.BankTransferType? bankTransferType) {
   return enums.$BankTransferTypeMap[bankTransferType];
 }
 
-enums.BankTransferType bankTransferTypeFromJson(String? bankTransferType) {
-  if (bankTransferType == null) {
-    return enums.BankTransferType.swaggerGeneratedUnknown;
+enums.BankTransferType bankTransferTypeFromJson(Object? bankTransferType) {
+  if (bankTransferType is int) {
+    return enums.$BankTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferType.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$BankTransferTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == bankTransferType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (bankTransferType is String) {
+    return enums.$BankTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.BankTransferType.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferTypeListToJson(
@@ -33808,18 +35363,28 @@ String? transferStatusToJson(enums.TransferStatus? transferStatus) {
   return enums.$TransferStatusMap[transferStatus];
 }
 
-enums.TransferStatus transferStatusFromJson(String? transferStatus) {
-  if (transferStatus == null) {
-    return enums.TransferStatus.swaggerGeneratedUnknown;
+enums.TransferStatus transferStatusFromJson(Object? transferStatus) {
+  if (transferStatus is int) {
+    return enums.$TransferStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transferStatus.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.TransferStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferStatus is String) {
+    return enums.$TransferStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferStatus.swaggerGeneratedUnknown;
 }
 
 List<String> transferStatusListToJson(
@@ -33847,18 +35412,29 @@ String? transferSweepStatusToJson(
 }
 
 enums.TransferSweepStatus transferSweepStatusFromJson(
-    String? transferSweepStatus) {
-  if (transferSweepStatus == null) {
-    return enums.TransferSweepStatus.swaggerGeneratedUnknown;
+    Object? transferSweepStatus) {
+  if (transferSweepStatus is int) {
+    return enums.$TransferSweepStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferSweepStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferSweepStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferSweepStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transferSweepStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferSweepStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferSweepStatus is String) {
+    return enums.$TransferSweepStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferSweepStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferSweepStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferSweepStatus.swaggerGeneratedUnknown;
 }
 
 List<String> transferSweepStatusListToJson(
@@ -33888,18 +35464,28 @@ String? bankTransferStatusToJson(enums.BankTransferStatus? bankTransferStatus) {
 }
 
 enums.BankTransferStatus bankTransferStatusFromJson(
-    String? bankTransferStatus) {
-  if (bankTransferStatus == null) {
-    return enums.BankTransferStatus.swaggerGeneratedUnknown;
+    Object? bankTransferStatus) {
+  if (bankTransferStatus is int) {
+    return enums.$BankTransferStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$BankTransferStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == bankTransferStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (bankTransferStatus is String) {
+    return enums.$BankTransferStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.BankTransferStatus.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferStatusListToJson(
@@ -33928,18 +35514,28 @@ String? transferNetworkToJson(enums.TransferNetwork? transferNetwork) {
   return enums.$TransferNetworkMap[transferNetwork];
 }
 
-enums.TransferNetwork transferNetworkFromJson(String? transferNetwork) {
-  if (transferNetwork == null) {
-    return enums.TransferNetwork.swaggerGeneratedUnknown;
+enums.TransferNetwork transferNetworkFromJson(Object? transferNetwork) {
+  if (transferNetwork is int) {
+    return enums.$TransferNetworkMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferNetwork.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferNetwork.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferNetworkMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transferNetwork.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.TransferNetwork.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferNetwork is String) {
+    return enums.$TransferNetworkMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferNetwork.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferNetwork.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferNetwork.swaggerGeneratedUnknown;
 }
 
 List<String> transferNetworkListToJson(
@@ -33967,18 +35563,29 @@ String? bankTransferNetworkToJson(
 }
 
 enums.BankTransferNetwork bankTransferNetworkFromJson(
-    String? bankTransferNetwork) {
-  if (bankTransferNetwork == null) {
-    return enums.BankTransferNetwork.swaggerGeneratedUnknown;
+    Object? bankTransferNetwork) {
+  if (bankTransferNetwork is int) {
+    return enums.$BankTransferNetworkMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferNetwork.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferNetwork.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$BankTransferNetworkMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == bankTransferNetwork.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferNetwork.swaggerGeneratedUnknown, ''))
-      .key;
+  if (bankTransferNetwork is String) {
+    return enums.$BankTransferNetworkMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferNetwork.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferNetwork.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.BankTransferNetwork.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferNetworkListToJson(
@@ -34009,19 +35616,32 @@ String? transferAuthorizationDecisionToJson(
 }
 
 enums.TransferAuthorizationDecision transferAuthorizationDecisionFromJson(
-    String? transferAuthorizationDecision) {
-  if (transferAuthorizationDecision == null) {
-    return enums.TransferAuthorizationDecision.swaggerGeneratedUnknown;
+    Object? transferAuthorizationDecision) {
+  if (transferAuthorizationDecision is int) {
+    return enums.$TransferAuthorizationDecisionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferAuthorizationDecision.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferAuthorizationDecision.swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$TransferAuthorizationDecisionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferAuthorizationDecision.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferAuthorizationDecision.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferAuthorizationDecision is String) {
+    return enums.$TransferAuthorizationDecisionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferAuthorizationDecision.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferAuthorizationDecision.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.TransferAuthorizationDecision.swaggerGeneratedUnknown;
 }
 
 List<String> transferAuthorizationDecisionListToJson(
@@ -34053,19 +35673,29 @@ String? bankTransferDirectionToJson(
 }
 
 enums.BankTransferDirection bankTransferDirectionFromJson(
-    String? bankTransferDirection) {
-  if (bankTransferDirection == null) {
-    return enums.BankTransferDirection.swaggerGeneratedUnknown;
+    Object? bankTransferDirection) {
+  if (bankTransferDirection is int) {
+    return enums.$BankTransferDirectionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferDirection.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferDirection.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$BankTransferDirectionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              bankTransferDirection.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferDirection.swaggerGeneratedUnknown, ''))
-      .key;
+  if (bankTransferDirection is String) {
+    return enums.$BankTransferDirectionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferDirection.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferDirection.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.BankTransferDirection.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferDirectionListToJson(
@@ -34099,21 +35729,34 @@ String? transferEventListRequestTransferTypeToJson(
 
 enums.TransferEventListRequestTransferType
     transferEventListRequestTransferTypeFromJson(
-        String? transferEventListRequestTransferType) {
-  if (transferEventListRequestTransferType == null) {
-    return enums.TransferEventListRequestTransferType.swaggerGeneratedUnknown;
+        Object? transferEventListRequestTransferType) {
+  if (transferEventListRequestTransferType is int) {
+    return enums.$TransferEventListRequestTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferEventListRequestTransferType.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferEventListRequestTransferType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$TransferEventListRequestTransferTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferEventListRequestTransferType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums
-                  .TransferEventListRequestTransferType.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (transferEventListRequestTransferType is String) {
+    return enums.$TransferEventListRequestTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferEventListRequestTransferType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferEventListRequestTransferType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.TransferEventListRequestTransferType.swaggerGeneratedUnknown;
 }
 
 List<String> transferEventListRequestTransferTypeListToJson(
@@ -34149,22 +35792,35 @@ String? bankTransferEventListRequestBankTransferTypeToJson(
 
 enums.BankTransferEventListRequestBankTransferType
     bankTransferEventListRequestBankTransferTypeFromJson(
-        String? bankTransferEventListRequestBankTransferType) {
-  if (bankTransferEventListRequestBankTransferType == null) {
-    return enums
-        .BankTransferEventListRequestBankTransferType.swaggerGeneratedUnknown;
+        Object? bankTransferEventListRequestBankTransferType) {
+  if (bankTransferEventListRequestBankTransferType is int) {
+    return enums.$BankTransferEventListRequestBankTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferEventListRequestBankTransferType.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventListRequestBankTransferType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$BankTransferEventListRequestBankTransferTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              bankTransferEventListRequestBankTransferType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferEventListRequestBankTransferType
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (bankTransferEventListRequestBankTransferType is String) {
+    return enums.$BankTransferEventListRequestBankTransferTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferEventListRequestBankTransferType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventListRequestBankTransferType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .BankTransferEventListRequestBankTransferType.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferEventListRequestBankTransferTypeListToJson(
@@ -34201,21 +35857,34 @@ String? bankTransferEventListRequestDirectionToJson(
 
 enums.BankTransferEventListRequestDirection
     bankTransferEventListRequestDirectionFromJson(
-        String? bankTransferEventListRequestDirection) {
-  if (bankTransferEventListRequestDirection == null) {
-    return enums.BankTransferEventListRequestDirection.swaggerGeneratedUnknown;
+        Object? bankTransferEventListRequestDirection) {
+  if (bankTransferEventListRequestDirection is int) {
+    return enums.$BankTransferEventListRequestDirectionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferEventListRequestDirection.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventListRequestDirection
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$BankTransferEventListRequestDirectionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              bankTransferEventListRequestDirection.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferEventListRequestDirection
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (bankTransferEventListRequestDirection is String) {
+    return enums.$BankTransferEventListRequestDirectionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferEventListRequestDirection.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventListRequestDirection
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.BankTransferEventListRequestDirection.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferEventListRequestDirectionListToJson(
@@ -34246,18 +35915,28 @@ String? transferEventTypeToJson(enums.TransferEventType? transferEventType) {
   return enums.$TransferEventTypeMap[transferEventType];
 }
 
-enums.TransferEventType transferEventTypeFromJson(String? transferEventType) {
-  if (transferEventType == null) {
-    return enums.TransferEventType.swaggerGeneratedUnknown;
+enums.TransferEventType transferEventTypeFromJson(Object? transferEventType) {
+  if (transferEventType is int) {
+    return enums.$TransferEventTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferEventType.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferEventType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferEventTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == transferEventType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferEventType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferEventType is String) {
+    return enums.$TransferEventTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == transferEventType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferEventType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferEventType.swaggerGeneratedUnknown;
 }
 
 List<String> transferEventTypeListToJson(
@@ -34286,19 +35965,29 @@ String? bankTransferEventTypeToJson(
 }
 
 enums.BankTransferEventType bankTransferEventTypeFromJson(
-    String? bankTransferEventType) {
-  if (bankTransferEventType == null) {
-    return enums.BankTransferEventType.swaggerGeneratedUnknown;
+    Object? bankTransferEventType) {
+  if (bankTransferEventType is int) {
+    return enums.$BankTransferEventTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == bankTransferEventType.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$BankTransferEventTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              bankTransferEventType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferEventType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (bankTransferEventType is String) {
+    return enums.$BankTransferEventTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferEventType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferEventType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.BankTransferEventType.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferEventTypeListToJson(
@@ -34329,19 +36018,30 @@ String? transferIntentCreateStatusToJson(
 }
 
 enums.TransferIntentCreateStatus transferIntentCreateStatusFromJson(
-    String? transferIntentCreateStatus) {
-  if (transferIntentCreateStatus == null) {
-    return enums.TransferIntentCreateStatus.swaggerGeneratedUnknown;
+    Object? transferIntentCreateStatus) {
+  if (transferIntentCreateStatus is int) {
+    return enums.$TransferIntentCreateStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentCreateStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentCreateStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferIntentCreateStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferIntentCreateStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferIntentCreateStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferIntentCreateStatus is String) {
+    return enums.$TransferIntentCreateStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentCreateStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentCreateStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferIntentCreateStatus.swaggerGeneratedUnknown;
 }
 
 List<String> transferIntentCreateStatusListToJson(
@@ -34372,19 +36072,30 @@ String? transferIntentGetStatusToJson(
 }
 
 enums.TransferIntentGetStatus transferIntentGetStatusFromJson(
-    String? transferIntentGetStatus) {
-  if (transferIntentGetStatus == null) {
-    return enums.TransferIntentGetStatus.swaggerGeneratedUnknown;
+    Object? transferIntentGetStatus) {
+  if (transferIntentGetStatus is int) {
+    return enums.$TransferIntentGetStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentGetStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentGetStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TransferIntentGetStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferIntentGetStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferIntentGetStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (transferIntentGetStatus is String) {
+    return enums.$TransferIntentGetStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentGetStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentGetStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TransferIntentGetStatus.swaggerGeneratedUnknown;
 }
 
 List<String> transferIntentGetStatusListToJson(
@@ -34418,21 +36129,34 @@ String? transferIntentGetAuthorizationDecisionToJson(
 
 enums.TransferIntentGetAuthorizationDecision
     transferIntentGetAuthorizationDecisionFromJson(
-        String? transferIntentGetAuthorizationDecision) {
-  if (transferIntentGetAuthorizationDecision == null) {
-    return enums.TransferIntentGetAuthorizationDecision.swaggerGeneratedUnknown;
+        Object? transferIntentGetAuthorizationDecision) {
+  if (transferIntentGetAuthorizationDecision is int) {
+    return enums.$TransferIntentGetAuthorizationDecisionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentGetAuthorizationDecision.toString(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentGetAuthorizationDecision
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$TransferIntentGetAuthorizationDecisionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              transferIntentGetAuthorizationDecision.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TransferIntentGetAuthorizationDecision
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (transferIntentGetAuthorizationDecision is String) {
+    return enums.$TransferIntentGetAuthorizationDecisionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                transferIntentGetAuthorizationDecision.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TransferIntentGetAuthorizationDecision
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.TransferIntentGetAuthorizationDecision.swaggerGeneratedUnknown;
 }
 
 List<String> transferIntentGetAuthorizationDecisionListToJson(
@@ -34468,22 +36192,35 @@ String? bankTransferReceiverDetailsAvailableBalanceToJson(
 
 enums.BankTransferReceiverDetailsAvailableBalance
     bankTransferReceiverDetailsAvailableBalanceFromJson(
-        String? bankTransferReceiverDetailsAvailableBalance) {
-  if (bankTransferReceiverDetailsAvailableBalance == null) {
-    return enums
-        .BankTransferReceiverDetailsAvailableBalance.swaggerGeneratedUnknown;
+        Object? bankTransferReceiverDetailsAvailableBalance) {
+  if (bankTransferReceiverDetailsAvailableBalance is int) {
+    return enums.$BankTransferReceiverDetailsAvailableBalanceMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferReceiverDetailsAvailableBalance.toString(),
+            orElse: () => const MapEntry(
+                enums.BankTransferReceiverDetailsAvailableBalance
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$BankTransferReceiverDetailsAvailableBalanceMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              bankTransferReceiverDetailsAvailableBalance.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.BankTransferReceiverDetailsAvailableBalance
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (bankTransferReceiverDetailsAvailableBalance is String) {
+    return enums.$BankTransferReceiverDetailsAvailableBalanceMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                bankTransferReceiverDetailsAvailableBalance.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.BankTransferReceiverDetailsAvailableBalance
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .BankTransferReceiverDetailsAvailableBalance.swaggerGeneratedUnknown;
 }
 
 List<String> bankTransferReceiverDetailsAvailableBalanceListToJson(
@@ -34511,6 +36248,126 @@ List<enums.BankTransferReceiverDetailsAvailableBalance>
       .toList();
 }
 
+String? accountIdentityVerificationStatusToJson(
+    enums.AccountIdentityVerificationStatus?
+        accountIdentityVerificationStatus) {
+  return enums
+      .$AccountIdentityVerificationStatusMap[accountIdentityVerificationStatus];
+}
+
+enums.AccountIdentityVerificationStatus
+    accountIdentityVerificationStatusFromJson(
+        Object? accountIdentityVerificationStatus) {
+  if (accountIdentityVerificationStatus is int) {
+    return enums.$AccountIdentityVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountIdentityVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.AccountIdentityVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  if (accountIdentityVerificationStatus is String) {
+    return enums.$AccountIdentityVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountIdentityVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AccountIdentityVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.AccountIdentityVerificationStatus.swaggerGeneratedUnknown;
+}
+
+List<String> accountIdentityVerificationStatusListToJson(
+    List<enums.AccountIdentityVerificationStatus>?
+        accountIdentityVerificationStatus) {
+  if (accountIdentityVerificationStatus == null) {
+    return [];
+  }
+
+  return accountIdentityVerificationStatus
+      .map((e) => enums.$AccountIdentityVerificationStatusMap[e]!)
+      .toList();
+}
+
+List<enums.AccountIdentityVerificationStatus>
+    accountIdentityVerificationStatusListFromJson(
+        List? accountIdentityVerificationStatus) {
+  if (accountIdentityVerificationStatus == null) {
+    return [];
+  }
+
+  return accountIdentityVerificationStatus
+      .map((e) => accountIdentityVerificationStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? accountAssetsVerificationStatusToJson(
+    enums.AccountAssetsVerificationStatus? accountAssetsVerificationStatus) {
+  return enums
+      .$AccountAssetsVerificationStatusMap[accountAssetsVerificationStatus];
+}
+
+enums.AccountAssetsVerificationStatus accountAssetsVerificationStatusFromJson(
+    Object? accountAssetsVerificationStatus) {
+  if (accountAssetsVerificationStatus is int) {
+    return enums.$AccountAssetsVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountAssetsVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.AccountAssetsVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  if (accountAssetsVerificationStatus is String) {
+    return enums.$AccountAssetsVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountAssetsVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AccountAssetsVerificationStatus.swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.AccountAssetsVerificationStatus.swaggerGeneratedUnknown;
+}
+
+List<String> accountAssetsVerificationStatusListToJson(
+    List<enums.AccountAssetsVerificationStatus>?
+        accountAssetsVerificationStatus) {
+  if (accountAssetsVerificationStatus == null) {
+    return [];
+  }
+
+  return accountAssetsVerificationStatus
+      .map((e) => enums.$AccountAssetsVerificationStatusMap[e]!)
+      .toList();
+}
+
+List<enums.AccountAssetsVerificationStatus>
+    accountAssetsVerificationStatusListFromJson(
+        List? accountAssetsVerificationStatus) {
+  if (accountAssetsVerificationStatus == null) {
+    return [];
+  }
+
+  return accountAssetsVerificationStatus
+      .map((e) => accountAssetsVerificationStatusFromJson(e.toString()))
+      .toList();
+}
+
 String? incomeVerificationPrecheckMilitaryInfoBranchToJson(
     enums.IncomeVerificationPrecheckMilitaryInfoBranch?
         incomeVerificationPrecheckMilitaryInfoBranch) {
@@ -34520,22 +36377,35 @@ String? incomeVerificationPrecheckMilitaryInfoBranchToJson(
 
 enums.IncomeVerificationPrecheckMilitaryInfoBranch
     incomeVerificationPrecheckMilitaryInfoBranchFromJson(
-        String? incomeVerificationPrecheckMilitaryInfoBranch) {
-  if (incomeVerificationPrecheckMilitaryInfoBranch == null) {
-    return enums
-        .IncomeVerificationPrecheckMilitaryInfoBranch.swaggerGeneratedUnknown;
+        Object? incomeVerificationPrecheckMilitaryInfoBranch) {
+  if (incomeVerificationPrecheckMilitaryInfoBranch is int) {
+    return enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incomeVerificationPrecheckMilitaryInfoBranch.toString(),
+            orElse: () => const MapEntry(
+                enums.IncomeVerificationPrecheckMilitaryInfoBranch
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              incomeVerificationPrecheckMilitaryInfoBranch.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.IncomeVerificationPrecheckMilitaryInfoBranch
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (incomeVerificationPrecheckMilitaryInfoBranch is String) {
+    return enums.$IncomeVerificationPrecheckMilitaryInfoBranchMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incomeVerificationPrecheckMilitaryInfoBranch.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.IncomeVerificationPrecheckMilitaryInfoBranch
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums
+      .IncomeVerificationPrecheckMilitaryInfoBranch.swaggerGeneratedUnknown;
 }
 
 List<String> incomeVerificationPrecheckMilitaryInfoBranchListToJson(
@@ -34572,21 +36442,34 @@ String? incomeVerificationPrecheckConfidenceToJson(
 
 enums.IncomeVerificationPrecheckConfidence
     incomeVerificationPrecheckConfidenceFromJson(
-        String? incomeVerificationPrecheckConfidence) {
-  if (incomeVerificationPrecheckConfidence == null) {
-    return enums.IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown;
+        Object? incomeVerificationPrecheckConfidence) {
+  if (incomeVerificationPrecheckConfidence is int) {
+    return enums.$IncomeVerificationPrecheckConfidenceMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incomeVerificationPrecheckConfidence.toString(),
+            orElse: () => const MapEntry(
+                enums.IncomeVerificationPrecheckConfidence
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$IncomeVerificationPrecheckConfidenceMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              incomeVerificationPrecheckConfidence.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums
-                  .IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (incomeVerificationPrecheckConfidence is String) {
+    return enums.$IncomeVerificationPrecheckConfidenceMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incomeVerificationPrecheckConfidence.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.IncomeVerificationPrecheckConfidence
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.IncomeVerificationPrecheckConfidence.swaggerGeneratedUnknown;
 }
 
 List<String> incomeVerificationPrecheckConfidenceListToJson(
@@ -34617,18 +36500,28 @@ String? payFrequencyValueToJson(enums.PayFrequencyValue? payFrequencyValue) {
   return enums.$PayFrequencyValueMap[payFrequencyValue];
 }
 
-enums.PayFrequencyValue payFrequencyValueFromJson(String? payFrequencyValue) {
-  if (payFrequencyValue == null) {
-    return enums.PayFrequencyValue.swaggerGeneratedUnknown;
+enums.PayFrequencyValue payFrequencyValueFromJson(Object? payFrequencyValue) {
+  if (payFrequencyValue is int) {
+    return enums.$PayFrequencyValueMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == payFrequencyValue.toString(),
+            orElse: () => const MapEntry(
+                enums.PayFrequencyValue.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PayFrequencyValueMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == payFrequencyValue.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PayFrequencyValue.swaggerGeneratedUnknown, ''))
-      .key;
+  if (payFrequencyValue is String) {
+    return enums.$PayFrequencyValueMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == payFrequencyValue.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PayFrequencyValue.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PayFrequencyValue.swaggerGeneratedUnknown;
 }
 
 List<String> payFrequencyValueListToJson(
@@ -34656,18 +36549,28 @@ String? verificationStatusToJson(enums.VerificationStatus? verificationStatus) {
 }
 
 enums.VerificationStatus verificationStatusFromJson(
-    String? verificationStatus) {
-  if (verificationStatus == null) {
-    return enums.VerificationStatus.swaggerGeneratedUnknown;
+    Object? verificationStatus) {
+  if (verificationStatus is int) {
+    return enums.$VerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == verificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.VerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$VerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == verificationStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.VerificationStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (verificationStatus is String) {
+    return enums.$VerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == verificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.VerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.VerificationStatus.swaggerGeneratedUnknown;
 }
 
 List<String> verificationStatusListToJson(
@@ -34698,19 +36601,30 @@ String? verificationRefreshStatusToJson(
 }
 
 enums.VerificationRefreshStatus verificationRefreshStatusFromJson(
-    String? verificationRefreshStatus) {
-  if (verificationRefreshStatus == null) {
-    return enums.VerificationRefreshStatus.swaggerGeneratedUnknown;
+    Object? verificationRefreshStatus) {
+  if (verificationRefreshStatus is int) {
+    return enums.$VerificationRefreshStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                verificationRefreshStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.VerificationRefreshStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$VerificationRefreshStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              verificationRefreshStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.VerificationRefreshStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (verificationRefreshStatus is String) {
+    return enums.$VerificationRefreshStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                verificationRefreshStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.VerificationRefreshStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.VerificationRefreshStatus.swaggerGeneratedUnknown;
 }
 
 List<String> verificationRefreshStatusListToJson(
@@ -34739,17 +36653,26 @@ String? docTypeToJson(enums.DocType? docType) {
   return enums.$DocTypeMap[docType];
 }
 
-enums.DocType docTypeFromJson(String? docType) {
-  if (docType == null) {
-    return enums.DocType.swaggerGeneratedUnknown;
+enums.DocType docTypeFromJson(Object? docType) {
+  if (docType is int) {
+    return enums.$DocTypeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == docType.toString(),
+            orElse: () =>
+                const MapEntry(enums.DocType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$DocTypeMap.entries
-      .firstWhere(
-          (element) => element.value.toLowerCase() == docType.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.DocType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (docType is String) {
+    return enums.$DocTypeMap.entries
+        .firstWhere(
+            (element) => element.value.toLowerCase() == docType.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.DocType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.DocType.swaggerGeneratedUnknown;
 }
 
 List<String> docTypeListToJson(List<enums.DocType>? docType) {
@@ -34774,19 +36697,30 @@ String? totalCanonicalDescriptionToJson(
 }
 
 enums.TotalCanonicalDescription totalCanonicalDescriptionFromJson(
-    String? totalCanonicalDescription) {
-  if (totalCanonicalDescription == null) {
-    return enums.TotalCanonicalDescription.swaggerGeneratedUnknown;
+    Object? totalCanonicalDescription) {
+  if (totalCanonicalDescription is int) {
+    return enums.$TotalCanonicalDescriptionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                totalCanonicalDescription.toString(),
+            orElse: () => const MapEntry(
+                enums.TotalCanonicalDescription.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$TotalCanonicalDescriptionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              totalCanonicalDescription.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.TotalCanonicalDescription.swaggerGeneratedUnknown, ''))
-      .key;
+  if (totalCanonicalDescription is String) {
+    return enums.$TotalCanonicalDescriptionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                totalCanonicalDescription.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.TotalCanonicalDescription.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.TotalCanonicalDescription.swaggerGeneratedUnknown;
 }
 
 List<String> totalCanonicalDescriptionListToJson(
@@ -34820,21 +36754,34 @@ String? earningsBreakdownCanonicalDescriptionToJson(
 
 enums.EarningsBreakdownCanonicalDescription
     earningsBreakdownCanonicalDescriptionFromJson(
-        String? earningsBreakdownCanonicalDescription) {
-  if (earningsBreakdownCanonicalDescription == null) {
-    return enums.EarningsBreakdownCanonicalDescription.swaggerGeneratedUnknown;
+        Object? earningsBreakdownCanonicalDescription) {
+  if (earningsBreakdownCanonicalDescription is int) {
+    return enums.$EarningsBreakdownCanonicalDescriptionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                earningsBreakdownCanonicalDescription.toString(),
+            orElse: () => const MapEntry(
+                enums.EarningsBreakdownCanonicalDescription
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$EarningsBreakdownCanonicalDescriptionMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              earningsBreakdownCanonicalDescription.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.EarningsBreakdownCanonicalDescription
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (earningsBreakdownCanonicalDescription is String) {
+    return enums.$EarningsBreakdownCanonicalDescriptionMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                earningsBreakdownCanonicalDescription.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.EarningsBreakdownCanonicalDescription
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.EarningsBreakdownCanonicalDescription.swaggerGeneratedUnknown;
 }
 
 List<String> earningsBreakdownCanonicalDescriptionListToJson(
@@ -34867,18 +36814,29 @@ String? paystubPayFrequencyToJson(
 }
 
 enums.PaystubPayFrequency paystubPayFrequencyFromJson(
-    String? paystubPayFrequency) {
-  if (paystubPayFrequency == null) {
-    return enums.PaystubPayFrequency.swaggerGeneratedUnknown;
+    Object? paystubPayFrequency) {
+  if (paystubPayFrequency is int) {
+    return enums.$PaystubPayFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == paystubPayFrequency.toString(),
+            orElse: () => const MapEntry(
+                enums.PaystubPayFrequency.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PaystubPayFrequencyMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == paystubPayFrequency.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaystubPayFrequency.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paystubPayFrequency is String) {
+    return enums.$PaystubPayFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paystubPayFrequency.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaystubPayFrequency.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PaystubPayFrequency.swaggerGeneratedUnknown;
 }
 
 List<String> paystubPayFrequencyListToJson(
@@ -34909,18 +36867,29 @@ String? incomeBreakdownTypeToJson(
 }
 
 enums.IncomeBreakdownType incomeBreakdownTypeFromJson(
-    String? incomeBreakdownType) {
-  if (incomeBreakdownType == null) {
-    return enums.IncomeBreakdownType.swaggerGeneratedUnknown;
+    Object? incomeBreakdownType) {
+  if (incomeBreakdownType is int) {
+    return enums.$IncomeBreakdownTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == incomeBreakdownType.toString(),
+            orElse: () => const MapEntry(
+                enums.IncomeBreakdownType.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$IncomeBreakdownTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == incomeBreakdownType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.IncomeBreakdownType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (incomeBreakdownType is String) {
+    return enums.$IncomeBreakdownTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incomeBreakdownType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.IncomeBreakdownType.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.IncomeBreakdownType.swaggerGeneratedUnknown;
 }
 
 List<String> incomeBreakdownTypeListToJson(
@@ -34951,19 +36920,30 @@ String? payPeriodDetailsPayFrequencyToJson(
 }
 
 enums.PayPeriodDetailsPayFrequency payPeriodDetailsPayFrequencyFromJson(
-    String? payPeriodDetailsPayFrequency) {
-  if (payPeriodDetailsPayFrequency == null) {
-    return enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown;
+    Object? payPeriodDetailsPayFrequency) {
+  if (payPeriodDetailsPayFrequency is int) {
+    return enums.$PayPeriodDetailsPayFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                payPeriodDetailsPayFrequency.toString(),
+            orElse: () => const MapEntry(
+                enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PayPeriodDetailsPayFrequencyMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              payPeriodDetailsPayFrequency.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown, ''))
-      .key;
+  if (payPeriodDetailsPayFrequency is String) {
+    return enums.$PayPeriodDetailsPayFrequencyMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                payPeriodDetailsPayFrequency.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PayPeriodDetailsPayFrequency.swaggerGeneratedUnknown;
 }
 
 List<String> payPeriodDetailsPayFrequencyListToJson(
@@ -34995,19 +36975,30 @@ String? paystubVerificationStatusToJson(
 }
 
 enums.PaystubVerificationStatus paystubVerificationStatusFromJson(
-    String? paystubVerificationStatus) {
-  if (paystubVerificationStatus == null) {
-    return enums.PaystubVerificationStatus.swaggerGeneratedUnknown;
+    Object? paystubVerificationStatus) {
+  if (paystubVerificationStatus is int) {
+    return enums.$PaystubVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paystubVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.PaystubVerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$PaystubVerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              paystubVerificationStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.PaystubVerificationStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (paystubVerificationStatus is String) {
+    return enums.$PaystubVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                paystubVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.PaystubVerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.PaystubVerificationStatus.swaggerGeneratedUnknown;
 }
 
 List<String> paystubVerificationStatusListToJson(
@@ -35032,46 +37023,57 @@ List<enums.PaystubVerificationStatus> paystubVerificationStatusListFromJson(
       .toList();
 }
 
-String? verificationAttributeTypeToJson(
-    enums.VerificationAttributeType? verificationAttributeType) {
-  return enums.$VerificationAttributeTypeMap[verificationAttributeType];
+String? verificationAttributeType$ToJson(
+    enums.VerificationAttributeType$? verificationAttributeType$) {
+  return enums.$VerificationAttributeType$Map[verificationAttributeType$];
 }
 
-enums.VerificationAttributeType verificationAttributeTypeFromJson(
-    String? verificationAttributeType) {
-  if (verificationAttributeType == null) {
-    return enums.VerificationAttributeType.swaggerGeneratedUnknown;
+enums.VerificationAttributeType$ verificationAttributeType$FromJson(
+    Object? verificationAttributeType$) {
+  if (verificationAttributeType$ is int) {
+    return enums.$VerificationAttributeType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                verificationAttributeType$.toString(),
+            orElse: () => const MapEntry(
+                enums.VerificationAttributeType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$VerificationAttributeTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              verificationAttributeType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.VerificationAttributeType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (verificationAttributeType$ is String) {
+    return enums.$VerificationAttributeType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                verificationAttributeType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.VerificationAttributeType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.VerificationAttributeType$.swaggerGeneratedUnknown;
 }
 
-List<String> verificationAttributeTypeListToJson(
-    List<enums.VerificationAttributeType>? verificationAttributeType) {
-  if (verificationAttributeType == null) {
+List<String> verificationAttributeType$ListToJson(
+    List<enums.VerificationAttributeType$>? verificationAttributeType$) {
+  if (verificationAttributeType$ == null) {
     return [];
   }
 
-  return verificationAttributeType
-      .map((e) => enums.$VerificationAttributeTypeMap[e]!)
+  return verificationAttributeType$
+      .map((e) => enums.$VerificationAttributeType$Map[e]!)
       .toList();
 }
 
-List<enums.VerificationAttributeType> verificationAttributeTypeListFromJson(
-    List? verificationAttributeType) {
-  if (verificationAttributeType == null) {
+List<enums.VerificationAttributeType$> verificationAttributeType$ListFromJson(
+    List? verificationAttributeType$) {
+  if (verificationAttributeType$ == null) {
     return [];
   }
 
-  return verificationAttributeType
-      .map((e) => verificationAttributeTypeFromJson(e.toString()))
+  return verificationAttributeType$
+      .map((e) => verificationAttributeType$FromJson(e.toString()))
       .toList();
 }
 
@@ -35081,19 +37083,30 @@ String? employmentVerificationStatusToJson(
 }
 
 enums.EmploymentVerificationStatus employmentVerificationStatusFromJson(
-    String? employmentVerificationStatus) {
-  if (employmentVerificationStatus == null) {
-    return enums.EmploymentVerificationStatus.swaggerGeneratedUnknown;
+    Object? employmentVerificationStatus) {
+  if (employmentVerificationStatus is int) {
+    return enums.$EmploymentVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                employmentVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.EmploymentVerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$EmploymentVerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              employmentVerificationStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.EmploymentVerificationStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (employmentVerificationStatus is String) {
+    return enums.$EmploymentVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                employmentVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.EmploymentVerificationStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.EmploymentVerificationStatus.swaggerGeneratedUnknown;
 }
 
 List<String> employmentVerificationStatusListToJson(
@@ -35119,24 +37132,98 @@ List<enums.EmploymentVerificationStatus>
       .toList();
 }
 
+String? assetReportTransactionTransactionTypeToJson(
+    enums.AssetReportTransactionTransactionType?
+        assetReportTransactionTransactionType) {
+  return enums.$AssetReportTransactionTransactionTypeMap[
+      assetReportTransactionTransactionType];
+}
+
+enums.AssetReportTransactionTransactionType
+    assetReportTransactionTransactionTypeFromJson(
+        Object? assetReportTransactionTransactionType) {
+  if (assetReportTransactionTransactionType is int) {
+    return enums.$AssetReportTransactionTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                assetReportTransactionTransactionType.toString(),
+            orElse: () => const MapEntry(
+                enums.AssetReportTransactionTransactionType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  if (assetReportTransactionTransactionType is String) {
+    return enums.$AssetReportTransactionTransactionTypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                assetReportTransactionTransactionType.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AssetReportTransactionTransactionType
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.AssetReportTransactionTransactionType.swaggerGeneratedUnknown;
+}
+
+List<String> assetReportTransactionTransactionTypeListToJson(
+    List<enums.AssetReportTransactionTransactionType>?
+        assetReportTransactionTransactionType) {
+  if (assetReportTransactionTransactionType == null) {
+    return [];
+  }
+
+  return assetReportTransactionTransactionType
+      .map((e) => enums.$AssetReportTransactionTransactionTypeMap[e]!)
+      .toList();
+}
+
+List<enums.AssetReportTransactionTransactionType>
+    assetReportTransactionTransactionTypeListFromJson(
+        List? assetReportTransactionTransactionType) {
+  if (assetReportTransactionTransactionType == null) {
+    return [];
+  }
+
+  return assetReportTransactionTransactionType
+      .map((e) => assetReportTransactionTransactionTypeFromJson(e.toString()))
+      .toList();
+}
+
 String? incidentUpdateStatusToJson(
     enums.IncidentUpdateStatus? incidentUpdateStatus) {
   return enums.$IncidentUpdateStatusMap[incidentUpdateStatus];
 }
 
 enums.IncidentUpdateStatus incidentUpdateStatusFromJson(
-    String? incidentUpdateStatus) {
-  if (incidentUpdateStatus == null) {
-    return enums.IncidentUpdateStatus.swaggerGeneratedUnknown;
+    Object? incidentUpdateStatus) {
+  if (incidentUpdateStatus is int) {
+    return enums.$IncidentUpdateStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == incidentUpdateStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.IncidentUpdateStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$IncidentUpdateStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == incidentUpdateStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.IncidentUpdateStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (incidentUpdateStatus is String) {
+    return enums.$IncidentUpdateStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                incidentUpdateStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.IncidentUpdateStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.IncidentUpdateStatus.swaggerGeneratedUnknown;
 }
 
 List<String> incidentUpdateStatusListToJson(
@@ -35170,22 +37257,34 @@ String? depositSwitchAltCreateRequestCountryCodeToJson(
 
 enums.DepositSwitchAltCreateRequestCountryCode
     depositSwitchAltCreateRequestCountryCodeFromJson(
-        String? depositSwitchAltCreateRequestCountryCode) {
-  if (depositSwitchAltCreateRequestCountryCode == null) {
-    return enums
-        .DepositSwitchAltCreateRequestCountryCode.swaggerGeneratedUnknown;
+        Object? depositSwitchAltCreateRequestCountryCode) {
+  if (depositSwitchAltCreateRequestCountryCode is int) {
+    return enums.$DepositSwitchAltCreateRequestCountryCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchAltCreateRequestCountryCode.toString(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchAltCreateRequestCountryCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$DepositSwitchAltCreateRequestCountryCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              depositSwitchAltCreateRequestCountryCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.DepositSwitchAltCreateRequestCountryCode
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (depositSwitchAltCreateRequestCountryCode is String) {
+    return enums.$DepositSwitchAltCreateRequestCountryCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchAltCreateRequestCountryCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchAltCreateRequestCountryCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.DepositSwitchAltCreateRequestCountryCode.swaggerGeneratedUnknown;
 }
 
 List<String> depositSwitchAltCreateRequestCountryCodeListToJson(
@@ -35222,22 +37321,34 @@ String? depositSwitchTargetAccountAccountSubtypeToJson(
 
 enums.DepositSwitchTargetAccountAccountSubtype
     depositSwitchTargetAccountAccountSubtypeFromJson(
-        String? depositSwitchTargetAccountAccountSubtype) {
-  if (depositSwitchTargetAccountAccountSubtype == null) {
-    return enums
-        .DepositSwitchTargetAccountAccountSubtype.swaggerGeneratedUnknown;
+        Object? depositSwitchTargetAccountAccountSubtype) {
+  if (depositSwitchTargetAccountAccountSubtype is int) {
+    return enums.$DepositSwitchTargetAccountAccountSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchTargetAccountAccountSubtype.toString(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchTargetAccountAccountSubtype
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$DepositSwitchTargetAccountAccountSubtypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              depositSwitchTargetAccountAccountSubtype.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.DepositSwitchTargetAccountAccountSubtype
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (depositSwitchTargetAccountAccountSubtype is String) {
+    return enums.$DepositSwitchTargetAccountAccountSubtypeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                depositSwitchTargetAccountAccountSubtype.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.DepositSwitchTargetAccountAccountSubtype
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.DepositSwitchTargetAccountAccountSubtype.swaggerGeneratedUnknown;
 }
 
 List<String> depositSwitchTargetAccountAccountSubtypeListToJson(
@@ -35269,18 +37380,28 @@ String? scopesContextToJson(enums.ScopesContext? scopesContext) {
   return enums.$ScopesContextMap[scopesContext];
 }
 
-enums.ScopesContext scopesContextFromJson(String? scopesContext) {
-  if (scopesContext == null) {
-    return enums.ScopesContext.swaggerGeneratedUnknown;
+enums.ScopesContext scopesContextFromJson(Object? scopesContext) {
+  if (scopesContext is int) {
+    return enums.$ScopesContextMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == scopesContext.toString(),
+            orElse: () =>
+                const MapEntry(enums.ScopesContext.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$ScopesContextMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() == scopesContext.toLowerCase(),
-          orElse: () =>
-              const MapEntry(enums.ScopesContext.swaggerGeneratedUnknown, ''))
-      .key;
+  if (scopesContext is String) {
+    return enums.$ScopesContextMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == scopesContext.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.ScopesContext.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.ScopesContext.swaggerGeneratedUnknown;
 }
 
 List<String> scopesContextListToJson(List<enums.ScopesContext>? scopesContext) {
@@ -35308,21 +37429,34 @@ String? connectedApplicationProductDataTypesToJson(
 
 enums.ConnectedApplicationProductDataTypes
     connectedApplicationProductDataTypesFromJson(
-        String? connectedApplicationProductDataTypes) {
-  if (connectedApplicationProductDataTypes == null) {
-    return enums.ConnectedApplicationProductDataTypes.swaggerGeneratedUnknown;
+        Object? connectedApplicationProductDataTypes) {
+  if (connectedApplicationProductDataTypes is int) {
+    return enums.$ConnectedApplicationProductDataTypesMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                connectedApplicationProductDataTypes.toString(),
+            orElse: () => const MapEntry(
+                enums.ConnectedApplicationProductDataTypes
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$ConnectedApplicationProductDataTypesMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              connectedApplicationProductDataTypes.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums
-                  .ConnectedApplicationProductDataTypes.swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (connectedApplicationProductDataTypes is String) {
+    return enums.$ConnectedApplicationProductDataTypesMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                connectedApplicationProductDataTypes.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.ConnectedApplicationProductDataTypes
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.ConnectedApplicationProductDataTypes.swaggerGeneratedUnknown;
 }
 
 List<String> connectedApplicationProductDataTypesListToJson(
@@ -35355,19 +37489,30 @@ String? accountSelectionCardinalityToJson(
 }
 
 enums.AccountSelectionCardinality accountSelectionCardinalityFromJson(
-    String? accountSelectionCardinality) {
-  if (accountSelectionCardinality == null) {
-    return enums.AccountSelectionCardinality.swaggerGeneratedUnknown;
+    Object? accountSelectionCardinality) {
+  if (accountSelectionCardinality is int) {
+    return enums.$AccountSelectionCardinalityMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountSelectionCardinality.toString(),
+            orElse: () => const MapEntry(
+                enums.AccountSelectionCardinality.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$AccountSelectionCardinalityMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              accountSelectionCardinality.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.AccountSelectionCardinality.swaggerGeneratedUnknown, ''))
-      .key;
+  if (accountSelectionCardinality is String) {
+    return enums.$AccountSelectionCardinalityMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                accountSelectionCardinality.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.AccountSelectionCardinality.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.AccountSelectionCardinality.swaggerGeneratedUnknown;
 }
 
 List<String> accountSelectionCardinalityListToJson(
@@ -35401,22 +37546,35 @@ String? sandboxIncomeFireWebhookRequestVerificationStatusToJson(
 
 enums.SandboxIncomeFireWebhookRequestVerificationStatus
     sandboxIncomeFireWebhookRequestVerificationStatusFromJson(
-        String? sandboxIncomeFireWebhookRequestVerificationStatus) {
-  if (sandboxIncomeFireWebhookRequestVerificationStatus == null) {
-    return enums.SandboxIncomeFireWebhookRequestVerificationStatus
-        .swaggerGeneratedUnknown;
+        Object? sandboxIncomeFireWebhookRequestVerificationStatus) {
+  if (sandboxIncomeFireWebhookRequestVerificationStatus is int) {
+    return enums.$SandboxIncomeFireWebhookRequestVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxIncomeFireWebhookRequestVerificationStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.SandboxIncomeFireWebhookRequestVerificationStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$SandboxIncomeFireWebhookRequestVerificationStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              sandboxIncomeFireWebhookRequestVerificationStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.SandboxIncomeFireWebhookRequestVerificationStatus
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (sandboxIncomeFireWebhookRequestVerificationStatus is String) {
+    return enums.$SandboxIncomeFireWebhookRequestVerificationStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                sandboxIncomeFireWebhookRequestVerificationStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.SandboxIncomeFireWebhookRequestVerificationStatus
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.SandboxIncomeFireWebhookRequestVerificationStatus
+      .swaggerGeneratedUnknown;
 }
 
 List<String> sandboxIncomeFireWebhookRequestVerificationStatusListToJson(
@@ -35454,21 +37612,34 @@ String? walletTransactionAmountIsoCurrencyCodeToJson(
 
 enums.WalletTransactionAmountIsoCurrencyCode
     walletTransactionAmountIsoCurrencyCodeFromJson(
-        String? walletTransactionAmountIsoCurrencyCode) {
-  if (walletTransactionAmountIsoCurrencyCode == null) {
-    return enums.WalletTransactionAmountIsoCurrencyCode.swaggerGeneratedUnknown;
+        Object? walletTransactionAmountIsoCurrencyCode) {
+  if (walletTransactionAmountIsoCurrencyCode is int) {
+    return enums.$WalletTransactionAmountIsoCurrencyCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionAmountIsoCurrencyCode.toString(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionAmountIsoCurrencyCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
   }
 
-  return enums.$WalletTransactionAmountIsoCurrencyCodeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              walletTransactionAmountIsoCurrencyCode.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.WalletTransactionAmountIsoCurrencyCode
-                  .swaggerGeneratedUnknown,
-              ''))
-      .key;
+  if (walletTransactionAmountIsoCurrencyCode is String) {
+    return enums.$WalletTransactionAmountIsoCurrencyCodeMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionAmountIsoCurrencyCode.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionAmountIsoCurrencyCode
+                    .swaggerGeneratedUnknown,
+                ''))
+        .key;
+  }
+
+  return enums.WalletTransactionAmountIsoCurrencyCode.swaggerGeneratedUnknown;
 }
 
 List<String> walletTransactionAmountIsoCurrencyCodeListToJson(
@@ -35501,19 +37672,30 @@ String? walletTransactionStatusToJson(
 }
 
 enums.WalletTransactionStatus walletTransactionStatusFromJson(
-    String? walletTransactionStatus) {
-  if (walletTransactionStatus == null) {
-    return enums.WalletTransactionStatus.swaggerGeneratedUnknown;
+    Object? walletTransactionStatus) {
+  if (walletTransactionStatus is int) {
+    return enums.$WalletTransactionStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionStatus.toString(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionStatus.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$WalletTransactionStatusMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              walletTransactionStatus.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.WalletTransactionStatus.swaggerGeneratedUnknown, ''))
-      .key;
+  if (walletTransactionStatus is String) {
+    return enums.$WalletTransactionStatusMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionStatus.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionStatus.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.WalletTransactionStatus.swaggerGeneratedUnknown;
 }
 
 List<String> walletTransactionStatusListToJson(
@@ -35538,46 +37720,57 @@ List<enums.WalletTransactionStatus> walletTransactionStatusListFromJson(
       .toList();
 }
 
-String? walletTransactionTypeToJson(
-    enums.WalletTransactionType? walletTransactionType) {
-  return enums.$WalletTransactionTypeMap[walletTransactionType];
+String? walletTransactionType$ToJson(
+    enums.WalletTransactionType$? walletTransactionType$) {
+  return enums.$WalletTransactionType$Map[walletTransactionType$];
 }
 
-enums.WalletTransactionType walletTransactionTypeFromJson(
-    String? walletTransactionType) {
-  if (walletTransactionType == null) {
-    return enums.WalletTransactionType.swaggerGeneratedUnknown;
+enums.WalletTransactionType$ walletTransactionType$FromJson(
+    Object? walletTransactionType$) {
+  if (walletTransactionType$ is int) {
+    return enums.$WalletTransactionType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionType$.toString(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionType$.swaggerGeneratedUnknown, ''))
+        .key;
   }
 
-  return enums.$WalletTransactionTypeMap.entries
-      .firstWhere(
-          (element) =>
-              element.value.toLowerCase() ==
-              walletTransactionType.toLowerCase(),
-          orElse: () => const MapEntry(
-              enums.WalletTransactionType.swaggerGeneratedUnknown, ''))
-      .key;
+  if (walletTransactionType$ is String) {
+    return enums.$WalletTransactionType$Map.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                walletTransactionType$.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.WalletTransactionType$.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  return enums.WalletTransactionType$.swaggerGeneratedUnknown;
 }
 
-List<String> walletTransactionTypeListToJson(
-    List<enums.WalletTransactionType>? walletTransactionType) {
-  if (walletTransactionType == null) {
+List<String> walletTransactionType$ListToJson(
+    List<enums.WalletTransactionType$>? walletTransactionType$) {
+  if (walletTransactionType$ == null) {
     return [];
   }
 
-  return walletTransactionType
-      .map((e) => enums.$WalletTransactionTypeMap[e]!)
+  return walletTransactionType$
+      .map((e) => enums.$WalletTransactionType$Map[e]!)
       .toList();
 }
 
-List<enums.WalletTransactionType> walletTransactionTypeListFromJson(
-    List? walletTransactionType) {
-  if (walletTransactionType == null) {
+List<enums.WalletTransactionType$> walletTransactionType$ListFromJson(
+    List? walletTransactionType$) {
+  if (walletTransactionType$ == null) {
     return [];
   }
 
-  return walletTransactionType
-      .map((e) => walletTransactionTypeFromJson(e.toString()))
+  return walletTransactionType$
+      .map((e) => walletTransactionType$FromJson(e.toString()))
       .toList();
 }
 
@@ -35633,7 +37826,7 @@ class $JsonSerializableConverter extends chopper.JsonConverter {
   }
 }
 
-final $jsonDecoder = $CustomJsonDecoder(PlaidServiceJsonDecoderMappings);
+final $jsonDecoder = $CustomJsonDecoder(generatedMapping);
 
 // ignore: unused_element
 String? _dateToJson(DateTime? date) {
