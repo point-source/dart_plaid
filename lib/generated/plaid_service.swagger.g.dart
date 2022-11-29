@@ -1336,7 +1336,7 @@ JWKPublicKey _$JWKPublicKeyFromJson(Map<String, dynamic> json) => JWKPublicKey(
       x: json['x'] as String,
       y: json['y'] as String,
       createdAt: json['created_at'] as int,
-      expiredAt: json['expired_at'] as int,
+      expiredAt: json['expired_at'] as int?,
     );
 
 Map<String, dynamic> _$JWKPublicKeyToJson(JWKPublicKey instance) =>
@@ -1992,7 +1992,7 @@ PaymentInitiationPaymentGetResponse
                   json['refund_details'] as Map<String, dynamic>),
           bacs:
               SenderBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
-          iban: json['iban'] as String,
+          iban: json['iban'] as String?,
           refundIds: (json['refund_ids'] as List<dynamic>?)
                   ?.map((e) => e as String)
                   .toList() ??
@@ -2051,7 +2051,7 @@ PaymentInitiationPayment _$PaymentInitiationPaymentFromJson(
           : ExternalPaymentRefundDetails.fromJson(
               json['refund_details'] as Map<String, dynamic>),
       bacs: SenderBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
-      iban: json['iban'] as String,
+      iban: json['iban'] as String?,
       refundIds: (json['refund_ids'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -2342,7 +2342,9 @@ PaymentInitiationPaymentListResponse
                       e as Map<String, dynamic>))
                   .toList() ??
               [],
-          nextCursor: DateTime.parse(json['next_cursor'] as String),
+          nextCursor: json['next_cursor'] == null
+              ? null
+              : DateTime.parse(json['next_cursor'] as String),
           requestId: json['request_id'] as String,
         );
 
@@ -2350,7 +2352,7 @@ Map<String, dynamic> _$PaymentInitiationPaymentListResponseToJson(
         PaymentInitiationPaymentListResponse instance) =>
     <String, dynamic>{
       'payments': instance.payments.map((e) => e.toJson()).toList(),
-      'next_cursor': instance.nextCursor.toIso8601String(),
+      'next_cursor': instance.nextCursor?.toIso8601String(),
       'request_id': instance.requestId,
     };
 
@@ -3141,8 +3143,12 @@ LinkTokenGetResponse _$LinkTokenGetResponseFromJson(
         Map<String, dynamic> json) =>
     LinkTokenGetResponse(
       linkToken: json['link_token'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      expiration: DateTime.parse(json['expiration'] as String),
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      expiration: json['expiration'] == null
+          ? null
+          : DateTime.parse(json['expiration'] as String),
       metadata: LinkTokenGetMetadataResponse.fromJson(
           json['metadata'] as Map<String, dynamic>),
       requestId: json['request_id'] as String,
@@ -3152,8 +3158,8 @@ Map<String, dynamic> _$LinkTokenGetResponseToJson(
         LinkTokenGetResponse instance) =>
     <String, dynamic>{
       'link_token': instance.linkToken,
-      'created_at': instance.createdAt.toIso8601String(),
-      'expiration': instance.expiration.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'expiration': instance.expiration?.toIso8601String(),
       'metadata': instance.metadata.toJson(),
       'request_id': instance.requestId,
     };
@@ -3162,9 +3168,9 @@ LinkTokenGetMetadataResponse _$LinkTokenGetMetadataResponseFromJson(
         Map<String, dynamic> json) =>
     LinkTokenGetMetadataResponse(
       initialProducts: productsListFromJson(json['initial_products'] as List?),
-      webhook: json['webhook'] as String,
+      webhook: json['webhook'] as String?,
       countryCodes: countryCodeListFromJson(json['country_codes'] as List?),
-      language: json['language'] as String,
+      language: json['language'] as String?,
       institutionData: json['institution_data'] == null
           ? null
           : LinkTokenCreateInstitutionData.fromJson(
@@ -3173,8 +3179,8 @@ LinkTokenGetMetadataResponse _$LinkTokenGetMetadataResponseFromJson(
           ? null
           : AccountFiltersResponse.fromJson(
               json['account_filters'] as Map<String, dynamic>),
-      redirectUri: json['redirect_uri'] as String,
-      clientName: json['client_name'] as String,
+      redirectUri: json['redirect_uri'] as String?,
+      clientName: json['client_name'] as String?,
     );
 
 Map<String, dynamic> _$LinkTokenGetMetadataResponseToJson(
@@ -3210,7 +3216,7 @@ PlaidError _$PlaidErrorFromJson(Map<String, dynamic> json) => PlaidError(
       errorType: plaidErrorTypeFromJson(json['error_type']),
       errorCode: json['error_code'] as String,
       errorMessage: json['error_message'] as String,
-      displayMessage: json['display_message'] as String,
+      displayMessage: json['display_message'] as String?,
       requestId: json['request_id'] as String?,
       causes: (json['causes'] as List<dynamic>?)
               ?.map((e) => e as Object)
@@ -3238,9 +3244,9 @@ AccountBase _$AccountBaseFromJson(Map<String, dynamic> json) => AccountBase(
       accountId: json['account_id'] as String,
       balances:
           AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
-      mask: json['mask'] as String,
+      mask: json['mask'] as String?,
       name: json['name'] as String,
-      officialName: json['official_name'] as String,
+      officialName: json['official_name'] as String?,
       type: accountTypeFromJson(json['type']),
       subtype: accountSubtypeFromJson(json['subtype']),
       verificationStatus:
@@ -3262,11 +3268,11 @@ Map<String, dynamic> _$AccountBaseToJson(AccountBase instance) =>
 
 AccountBalance _$AccountBalanceFromJson(Map<String, dynamic> json) =>
     AccountBalance(
-      available: (json['available'] as num).toDouble(),
-      current: (json['current'] as num).toDouble(),
-      limit: (json['limit'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      available: (json['available'] as num?)?.toDouble(),
+      current: (json['current'] as num?)?.toDouble(),
+      limit: (json['limit'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
       lastUpdatedDatetime: json['last_updated_datetime'] == null
           ? null
           : DateTime.parse(json['last_updated_datetime'] as String),
@@ -3286,7 +3292,7 @@ NumbersACH _$NumbersACHFromJson(Map<String, dynamic> json) => NumbersACH(
       accountId: json['account_id'] as String,
       account: json['account'] as String,
       routing: json['routing'] as String,
-      wireRouting: json['wire_routing'] as String,
+      wireRouting: json['wire_routing'] as String?,
       canTransferIn: json['can_transfer_in'] as bool?,
       canTransferOut: json['can_transfer_out'] as bool?,
     );
@@ -3306,7 +3312,7 @@ NumbersACHNullable _$NumbersACHNullableFromJson(Map<String, dynamic> json) =>
       accountId: json['account_id'] as String,
       account: json['account'] as String,
       routing: json['routing'] as String,
-      wireRouting: json['wire_routing'] as String,
+      wireRouting: json['wire_routing'] as String?,
       canTransferIn: json['can_transfer_in'] as bool?,
       canTransferOut: json['can_transfer_out'] as bool?,
     );
@@ -3551,8 +3557,8 @@ TransactionBase _$TransactionBaseFromJson(Map<String, dynamic> json) =>
       originalDescription: json['original_description'] as String?,
       accountId: json['account_id'] as String,
       amount: (json['amount'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
       date: DateTime.parse(json['date'] as String),
       pending: json['pending'] as bool,
       transactionId: json['transaction_id'] as String,
@@ -3586,9 +3592,15 @@ Map<String, dynamic> _$TransactionBaseToJson(TransactionBase instance) =>
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       paymentChannel:
           transactionPaymentChannelFromJson(json['payment_channel']),
-      authorizedDate: DateTime.parse(json['authorized_date'] as String),
-      authorizedDatetime: DateTime.parse(json['authorized_datetime'] as String),
-      datetime: DateTime.parse(json['datetime'] as String),
+      authorizedDate: json['authorized_date'] == null
+          ? null
+          : DateTime.parse(json['authorized_date'] as String),
+      authorizedDatetime: json['authorized_datetime'] == null
+          ? null
+          : DateTime.parse(json['authorized_datetime'] as String),
+      datetime: json['datetime'] == null
+          ? null
+          : DateTime.parse(json['datetime'] as String),
       transactionCode: transactionCodeFromJson(json['transaction_code']),
       personalFinanceCategory: json['personal_finance_category'] == null
           ? null
@@ -3596,8 +3608,8 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
               json['personal_finance_category'] as Map<String, dynamic>),
       transactionType:
           transactionTransactionTypeFromJson(json['transaction_type']),
-      pendingTransactionId: json['pending_transaction_id'] as String,
-      categoryId: json['category_id'] as String,
+      pendingTransactionId: json['pending_transaction_id'] as String?,
+      categoryId: json['category_id'] as String?,
       category: (json['category'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -3605,13 +3617,13 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
       paymentMeta:
           PaymentMeta.fromJson(json['payment_meta'] as Map<String, dynamic>),
-      accountOwner: json['account_owner'] as String,
+      accountOwner: json['account_owner'] as String?,
       name: json['name'] as String,
       originalDescription: json['original_description'] as String?,
       accountId: json['account_id'] as String,
       amount: (json['amount'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
       date: DateTime.parse(json['date'] as String),
       pending: json['pending'] as bool,
       transactionId: json['transaction_id'] as String,
@@ -3624,8 +3636,8 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       'payment_channel':
           transactionPaymentChannelToJson(instance.paymentChannel),
       'authorized_date': _dateToJson(instance.authorizedDate),
-      'authorized_datetime': instance.authorizedDatetime.toIso8601String(),
-      'datetime': instance.datetime.toIso8601String(),
+      'authorized_datetime': instance.authorizedDatetime?.toIso8601String(),
+      'datetime': instance.datetime?.toIso8601String(),
       'transaction_code': transactionCodeToJson(instance.transactionCode),
       'personal_finance_category': instance.personalFinanceCategory?.toJson(),
       'transaction_type':
@@ -3650,14 +3662,14 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
     };
 
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
-      address: json['address'] as String,
-      city: json['city'] as String,
-      region: json['region'] as String,
-      postalCode: json['postal_code'] as String,
-      country: json['country'] as String,
-      lat: (json['lat'] as num).toDouble(),
-      lon: (json['lon'] as num).toDouble(),
-      storeNumber: json['store_number'] as String,
+      address: json['address'] as String?,
+      city: json['city'] as String?,
+      region: json['region'] as String?,
+      postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lon: (json['lon'] as num?)?.toDouble(),
+      storeNumber: json['store_number'] as String?,
     );
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
@@ -3681,7 +3693,7 @@ TransactionStream _$TransactionStreamFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       description: json['description'] as String,
-      merchantName: json['merchant_name'] as String,
+      merchantName: json['merchant_name'] as String?,
       firstDate: DateTime.parse(json['first_date'] as String),
       lastDate: DateTime.parse(json['last_date'] as String),
       frequency: recurringTransactionFrequencyFromJson(json['frequency']),
@@ -3829,14 +3841,14 @@ Map<String, dynamic> _$InstitutionStatusToJson(InstitutionStatus instance) =>
     };
 
 PaymentMeta _$PaymentMetaFromJson(Map<String, dynamic> json) => PaymentMeta(
-      referenceNumber: json['reference_number'] as String,
-      ppdId: json['ppd_id'] as String,
-      payee: json['payee'] as String,
-      byOrderOf: json['by_order_of'] as String,
-      payer: json['payer'] as String,
-      paymentMethod: json['payment_method'] as String,
-      paymentProcessor: json['payment_processor'] as String,
-      reason: json['reason'] as String,
+      referenceNumber: json['reference_number'] as String?,
+      ppdId: json['ppd_id'] as String?,
+      payee: json['payee'] as String?,
+      byOrderOf: json['by_order_of'] as String?,
+      payer: json['payer'] as String?,
+      paymentMethod: json['payment_method'] as String?,
+      paymentProcessor: json['payment_processor'] as String?,
+      reason: json['reason'] as String?,
     );
 
 Map<String, dynamic> _$PaymentMetaToJson(PaymentMeta instance) =>
@@ -4207,10 +4219,10 @@ Map<String, dynamic> _$AddressNullableToJson(AddressNullable instance) =>
 AddressDataNullable _$AddressDataNullableFromJson(Map<String, dynamic> json) =>
     AddressDataNullable(
       city: json['city'] as String,
-      region: json['region'] as String,
+      region: json['region'] as String?,
       street: json['street'] as String,
-      postalCode: json['postal_code'] as String,
-      country: json['country'] as String,
+      postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$AddressDataNullableToJson(
@@ -4225,10 +4237,10 @@ Map<String, dynamic> _$AddressDataNullableToJson(
 
 AddressData _$AddressDataFromJson(Map<String, dynamic> json) => AddressData(
       city: json['city'] as String,
-      region: json['region'] as String,
+      region: json['region'] as String?,
       street: json['street'] as String,
-      postalCode: json['postal_code'] as String,
-      country: json['country'] as String,
+      postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
@@ -4312,49 +4324,57 @@ LiabilitiesObject _$LiabilitiesObjectFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LiabilitiesObjectToJson(LiabilitiesObject instance) =>
     <String, dynamic>{
-      'credit': instance.credit.map((e) => e.toJson()).toList(),
-      'mortgage': instance.mortgage.map((e) => e.toJson()).toList(),
-      'student': instance.student.map((e) => e.toJson()).toList(),
+      'credit': instance.credit?.map((e) => e.toJson()).toList(),
+      'mortgage': instance.mortgage?.map((e) => e.toJson()).toList(),
+      'student': instance.student?.map((e) => e.toJson()).toList(),
     };
 
 StudentLoan _$StudentLoanFromJson(Map<String, dynamic> json) => StudentLoan(
-      accountId: json['account_id'] as String,
-      accountNumber: json['account_number'] as String,
+      accountId: json['account_id'] as String?,
+      accountNumber: json['account_number'] as String?,
       disbursementDates: (json['disbursement_dates'] as List<dynamic>?)
               ?.map((e) => DateTime.parse(e as String))
               .toList() ??
           [],
-      expectedPayoffDate:
-          DateTime.parse(json['expected_payoff_date'] as String),
-      guarantor: json['guarantor'] as String,
+      expectedPayoffDate: json['expected_payoff_date'] == null
+          ? null
+          : DateTime.parse(json['expected_payoff_date'] as String),
+      guarantor: json['guarantor'] as String?,
       interestRatePercentage:
           (json['interest_rate_percentage'] as num).toDouble(),
-      isOverdue: json['is_overdue'] as bool,
-      lastPaymentAmount: (json['last_payment_amount'] as num).toDouble(),
-      lastPaymentDate: DateTime.parse(json['last_payment_date'] as String),
-      lastStatementIssueDate:
-          DateTime.parse(json['last_statement_issue_date'] as String),
-      loanName: json['loan_name'] as String,
+      isOverdue: json['is_overdue'] as bool?,
+      lastPaymentAmount: (json['last_payment_amount'] as num?)?.toDouble(),
+      lastPaymentDate: json['last_payment_date'] == null
+          ? null
+          : DateTime.parse(json['last_payment_date'] as String),
+      lastStatementIssueDate: json['last_statement_issue_date'] == null
+          ? null
+          : DateTime.parse(json['last_statement_issue_date'] as String),
+      loanName: json['loan_name'] as String?,
       loanStatus: StudentLoanStatus.fromJson(
           json['loan_status'] as Map<String, dynamic>),
-      minimumPaymentAmount: (json['minimum_payment_amount'] as num).toDouble(),
-      nextPaymentDueDate:
-          DateTime.parse(json['next_payment_due_date'] as String),
-      originationDate: DateTime.parse(json['origination_date'] as String),
+      minimumPaymentAmount:
+          (json['minimum_payment_amount'] as num?)?.toDouble(),
+      nextPaymentDueDate: json['next_payment_due_date'] == null
+          ? null
+          : DateTime.parse(json['next_payment_due_date'] as String),
+      originationDate: json['origination_date'] == null
+          ? null
+          : DateTime.parse(json['origination_date'] as String),
       originationPrincipalAmount:
-          (json['origination_principal_amount'] as num).toDouble(),
+          (json['origination_principal_amount'] as num?)?.toDouble(),
       outstandingInterestAmount:
-          (json['outstanding_interest_amount'] as num).toDouble(),
-      paymentReferenceNumber: json['payment_reference_number'] as String,
+          (json['outstanding_interest_amount'] as num?)?.toDouble(),
+      paymentReferenceNumber: json['payment_reference_number'] as String?,
       pslfStatus:
           PSLFStatus.fromJson(json['pslf_status'] as Map<String, dynamic>),
       repaymentPlan: StudentRepaymentPlan.fromJson(
           json['repayment_plan'] as Map<String, dynamic>),
-      sequenceNumber: json['sequence_number'] as String,
+      sequenceNumber: json['sequence_number'] as String?,
       servicerAddress: ServicerAddressData.fromJson(
           json['servicer_address'] as Map<String, dynamic>),
-      ytdInterestPaid: (json['ytd_interest_paid'] as num).toDouble(),
-      ytdPrincipalPaid: (json['ytd_principal_paid'] as num).toDouble(),
+      ytdInterestPaid: (json['ytd_interest_paid'] as num?)?.toDouble(),
+      ytdPrincipalPaid: (json['ytd_principal_paid'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$StudentLoanToJson(StudentLoan instance) =>
@@ -4362,7 +4382,7 @@ Map<String, dynamic> _$StudentLoanToJson(StudentLoan instance) =>
       'account_id': instance.accountId,
       'account_number': instance.accountNumber,
       'disbursement_dates':
-          instance.disbursementDates.map((e) => e.toIso8601String()).toList(),
+          instance.disbursementDates?.map((e) => e.toIso8601String()).toList(),
       'expected_payoff_date': _dateToJson(instance.expectedPayoffDate),
       'guarantor': instance.guarantor,
       'interest_rate_percentage': instance.interestRatePercentage,
@@ -4388,20 +4408,26 @@ Map<String, dynamic> _$StudentLoanToJson(StudentLoan instance) =>
 
 CreditCardLiability _$CreditCardLiabilityFromJson(Map<String, dynamic> json) =>
     CreditCardLiability(
-      accountId: json['account_id'] as String,
+      accountId: json['account_id'] as String?,
       aprs: (json['aprs'] as List<dynamic>?)
               ?.map((e) => Apr.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      isOverdue: json['is_overdue'] as bool,
-      lastPaymentAmount: (json['last_payment_amount'] as num).toDouble(),
-      lastPaymentDate: DateTime.parse(json['last_payment_date'] as String),
-      lastStatementIssueDate:
-          DateTime.parse(json['last_statement_issue_date'] as String),
-      lastStatementBalance: (json['last_statement_balance'] as num).toDouble(),
-      minimumPaymentAmount: (json['minimum_payment_amount'] as num).toDouble(),
-      nextPaymentDueDate:
-          DateTime.parse(json['next_payment_due_date'] as String),
+      isOverdue: json['is_overdue'] as bool?,
+      lastPaymentAmount: (json['last_payment_amount'] as num?)?.toDouble(),
+      lastPaymentDate: json['last_payment_date'] == null
+          ? null
+          : DateTime.parse(json['last_payment_date'] as String),
+      lastStatementIssueDate: json['last_statement_issue_date'] == null
+          ? null
+          : DateTime.parse(json['last_statement_issue_date'] as String),
+      lastStatementBalance:
+          (json['last_statement_balance'] as num?)?.toDouble(),
+      minimumPaymentAmount:
+          (json['minimum_payment_amount'] as num?)?.toDouble(),
+      nextPaymentDueDate: json['next_payment_due_date'] == null
+          ? null
+          : DateTime.parse(json['next_payment_due_date'] as String),
     );
 
 Map<String, dynamic> _$CreditCardLiabilityToJson(
@@ -4422,28 +4448,35 @@ MortgageLiability _$MortgageLiabilityFromJson(Map<String, dynamic> json) =>
     MortgageLiability(
       accountId: json['account_id'] as String,
       accountNumber: json['account_number'] as String,
-      currentLateFee: (json['current_late_fee'] as num).toDouble(),
-      escrowBalance: (json['escrow_balance'] as num).toDouble(),
-      hasPmi: json['has_pmi'] as bool,
-      hasPrepaymentPenalty: json['has_prepayment_penalty'] as bool,
+      currentLateFee: (json['current_late_fee'] as num?)?.toDouble(),
+      escrowBalance: (json['escrow_balance'] as num?)?.toDouble(),
+      hasPmi: json['has_pmi'] as bool?,
+      hasPrepaymentPenalty: json['has_prepayment_penalty'] as bool?,
       interestRate: MortgageInterestRate.fromJson(
           json['interest_rate'] as Map<String, dynamic>),
-      lastPaymentAmount: (json['last_payment_amount'] as num).toDouble(),
-      lastPaymentDate: DateTime.parse(json['last_payment_date'] as String),
-      loanTypeDescription: json['loan_type_description'] as String,
-      loanTerm: json['loan_term'] as String,
-      maturityDate: DateTime.parse(json['maturity_date'] as String),
-      nextMonthlyPayment: (json['next_monthly_payment'] as num).toDouble(),
-      nextPaymentDueDate:
-          DateTime.parse(json['next_payment_due_date'] as String),
-      originationDate: DateTime.parse(json['origination_date'] as String),
+      lastPaymentAmount: (json['last_payment_amount'] as num?)?.toDouble(),
+      lastPaymentDate: json['last_payment_date'] == null
+          ? null
+          : DateTime.parse(json['last_payment_date'] as String),
+      loanTypeDescription: json['loan_type_description'] as String?,
+      loanTerm: json['loan_term'] as String?,
+      maturityDate: json['maturity_date'] == null
+          ? null
+          : DateTime.parse(json['maturity_date'] as String),
+      nextMonthlyPayment: (json['next_monthly_payment'] as num?)?.toDouble(),
+      nextPaymentDueDate: json['next_payment_due_date'] == null
+          ? null
+          : DateTime.parse(json['next_payment_due_date'] as String),
+      originationDate: json['origination_date'] == null
+          ? null
+          : DateTime.parse(json['origination_date'] as String),
       originationPrincipalAmount:
-          (json['origination_principal_amount'] as num).toDouble(),
-      pastDueAmount: (json['past_due_amount'] as num).toDouble(),
+          (json['origination_principal_amount'] as num?)?.toDouble(),
+      pastDueAmount: (json['past_due_amount'] as num?)?.toDouble(),
       propertyAddress: MortgagePropertyAddress.fromJson(
           json['property_address'] as Map<String, dynamic>),
-      ytdInterestPaid: (json['ytd_interest_paid'] as num).toDouble(),
-      ytdPrincipalPaid: (json['ytd_principal_paid'] as num).toDouble(),
+      ytdInterestPaid: (json['ytd_interest_paid'] as num?)?.toDouble(),
+      ytdPrincipalPaid: (json['ytd_principal_paid'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$MortgageLiabilityToJson(MortgageLiability instance) =>
@@ -4473,8 +4506,8 @@ Map<String, dynamic> _$MortgageLiabilityToJson(MortgageLiability instance) =>
 MortgageInterestRate _$MortgageInterestRateFromJson(
         Map<String, dynamic> json) =>
     MortgageInterestRate(
-      percentage: (json['percentage'] as num).toDouble(),
-      type: json['type'] as String,
+      percentage: (json['percentage'] as num?)?.toDouble(),
+      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$MortgageInterestRateToJson(
@@ -4487,11 +4520,11 @@ Map<String, dynamic> _$MortgageInterestRateToJson(
 MortgagePropertyAddress _$MortgagePropertyAddressFromJson(
         Map<String, dynamic> json) =>
     MortgagePropertyAddress(
-      city: json['city'] as String,
-      country: json['country'] as String,
-      postalCode: json['postal_code'] as String,
-      region: json['region'] as String,
-      street: json['street'] as String,
+      city: json['city'] as String?,
+      country: json['country'] as String?,
+      postalCode: json['postal_code'] as String?,
+      region: json['region'] as String?,
+      street: json['street'] as String?,
     );
 
 Map<String, dynamic> _$MortgagePropertyAddressToJson(
@@ -4506,7 +4539,9 @@ Map<String, dynamic> _$MortgagePropertyAddressToJson(
 
 StudentLoanStatus _$StudentLoanStatusFromJson(Map<String, dynamic> json) =>
     StudentLoanStatus(
-      endDate: DateTime.parse(json['end_date'] as String),
+      endDate: json['end_date'] == null
+          ? null
+          : DateTime.parse(json['end_date'] as String),
       type: studentLoanStatusTypeFromJson(json['type']),
     );
 
@@ -4519,7 +4554,7 @@ Map<String, dynamic> _$StudentLoanStatusToJson(StudentLoanStatus instance) =>
 StudentRepaymentPlan _$StudentRepaymentPlanFromJson(
         Map<String, dynamic> json) =>
     StudentRepaymentPlan(
-      description: json['description'] as String,
+      description: json['description'] as String?,
       type: studentRepaymentPlanTypeFromJson(json['type']),
     );
 
@@ -4531,10 +4566,11 @@ Map<String, dynamic> _$StudentRepaymentPlanToJson(
     };
 
 PSLFStatus _$PSLFStatusFromJson(Map<String, dynamic> json) => PSLFStatus(
-      estimatedEligibilityDate:
-          DateTime.parse(json['estimated_eligibility_date'] as String),
-      paymentsMade: (json['payments_made'] as num).toDouble(),
-      paymentsRemaining: (json['payments_remaining'] as num).toDouble(),
+      estimatedEligibilityDate: json['estimated_eligibility_date'] == null
+          ? null
+          : DateTime.parse(json['estimated_eligibility_date'] as String),
+      paymentsMade: (json['payments_made'] as num?)?.toDouble(),
+      paymentsRemaining: (json['payments_remaining'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PSLFStatusToJson(PSLFStatus instance) =>
@@ -4547,11 +4583,11 @@ Map<String, dynamic> _$PSLFStatusToJson(PSLFStatus instance) =>
 
 ServicerAddressData _$ServicerAddressDataFromJson(Map<String, dynamic> json) =>
     ServicerAddressData(
-      city: json['city'] as String,
-      region: json['region'] as String,
-      street: json['street'] as String,
-      postalCode: json['postal_code'] as String,
-      country: json['country'] as String,
+      city: json['city'] as String?,
+      region: json['region'] as String?,
+      street: json['street'] as String?,
+      postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$ServicerAddressDataToJson(
@@ -4567,8 +4603,9 @@ Map<String, dynamic> _$ServicerAddressDataToJson(
 Apr _$AprFromJson(Map<String, dynamic> json) => Apr(
       aprPercentage: (json['apr_percentage'] as num).toDouble(),
       aprType: aprAprTypeFromJson(json['apr_type']),
-      balanceSubjectToApr: (json['balance_subject_to_apr'] as num).toDouble(),
-      interestChargeAmount: (json['interest_charge_amount'] as num).toDouble(),
+      balanceSubjectToApr: (json['balance_subject_to_apr'] as num?)?.toDouble(),
+      interestChargeAmount:
+          (json['interest_charge_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$AprToJson(Apr instance) => <String, dynamic>{
@@ -4817,7 +4854,7 @@ ExternalPaymentRefundDetails _$ExternalPaymentRefundDetailsFromJson(
         Map<String, dynamic> json) =>
     ExternalPaymentRefundDetails(
       name: json['name'] as String,
-      iban: json['iban'] as String,
+      iban: json['iban'] as String?,
       bacs:
           RecipientBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
     );
@@ -4836,8 +4873,12 @@ ExternalPaymentScheduleGet _$ExternalPaymentScheduleGetFromJson(
       interval: paymentScheduleIntervalFromJson(json['interval']),
       intervalExecutionDay: json['interval_execution_day'] as int,
       startDate: DateTime.parse(json['start_date'] as String),
-      endDate: DateTime.parse(json['end_date'] as String),
-      adjustedStartDate: DateTime.parse(json['adjusted_start_date'] as String),
+      endDate: json['end_date'] == null
+          ? null
+          : DateTime.parse(json['end_date'] as String),
+      adjustedStartDate: json['adjusted_start_date'] == null
+          ? null
+          : DateTime.parse(json['adjusted_start_date'] as String),
     );
 
 Map<String, dynamic> _$ExternalPaymentScheduleGetToJson(
@@ -5582,7 +5623,7 @@ Cause _$CauseFromJson(Map<String, dynamic> json) => Cause(
       errorType: plaidErrorTypeFromJson(json['error_type']),
       errorCode: json['error_code'] as String,
       errorMessage: json['error_message'] as String,
-      displayMessage: json['display_message'] as String,
+      displayMessage: json['display_message'] as String?,
       requestId: json['request_id'] as String?,
       causes: (json['causes'] as List<dynamic>?)
               ?.map((e) => e as Object)
@@ -5750,10 +5791,14 @@ PaymentStatusUpdateWebhook _$PaymentStatusUpdateWebhookFromJson(
           paymentInitiationPaymentStatusFromJson(json['new_payment_status']),
       oldPaymentStatus:
           paymentInitiationPaymentStatusFromJson(json['old_payment_status']),
-      originalReference: json['original_reference'] as String,
+      originalReference: json['original_reference'] as String?,
       adjustedReference: json['adjusted_reference'] as String?,
-      originalStartDate: DateTime.parse(json['original_start_date'] as String),
-      adjustedStartDate: DateTime.parse(json['adjusted_start_date'] as String),
+      originalStartDate: json['original_start_date'] == null
+          ? null
+          : DateTime.parse(json['original_start_date'] as String),
+      adjustedStartDate: json['adjusted_start_date'] == null
+          ? null
+          : DateTime.parse(json['adjusted_start_date'] as String),
       timestamp: DateTime.parse(json['timestamp'] as String),
       error: json['error'] == null
           ? null
@@ -5815,10 +5860,10 @@ Holding _$HoldingFromJson(Map<String, dynamic> json) => Holding(
           ? null
           : DateTime.parse(json['institution_price_datetime'] as String),
       institutionValue: (json['institution_value'] as num).toDouble(),
-      costBasis: (json['cost_basis'] as num).toDouble(),
+      costBasis: (json['cost_basis'] as num?)?.toDouble(),
       quantity: (json['quantity'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$HoldingToJson(Holding instance) => <String, dynamic>{
@@ -5837,23 +5882,25 @@ Map<String, dynamic> _$HoldingToJson(Holding instance) => <String, dynamic>{
 
 Security _$SecurityFromJson(Map<String, dynamic> json) => Security(
       securityId: json['security_id'] as String,
-      isin: json['isin'] as String,
-      cusip: json['cusip'] as String,
-      sedol: json['sedol'] as String,
-      institutionSecurityId: json['institution_security_id'] as String,
-      institutionId: json['institution_id'] as String,
-      proxySecurityId: json['proxy_security_id'] as String,
-      name: json['name'] as String,
-      tickerSymbol: json['ticker_symbol'] as String,
-      isCashEquivalent: json['is_cash_equivalent'] as bool,
-      type: json['type'] as String,
-      closePrice: (json['close_price'] as num).toDouble(),
-      closePriceAsOf: DateTime.parse(json['close_price_as_of'] as String),
+      isin: json['isin'] as String?,
+      cusip: json['cusip'] as String?,
+      sedol: json['sedol'] as String?,
+      institutionSecurityId: json['institution_security_id'] as String?,
+      institutionId: json['institution_id'] as String?,
+      proxySecurityId: json['proxy_security_id'] as String?,
+      name: json['name'] as String?,
+      tickerSymbol: json['ticker_symbol'] as String?,
+      isCashEquivalent: json['is_cash_equivalent'] as bool?,
+      type: json['type'] as String?,
+      closePrice: (json['close_price'] as num?)?.toDouble(),
+      closePriceAsOf: json['close_price_as_of'] == null
+          ? null
+          : DateTime.parse(json['close_price_as_of'] as String),
       updateDatetime: json['update_datetime'] == null
           ? null
           : DateTime.parse(json['update_datetime'] as String),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$SecurityToJson(Security instance) => <String, dynamic>{
@@ -5881,17 +5928,17 @@ InvestmentTransaction _$InvestmentTransactionFromJson(
       investmentTransactionId: json['investment_transaction_id'] as String,
       cancelTransactionId: json['cancel_transaction_id'] as String?,
       accountId: json['account_id'] as String,
-      securityId: json['security_id'] as String,
+      securityId: json['security_id'] as String?,
       date: DateTime.parse(json['date'] as String),
       name: json['name'] as String,
       quantity: (json['quantity'] as num).toDouble(),
       amount: (json['amount'] as num).toDouble(),
       price: (json['price'] as num).toDouble(),
-      fees: (json['fees'] as num).toDouble(),
+      fees: (json['fees'] as num?)?.toDouble(),
       type: investmentTransactionTypeFromJson(json['type']),
       subtype: investmentTransactionSubtypeFromJson(json['subtype']),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$InvestmentTransactionToJson(
@@ -5977,22 +6024,24 @@ DepositSwitchGetResponse _$DepositSwitchGetResponseFromJson(
         Map<String, dynamic> json) =>
     DepositSwitchGetResponse(
       depositSwitchId: json['deposit_switch_id'] as String,
-      targetAccountId: json['target_account_id'] as String,
-      targetItemId: json['target_item_id'] as String,
+      targetAccountId: json['target_account_id'] as String?,
+      targetItemId: json['target_item_id'] as String?,
       state: depositSwitchGetResponseStateFromJson(json['state']),
       switchMethod:
           depositSwitchGetResponseSwitchMethodFromJson(json['switch_method']),
       accountHasMultipleAllocations:
-          json['account_has_multiple_allocations'] as bool,
-      isAllocatedRemainder: json['is_allocated_remainder'] as bool,
-      percentAllocated: (json['percent_allocated'] as num).toDouble(),
-      amountAllocated: (json['amount_allocated'] as num).toDouble(),
+          json['account_has_multiple_allocations'] as bool?,
+      isAllocatedRemainder: json['is_allocated_remainder'] as bool?,
+      percentAllocated: (json['percent_allocated'] as num?)?.toDouble(),
+      amountAllocated: (json['amount_allocated'] as num?)?.toDouble(),
       employerName: json['employer_name'] as String?,
       employerId: json['employer_id'] as String?,
       institutionName: json['institution_name'] as String?,
       institutionId: json['institution_id'] as String?,
       dateCreated: DateTime.parse(json['date_created'] as String),
-      dateCompleted: DateTime.parse(json['date_completed'] as String),
+      dateCompleted: json['date_completed'] == null
+          ? null
+          : DateTime.parse(json['date_completed'] as String),
       requestId: json['request_id'] as String,
     );
 
@@ -6153,11 +6202,13 @@ Transfer _$TransferFromJson(Map<String, dynamic> json) => Transfer(
           TransferAuthorizationGuaranteeDecisionRationale.fromJson(
               json['guarantee_decision_rationale'] as Map<String, dynamic>),
       isoCurrencyCode: json['iso_currency_code'] as String,
-      standardReturnWindow:
-          DateTime.parse(json['standard_return_window'] as String),
-      unauthorizedReturnWindow:
-          DateTime.parse(json['unauthorized_return_window'] as String),
-      originatorClientId: json['originator_client_id'] as String,
+      standardReturnWindow: json['standard_return_window'] == null
+          ? null
+          : DateTime.parse(json['standard_return_window'] as String),
+      unauthorizedReturnWindow: json['unauthorized_return_window'] == null
+          ? null
+          : DateTime.parse(json['unauthorized_return_window'] as String),
+      originatorClientId: json['originator_client_id'] as String?,
       refunds: (json['refunds'] as List<dynamic>?)
               ?.map((e) => TransferRefund.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -6270,7 +6321,7 @@ BankTransfer _$BankTransferFromJson(Map<String, dynamic> json) => BankTransfer(
       cancellable: json['cancellable'] as bool,
       failureReason: BankTransferFailure.fromJson(
           json['failure_reason'] as Map<String, dynamic>),
-      customTag: json['custom_tag'] as String,
+      customTag: json['custom_tag'] as String?,
       metadata: BankTransferMetadata.fromJson(
           json['metadata'] as Map<String, dynamic>),
       originationAccountId: json['origination_account_id'] as String,
@@ -6422,8 +6473,8 @@ TransferUserInResponse _$TransferUserInResponseFromJson(
         Map<String, dynamic> json) =>
     TransferUserInResponse(
       legalName: json['legal_name'] as String,
-      phoneNumber: json['phone_number'] as String,
-      emailAddress: json['email_address'] as String,
+      phoneNumber: json['phone_number'] as String?,
+      emailAddress: json['email_address'] as String?,
       address: TransferUserAddressInResponse.fromJson(
           json['address'] as Map<String, dynamic>),
     );
@@ -6460,11 +6511,11 @@ Map<String, dynamic> _$TransferUserAddressInRequestToJson(
 TransferUserAddressInResponse _$TransferUserAddressInResponseFromJson(
         Map<String, dynamic> json) =>
     TransferUserAddressInResponse(
-      street: json['street'] as String,
-      city: json['city'] as String,
-      region: json['region'] as String,
-      postalCode: json['postal_code'] as String,
-      country: json['country'] as String,
+      street: json['street'] as String?,
+      city: json['city'] as String?,
+      region: json['region'] as String?,
+      postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$TransferUserAddressInResponseToJson(
@@ -6537,7 +6588,7 @@ TransferAuthorizationProposedTransfer
           network: json['network'] as String,
           originationAccountId: json['origination_account_id'] as String,
           isoCurrencyCode: json['iso_currency_code'] as String,
-          originatorClientId: json['originator_client_id'] as String,
+          originatorClientId: json['originator_client_id'] as String?,
         );
 
 Map<String, dynamic> _$TransferAuthorizationProposedTransferToJson(
@@ -6753,7 +6804,7 @@ TransferRecurringCreateRequest _$TransferRecurringCreateRequestFromJson(
       network: transferNetworkFromJson(json['network']),
       achClass: aCHClassFromJson(json['ach_class']),
       amount: json['amount'] as String,
-      userPresent: json['user_present'] as bool,
+      userPresent: json['user_present'] as bool?,
       isoCurrencyCode: json['iso_currency_code'] as String?,
       testClockId: json['test_clock_id'] as String?,
       schedule: TransferRecurringSchedule.fromJson(
@@ -7228,15 +7279,15 @@ TransferEvent _$TransferEventFromJson(Map<String, dynamic> json) =>
       eventType: transferEventTypeFromJson(json['event_type']),
       accountId: json['account_id'] as String,
       transferId: json['transfer_id'] as String,
-      originationAccountId: json['origination_account_id'] as String,
+      originationAccountId: json['origination_account_id'] as String?,
       transferType: transferTypeFromJson(json['transfer_type']),
       transferAmount: json['transfer_amount'] as String,
       failureReason: TransferFailure.fromJson(
           json['failure_reason'] as Map<String, dynamic>),
       sweepId: json['sweep_id'] as String,
       sweepAmount: json['sweep_amount'] as String,
-      refundId: json['refund_id'] as String,
-      originatorClientId: json['originator_client_id'] as String,
+      refundId: json['refund_id'] as String?,
+      originatorClientId: json['originator_client_id'] as String?,
     );
 
 Map<String, dynamic> _$TransferEventToJson(TransferEvent instance) =>
@@ -7263,7 +7314,7 @@ BankTransferEvent _$BankTransferEventFromJson(Map<String, dynamic> json) =>
       eventType: bankTransferEventTypeFromJson(json['event_type']),
       accountId: json['account_id'] as String,
       bankTransferId: json['bank_transfer_id'] as String,
-      originationAccountId: json['origination_account_id'] as String,
+      originationAccountId: json['origination_account_id'] as String?,
       bankTransferType: bankTransferTypeFromJson(json['bank_transfer_type']),
       bankTransferAmount: json['bank_transfer_amount'] as String,
       bankTransferIsoCurrencyCode:
@@ -7569,7 +7620,9 @@ TransferSweep _$TransferSweepFromJson(Map<String, dynamic> json) =>
       created: DateTime.parse(json['created'] as String),
       amount: json['amount'] as String,
       isoCurrencyCode: json['iso_currency_code'] as String,
-      settled: DateTime.parse(json['settled'] as String),
+      settled: json['settled'] == null
+          ? null
+          : DateTime.parse(json['settled'] as String),
     );
 
 Map<String, dynamic> _$TransferSweepToJson(TransferSweep instance) =>
@@ -7588,7 +7641,9 @@ SimulatedTransferSweep _$SimulatedTransferSweepFromJson(
       created: DateTime.parse(json['created'] as String),
       amount: json['amount'] as String,
       isoCurrencyCode: json['iso_currency_code'] as String,
-      settled: DateTime.parse(json['settled'] as String),
+      settled: json['settled'] == null
+          ? null
+          : DateTime.parse(json['settled'] as String),
     );
 
 Map<String, dynamic> _$SimulatedTransferSweepToJson(
@@ -7622,7 +7677,7 @@ BankTransferBalanceGetResponse _$BankTransferBalanceGetResponseFromJson(
     BankTransferBalanceGetResponse(
       balance:
           BankTransferBalance.fromJson(json['balance'] as Map<String, dynamic>),
-      originationAccountId: json['origination_account_id'] as String,
+      originationAccountId: json['origination_account_id'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -8092,7 +8147,7 @@ TransferIntentGet _$TransferIntentGetFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       created: DateTime.parse(json['created'] as String),
       status: transferIntentStatusFromJson(json['status']),
-      transferId: json['transfer_id'] as String,
+      transferId: json['transfer_id'] as String?,
       failureReason: TransferIntentGetFailureReason.fromJson(
           json['failure_reason'] as Map<String, dynamic>),
       authorizationDecision: transferIntentAuthorizationDecisionFromJson(
@@ -8552,9 +8607,9 @@ AccountIdentity _$AccountIdentityFromJson(Map<String, dynamic> json) =>
       accountId: json['account_id'] as String,
       balances:
           AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
-      mask: json['mask'] as String,
+      mask: json['mask'] as String?,
       name: json['name'] as String,
-      officialName: json['official_name'] as String,
+      officialName: json['official_name'] as String?,
       type: accountTypeFromJson(json['type']),
       subtype: accountSubtypeFromJson(json['subtype']),
       verificationStatus: accountIdentityVerificationStatusFromJson(
@@ -8595,9 +8650,9 @@ AccountIdentityMatchScore _$AccountIdentityMatchScoreFromJson(
       accountId: json['account_id'] as String,
       balances:
           AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
-      mask: json['mask'] as String,
+      mask: json['mask'] as String?,
       name: json['name'] as String,
-      officialName: json['official_name'] as String,
+      officialName: json['official_name'] as String?,
       type: accountTypeFromJson(json['type']),
       subtype: accountSubtypeFromJson(json['subtype']),
       verificationStatus: accountIdentityMatchScoreVerificationStatusFromJson(
@@ -9608,9 +9663,9 @@ Map<String, dynamic> _$PaystubDetailsToJson(PaystubDetails instance) =>
 IncomeBreakdown _$IncomeBreakdownFromJson(Map<String, dynamic> json) =>
     IncomeBreakdown(
       type: incomeBreakdownTypeFromJson(json['type']),
-      rate: (json['rate'] as num).toDouble(),
-      hours: (json['hours'] as num).toDouble(),
-      total: (json['total'] as num).toDouble(),
+      rate: (json['rate'] as num?)?.toDouble(),
+      hours: (json['hours'] as num?)?.toDouble(),
+      total: (json['total'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$IncomeBreakdownToJson(IncomeBreakdown instance) =>
@@ -9623,7 +9678,7 @@ Map<String, dynamic> _$IncomeBreakdownToJson(IncomeBreakdown instance) =>
 
 Employee _$EmployeeFromJson(Map<String, dynamic> json) => Employee(
       address: PaystubAddress.fromJson(json['address'] as Map<String, dynamic>),
-      name: json['name'] as String,
+      name: json['name'] as String?,
       maritalStatus: json['marital_status'] as String?,
       taxpayerId: json['taxpayer_id'] == null
           ? null
@@ -9655,7 +9710,7 @@ PaystubEmployer _$PaystubEmployerFromJson(Map<String, dynamic> json) =>
       address: json['address'] == null
           ? null
           : PaystubAddress.fromJson(json['address'] as Map<String, dynamic>),
-      name: json['name'] as String,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$PaystubEmployerToJson(PaystubEmployer instance) =>
@@ -9756,9 +9811,9 @@ Map<String, dynamic> _$DistributionBreakdownToJson(
 
 PaystubDeduction _$PaystubDeductionFromJson(Map<String, dynamic> json) =>
     PaystubDeduction(
-      type: json['type'] as String,
-      isPretax: json['is_pretax'] as bool,
-      total: (json['total'] as num).toDouble(),
+      type: json['type'] as String?,
+      isPretax: json['is_pretax'] as bool?,
+      total: (json['total'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PaystubDeductionToJson(PaystubDeduction instance) =>
@@ -10613,7 +10668,7 @@ Map<String, dynamic> _$PayrollRiskSignalsItemToJson(
 DocumentRiskSignalsObject _$DocumentRiskSignalsObjectFromJson(
         Map<String, dynamic> json) =>
     DocumentRiskSignalsObject(
-      accountId: json['account_id'] as String,
+      accountId: json['account_id'] as String?,
       singleDocumentRiskSignals: (json['single_document_risk_signals']
                   as List<dynamic>?)
               ?.map((e) =>
@@ -10654,7 +10709,7 @@ Map<String, dynamic> _$RiskSignalDocumentReferenceToJson(
 
 DocumentRiskSummary _$DocumentRiskSummaryFromJson(Map<String, dynamic> json) =>
     DocumentRiskSummary(
-      riskScore: (json['risk_score'] as num).toDouble(),
+      riskScore: (json['risk_score'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$DocumentRiskSummaryToJson(
@@ -10813,8 +10868,8 @@ CreditDocumentMetadata _$CreditDocumentMetadataFromJson(
     CreditDocumentMetadata(
       name: json['name'] as String,
       documentType: json['document_type'] as String,
-      downloadUrl: json['download_url'] as String,
-      status: json['status'] as String,
+      downloadUrl: json['download_url'] as String?,
+      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$CreditDocumentMetadataToJson(
@@ -10842,7 +10897,9 @@ PayrollItem _$PayrollItemFromJson(Map<String, dynamic> json) => PayrollItem(
           [],
       status:
           PayrollItemStatus.fromJson(json['status'] as Map<String, dynamic>),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$PayrollItemToJson(PayrollItem instance) =>
@@ -10853,16 +10910,16 @@ Map<String, dynamic> _$PayrollItemToJson(PayrollItem instance) =>
       'accounts': instance.accounts.map((e) => e.toJson()).toList(),
       'payroll_income': instance.payrollIncome.map((e) => e.toJson()).toList(),
       'status': instance.status.toJson(),
-      'updated_at': instance.updatedAt.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };
 
 PayrollIncomeAccountData _$PayrollIncomeAccountDataFromJson(
         Map<String, dynamic> json) =>
     PayrollIncomeAccountData(
-      accountId: json['account_id'] as String,
+      accountId: json['account_id'] as String?,
       rateOfPay: PayrollIncomeRateOfPay.fromJson(
           json['rate_of_pay'] as Map<String, dynamic>),
-      payFrequency: json['pay_frequency'] as String,
+      payFrequency: json['pay_frequency'] as String?,
     );
 
 Map<String, dynamic> _$PayrollIncomeAccountDataToJson(
@@ -10875,7 +10932,7 @@ Map<String, dynamic> _$PayrollIncomeAccountDataToJson(
 
 PayrollIncomeObject _$PayrollIncomeObjectFromJson(Map<String, dynamic> json) =>
     PayrollIncomeObject(
-      accountId: json['account_id'] as String,
+      accountId: json['account_id'] as String?,
       payStubs: (json['pay_stubs'] as List<dynamic>?)
               ?.map((e) => CreditPayStub.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -10900,7 +10957,7 @@ Map<String, dynamic> _$PayrollIncomeObjectToJson(
     };
 
 Credit1099 _$Credit1099FromJson(Map<String, dynamic> json) => Credit1099(
-      documentId: json['document_id'] as String,
+      documentId: json['document_id'] as String?,
       documentMetadata: json['document_metadata'] == null
           ? null
           : CreditDocumentMetadata.fromJson(
@@ -11106,7 +11163,7 @@ CreditPayStub _$CreditPayStubFromJson(Map<String, dynamic> json) =>
     CreditPayStub(
       deductions: CreditPayStubDeductions.fromJson(
           json['deductions'] as Map<String, dynamic>),
-      documentId: json['document_id'] as String,
+      documentId: json['document_id'] as String?,
       documentMetadata: CreditDocumentMetadata.fromJson(
           json['document_metadata'] as Map<String, dynamic>),
       earnings: CreditPayStubEarnings.fromJson(
@@ -11155,11 +11212,11 @@ Map<String, dynamic> _$CreditPayStubDeductionsToJson(
 PayStubDeductionsBreakdown _$PayStubDeductionsBreakdownFromJson(
         Map<String, dynamic> json) =>
     PayStubDeductionsBreakdown(
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      description: json['description'] as String,
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
-      ytdAmount: (json['ytd_amount'] as num).toDouble(),
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      description: json['description'] as String?,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      ytdAmount: (json['ytd_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PayStubDeductionsBreakdownToJson(
@@ -11175,10 +11232,10 @@ Map<String, dynamic> _$PayStubDeductionsBreakdownToJson(
 PayStubDeductionsTotal _$PayStubDeductionsTotalFromJson(
         Map<String, dynamic> json) =>
     PayStubDeductionsTotal(
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
-      ytdAmount: (json['ytd_amount'] as num).toDouble(),
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      ytdAmount: (json['ytd_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PayStubDeductionsTotalToJson(
@@ -11213,13 +11270,13 @@ PayStubEarningsBreakdown _$PayStubEarningsBreakdownFromJson(
         Map<String, dynamic> json) =>
     PayStubEarningsBreakdown(
       canonicalDescription: json['canonical_description'] as String,
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      description: json['description'] as String,
-      hours: (json['hours'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      rate: (json['rate'] as num).toDouble(),
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
-      ytdAmount: (json['ytd_amount'] as num).toDouble(),
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      description: json['description'] as String?,
+      hours: (json['hours'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      rate: (json['rate'] as num?)?.toDouble(),
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      ytdAmount: (json['ytd_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PayStubEarningsBreakdownToJson(
@@ -11238,11 +11295,11 @@ Map<String, dynamic> _$PayStubEarningsBreakdownToJson(
 PayStubEarningsTotal _$PayStubEarningsTotalFromJson(
         Map<String, dynamic> json) =>
     PayStubEarningsTotal(
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      hours: (json['hours'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
-      ytdAmount: (json['ytd_amount'] as num).toDouble(),
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      hours: (json['hours'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      ytdAmount: (json['ytd_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$PayStubEarningsTotalToJson(
@@ -11260,8 +11317,8 @@ CreditPayStubEmployee _$CreditPayStubEmployeeFromJson(
     CreditPayStubEmployee(
       address: CreditPayStubAddress.fromJson(
           json['address'] as Map<String, dynamic>),
-      name: json['name'] as String,
-      maritalStatus: json['marital_status'] as String,
+      name: json['name'] as String?,
+      maritalStatus: json['marital_status'] as String?,
       taxpayerId: PayStubTaxpayerID.fromJson(
           json['taxpayer_id'] as Map<String, dynamic>),
     );
@@ -11278,11 +11335,11 @@ Map<String, dynamic> _$CreditPayStubEmployeeToJson(
 CreditPayStubAddress _$CreditPayStubAddressFromJson(
         Map<String, dynamic> json) =>
     CreditPayStubAddress(
-      city: json['city'] as String,
-      country: json['country'] as String,
-      postalCode: json['postal_code'] as String,
-      region: json['region'] as String,
-      street: json['street'] as String,
+      city: json['city'] as String?,
+      country: json['country'] as String?,
+      postalCode: json['postal_code'] as String?,
+      region: json['region'] as String?,
+      street: json['street'] as String?,
     );
 
 Map<String, dynamic> _$CreditPayStubAddressToJson(
@@ -11297,8 +11354,8 @@ Map<String, dynamic> _$CreditPayStubAddressToJson(
 
 PayStubTaxpayerID _$PayStubTaxpayerIDFromJson(Map<String, dynamic> json) =>
     PayStubTaxpayerID(
-      idType: json['id_type'] as String,
-      idMask: json['id_mask'] as String,
+      idType: json['id_type'] as String?,
+      idMask: json['id_mask'] as String?,
     );
 
 Map<String, dynamic> _$PayStubTaxpayerIDToJson(PayStubTaxpayerID instance) =>
@@ -11312,7 +11369,7 @@ CreditPayStubEmployer _$CreditPayStubEmployerFromJson(
     CreditPayStubEmployer(
       address: CreditPayStubAddress.fromJson(
           json['address'] as Map<String, dynamic>),
-      name: json['name'] as String,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$CreditPayStubEmployerToJson(
@@ -11324,11 +11381,11 @@ Map<String, dynamic> _$CreditPayStubEmployerToJson(
 
 CreditPayStubNetPay _$CreditPayStubNetPayFromJson(Map<String, dynamic> json) =>
     CreditPayStubNetPay(
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      description: json['description'] as String,
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
-      ytdAmount: (json['ytd_amount'] as num).toDouble(),
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      description: json['description'] as String?,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
+      ytdAmount: (json['ytd_amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CreditPayStubNetPayToJson(
@@ -11344,19 +11401,25 @@ Map<String, dynamic> _$CreditPayStubNetPayToJson(
 PayStubPayPeriodDetails _$PayStubPayPeriodDetailsFromJson(
         Map<String, dynamic> json) =>
     PayStubPayPeriodDetails(
-      payAmount: (json['pay_amount'] as num).toDouble(),
+      payAmount: (json['pay_amount'] as num?)?.toDouble(),
       distributionBreakdown: (json['distribution_breakdown'] as List<dynamic>?)
               ?.map((e) => PayStubDistributionBreakdown.fromJson(
                   e as Map<String, dynamic>))
               .toList() ??
           [],
-      endDate: DateTime.parse(json['end_date'] as String),
-      grossEarnings: (json['gross_earnings'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      payDate: DateTime.parse(json['pay_date'] as String),
-      payFrequency: json['pay_frequency'] as String,
-      startDate: DateTime.parse(json['start_date'] as String),
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      endDate: json['end_date'] == null
+          ? null
+          : DateTime.parse(json['end_date'] as String),
+      grossEarnings: (json['gross_earnings'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      payDate: json['pay_date'] == null
+          ? null
+          : DateTime.parse(json['pay_date'] as String),
+      payFrequency: json['pay_frequency'] as String?,
+      startDate: json['start_date'] == null
+          ? null
+          : DateTime.parse(json['start_date'] as String),
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$PayStubPayPeriodDetailsToJson(
@@ -11377,13 +11440,13 @@ Map<String, dynamic> _$PayStubPayPeriodDetailsToJson(
 PayStubDistributionBreakdown _$PayStubDistributionBreakdownFromJson(
         Map<String, dynamic> json) =>
     PayStubDistributionBreakdown(
-      accountName: json['account_name'] as String,
-      bankName: json['bank_name'] as String,
-      currentAmount: (json['current_amount'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      mask: json['mask'] as String,
-      type: json['type'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      accountName: json['account_name'] as String?,
+      bankName: json['bank_name'] as String?,
+      currentAmount: (json['current_amount'] as num?)?.toDouble(),
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      mask: json['mask'] as String?,
+      type: json['type'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$PayStubDistributionBreakdownToJson(
@@ -11400,15 +11463,15 @@ Map<String, dynamic> _$PayStubDistributionBreakdownToJson(
 
 DocumentRiskSignal _$DocumentRiskSignalFromJson(Map<String, dynamic> json) =>
     DocumentRiskSignal(
-      type: json['type'] as String,
-      field: json['field'] as String,
-      hasFraudRisk: json['has_fraud_risk'] as bool,
+      type: json['type'] as String?,
+      field: json['field'] as String?,
+      hasFraudRisk: json['has_fraud_risk'] as bool?,
       institutionMetadata: DocumentRiskSignalInstitutionMetadata.fromJson(
           json['institution_metadata'] as Map<String, dynamic>),
-      expectedValue: json['expected_value'] as String,
-      actualValue: json['actual_value'] as String,
-      signalDescription: json['signal_description'] as String,
-      pageNumber: json['page_number'] as int,
+      expectedValue: json['expected_value'] as String?,
+      actualValue: json['actual_value'] as String?,
+      signalDescription: json['signal_description'] as String?,
+      pageNumber: json['page_number'] as int?,
     );
 
 Map<String, dynamic> _$DocumentRiskSignalToJson(DocumentRiskSignal instance) =>
@@ -11454,27 +11517,28 @@ CreditW2 _$CreditW2FromJson(Map<String, dynamic> json) => CreditW2(
           json['employer'] as Map<String, dynamic>),
       employee: CreditPayStubEmployee.fromJson(
           json['employee'] as Map<String, dynamic>),
-      taxYear: json['tax_year'] as String,
-      employerIdNumber: json['employer_id_number'] as String,
-      wagesTipsOtherComp: json['wages_tips_other_comp'] as String,
-      federalIncomeTaxWithheld: json['federal_income_tax_withheld'] as String,
-      socialSecurityWages: json['social_security_wages'] as String,
-      socialSecurityTaxWithheld: json['social_security_tax_withheld'] as String,
-      medicareWagesAndTips: json['medicare_wages_and_tips'] as String,
-      medicareTaxWithheld: json['medicare_tax_withheld'] as String,
-      socialSecurityTips: json['social_security_tips'] as String,
-      allocatedTips: json['allocated_tips'] as String,
-      box9: json['box_9'] as String,
-      dependentCareBenefits: json['dependent_care_benefits'] as String,
-      nonqualifiedPlans: json['nonqualified_plans'] as String,
+      taxYear: json['tax_year'] as String?,
+      employerIdNumber: json['employer_id_number'] as String?,
+      wagesTipsOtherComp: json['wages_tips_other_comp'] as String?,
+      federalIncomeTaxWithheld: json['federal_income_tax_withheld'] as String?,
+      socialSecurityWages: json['social_security_wages'] as String?,
+      socialSecurityTaxWithheld:
+          json['social_security_tax_withheld'] as String?,
+      medicareWagesAndTips: json['medicare_wages_and_tips'] as String?,
+      medicareTaxWithheld: json['medicare_tax_withheld'] as String?,
+      socialSecurityTips: json['social_security_tips'] as String?,
+      allocatedTips: json['allocated_tips'] as String?,
+      box9: json['box_9'] as String?,
+      dependentCareBenefits: json['dependent_care_benefits'] as String?,
+      nonqualifiedPlans: json['nonqualified_plans'] as String?,
       box12: (json['box_12'] as List<dynamic>?)
               ?.map((e) => W2Box12.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      statutoryEmployee: json['statutory_employee'] as String,
-      retirementPlan: json['retirement_plan'] as String,
-      thirdPartySickPay: json['third_party_sick_pay'] as String,
-      other: json['other'] as String,
+      statutoryEmployee: json['statutory_employee'] as String?,
+      retirementPlan: json['retirement_plan'] as String?,
+      thirdPartySickPay: json['third_party_sick_pay'] as String?,
+      other: json['other'] as String?,
       stateAndLocalWages: (json['state_and_local_wages'] as List<dynamic>?)
               ?.map((e) =>
                   W2StateAndLocalWages.fromJson(e as Map<String, dynamic>))
@@ -11662,17 +11726,23 @@ Map<String, dynamic> _$CreditEmploymentItemToJson(
 CreditEmploymentVerification _$CreditEmploymentVerificationFromJson(
         Map<String, dynamic> json) =>
     CreditEmploymentVerification(
-      accountId: json['account_id'] as String,
+      accountId: json['account_id'] as String?,
       status: json['status'] as String,
-      startDate: DateTime.parse(json['start_date'] as String),
-      endDate: DateTime.parse(json['end_date'] as String),
+      startDate: json['start_date'] == null
+          ? null
+          : DateTime.parse(json['start_date'] as String),
+      endDate: json['end_date'] == null
+          ? null
+          : DateTime.parse(json['end_date'] as String),
       employer: CreditEmployerVerification.fromJson(
           json['employer'] as Map<String, dynamic>),
-      title: json['title'] as String,
+      title: json['title'] as String?,
       platformIds: CreditPlatformIds.fromJson(
           json['platform_ids'] as Map<String, dynamic>),
       employeeType: json['employee_type'] as String,
-      lastPaystubDate: DateTime.parse(json['last_paystub_date'] as String),
+      lastPaystubDate: json['last_paystub_date'] == null
+          ? null
+          : DateTime.parse(json['last_paystub_date'] as String),
     );
 
 Map<String, dynamic> _$CreditEmploymentVerificationToJson(
@@ -11692,7 +11762,7 @@ Map<String, dynamic> _$CreditEmploymentVerificationToJson(
 CreditEmployerVerification _$CreditEmployerVerificationFromJson(
         Map<String, dynamic> json) =>
     CreditEmployerVerification(
-      name: json['name'] as String,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$CreditEmployerVerificationToJson(
@@ -11703,9 +11773,9 @@ Map<String, dynamic> _$CreditEmployerVerificationToJson(
 
 CreditPlatformIds _$CreditPlatformIdsFromJson(Map<String, dynamic> json) =>
     CreditPlatformIds(
-      employeeId: json['employee_id'] as String,
-      payrollId: json['payroll_id'] as String,
-      positionId: json['position_id'] as String,
+      employeeId: json['employee_id'] as String?,
+      payrollId: json['payroll_id'] as String?,
+      positionId: json['position_id'] as String?,
     );
 
 Map<String, dynamic> _$CreditPlatformIdsToJson(CreditPlatformIds instance) =>
@@ -11936,17 +12006,17 @@ Map<String, dynamic> _$SandboxTransferFireWebhookResponseToJson(
 Application _$ApplicationFromJson(Map<String, dynamic> json) => Application(
       applicationId: json['application_id'] as String,
       name: json['name'] as String,
-      displayName: json['display_name'] as String,
+      displayName: json['display_name'] as String?,
       joinDate: DateTime.parse(json['join_date'] as String),
-      logoUrl: json['logo_url'] as String,
-      applicationUrl: json['application_url'] as String,
-      reasonForAccess: json['reason_for_access'] as String,
-      useCase: json['use_case'] as String,
-      companyLegalName: json['company_legal_name'] as String,
-      city: json['city'] as String,
-      region: json['region'] as String,
-      postalCode: json['postal_code'] as String,
-      countryCode: json['country_code'] as String,
+      logoUrl: json['logo_url'] as String?,
+      applicationUrl: json['application_url'] as String?,
+      reasonForAccess: json['reason_for_access'] as String?,
+      useCase: json['use_case'] as String?,
+      companyLegalName: json['company_legal_name'] as String?,
+      city: json['city'] as String?,
+      region: json['region'] as String?,
+      postalCode: json['postal_code'] as String?,
+      countryCode: json['country_code'] as String?,
     );
 
 Map<String, dynamic> _$ApplicationToJson(Application instance) =>
@@ -13413,7 +13483,7 @@ Enhancements _$EnhancementsFromJson(Map<String, dynamic> json) => Enhancements(
       logoUrl: json['logo_url'] as String?,
       checkNumber: json['check_number'] as String?,
       paymentChannel: paymentChannelFromJson(json['payment_channel']),
-      categoryId: json['category_id'] as String,
+      categoryId: json['category_id'] as String?,
       category: (json['category'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -13536,7 +13606,9 @@ PaymentProfileGetResponse _$PaymentProfileGetResponseFromJson(
     PaymentProfileGetResponse(
       updatedAt: DateTime.parse(json['updated_at'] as String),
       createdAt: DateTime.parse(json['created_at'] as String),
-      deletedAt: DateTime.parse(json['deleted_at'] as String),
+      deletedAt: json['deleted_at'] == null
+          ? null
+          : DateTime.parse(json['deleted_at'] as String),
       status: paymentProfileStatusFromJson(json['status']),
       requestId: json['request_id'] as String,
     );
@@ -13546,7 +13618,7 @@ Map<String, dynamic> _$PaymentProfileGetResponseToJson(
     <String, dynamic>{
       'updated_at': instance.updatedAt.toIso8601String(),
       'created_at': instance.createdAt.toIso8601String(),
-      'deleted_at': instance.deletedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
       'status': paymentProfileStatusToJson(instance.status),
       'request_id': instance.requestId,
     };
@@ -14306,8 +14378,8 @@ HistoricalBalance _$HistoricalBalanceFromJson(Map<String, dynamic> json) =>
     HistoricalBalance(
       date: DateTime.parse(json['date'] as String),
       current: (json['current'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
     );
 
 Map<String, dynamic> _$HistoricalBalanceToJson(HistoricalBalance instance) =>
@@ -14386,7 +14458,7 @@ Map<String, dynamic> _$AssetReportUserToJson(AssetReportUser instance) =>
 
 AssetReport _$AssetReportFromJson(Map<String, dynamic> json) => AssetReport(
       assetReportId: json['asset_report_id'] as String,
-      clientReportId: json['client_report_id'] as String,
+      clientReportId: json['client_report_id'] as String?,
       dateGenerated: DateTime.parse(json['date_generated'] as String),
       daysRequested: (json['days_requested'] as num).toDouble(),
       user: AssetReportUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -14448,9 +14520,9 @@ AccountAssets _$AccountAssetsFromJson(Map<String, dynamic> json) =>
       accountId: json['account_id'] as String,
       balances:
           AccountBalance.fromJson(json['balances'] as Map<String, dynamic>),
-      mask: json['mask'] as String,
+      mask: json['mask'] as String?,
       name: json['name'] as String,
-      officialName: json['official_name'] as String,
+      officialName: json['official_name'] as String?,
       type: accountTypeFromJson(json['type']),
       subtype: accountSubtypeFromJson(json['subtype']),
       verificationStatus:
@@ -14500,11 +14572,11 @@ AssetReportTransaction _$AssetReportTransactionFromJson(
           : PaymentMeta.fromJson(json['payment_meta'] as Map<String, dynamic>),
       accountOwner: json['account_owner'] as String?,
       name: json['name'] as String?,
-      originalDescription: json['original_description'] as String,
+      originalDescription: json['original_description'] as String?,
       accountId: json['account_id'] as String,
       amount: (json['amount'] as num).toDouble(),
-      isoCurrencyCode: json['iso_currency_code'] as String,
-      unofficialCurrencyCode: json['unofficial_currency_code'] as String,
+      isoCurrencyCode: json['iso_currency_code'] as String?,
+      unofficialCurrencyCode: json['unofficial_currency_code'] as String?,
       date: DateTime.parse(json['date'] as String),
       pending: json['pending'] as bool,
       transactionId: json['transaction_id'] as String,
@@ -17137,7 +17209,7 @@ Map<String, dynamic> _$LoanIdentifiersToJson(LoanIdentifiers instance) =>
 
 LoanIdentifier _$LoanIdentifierFromJson(Map<String, dynamic> json) =>
     LoanIdentifier(
-      loanIdentifier: json['LoanIdentifier'] as String,
+      loanIdentifier: json['LoanIdentifier'] as String?,
       loanIdentifierType:
           loanIdentifierTypeFromJson(json['LoanIdentifierType']),
     );
@@ -17238,7 +17310,7 @@ TaxpayerIdentifier _$TaxpayerIdentifierFromJson(Map<String, dynamic> json) =>
     TaxpayerIdentifier(
       taxpayerIdentifierType:
           taxpayerIdentifierTypeFromJson(json['TaxpayerIdentifierType']),
-      taxpayerIdentifierValue: json['TaxpayerIdentifierValue'] as String,
+      taxpayerIdentifierValue: json['TaxpayerIdentifierValue'] as String?,
     );
 
 Map<String, dynamic> _$TaxpayerIdentifierToJson(TaxpayerIdentifier instance) =>
@@ -17317,7 +17389,7 @@ Map<String, dynamic> _$ServiceProductFulfillmentToJson(
 ServiceProductFulfillmentDetail _$ServiceProductFulfillmentDetailFromJson(
         Map<String, dynamic> json) =>
     ServiceProductFulfillmentDetail(
-      vendorOrderIdentifier: json['VendorOrderIdentifier'] as String,
+      vendorOrderIdentifier: json['VendorOrderIdentifier'] as String?,
       serviceProductFulfillmentIdentifier:
           serviceProductFulfillmentIdentifierFromJson(
               json['ServiceProductFulfillmentIdentifier']),
@@ -17380,16 +17452,16 @@ AssetDetail _$AssetDetailFromJson(Map<String, dynamic> json) => AssetDetail(
       assetUniqueIdentifier: json['AssetUniqueIdentifier'] as String,
       assetAccountIdentifier: json['AssetAccountIdentifier'] as String,
       assetAsOfDate: json['AssetAsOfDate'] as String,
-      assetDescription: json['AssetDescription'] as String,
+      assetDescription: json['AssetDescription'] as String?,
       assetAvailableBalanceAmount:
           (json['AssetAvailableBalanceAmount'] as num).toDouble(),
       assetCurrentBalanceAmount:
           (json['AssetCurrentBalanceAmount'] as num).toDouble(),
       assetType: assetTypeFromJson(json['AssetType']),
       assetTypeAdditionalDescription:
-          json['AssetTypeAdditionalDescription'] as String,
+          json['AssetTypeAdditionalDescription'] as String?,
       assetDaysRequestedCount: json['AssetDaysRequestedCount'] as int,
-      assetOwnershipType: json['AssetOwnershipType'] as String,
+      assetOwnershipType: json['AssetOwnershipType'] as String?,
     );
 
 Map<String, dynamic> _$AssetDetailToJson(AssetDetail instance) =>
@@ -17419,7 +17491,7 @@ Map<String, dynamic> _$AssetOwnersToJson(AssetOwners instance) =>
     };
 
 AssetOwner _$AssetOwnerFromJson(Map<String, dynamic> json) => AssetOwner(
-      assetOwnerText: json['AssetOwnerText'] as String,
+      assetOwnerText: json['AssetOwnerText'] as String?,
     );
 
 Map<String, dynamic> _$AssetOwnerToJson(AssetOwner instance) =>
@@ -17492,13 +17564,13 @@ AssetTransactionDetail _$AssetTransactionDetailFromJson(
           DateTime.parse(json['AssetTransactionPostDate'] as String),
       assetTransactionType:
           assetTransactionTypeFromJson(json['AssetTransactionType']),
-      assetTransactionPaidByName: json['AssetTransactionPaidByName'] as String,
+      assetTransactionPaidByName: json['AssetTransactionPaidByName'] as String?,
       assetTransactionTypeAdditionalDescription:
-          json['AssetTransactionTypeAdditionalDescription'] as String,
+          json['AssetTransactionTypeAdditionalDescription'] as String?,
       assetTransactionCategoryType: assetTransactionCategoryTypeFromJson(
           json['AssetTransactionCategoryType']),
       financialInstitutionTransactionIdentifier:
-          json['FinancialInstitutionTransactionIdentifier'] as String,
+          json['FinancialInstitutionTransactionIdentifier'] as String?,
     );
 
 Map<String, dynamic> _$AssetTransactionDetailToJson(
@@ -17550,9 +17622,9 @@ Map<String, dynamic> _$ValidationSourcesToJson(ValidationSources instance) =>
 
 ValidationSource _$ValidationSourceFromJson(Map<String, dynamic> json) =>
     ValidationSource(
-      validationSourceName: json['ValidationSourceName'] as String,
+      validationSourceName: json['ValidationSourceName'] as String?,
       validationSourceReferenceIdentifier:
-          json['ValidationSourceReferenceIdentifier'] as String,
+          json['ValidationSourceReferenceIdentifier'] as String?,
     );
 
 Map<String, dynamic> _$ValidationSourceToJson(ValidationSource instance) =>
@@ -17571,8 +17643,8 @@ Map<String, dynamic> _$StatusesToJson(Statuses instance) => <String, dynamic>{
     };
 
 Status _$StatusFromJson(Map<String, dynamic> json) => Status(
-      statusCode: json['StatusCode'] as String,
-      statusDescription: json['StatusDescription'] as String,
+      statusCode: json['StatusCode'] as String?,
+      statusDescription: json['StatusDescription'] as String?,
     );
 
 Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
@@ -17825,7 +17897,7 @@ Map<String, dynamic> _$ItemImportResponseToJson(ItemImportResponse instance) =>
 Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       itemId: json['item_id'] as String,
       institutionId: json['institution_id'] as String?,
-      webhook: json['webhook'] as String,
+      webhook: json['webhook'] as String?,
       error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       availableProducts:
           productsListFromJson(json['available_products'] as List?),
@@ -17833,8 +17905,9 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       products: productsListFromJson(json['products'] as List?),
       consentedProducts:
           productsListFromJson(json['consented_products'] as List?),
-      consentExpirationTime:
-          DateTime.parse(json['consent_expiration_time'] as String),
+      consentExpirationTime: json['consent_expiration_time'] == null
+          ? null
+          : DateTime.parse(json['consent_expiration_time'] as String),
       updateType: itemUpdateTypeFromJson(json['update_type']),
     );
 
@@ -17848,7 +17921,7 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       'products': productsListToJson(instance.products),
       'consented_products': productsListToJson(instance.consentedProducts),
       'consent_expiration_time':
-          instance.consentExpirationTime.toIso8601String(),
+          instance.consentExpirationTime?.toIso8601String(),
       'update_type': itemUpdateTypeToJson(instance.updateType),
     };
 

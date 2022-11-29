@@ -4829,7 +4829,7 @@ class InstitutionsSearchRequest {
     toJson: productsListToJson,
     fromJson: productsListFromJson,
   )
-  final List<enums.Products> products;
+  final List<enums.Products>? products;
   @JsonKey(
     name: 'country_codes',
     toJson: countryCodeListToJson,
@@ -4898,7 +4898,7 @@ extension $InstitutionsSearchRequestExtension on InstitutionsSearchRequest {
       {Wrapped<String?>? clientId,
       Wrapped<String?>? secret,
       Wrapped<String>? query,
-      Wrapped<List<enums.Products>>? products,
+      Wrapped<List<enums.Products>?>? products,
       Wrapped<List<enums.CountryCode>>? countryCodes,
       Wrapped<InstitutionsSearchRequestOptions?>? options}) {
     return InstitutionsSearchRequest(
@@ -8047,7 +8047,7 @@ class JWKPublicKey {
   @JsonKey(name: 'created_at')
   final int createdAt;
   @JsonKey(name: 'expired_at')
-  final int expiredAt;
+  final int? expiredAt;
   static const fromJsonFactory = _$JWKPublicKeyFromJson;
   static const toJsonFactory = _$JWKPublicKeyToJson;
   Map<String, dynamic> toJson() => _$JWKPublicKeyToJson(this);
@@ -8127,7 +8127,7 @@ extension $JWKPublicKeyExtension on JWKPublicKey {
       Wrapped<String>? x,
       Wrapped<String>? y,
       Wrapped<int>? createdAt,
-      Wrapped<int>? expiredAt}) {
+      Wrapped<int?>? expiredAt}) {
     return JWKPublicKey(
         alg: (alg != null ? alg.value : this.alg),
         crv: (crv != null ? crv.value : this.crv),
@@ -10605,7 +10605,7 @@ class PaymentInitiationPaymentGetResponse {
   @JsonKey(name: 'bacs')
   final SenderBACSNullable bacs;
   @JsonKey(name: 'iban')
-  final String iban;
+  final String? iban;
   @JsonKey(name: 'refund_ids', defaultValue: <String>[])
   final List<String>? refundIds;
   @JsonKey(name: 'amount_refunded')
@@ -10774,7 +10774,7 @@ extension $PaymentInitiationPaymentGetResponseExtension
       Wrapped<ExternalPaymentScheduleGet?>? schedule,
       Wrapped<ExternalPaymentRefundDetails?>? refundDetails,
       Wrapped<SenderBACSNullable>? bacs,
-      Wrapped<String>? iban,
+      Wrapped<String?>? iban,
       Wrapped<List<String>?>? refundIds,
       Wrapped<PaymentAmountRefunded?>? amountRefunded,
       Wrapped<String?>? walletId,
@@ -10867,7 +10867,7 @@ class PaymentInitiationPayment {
   @JsonKey(name: 'bacs')
   final SenderBACSNullable bacs;
   @JsonKey(name: 'iban')
-  final String iban;
+  final String? iban;
   @JsonKey(name: 'refund_ids', defaultValue: <String>[])
   final List<String>? refundIds;
   @JsonKey(name: 'amount_refunded')
@@ -11027,7 +11027,7 @@ extension $PaymentInitiationPaymentExtension on PaymentInitiationPayment {
       Wrapped<ExternalPaymentScheduleGet?>? schedule,
       Wrapped<ExternalPaymentRefundDetails?>? refundDetails,
       Wrapped<SenderBACSNullable>? bacs,
-      Wrapped<String>? iban,
+      Wrapped<String?>? iban,
       Wrapped<List<String>?>? refundIds,
       Wrapped<PaymentAmountRefunded?>? amountRefunded,
       Wrapped<String?>? walletId,
@@ -12138,7 +12138,7 @@ class PaymentInitiationPaymentListResponse {
   @JsonKey(name: 'payments', defaultValue: <PaymentInitiationPayment>[])
   final List<PaymentInitiationPayment> payments;
   @JsonKey(name: 'next_cursor')
-  final DateTime nextCursor;
+  final DateTime? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$PaymentInitiationPaymentListResponseFromJson;
@@ -12186,7 +12186,7 @@ extension $PaymentInitiationPaymentListResponseExtension
 
   PaymentInitiationPaymentListResponse copyWithWrapped(
       {Wrapped<List<PaymentInitiationPayment>>? payments,
-      Wrapped<DateTime>? nextCursor,
+      Wrapped<DateTime?>? nextCursor,
       Wrapped<String>? requestId}) {
     return PaymentInitiationPaymentListResponse(
         payments: (payments != null ? payments.value : this.payments),
@@ -15216,9 +15216,9 @@ class LinkTokenGetResponse {
   @JsonKey(name: 'link_token')
   final String linkToken;
   @JsonKey(name: 'created_at')
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @JsonKey(name: 'expiration')
-  final DateTime expiration;
+  final DateTime? expiration;
   @JsonKey(name: 'metadata')
   final LinkTokenGetMetadataResponse metadata;
   @JsonKey(name: 'request_id')
@@ -15278,8 +15278,8 @@ extension $LinkTokenGetResponseExtension on LinkTokenGetResponse {
 
   LinkTokenGetResponse copyWithWrapped(
       {Wrapped<String>? linkToken,
-      Wrapped<DateTime>? createdAt,
-      Wrapped<DateTime>? expiration,
+      Wrapped<DateTime?>? createdAt,
+      Wrapped<DateTime?>? expiration,
       Wrapped<LinkTokenGetMetadataResponse>? metadata,
       Wrapped<String>? requestId}) {
     return LinkTokenGetResponse(
@@ -15314,7 +15314,7 @@ class LinkTokenGetMetadataResponse {
   )
   final List<enums.Products> initialProducts;
   @JsonKey(name: 'webhook')
-  final String webhook;
+  final String? webhook;
   @JsonKey(
     name: 'country_codes',
     toJson: countryCodeListToJson,
@@ -15322,15 +15322,15 @@ class LinkTokenGetMetadataResponse {
   )
   final List<enums.CountryCode> countryCodes;
   @JsonKey(name: 'language')
-  final String language;
+  final String? language;
   @JsonKey(name: 'institution_data')
   final LinkTokenCreateInstitutionData? institutionData;
   @JsonKey(name: 'account_filters')
   final AccountFiltersResponse? accountFilters;
   @JsonKey(name: 'redirect_uri')
-  final String redirectUri;
+  final String? redirectUri;
   @JsonKey(name: 'client_name')
-  final String clientName;
+  final String? clientName;
   static const fromJsonFactory = _$LinkTokenGetMetadataResponseFromJson;
   static const toJsonFactory = _$LinkTokenGetMetadataResponseToJson;
   Map<String, dynamic> toJson() => _$LinkTokenGetMetadataResponseToJson(this);
@@ -15405,13 +15405,13 @@ extension $LinkTokenGetMetadataResponseExtension
 
   LinkTokenGetMetadataResponse copyWithWrapped(
       {Wrapped<List<enums.Products>>? initialProducts,
-      Wrapped<String>? webhook,
+      Wrapped<String?>? webhook,
       Wrapped<List<enums.CountryCode>>? countryCodes,
-      Wrapped<String>? language,
+      Wrapped<String?>? language,
       Wrapped<LinkTokenCreateInstitutionData?>? institutionData,
       Wrapped<AccountFiltersResponse?>? accountFilters,
-      Wrapped<String>? redirectUri,
-      Wrapped<String>? clientName}) {
+      Wrapped<String?>? redirectUri,
+      Wrapped<String?>? clientName}) {
     return LinkTokenGetMetadataResponse(
         initialProducts: (initialProducts != null
             ? initialProducts.value
@@ -15527,7 +15527,7 @@ class PlaidError {
   @JsonKey(name: 'error_message')
   final String errorMessage;
   @JsonKey(name: 'display_message')
-  final String displayMessage;
+  final String? displayMessage;
   @JsonKey(name: 'request_id')
   final String? requestId;
   @JsonKey(name: 'causes', defaultValue: <Object>[])
@@ -15617,7 +15617,7 @@ extension $PlaidErrorExtension on PlaidError {
       {Wrapped<enums.PlaidErrorType>? errorType,
       Wrapped<String>? errorCode,
       Wrapped<String>? errorMessage,
-      Wrapped<String>? displayMessage,
+      Wrapped<String?>? displayMessage,
       Wrapped<String?>? requestId,
       Wrapped<List<Object>?>? causes,
       Wrapped<double?>? status,
@@ -15664,11 +15664,11 @@ class AccountBase {
   @JsonKey(name: 'balances')
   final AccountBalance balances;
   @JsonKey(name: 'mask')
-  final String mask;
+  final String? mask;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'official_name')
-  final String officialName;
+  final String? officialName;
   @JsonKey(
     name: 'type',
     toJson: accountTypeToJson,
@@ -15758,9 +15758,9 @@ extension $AccountBaseExtension on AccountBase {
   AccountBase copyWithWrapped(
       {Wrapped<String>? accountId,
       Wrapped<AccountBalance>? balances,
-      Wrapped<String>? mask,
+      Wrapped<String?>? mask,
       Wrapped<String>? name,
-      Wrapped<String>? officialName,
+      Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
       Wrapped<enums.AccountSubtype>? subtype,
       Wrapped<enums.AccountBaseVerificationStatus?>? verificationStatus}) {
@@ -15794,15 +15794,15 @@ class AccountBalance {
       _$AccountBalanceFromJson(json);
 
   @JsonKey(name: 'available')
-  final double available;
+  final double? available;
   @JsonKey(name: 'current')
-  final double current;
+  final double? current;
   @JsonKey(name: 'limit')
-  final double limit;
+  final double? limit;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'last_updated_datetime')
   final DateTime? lastUpdatedDatetime;
   static const fromJsonFactory = _$AccountBalanceFromJson;
@@ -15865,11 +15865,11 @@ extension $AccountBalanceExtension on AccountBalance {
   }
 
   AccountBalance copyWithWrapped(
-      {Wrapped<double>? available,
-      Wrapped<double>? current,
-      Wrapped<double>? limit,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
+      {Wrapped<double?>? available,
+      Wrapped<double?>? current,
+      Wrapped<double?>? limit,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
       Wrapped<DateTime?>? lastUpdatedDatetime}) {
     return AccountBalance(
         available: (available != null ? available.value : this.available),
@@ -15908,7 +15908,7 @@ class NumbersACH {
   @JsonKey(name: 'routing')
   final String routing;
   @JsonKey(name: 'wire_routing')
-  final String wireRouting;
+  final String? wireRouting;
   @JsonKey(name: 'can_transfer_in')
   final bool? canTransferIn;
   @JsonKey(name: 'can_transfer_out')
@@ -15976,7 +15976,7 @@ extension $NumbersACHExtension on NumbersACH {
       {Wrapped<String>? accountId,
       Wrapped<String>? account,
       Wrapped<String>? routing,
-      Wrapped<String>? wireRouting,
+      Wrapped<String?>? wireRouting,
       Wrapped<bool?>? canTransferIn,
       Wrapped<bool?>? canTransferOut}) {
     return NumbersACH(
@@ -16014,7 +16014,7 @@ class NumbersACHNullable {
   @JsonKey(name: 'routing')
   final String routing;
   @JsonKey(name: 'wire_routing')
-  final String wireRouting;
+  final String? wireRouting;
   @JsonKey(name: 'can_transfer_in')
   final bool? canTransferIn;
   @JsonKey(name: 'can_transfer_out')
@@ -16082,7 +16082,7 @@ extension $NumbersACHNullableExtension on NumbersACHNullable {
       {Wrapped<String>? accountId,
       Wrapped<String>? account,
       Wrapped<String>? routing,
-      Wrapped<String>? wireRouting,
+      Wrapped<String?>? wireRouting,
       Wrapped<bool?>? canTransferIn,
       Wrapped<bool?>? canTransferOut}) {
     return NumbersACHNullable(
@@ -17062,9 +17062,9 @@ class TransactionBase {
   @JsonKey(name: 'amount')
   final double amount;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'date', toJson: _dateToJson)
   final DateTime date;
   @JsonKey(name: 'pending')
@@ -17216,8 +17216,8 @@ extension $TransactionBaseExtension on TransactionBase {
       Wrapped<String?>? originalDescription,
       Wrapped<String>? accountId,
       Wrapped<double>? amount,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
       Wrapped<DateTime>? date,
       Wrapped<bool>? pending,
       Wrapped<String>? transactionId,
@@ -17299,11 +17299,11 @@ class Transaction {
   )
   final enums.TransactionPaymentChannel paymentChannel;
   @JsonKey(name: 'authorized_date', toJson: _dateToJson)
-  final DateTime authorizedDate;
+  final DateTime? authorizedDate;
   @JsonKey(name: 'authorized_datetime')
-  final DateTime authorizedDatetime;
+  final DateTime? authorizedDatetime;
   @JsonKey(name: 'datetime')
-  final DateTime datetime;
+  final DateTime? datetime;
   @JsonKey(
     name: 'transaction_code',
     toJson: transactionCodeToJson,
@@ -17319,17 +17319,17 @@ class Transaction {
   )
   final enums.TransactionTransactionType? transactionType;
   @JsonKey(name: 'pending_transaction_id')
-  final String pendingTransactionId;
+  final String? pendingTransactionId;
   @JsonKey(name: 'category_id')
-  final String categoryId;
+  final String? categoryId;
   @JsonKey(name: 'category', defaultValue: <String>[])
-  final List<String> category;
+  final List<String>? category;
   @JsonKey(name: 'location')
   final Location location;
   @JsonKey(name: 'payment_meta')
   final PaymentMeta paymentMeta;
   @JsonKey(name: 'account_owner')
-  final String accountOwner;
+  final String? accountOwner;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'original_description')
@@ -17339,9 +17339,9 @@ class Transaction {
   @JsonKey(name: 'amount')
   final double amount;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'date', toJson: _dateToJson)
   final DateTime date;
   @JsonKey(name: 'pending')
@@ -17509,24 +17509,24 @@ extension $TransactionExtension on Transaction {
 
   Transaction copyWithWrapped(
       {Wrapped<enums.TransactionPaymentChannel>? paymentChannel,
-      Wrapped<DateTime>? authorizedDate,
-      Wrapped<DateTime>? authorizedDatetime,
-      Wrapped<DateTime>? datetime,
+      Wrapped<DateTime?>? authorizedDate,
+      Wrapped<DateTime?>? authorizedDatetime,
+      Wrapped<DateTime?>? datetime,
       Wrapped<enums.TransactionCode>? transactionCode,
       Wrapped<PersonalFinanceCategory?>? personalFinanceCategory,
       Wrapped<enums.TransactionTransactionType?>? transactionType,
-      Wrapped<String>? pendingTransactionId,
-      Wrapped<String>? categoryId,
-      Wrapped<List<String>>? category,
+      Wrapped<String?>? pendingTransactionId,
+      Wrapped<String?>? categoryId,
+      Wrapped<List<String>?>? category,
       Wrapped<Location>? location,
       Wrapped<PaymentMeta>? paymentMeta,
-      Wrapped<String>? accountOwner,
+      Wrapped<String?>? accountOwner,
       Wrapped<String>? name,
       Wrapped<String?>? originalDescription,
       Wrapped<String>? accountId,
       Wrapped<double>? amount,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
       Wrapped<DateTime>? date,
       Wrapped<bool>? pending,
       Wrapped<String>? transactionId,
@@ -17602,21 +17602,21 @@ class Location {
       _$LocationFromJson(json);
 
   @JsonKey(name: 'address')
-  final String address;
+  final String? address;
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'lat')
-  final double lat;
+  final double? lat;
   @JsonKey(name: 'lon')
-  final double lon;
+  final double? lon;
   @JsonKey(name: 'store_number')
-  final String storeNumber;
+  final String? storeNumber;
   static const fromJsonFactory = _$LocationFromJson;
   static const toJsonFactory = _$LocationToJson;
   Map<String, dynamic> toJson() => _$LocationToJson(this);
@@ -17685,14 +17685,14 @@ extension $LocationExtension on Location {
   }
 
   Location copyWithWrapped(
-      {Wrapped<String>? address,
-      Wrapped<String>? city,
-      Wrapped<String>? region,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? country,
-      Wrapped<double>? lat,
-      Wrapped<double>? lon,
-      Wrapped<String>? storeNumber}) {
+      {Wrapped<String?>? address,
+      Wrapped<String?>? city,
+      Wrapped<String?>? region,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? country,
+      Wrapped<double?>? lat,
+      Wrapped<double?>? lon,
+      Wrapped<String?>? storeNumber}) {
     return Location(
         address: (address != null ? address.value : this.address),
         city: (city != null ? city.value : this.city),
@@ -17740,7 +17740,7 @@ class TransactionStream {
   @JsonKey(name: 'description')
   final String description;
   @JsonKey(name: 'merchant_name')
-  final String merchantName;
+  final String? merchantName;
   @JsonKey(name: 'first_date', toJson: _dateToJson)
   final DateTime firstDate;
   @JsonKey(name: 'last_date', toJson: _dateToJson)
@@ -17887,7 +17887,7 @@ extension $TransactionStreamExtension on TransactionStream {
       Wrapped<String>? categoryId,
       Wrapped<List<String>>? category,
       Wrapped<String>? description,
-      Wrapped<String>? merchantName,
+      Wrapped<String?>? merchantName,
       Wrapped<DateTime>? firstDate,
       Wrapped<DateTime>? lastDate,
       Wrapped<enums.RecurringTransactionFrequency>? frequency,
@@ -18339,21 +18339,21 @@ class PaymentMeta {
       _$PaymentMetaFromJson(json);
 
   @JsonKey(name: 'reference_number')
-  final String referenceNumber;
+  final String? referenceNumber;
   @JsonKey(name: 'ppd_id')
-  final String ppdId;
+  final String? ppdId;
   @JsonKey(name: 'payee')
-  final String payee;
+  final String? payee;
   @JsonKey(name: 'by_order_of')
-  final String byOrderOf;
+  final String? byOrderOf;
   @JsonKey(name: 'payer')
-  final String payer;
+  final String? payer;
   @JsonKey(name: 'payment_method')
-  final String paymentMethod;
+  final String? paymentMethod;
   @JsonKey(name: 'payment_processor')
-  final String paymentProcessor;
+  final String? paymentProcessor;
   @JsonKey(name: 'reason')
-  final String reason;
+  final String? reason;
   static const fromJsonFactory = _$PaymentMetaFromJson;
   static const toJsonFactory = _$PaymentMetaToJson;
   Map<String, dynamic> toJson() => _$PaymentMetaToJson(this);
@@ -18422,14 +18422,14 @@ extension $PaymentMetaExtension on PaymentMeta {
   }
 
   PaymentMeta copyWithWrapped(
-      {Wrapped<String>? referenceNumber,
-      Wrapped<String>? ppdId,
-      Wrapped<String>? payee,
-      Wrapped<String>? byOrderOf,
-      Wrapped<String>? payer,
-      Wrapped<String>? paymentMethod,
-      Wrapped<String>? paymentProcessor,
-      Wrapped<String>? reason}) {
+      {Wrapped<String?>? referenceNumber,
+      Wrapped<String?>? ppdId,
+      Wrapped<String?>? payee,
+      Wrapped<String?>? byOrderOf,
+      Wrapped<String?>? payer,
+      Wrapped<String?>? paymentMethod,
+      Wrapped<String?>? paymentProcessor,
+      Wrapped<String?>? reason}) {
     return PaymentMeta(
         referenceNumber: (referenceNumber != null
             ? referenceNumber.value
@@ -20121,13 +20121,13 @@ class AddressDataNullable {
   @JsonKey(name: 'city')
   final String city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'street')
   final String street;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   static const fromJsonFactory = _$AddressDataNullableFromJson;
   static const toJsonFactory = _$AddressDataNullableToJson;
   Map<String, dynamic> toJson() => _$AddressDataNullableToJson(this);
@@ -20179,10 +20179,10 @@ extension $AddressDataNullableExtension on AddressDataNullable {
 
   AddressDataNullable copyWithWrapped(
       {Wrapped<String>? city,
-      Wrapped<String>? region,
+      Wrapped<String?>? region,
       Wrapped<String>? street,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? country}) {
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? country}) {
     return AddressDataNullable(
         city: (city != null ? city.value : this.city),
         region: (region != null ? region.value : this.region),
@@ -20208,13 +20208,13 @@ class AddressData {
   @JsonKey(name: 'city')
   final String city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'street')
   final String street;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   static const fromJsonFactory = _$AddressDataFromJson;
   static const toJsonFactory = _$AddressDataToJson;
   Map<String, dynamic> toJson() => _$AddressDataToJson(this);
@@ -20266,10 +20266,10 @@ extension $AddressDataExtension on AddressData {
 
   AddressData copyWithWrapped(
       {Wrapped<String>? city,
-      Wrapped<String>? region,
+      Wrapped<String?>? region,
       Wrapped<String>? street,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? country}) {
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? country}) {
     return AddressData(
         city: (city != null ? city.value : this.city),
         region: (region != null ? region.value : this.region),
@@ -20448,11 +20448,11 @@ class LiabilitiesObject {
       _$LiabilitiesObjectFromJson(json);
 
   @JsonKey(name: 'credit', defaultValue: <CreditCardLiability>[])
-  final List<CreditCardLiability> credit;
+  final List<CreditCardLiability>? credit;
   @JsonKey(name: 'mortgage', defaultValue: <MortgageLiability>[])
-  final List<MortgageLiability> mortgage;
+  final List<MortgageLiability>? mortgage;
   @JsonKey(name: 'student', defaultValue: <StudentLoan>[])
-  final List<StudentLoan> student;
+  final List<StudentLoan>? student;
   static const fromJsonFactory = _$LiabilitiesObjectFromJson;
   static const toJsonFactory = _$LiabilitiesObjectToJson;
   Map<String, dynamic> toJson() => _$LiabilitiesObjectToJson(this);
@@ -20493,9 +20493,9 @@ extension $LiabilitiesObjectExtension on LiabilitiesObject {
   }
 
   LiabilitiesObject copyWithWrapped(
-      {Wrapped<List<CreditCardLiability>>? credit,
-      Wrapped<List<MortgageLiability>>? mortgage,
-      Wrapped<List<StudentLoan>>? student}) {
+      {Wrapped<List<CreditCardLiability>?>? credit,
+      Wrapped<List<MortgageLiability>?>? mortgage,
+      Wrapped<List<StudentLoan>?>? student}) {
     return LiabilitiesObject(
         credit: (credit != null ? credit.value : this.credit),
         mortgage: (mortgage != null ? mortgage.value : this.mortgage),
@@ -20536,53 +20536,53 @@ class StudentLoan {
       _$StudentLoanFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(name: 'account_number')
-  final String accountNumber;
+  final String? accountNumber;
   @JsonKey(name: 'disbursement_dates', defaultValue: <DateTime>[])
-  final List<DateTime> disbursementDates;
+  final List<DateTime>? disbursementDates;
   @JsonKey(name: 'expected_payoff_date', toJson: _dateToJson)
-  final DateTime expectedPayoffDate;
+  final DateTime? expectedPayoffDate;
   @JsonKey(name: 'guarantor')
-  final String guarantor;
+  final String? guarantor;
   @JsonKey(name: 'interest_rate_percentage')
   final double interestRatePercentage;
   @JsonKey(name: 'is_overdue')
-  final bool isOverdue;
+  final bool? isOverdue;
   @JsonKey(name: 'last_payment_amount')
-  final double lastPaymentAmount;
+  final double? lastPaymentAmount;
   @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
-  final DateTime lastPaymentDate;
+  final DateTime? lastPaymentDate;
   @JsonKey(name: 'last_statement_issue_date', toJson: _dateToJson)
-  final DateTime lastStatementIssueDate;
+  final DateTime? lastStatementIssueDate;
   @JsonKey(name: 'loan_name')
-  final String loanName;
+  final String? loanName;
   @JsonKey(name: 'loan_status')
   final StudentLoanStatus loanStatus;
   @JsonKey(name: 'minimum_payment_amount')
-  final double minimumPaymentAmount;
+  final double? minimumPaymentAmount;
   @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
-  final DateTime nextPaymentDueDate;
+  final DateTime? nextPaymentDueDate;
   @JsonKey(name: 'origination_date', toJson: _dateToJson)
-  final DateTime originationDate;
+  final DateTime? originationDate;
   @JsonKey(name: 'origination_principal_amount')
-  final double originationPrincipalAmount;
+  final double? originationPrincipalAmount;
   @JsonKey(name: 'outstanding_interest_amount')
-  final double outstandingInterestAmount;
+  final double? outstandingInterestAmount;
   @JsonKey(name: 'payment_reference_number')
-  final String paymentReferenceNumber;
+  final String? paymentReferenceNumber;
   @JsonKey(name: 'pslf_status')
   final PSLFStatus pslfStatus;
   @JsonKey(name: 'repayment_plan')
   final StudentRepaymentPlan repaymentPlan;
   @JsonKey(name: 'sequence_number')
-  final String sequenceNumber;
+  final String? sequenceNumber;
   @JsonKey(name: 'servicer_address')
   final ServicerAddressData servicerAddress;
   @JsonKey(name: 'ytd_interest_paid')
-  final double ytdInterestPaid;
+  final double? ytdInterestPaid;
   @JsonKey(name: 'ytd_principal_paid')
-  final double ytdPrincipalPaid;
+  final double? ytdPrincipalPaid;
   static const fromJsonFactory = _$StudentLoanFromJson;
   static const toJsonFactory = _$StudentLoanToJson;
   Map<String, dynamic> toJson() => _$StudentLoanToJson(this);
@@ -20748,30 +20748,30 @@ extension $StudentLoanExtension on StudentLoan {
   }
 
   StudentLoan copyWithWrapped(
-      {Wrapped<String>? accountId,
-      Wrapped<String>? accountNumber,
-      Wrapped<List<DateTime>>? disbursementDates,
-      Wrapped<DateTime>? expectedPayoffDate,
-      Wrapped<String>? guarantor,
+      {Wrapped<String?>? accountId,
+      Wrapped<String?>? accountNumber,
+      Wrapped<List<DateTime>?>? disbursementDates,
+      Wrapped<DateTime?>? expectedPayoffDate,
+      Wrapped<String?>? guarantor,
       Wrapped<double>? interestRatePercentage,
-      Wrapped<bool>? isOverdue,
-      Wrapped<double>? lastPaymentAmount,
-      Wrapped<DateTime>? lastPaymentDate,
-      Wrapped<DateTime>? lastStatementIssueDate,
-      Wrapped<String>? loanName,
+      Wrapped<bool?>? isOverdue,
+      Wrapped<double?>? lastPaymentAmount,
+      Wrapped<DateTime?>? lastPaymentDate,
+      Wrapped<DateTime?>? lastStatementIssueDate,
+      Wrapped<String?>? loanName,
       Wrapped<StudentLoanStatus>? loanStatus,
-      Wrapped<double>? minimumPaymentAmount,
-      Wrapped<DateTime>? nextPaymentDueDate,
-      Wrapped<DateTime>? originationDate,
-      Wrapped<double>? originationPrincipalAmount,
-      Wrapped<double>? outstandingInterestAmount,
-      Wrapped<String>? paymentReferenceNumber,
+      Wrapped<double?>? minimumPaymentAmount,
+      Wrapped<DateTime?>? nextPaymentDueDate,
+      Wrapped<DateTime?>? originationDate,
+      Wrapped<double?>? originationPrincipalAmount,
+      Wrapped<double?>? outstandingInterestAmount,
+      Wrapped<String?>? paymentReferenceNumber,
       Wrapped<PSLFStatus>? pslfStatus,
       Wrapped<StudentRepaymentPlan>? repaymentPlan,
-      Wrapped<String>? sequenceNumber,
+      Wrapped<String?>? sequenceNumber,
       Wrapped<ServicerAddressData>? servicerAddress,
-      Wrapped<double>? ytdInterestPaid,
-      Wrapped<double>? ytdPrincipalPaid}) {
+      Wrapped<double?>? ytdInterestPaid,
+      Wrapped<double?>? ytdPrincipalPaid}) {
     return StudentLoan(
         accountId: (accountId != null ? accountId.value : this.accountId),
         accountNumber:
@@ -20852,23 +20852,23 @@ class CreditCardLiability {
       _$CreditCardLiabilityFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(name: 'aprs', defaultValue: <Apr>[])
   final List<Apr> aprs;
   @JsonKey(name: 'is_overdue')
-  final bool isOverdue;
+  final bool? isOverdue;
   @JsonKey(name: 'last_payment_amount')
-  final double lastPaymentAmount;
+  final double? lastPaymentAmount;
   @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
-  final DateTime lastPaymentDate;
+  final DateTime? lastPaymentDate;
   @JsonKey(name: 'last_statement_issue_date', toJson: _dateToJson)
-  final DateTime lastStatementIssueDate;
+  final DateTime? lastStatementIssueDate;
   @JsonKey(name: 'last_statement_balance')
-  final double lastStatementBalance;
+  final double? lastStatementBalance;
   @JsonKey(name: 'minimum_payment_amount')
-  final double minimumPaymentAmount;
+  final double? minimumPaymentAmount;
   @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
-  final DateTime nextPaymentDueDate;
+  final DateTime? nextPaymentDueDate;
   static const fromJsonFactory = _$CreditCardLiabilityFromJson;
   static const toJsonFactory = _$CreditCardLiabilityToJson;
   Map<String, dynamic> toJson() => _$CreditCardLiabilityToJson(this);
@@ -20947,15 +20947,15 @@ extension $CreditCardLiabilityExtension on CreditCardLiability {
   }
 
   CreditCardLiability copyWithWrapped(
-      {Wrapped<String>? accountId,
+      {Wrapped<String?>? accountId,
       Wrapped<List<Apr>>? aprs,
-      Wrapped<bool>? isOverdue,
-      Wrapped<double>? lastPaymentAmount,
-      Wrapped<DateTime>? lastPaymentDate,
-      Wrapped<DateTime>? lastStatementIssueDate,
-      Wrapped<double>? lastStatementBalance,
-      Wrapped<double>? minimumPaymentAmount,
-      Wrapped<DateTime>? nextPaymentDueDate}) {
+      Wrapped<bool?>? isOverdue,
+      Wrapped<double?>? lastPaymentAmount,
+      Wrapped<DateTime?>? lastPaymentDate,
+      Wrapped<DateTime?>? lastStatementIssueDate,
+      Wrapped<double?>? lastStatementBalance,
+      Wrapped<double?>? minimumPaymentAmount,
+      Wrapped<DateTime?>? nextPaymentDueDate}) {
     return CreditCardLiability(
         accountId: (accountId != null ? accountId.value : this.accountId),
         aprs: (aprs != null ? aprs.value : this.aprs),
@@ -21014,41 +21014,41 @@ class MortgageLiability {
   @JsonKey(name: 'account_number')
   final String accountNumber;
   @JsonKey(name: 'current_late_fee')
-  final double currentLateFee;
+  final double? currentLateFee;
   @JsonKey(name: 'escrow_balance')
-  final double escrowBalance;
+  final double? escrowBalance;
   @JsonKey(name: 'has_pmi')
-  final bool hasPmi;
+  final bool? hasPmi;
   @JsonKey(name: 'has_prepayment_penalty')
-  final bool hasPrepaymentPenalty;
+  final bool? hasPrepaymentPenalty;
   @JsonKey(name: 'interest_rate')
   final MortgageInterestRate interestRate;
   @JsonKey(name: 'last_payment_amount')
-  final double lastPaymentAmount;
+  final double? lastPaymentAmount;
   @JsonKey(name: 'last_payment_date', toJson: _dateToJson)
-  final DateTime lastPaymentDate;
+  final DateTime? lastPaymentDate;
   @JsonKey(name: 'loan_type_description')
-  final String loanTypeDescription;
+  final String? loanTypeDescription;
   @JsonKey(name: 'loan_term')
-  final String loanTerm;
+  final String? loanTerm;
   @JsonKey(name: 'maturity_date', toJson: _dateToJson)
-  final DateTime maturityDate;
+  final DateTime? maturityDate;
   @JsonKey(name: 'next_monthly_payment')
-  final double nextMonthlyPayment;
+  final double? nextMonthlyPayment;
   @JsonKey(name: 'next_payment_due_date', toJson: _dateToJson)
-  final DateTime nextPaymentDueDate;
+  final DateTime? nextPaymentDueDate;
   @JsonKey(name: 'origination_date', toJson: _dateToJson)
-  final DateTime originationDate;
+  final DateTime? originationDate;
   @JsonKey(name: 'origination_principal_amount')
-  final double originationPrincipalAmount;
+  final double? originationPrincipalAmount;
   @JsonKey(name: 'past_due_amount')
-  final double pastDueAmount;
+  final double? pastDueAmount;
   @JsonKey(name: 'property_address')
   final MortgagePropertyAddress propertyAddress;
   @JsonKey(name: 'ytd_interest_paid')
-  final double ytdInterestPaid;
+  final double? ytdInterestPaid;
   @JsonKey(name: 'ytd_principal_paid')
-  final double ytdPrincipalPaid;
+  final double? ytdPrincipalPaid;
   static const fromJsonFactory = _$MortgageLiabilityFromJson;
   static const toJsonFactory = _$MortgageLiabilityToJson;
   Map<String, dynamic> toJson() => _$MortgageLiabilityToJson(this);
@@ -21196,24 +21196,24 @@ extension $MortgageLiabilityExtension on MortgageLiability {
   MortgageLiability copyWithWrapped(
       {Wrapped<String>? accountId,
       Wrapped<String>? accountNumber,
-      Wrapped<double>? currentLateFee,
-      Wrapped<double>? escrowBalance,
-      Wrapped<bool>? hasPmi,
-      Wrapped<bool>? hasPrepaymentPenalty,
+      Wrapped<double?>? currentLateFee,
+      Wrapped<double?>? escrowBalance,
+      Wrapped<bool?>? hasPmi,
+      Wrapped<bool?>? hasPrepaymentPenalty,
       Wrapped<MortgageInterestRate>? interestRate,
-      Wrapped<double>? lastPaymentAmount,
-      Wrapped<DateTime>? lastPaymentDate,
-      Wrapped<String>? loanTypeDescription,
-      Wrapped<String>? loanTerm,
-      Wrapped<DateTime>? maturityDate,
-      Wrapped<double>? nextMonthlyPayment,
-      Wrapped<DateTime>? nextPaymentDueDate,
-      Wrapped<DateTime>? originationDate,
-      Wrapped<double>? originationPrincipalAmount,
-      Wrapped<double>? pastDueAmount,
+      Wrapped<double?>? lastPaymentAmount,
+      Wrapped<DateTime?>? lastPaymentDate,
+      Wrapped<String?>? loanTypeDescription,
+      Wrapped<String?>? loanTerm,
+      Wrapped<DateTime?>? maturityDate,
+      Wrapped<double?>? nextMonthlyPayment,
+      Wrapped<DateTime?>? nextPaymentDueDate,
+      Wrapped<DateTime?>? originationDate,
+      Wrapped<double?>? originationPrincipalAmount,
+      Wrapped<double?>? pastDueAmount,
       Wrapped<MortgagePropertyAddress>? propertyAddress,
-      Wrapped<double>? ytdInterestPaid,
-      Wrapped<double>? ytdPrincipalPaid}) {
+      Wrapped<double?>? ytdInterestPaid,
+      Wrapped<double?>? ytdPrincipalPaid}) {
     return MortgageLiability(
         accountId: (accountId != null ? accountId.value : this.accountId),
         accountNumber:
@@ -21278,9 +21278,9 @@ class MortgageInterestRate {
       _$MortgageInterestRateFromJson(json);
 
   @JsonKey(name: 'percentage')
-  final double percentage;
+  final double? percentage;
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   static const fromJsonFactory = _$MortgageInterestRateFromJson;
   static const toJsonFactory = _$MortgageInterestRateToJson;
   Map<String, dynamic> toJson() => _$MortgageInterestRateToJson(this);
@@ -21313,7 +21313,7 @@ extension $MortgageInterestRateExtension on MortgageInterestRate {
   }
 
   MortgageInterestRate copyWithWrapped(
-      {Wrapped<double>? percentage, Wrapped<String>? type}) {
+      {Wrapped<double?>? percentage, Wrapped<String?>? type}) {
     return MortgageInterestRate(
         percentage: (percentage != null ? percentage.value : this.percentage),
         type: (type != null ? type.value : this.type));
@@ -21334,15 +21334,15 @@ class MortgagePropertyAddress {
       _$MortgagePropertyAddressFromJson(json);
 
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'street')
-  final String street;
+  final String? street;
   static const fromJsonFactory = _$MortgagePropertyAddressFromJson;
   static const toJsonFactory = _$MortgagePropertyAddressToJson;
   Map<String, dynamic> toJson() => _$MortgagePropertyAddressToJson(this);
@@ -21394,11 +21394,11 @@ extension $MortgagePropertyAddressExtension on MortgagePropertyAddress {
   }
 
   MortgagePropertyAddress copyWithWrapped(
-      {Wrapped<String>? city,
-      Wrapped<String>? country,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? region,
-      Wrapped<String>? street}) {
+      {Wrapped<String?>? city,
+      Wrapped<String?>? country,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? region,
+      Wrapped<String?>? street}) {
     return MortgagePropertyAddress(
         city: (city != null ? city.value : this.city),
         country: (country != null ? country.value : this.country),
@@ -21419,13 +21419,13 @@ class StudentLoanStatus {
       _$StudentLoanStatusFromJson(json);
 
   @JsonKey(name: 'end_date', toJson: _dateToJson)
-  final DateTime endDate;
+  final DateTime? endDate;
   @JsonKey(
     name: 'type',
     toJson: studentLoanStatusTypeToJson,
     fromJson: studentLoanStatusTypeFromJson,
   )
-  final enums.StudentLoanStatusType type;
+  final enums.StudentLoanStatusType? type;
   static const fromJsonFactory = _$StudentLoanStatusFromJson;
   static const toJsonFactory = _$StudentLoanStatusToJson;
   Map<String, dynamic> toJson() => _$StudentLoanStatusToJson(this);
@@ -21459,8 +21459,8 @@ extension $StudentLoanStatusExtension on StudentLoanStatus {
   }
 
   StudentLoanStatus copyWithWrapped(
-      {Wrapped<DateTime>? endDate,
-      Wrapped<enums.StudentLoanStatusType>? type}) {
+      {Wrapped<DateTime?>? endDate,
+      Wrapped<enums.StudentLoanStatusType?>? type}) {
     return StudentLoanStatus(
         endDate: (endDate != null ? endDate.value : this.endDate),
         type: (type != null ? type.value : this.type));
@@ -21478,13 +21478,13 @@ class StudentRepaymentPlan {
       _$StudentRepaymentPlanFromJson(json);
 
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(
     name: 'type',
     toJson: studentRepaymentPlanTypeToJson,
     fromJson: studentRepaymentPlanTypeFromJson,
   )
-  final enums.StudentRepaymentPlanType type;
+  final enums.StudentRepaymentPlanType? type;
   static const fromJsonFactory = _$StudentRepaymentPlanFromJson;
   static const toJsonFactory = _$StudentRepaymentPlanToJson;
   Map<String, dynamic> toJson() => _$StudentRepaymentPlanToJson(this);
@@ -21518,8 +21518,8 @@ extension $StudentRepaymentPlanExtension on StudentRepaymentPlan {
   }
 
   StudentRepaymentPlan copyWithWrapped(
-      {Wrapped<String>? description,
-      Wrapped<enums.StudentRepaymentPlanType>? type}) {
+      {Wrapped<String?>? description,
+      Wrapped<enums.StudentRepaymentPlanType?>? type}) {
     return StudentRepaymentPlan(
         description:
             (description != null ? description.value : this.description),
@@ -21539,11 +21539,11 @@ class PSLFStatus {
       _$PSLFStatusFromJson(json);
 
   @JsonKey(name: 'estimated_eligibility_date', toJson: _dateToJson)
-  final DateTime estimatedEligibilityDate;
+  final DateTime? estimatedEligibilityDate;
   @JsonKey(name: 'payments_made')
-  final double paymentsMade;
+  final double? paymentsMade;
   @JsonKey(name: 'payments_remaining')
-  final double paymentsRemaining;
+  final double? paymentsRemaining;
   static const fromJsonFactory = _$PSLFStatusFromJson;
   static const toJsonFactory = _$PSLFStatusToJson;
   Map<String, dynamic> toJson() => _$PSLFStatusToJson(this);
@@ -21589,9 +21589,9 @@ extension $PSLFStatusExtension on PSLFStatus {
   }
 
   PSLFStatus copyWithWrapped(
-      {Wrapped<DateTime>? estimatedEligibilityDate,
-      Wrapped<double>? paymentsMade,
-      Wrapped<double>? paymentsRemaining}) {
+      {Wrapped<DateTime?>? estimatedEligibilityDate,
+      Wrapped<double?>? paymentsMade,
+      Wrapped<double?>? paymentsRemaining}) {
     return PSLFStatus(
         estimatedEligibilityDate: (estimatedEligibilityDate != null
             ? estimatedEligibilityDate.value
@@ -21618,15 +21618,15 @@ class ServicerAddressData {
       _$ServicerAddressDataFromJson(json);
 
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'street')
-  final String street;
+  final String? street;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   static const fromJsonFactory = _$ServicerAddressDataFromJson;
   static const toJsonFactory = _$ServicerAddressDataToJson;
   Map<String, dynamic> toJson() => _$ServicerAddressDataToJson(this);
@@ -21677,11 +21677,11 @@ extension $ServicerAddressDataExtension on ServicerAddressData {
   }
 
   ServicerAddressData copyWithWrapped(
-      {Wrapped<String>? city,
-      Wrapped<String>? region,
-      Wrapped<String>? street,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? country}) {
+      {Wrapped<String?>? city,
+      Wrapped<String?>? region,
+      Wrapped<String?>? street,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? country}) {
     return ServicerAddressData(
         city: (city != null ? city.value : this.city),
         region: (region != null ? region.value : this.region),
@@ -21711,9 +21711,9 @@ class Apr {
   )
   final enums.AprAprType aprType;
   @JsonKey(name: 'balance_subject_to_apr')
-  final double balanceSubjectToApr;
+  final double? balanceSubjectToApr;
   @JsonKey(name: 'interest_charge_amount')
-  final double interestChargeAmount;
+  final double? interestChargeAmount;
   static const fromJsonFactory = _$AprFromJson;
   static const toJsonFactory = _$AprToJson;
   Map<String, dynamic> toJson() => _$AprToJson(this);
@@ -21765,8 +21765,8 @@ extension $AprExtension on Apr {
   Apr copyWithWrapped(
       {Wrapped<double>? aprPercentage,
       Wrapped<enums.AprAprType>? aprType,
-      Wrapped<double>? balanceSubjectToApr,
-      Wrapped<double>? interestChargeAmount}) {
+      Wrapped<double?>? balanceSubjectToApr,
+      Wrapped<double?>? interestChargeAmount}) {
     return Apr(
         aprPercentage:
             (aprPercentage != null ? aprPercentage.value : this.aprPercentage),
@@ -22729,7 +22729,7 @@ class ExternalPaymentRefundDetails {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'iban')
-  final String iban;
+  final String? iban;
   @JsonKey(name: 'bacs')
   final RecipientBACSNullable bacs;
   static const fromJsonFactory = _$ExternalPaymentRefundDetailsFromJson;
@@ -22771,7 +22771,7 @@ extension $ExternalPaymentRefundDetailsExtension
 
   ExternalPaymentRefundDetails copyWithWrapped(
       {Wrapped<String>? name,
-      Wrapped<String>? iban,
+      Wrapped<String?>? iban,
       Wrapped<RecipientBACSNullable>? bacs}) {
     return ExternalPaymentRefundDetails(
         name: (name != null ? name.value : this.name),
@@ -22804,9 +22804,9 @@ class ExternalPaymentScheduleGet {
   @JsonKey(name: 'start_date', toJson: _dateToJson)
   final DateTime startDate;
   @JsonKey(name: 'end_date', toJson: _dateToJson)
-  final DateTime endDate;
+  final DateTime? endDate;
   @JsonKey(name: 'adjusted_start_date', toJson: _dateToJson)
-  final DateTime adjustedStartDate;
+  final DateTime? adjustedStartDate;
   static const fromJsonFactory = _$ExternalPaymentScheduleGetFromJson;
   static const toJsonFactory = _$ExternalPaymentScheduleGetToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentScheduleGetToJson(this);
@@ -22864,8 +22864,8 @@ extension $ExternalPaymentScheduleGetExtension on ExternalPaymentScheduleGet {
       {Wrapped<enums.PaymentScheduleInterval>? interval,
       Wrapped<int>? intervalExecutionDay,
       Wrapped<DateTime>? startDate,
-      Wrapped<DateTime>? endDate,
-      Wrapped<DateTime>? adjustedStartDate}) {
+      Wrapped<DateTime?>? endDate,
+      Wrapped<DateTime?>? adjustedStartDate}) {
     return ExternalPaymentScheduleGet(
         interval: (interval != null ? interval.value : this.interval),
         intervalExecutionDay: (intervalExecutionDay != null
@@ -26226,7 +26226,7 @@ class Cause {
   @JsonKey(name: 'error_message')
   final String errorMessage;
   @JsonKey(name: 'display_message')
-  final String displayMessage;
+  final String? displayMessage;
   @JsonKey(name: 'request_id')
   final String? requestId;
   @JsonKey(name: 'causes', defaultValue: <Object>[])
@@ -26322,7 +26322,7 @@ extension $CauseExtension on Cause {
       Wrapped<enums.PlaidErrorType>? errorType,
       Wrapped<String>? errorCode,
       Wrapped<String>? errorMessage,
-      Wrapped<String>? displayMessage,
+      Wrapped<String?>? displayMessage,
       Wrapped<String?>? requestId,
       Wrapped<List<Object>?>? causes,
       Wrapped<double?>? status,
@@ -26965,13 +26965,13 @@ class PaymentStatusUpdateWebhook {
   )
   final enums.PaymentInitiationPaymentStatus oldPaymentStatus;
   @JsonKey(name: 'original_reference')
-  final String originalReference;
+  final String? originalReference;
   @JsonKey(name: 'adjusted_reference')
   final String? adjustedReference;
   @JsonKey(name: 'original_start_date', toJson: _dateToJson)
-  final DateTime originalStartDate;
+  final DateTime? originalStartDate;
   @JsonKey(name: 'adjusted_start_date', toJson: _dateToJson)
-  final DateTime adjustedStartDate;
+  final DateTime? adjustedStartDate;
   @JsonKey(name: 'timestamp')
   final DateTime timestamp;
   @JsonKey(name: 'error')
@@ -27082,10 +27082,10 @@ extension $PaymentStatusUpdateWebhookExtension on PaymentStatusUpdateWebhook {
       Wrapped<String>? paymentId,
       Wrapped<enums.PaymentInitiationPaymentStatus>? newPaymentStatus,
       Wrapped<enums.PaymentInitiationPaymentStatus>? oldPaymentStatus,
-      Wrapped<String>? originalReference,
+      Wrapped<String?>? originalReference,
       Wrapped<String?>? adjustedReference,
-      Wrapped<DateTime>? originalStartDate,
-      Wrapped<DateTime>? adjustedStartDate,
+      Wrapped<DateTime?>? originalStartDate,
+      Wrapped<DateTime?>? adjustedStartDate,
       Wrapped<DateTime>? timestamp,
       Wrapped<PlaidError?>? error,
       Wrapped<enums.WebhookEnvironmentValues>? environment}) {
@@ -27283,13 +27283,13 @@ class Holding {
   @JsonKey(name: 'institution_value')
   final double institutionValue;
   @JsonKey(name: 'cost_basis')
-  final double costBasis;
+  final double? costBasis;
   @JsonKey(name: 'quantity')
   final double quantity;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$HoldingFromJson;
   static const toJsonFactory = _$HoldingToJson;
   Map<String, dynamic> toJson() => _$HoldingToJson(this);
@@ -27384,10 +27384,10 @@ extension $HoldingExtension on Holding {
       Wrapped<DateTime?>? institutionPriceAsOf,
       Wrapped<DateTime?>? institutionPriceDatetime,
       Wrapped<double>? institutionValue,
-      Wrapped<double>? costBasis,
+      Wrapped<double?>? costBasis,
       Wrapped<double>? quantity,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return Holding(
         accountId: (accountId != null ? accountId.value : this.accountId),
         securityId: (securityId != null ? securityId.value : this.securityId),
@@ -27441,35 +27441,35 @@ class Security {
   @JsonKey(name: 'security_id')
   final String securityId;
   @JsonKey(name: 'isin')
-  final String isin;
+  final String? isin;
   @JsonKey(name: 'cusip')
-  final String cusip;
+  final String? cusip;
   @JsonKey(name: 'sedol')
-  final String sedol;
+  final String? sedol;
   @JsonKey(name: 'institution_security_id')
-  final String institutionSecurityId;
+  final String? institutionSecurityId;
   @JsonKey(name: 'institution_id')
-  final String institutionId;
+  final String? institutionId;
   @JsonKey(name: 'proxy_security_id')
-  final String proxySecurityId;
+  final String? proxySecurityId;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'ticker_symbol')
-  final String tickerSymbol;
+  final String? tickerSymbol;
   @JsonKey(name: 'is_cash_equivalent')
-  final bool isCashEquivalent;
+  final bool? isCashEquivalent;
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   @JsonKey(name: 'close_price')
-  final double closePrice;
+  final double? closePrice;
   @JsonKey(name: 'close_price_as_of', toJson: _dateToJson)
-  final DateTime closePriceAsOf;
+  final DateTime? closePriceAsOf;
   @JsonKey(name: 'update_datetime')
   final DateTime? updateDatetime;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$SecurityFromJson;
   static const toJsonFactory = _$SecurityToJson;
   Map<String, dynamic> toJson() => _$SecurityToJson(this);
@@ -27588,21 +27588,21 @@ extension $SecurityExtension on Security {
 
   Security copyWithWrapped(
       {Wrapped<String>? securityId,
-      Wrapped<String>? isin,
-      Wrapped<String>? cusip,
-      Wrapped<String>? sedol,
-      Wrapped<String>? institutionSecurityId,
-      Wrapped<String>? institutionId,
-      Wrapped<String>? proxySecurityId,
-      Wrapped<String>? name,
-      Wrapped<String>? tickerSymbol,
-      Wrapped<bool>? isCashEquivalent,
-      Wrapped<String>? type,
-      Wrapped<double>? closePrice,
-      Wrapped<DateTime>? closePriceAsOf,
+      Wrapped<String?>? isin,
+      Wrapped<String?>? cusip,
+      Wrapped<String?>? sedol,
+      Wrapped<String?>? institutionSecurityId,
+      Wrapped<String?>? institutionId,
+      Wrapped<String?>? proxySecurityId,
+      Wrapped<String?>? name,
+      Wrapped<String?>? tickerSymbol,
+      Wrapped<bool?>? isCashEquivalent,
+      Wrapped<String?>? type,
+      Wrapped<double?>? closePrice,
+      Wrapped<DateTime?>? closePriceAsOf,
       Wrapped<DateTime?>? updateDatetime,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return Security(
         securityId: (securityId != null ? securityId.value : this.securityId),
         isin: (isin != null ? isin.value : this.isin),
@@ -27668,7 +27668,7 @@ class InvestmentTransaction {
   @JsonKey(name: 'account_id')
   final String accountId;
   @JsonKey(name: 'security_id')
-  final String securityId;
+  final String? securityId;
   @JsonKey(name: 'date', toJson: _dateToJson)
   final DateTime date;
   @JsonKey(name: 'name')
@@ -27680,7 +27680,7 @@ class InvestmentTransaction {
   @JsonKey(name: 'price')
   final double price;
   @JsonKey(name: 'fees')
-  final double fees;
+  final double? fees;
   @JsonKey(
     name: 'type',
     toJson: investmentTransactionTypeToJson,
@@ -27694,9 +27694,9 @@ class InvestmentTransaction {
   )
   final enums.InvestmentTransactionSubtype subtype;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$InvestmentTransactionFromJson;
   static const toJsonFactory = _$InvestmentTransactionToJson;
   Map<String, dynamic> toJson() => _$InvestmentTransactionToJson(this);
@@ -27805,17 +27805,17 @@ extension $InvestmentTransactionExtension on InvestmentTransaction {
       {Wrapped<String>? investmentTransactionId,
       Wrapped<String?>? cancelTransactionId,
       Wrapped<String>? accountId,
-      Wrapped<String>? securityId,
+      Wrapped<String?>? securityId,
       Wrapped<DateTime>? date,
       Wrapped<String>? name,
       Wrapped<double>? quantity,
       Wrapped<double>? amount,
       Wrapped<double>? price,
-      Wrapped<double>? fees,
+      Wrapped<double?>? fees,
       Wrapped<enums.InvestmentTransactionType>? type,
       Wrapped<enums.InvestmentTransactionSubtype>? subtype,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return InvestmentTransaction(
         investmentTransactionId: (investmentTransactionId != null
             ? investmentTransactionId.value
@@ -28136,9 +28136,9 @@ class DepositSwitchGetResponse {
   @JsonKey(name: 'deposit_switch_id')
   final String depositSwitchId;
   @JsonKey(name: 'target_account_id')
-  final String targetAccountId;
+  final String? targetAccountId;
   @JsonKey(name: 'target_item_id')
-  final String targetItemId;
+  final String? targetItemId;
   @JsonKey(
     name: 'state',
     toJson: depositSwitchGetResponseStateToJson,
@@ -28152,13 +28152,13 @@ class DepositSwitchGetResponse {
   )
   final enums.DepositSwitchGetResponseSwitchMethod? switchMethod;
   @JsonKey(name: 'account_has_multiple_allocations')
-  final bool accountHasMultipleAllocations;
+  final bool? accountHasMultipleAllocations;
   @JsonKey(name: 'is_allocated_remainder')
-  final bool isAllocatedRemainder;
+  final bool? isAllocatedRemainder;
   @JsonKey(name: 'percent_allocated')
-  final double percentAllocated;
+  final double? percentAllocated;
   @JsonKey(name: 'amount_allocated')
-  final double amountAllocated;
+  final double? amountAllocated;
   @JsonKey(name: 'employer_name')
   final String? employerName;
   @JsonKey(name: 'employer_id')
@@ -28170,7 +28170,7 @@ class DepositSwitchGetResponse {
   @JsonKey(name: 'date_created', toJson: _dateToJson)
   final DateTime dateCreated;
   @JsonKey(name: 'date_completed', toJson: _dateToJson)
-  final DateTime dateCompleted;
+  final DateTime? dateCompleted;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$DepositSwitchGetResponseFromJson;
@@ -28296,20 +28296,20 @@ extension $DepositSwitchGetResponseExtension on DepositSwitchGetResponse {
 
   DepositSwitchGetResponse copyWithWrapped(
       {Wrapped<String>? depositSwitchId,
-      Wrapped<String>? targetAccountId,
-      Wrapped<String>? targetItemId,
+      Wrapped<String?>? targetAccountId,
+      Wrapped<String?>? targetItemId,
       Wrapped<enums.DepositSwitchGetResponseState>? state,
       Wrapped<enums.DepositSwitchGetResponseSwitchMethod?>? switchMethod,
-      Wrapped<bool>? accountHasMultipleAllocations,
-      Wrapped<bool>? isAllocatedRemainder,
-      Wrapped<double>? percentAllocated,
-      Wrapped<double>? amountAllocated,
+      Wrapped<bool?>? accountHasMultipleAllocations,
+      Wrapped<bool?>? isAllocatedRemainder,
+      Wrapped<double?>? percentAllocated,
+      Wrapped<double?>? amountAllocated,
       Wrapped<String?>? employerName,
       Wrapped<String?>? employerId,
       Wrapped<String?>? institutionName,
       Wrapped<String?>? institutionId,
       Wrapped<DateTime>? dateCreated,
-      Wrapped<DateTime>? dateCompleted,
+      Wrapped<DateTime?>? dateCompleted,
       Wrapped<String>? requestId}) {
     return DepositSwitchGetResponse(
         depositSwitchId: (depositSwitchId != null
@@ -28918,11 +28918,11 @@ class Transfer {
   @JsonKey(name: 'iso_currency_code')
   final String isoCurrencyCode;
   @JsonKey(name: 'standard_return_window', toJson: _dateToJson)
-  final DateTime standardReturnWindow;
+  final DateTime? standardReturnWindow;
   @JsonKey(name: 'unauthorized_return_window', toJson: _dateToJson)
-  final DateTime unauthorizedReturnWindow;
+  final DateTime? unauthorizedReturnWindow;
   @JsonKey(name: 'originator_client_id')
-  final String originatorClientId;
+  final String? originatorClientId;
   @JsonKey(name: 'refunds', defaultValue: <TransferRefund>[])
   final List<TransferRefund> refunds;
   static const fromJsonFactory = _$TransferFromJson;
@@ -29099,9 +29099,9 @@ extension $TransferExtension on Transfer {
       Wrapped<TransferAuthorizationGuaranteeDecisionRationale>?
           guaranteeDecisionRationale,
       Wrapped<String>? isoCurrencyCode,
-      Wrapped<DateTime>? standardReturnWindow,
-      Wrapped<DateTime>? unauthorizedReturnWindow,
-      Wrapped<String>? originatorClientId,
+      Wrapped<DateTime?>? standardReturnWindow,
+      Wrapped<DateTime?>? unauthorizedReturnWindow,
+      Wrapped<String?>? originatorClientId,
       Wrapped<List<TransferRefund>>? refunds}) {
     return Transfer(
         id: (id != null ? id.value : this.id),
@@ -29524,7 +29524,7 @@ class BankTransfer {
   @JsonKey(name: 'failure_reason')
   final BankTransferFailure failureReason;
   @JsonKey(name: 'custom_tag')
-  final String customTag;
+  final String? customTag;
   @JsonKey(name: 'metadata')
   final BankTransferMetadata metadata;
   @JsonKey(name: 'origination_account_id')
@@ -29669,7 +29669,7 @@ extension $BankTransferExtension on BankTransfer {
       Wrapped<enums.BankTransferNetwork>? network,
       Wrapped<bool>? cancellable,
       Wrapped<BankTransferFailure>? failureReason,
-      Wrapped<String>? customTag,
+      Wrapped<String?>? customTag,
       Wrapped<BankTransferMetadata>? metadata,
       Wrapped<String>? originationAccountId,
       Wrapped<enums.BankTransferDirection>? direction}) {
@@ -30239,9 +30239,9 @@ class TransferUserInResponse {
   @JsonKey(name: 'legal_name')
   final String legalName;
   @JsonKey(name: 'phone_number')
-  final String phoneNumber;
+  final String? phoneNumber;
   @JsonKey(name: 'email_address')
-  final String emailAddress;
+  final String? emailAddress;
   @JsonKey(name: 'address')
   final TransferUserAddressInResponse address;
   static const fromJsonFactory = _$TransferUserInResponseFromJson;
@@ -30292,8 +30292,8 @@ extension $TransferUserInResponseExtension on TransferUserInResponse {
 
   TransferUserInResponse copyWithWrapped(
       {Wrapped<String>? legalName,
-      Wrapped<String>? phoneNumber,
-      Wrapped<String>? emailAddress,
+      Wrapped<String?>? phoneNumber,
+      Wrapped<String?>? emailAddress,
       Wrapped<TransferUserAddressInResponse>? address}) {
     return TransferUserInResponse(
         legalName: (legalName != null ? legalName.value : this.legalName),
@@ -30407,15 +30407,15 @@ class TransferUserAddressInResponse {
       _$TransferUserAddressInResponseFromJson(json);
 
   @JsonKey(name: 'street')
-  final String street;
+  final String? street;
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   static const fromJsonFactory = _$TransferUserAddressInResponseFromJson;
   static const toJsonFactory = _$TransferUserAddressInResponseToJson;
   Map<String, dynamic> toJson() => _$TransferUserAddressInResponseToJson(this);
@@ -30467,11 +30467,11 @@ extension $TransferUserAddressInResponseExtension
   }
 
   TransferUserAddressInResponse copyWithWrapped(
-      {Wrapped<String>? street,
-      Wrapped<String>? city,
-      Wrapped<String>? region,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? country}) {
+      {Wrapped<String?>? street,
+      Wrapped<String?>? city,
+      Wrapped<String?>? region,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? country}) {
     return TransferUserAddressInResponse(
         street: (street != null ? street.value : this.street),
         city: (city != null ? city.value : this.city),
@@ -30724,7 +30724,7 @@ class TransferAuthorizationProposedTransfer {
   @JsonKey(name: 'iso_currency_code')
   final String isoCurrencyCode;
   @JsonKey(name: 'originator_client_id')
-  final String originatorClientId;
+  final String? originatorClientId;
   static const fromJsonFactory =
       _$TransferAuthorizationProposedTransferFromJson;
   static const toJsonFactory = _$TransferAuthorizationProposedTransferToJson;
@@ -30811,7 +30811,7 @@ extension $TransferAuthorizationProposedTransferExtension
       Wrapped<String>? network,
       Wrapped<String>? originationAccountId,
       Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? originatorClientId}) {
+      Wrapped<String?>? originatorClientId}) {
     return TransferAuthorizationProposedTransfer(
         achClass: (achClass != null ? achClass.value : this.achClass),
         accountId: (accountId != null ? accountId.value : this.accountId),
@@ -31734,7 +31734,7 @@ class TransferRecurringCreateRequest {
   @JsonKey(name: 'amount')
   final String amount;
   @JsonKey(name: 'user_present')
-  final bool userPresent;
+  final bool? userPresent;
   @JsonKey(name: 'iso_currency_code')
   final String? isoCurrencyCode;
   @JsonKey(name: 'test_clock_id')
@@ -31864,7 +31864,7 @@ extension $TransferRecurringCreateRequestExtension
       Wrapped<enums.TransferNetwork>? network,
       Wrapped<enums.ACHClass?>? achClass,
       Wrapped<String>? amount,
-      Wrapped<bool>? userPresent,
+      Wrapped<bool?>? userPresent,
       Wrapped<String?>? isoCurrencyCode,
       Wrapped<String?>? testClockId,
       Wrapped<TransferRecurringSchedule>? schedule,
@@ -33753,7 +33753,7 @@ class TransferEvent {
   @JsonKey(name: 'transfer_id')
   final String transferId;
   @JsonKey(name: 'origination_account_id')
-  final String originationAccountId;
+  final String? originationAccountId;
   @JsonKey(
     name: 'transfer_type',
     toJson: transferTypeToJson,
@@ -33769,9 +33769,9 @@ class TransferEvent {
   @JsonKey(name: 'sweep_amount')
   final String sweepAmount;
   @JsonKey(name: 'refund_id')
-  final String refundId;
+  final String? refundId;
   @JsonKey(name: 'originator_client_id')
-  final String originatorClientId;
+  final String? originatorClientId;
   static const fromJsonFactory = _$TransferEventFromJson;
   static const toJsonFactory = _$TransferEventToJson;
   Map<String, dynamic> toJson() => _$TransferEventToJson(this);
@@ -33879,14 +33879,14 @@ extension $TransferEventExtension on TransferEvent {
       Wrapped<enums.TransferEventType>? eventType,
       Wrapped<String>? accountId,
       Wrapped<String>? transferId,
-      Wrapped<String>? originationAccountId,
+      Wrapped<String?>? originationAccountId,
       Wrapped<enums.TransferType>? transferType,
       Wrapped<String>? transferAmount,
       Wrapped<TransferFailure>? failureReason,
       Wrapped<String>? sweepId,
       Wrapped<String>? sweepAmount,
-      Wrapped<String>? refundId,
-      Wrapped<String>? originatorClientId}) {
+      Wrapped<String?>? refundId,
+      Wrapped<String?>? originatorClientId}) {
     return TransferEvent(
         eventId: (eventId != null ? eventId.value : this.eventId),
         timestamp: (timestamp != null ? timestamp.value : this.timestamp),
@@ -33947,7 +33947,7 @@ class BankTransferEvent {
   @JsonKey(name: 'bank_transfer_id')
   final String bankTransferId;
   @JsonKey(name: 'origination_account_id')
-  final String originationAccountId;
+  final String? originationAccountId;
   @JsonKey(
     name: 'bank_transfer_type',
     toJson: bankTransferTypeToJson,
@@ -34064,7 +34064,7 @@ extension $BankTransferEventExtension on BankTransferEvent {
       Wrapped<enums.BankTransferEventType>? eventType,
       Wrapped<String>? accountId,
       Wrapped<String>? bankTransferId,
-      Wrapped<String>? originationAccountId,
+      Wrapped<String?>? originationAccountId,
       Wrapped<enums.BankTransferType>? bankTransferType,
       Wrapped<String>? bankTransferAmount,
       Wrapped<String>? bankTransferIsoCurrencyCode,
@@ -35149,7 +35149,7 @@ class TransferSweep {
   @JsonKey(name: 'iso_currency_code')
   final String isoCurrencyCode;
   @JsonKey(name: 'settled', toJson: _dateToJson)
-  final DateTime settled;
+  final DateTime? settled;
   static const fromJsonFactory = _$TransferSweepFromJson;
   static const toJsonFactory = _$TransferSweepToJson;
   Map<String, dynamic> toJson() => _$TransferSweepToJson(this);
@@ -35205,7 +35205,7 @@ extension $TransferSweepExtension on TransferSweep {
       Wrapped<DateTime>? created,
       Wrapped<String>? amount,
       Wrapped<String>? isoCurrencyCode,
-      Wrapped<DateTime>? settled}) {
+      Wrapped<DateTime?>? settled}) {
     return TransferSweep(
         id: (id != null ? id.value : this.id),
         created: (created != null ? created.value : this.created),
@@ -35239,7 +35239,7 @@ class SimulatedTransferSweep {
   @JsonKey(name: 'iso_currency_code')
   final String isoCurrencyCode;
   @JsonKey(name: 'settled', toJson: _dateToJson)
-  final DateTime settled;
+  final DateTime? settled;
   static const fromJsonFactory = _$SimulatedTransferSweepFromJson;
   static const toJsonFactory = _$SimulatedTransferSweepToJson;
   Map<String, dynamic> toJson() => _$SimulatedTransferSweepToJson(this);
@@ -35295,7 +35295,7 @@ extension $SimulatedTransferSweepExtension on SimulatedTransferSweep {
       Wrapped<DateTime>? created,
       Wrapped<String>? amount,
       Wrapped<String>? isoCurrencyCode,
-      Wrapped<DateTime>? settled}) {
+      Wrapped<DateTime?>? settled}) {
     return SimulatedTransferSweep(
         id: (id != null ? id.value : this.id),
         created: (created != null ? created.value : this.created),
@@ -35391,7 +35391,7 @@ class BankTransferBalanceGetResponse {
   @JsonKey(name: 'balance')
   final BankTransferBalance balance;
   @JsonKey(name: 'origination_account_id')
-  final String originationAccountId;
+  final String? originationAccountId;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$BankTransferBalanceGetResponseFromJson;
@@ -35438,7 +35438,7 @@ extension $BankTransferBalanceGetResponseExtension
 
   BankTransferBalanceGetResponse copyWithWrapped(
       {Wrapped<BankTransferBalance>? balance,
-      Wrapped<String>? originationAccountId,
+      Wrapped<String?>? originationAccountId,
       Wrapped<String>? requestId}) {
     return BankTransferBalanceGetResponse(
         balance: (balance != null ? balance.value : this.balance),
@@ -37463,7 +37463,7 @@ class TransferIntentGet {
   )
   final enums.TransferIntentStatus status;
   @JsonKey(name: 'transfer_id')
-  final String transferId;
+  final String? transferId;
   @JsonKey(name: 'failure_reason')
   final TransferIntentGetFailureReason failureReason;
   @JsonKey(
@@ -37653,7 +37653,7 @@ extension $TransferIntentGetExtension on TransferIntentGet {
       {Wrapped<String>? id,
       Wrapped<DateTime>? created,
       Wrapped<enums.TransferIntentStatus>? status,
-      Wrapped<String>? transferId,
+      Wrapped<String?>? transferId,
       Wrapped<TransferIntentGetFailureReason>? failureReason,
       Wrapped<enums.TransferIntentAuthorizationDecision>? authorizationDecision,
       Wrapped<TransferAuthorizationDecisionRationale>?
@@ -39334,11 +39334,11 @@ class AccountIdentity {
   @JsonKey(name: 'balances')
   final AccountBalance balances;
   @JsonKey(name: 'mask')
-  final String mask;
+  final String? mask;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'official_name')
-  final String officialName;
+  final String? officialName;
   @JsonKey(
     name: 'type',
     toJson: accountTypeToJson,
@@ -39434,9 +39434,9 @@ extension $AccountIdentityExtension on AccountIdentity {
       {Wrapped<List<Owner>>? owners,
       Wrapped<String>? accountId,
       Wrapped<AccountBalance>? balances,
-      Wrapped<String>? mask,
+      Wrapped<String?>? mask,
       Wrapped<String>? name,
-      Wrapped<String>? officialName,
+      Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
       Wrapped<enums.AccountSubtype>? subtype,
       Wrapped<enums.AccountIdentityVerificationStatus?>? verificationStatus}) {
@@ -39489,11 +39489,11 @@ class AccountIdentityMatchScore {
   @JsonKey(name: 'balances')
   final AccountBalance balances;
   @JsonKey(name: 'mask')
-  final String mask;
+  final String? mask;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'official_name')
-  final String officialName;
+  final String? officialName;
   @JsonKey(
     name: 'type',
     toJson: accountTypeToJson,
@@ -39611,9 +39611,9 @@ extension $AccountIdentityMatchScoreExtension on AccountIdentityMatchScore {
       Wrapped<AddressMatchScore?>? address,
       Wrapped<String>? accountId,
       Wrapped<AccountBalance>? balances,
-      Wrapped<String>? mask,
+      Wrapped<String?>? mask,
       Wrapped<String>? name,
-      Wrapped<String>? officialName,
+      Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
       Wrapped<enums.AccountSubtype>? subtype,
       Wrapped<enums.AccountIdentityMatchScoreVerificationStatus?>?
@@ -43691,11 +43691,11 @@ class IncomeBreakdown {
   )
   final enums.IncomeBreakdownType type;
   @JsonKey(name: 'rate')
-  final double rate;
+  final double? rate;
   @JsonKey(name: 'hours')
-  final double hours;
+  final double? hours;
   @JsonKey(name: 'total')
-  final double total;
+  final double? total;
   static const fromJsonFactory = _$IncomeBreakdownFromJson;
   static const toJsonFactory = _$IncomeBreakdownToJson;
   Map<String, dynamic> toJson() => _$IncomeBreakdownToJson(this);
@@ -43741,9 +43741,9 @@ extension $IncomeBreakdownExtension on IncomeBreakdown {
 
   IncomeBreakdown copyWithWrapped(
       {Wrapped<enums.IncomeBreakdownType>? type,
-      Wrapped<double>? rate,
-      Wrapped<double>? hours,
-      Wrapped<double>? total}) {
+      Wrapped<double?>? rate,
+      Wrapped<double?>? hours,
+      Wrapped<double?>? total}) {
     return IncomeBreakdown(
         type: (type != null ? type.value : this.type),
         rate: (rate != null ? rate.value : this.rate),
@@ -43767,7 +43767,7 @@ class Employee {
   @JsonKey(name: 'address')
   final PaystubAddress address;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'marital_status')
   final String? maritalStatus;
   @JsonKey(name: 'taxpayer_id')
@@ -43820,7 +43820,7 @@ extension $EmployeeExtension on Employee {
 
   Employee copyWithWrapped(
       {Wrapped<PaystubAddress>? address,
-      Wrapped<String>? name,
+      Wrapped<String?>? name,
       Wrapped<String?>? maritalStatus,
       Wrapped<TaxpayerID?>? taxpayerId}) {
     return Employee(
@@ -43910,7 +43910,7 @@ class PaystubEmployer {
   @JsonKey(name: 'address')
   final PaystubAddress? address;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   static const fromJsonFactory = _$PaystubEmployerFromJson;
   static const toJsonFactory = _$PaystubEmployerToJson;
   Map<String, dynamic> toJson() => _$PaystubEmployerToJson(this);
@@ -43943,7 +43943,7 @@ extension $PaystubEmployerExtension on PaystubEmployer {
   }
 
   PaystubEmployer copyWithWrapped(
-      {Wrapped<PaystubAddress?>? address, Wrapped<String>? name}) {
+      {Wrapped<PaystubAddress?>? address, Wrapped<String?>? name}) {
     return PaystubEmployer(
         address: (address != null ? address.value : this.address),
         name: (name != null ? name.value : this.name));
@@ -44344,11 +44344,11 @@ class PaystubDeduction {
       _$PaystubDeductionFromJson(json);
 
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   @JsonKey(name: 'is_pretax')
-  final bool isPretax;
+  final bool? isPretax;
   @JsonKey(name: 'total')
-  final double total;
+  final double? total;
   static const fromJsonFactory = _$PaystubDeductionFromJson;
   static const toJsonFactory = _$PaystubDeductionToJson;
   Map<String, dynamic> toJson() => _$PaystubDeductionToJson(this);
@@ -44386,9 +44386,9 @@ extension $PaystubDeductionExtension on PaystubDeduction {
   }
 
   PaystubDeduction copyWithWrapped(
-      {Wrapped<String>? type,
-      Wrapped<bool>? isPretax,
-      Wrapped<double>? total}) {
+      {Wrapped<String?>? type,
+      Wrapped<bool?>? isPretax,
+      Wrapped<double?>? total}) {
     return PaystubDeduction(
         type: (type != null ? type.value : this.type),
         isPretax: (isPretax != null ? isPretax.value : this.isPretax),
@@ -47796,7 +47796,7 @@ class DocumentRiskSignalsObject {
       _$DocumentRiskSignalsObjectFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(
       name: 'single_document_risk_signals',
       defaultValue: <SingleDocumentRiskSignal>[])
@@ -47852,7 +47852,7 @@ extension $DocumentRiskSignalsObjectExtension on DocumentRiskSignalsObject {
   }
 
   DocumentRiskSignalsObject copyWithWrapped(
-      {Wrapped<String>? accountId,
+      {Wrapped<String?>? accountId,
       Wrapped<List<SingleDocumentRiskSignal>>? singleDocumentRiskSignals,
       Wrapped<List<MultiDocumentRiskSignal>>? multiDocumentRiskSignals}) {
     return DocumentRiskSignalsObject(
@@ -47933,7 +47933,7 @@ class DocumentRiskSummary {
       _$DocumentRiskSummaryFromJson(json);
 
   @JsonKey(name: 'risk_score')
-  final double riskScore;
+  final double? riskScore;
   static const fromJsonFactory = _$DocumentRiskSummaryFromJson;
   static const toJsonFactory = _$DocumentRiskSummaryToJson;
   Map<String, dynamic> toJson() => _$DocumentRiskSummaryToJson(this);
@@ -47960,7 +47960,7 @@ extension $DocumentRiskSummaryExtension on DocumentRiskSummary {
     return DocumentRiskSummary(riskScore: riskScore ?? this.riskScore);
   }
 
-  DocumentRiskSummary copyWithWrapped({Wrapped<double>? riskScore}) {
+  DocumentRiskSummary copyWithWrapped({Wrapped<double?>? riskScore}) {
     return DocumentRiskSummary(
         riskScore: (riskScore != null ? riskScore.value : this.riskScore));
   }
@@ -48513,9 +48513,9 @@ class CreditDocumentMetadata {
   @JsonKey(name: 'document_type')
   final String documentType;
   @JsonKey(name: 'download_url')
-  final String downloadUrl;
+  final String? downloadUrl;
   @JsonKey(name: 'status')
-  final String status;
+  final String? status;
   static const fromJsonFactory = _$CreditDocumentMetadataFromJson;
   static const toJsonFactory = _$CreditDocumentMetadataToJson;
   Map<String, dynamic> toJson() => _$CreditDocumentMetadataToJson(this);
@@ -48564,8 +48564,8 @@ extension $CreditDocumentMetadataExtension on CreditDocumentMetadata {
   CreditDocumentMetadata copyWithWrapped(
       {Wrapped<String>? name,
       Wrapped<String>? documentType,
-      Wrapped<String>? downloadUrl,
-      Wrapped<String>? status}) {
+      Wrapped<String?>? downloadUrl,
+      Wrapped<String?>? status}) {
     return CreditDocumentMetadata(
         name: (name != null ? name.value : this.name),
         documentType:
@@ -48604,7 +48604,7 @@ class PayrollItem {
   @JsonKey(name: 'status')
   final PayrollItemStatus status;
   @JsonKey(name: 'updated_at')
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   static const fromJsonFactory = _$PayrollItemFromJson;
   static const toJsonFactory = _$PayrollItemToJson;
   Map<String, dynamic> toJson() => _$PayrollItemToJson(this);
@@ -48675,7 +48675,7 @@ extension $PayrollItemExtension on PayrollItem {
       Wrapped<List<PayrollIncomeAccountData>>? accounts,
       Wrapped<List<PayrollIncomeObject>>? payrollIncome,
       Wrapped<PayrollItemStatus>? status,
-      Wrapped<DateTime>? updatedAt}) {
+      Wrapped<DateTime?>? updatedAt}) {
     return PayrollItem(
         itemId: (itemId != null ? itemId.value : this.itemId),
         institutionId:
@@ -48703,11 +48703,11 @@ class PayrollIncomeAccountData {
       _$PayrollIncomeAccountDataFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(name: 'rate_of_pay')
   final PayrollIncomeRateOfPay rateOfPay;
   @JsonKey(name: 'pay_frequency')
-  final String payFrequency;
+  final String? payFrequency;
   static const fromJsonFactory = _$PayrollIncomeAccountDataFromJson;
   static const toJsonFactory = _$PayrollIncomeAccountDataToJson;
   Map<String, dynamic> toJson() => _$PayrollIncomeAccountDataToJson(this);
@@ -48750,9 +48750,9 @@ extension $PayrollIncomeAccountDataExtension on PayrollIncomeAccountData {
   }
 
   PayrollIncomeAccountData copyWithWrapped(
-      {Wrapped<String>? accountId,
+      {Wrapped<String?>? accountId,
       Wrapped<PayrollIncomeRateOfPay>? rateOfPay,
-      Wrapped<String>? payFrequency}) {
+      Wrapped<String?>? payFrequency}) {
     return PayrollIncomeAccountData(
         accountId: (accountId != null ? accountId.value : this.accountId),
         rateOfPay: (rateOfPay != null ? rateOfPay.value : this.rateOfPay),
@@ -48774,7 +48774,7 @@ class PayrollIncomeObject {
       _$PayrollIncomeObjectFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(name: 'pay_stubs', defaultValue: <CreditPayStub>[])
   final List<CreditPayStub> payStubs;
   @JsonKey(name: 'w2s', defaultValue: <CreditW2>[])
@@ -48828,7 +48828,7 @@ extension $PayrollIncomeObjectExtension on PayrollIncomeObject {
   }
 
   PayrollIncomeObject copyWithWrapped(
-      {Wrapped<String>? accountId,
+      {Wrapped<String?>? accountId,
       Wrapped<List<CreditPayStub>>? payStubs,
       Wrapped<List<CreditW2>>? w2s,
       Wrapped<List<Credit1099>>? form1099s}) {
@@ -48901,7 +48901,7 @@ class Credit1099 {
       _$Credit1099FromJson(json);
 
   @JsonKey(name: 'document_id')
-  final String documentId;
+  final String? documentId;
   @JsonKey(name: 'document_metadata')
   final CreditDocumentMetadata? documentMetadata;
   @JsonKey(
@@ -49294,7 +49294,7 @@ extension $Credit1099Extension on Credit1099 {
   }
 
   Credit1099 copyWithWrapped(
-      {Wrapped<String>? documentId,
+      {Wrapped<String?>? documentId,
       Wrapped<CreditDocumentMetadata?>? documentMetadata,
       Wrapped<enums.Form1099Type?>? form1099Type,
       Wrapped<Credit1099Recipient?>? recipient,
@@ -49731,7 +49731,7 @@ class CreditPayStub {
   @JsonKey(name: 'deductions')
   final CreditPayStubDeductions deductions;
   @JsonKey(name: 'document_id')
-  final String documentId;
+  final String? documentId;
   @JsonKey(name: 'document_metadata')
   final CreditDocumentMetadata documentMetadata;
   @JsonKey(name: 'earnings')
@@ -49816,7 +49816,7 @@ extension $CreditPayStubExtension on CreditPayStub {
 
   CreditPayStub copyWithWrapped(
       {Wrapped<CreditPayStubDeductions>? deductions,
-      Wrapped<String>? documentId,
+      Wrapped<String?>? documentId,
       Wrapped<CreditDocumentMetadata>? documentMetadata,
       Wrapped<CreditPayStubEarnings>? earnings,
       Wrapped<CreditPayStubEmployee>? employee,
@@ -49909,15 +49909,15 @@ class PayStubDeductionsBreakdown {
       _$PayStubDeductionsBreakdownFromJson(json);
 
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'ytd_amount')
-  final double ytdAmount;
+  final double? ytdAmount;
   static const fromJsonFactory = _$PayStubDeductionsBreakdownFromJson;
   static const toJsonFactory = _$PayStubDeductionsBreakdownToJson;
   Map<String, dynamic> toJson() => _$PayStubDeductionsBreakdownToJson(this);
@@ -49973,11 +49973,11 @@ extension $PayStubDeductionsBreakdownExtension on PayStubDeductionsBreakdown {
   }
 
   PayStubDeductionsBreakdown copyWithWrapped(
-      {Wrapped<double>? currentAmount,
-      Wrapped<String>? description,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
-      Wrapped<double>? ytdAmount}) {
+      {Wrapped<double?>? currentAmount,
+      Wrapped<String?>? description,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
+      Wrapped<double?>? ytdAmount}) {
     return PayStubDeductionsBreakdown(
         currentAmount:
             (currentAmount != null ? currentAmount.value : this.currentAmount),
@@ -50006,13 +50006,13 @@ class PayStubDeductionsTotal {
       _$PayStubDeductionsTotalFromJson(json);
 
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'ytd_amount')
-  final double ytdAmount;
+  final double? ytdAmount;
   static const fromJsonFactory = _$PayStubDeductionsTotalFromJson;
   static const toJsonFactory = _$PayStubDeductionsTotalToJson;
   Map<String, dynamic> toJson() => _$PayStubDeductionsTotalToJson(this);
@@ -50062,10 +50062,10 @@ extension $PayStubDeductionsTotalExtension on PayStubDeductionsTotal {
   }
 
   PayStubDeductionsTotal copyWithWrapped(
-      {Wrapped<double>? currentAmount,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
-      Wrapped<double>? ytdAmount}) {
+      {Wrapped<double?>? currentAmount,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
+      Wrapped<double?>? ytdAmount}) {
     return PayStubDeductionsTotal(
         currentAmount:
             (currentAmount != null ? currentAmount.value : this.currentAmount),
@@ -50154,19 +50154,19 @@ class PayStubEarningsBreakdown {
   @JsonKey(name: 'canonical_description')
   final String canonicalDescription;
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'hours')
-  final double hours;
+  final double? hours;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'rate')
-  final double rate;
+  final double? rate;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'ytd_amount')
-  final double ytdAmount;
+  final double? ytdAmount;
   static const fromJsonFactory = _$PayStubEarningsBreakdownFromJson;
   static const toJsonFactory = _$PayStubEarningsBreakdownToJson;
   Map<String, dynamic> toJson() => _$PayStubEarningsBreakdownToJson(this);
@@ -50239,13 +50239,13 @@ extension $PayStubEarningsBreakdownExtension on PayStubEarningsBreakdown {
 
   PayStubEarningsBreakdown copyWithWrapped(
       {Wrapped<String>? canonicalDescription,
-      Wrapped<double>? currentAmount,
-      Wrapped<String>? description,
-      Wrapped<double>? hours,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<double>? rate,
-      Wrapped<String>? unofficialCurrencyCode,
-      Wrapped<double>? ytdAmount}) {
+      Wrapped<double?>? currentAmount,
+      Wrapped<String?>? description,
+      Wrapped<double?>? hours,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<double?>? rate,
+      Wrapped<String?>? unofficialCurrencyCode,
+      Wrapped<double?>? ytdAmount}) {
     return PayStubEarningsBreakdown(
         canonicalDescription: (canonicalDescription != null
             ? canonicalDescription.value
@@ -50280,15 +50280,15 @@ class PayStubEarningsTotal {
       _$PayStubEarningsTotalFromJson(json);
 
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'hours')
-  final double hours;
+  final double? hours;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'ytd_amount')
-  final double ytdAmount;
+  final double? ytdAmount;
   static const fromJsonFactory = _$PayStubEarningsTotalFromJson;
   static const toJsonFactory = _$PayStubEarningsTotalToJson;
   Map<String, dynamic> toJson() => _$PayStubEarningsTotalToJson(this);
@@ -50343,11 +50343,11 @@ extension $PayStubEarningsTotalExtension on PayStubEarningsTotal {
   }
 
   PayStubEarningsTotal copyWithWrapped(
-      {Wrapped<double>? currentAmount,
-      Wrapped<double>? hours,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
-      Wrapped<double>? ytdAmount}) {
+      {Wrapped<double?>? currentAmount,
+      Wrapped<double?>? hours,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
+      Wrapped<double?>? ytdAmount}) {
     return PayStubEarningsTotal(
         currentAmount:
             (currentAmount != null ? currentAmount.value : this.currentAmount),
@@ -50377,9 +50377,9 @@ class CreditPayStubEmployee {
   @JsonKey(name: 'address')
   final CreditPayStubAddress address;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'marital_status')
-  final String maritalStatus;
+  final String? maritalStatus;
   @JsonKey(name: 'taxpayer_id')
   final PayStubTaxpayerID taxpayerId;
   static const fromJsonFactory = _$CreditPayStubEmployeeFromJson;
@@ -50430,8 +50430,8 @@ extension $CreditPayStubEmployeeExtension on CreditPayStubEmployee {
 
   CreditPayStubEmployee copyWithWrapped(
       {Wrapped<CreditPayStubAddress>? address,
-      Wrapped<String>? name,
-      Wrapped<String>? maritalStatus,
+      Wrapped<String?>? name,
+      Wrapped<String?>? maritalStatus,
       Wrapped<PayStubTaxpayerID>? taxpayerId}) {
     return CreditPayStubEmployee(
         address: (address != null ? address.value : this.address),
@@ -50456,15 +50456,15 @@ class CreditPayStubAddress {
       _$CreditPayStubAddressFromJson(json);
 
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'street')
-  final String street;
+  final String? street;
   static const fromJsonFactory = _$CreditPayStubAddressFromJson;
   static const toJsonFactory = _$CreditPayStubAddressToJson;
   Map<String, dynamic> toJson() => _$CreditPayStubAddressToJson(this);
@@ -50516,11 +50516,11 @@ extension $CreditPayStubAddressExtension on CreditPayStubAddress {
   }
 
   CreditPayStubAddress copyWithWrapped(
-      {Wrapped<String>? city,
-      Wrapped<String>? country,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? region,
-      Wrapped<String>? street}) {
+      {Wrapped<String?>? city,
+      Wrapped<String?>? country,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? region,
+      Wrapped<String?>? street}) {
     return CreditPayStubAddress(
         city: (city != null ? city.value : this.city),
         country: (country != null ? country.value : this.country),
@@ -50541,9 +50541,9 @@ class PayStubTaxpayerID {
       _$PayStubTaxpayerIDFromJson(json);
 
   @JsonKey(name: 'id_type')
-  final String idType;
+  final String? idType;
   @JsonKey(name: 'id_mask')
-  final String idMask;
+  final String? idMask;
   static const fromJsonFactory = _$PayStubTaxpayerIDFromJson;
   static const toJsonFactory = _$PayStubTaxpayerIDToJson;
   Map<String, dynamic> toJson() => _$PayStubTaxpayerIDToJson(this);
@@ -50575,7 +50575,7 @@ extension $PayStubTaxpayerIDExtension on PayStubTaxpayerID {
   }
 
   PayStubTaxpayerID copyWithWrapped(
-      {Wrapped<String>? idType, Wrapped<String>? idMask}) {
+      {Wrapped<String?>? idType, Wrapped<String?>? idMask}) {
     return PayStubTaxpayerID(
         idType: (idType != null ? idType.value : this.idType),
         idMask: (idMask != null ? idMask.value : this.idMask));
@@ -50595,7 +50595,7 @@ class CreditPayStubEmployer {
   @JsonKey(name: 'address')
   final CreditPayStubAddress address;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   static const fromJsonFactory = _$CreditPayStubEmployerFromJson;
   static const toJsonFactory = _$CreditPayStubEmployerToJson;
   Map<String, dynamic> toJson() => _$CreditPayStubEmployerToJson(this);
@@ -50629,7 +50629,7 @@ extension $CreditPayStubEmployerExtension on CreditPayStubEmployer {
   }
 
   CreditPayStubEmployer copyWithWrapped(
-      {Wrapped<CreditPayStubAddress>? address, Wrapped<String>? name}) {
+      {Wrapped<CreditPayStubAddress>? address, Wrapped<String?>? name}) {
     return CreditPayStubEmployer(
         address: (address != null ? address.value : this.address),
         name: (name != null ? name.value : this.name));
@@ -50650,15 +50650,15 @@ class CreditPayStubNetPay {
       _$CreditPayStubNetPayFromJson(json);
 
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'ytd_amount')
-  final double ytdAmount;
+  final double? ytdAmount;
   static const fromJsonFactory = _$CreditPayStubNetPayFromJson;
   static const toJsonFactory = _$CreditPayStubNetPayToJson;
   Map<String, dynamic> toJson() => _$CreditPayStubNetPayToJson(this);
@@ -50714,11 +50714,11 @@ extension $CreditPayStubNetPayExtension on CreditPayStubNetPay {
   }
 
   CreditPayStubNetPay copyWithWrapped(
-      {Wrapped<double>? currentAmount,
-      Wrapped<String>? description,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
-      Wrapped<double>? ytdAmount}) {
+      {Wrapped<double?>? currentAmount,
+      Wrapped<String?>? description,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
+      Wrapped<double?>? ytdAmount}) {
     return CreditPayStubNetPay(
         currentAmount:
             (currentAmount != null ? currentAmount.value : this.currentAmount),
@@ -50752,25 +50752,25 @@ class PayStubPayPeriodDetails {
       _$PayStubPayPeriodDetailsFromJson(json);
 
   @JsonKey(name: 'pay_amount')
-  final double payAmount;
+  final double? payAmount;
   @JsonKey(
       name: 'distribution_breakdown',
       defaultValue: <PayStubDistributionBreakdown>[])
   final List<PayStubDistributionBreakdown> distributionBreakdown;
   @JsonKey(name: 'end_date', toJson: _dateToJson)
-  final DateTime endDate;
+  final DateTime? endDate;
   @JsonKey(name: 'gross_earnings')
-  final double grossEarnings;
+  final double? grossEarnings;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'pay_date', toJson: _dateToJson)
-  final DateTime payDate;
+  final DateTime? payDate;
   @JsonKey(name: 'pay_frequency')
-  final String payFrequency;
+  final String? payFrequency;
   @JsonKey(name: 'start_date', toJson: _dateToJson)
-  final DateTime startDate;
+  final DateTime? startDate;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$PayStubPayPeriodDetailsFromJson;
   static const toJsonFactory = _$PayStubPayPeriodDetailsToJson;
   Map<String, dynamic> toJson() => _$PayStubPayPeriodDetailsToJson(this);
@@ -50851,15 +50851,15 @@ extension $PayStubPayPeriodDetailsExtension on PayStubPayPeriodDetails {
   }
 
   PayStubPayPeriodDetails copyWithWrapped(
-      {Wrapped<double>? payAmount,
+      {Wrapped<double?>? payAmount,
       Wrapped<List<PayStubDistributionBreakdown>>? distributionBreakdown,
-      Wrapped<DateTime>? endDate,
-      Wrapped<double>? grossEarnings,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<DateTime>? payDate,
-      Wrapped<String>? payFrequency,
-      Wrapped<DateTime>? startDate,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      Wrapped<DateTime?>? endDate,
+      Wrapped<double?>? grossEarnings,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<DateTime?>? payDate,
+      Wrapped<String?>? payFrequency,
+      Wrapped<DateTime?>? startDate,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return PayStubPayPeriodDetails(
         payAmount: (payAmount != null ? payAmount.value : this.payAmount),
         distributionBreakdown: (distributionBreakdown != null
@@ -50897,19 +50897,19 @@ class PayStubDistributionBreakdown {
       _$PayStubDistributionBreakdownFromJson(json);
 
   @JsonKey(name: 'account_name')
-  final String accountName;
+  final String? accountName;
   @JsonKey(name: 'bank_name')
-  final String bankName;
+  final String? bankName;
   @JsonKey(name: 'current_amount')
-  final double currentAmount;
+  final double? currentAmount;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'mask')
-  final String mask;
+  final String? mask;
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$PayStubDistributionBreakdownFromJson;
   static const toJsonFactory = _$PayStubDistributionBreakdownToJson;
   Map<String, dynamic> toJson() => _$PayStubDistributionBreakdownToJson(this);
@@ -50976,13 +50976,13 @@ extension $PayStubDistributionBreakdownExtension
   }
 
   PayStubDistributionBreakdown copyWithWrapped(
-      {Wrapped<String>? accountName,
-      Wrapped<String>? bankName,
-      Wrapped<double>? currentAmount,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? mask,
-      Wrapped<String>? type,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      {Wrapped<String?>? accountName,
+      Wrapped<String?>? bankName,
+      Wrapped<double?>? currentAmount,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? mask,
+      Wrapped<String?>? type,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return PayStubDistributionBreakdown(
         accountName:
             (accountName != null ? accountName.value : this.accountName),
@@ -51017,21 +51017,21 @@ class DocumentRiskSignal {
       _$DocumentRiskSignalFromJson(json);
 
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   @JsonKey(name: 'field')
-  final String field;
+  final String? field;
   @JsonKey(name: 'has_fraud_risk')
-  final bool hasFraudRisk;
+  final bool? hasFraudRisk;
   @JsonKey(name: 'institution_metadata')
   final DocumentRiskSignalInstitutionMetadata institutionMetadata;
   @JsonKey(name: 'expected_value')
-  final String expectedValue;
+  final String? expectedValue;
   @JsonKey(name: 'actual_value')
-  final String actualValue;
+  final String? actualValue;
   @JsonKey(name: 'signal_description')
-  final String signalDescription;
+  final String? signalDescription;
   @JsonKey(name: 'page_number')
-  final int pageNumber;
+  final int? pageNumber;
   static const fromJsonFactory = _$DocumentRiskSignalFromJson;
   static const toJsonFactory = _$DocumentRiskSignalToJson;
   Map<String, dynamic> toJson() => _$DocumentRiskSignalToJson(this);
@@ -51102,14 +51102,14 @@ extension $DocumentRiskSignalExtension on DocumentRiskSignal {
   }
 
   DocumentRiskSignal copyWithWrapped(
-      {Wrapped<String>? type,
-      Wrapped<String>? field,
-      Wrapped<bool>? hasFraudRisk,
+      {Wrapped<String?>? type,
+      Wrapped<String?>? field,
+      Wrapped<bool?>? hasFraudRisk,
       Wrapped<DocumentRiskSignalInstitutionMetadata>? institutionMetadata,
-      Wrapped<String>? expectedValue,
-      Wrapped<String>? actualValue,
-      Wrapped<String>? signalDescription,
-      Wrapped<int>? pageNumber}) {
+      Wrapped<String?>? expectedValue,
+      Wrapped<String?>? actualValue,
+      Wrapped<String?>? signalDescription,
+      Wrapped<int?>? pageNumber}) {
     return DocumentRiskSignal(
         type: (type != null ? type.value : this.type),
         field: (field != null ? field.value : this.field),
@@ -51263,41 +51263,41 @@ class CreditW2 {
   @JsonKey(name: 'employee')
   final CreditPayStubEmployee employee;
   @JsonKey(name: 'tax_year')
-  final String taxYear;
+  final String? taxYear;
   @JsonKey(name: 'employer_id_number')
-  final String employerIdNumber;
+  final String? employerIdNumber;
   @JsonKey(name: 'wages_tips_other_comp')
-  final String wagesTipsOtherComp;
+  final String? wagesTipsOtherComp;
   @JsonKey(name: 'federal_income_tax_withheld')
-  final String federalIncomeTaxWithheld;
+  final String? federalIncomeTaxWithheld;
   @JsonKey(name: 'social_security_wages')
-  final String socialSecurityWages;
+  final String? socialSecurityWages;
   @JsonKey(name: 'social_security_tax_withheld')
-  final String socialSecurityTaxWithheld;
+  final String? socialSecurityTaxWithheld;
   @JsonKey(name: 'medicare_wages_and_tips')
-  final String medicareWagesAndTips;
+  final String? medicareWagesAndTips;
   @JsonKey(name: 'medicare_tax_withheld')
-  final String medicareTaxWithheld;
+  final String? medicareTaxWithheld;
   @JsonKey(name: 'social_security_tips')
-  final String socialSecurityTips;
+  final String? socialSecurityTips;
   @JsonKey(name: 'allocated_tips')
-  final String allocatedTips;
+  final String? allocatedTips;
   @JsonKey(name: 'box_9')
-  final String box9;
+  final String? box9;
   @JsonKey(name: 'dependent_care_benefits')
-  final String dependentCareBenefits;
+  final String? dependentCareBenefits;
   @JsonKey(name: 'nonqualified_plans')
-  final String nonqualifiedPlans;
+  final String? nonqualifiedPlans;
   @JsonKey(name: 'box_12', defaultValue: <W2Box12>[])
   final List<W2Box12> box12;
   @JsonKey(name: 'statutory_employee')
-  final String statutoryEmployee;
+  final String? statutoryEmployee;
   @JsonKey(name: 'retirement_plan')
-  final String retirementPlan;
+  final String? retirementPlan;
   @JsonKey(name: 'third_party_sick_pay')
-  final String thirdPartySickPay;
+  final String? thirdPartySickPay;
   @JsonKey(name: 'other')
-  final String other;
+  final String? other;
   @JsonKey(
       name: 'state_and_local_wages', defaultValue: <W2StateAndLocalWages>[])
   final List<W2StateAndLocalWages> stateAndLocalWages;
@@ -51458,24 +51458,24 @@ extension $CreditW2Extension on CreditW2 {
       Wrapped<String>? documentId,
       Wrapped<CreditPayStubEmployer>? employer,
       Wrapped<CreditPayStubEmployee>? employee,
-      Wrapped<String>? taxYear,
-      Wrapped<String>? employerIdNumber,
-      Wrapped<String>? wagesTipsOtherComp,
-      Wrapped<String>? federalIncomeTaxWithheld,
-      Wrapped<String>? socialSecurityWages,
-      Wrapped<String>? socialSecurityTaxWithheld,
-      Wrapped<String>? medicareWagesAndTips,
-      Wrapped<String>? medicareTaxWithheld,
-      Wrapped<String>? socialSecurityTips,
-      Wrapped<String>? allocatedTips,
-      Wrapped<String>? box9,
-      Wrapped<String>? dependentCareBenefits,
-      Wrapped<String>? nonqualifiedPlans,
+      Wrapped<String?>? taxYear,
+      Wrapped<String?>? employerIdNumber,
+      Wrapped<String?>? wagesTipsOtherComp,
+      Wrapped<String?>? federalIncomeTaxWithheld,
+      Wrapped<String?>? socialSecurityWages,
+      Wrapped<String?>? socialSecurityTaxWithheld,
+      Wrapped<String?>? medicareWagesAndTips,
+      Wrapped<String?>? medicareTaxWithheld,
+      Wrapped<String?>? socialSecurityTips,
+      Wrapped<String?>? allocatedTips,
+      Wrapped<String?>? box9,
+      Wrapped<String?>? dependentCareBenefits,
+      Wrapped<String?>? nonqualifiedPlans,
       Wrapped<List<W2Box12>>? box12,
-      Wrapped<String>? statutoryEmployee,
-      Wrapped<String>? retirementPlan,
-      Wrapped<String>? thirdPartySickPay,
-      Wrapped<String>? other,
+      Wrapped<String?>? statutoryEmployee,
+      Wrapped<String?>? retirementPlan,
+      Wrapped<String?>? thirdPartySickPay,
+      Wrapped<String?>? other,
       Wrapped<List<W2StateAndLocalWages>>? stateAndLocalWages}) {
     return CreditW2(
         documentMetadata: (documentMetadata != null
@@ -52121,23 +52121,23 @@ class CreditEmploymentVerification {
       _$CreditEmploymentVerificationFromJson(json);
 
   @JsonKey(name: 'account_id')
-  final String accountId;
+  final String? accountId;
   @JsonKey(name: 'status')
   final String status;
   @JsonKey(name: 'start_date', toJson: _dateToJson)
-  final DateTime startDate;
+  final DateTime? startDate;
   @JsonKey(name: 'end_date', toJson: _dateToJson)
-  final DateTime endDate;
+  final DateTime? endDate;
   @JsonKey(name: 'employer')
   final CreditEmployerVerification employer;
   @JsonKey(name: 'title')
-  final String title;
+  final String? title;
   @JsonKey(name: 'platform_ids')
   final CreditPlatformIds platformIds;
   @JsonKey(name: 'employee_type')
   final String employeeType;
   @JsonKey(name: 'last_paystub_date', toJson: _dateToJson)
-  final DateTime lastPaystubDate;
+  final DateTime? lastPaystubDate;
   static const fromJsonFactory = _$CreditEmploymentVerificationFromJson;
   static const toJsonFactory = _$CreditEmploymentVerificationToJson;
   Map<String, dynamic> toJson() => _$CreditEmploymentVerificationToJson(this);
@@ -52215,15 +52215,15 @@ extension $CreditEmploymentVerificationExtension
   }
 
   CreditEmploymentVerification copyWithWrapped(
-      {Wrapped<String>? accountId,
+      {Wrapped<String?>? accountId,
       Wrapped<String>? status,
-      Wrapped<DateTime>? startDate,
-      Wrapped<DateTime>? endDate,
+      Wrapped<DateTime?>? startDate,
+      Wrapped<DateTime?>? endDate,
       Wrapped<CreditEmployerVerification>? employer,
-      Wrapped<String>? title,
+      Wrapped<String?>? title,
       Wrapped<CreditPlatformIds>? platformIds,
       Wrapped<String>? employeeType,
-      Wrapped<DateTime>? lastPaystubDate}) {
+      Wrapped<DateTime?>? lastPaystubDate}) {
     return CreditEmploymentVerification(
         accountId: (accountId != null ? accountId.value : this.accountId),
         status: (status != null ? status.value : this.status),
@@ -52251,7 +52251,7 @@ class CreditEmployerVerification {
       _$CreditEmployerVerificationFromJson(json);
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   static const fromJsonFactory = _$CreditEmployerVerificationFromJson;
   static const toJsonFactory = _$CreditEmployerVerificationToJson;
   Map<String, dynamic> toJson() => _$CreditEmployerVerificationToJson(this);
@@ -52277,7 +52277,7 @@ extension $CreditEmployerVerificationExtension on CreditEmployerVerification {
     return CreditEmployerVerification(name: name ?? this.name);
   }
 
-  CreditEmployerVerification copyWithWrapped({Wrapped<String>? name}) {
+  CreditEmployerVerification copyWithWrapped({Wrapped<String?>? name}) {
     return CreditEmployerVerification(
         name: (name != null ? name.value : this.name));
   }
@@ -52295,11 +52295,11 @@ class CreditPlatformIds {
       _$CreditPlatformIdsFromJson(json);
 
   @JsonKey(name: 'employee_id')
-  final String employeeId;
+  final String? employeeId;
   @JsonKey(name: 'payroll_id')
-  final String payrollId;
+  final String? payrollId;
   @JsonKey(name: 'position_id')
-  final String positionId;
+  final String? positionId;
   static const fromJsonFactory = _$CreditPlatformIdsFromJson;
   static const toJsonFactory = _$CreditPlatformIdsToJson;
   Map<String, dynamic> toJson() => _$CreditPlatformIdsToJson(this);
@@ -52340,9 +52340,9 @@ extension $CreditPlatformIdsExtension on CreditPlatformIds {
   }
 
   CreditPlatformIds copyWithWrapped(
-      {Wrapped<String>? employeeId,
-      Wrapped<String>? payrollId,
-      Wrapped<String>? positionId}) {
+      {Wrapped<String?>? employeeId,
+      Wrapped<String?>? payrollId,
+      Wrapped<String?>? positionId}) {
     return CreditPlatformIds(
         employeeId: (employeeId != null ? employeeId.value : this.employeeId),
         payrollId: (payrollId != null ? payrollId.value : this.payrollId),
@@ -53297,27 +53297,27 @@ class Application {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'display_name')
-  final String displayName;
+  final String? displayName;
   @JsonKey(name: 'join_date', toJson: _dateToJson)
   final DateTime joinDate;
   @JsonKey(name: 'logo_url')
-  final String logoUrl;
+  final String? logoUrl;
   @JsonKey(name: 'application_url')
-  final String applicationUrl;
+  final String? applicationUrl;
   @JsonKey(name: 'reason_for_access')
-  final String reasonForAccess;
+  final String? reasonForAccess;
   @JsonKey(name: 'use_case')
-  final String useCase;
+  final String? useCase;
   @JsonKey(name: 'company_legal_name')
-  final String companyLegalName;
+  final String? companyLegalName;
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country_code')
-  final String countryCode;
+  final String? countryCode;
   static const fromJsonFactory = _$ApplicationFromJson;
   static const toJsonFactory = _$ApplicationToJson;
   Map<String, dynamic> toJson() => _$ApplicationToJson(this);
@@ -53419,17 +53419,17 @@ extension $ApplicationExtension on Application {
   Application copyWithWrapped(
       {Wrapped<String>? applicationId,
       Wrapped<String>? name,
-      Wrapped<String>? displayName,
+      Wrapped<String?>? displayName,
       Wrapped<DateTime>? joinDate,
-      Wrapped<String>? logoUrl,
-      Wrapped<String>? applicationUrl,
-      Wrapped<String>? reasonForAccess,
-      Wrapped<String>? useCase,
-      Wrapped<String>? companyLegalName,
-      Wrapped<String>? city,
-      Wrapped<String>? region,
-      Wrapped<String>? postalCode,
-      Wrapped<String>? countryCode}) {
+      Wrapped<String?>? logoUrl,
+      Wrapped<String?>? applicationUrl,
+      Wrapped<String?>? reasonForAccess,
+      Wrapped<String?>? useCase,
+      Wrapped<String?>? companyLegalName,
+      Wrapped<String?>? city,
+      Wrapped<String?>? region,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? countryCode}) {
     return Application(
         applicationId:
             (applicationId != null ? applicationId.value : this.applicationId),
@@ -59424,7 +59424,7 @@ class Enhancements {
   )
   final enums.PaymentChannel paymentChannel;
   @JsonKey(name: 'category_id')
-  final String categoryId;
+  final String? categoryId;
   @JsonKey(name: 'category', defaultValue: <String>[])
   final List<String> category;
   @JsonKey(name: 'location')
@@ -59535,7 +59535,7 @@ extension $EnhancementsExtension on Enhancements {
       Wrapped<String?>? logoUrl,
       Wrapped<String?>? checkNumber,
       Wrapped<enums.PaymentChannel>? paymentChannel,
-      Wrapped<String>? categoryId,
+      Wrapped<String?>? categoryId,
       Wrapped<List<String>>? category,
       Wrapped<Location>? location,
       Wrapped<PersonalFinanceCategory?>? personalFinanceCategory,
@@ -59944,7 +59944,7 @@ class PaymentProfileGetResponse {
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @JsonKey(name: 'deleted_at')
-  final DateTime deletedAt;
+  final DateTime? deletedAt;
   @JsonKey(
     name: 'status',
     toJson: paymentProfileStatusToJson,
@@ -60008,7 +60008,7 @@ extension $PaymentProfileGetResponseExtension on PaymentProfileGetResponse {
   PaymentProfileGetResponse copyWithWrapped(
       {Wrapped<DateTime>? updatedAt,
       Wrapped<DateTime>? createdAt,
-      Wrapped<DateTime>? deletedAt,
+      Wrapped<DateTime?>? deletedAt,
       Wrapped<enums.PaymentProfileStatus>? status,
       Wrapped<String>? requestId}) {
     return PaymentProfileGetResponse(
@@ -63150,9 +63150,9 @@ class HistoricalBalance {
   @JsonKey(name: 'current')
   final double current;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   static const fromJsonFactory = _$HistoricalBalanceFromJson;
   static const toJsonFactory = _$HistoricalBalanceToJson;
   Map<String, dynamic> toJson() => _$HistoricalBalanceToJson(this);
@@ -63203,8 +63203,8 @@ extension $HistoricalBalanceExtension on HistoricalBalance {
   HistoricalBalance copyWithWrapped(
       {Wrapped<DateTime>? date,
       Wrapped<double>? current,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode}) {
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode}) {
     return HistoricalBalance(
         date: (date != null ? date.value : this.date),
         current: (current != null ? current.value : this.current),
@@ -63573,7 +63573,7 @@ class AssetReport {
   @JsonKey(name: 'asset_report_id')
   final String assetReportId;
   @JsonKey(name: 'client_report_id')
-  final String clientReportId;
+  final String? clientReportId;
   @JsonKey(name: 'date_generated')
   final DateTime dateGenerated;
   @JsonKey(name: 'days_requested')
@@ -63641,7 +63641,7 @@ extension $AssetReportExtension on AssetReport {
 
   AssetReport copyWithWrapped(
       {Wrapped<String>? assetReportId,
-      Wrapped<String>? clientReportId,
+      Wrapped<String?>? clientReportId,
       Wrapped<DateTime>? dateGenerated,
       Wrapped<double>? daysRequested,
       Wrapped<AssetReportUser>? user,
@@ -63796,11 +63796,11 @@ class AccountAssets {
   @JsonKey(name: 'balances')
   final AccountBalance balances;
   @JsonKey(name: 'mask')
-  final String mask;
+  final String? mask;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'official_name')
-  final String officialName;
+  final String? officialName;
   @JsonKey(
     name: 'type',
     toJson: accountTypeToJson,
@@ -63924,9 +63924,9 @@ extension $AccountAssetsExtension on AccountAssets {
       Wrapped<List<HistoricalBalance>>? historicalBalances,
       Wrapped<String>? accountId,
       Wrapped<AccountBalance>? balances,
-      Wrapped<String>? mask,
+      Wrapped<String?>? mask,
       Wrapped<String>? name,
-      Wrapped<String>? officialName,
+      Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
       Wrapped<enums.AccountSubtype>? subtype,
       Wrapped<enums.AccountAssetsVerificationStatus?>? verificationStatus}) {
@@ -64008,15 +64008,15 @@ class AssetReportTransaction {
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'original_description')
-  final String originalDescription;
+  final String? originalDescription;
   @JsonKey(name: 'account_id')
   final String accountId;
   @JsonKey(name: 'amount')
   final double amount;
   @JsonKey(name: 'iso_currency_code')
-  final String isoCurrencyCode;
+  final String? isoCurrencyCode;
   @JsonKey(name: 'unofficial_currency_code')
-  final String unofficialCurrencyCode;
+  final String? unofficialCurrencyCode;
   @JsonKey(name: 'date', toJson: _dateToJson)
   final DateTime date;
   @JsonKey(name: 'pending')
@@ -64179,11 +64179,11 @@ extension $AssetReportTransactionExtension on AssetReportTransaction {
       Wrapped<PaymentMeta?>? paymentMeta,
       Wrapped<String?>? accountOwner,
       Wrapped<String?>? name,
-      Wrapped<String>? originalDescription,
+      Wrapped<String?>? originalDescription,
       Wrapped<String>? accountId,
       Wrapped<double>? amount,
-      Wrapped<String>? isoCurrencyCode,
-      Wrapped<String>? unofficialCurrencyCode,
+      Wrapped<String?>? isoCurrencyCode,
+      Wrapped<String?>? unofficialCurrencyCode,
       Wrapped<DateTime>? date,
       Wrapped<bool>? pending,
       Wrapped<String>? transactionId,
@@ -75157,7 +75157,7 @@ class LoanIdentifier {
       _$LoanIdentifierFromJson(json);
 
   @JsonKey(name: 'LoanIdentifier')
-  final String loanIdentifier;
+  final String? loanIdentifier;
   @JsonKey(
     name: 'LoanIdentifierType',
     toJson: loanIdentifierTypeToJson,
@@ -75199,7 +75199,7 @@ extension $LoanIdentifierExtension on LoanIdentifier {
   }
 
   LoanIdentifier copyWithWrapped(
-      {Wrapped<String>? loanIdentifier,
+      {Wrapped<String?>? loanIdentifier,
       Wrapped<enums.LoanIdentifierType>? loanIdentifierType}) {
     return LoanIdentifier(
         loanIdentifier: (loanIdentifier != null
@@ -75612,7 +75612,7 @@ class TaxpayerIdentifier {
   )
   final enums.TaxpayerIdentifierType taxpayerIdentifierType;
   @JsonKey(name: 'TaxpayerIdentifierValue')
-  final String taxpayerIdentifierValue;
+  final String? taxpayerIdentifierValue;
   static const fromJsonFactory = _$TaxpayerIdentifierFromJson;
   static const toJsonFactory = _$TaxpayerIdentifierToJson;
   Map<String, dynamic> toJson() => _$TaxpayerIdentifierToJson(this);
@@ -75653,7 +75653,7 @@ extension $TaxpayerIdentifierExtension on TaxpayerIdentifier {
 
   TaxpayerIdentifier copyWithWrapped(
       {Wrapped<enums.TaxpayerIdentifierType>? taxpayerIdentifierType,
-      Wrapped<String>? taxpayerIdentifierValue}) {
+      Wrapped<String?>? taxpayerIdentifierValue}) {
     return TaxpayerIdentifier(
         taxpayerIdentifierType: (taxpayerIdentifierType != null
             ? taxpayerIdentifierType.value
@@ -75961,7 +75961,7 @@ class ServiceProductFulfillmentDetail {
       _$ServiceProductFulfillmentDetailFromJson(json);
 
   @JsonKey(name: 'VendorOrderIdentifier')
-  final String vendorOrderIdentifier;
+  final String? vendorOrderIdentifier;
   @JsonKey(
     name: 'ServiceProductFulfillmentIdentifier',
     toJson: serviceProductFulfillmentIdentifierToJson,
@@ -76013,7 +76013,7 @@ extension $ServiceProductFulfillmentDetailExtension
   }
 
   ServiceProductFulfillmentDetail copyWithWrapped(
-      {Wrapped<String>? vendorOrderIdentifier,
+      {Wrapped<String?>? vendorOrderIdentifier,
       Wrapped<enums.ServiceProductFulfillmentIdentifier>?
           serviceProductFulfillmentIdentifier}) {
     return ServiceProductFulfillmentDetail(
@@ -76231,7 +76231,7 @@ class AssetDetail {
   @JsonKey(name: 'AssetAsOfDate')
   final String assetAsOfDate;
   @JsonKey(name: 'AssetDescription')
-  final String assetDescription;
+  final String? assetDescription;
   @JsonKey(name: 'AssetAvailableBalanceAmount')
   final double assetAvailableBalanceAmount;
   @JsonKey(name: 'AssetCurrentBalanceAmount')
@@ -76243,11 +76243,11 @@ class AssetDetail {
   )
   final enums.AssetType assetType;
   @JsonKey(name: 'AssetTypeAdditionalDescription')
-  final String assetTypeAdditionalDescription;
+  final String? assetTypeAdditionalDescription;
   @JsonKey(name: 'AssetDaysRequestedCount')
   final int assetDaysRequestedCount;
   @JsonKey(name: 'AssetOwnershipType')
-  final String assetOwnershipType;
+  final String? assetOwnershipType;
   static const fromJsonFactory = _$AssetDetailFromJson;
   static const toJsonFactory = _$AssetDetailToJson;
   Map<String, dynamic> toJson() => _$AssetDetailToJson(this);
@@ -76346,13 +76346,13 @@ extension $AssetDetailExtension on AssetDetail {
       {Wrapped<String>? assetUniqueIdentifier,
       Wrapped<String>? assetAccountIdentifier,
       Wrapped<String>? assetAsOfDate,
-      Wrapped<String>? assetDescription,
+      Wrapped<String?>? assetDescription,
       Wrapped<double>? assetAvailableBalanceAmount,
       Wrapped<double>? assetCurrentBalanceAmount,
       Wrapped<enums.AssetType>? assetType,
-      Wrapped<String>? assetTypeAdditionalDescription,
+      Wrapped<String?>? assetTypeAdditionalDescription,
       Wrapped<int>? assetDaysRequestedCount,
-      Wrapped<String>? assetOwnershipType}) {
+      Wrapped<String?>? assetOwnershipType}) {
     return AssetDetail(
         assetUniqueIdentifier: (assetUniqueIdentifier != null
             ? assetUniqueIdentifier.value
@@ -76437,7 +76437,7 @@ class AssetOwner {
       _$AssetOwnerFromJson(json);
 
   @JsonKey(name: 'AssetOwnerText')
-  final String assetOwnerText;
+  final String? assetOwnerText;
   static const fromJsonFactory = _$AssetOwnerFromJson;
   static const toJsonFactory = _$AssetOwnerToJson;
   Map<String, dynamic> toJson() => _$AssetOwnerToJson(this);
@@ -76465,7 +76465,7 @@ extension $AssetOwnerExtension on AssetOwner {
     return AssetOwner(assetOwnerText: assetOwnerText ?? this.assetOwnerText);
   }
 
-  AssetOwner copyWithWrapped({Wrapped<String>? assetOwnerText}) {
+  AssetOwner copyWithWrapped({Wrapped<String?>? assetOwnerText}) {
     return AssetOwner(
         assetOwnerText: (assetOwnerText != null
             ? assetOwnerText.value
@@ -76705,9 +76705,9 @@ class AssetTransactionDetail {
   )
   final enums.AssetTransactionType assetTransactionType;
   @JsonKey(name: 'AssetTransactionPaidByName')
-  final String assetTransactionPaidByName;
+  final String? assetTransactionPaidByName;
   @JsonKey(name: 'AssetTransactionTypeAdditionalDescription')
-  final String assetTransactionTypeAdditionalDescription;
+  final String? assetTransactionTypeAdditionalDescription;
   @JsonKey(
     name: 'AssetTransactionCategoryType',
     toJson: assetTransactionCategoryTypeToJson,
@@ -76715,7 +76715,7 @@ class AssetTransactionDetail {
   )
   final enums.AssetTransactionCategoryType assetTransactionCategoryType;
   @JsonKey(name: 'FinancialInstitutionTransactionIdentifier')
-  final String financialInstitutionTransactionIdentifier;
+  final String? financialInstitutionTransactionIdentifier;
   static const fromJsonFactory = _$AssetTransactionDetailFromJson;
   static const toJsonFactory = _$AssetTransactionDetailToJson;
   Map<String, dynamic> toJson() => _$AssetTransactionDetailToJson(this);
@@ -76816,10 +76816,10 @@ extension $AssetTransactionDetailExtension on AssetTransactionDetail {
       Wrapped<DateTime>? assetTransactionDate,
       Wrapped<DateTime>? assetTransactionPostDate,
       Wrapped<enums.AssetTransactionType>? assetTransactionType,
-      Wrapped<String>? assetTransactionPaidByName,
-      Wrapped<String>? assetTransactionTypeAdditionalDescription,
+      Wrapped<String?>? assetTransactionPaidByName,
+      Wrapped<String?>? assetTransactionTypeAdditionalDescription,
       Wrapped<enums.AssetTransactionCategoryType>? assetTransactionCategoryType,
-      Wrapped<String>? financialInstitutionTransactionIdentifier}) {
+      Wrapped<String?>? financialInstitutionTransactionIdentifier}) {
     return AssetTransactionDetail(
         assetTransactionUniqueIdentifier:
             (assetTransactionUniqueIdentifier != null
@@ -76964,9 +76964,9 @@ class ValidationSource {
       _$ValidationSourceFromJson(json);
 
   @JsonKey(name: 'ValidationSourceName')
-  final String validationSourceName;
+  final String? validationSourceName;
   @JsonKey(name: 'ValidationSourceReferenceIdentifier')
-  final String validationSourceReferenceIdentifier;
+  final String? validationSourceReferenceIdentifier;
   static const fromJsonFactory = _$ValidationSourceFromJson;
   static const toJsonFactory = _$ValidationSourceToJson;
   Map<String, dynamic> toJson() => _$ValidationSourceToJson(this);
@@ -77007,8 +77007,8 @@ extension $ValidationSourceExtension on ValidationSource {
   }
 
   ValidationSource copyWithWrapped(
-      {Wrapped<String>? validationSourceName,
-      Wrapped<String>? validationSourceReferenceIdentifier}) {
+      {Wrapped<String?>? validationSourceName,
+      Wrapped<String?>? validationSourceReferenceIdentifier}) {
     return ValidationSource(
         validationSourceName: (validationSourceName != null
             ? validationSourceName.value
@@ -77071,9 +77071,9 @@ class Status {
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 
   @JsonKey(name: 'StatusCode')
-  final String statusCode;
+  final String? statusCode;
   @JsonKey(name: 'StatusDescription')
-  final String statusDescription;
+  final String? statusDescription;
   static const fromJsonFactory = _$StatusFromJson;
   static const toJsonFactory = _$StatusToJson;
   Map<String, dynamic> toJson() => _$StatusToJson(this);
@@ -77108,7 +77108,7 @@ extension $StatusExtension on Status {
   }
 
   Status copyWithWrapped(
-      {Wrapped<String>? statusCode, Wrapped<String>? statusDescription}) {
+      {Wrapped<String?>? statusCode, Wrapped<String?>? statusDescription}) {
     return Status(
         statusCode: (statusCode != null ? statusCode.value : this.statusCode),
         statusDescription: (statusDescription != null
@@ -78162,7 +78162,7 @@ class Item {
   @JsonKey(name: 'institution_id')
   final String? institutionId;
   @JsonKey(name: 'webhook')
-  final String webhook;
+  final String? webhook;
   @JsonKey(name: 'error')
   final PlaidError error;
   @JsonKey(
@@ -78190,7 +78190,7 @@ class Item {
   )
   final List<enums.Products>? consentedProducts;
   @JsonKey(name: 'consent_expiration_time')
-  final DateTime consentExpirationTime;
+  final DateTime? consentExpirationTime;
   @JsonKey(
     name: 'update_type',
     toJson: itemUpdateTypeToJson,
@@ -78282,13 +78282,13 @@ extension $ItemExtension on Item {
   Item copyWithWrapped(
       {Wrapped<String>? itemId,
       Wrapped<String?>? institutionId,
-      Wrapped<String>? webhook,
+      Wrapped<String?>? webhook,
       Wrapped<PlaidError>? error,
       Wrapped<List<enums.Products>>? availableProducts,
       Wrapped<List<enums.Products>>? billedProducts,
       Wrapped<List<enums.Products>?>? products,
       Wrapped<List<enums.Products>?>? consentedProducts,
-      Wrapped<DateTime>? consentExpirationTime,
+      Wrapped<DateTime?>? consentExpirationTime,
       Wrapped<enums.ItemUpdateType>? updateType}) {
     return Item(
         itemId: (itemId != null ? itemId.value : this.itemId),
