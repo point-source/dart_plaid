@@ -20,7 +20,7 @@ class Plaid {
     return ChopperClient(
       services: [PlaidService.create()],
       interceptors: [interceptor],
-      baseUrl: 'https://$env.plaid.com',
+      baseUrl: Uri.parse('https://$env.plaid.com'),
     ).getService<PlaidService>();
   }
 }

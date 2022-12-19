@@ -4,7 +4,7 @@ import 'package:dart_plaid/dart_plaid.dart';
 Future<void> main() async {
   /// Checks for errors in an api response and throws if found
   checkResponse(Response response) {
-    if (!response.isSuccessful) {
+    if (!response.isSuccessful || response.error != null) {
       throw Exception('${response.statusCode}: ${response.base.reasonPhrase}');
     }
   }
@@ -26,8 +26,8 @@ Future<void> main() async {
 
   // Check for errors in the response
   checkResponse(publicTokenRes);
-
   final publicToken = publicTokenRes.body?.publicToken;
+  if (publicToken == null) throw Exception('No public token was returned');
 
   // Exchange public token for private access token
   final accessTokenRes = await plaid.itemPublicTokenExchangePost(
@@ -36,8 +36,8 @@ Future<void> main() async {
 
   // Check for errors in the response
   checkResponse(accessTokenRes);
-
   final accessToken = accessTokenRes.body?.accessToken;
+  if (accessToken == null) throw Exception('No access token was returned');
 
   // Use the access token to get a list of accounts
   final accountsRes = await plaid.accountsGetPost(

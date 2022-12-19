@@ -1990,8 +1990,10 @@ PaymentInitiationPaymentGetResponse
               ? null
               : ExternalPaymentRefundDetails.fromJson(
                   json['refund_details'] as Map<String, dynamic>),
-          bacs:
-              SenderBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
+          bacs: json['bacs'] == null
+              ? null
+              : SenderBACSNullable.fromJson(
+                  json['bacs'] as Map<String, dynamic>),
           iban: json['iban'] as String?,
           refundIds: (json['refund_ids'] as List<dynamic>?)
                   ?.map((e) => e as String)
@@ -2021,7 +2023,7 @@ Map<String, dynamic> _$PaymentInitiationPaymentGetResponseToJson(
       'last_status_update': instance.lastStatusUpdate.toIso8601String(),
       'schedule': instance.schedule?.toJson(),
       'refund_details': instance.refundDetails?.toJson(),
-      'bacs': instance.bacs.toJson(),
+      'bacs': instance.bacs?.toJson(),
       'iban': instance.iban,
       'refund_ids': instance.refundIds,
       'amount_refunded': instance.amountRefunded?.toJson(),
@@ -2050,7 +2052,9 @@ PaymentInitiationPayment _$PaymentInitiationPaymentFromJson(
           ? null
           : ExternalPaymentRefundDetails.fromJson(
               json['refund_details'] as Map<String, dynamic>),
-      bacs: SenderBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
+      bacs: json['bacs'] == null
+          ? null
+          : SenderBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
       iban: json['iban'] as String?,
       refundIds: (json['refund_ids'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -2079,7 +2083,7 @@ Map<String, dynamic> _$PaymentInitiationPaymentToJson(
       'last_status_update': instance.lastStatusUpdate.toIso8601String(),
       'schedule': instance.schedule?.toJson(),
       'refund_details': instance.refundDetails?.toJson(),
-      'bacs': instance.bacs.toJson(),
+      'bacs': instance.bacs?.toJson(),
       'iban': instance.iban,
       'refund_ids': instance.refundIds,
       'amount_refunded': instance.amountRefunded?.toJson(),
@@ -4099,7 +4103,9 @@ IdentityDefaultUpdateWebhook _$IdentityDefaultUpdateWebhookFromJson(
       itemId: json['item_id'] as String,
       accountIdsWithUpdatedIdentity: AccountIdsWithUpdatedIdentity.fromJson(
           json['account_ids_with_updated_identity'] as Map<String, dynamic>),
-      error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
+      error: json['error'] == null
+          ? null
+          : PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       environment: webhookEnvironmentValuesFromJson(json['environment']),
     );
 
@@ -4111,7 +4117,7 @@ Map<String, dynamic> _$IdentityDefaultUpdateWebhookToJson(
       'item_id': instance.itemId,
       'account_ids_with_updated_identity':
           instance.accountIdsWithUpdatedIdentity.toJson(),
-      'error': instance.error.toJson(),
+      'error': instance.error?.toJson(),
       'environment': webhookEnvironmentValuesToJson(instance.environment),
     };
 
@@ -4616,13 +4622,15 @@ Map<String, dynamic> _$AprToJson(Apr instance) => <String, dynamic>{
     };
 
 AuthMetadata _$AuthMetadataFromJson(Map<String, dynamic> json) => AuthMetadata(
-      supportedMethods: AuthSupportedMethods.fromJson(
-          json['supported_methods'] as Map<String, dynamic>),
+      supportedMethods: json['supported_methods'] == null
+          ? null
+          : AuthSupportedMethods.fromJson(
+              json['supported_methods'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AuthMetadataToJson(AuthMetadata instance) =>
     <String, dynamic>{
-      'supported_methods': instance.supportedMethods.toJson(),
+      'supported_methods': instance.supportedMethods?.toJson(),
     };
 
 AuthSupportedMethods _$AuthSupportedMethodsFromJson(
@@ -4650,8 +4658,10 @@ PaymentInitiationMetadata _$PaymentInitiationMetadataFromJson(
       maximumPaymentAmount: PaymentInitiationMaximumPaymentAmount.fromJson(
           json['maximum_payment_amount'] as Map<String, dynamic>),
       supportsRefundDetails: json['supports_refund_details'] as bool,
-      standingOrderMetadata: PaymentInitiationStandingOrderMetadata.fromJson(
-          json['standing_order_metadata'] as Map<String, dynamic>),
+      standingOrderMetadata: json['standing_order_metadata'] == null
+          ? null
+          : PaymentInitiationStandingOrderMetadata.fromJson(
+              json['standing_order_metadata'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PaymentInitiationMetadataToJson(
@@ -4661,7 +4671,7 @@ Map<String, dynamic> _$PaymentInitiationMetadataToJson(
       'supports_sepa_instant': instance.supportsSepaInstant,
       'maximum_payment_amount': instance.maximumPaymentAmount.toJson(),
       'supports_refund_details': instance.supportsRefundDetails,
-      'standing_order_metadata': instance.standingOrderMetadata.toJson(),
+      'standing_order_metadata': instance.standingOrderMetadata?.toJson(),
     };
 
 PaymentInitiationMaximumPaymentAmount
@@ -4855,8 +4865,10 @@ ExternalPaymentRefundDetails _$ExternalPaymentRefundDetailsFromJson(
     ExternalPaymentRefundDetails(
       name: json['name'] as String,
       iban: json['iban'] as String?,
-      bacs:
-          RecipientBACSNullable.fromJson(json['bacs'] as Map<String, dynamic>),
+      bacs: json['bacs'] == null
+          ? null
+          : RecipientBACSNullable.fromJson(
+              json['bacs'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ExternalPaymentRefundDetailsToJson(
@@ -4864,7 +4876,7 @@ Map<String, dynamic> _$ExternalPaymentRefundDetailsToJson(
     <String, dynamic>{
       'name': instance.name,
       'iban': instance.iban,
-      'bacs': instance.bacs.toJson(),
+      'bacs': instance.bacs?.toJson(),
     };
 
 ExternalPaymentScheduleGet _$ExternalPaymentScheduleGetFromJson(
@@ -5431,7 +5443,9 @@ ItemErrorWebhook _$ItemErrorWebhookFromJson(Map<String, dynamic> json) =>
       webhookType: json['webhook_type'] as String,
       webhookCode: json['webhook_code'] as String,
       itemId: json['item_id'] as String,
-      error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
+      error: json['error'] == null
+          ? null
+          : PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       environment: webhookEnvironmentValuesFromJson(json['environment']),
     );
 
@@ -5440,7 +5454,7 @@ Map<String, dynamic> _$ItemErrorWebhookToJson(ItemErrorWebhook instance) =>
       'webhook_type': instance.webhookType,
       'webhook_code': instance.webhookCode,
       'item_id': instance.itemId,
-      'error': instance.error.toJson(),
+      'error': instance.error?.toJson(),
       'environment': webhookEnvironmentValuesToJson(instance.environment),
     };
 
@@ -5583,7 +5597,9 @@ LiabilitiesDefaultUpdateWebhook _$LiabilitiesDefaultUpdateWebhookFromJson(
       webhookType: json['webhook_type'] as String,
       webhookCode: json['webhook_code'] as String,
       itemId: json['item_id'] as String,
-      error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
+      error: json['error'] == null
+          ? null
+          : PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       accountIdsWithNewLiabilities:
           (json['account_ids_with_new_liabilities'] as List<dynamic>?)
                   ?.map((e) => e as String)
@@ -5602,7 +5618,7 @@ Map<String, dynamic> _$LiabilitiesDefaultUpdateWebhookToJson(
       'webhook_type': instance.webhookType,
       'webhook_code': instance.webhookCode,
       'item_id': instance.itemId,
-      'error': instance.error.toJson(),
+      'error': instance.error?.toJson(),
       'account_ids_with_new_liabilities': instance.accountIdsWithNewLiabilities,
       'account_ids_with_updated_liabilities':
           instance.accountIdsWithUpdatedLiabilities.toJson(),
@@ -6191,15 +6207,19 @@ Transfer _$TransferFromJson(Map<String, dynamic> json) => Transfer(
       sweepStatus: transferSweepStatusFromJson(json['sweep_status']),
       network: transferNetworkFromJson(json['network']),
       cancellable: json['cancellable'] as bool,
-      failureReason: TransferFailure.fromJson(
-          json['failure_reason'] as Map<String, dynamic>),
-      metadata:
-          TransferMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
+      failureReason: json['failure_reason'] == null
+          ? null
+          : TransferFailure.fromJson(
+              json['failure_reason'] as Map<String, dynamic>),
+      metadata: json['metadata'] == null
+          ? null
+          : TransferMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
       originationAccountId: json['origination_account_id'] as String,
       guaranteeDecision: transferAuthorizationGuaranteeDecisionFromJson(
           json['guarantee_decision']),
-      guaranteeDecisionRationale:
-          TransferAuthorizationGuaranteeDecisionRationale.fromJson(
+      guaranteeDecisionRationale: json['guarantee_decision_rationale'] == null
+          ? null
+          : TransferAuthorizationGuaranteeDecisionRationale.fromJson(
               json['guarantee_decision_rationale'] as Map<String, dynamic>),
       isoCurrencyCode: json['iso_currency_code'] as String,
       standardReturnWindow: json['standard_return_window'] == null
@@ -6228,13 +6248,13 @@ Map<String, dynamic> _$TransferToJson(Transfer instance) => <String, dynamic>{
       'sweep_status': transferSweepStatusToJson(instance.sweepStatus),
       'network': transferNetworkToJson(instance.network),
       'cancellable': instance.cancellable,
-      'failure_reason': instance.failureReason.toJson(),
-      'metadata': instance.metadata.toJson(),
+      'failure_reason': instance.failureReason?.toJson(),
+      'metadata': instance.metadata?.toJson(),
       'origination_account_id': instance.originationAccountId,
       'guarantee_decision': transferAuthorizationGuaranteeDecisionToJson(
           instance.guaranteeDecision),
       'guarantee_decision_rationale':
-          instance.guaranteeDecisionRationale.toJson(),
+          instance.guaranteeDecisionRationale?.toJson(),
       'iso_currency_code': instance.isoCurrencyCode,
       'standard_return_window': _dateToJson(instance.standardReturnWindow),
       'unauthorized_return_window':
@@ -6296,7 +6316,7 @@ Map<String, dynamic> _$RecurringTransferToJson(RecurringTransfer instance) =>
 
 TransferTestClock _$TransferTestClockFromJson(Map<String, dynamic> json) =>
     TransferTestClock(
-      testClockId: json['test_clock_id'] as String,
+      testClockId: json['test_clock_id'] as String?,
       frozenTimestamp: json['frozen_timestamp'] as String,
     );
 
@@ -6319,11 +6339,15 @@ BankTransfer _$BankTransferFromJson(Map<String, dynamic> json) => BankTransfer(
       status: bankTransferStatusFromJson(json['status']),
       network: bankTransferNetworkFromJson(json['network']),
       cancellable: json['cancellable'] as bool,
-      failureReason: BankTransferFailure.fromJson(
-          json['failure_reason'] as Map<String, dynamic>),
+      failureReason: json['failure_reason'] == null
+          ? null
+          : BankTransferFailure.fromJson(
+              json['failure_reason'] as Map<String, dynamic>),
       customTag: json['custom_tag'] as String?,
-      metadata: BankTransferMetadata.fromJson(
-          json['metadata'] as Map<String, dynamic>),
+      metadata: json['metadata'] == null
+          ? null
+          : BankTransferMetadata.fromJson(
+              json['metadata'] as Map<String, dynamic>),
       originationAccountId: json['origination_account_id'] as String,
       direction: bankTransferDirectionFromJson(json['direction']),
     );
@@ -6342,9 +6366,9 @@ Map<String, dynamic> _$BankTransferToJson(BankTransfer instance) =>
       'status': bankTransferStatusToJson(instance.status),
       'network': bankTransferNetworkToJson(instance.network),
       'cancellable': instance.cancellable,
-      'failure_reason': instance.failureReason.toJson(),
+      'failure_reason': instance.failureReason?.toJson(),
       'custom_tag': instance.customTag,
-      'metadata': instance.metadata.toJson(),
+      'metadata': instance.metadata?.toJson(),
       'origination_account_id': instance.originationAccountId,
       'direction': bankTransferDirectionToJson(instance.direction),
     };
@@ -6475,8 +6499,10 @@ TransferUserInResponse _$TransferUserInResponseFromJson(
       legalName: json['legal_name'] as String,
       phoneNumber: json['phone_number'] as String?,
       emailAddress: json['email_address'] as String?,
-      address: TransferUserAddressInResponse.fromJson(
-          json['address'] as Map<String, dynamic>),
+      address: json['address'] == null
+          ? null
+          : TransferUserAddressInResponse.fromJson(
+              json['address'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TransferUserInResponseToJson(
@@ -6485,7 +6511,7 @@ Map<String, dynamic> _$TransferUserInResponseToJson(
       'legal_name': instance.legalName,
       'phone_number': instance.phoneNumber,
       'email_address': instance.emailAddress,
-      'address': instance.address.toJson(),
+      'address': instance.address?.toJson(),
     };
 
 TransferUserAddressInRequest _$TransferUserAddressInRequestFromJson(
@@ -6798,7 +6824,7 @@ TransferRecurringCreateRequest _$TransferRecurringCreateRequestFromJson(
       clientId: json['client_id'] as String,
       secret: json['secret'] as String,
       accessToken: json['access_token'] as String,
-      idempotencyKey: json['idempotency_key'] as String,
+      idempotencyKey: json['idempotency_key'] as String?,
       accountId: json['account_id'] as String,
       type: transferTypeFromJson(json['type']),
       network: transferNetworkFromJson(json['network']),
@@ -6898,12 +6924,15 @@ TransferAuthorization _$TransferAuthorizationFromJson(
       id: json['id'] as String,
       created: DateTime.parse(json['created'] as String),
       decision: transferAuthorizationDecisionFromJson(json['decision']),
-      decisionRationale: TransferAuthorizationDecisionRationale.fromJson(
-          json['decision_rationale'] as Map<String, dynamic>),
+      decisionRationale: json['decision_rationale'] == null
+          ? null
+          : TransferAuthorizationDecisionRationale.fromJson(
+              json['decision_rationale'] as Map<String, dynamic>),
       guaranteeDecision: transferAuthorizationGuaranteeDecisionFromJson(
           json['guarantee_decision']),
-      guaranteeDecisionRationale:
-          TransferAuthorizationGuaranteeDecisionRationale.fromJson(
+      guaranteeDecisionRationale: json['guarantee_decision_rationale'] == null
+          ? null
+          : TransferAuthorizationGuaranteeDecisionRationale.fromJson(
               json['guarantee_decision_rationale'] as Map<String, dynamic>),
       proposedTransfer: TransferAuthorizationProposedTransfer.fromJson(
           json['proposed_transfer'] as Map<String, dynamic>),
@@ -6915,11 +6944,11 @@ Map<String, dynamic> _$TransferAuthorizationToJson(
       'id': instance.id,
       'created': instance.created.toIso8601String(),
       'decision': transferAuthorizationDecisionToJson(instance.decision),
-      'decision_rationale': instance.decisionRationale.toJson(),
+      'decision_rationale': instance.decisionRationale?.toJson(),
       'guarantee_decision': transferAuthorizationGuaranteeDecisionToJson(
           instance.guaranteeDecision),
       'guarantee_decision_rationale':
-          instance.guaranteeDecisionRationale.toJson(),
+          instance.guaranteeDecisionRationale?.toJson(),
       'proposed_transfer': instance.proposedTransfer.toJson(),
     };
 
@@ -7282,10 +7311,12 @@ TransferEvent _$TransferEventFromJson(Map<String, dynamic> json) =>
       originationAccountId: json['origination_account_id'] as String?,
       transferType: transferTypeFromJson(json['transfer_type']),
       transferAmount: json['transfer_amount'] as String,
-      failureReason: TransferFailure.fromJson(
-          json['failure_reason'] as Map<String, dynamic>),
-      sweepId: json['sweep_id'] as String,
-      sweepAmount: json['sweep_amount'] as String,
+      failureReason: json['failure_reason'] == null
+          ? null
+          : TransferFailure.fromJson(
+              json['failure_reason'] as Map<String, dynamic>),
+      sweepId: json['sweep_id'] as String?,
+      sweepAmount: json['sweep_amount'] as String?,
       refundId: json['refund_id'] as String?,
       originatorClientId: json['originator_client_id'] as String?,
     );
@@ -7300,7 +7331,7 @@ Map<String, dynamic> _$TransferEventToJson(TransferEvent instance) =>
       'origination_account_id': instance.originationAccountId,
       'transfer_type': transferTypeToJson(instance.transferType),
       'transfer_amount': instance.transferAmount,
-      'failure_reason': instance.failureReason.toJson(),
+      'failure_reason': instance.failureReason?.toJson(),
       'sweep_id': instance.sweepId,
       'sweep_amount': instance.sweepAmount,
       'refund_id': instance.refundId,
@@ -7319,8 +7350,10 @@ BankTransferEvent _$BankTransferEventFromJson(Map<String, dynamic> json) =>
       bankTransferAmount: json['bank_transfer_amount'] as String,
       bankTransferIsoCurrencyCode:
           json['bank_transfer_iso_currency_code'] as String,
-      failureReason: BankTransferFailure.fromJson(
-          json['failure_reason'] as Map<String, dynamic>),
+      failureReason: json['failure_reason'] == null
+          ? null
+          : BankTransferFailure.fromJson(
+              json['failure_reason'] as Map<String, dynamic>),
       direction: bankTransferDirectionFromJson(json['direction']),
     );
 
@@ -7335,7 +7368,7 @@ Map<String, dynamic> _$BankTransferEventToJson(BankTransferEvent instance) =>
       'bank_transfer_type': bankTransferTypeToJson(instance.bankTransferType),
       'bank_transfer_amount': instance.bankTransferAmount,
       'bank_transfer_iso_currency_code': instance.bankTransferIsoCurrencyCode,
-      'failure_reason': instance.failureReason.toJson(),
+      'failure_reason': instance.failureReason?.toJson(),
       'direction': bankTransferDirectionToJson(instance.direction),
     };
 
@@ -8148,13 +8181,18 @@ TransferIntentGet _$TransferIntentGetFromJson(Map<String, dynamic> json) =>
       created: DateTime.parse(json['created'] as String),
       status: transferIntentStatusFromJson(json['status']),
       transferId: json['transfer_id'] as String?,
-      failureReason: TransferIntentGetFailureReason.fromJson(
-          json['failure_reason'] as Map<String, dynamic>),
+      failureReason: json['failure_reason'] == null
+          ? null
+          : TransferIntentGetFailureReason.fromJson(
+              json['failure_reason'] as Map<String, dynamic>),
       authorizationDecision: transferIntentAuthorizationDecisionFromJson(
           json['authorization_decision']),
       authorizationDecisionRationale:
-          TransferAuthorizationDecisionRationale.fromJson(
-              json['authorization_decision_rationale'] as Map<String, dynamic>),
+          json['authorization_decision_rationale'] == null
+              ? null
+              : TransferAuthorizationDecisionRationale.fromJson(
+                  json['authorization_decision_rationale']
+                      as Map<String, dynamic>),
       accountId: json['account_id'] as String?,
       originationAccountId: json['origination_account_id'] as String,
       amount: json['amount'] as String,
@@ -8170,8 +8208,9 @@ TransferIntentGet _$TransferIntentGetFromJson(Map<String, dynamic> json) =>
       requireGuarantee: json['require_guarantee'] as bool?,
       guaranteeDecision: transferAuthorizationGuaranteeDecisionFromJson(
           json['guarantee_decision']),
-      guaranteeDecisionRationale:
-          TransferAuthorizationGuaranteeDecisionRationale.fromJson(
+      guaranteeDecisionRationale: json['guarantee_decision_rationale'] == null
+          ? null
+          : TransferAuthorizationGuaranteeDecisionRationale.fromJson(
               json['guarantee_decision_rationale'] as Map<String, dynamic>),
     );
 
@@ -8181,11 +8220,11 @@ Map<String, dynamic> _$TransferIntentGetToJson(TransferIntentGet instance) =>
       'created': instance.created.toIso8601String(),
       'status': transferIntentStatusToJson(instance.status),
       'transfer_id': instance.transferId,
-      'failure_reason': instance.failureReason.toJson(),
+      'failure_reason': instance.failureReason?.toJson(),
       'authorization_decision': transferIntentAuthorizationDecisionToJson(
           instance.authorizationDecision),
       'authorization_decision_rationale':
-          instance.authorizationDecisionRationale.toJson(),
+          instance.authorizationDecisionRationale?.toJson(),
       'account_id': instance.accountId,
       'origination_account_id': instance.originationAccountId,
       'amount': instance.amount,
@@ -8199,7 +8238,7 @@ Map<String, dynamic> _$TransferIntentGetToJson(TransferIntentGet instance) =>
       'guarantee_decision': transferAuthorizationGuaranteeDecisionToJson(
           instance.guaranteeDecision),
       'guarantee_decision_rationale':
-          instance.guaranteeDecisionRationale.toJson(),
+          instance.guaranteeDecisionRationale?.toJson(),
     };
 
 TransferIntentGetResponse _$TransferIntentGetResponseFromJson(
@@ -8410,7 +8449,7 @@ SandboxTransferTestClockAdvanceRequest
         SandboxTransferTestClockAdvanceRequest(
           clientId: json['client_id'] as String,
           secret: json['secret'] as String,
-          testClockId: json['test_clock_id'] as String,
+          testClockId: json['test_clock_id'] as String?,
           newFrozenTimestamp: json['new_frozen_timestamp'] as String,
         );
 
@@ -8428,7 +8467,7 @@ SandboxTransferTestClockGetRequest _$SandboxTransferTestClockGetRequestFromJson(
     SandboxTransferTestClockGetRequest(
       clientId: json['client_id'] as String,
       secret: json['secret'] as String,
-      testClockId: json['test_clock_id'] as String,
+      testClockId: json['test_clock_id'] as String?,
     );
 
 Map<String, dynamic> _$SandboxTransferTestClockGetRequestToJson(
@@ -8817,15 +8856,17 @@ Map<String, dynamic> _$EmployersSearchResponseToJson(
 Employer _$EmployerFromJson(Map<String, dynamic> json) => Employer(
       employerId: json['employer_id'] as String,
       name: json['name'] as String,
-      address:
-          AddressDataNullable.fromJson(json['address'] as Map<String, dynamic>),
+      address: json['address'] == null
+          ? null
+          : AddressDataNullable.fromJson(
+              json['address'] as Map<String, dynamic>),
       confidenceScore: (json['confidence_score'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$EmployerToJson(Employer instance) => <String, dynamic>{
       'employer_id': instance.employerId,
       'name': instance.name,
-      'address': instance.address.toJson(),
+      'address': instance.address?.toJson(),
       'confidence_score': instance.confidenceScore,
     };
 
@@ -9163,12 +9204,16 @@ IncomeSummary _$IncomeSummaryFromJson(Map<String, dynamic> json) =>
           json['ytd_gross_income'] as Map<String, dynamic>),
       ytdNetIncome: YTDNetIncomeSummaryFieldNumber.fromJson(
           json['ytd_net_income'] as Map<String, dynamic>),
-      payFrequency:
-          PayFrequency.fromJson(json['pay_frequency'] as Map<String, dynamic>),
+      payFrequency: json['pay_frequency'] == null
+          ? null
+          : PayFrequency.fromJson(
+              json['pay_frequency'] as Map<String, dynamic>),
       projectedWage: ProjectedIncomeSummaryFieldNumber.fromJson(
           json['projected_wage'] as Map<String, dynamic>),
-      verifiedTransaction: TransactionData.fromJson(
-          json['verified_transaction'] as Map<String, dynamic>),
+      verifiedTransaction: json['verified_transaction'] == null
+          ? null
+          : TransactionData.fromJson(
+              json['verified_transaction'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$IncomeSummaryToJson(IncomeSummary instance) =>
@@ -9177,9 +9222,9 @@ Map<String, dynamic> _$IncomeSummaryToJson(IncomeSummary instance) =>
       'employee_name': instance.employeeName.toJson(),
       'ytd_gross_income': instance.ytdGrossIncome.toJson(),
       'ytd_net_income': instance.ytdNetIncome.toJson(),
-      'pay_frequency': instance.payFrequency.toJson(),
+      'pay_frequency': instance.payFrequency?.toJson(),
       'projected_wage': instance.projectedWage.toJson(),
-      'verified_transaction': instance.verifiedTransaction.toJson(),
+      'verified_transaction': instance.verifiedTransaction?.toJson(),
     };
 
 TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) =>
@@ -10867,7 +10912,7 @@ CreditDocumentMetadata _$CreditDocumentMetadataFromJson(
         Map<String, dynamic> json) =>
     CreditDocumentMetadata(
       name: json['name'] as String,
-      documentType: json['document_type'] as String,
+      documentType: json['document_type'] as String?,
       downloadUrl: json['download_url'] as String?,
       status: json['status'] as String?,
     );
@@ -10895,8 +10940,9 @@ PayrollItem _$PayrollItemFromJson(Map<String, dynamic> json) => PayrollItem(
                   PayrollIncomeObject.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      status:
-          PayrollItemStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: json['status'] == null
+          ? null
+          : PayrollItemStatus.fromJson(json['status'] as Map<String, dynamic>),
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
@@ -10909,7 +10955,7 @@ Map<String, dynamic> _$PayrollItemToJson(PayrollItem instance) =>
       'institution_name': instance.institutionName,
       'accounts': instance.accounts.map((e) => e.toJson()).toList(),
       'payroll_income': instance.payrollIncome.map((e) => e.toJson()).toList(),
-      'status': instance.status.toJson(),
+      'status': instance.status?.toJson(),
       'updated_at': instance.updatedAt?.toIso8601String(),
     };
 
@@ -11269,7 +11315,7 @@ Map<String, dynamic> _$CreditPayStubEarningsToJson(
 PayStubEarningsBreakdown _$PayStubEarningsBreakdownFromJson(
         Map<String, dynamic> json) =>
     PayStubEarningsBreakdown(
-      canonicalDescription: json['canonical_description'] as String,
+      canonicalDescription: json['canonical_description'] as String?,
       currentAmount: (json['current_amount'] as num?)?.toDouble(),
       description: json['description'] as String?,
       hours: (json['hours'] as num?)?.toDouble(),
@@ -11466,8 +11512,10 @@ DocumentRiskSignal _$DocumentRiskSignalFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       field: json['field'] as String?,
       hasFraudRisk: json['has_fraud_risk'] as bool?,
-      institutionMetadata: DocumentRiskSignalInstitutionMetadata.fromJson(
-          json['institution_metadata'] as Map<String, dynamic>),
+      institutionMetadata: json['institution_metadata'] == null
+          ? null
+          : DocumentRiskSignalInstitutionMetadata.fromJson(
+              json['institution_metadata'] as Map<String, dynamic>),
       expectedValue: json['expected_value'] as String?,
       actualValue: json['actual_value'] as String?,
       signalDescription: json['signal_description'] as String?,
@@ -11479,7 +11527,7 @@ Map<String, dynamic> _$DocumentRiskSignalToJson(DocumentRiskSignal instance) =>
       'type': instance.type,
       'field': instance.field,
       'has_fraud_risk': instance.hasFraudRisk,
-      'institution_metadata': instance.institutionMetadata.toJson(),
+      'institution_metadata': instance.institutionMetadata?.toJson(),
       'expected_value': instance.expectedValue,
       'actual_value': instance.actualValue,
       'signal_description': instance.signalDescription,
@@ -11727,7 +11775,7 @@ CreditEmploymentVerification _$CreditEmploymentVerificationFromJson(
         Map<String, dynamic> json) =>
     CreditEmploymentVerification(
       accountId: json['account_id'] as String?,
-      status: json['status'] as String,
+      status: json['status'] as String?,
       startDate: json['start_date'] == null
           ? null
           : DateTime.parse(json['start_date'] as String),
@@ -11739,7 +11787,7 @@ CreditEmploymentVerification _$CreditEmploymentVerificationFromJson(
       title: json['title'] as String?,
       platformIds: CreditPlatformIds.fromJson(
           json['platform_ids'] as Map<String, dynamic>),
-      employeeType: json['employee_type'] as String,
+      employeeType: json['employee_type'] as String?,
       lastPaystubDate: json['last_paystub_date'] == null
           ? null
           : DateTime.parse(json['last_paystub_date'] as String),
@@ -13530,8 +13578,10 @@ Enrichments _$EnrichmentsFromJson(Map<String, dynamic> json) => Enrichments(
               .toList() ??
           [],
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
-      personalFinanceCategory: PersonalFinanceCategory.fromJson(
-          json['personal_finance_category'] as Map<String, dynamic>),
+      personalFinanceCategory: json['personal_finance_category'] == null
+          ? null
+          : PersonalFinanceCategory.fromJson(
+              json['personal_finance_category'] as Map<String, dynamic>),
       personalFinanceCategoryIconUrl:
           json['personal_finance_category_icon_url'] as String,
       counterparties: (json['counterparties'] as List<dynamic>?)
@@ -13550,7 +13600,7 @@ Map<String, dynamic> _$EnrichmentsToJson(Enrichments instance) =>
       'legacy_category_id': instance.legacyCategoryId,
       'legacy_category': instance.legacyCategory,
       'location': instance.location.toJson(),
-      'personal_finance_category': instance.personalFinanceCategory.toJson(),
+      'personal_finance_category': instance.personalFinanceCategory?.toJson(),
       'personal_finance_category_icon_url':
           instance.personalFinanceCategoryIconUrl,
       'counterparties':
@@ -14410,7 +14460,9 @@ AssetsErrorWebhook _$AssetsErrorWebhookFromJson(Map<String, dynamic> json) =>
     AssetsErrorWebhook(
       webhookType: json['webhook_type'] as String,
       webhookCode: json['webhook_code'] as String,
-      error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
+      error: json['error'] == null
+          ? null
+          : PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       assetReportId: json['asset_report_id'] as String,
     );
 
@@ -14418,7 +14470,7 @@ Map<String, dynamic> _$AssetsErrorWebhookToJson(AssetsErrorWebhook instance) =>
     <String, dynamic>{
       'webhook_type': instance.webhookType,
       'webhook_code': instance.webhookCode,
-      'error': instance.error.toJson(),
+      'error': instance.error?.toJson(),
       'asset_report_id': instance.assetReportId,
     };
 
@@ -14685,7 +14737,7 @@ DashboardUserListResponse _$DashboardUserListResponseFromJson(
               ?.map((e) => DashboardUser.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      nextCursor: json['next_cursor'] as String,
+      nextCursor: json['next_cursor'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -14712,8 +14764,10 @@ DocumentAnalysis _$DocumentAnalysisFromJson(Map<String, dynamic> json) =>
     DocumentAnalysis(
       authenticity: documentAuthenticityMatchCodeFromJson(json['authenticity']),
       imageQuality: imageQualityFromJson(json['image_quality']),
-      extractedData: PhysicalDocumentExtractedDataAnalysis.fromJson(
-          json['extracted_data'] as Map<String, dynamic>),
+      extractedData: json['extracted_data'] == null
+          ? null
+          : PhysicalDocumentExtractedDataAnalysis.fromJson(
+              json['extracted_data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DocumentAnalysisToJson(DocumentAnalysis instance) =>
@@ -14721,7 +14775,7 @@ Map<String, dynamic> _$DocumentAnalysisToJson(DocumentAnalysis instance) =>
       'authenticity':
           documentAuthenticityMatchCodeToJson(instance.authenticity),
       'image_quality': imageQualityToJson(instance.imageQuality),
-      'extracted_data': instance.extractedData.toJson(),
+      'extracted_data': instance.extractedData?.toJson(),
     };
 
 DocumentaryVerification _$DocumentaryVerificationFromJson(
@@ -14749,8 +14803,10 @@ DocumentaryVerificationDocument _$DocumentaryVerificationDocumentFromJson(
       attempt: (json['attempt'] as num).toDouble(),
       images: PhysicalDocumentImages.fromJson(
           json['images'] as Map<String, dynamic>),
-      extractedData: PhysicalDocumentExtractedData.fromJson(
-          json['extracted_data'] as Map<String, dynamic>),
+      extractedData: json['extracted_data'] == null
+          ? null
+          : PhysicalDocumentExtractedData.fromJson(
+              json['extracted_data'] as Map<String, dynamic>),
       analysis:
           DocumentAnalysis.fromJson(json['analysis'] as Map<String, dynamic>),
     );
@@ -14761,7 +14817,7 @@ Map<String, dynamic> _$DocumentaryVerificationDocumentToJson(
       'status': documentStatusToJson(instance.status),
       'attempt': instance.attempt,
       'images': instance.images.toJson(),
-      'extracted_data': instance.extractedData.toJson(),
+      'extracted_data': instance.extractedData?.toJson(),
       'analysis': instance.analysis.toJson(),
     };
 
@@ -15033,9 +15089,9 @@ EntityWatchlistScreening _$EntityWatchlistScreeningFromJson(
       id: json['id'] as String,
       searchTerms: EntityWatchlistScreeningSearchTerms.fromJson(
           json['search_terms'] as Map<String, dynamic>),
-      assignee: json['assignee'] as String,
+      assignee: json['assignee'] as String?,
       status: watchlistScreeningStatusFromJson(json['status']),
-      clientUserId: json['client_user_id'] as String,
+      clientUserId: json['client_user_id'] as String?,
       auditTrail: WatchlistScreeningAuditTrail.fromJson(
           json['audit_trail'] as Map<String, dynamic>),
     );
@@ -15057,11 +15113,11 @@ EntityWatchlistScreeningHit _$EntityWatchlistScreeningHitFromJson(
       id: json['id'] as String,
       reviewStatus: watchlistScreeningHitStatusFromJson(json['review_status']),
       firstActive: json['first_active'] as String,
-      inactiveSince: json['inactive_since'] as String,
-      historicalSince: json['historical_since'] as String,
+      inactiveSince: json['inactive_since'] as String?,
+      historicalSince: json['historical_since'] as String?,
       listCode: entityWatchlistCodeFromJson(json['list_code']),
       plaidUid: json['plaid_uid'] as String,
-      sourceUid: json['source_uid'] as String,
+      sourceUid: json['source_uid'] as String?,
       analysis: json['analysis'] == null
           ? null
           : EntityScreeningHitAnalysis.fromJson(
@@ -15099,7 +15155,7 @@ EntityWatchlistScreeningReview _$EntityWatchlistScreeningReviewFromJson(
               ?.map((e) => e as String)
               .toList() ??
           [],
-      comment: json['comment'] as String,
+      comment: json['comment'] as String?,
       auditTrail: WatchlistScreeningAuditTrail.fromJson(
           json['audit_trail'] as Map<String, dynamic>),
     );
@@ -15120,11 +15176,11 @@ EntityWatchlistScreeningSearchTerms
           entityWatchlistProgramId:
               json['entity_watchlist_program_id'] as String,
           legalName: json['legal_name'] as String,
-          documentNumber: json['document_number'] as String,
-          emailAddress: json['email_address'] as String,
-          country: json['country'] as String,
-          phoneNumber: json['phone_number'] as String,
-          url: json['url'] as String,
+          documentNumber: json['document_number'] as String?,
+          emailAddress: json['email_address'] as String?,
+          country: json['country'] as String?,
+          phoneNumber: json['phone_number'] as String?,
+          url: json['url'] as String?,
           version: (json['version'] as num).toDouble(),
         );
 
@@ -15190,9 +15246,9 @@ IdentityVerification _$IdentityVerificationFromJson(
       id: json['id'] as String,
       clientUserId: json['client_user_id'] as String,
       createdAt: json['created_at'] as String,
-      completedAt: json['completed_at'] as String,
-      previousAttemptId: json['previous_attempt_id'] as String,
-      shareableUrl: json['shareable_url'] as String,
+      completedAt: json['completed_at'] as String?,
+      previousAttemptId: json['previous_attempt_id'] as String?,
+      shareableUrl: json['shareable_url'] as String?,
       template: IdentityVerificationTemplateReference.fromJson(
           json['template'] as Map<String, dynamic>),
       user: IdentityVerificationUserData.fromJson(
@@ -15200,11 +15256,14 @@ IdentityVerification _$IdentityVerificationFromJson(
       status: identityVerificationStatusFromJson(json['status']),
       steps: IdentityVerificationStepSummary.fromJson(
           json['steps'] as Map<String, dynamic>),
-      documentaryVerification: DocumentaryVerification.fromJson(
-          json['documentary_verification'] as Map<String, dynamic>),
-      kycCheck:
-          KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
-      watchlistScreeningId: json['watchlist_screening_id'] as String,
+      documentaryVerification: json['documentary_verification'] == null
+          ? null
+          : DocumentaryVerification.fromJson(
+              json['documentary_verification'] as Map<String, dynamic>),
+      kycCheck: json['kyc_check'] == null
+          ? null
+          : KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
+      watchlistScreeningId: json['watchlist_screening_id'] as String?,
     );
 
 Map<String, dynamic> _$IdentityVerificationToJson(
@@ -15220,8 +15279,8 @@ Map<String, dynamic> _$IdentityVerificationToJson(
       'user': instance.user.toJson(),
       'status': identityVerificationStatusToJson(instance.status),
       'steps': instance.steps.toJson(),
-      'documentary_verification': instance.documentaryVerification.toJson(),
-      'kyc_check': instance.kycCheck.toJson(),
+      'documentary_verification': instance.documentaryVerification?.toJson(),
+      'kyc_check': instance.kycCheck?.toJson(),
       'watchlist_screening_id': instance.watchlistScreeningId,
     };
 
@@ -15256,9 +15315,9 @@ IdentityVerificationCreateResponse _$IdentityVerificationCreateResponseFromJson(
       id: json['id'] as String,
       clientUserId: json['client_user_id'] as String,
       createdAt: json['created_at'] as String,
-      completedAt: json['completed_at'] as String,
-      previousAttemptId: json['previous_attempt_id'] as String,
-      shareableUrl: json['shareable_url'] as String,
+      completedAt: json['completed_at'] as String?,
+      previousAttemptId: json['previous_attempt_id'] as String?,
+      shareableUrl: json['shareable_url'] as String?,
       template: IdentityVerificationTemplateReference.fromJson(
           json['template'] as Map<String, dynamic>),
       user: IdentityVerificationUserData.fromJson(
@@ -15266,11 +15325,14 @@ IdentityVerificationCreateResponse _$IdentityVerificationCreateResponseFromJson(
       status: identityVerificationStatusFromJson(json['status']),
       steps: IdentityVerificationStepSummary.fromJson(
           json['steps'] as Map<String, dynamic>),
-      documentaryVerification: DocumentaryVerification.fromJson(
-          json['documentary_verification'] as Map<String, dynamic>),
-      kycCheck:
-          KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
-      watchlistScreeningId: json['watchlist_screening_id'] as String,
+      documentaryVerification: json['documentary_verification'] == null
+          ? null
+          : DocumentaryVerification.fromJson(
+              json['documentary_verification'] as Map<String, dynamic>),
+      kycCheck: json['kyc_check'] == null
+          ? null
+          : KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
+      watchlistScreeningId: json['watchlist_screening_id'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -15287,8 +15349,8 @@ Map<String, dynamic> _$IdentityVerificationCreateResponseToJson(
       'user': instance.user.toJson(),
       'status': identityVerificationStatusToJson(instance.status),
       'steps': instance.steps.toJson(),
-      'documentary_verification': instance.documentaryVerification.toJson(),
-      'kyc_check': instance.kycCheck.toJson(),
+      'documentary_verification': instance.documentaryVerification?.toJson(),
+      'kyc_check': instance.kycCheck?.toJson(),
       'watchlist_screening_id': instance.watchlistScreeningId,
       'request_id': instance.requestId,
     };
@@ -15315,9 +15377,9 @@ IdentityVerificationGetResponse _$IdentityVerificationGetResponseFromJson(
       id: json['id'] as String,
       clientUserId: json['client_user_id'] as String,
       createdAt: json['created_at'] as String,
-      completedAt: json['completed_at'] as String,
-      previousAttemptId: json['previous_attempt_id'] as String,
-      shareableUrl: json['shareable_url'] as String,
+      completedAt: json['completed_at'] as String?,
+      previousAttemptId: json['previous_attempt_id'] as String?,
+      shareableUrl: json['shareable_url'] as String?,
       template: IdentityVerificationTemplateReference.fromJson(
           json['template'] as Map<String, dynamic>),
       user: IdentityVerificationUserData.fromJson(
@@ -15325,11 +15387,14 @@ IdentityVerificationGetResponse _$IdentityVerificationGetResponseFromJson(
       status: identityVerificationStatusFromJson(json['status']),
       steps: IdentityVerificationStepSummary.fromJson(
           json['steps'] as Map<String, dynamic>),
-      documentaryVerification: DocumentaryVerification.fromJson(
-          json['documentary_verification'] as Map<String, dynamic>),
-      kycCheck:
-          KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
-      watchlistScreeningId: json['watchlist_screening_id'] as String,
+      documentaryVerification: json['documentary_verification'] == null
+          ? null
+          : DocumentaryVerification.fromJson(
+              json['documentary_verification'] as Map<String, dynamic>),
+      kycCheck: json['kyc_check'] == null
+          ? null
+          : KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
+      watchlistScreeningId: json['watchlist_screening_id'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -15346,8 +15411,8 @@ Map<String, dynamic> _$IdentityVerificationGetResponseToJson(
       'user': instance.user.toJson(),
       'status': identityVerificationStatusToJson(instance.status),
       'steps': instance.steps.toJson(),
-      'documentary_verification': instance.documentaryVerification.toJson(),
-      'kyc_check': instance.kycCheck.toJson(),
+      'documentary_verification': instance.documentaryVerification?.toJson(),
+      'kyc_check': instance.kycCheck?.toJson(),
       'watchlist_screening_id': instance.watchlistScreeningId,
       'request_id': instance.requestId,
     };
@@ -15380,7 +15445,7 @@ IdentityVerificationListResponse _$IdentityVerificationListResponseFromJson(
                   IdentityVerification.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      nextCursor: json['next_cursor'] as String,
+      nextCursor: json['next_cursor'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -15473,9 +15538,9 @@ IdentityVerificationRetryResponse _$IdentityVerificationRetryResponseFromJson(
       id: json['id'] as String,
       clientUserId: json['client_user_id'] as String,
       createdAt: json['created_at'] as String,
-      completedAt: json['completed_at'] as String,
-      previousAttemptId: json['previous_attempt_id'] as String,
-      shareableUrl: json['shareable_url'] as String,
+      completedAt: json['completed_at'] as String?,
+      previousAttemptId: json['previous_attempt_id'] as String?,
+      shareableUrl: json['shareable_url'] as String?,
       template: IdentityVerificationTemplateReference.fromJson(
           json['template'] as Map<String, dynamic>),
       user: IdentityVerificationUserData.fromJson(
@@ -15483,11 +15548,14 @@ IdentityVerificationRetryResponse _$IdentityVerificationRetryResponseFromJson(
       status: identityVerificationStatusFromJson(json['status']),
       steps: IdentityVerificationStepSummary.fromJson(
           json['steps'] as Map<String, dynamic>),
-      documentaryVerification: DocumentaryVerification.fromJson(
-          json['documentary_verification'] as Map<String, dynamic>),
-      kycCheck:
-          KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
-      watchlistScreeningId: json['watchlist_screening_id'] as String,
+      documentaryVerification: json['documentary_verification'] == null
+          ? null
+          : DocumentaryVerification.fromJson(
+              json['documentary_verification'] as Map<String, dynamic>),
+      kycCheck: json['kyc_check'] == null
+          ? null
+          : KYCCheckDetails.fromJson(json['kyc_check'] as Map<String, dynamic>),
+      watchlistScreeningId: json['watchlist_screening_id'] as String?,
       requestId: json['request_id'] as String,
     );
 
@@ -15504,8 +15572,8 @@ Map<String, dynamic> _$IdentityVerificationRetryResponseToJson(
       'user': instance.user.toJson(),
       'status': identityVerificationStatusToJson(instance.status),
       'steps': instance.steps.toJson(),
-      'documentary_verification': instance.documentaryVerification.toJson(),
-      'kyc_check': instance.kycCheck.toJson(),
+      'documentary_verification': instance.documentaryVerification?.toJson(),
+      'kyc_check': instance.kycCheck?.toJson(),
       'watchlist_screening_id': instance.watchlistScreeningId,
       'request_id': instance.requestId,
     };
@@ -15565,11 +15633,11 @@ Map<String, dynamic> _$IdentityVerificationTemplateVersionToJson(
 IdentityVerificationUserAddress _$IdentityVerificationUserAddressFromJson(
         Map<String, dynamic> json) =>
     IdentityVerificationUserAddress(
-      street: json['street'] as String,
-      street2: json['street2'] as String,
-      city: json['city'] as String,
-      region: json['region'] as String,
-      postalCode: json['postal_code'] as String,
+      street: json['street'] as String?,
+      street2: json['street2'] as String?,
+      city: json['city'] as String?,
+      region: json['region'] as String?,
+      postalCode: json['postal_code'] as String?,
       country: json['country'] as String,
     );
 
@@ -15588,14 +15656,19 @@ IdentityVerificationUserData _$IdentityVerificationUserDataFromJson(
         Map<String, dynamic> json) =>
     IdentityVerificationUserData(
       phoneNumber: json['phone_number'] as String?,
-      dateOfBirth: json['date_of_birth'] as String,
-      ipAddress: json['ip_address'] as String,
-      emailAddress: json['email_address'] as String,
-      name: UserName.fromJson(json['name'] as Map<String, dynamic>),
-      address: IdentityVerificationUserAddress.fromJson(
-          json['address'] as Map<String, dynamic>),
-      idNumber:
-          UserIDNumber.fromJson(json['id_number'] as Map<String, dynamic>),
+      dateOfBirth: json['date_of_birth'] as String?,
+      ipAddress: json['ip_address'] as String?,
+      emailAddress: json['email_address'] as String?,
+      name: json['name'] == null
+          ? null
+          : UserName.fromJson(json['name'] as Map<String, dynamic>),
+      address: json['address'] == null
+          ? null
+          : IdentityVerificationUserAddress.fromJson(
+              json['address'] as Map<String, dynamic>),
+      idNumber: json['id_number'] == null
+          ? null
+          : UserIDNumber.fromJson(json['id_number'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$IdentityVerificationUserDataToJson(
@@ -15605,9 +15678,9 @@ Map<String, dynamic> _$IdentityVerificationUserDataToJson(
       'date_of_birth': instance.dateOfBirth,
       'ip_address': instance.ipAddress,
       'email_address': instance.emailAddress,
-      'name': instance.name.toJson(),
-      'address': instance.address.toJson(),
-      'id_number': instance.idNumber.toJson(),
+      'name': instance.name?.toJson(),
+      'address': instance.address?.toJson(),
+      'id_number': instance.idNumber?.toJson(),
     };
 
 IndividualScreeningHitNames _$IndividualScreeningHitNamesFromJson(
@@ -15756,11 +15829,11 @@ Map<String, dynamic> _$MatchSummaryToJson(MatchSummary instance) =>
 PhysicalDocumentExtractedData _$PhysicalDocumentExtractedDataFromJson(
         Map<String, dynamic> json) =>
     PhysicalDocumentExtractedData(
-      idNumber: json['id_number'] as String,
+      idNumber: json['id_number'] as String?,
       category: physicalDocumentCategoryFromJson(json['category']),
-      expirationDate: json['expiration_date'] as String,
+      expirationDate: json['expiration_date'] as String?,
       issuingCountry: json['issuing_country'] as String,
-      issuingRegion: json['issuing_region'] as String,
+      issuingRegion: json['issuing_region'] as String?,
     );
 
 Map<String, dynamic> _$PhysicalDocumentExtractedDataToJson(
@@ -15797,10 +15870,10 @@ PhysicalDocumentImages _$PhysicalDocumentImagesFromJson(
         Map<String, dynamic> json) =>
     PhysicalDocumentImages(
       originalFront: json['original_front'] as String,
-      originalBack: json['original_back'] as String,
-      croppedFront: json['cropped_front'] as String,
-      croppedBack: json['cropped_back'] as String,
-      face: json['face'] as String,
+      originalBack: json['original_back'] as String?,
+      croppedFront: json['cropped_front'] as String?,
+      croppedBack: json['cropped_back'] as String?,
+      face: json['face'] as String?,
     );
 
 Map<String, dynamic> _$PhysicalDocumentImagesToJson(
@@ -16016,7 +16089,7 @@ WatchlistScreeningAuditTrail _$WatchlistScreeningAuditTrailFromJson(
         Map<String, dynamic> json) =>
     WatchlistScreeningAuditTrail(
       source: sourceFromJson(json['source']),
-      dashboardUserId: json['dashboard_user_id'] as String,
+      dashboardUserId: json['dashboard_user_id'] as String?,
       timestamp: json['timestamp'] as String,
     );
 
@@ -16069,9 +16142,9 @@ WatchlistScreeningEntityCreateResponse
           id: json['id'] as String,
           searchTerms: EntityWatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16112,9 +16185,9 @@ WatchlistScreeningEntityGetResponse
           id: json['id'] as String,
           searchTerms: EntityWatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16162,7 +16235,7 @@ WatchlistScreeningEntityHistoryListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16205,7 +16278,7 @@ WatchlistScreeningEntityHitListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16252,7 +16325,7 @@ WatchlistScreeningEntityListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16343,7 +16416,7 @@ WatchlistScreeningEntityProgramListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16399,7 +16472,7 @@ WatchlistScreeningEntityReviewCreateResponse
                   ?.map((e) => e as String)
                   .toList() ??
               [],
-          comment: json['comment'] as String,
+          comment: json['comment'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16446,7 +16519,7 @@ WatchlistScreeningEntityReviewListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16501,9 +16574,9 @@ WatchlistScreeningEntityUpdateResponse
           id: json['id'] as String,
           searchTerms: EntityWatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16527,11 +16600,11 @@ WatchlistScreeningHit _$WatchlistScreeningHitFromJson(
       id: json['id'] as String,
       reviewStatus: watchlistScreeningHitStatusFromJson(json['review_status']),
       firstActive: json['first_active'] as String,
-      inactiveSince: json['inactive_since'] as String,
-      historicalSince: json['historical_since'] as String,
+      inactiveSince: json['inactive_since'] as String?,
+      historicalSince: json['historical_since'] as String?,
       listCode: individualWatchlistCodeFromJson(json['list_code']),
       plaidUid: json['plaid_uid'] as String,
-      sourceUid: json['source_uid'] as String,
+      sourceUid: json['source_uid'] as String?,
       analysis: json['analysis'] == null
           ? null
           : ScreeningHitAnalysis.fromJson(
@@ -16576,9 +16649,9 @@ WatchlistScreeningIndividual _$WatchlistScreeningIndividualFromJson(
       id: json['id'] as String,
       searchTerms: WatchlistScreeningSearchTerms.fromJson(
           json['search_terms'] as Map<String, dynamic>),
-      assignee: json['assignee'] as String,
+      assignee: json['assignee'] as String?,
       status: watchlistScreeningStatusFromJson(json['status']),
-      clientUserId: json['client_user_id'] as String,
+      clientUserId: json['client_user_id'] as String?,
       auditTrail: WatchlistScreeningAuditTrail.fromJson(
           json['audit_trail'] as Map<String, dynamic>),
     );
@@ -16621,9 +16694,9 @@ WatchlistScreeningIndividualCreateResponse
           id: json['id'] as String,
           searchTerms: WatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16665,9 +16738,9 @@ WatchlistScreeningIndividualGetResponse
           id: json['id'] as String,
           searchTerms: WatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16713,7 +16786,7 @@ WatchlistScreeningIndividualHistoryListResponse
                       e as Map<String, dynamic>))
                   .toList() ??
               [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16755,7 +16828,7 @@ WatchlistScreeningIndividualHitListResponse
                       WatchlistScreeningHit.fromJson(e as Map<String, dynamic>))
                   .toList() ??
               [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16802,7 +16875,7 @@ WatchlistScreeningIndividualListResponse
                       e as Map<String, dynamic>))
                   .toList() ??
               [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16891,7 +16964,7 @@ WatchlistScreeningIndividualProgramListResponse
                       e as Map<String, dynamic>))
                   .toList() ??
               [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -16946,7 +17019,7 @@ WatchlistScreeningIndividualReviewCreateResponse
                   ?.map((e) => e as String)
                   .toList() ??
               [],
-          comment: json['comment'] as String,
+          comment: json['comment'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -16992,7 +17065,7 @@ WatchlistScreeningIndividualReviewListResponse
                           e as Map<String, dynamic>))
                       .toList() ??
                   [],
-          nextCursor: json['next_cursor'] as String,
+          nextCursor: json['next_cursor'] as String?,
           requestId: json['request_id'] as String,
         );
 
@@ -17044,9 +17117,9 @@ WatchlistScreeningIndividualUpdateResponse
           id: json['id'] as String,
           searchTerms: WatchlistScreeningSearchTerms.fromJson(
               json['search_terms'] as Map<String, dynamic>),
-          assignee: json['assignee'] as String,
+          assignee: json['assignee'] as String?,
           status: watchlistScreeningStatusFromJson(json['status']),
-          clientUserId: json['client_user_id'] as String,
+          clientUserId: json['client_user_id'] as String?,
           auditTrail: WatchlistScreeningAuditTrail.fromJson(
               json['audit_trail'] as Map<String, dynamic>),
           requestId: json['request_id'] as String,
@@ -17096,7 +17169,7 @@ WatchlistScreeningReview _$WatchlistScreeningReviewFromJson(
               ?.map((e) => e as String)
               .toList() ??
           [],
-      comment: json['comment'] as String,
+      comment: json['comment'] as String?,
       auditTrail: WatchlistScreeningAuditTrail.fromJson(
           json['audit_trail'] as Map<String, dynamic>),
     );
@@ -17116,9 +17189,9 @@ WatchlistScreeningSearchTerms _$WatchlistScreeningSearchTermsFromJson(
     WatchlistScreeningSearchTerms(
       watchlistProgramId: json['watchlist_program_id'] as String,
       legalName: json['legal_name'] as String,
-      dateOfBirth: json['date_of_birth'] as String,
-      documentNumber: json['document_number'] as String,
-      country: json['country'] as String,
+      dateOfBirth: json['date_of_birth'] as String?,
+      documentNumber: json['document_number'] as String?,
+      country: json['country'] as String?,
       version: (json['version'] as num).toDouble(),
     );
 
@@ -17898,7 +17971,9 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       itemId: json['item_id'] as String,
       institutionId: json['institution_id'] as String?,
       webhook: json['webhook'] as String?,
-      error: PlaidError.fromJson(json['error'] as Map<String, dynamic>),
+      error: json['error'] == null
+          ? null
+          : PlaidError.fromJson(json['error'] as Map<String, dynamic>),
       availableProducts:
           productsListFromJson(json['available_products'] as List?),
       billedProducts: productsListFromJson(json['billed_products'] as List?),
@@ -17915,7 +17990,7 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       'item_id': instance.itemId,
       'institution_id': instance.institutionId,
       'webhook': instance.webhook,
-      'error': instance.error.toJson(),
+      'error': instance.error?.toJson(),
       'available_products': productsListToJson(instance.availableProducts),
       'billed_products': productsListToJson(instance.billedProducts),
       'products': productsListToJson(instance.products),

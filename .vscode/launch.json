@@ -9,15 +9,14 @@
             "request": "launch",
             "type": "dart",
             "cwd": "example",
-            "program": "dart_plaid_example.dart",
+            "program": "dart_plaid_example.dart"
         },
         {
             "name": "builder",
-            "request": "launch",
             "type": "dart",
-            "program": "run",
+            "request": "launch",
+            "program": ".dart_tool/build/entrypoint/build.dart",
             "args": [
-                "build_runner",
                 "build",
                 "--delete-conflicting-outputs"
             ]

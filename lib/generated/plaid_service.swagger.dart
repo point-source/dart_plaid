@@ -24,7 +24,7 @@ abstract class PlaidService extends ChopperService {
   static PlaidService create({
     ChopperClient? client,
     Authenticator? authenticator,
-    String? baseUrl,
+    Uri? baseUrl,
     Iterable<dynamic>? interceptors,
   }) {
     if (client != null) {
@@ -36,7 +36,7 @@ abstract class PlaidService extends ChopperService {
         converter: $JsonSerializableConverter(),
         interceptors: interceptors ?? [],
         authenticator: authenticator,
-        baseUrl: baseUrl ?? 'http://');
+        baseUrl: baseUrl ?? Uri.parse('http://'));
     return _$PlaidService(newClient);
   }
 
@@ -50,7 +50,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create an Asset Report
-  @Post(path: '/asset_report/create')
+  @Post(
+    path: '/asset_report/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportCreateResponse>> _assetReportCreatePost(
       {@Body() required AssetReportCreateRequest? body});
 
@@ -64,7 +67,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve an Asset Report
-  @Post(path: '/asset_report/get')
+  @Post(
+    path: '/asset_report/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportGetResponse>> _assetReportGetPost(
       {@Body() required AssetReportGetRequest? body});
 
@@ -75,7 +81,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a PDF Asset Report
-  @Post(path: '/asset_report/pdf/get')
+  @Post(
+    path: '/asset_report/pdf/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<Object>> _assetReportPdfGetPost(
       {@Body() required AssetReportPDFGetRequest? body});
 
@@ -89,7 +98,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Refresh an Asset Report
-  @Post(path: '/asset_report/refresh')
+  @Post(
+    path: '/asset_report/refresh',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportRefreshResponse>> _assetReportRefreshPost(
       {@Body() required AssetReportRefreshRequest? body});
 
@@ -103,7 +115,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Filter Asset Report
-  @Post(path: '/asset_report/filter')
+  @Post(
+    path: '/asset_report/filter',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportFilterResponse>> _assetReportFilterPost(
       {@Body() required AssetReportFilterRequest? body});
 
@@ -117,7 +132,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Delete an Asset Report
-  @Post(path: '/asset_report/remove')
+  @Post(
+    path: '/asset_report/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportRemoveResponse>> _assetReportRemovePost(
       {@Body() required AssetReportRemoveRequest? body});
 
@@ -132,7 +150,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create Asset Report Audit Copy
-  @Post(path: '/asset_report/audit_copy/create')
+  @Post(
+    path: '/asset_report/audit_copy/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportAuditCopyCreateResponse>>
       _assetReportAuditCopyCreatePost(
           {@Body() required AssetReportAuditCopyCreateRequest? body});
@@ -147,7 +168,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve an Asset Report Audit Copy
-  @Post(path: '/asset_report/audit_copy/get')
+  @Post(
+    path: '/asset_report/audit_copy/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportGetResponse>> _assetReportAuditCopyGetPost(
       {@Body() required AssetReportAuditCopyGetRequest? body});
 
@@ -162,7 +186,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove Asset Report Audit Copy
-  @Post(path: '/asset_report/audit_copy/remove')
+  @Post(
+    path: '/asset_report/audit_copy/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportAuditCopyRemoveResponse>>
       _assetReportAuditCopyRemovePost(
           {@Body() required AssetReportAuditCopyRemoveRequest? body});
@@ -177,7 +204,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List a user’s connected applications
-  @Post(path: '/item/application/list')
+  @Post(
+    path: '/item/application/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemApplicationListResponse>>
       _itemApplicationListPost(
           {@Body() required ItemApplicationListRequest? body});
@@ -193,7 +223,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Update the scopes of access for a particular application
-  @Post(path: '/item/application/scopes/update')
+  @Post(
+    path: '/item/application/scopes/update',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemApplicationScopesUpdateResponse>>
       _itemApplicationScopesUpdatePost(
           {@Body() required ItemApplicationScopesUpdateRequest? body});
@@ -208,7 +241,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve information about a Plaid application
-  @Post(path: '/application/get')
+  @Post(
+    path: '/application/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<ApplicationGetResponse>> _applicationGetPost(
       {@Body() required ApplicationGetRequest? body});
 
@@ -222,7 +258,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve an Item
-  @Post(path: '/item/get')
+  @Post(
+    path: '/item/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemGetResponse>> _itemGetPost(
       {@Body() required ItemGetRequest? body});
 
@@ -236,7 +275,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve auth data
-  @Post(path: '/auth/get')
+  @Post(
+    path: '/auth/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AuthGetResponse>> _authGetPost(
       {@Body() required AuthGetRequest? body});
 
@@ -250,7 +292,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get transaction data
-  @Post(path: '/transactions/get')
+  @Post(
+    path: '/transactions/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsGetResponse>> _transactionsGetPost(
       {@Body() required TransactionsGetRequest? body});
 
@@ -264,7 +309,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Refresh transaction data
-  @Post(path: '/transactions/refresh')
+  @Post(
+    path: '/transactions/refresh',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsRefreshResponse>>
       _transactionsRefreshPost(
           {@Body() required TransactionsRefreshRequest? body});
@@ -280,7 +328,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Fetch recurring transaction streams
-  @Post(path: '/transactions/recurring/get')
+  @Post(
+    path: '/transactions/recurring/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsRecurringGetResponse>>
       _transactionsRecurringGetPost(
           {@Body() required TransactionsRecurringGetRequest? body});
@@ -295,7 +346,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get incremental transaction updates on an Item
-  @Post(path: '/transactions/sync')
+  @Post(
+    path: '/transactions/sync',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsSyncResponse>> _transactionsSyncPost(
       {@Body() required TransactionsSyncRequest? body});
 
@@ -309,7 +363,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Enrich locally-held transaction data
-  @Post(path: '/transactions/enrich')
+  @Post(
+    path: '/transactions/enrich',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsEnrichGetResponse>>
       _transactionsEnrichPost(
           {@Body() required TransactionsEnrichGetRequest? body});
@@ -324,7 +381,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get details of all supported institutions
-  @Post(path: '/institutions/get')
+  @Post(
+    path: '/institutions/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<InstitutionsGetResponse>> _institutionsGetPost(
       {@Body() required InstitutionsGetRequest? body});
 
@@ -338,7 +398,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Search institutions
-  @Post(path: '/institutions/search')
+  @Post(
+    path: '/institutions/search',
+    optionalBody: true,
+  )
   Future<chopper.Response<InstitutionsSearchResponse>> _institutionsSearchPost(
       {@Body() required InstitutionsSearchRequest? body});
 
@@ -352,7 +415,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get details of an institution
-  @Post(path: '/institutions/get_by_id')
+  @Post(
+    path: '/institutions/get_by_id',
+    optionalBody: true,
+  )
   Future<chopper.Response<InstitutionsGetByIdResponse>>
       _institutionsGetByIdPost(
           {@Body() required InstitutionsGetByIdRequest? body});
@@ -367,7 +433,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove an Item
-  @Post(path: '/item/remove')
+  @Post(
+    path: '/item/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemRemoveResponse>> _itemRemovePost(
       {@Body() required ItemRemoveRequest? body});
 
@@ -381,7 +450,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve accounts
-  @Post(path: '/accounts/get')
+  @Post(
+    path: '/accounts/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AccountsGetResponse>> _accountsGetPost(
       {@Body() required AccountsGetRequest? body});
 
@@ -395,7 +467,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get Categories
-  @Post(path: '/categories/get')
+  @Post(
+    path: '/categories/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<CategoriesGetResponse>> _categoriesGetPost(
       {@Body() required CategoriesGetRequest? body});
 
@@ -410,7 +485,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a test Item and processor token
-  @Post(path: '/sandbox/processor_token/create')
+  @Post(
+    path: '/sandbox/processor_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxProcessorTokenCreateResponse>>
       _sandboxProcessorTokenCreatePost(
           {@Body() required SandboxProcessorTokenCreateRequest? body});
@@ -426,7 +504,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a test Item
-  @Post(path: '/sandbox/public_token/create')
+  @Post(
+    path: '/sandbox/public_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxPublicTokenCreateResponse>>
       _sandboxPublicTokenCreatePost(
           {@Body() required SandboxPublicTokenCreateRequest? body});
@@ -442,7 +523,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Fire a test webhook
-  @Post(path: '/sandbox/item/fire_webhook')
+  @Post(
+    path: '/sandbox/item/fire_webhook',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxItemFireWebhookResponse>>
       _sandboxItemFireWebhookPost(
           {@Body() required SandboxItemFireWebhookRequest? body});
@@ -457,7 +541,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve real-time balance data
-  @Post(path: '/accounts/balance/get')
+  @Post(
+    path: '/accounts/balance/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AccountsGetResponse>> _accountsBalanceGetPost(
       {@Body() required AccountsBalanceGetRequest? body});
 
@@ -471,7 +558,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve identity data
-  @Post(path: '/identity/get')
+  @Post(
+    path: '/identity/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityGetResponse>> _identityGetPost(
       {@Body() required IdentityGetRequest? body});
 
@@ -485,7 +575,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve identity match score
-  @Post(path: '/identity/match')
+  @Post(
+    path: '/identity/match',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityMatchResponse>> _identityMatchPost(
       {@Body() required IdentityMatchRequest? body});
 
@@ -499,7 +592,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a dashboard user
-  @Post(path: '/dashboard_user/get')
+  @Post(
+    path: '/dashboard_user/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<DashboardUserGetResponse>> _dashboardUserGetPost(
       {@Body() required DashboardUserGetRequest? body});
 
@@ -513,7 +609,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List dashboard users
-  @Post(path: '/dashboard_user/list')
+  @Post(
+    path: '/dashboard_user/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<DashboardUserListResponse>> _dashboardUserListPost(
       {@Body() required DashboardUserListRequest? body});
 
@@ -528,7 +627,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a new identity verification
-  @Post(path: '/identity_verification/create')
+  @Post(
+    path: '/identity_verification/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityVerificationCreateResponse>>
       _identityVerificationCreatePost(
           {@Body() required IdentityVerificationCreateRequest? body});
@@ -544,7 +646,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Identity Verification
-  @Post(path: '/identity_verification/get')
+  @Post(
+    path: '/identity_verification/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityVerificationGetResponse>>
       _identityVerificationGetPost(
           {@Body() required IdentityVerificationGetRequest? body});
@@ -560,7 +665,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List Identity Verifications
-  @Post(path: '/identity_verification/list')
+  @Post(
+    path: '/identity_verification/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityVerificationListResponse>>
       _identityVerificationListPost(
           {@Body() required IdentityVerificationListRequest? body});
@@ -576,7 +684,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retry an Identity Verification
-  @Post(path: '/identity_verification/retry')
+  @Post(
+    path: '/identity_verification/retry',
+    optionalBody: true,
+  )
   Future<chopper.Response<IdentityVerificationRetryResponse>>
       _identityVerificationRetryPost(
           {@Body() required IdentityVerificationRetryRequest? body});
@@ -592,7 +703,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a watchlist screening for an entity
-  @Post(path: '/watchlist_screening/entity/create')
+  @Post(
+    path: '/watchlist_screening/entity/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityCreateResponse>>
       _watchlistScreeningEntityCreatePost(
           {@Body() required WatchlistScreeningEntityCreateRequest? body});
@@ -608,7 +722,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get an entity screening
-  @Post(path: '/watchlist_screening/entity/get')
+  @Post(
+    path: '/watchlist_screening/entity/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityGetResponse>>
       _watchlistScreeningEntityGetPost(
           {@Body() required WatchlistScreeningEntityGetRequest? body});
@@ -624,7 +741,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List history for entity watchlist screenings
-  @Post(path: '/watchlist_screening/entity/history/list')
+  @Post(
+    path: '/watchlist_screening/entity/history/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityHistoryListResponse>>
       _watchlistScreeningEntityHistoryListPost(
           {@Body() required WatchlistScreeningEntityHistoryListRequest? body});
@@ -640,7 +760,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List hits for entity watchlist screenings
-  @Post(path: '/watchlist_screening/entity/hit/list')
+  @Post(
+    path: '/watchlist_screening/entity/hit/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityHitListResponse>>
       _watchlistScreeningEntityHitListPost(
           {@Body() required WatchlistScreeningEntityHitListRequest? body});
@@ -656,7 +779,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List entity watchlist screenings
-  @Post(path: '/watchlist_screening/entity/list')
+  @Post(
+    path: '/watchlist_screening/entity/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityListResponse>>
       _watchlistScreeningEntityListPost(
           {@Body() required WatchlistScreeningEntityListRequest? body});
@@ -672,7 +798,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get entity watchlist screening program
-  @Post(path: '/watchlist_screening/entity/program/get')
+  @Post(
+    path: '/watchlist_screening/entity/program/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityProgramGetResponse>>
       _watchlistScreeningEntityProgramGetPost(
           {@Body() required WatchlistScreeningEntityProgramGetRequest? body});
@@ -688,7 +817,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List entity watchlist screening programs
-  @Post(path: '/watchlist_screening/entity/program/list')
+  @Post(
+    path: '/watchlist_screening/entity/program/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityProgramListResponse>>
       _watchlistScreeningEntityProgramListPost(
           {@Body() required WatchlistScreeningEntityProgramListRequest? body});
@@ -704,7 +836,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a review for an entity watchlist screening
-  @Post(path: '/watchlist_screening/entity/review/create')
+  @Post(
+    path: '/watchlist_screening/entity/review/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityReviewCreateResponse>>
       _watchlistScreeningEntityReviewCreatePost(
           {@Body() required WatchlistScreeningEntityReviewCreateRequest? body});
@@ -720,7 +855,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List reviews for entity watchlist screenings
-  @Post(path: '/watchlist_screening/entity/review/list')
+  @Post(
+    path: '/watchlist_screening/entity/review/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityReviewListResponse>>
       _watchlistScreeningEntityReviewListPost(
           {@Body() required WatchlistScreeningEntityReviewListRequest? body});
@@ -736,7 +874,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Update an entity screening
-  @Post(path: '/watchlist_screening/entity/update')
+  @Post(
+    path: '/watchlist_screening/entity/update',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningEntityUpdateResponse>>
       _watchlistScreeningEntityUpdatePost(
           {@Body() required WatchlistScreeningEntityUpdateRequest? body});
@@ -752,7 +893,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a watchlist screening for a person
-  @Post(path: '/watchlist_screening/individual/create')
+  @Post(
+    path: '/watchlist_screening/individual/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualCreateResponse>>
       _watchlistScreeningIndividualCreatePost(
           {@Body() required WatchlistScreeningIndividualCreateRequest? body});
@@ -768,7 +912,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve an individual watchlist screening
-  @Post(path: '/watchlist_screening/individual/get')
+  @Post(
+    path: '/watchlist_screening/individual/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualGetResponse>>
       _watchlistScreeningIndividualGetPost(
           {@Body() required WatchlistScreeningIndividualGetRequest? body});
@@ -785,7 +932,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List history for individual watchlist screenings
-  @Post(path: '/watchlist_screening/individual/history/list')
+  @Post(
+    path: '/watchlist_screening/individual/history/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualHistoryListResponse>>
       _watchlistScreeningIndividualHistoryListPost(
           {@Body()
@@ -802,7 +952,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List hits for individual watchlist screening
-  @Post(path: '/watchlist_screening/individual/hit/list')
+  @Post(
+    path: '/watchlist_screening/individual/hit/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualHitListResponse>>
       _watchlistScreeningIndividualHitListPost(
           {@Body() required WatchlistScreeningIndividualHitListRequest? body});
@@ -818,7 +971,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List Individual Watchlist Screenings
-  @Post(path: '/watchlist_screening/individual/list')
+  @Post(
+    path: '/watchlist_screening/individual/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualListResponse>>
       _watchlistScreeningIndividualListPost(
           {@Body() required WatchlistScreeningIndividualListRequest? body});
@@ -834,7 +990,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get individual watchlist screening program
-  @Post(path: '/watchlist_screening/individual/program/get')
+  @Post(
+    path: '/watchlist_screening/individual/program/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualProgramGetResponse>>
       _watchlistScreeningIndividualProgramGetPost(
           {@Body()
@@ -852,7 +1011,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List individual watchlist screening programs
-  @Post(path: '/watchlist_screening/individual/program/list')
+  @Post(
+    path: '/watchlist_screening/individual/program/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualProgramListResponse>>
       _watchlistScreeningIndividualProgramListPost(
           {@Body()
@@ -870,7 +1032,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a review for an individual watchlist screening
-  @Post(path: '/watchlist_screening/individual/review/create')
+  @Post(
+    path: '/watchlist_screening/individual/review/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualReviewCreateResponse>>
       _watchlistScreeningIndividualReviewCreatePost(
           {@Body()
@@ -887,7 +1052,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List reviews for individual watchlist screenings
-  @Post(path: '/watchlist_screening/individual/review/list')
+  @Post(
+    path: '/watchlist_screening/individual/review/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualReviewListResponse>>
       _watchlistScreeningIndividualReviewListPost(
           {@Body()
@@ -904,7 +1072,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Update individual watchlist screening
-  @Post(path: '/watchlist_screening/individual/update')
+  @Post(
+    path: '/watchlist_screening/individual/update',
+    optionalBody: true,
+  )
   Future<chopper.Response<WatchlistScreeningIndividualUpdateResponse>>
       _watchlistScreeningIndividualUpdatePost(
           {@Body() required WatchlistScreeningIndividualUpdateRequest? body});
@@ -919,7 +1090,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Auth data
-  @Post(path: '/processor/auth/get')
+  @Post(
+    path: '/processor/auth/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorAuthGetResponse>> _processorAuthGetPost(
       {@Body() required ProcessorAuthGetRequest? body});
 
@@ -934,7 +1108,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a bank transfer as a processor
-  @Post(path: '/processor/bank_transfer/create')
+  @Post(
+    path: '/processor/bank_transfer/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorBankTransferCreateResponse>>
       _processorBankTransferCreatePost(
           {@Body() required ProcessorBankTransferCreateRequest? body});
@@ -949,7 +1126,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Identity data
-  @Post(path: '/processor/identity/get')
+  @Post(
+    path: '/processor/identity/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorIdentityGetResponse>>
       _processorIdentityGetPost(
           {@Body() required ProcessorIdentityGetRequest? body});
@@ -964,7 +1144,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Balance data
-  @Post(path: '/processor/balance/get')
+  @Post(
+    path: '/processor/balance/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorBalanceGetResponse>>
       _processorBalanceGetPost(
           {@Body() required ProcessorBalanceGetRequest? body});
@@ -979,7 +1162,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Update Webhook URL
-  @Post(path: '/item/webhook/update')
+  @Post(
+    path: '/item/webhook/update',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemWebhookUpdateResponse>> _itemWebhookUpdatePost(
       {@Body() required ItemWebhookUpdateRequest? body});
 
@@ -994,7 +1180,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Invalidate access_token
-  @Post(path: '/item/access_token/invalidate')
+  @Post(
+    path: '/item/access_token/invalidate',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemAccessTokenInvalidateResponse>>
       _itemAccessTokenInvalidatePost(
           {@Body() required ItemAccessTokenInvalidateRequest? body});
@@ -1010,7 +1199,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get webhook verification key
-  @Post(path: '/webhook_verification_key/get')
+  @Post(
+    path: '/webhook_verification_key/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WebhookVerificationKeyGetResponse>>
       _webhookVerificationKeyGetPost(
           {@Body() required WebhookVerificationKeyGetRequest? body});
@@ -1025,7 +1217,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Liabilities data
-  @Post(path: '/liabilities/get')
+  @Post(
+    path: '/liabilities/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<LiabilitiesGetResponse>> _liabilitiesGetPost(
       {@Body() required LiabilitiesGetRequest? body});
 
@@ -1040,7 +1235,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create payment recipient
-  @Post(path: '/payment_initiation/recipient/create')
+  @Post(
+    path: '/payment_initiation/recipient/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationRecipientCreateResponse>>
       _paymentInitiationRecipientCreatePost(
           {@Body() required PaymentInitiationRecipientCreateRequest? body});
@@ -1056,7 +1254,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Reverse an existing payment
-  @Post(path: '/payment_initiation/payment/reverse')
+  @Post(
+    path: '/payment_initiation/payment/reverse',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationPaymentReverseResponse>>
       _paymentInitiationPaymentReversePost(
           {@Body() required PaymentInitiationPaymentReverseRequest? body});
@@ -1072,7 +1273,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get payment recipient
-  @Post(path: '/payment_initiation/recipient/get')
+  @Post(
+    path: '/payment_initiation/recipient/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationRecipientGetResponse>>
       _paymentInitiationRecipientGetPost(
           {@Body() required PaymentInitiationRecipientGetRequest? body});
@@ -1088,7 +1292,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List payment recipients
-  @Post(path: '/payment_initiation/recipient/list')
+  @Post(
+    path: '/payment_initiation/recipient/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationRecipientListResponse>>
       _paymentInitiationRecipientListPost(
           {@Body() required PaymentInitiationRecipientListRequest? body});
@@ -1104,7 +1311,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a payment
-  @Post(path: '/payment_initiation/payment/create')
+  @Post(
+    path: '/payment_initiation/payment/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationPaymentCreateResponse>>
       _paymentInitiationPaymentCreatePost(
           {@Body() required PaymentInitiationPaymentCreateRequest? body});
@@ -1120,7 +1330,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create payment token
-  @Post(path: '/payment_initiation/payment/token/create')
+  @Post(
+    path: '/payment_initiation/payment/token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationPaymentTokenCreateResponse>>
       _paymentInitiationPaymentTokenCreatePost(
           {@Body() required PaymentInitiationPaymentTokenCreateRequest? body});
@@ -1136,7 +1349,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create payment consent
-  @Post(path: '/payment_initiation/consent/create')
+  @Post(
+    path: '/payment_initiation/consent/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationConsentCreateResponse>>
       _paymentInitiationConsentCreatePost(
           {@Body() required PaymentInitiationConsentCreateRequest? body});
@@ -1152,7 +1368,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get payment consent
-  @Post(path: '/payment_initiation/consent/get')
+  @Post(
+    path: '/payment_initiation/consent/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationConsentGetResponse>>
       _paymentInitiationConsentGetPost(
           {@Body() required PaymentInitiationConsentGetRequest? body});
@@ -1168,7 +1387,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Revoke payment consent
-  @Post(path: '/payment_initiation/consent/revoke')
+  @Post(
+    path: '/payment_initiation/consent/revoke',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationConsentRevokeResponse>>
       _paymentInitiationConsentRevokePost(
           {@Body() required PaymentInitiationConsentRevokeRequest? body});
@@ -1184,7 +1406,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Execute a single payment using consent
-  @Post(path: '/payment_initiation/consent/payment/execute')
+  @Post(
+    path: '/payment_initiation/consent/payment/execute',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationConsentPaymentExecuteResponse>>
       _paymentInitiationConsentPaymentExecutePost(
           {@Body()
@@ -1200,7 +1425,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Force a Sandbox Item into an error state
-  @Post(path: '/sandbox/item/reset_login')
+  @Post(
+    path: '/sandbox/item/reset_login',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxItemResetLoginResponse>>
       _sandboxItemResetLoginPost(
           {@Body() required SandboxItemResetLoginRequest? body});
@@ -1216,7 +1444,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Set verification status for Sandbox account
-  @Post(path: '/sandbox/item/set_verification_status')
+  @Post(
+    path: '/sandbox/item/set_verification_status',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxItemSetVerificationStatusResponse>>
       _sandboxItemSetVerificationStatusPost(
           {@Body() required SandboxItemSetVerificationStatusRequest? body});
@@ -1232,7 +1463,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Exchange public token for an access token
-  @Post(path: '/item/public_token/exchange')
+  @Post(
+    path: '/item/public_token/exchange',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemPublicTokenExchangeResponse>>
       _itemPublicTokenExchangePost(
           {@Body() required ItemPublicTokenExchangeRequest? body});
@@ -1247,7 +1481,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create public token
-  @Post(path: '/item/public_token/create')
+  @Post(
+    path: '/item/public_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemPublicTokenCreateResponse>>
       _itemPublicTokenCreatePost(
           {@Body() required ItemPublicTokenCreateRequest? body});
@@ -1262,7 +1499,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create user
-  @Post(path: '/user/create')
+  @Post(
+    path: '/user/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<UserCreateResponse>> _userCreatePost(
       {@Body() required UserCreateRequest? body});
 
@@ -1276,7 +1516,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve Link sessions for your user
-  @Post(path: '/credit/sessions/get')
+  @Post(
+    path: '/credit/sessions/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditSessionsGetResponse>> _creditSessionsGetPost(
       {@Body() required CreditSessionsGetRequest? body});
 
@@ -1291,7 +1534,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get payment details
-  @Post(path: '/payment_initiation/payment/get')
+  @Post(
+    path: '/payment_initiation/payment/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationPaymentGetResponse>>
       _paymentInitiationPaymentGetPost(
           {@Body() required PaymentInitiationPaymentGetRequest? body});
@@ -1307,7 +1553,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List payments
-  @Post(path: '/payment_initiation/payment/list')
+  @Post(
+    path: '/payment_initiation/payment/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentInitiationPaymentListResponse>>
       _paymentInitiationPaymentListPost(
           {@Body() required PaymentInitiationPaymentListRequest? body});
@@ -1323,7 +1572,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get Investment holdings
-  @Post(path: '/investments/holdings/get')
+  @Post(
+    path: '/investments/holdings/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<InvestmentsHoldingsGetResponse>>
       _investmentsHoldingsGetPost(
           {@Body() required InvestmentsHoldingsGetRequest? body});
@@ -1339,7 +1591,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get investment transactions
-  @Post(path: '/investments/transactions/get')
+  @Post(
+    path: '/investments/transactions/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<InvestmentsTransactionsGetResponse>>
       _investmentsTransactionsGetPost(
           {@Body() required InvestmentsTransactionsGetRequest? body});
@@ -1354,7 +1609,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create processor token
-  @Post(path: '/processor/token/create')
+  @Post(
+    path: '/processor/token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorTokenCreateResponse>>
       _processorTokenCreatePost(
           {@Body() required ProcessorTokenCreateRequest? body});
@@ -1370,7 +1628,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create Stripe bank account token
-  @Post(path: '/processor/stripe/bank_account_token/create')
+  @Post(
+    path: '/processor/stripe/bank_account_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorStripeBankAccountTokenCreateResponse>>
       _processorStripeBankAccountTokenCreatePost(
           {@Body()
@@ -1387,7 +1648,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create Apex bank account token
-  @Post(path: '/processor/apex/processor_token/create')
+  @Post(
+    path: '/processor/apex/processor_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<ProcessorTokenCreateResponse>>
       _processorApexProcessorTokenCreatePost(
           {@Body() required ProcessorApexProcessorTokenCreateRequest? body});
@@ -1402,7 +1666,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a deposit switch
-  @Post(path: '/deposit_switch/create')
+  @Post(
+    path: '/deposit_switch/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<DepositSwitchCreateResponse>>
       _depositSwitchCreatePost(
           {@Body() required DepositSwitchCreateRequest? body});
@@ -1417,7 +1684,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Import Item
-  @Post(path: '/item/import')
+  @Post(
+    path: '/item/import',
+    optionalBody: true,
+  )
   Future<chopper.Response<ItemImportResponse>> _itemImportPost(
       {@Body() required ItemImportRequest? body});
 
@@ -1432,7 +1702,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a deposit switch token
-  @Post(path: '/deposit_switch/token/create')
+  @Post(
+    path: '/deposit_switch/token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<DepositSwitchTokenCreateResponse>>
       _depositSwitchTokenCreatePost(
           {@Body() required DepositSwitchTokenCreateRequest? body});
@@ -1447,7 +1720,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create Link Token
-  @Post(path: '/link/token/create')
+  @Post(
+    path: '/link/token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<LinkTokenCreateResponse>> _linkTokenCreatePost(
       {@Body() required LinkTokenCreateRequest? body});
 
@@ -1461,7 +1737,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get Link Token
-  @Post(path: '/link/token/get')
+  @Post(
+    path: '/link/token/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<LinkTokenGetResponse>> _linkTokenGetPost(
       {@Body() required LinkTokenGetRequest? body});
 
@@ -1476,7 +1755,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Exchange the Link Correlation Id for a Link Token
-  @Post(path: '/link/oauth/correlation_id/exchange')
+  @Post(
+    path: '/link/oauth/correlation_id/exchange',
+    optionalBody: true,
+  )
   Future<chopper.Response<LinkOAuthCorrelationIdExchangeResponse>>
       _linkOauthCorrelationIdExchangePost(
           {@Body() required LinkOAuthCorrelationIdExchangeRequest? body});
@@ -1491,7 +1773,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a deposit switch
-  @Post(path: '/deposit_switch/get')
+  @Post(
+    path: '/deposit_switch/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<DepositSwitchGetResponse>> _depositSwitchGetPost(
       {@Body() required DepositSwitchGetRequest? body});
 
@@ -1505,7 +1790,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a transfer
-  @Post(path: '/transfer/get')
+  @Post(
+    path: '/transfer/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferGetResponse>> _transferGetPost(
       {@Body() required TransferGetRequest? body});
 
@@ -1519,7 +1807,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a recurring transfer
-  @Post(path: '/transfer/recurring/get')
+  @Post(
+    path: '/transfer/recurring/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRecurringGetResponse>>
       _transferRecurringGetPost(
           {@Body() required TransferRecurringGetRequest? body});
@@ -1534,7 +1825,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a bank transfer
-  @Post(path: '/bank_transfer/get')
+  @Post(
+    path: '/bank_transfer/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferGetResponse>> _bankTransferGetPost(
       {@Body() required BankTransferGetRequest? body});
 
@@ -1549,7 +1843,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a transfer authorization
-  @Post(path: '/transfer/authorization/create')
+  @Post(
+    path: '/transfer/authorization/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferAuthorizationCreateResponse>>
       _transferAuthorizationCreatePost(
           {@Body() required TransferAuthorizationCreateRequest? body});
@@ -1564,7 +1861,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a transfer
-  @Post(path: '/transfer/create')
+  @Post(
+    path: '/transfer/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferCreateResponse>> _transferCreatePost(
       {@Body() required TransferCreateRequest? body});
 
@@ -1579,7 +1879,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a recurring transfer
-  @Post(path: '/transfer/recurring/create')
+  @Post(
+    path: '/transfer/recurring/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRecurringCreateResponse>>
       _transferRecurringCreatePost(
           {@Body() required TransferRecurringCreateRequest? body});
@@ -1594,7 +1897,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a bank transfer
-  @Post(path: '/bank_transfer/create')
+  @Post(
+    path: '/bank_transfer/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferCreateResponse>> _bankTransferCreatePost(
       {@Body() required BankTransferCreateRequest? body});
 
@@ -1608,7 +1914,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List transfers
-  @Post(path: '/transfer/list')
+  @Post(
+    path: '/transfer/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferListResponse>> _transferListPost(
       {@Body() required TransferListRequest? body});
 
@@ -1622,7 +1931,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List recurring transfers
-  @Post(path: '/transfer/recurring/list')
+  @Post(
+    path: '/transfer/recurring/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRecurringListResponse>>
       _transferRecurringListPost(
           {@Body() required TransferRecurringListRequest? body});
@@ -1637,7 +1949,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List bank transfers
-  @Post(path: '/bank_transfer/list')
+  @Post(
+    path: '/bank_transfer/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferListResponse>> _bankTransferListPost(
       {@Body() required BankTransferListRequest? body});
 
@@ -1651,7 +1966,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Cancel a transfer
-  @Post(path: '/transfer/cancel')
+  @Post(
+    path: '/transfer/cancel',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferCancelResponse>> _transferCancelPost(
       {@Body() required TransferCancelRequest? body});
 
@@ -1666,7 +1984,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Cancel a recurring transfer.
-  @Post(path: '/transfer/recurring/cancel')
+  @Post(
+    path: '/transfer/recurring/cancel',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRecurringCancelResponse>>
       _transferRecurringCancelPost(
           {@Body() required TransferRecurringCancelRequest? body});
@@ -1681,7 +2002,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Cancel a bank transfer
-  @Post(path: '/bank_transfer/cancel')
+  @Post(
+    path: '/bank_transfer/cancel',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferCancelResponse>> _bankTransferCancelPost(
       {@Body() required BankTransferCancelRequest? body});
 
@@ -1695,7 +2019,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List transfer events
-  @Post(path: '/transfer/event/list')
+  @Post(
+    path: '/transfer/event/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferEventListResponse>> _transferEventListPost(
       {@Body() required TransferEventListRequest? body});
 
@@ -1709,7 +2036,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List bank transfer events
-  @Post(path: '/bank_transfer/event/list')
+  @Post(
+    path: '/bank_transfer/event/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferEventListResponse>>
       _bankTransferEventListPost(
           {@Body() required BankTransferEventListRequest? body});
@@ -1724,7 +2054,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Sync transfer events
-  @Post(path: '/transfer/event/sync')
+  @Post(
+    path: '/transfer/event/sync',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferEventSyncResponse>> _transferEventSyncPost(
       {@Body() required TransferEventSyncRequest? body});
 
@@ -1738,7 +2071,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Sync bank transfer events
-  @Post(path: '/bank_transfer/event/sync')
+  @Post(
+    path: '/bank_transfer/event/sync',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferEventSyncResponse>>
       _bankTransferEventSyncPost(
           {@Body() required BankTransferEventSyncRequest? body});
@@ -1753,7 +2089,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a sweep
-  @Post(path: '/transfer/sweep/get')
+  @Post(
+    path: '/transfer/sweep/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferSweepGetResponse>> _transferSweepGetPost(
       {@Body() required TransferSweepGetRequest? body});
 
@@ -1767,7 +2106,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a sweep
-  @Post(path: '/bank_transfer/sweep/get')
+  @Post(
+    path: '/bank_transfer/sweep/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferSweepGetResponse>>
       _bankTransferSweepGetPost(
           {@Body() required BankTransferSweepGetRequest? body});
@@ -1782,7 +2124,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List sweeps
-  @Post(path: '/transfer/sweep/list')
+  @Post(
+    path: '/transfer/sweep/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferSweepListResponse>> _transferSweepListPost(
       {@Body() required TransferSweepListRequest? body});
 
@@ -1796,7 +2141,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List sweeps
-  @Post(path: '/bank_transfer/sweep/list')
+  @Post(
+    path: '/bank_transfer/sweep/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferSweepListResponse>>
       _bankTransferSweepListPost(
           {@Body() required BankTransferSweepListRequest? body});
@@ -1812,7 +2160,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get balance of your Bank Transfer account
-  @Post(path: '/bank_transfer/balance/get')
+  @Post(
+    path: '/bank_transfer/balance/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferBalanceGetResponse>>
       _bankTransferBalanceGetPost(
           {@Body() required BankTransferBalanceGetRequest? body});
@@ -1828,7 +2179,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Migrate account into Bank Transfers
-  @Post(path: '/bank_transfer/migrate_account')
+  @Post(
+    path: '/bank_transfer/migrate_account',
+    optionalBody: true,
+  )
   Future<chopper.Response<BankTransferMigrateAccountResponse>>
       _bankTransferMigrateAccountPost(
           {@Body() required BankTransferMigrateAccountRequest? body});
@@ -1844,7 +2198,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Migrate account into Transfers
-  @Post(path: '/transfer/migrate_account')
+  @Post(
+    path: '/transfer/migrate_account',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferMigrateAccountResponse>>
       _transferMigrateAccountPost(
           {@Body() required TransferMigrateAccountRequest? body});
@@ -1859,7 +2216,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a transfer intent object to invoke the Transfer UI
-  @Post(path: '/transfer/intent/create')
+  @Post(
+    path: '/transfer/intent/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferIntentCreateResponse>>
       _transferIntentCreatePost(
           {@Body() required TransferIntentCreateRequest? body});
@@ -1874,7 +2234,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve more information about a transfer intent
-  @Post(path: '/transfer/intent/get')
+  @Post(
+    path: '/transfer/intent/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferIntentGetResponse>> _transferIntentGetPost(
       {@Body() required TransferIntentGetRequest? body});
 
@@ -1888,7 +2251,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Lists historical repayments
-  @Post(path: '/transfer/repayment/list')
+  @Post(
+    path: '/transfer/repayment/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRepaymentListResponse>>
       _transferRepaymentListPost(
           {@Body() required TransferRepaymentListRequest? body});
@@ -1904,7 +2270,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List the returns included in a repayment
-  @Post(path: '/transfer/repayment/return/list')
+  @Post(
+    path: '/transfer/repayment/return/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRepaymentReturnListResponse>>
       _transferRepaymentReturnListPost(
           {@Body() required TransferRepaymentReturnListRequest? body});
@@ -1920,7 +2289,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a new originator
-  @Post(path: '/transfer/originator/create')
+  @Post(
+    path: '/transfer/originator/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferOriginatorCreateResponse>>
       _transferOriginatorCreatePost(
           {@Body() required TransferOriginatorCreateRequest? body});
@@ -1936,7 +2308,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Generate a Plaid-hosted onboarding UI URL.
-  @Post(path: '/transfer/questionnaire/create')
+  @Post(
+    path: '/transfer/questionnaire/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferQuestionnaireCreateResponse>>
       _transferQuestionnaireCreatePost(
           {@Body() required TransferQuestionnaireCreateRequest? body});
@@ -1951,7 +2326,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get status of an originator's onboarding
-  @Post(path: '/transfer/originator/get')
+  @Post(
+    path: '/transfer/originator/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferOriginatorGetResponse>>
       _transferOriginatorGetPost(
           {@Body() required TransferOriginatorGetRequest? body});
@@ -1967,7 +2345,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get status of all originators' onboarding
-  @Post(path: '/transfer/originator/list')
+  @Post(
+    path: '/transfer/originator/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferOriginatorListResponse>>
       _transferOriginatorListPost(
           {@Body() required TransferOriginatorListRequest? body});
@@ -1982,7 +2363,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a refund
-  @Post(path: '/transfer/refund/create')
+  @Post(
+    path: '/transfer/refund/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRefundCreateResponse>>
       _transferRefundCreatePost(
           {@Body() required TransferRefundCreateRequest? body});
@@ -1997,7 +2381,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a refund
-  @Post(path: '/transfer/refund/get')
+  @Post(
+    path: '/transfer/refund/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRefundGetResponse>> _transferRefundGetPost(
       {@Body() required TransferRefundGetRequest? body});
 
@@ -2011,7 +2398,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Cancel a refund
-  @Post(path: '/transfer/refund/cancel')
+  @Post(
+    path: '/transfer/refund/cancel',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransferRefundCancelResponse>>
       _transferRefundCancelPost(
           {@Body() required TransferRefundCancelRequest? body});
@@ -2027,7 +2417,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Simulate a bank transfer event in Sandbox
-  @Post(path: '/sandbox/bank_transfer/simulate')
+  @Post(
+    path: '/sandbox/bank_transfer/simulate',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxBankTransferSimulateResponse>>
       _sandboxBankTransferSimulatePost(
           {@Body() required SandboxBankTransferSimulateRequest? body});
@@ -2043,7 +2436,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Simulate creating a sweep
-  @Post(path: '/sandbox/transfer/sweep/simulate')
+  @Post(
+    path: '/sandbox/transfer/sweep/simulate',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferSweepSimulateResponse>>
       _sandboxTransferSweepSimulatePost(
           {@Body() required SandboxTransferSweepSimulateRequest? body});
@@ -2059,7 +2455,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Simulate a transfer event in Sandbox
-  @Post(path: '/sandbox/transfer/simulate')
+  @Post(
+    path: '/sandbox/transfer/simulate',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferSimulateResponse>>
       _sandboxTransferSimulatePost(
           {@Body() required SandboxTransferSimulateRequest? body});
@@ -2075,7 +2474,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Trigger the creation of a repayment
-  @Post(path: '/sandbox/transfer/repayment/simulate')
+  @Post(
+    path: '/sandbox/transfer/repayment/simulate',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferRepaymentSimulateResponse>>
       _sandboxTransferRepaymentSimulatePost(
           {@Body() required SandboxTransferRepaymentSimulateRequest? body});
@@ -2091,7 +2493,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Manually fire a Transfer webhook
-  @Post(path: '/sandbox/transfer/fire_webhook')
+  @Post(
+    path: '/sandbox/transfer/fire_webhook',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferFireWebhookResponse>>
       _sandboxTransferFireWebhookPost(
           {@Body() required SandboxTransferFireWebhookRequest? body});
@@ -2107,7 +2512,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a test clock
-  @Post(path: '/sandbox/transfer/test_clock/create')
+  @Post(
+    path: '/sandbox/transfer/test_clock/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferTestClockCreateResponse>>
       _sandboxTransferTestClockCreatePost(
           {@Body() required SandboxTransferTestClockCreateRequest? body});
@@ -2123,7 +2531,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Advance a test clock
-  @Post(path: '/sandbox/transfer/test_clock/advance')
+  @Post(
+    path: '/sandbox/transfer/test_clock/advance',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferTestClockAdvanceResponse>>
       _sandboxTransferTestClockAdvancePost(
           {@Body() required SandboxTransferTestClockAdvanceRequest? body});
@@ -2139,7 +2550,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get a test clock
-  @Post(path: '/sandbox/transfer/test_clock/get')
+  @Post(
+    path: '/sandbox/transfer/test_clock/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxTransferTestClockGetResponse>>
       _sandboxTransferTestClockGetPost(
           {@Body() required SandboxTransferTestClockGetRequest? body});
@@ -2155,7 +2569,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Reset the login of a Payment Profile
-  @Post(path: '/sandbox/payment_profile/reset_login')
+  @Post(
+    path: '/sandbox/payment_profile/reset_login',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxPaymentProfileResetLoginResponse>>
       _sandboxPaymentProfileResetLoginPost(
           {@Body() required SandboxPaymentProfileResetLoginRequest? body});
@@ -2170,7 +2587,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Search employer database
-  @Post(path: '/employers/search')
+  @Post(
+    path: '/employers/search',
+    optionalBody: true,
+  )
   Future<chopper.Response<EmployersSearchResponse>> _employersSearchPost(
       {@Body() required EmployersSearchRequest? body});
 
@@ -2185,7 +2605,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Create an income verification instance
-  @Post(path: '/income/verification/create')
+  @Post(
+    path: '/income/verification/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<IncomeVerificationCreateResponse>>
       _incomeVerificationCreatePost(
           {@Body() required IncomeVerificationCreateRequest? body});
@@ -2201,7 +2624,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Retrieve information from the paystubs used for income verification
-  @Post(path: '/income/verification/paystubs/get')
+  @Post(
+    path: '/income/verification/paystubs/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<IncomeVerificationPaystubsGetResponse>>
       _incomeVerificationPaystubsGetPost(
           {@Body() required IncomeVerificationPaystubsGetRequest? body});
@@ -2213,7 +2639,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Download the original documents used for income verification
-  @Post(path: '/income/verification/documents/download')
+  @Post(
+    path: '/income/verification/documents/download',
+    optionalBody: true,
+  )
   Future<chopper.Response<String>> _incomeVerificationDocumentsDownloadPost(
       {@Body() required IncomeVerificationDocumentsDownloadRequest? body});
 
@@ -2228,7 +2657,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Retrieve information from the tax documents used for income verification
-  @Post(path: '/income/verification/taxforms/get')
+  @Post(
+    path: '/income/verification/taxforms/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<IncomeVerificationTaxformsGetResponse>>
       _incomeVerificationTaxformsGetPost(
           {@Body() required IncomeVerificationTaxformsGetRequest? body});
@@ -2244,7 +2676,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Check digital income verification eligibility and optimize conversion
-  @Post(path: '/income/verification/precheck')
+  @Post(
+    path: '/income/verification/precheck',
+    optionalBody: true,
+  )
   Future<chopper.Response<IncomeVerificationPrecheckResponse>>
       _incomeVerificationPrecheckPost(
           {@Body() required IncomeVerificationPrecheckRequest? body});
@@ -2260,7 +2695,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///(Deprecated) Retrieve a summary of an individual's employment information
-  @Post(path: '/employment/verification/get')
+  @Post(
+    path: '/employment/verification/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<EmploymentVerificationGetResponse>>
       _employmentVerificationGetPost(
           {@Body() required EmploymentVerificationGetRequest? body});
@@ -2276,7 +2714,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a deposit switch without using Plaid Exchange
-  @Post(path: '/deposit_switch/alt/create')
+  @Post(
+    path: '/deposit_switch/alt/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<DepositSwitchAltCreateResponse>>
       _depositSwitchAltCreatePost(
           {@Body() required DepositSwitchAltCreateRequest? body});
@@ -2292,7 +2733,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create Asset or Income Report Audit Copy Token
-  @Post(path: '/credit/audit_copy_token/create')
+  @Post(
+    path: '/credit/audit_copy_token/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditAuditCopyTokenCreateResponse>>
       _creditAuditCopyTokenCreatePost(
           {@Body() required CreditAuditCopyTokenCreateRequest? body});
@@ -2308,7 +2752,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove an Audit Copy token
-  @Post(path: '/credit/audit_copy_token/remove')
+  @Post(
+    path: '/credit/audit_copy_token/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditAuditCopyTokenRemoveResponse>>
       _creditAuditCopyTokenRemovePost(
           {@Body() required CreditAuditCopyTokenRemoveRequest? body});
@@ -2324,7 +2771,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve an Asset Report with Freddie Mac format. Only Freddie Mac can use this endpoint.
-  @Post(path: '/credit/asset_report/freddie_mac/get')
+  @Post(
+    path: '/credit/asset_report/freddie_mac/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportFreddieGetResponse>>
       _creditAssetReportFreddieMacGetPost(
           {@Body() required AssetReportFreddieGetRequest? body});
@@ -2339,7 +2789,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve information from the bank accounts used for income verification
-  @Post(path: '/credit/bank_income/get')
+  @Post(
+    path: '/credit/bank_income/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditBankIncomeGetResponse>>
       _creditBankIncomeGetPost(
           {@Body() required CreditBankIncomeGetRequest? body});
@@ -2351,7 +2804,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve information from the bank accounts used for income verification in PDF format
-  @Post(path: '/credit/bank_income/pdf/get')
+  @Post(
+    path: '/credit/bank_income/pdf/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<Object>> _creditBankIncomePdfGetPost(
       {@Body() required CreditBankIncomePDFGetRequest? body});
 
@@ -2366,7 +2822,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Refresh a user's bank income information
-  @Post(path: '/credit/bank_income/refresh')
+  @Post(
+    path: '/credit/bank_income/refresh',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditBankIncomeRefreshResponse>>
       _creditBankIncomeRefreshPost(
           {@Body() required CreditBankIncomeRefreshRequest? body});
@@ -2382,7 +2841,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a user's payroll information
-  @Post(path: '/credit/payroll_income/get')
+  @Post(
+    path: '/credit/payroll_income/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditPayrollIncomeGetResponse>>
       _creditPayrollIncomeGetPost(
           {@Body() required CreditPayrollIncomeGetRequest? body});
@@ -2398,7 +2860,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Check income verification eligibility and optimize conversion
-  @Post(path: '/credit/payroll_income/precheck')
+  @Post(
+    path: '/credit/payroll_income/precheck',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditPayrollIncomePrecheckResponse>>
       _creditPayrollIncomePrecheckPost(
           {@Body() required CreditPayrollIncomePrecheckRequest? body});
@@ -2413,7 +2878,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve a summary of an individual's employment information
-  @Post(path: '/credit/employment/get')
+  @Post(
+    path: '/credit/employment/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditEmploymentGetResponse>>
       _creditEmploymentGetPost(
           {@Body() required CreditEmploymentGetRequest? body});
@@ -2429,7 +2897,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Refresh a digital payroll income verification
-  @Post(path: '/credit/payroll_income/refresh')
+  @Post(
+    path: '/credit/payroll_income/refresh',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditPayrollIncomeRefreshResponse>>
       _creditPayrollIncomeRefreshPost(
           {@Body() required CreditPayrollIncomeRefreshRequest? body});
@@ -2444,7 +2915,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create a `relay_token` to share an Asset Report with a partner client
-  @Post(path: '/credit/relay/create')
+  @Post(
+    path: '/credit/relay/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditRelayCreateResponse>> _creditRelayCreatePost(
       {@Body() required CreditRelayCreateRequest? body});
 
@@ -2458,7 +2932,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Retrieve the reports associated with a Relay token that was shared with you
-  @Post(path: '/credit/relay/get')
+  @Post(
+    path: '/credit/relay/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<AssetReportGetResponse>> _creditRelayGetPost(
       {@Body() required CreditRelayGetRequest? body});
 
@@ -2472,7 +2949,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Refresh a report of a Relay Token
-  @Post(path: '/credit/relay/refresh')
+  @Post(
+    path: '/credit/relay/refresh',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditRelayRefreshResponse>> _creditRelayRefreshPost(
       {@Body() required CreditRelayRefreshRequest? body});
 
@@ -2486,7 +2966,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove Credit Relay Token
-  @Post(path: '/credit/relay/remove')
+  @Post(
+    path: '/credit/relay/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<CreditRelayRemoveResponse>> _creditRelayRemovePost(
       {@Body() required CreditRelayRemoveRequest? body});
 
@@ -2501,7 +2984,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Manually fire a Bank Transfer webhook
-  @Post(path: '/sandbox/bank_transfer/fire_webhook')
+  @Post(
+    path: '/sandbox/bank_transfer/fire_webhook',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxBankTransferFireWebhookResponse>>
       _sandboxBankTransferFireWebhookPost(
           {@Body() required SandboxBankTransferFireWebhookRequest? body});
@@ -2517,7 +3003,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Manually fire an Income webhook
-  @Post(path: '/sandbox/income/fire_webhook')
+  @Post(
+    path: '/sandbox/income/fire_webhook',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxIncomeFireWebhookResponse>>
       _sandboxIncomeFireWebhookPost(
           {@Body() required SandboxIncomeFireWebhookRequest? body});
@@ -2533,7 +3022,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Save the selected accounts when connecting to the Platypus Oauth institution
-  @Post(path: '/sandbox/oauth/select_accounts')
+  @Post(
+    path: '/sandbox/oauth/select_accounts',
+    optionalBody: true,
+  )
   Future<chopper.Response<SandboxOauthSelectAccountsResponse>>
       _sandboxOauthSelectAccountsPost(
           {@Body() required SandboxOauthSelectAccountsRequest? body});
@@ -2548,7 +3040,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Evaluate a planned ACH transaction
-  @Post(path: '/signal/evaluate')
+  @Post(
+    path: '/signal/evaluate',
+    optionalBody: true,
+  )
   Future<chopper.Response<SignalEvaluateResponse>> _signalEvaluatePost(
       {@Body() required SignalEvaluateRequest? body});
 
@@ -2562,7 +3057,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Report whether you initiated an ACH transaction
-  @Post(path: '/signal/decision/report')
+  @Post(
+    path: '/signal/decision/report',
+    optionalBody: true,
+  )
   Future<chopper.Response<SignalDecisionReportResponse>>
       _signalDecisionReportPost(
           {@Body() required SignalDecisionReportRequest? body});
@@ -2577,7 +3075,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Report a return for an ACH transaction
-  @Post(path: '/signal/return/report')
+  @Post(
+    path: '/signal/return/report',
+    optionalBody: true,
+  )
   Future<chopper.Response<SignalReturnReportResponse>> _signalReturnReportPost(
       {@Body() required SignalReturnReportRequest? body});
 
@@ -2591,7 +3092,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Opt-in an Item to Signal
-  @Post(path: '/signal/prepare')
+  @Post(
+    path: '/signal/prepare',
+    optionalBody: true,
+  )
   Future<chopper.Response<SignalPrepareResponse>> _signalPreparePost(
       {@Body() required SignalPrepareRequest? body});
 
@@ -2605,7 +3109,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create an e-wallet
-  @Post(path: '/wallet/create')
+  @Post(
+    path: '/wallet/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletCreateResponse>> _walletCreatePost(
       {@Body() required WalletCreateRequest? body});
 
@@ -2619,7 +3126,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Fetch an e-wallet
-  @Post(path: '/wallet/get')
+  @Post(
+    path: '/wallet/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletGetResponse>> _walletGetPost(
       {@Body() required WalletGetRequest? body});
 
@@ -2633,7 +3143,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Fetch a list of e-wallets
-  @Post(path: '/wallet/list')
+  @Post(
+    path: '/wallet/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletListResponse>> _walletListPost(
       {@Body() required WalletListRequest? body});
 
@@ -2648,7 +3161,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Execute a transaction using an e-wallet
-  @Post(path: '/wallet/transaction/execute')
+  @Post(
+    path: '/wallet/transaction/execute',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletTransactionExecuteResponse>>
       _walletTransactionExecutePost(
           {@Body() required WalletTransactionExecuteRequest? body});
@@ -2663,7 +3179,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Fetch an e-wallet transaction
-  @Post(path: '/wallet/transaction/get')
+  @Post(
+    path: '/wallet/transaction/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletTransactionGetResponse>>
       _walletTransactionGetPost(
           {@Body() required WalletTransactionGetRequest? body});
@@ -2678,7 +3197,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List e-wallet transactions
-  @Post(path: '/wallet/transaction/list')
+  @Post(
+    path: '/wallet/transaction/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletTransactionListResponse>>
       _walletTransactionListPost(
           {@Body() required WalletTransactionListRequest? body});
@@ -2694,7 +3216,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///List e-wallet transactions
-  @Post(path: '/wallet/transactions/list')
+  @Post(
+    path: '/wallet/transactions/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<WalletTransactionListResponse>>
       _walletTransactionsListPost(
           {@Body() required WalletTransactionsListRequest? body});
@@ -2710,7 +3235,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///enhance locally-held transaction data
-  @Post(path: '/beta/transactions/v1/enhance')
+  @Post(
+    path: '/beta/transactions/v1/enhance',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsEnhanceGetResponse>>
       _betaTransactionsV1EnhancePost(
           {@Body() required TransactionsEnhanceGetRequest? body});
@@ -2726,7 +3254,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create transaction category rule
-  @Post(path: '/beta/transactions/rules/v1/create')
+  @Post(
+    path: '/beta/transactions/rules/v1/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsRulesCreateResponse>>
       _betaTransactionsRulesV1CreatePost(
           {@Body() required TransactionsRulesCreateRequest? body});
@@ -2742,7 +3273,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Return a list of rules created for the Item associated with the access token.
-  @Post(path: '/beta/transactions/rules/v1/list')
+  @Post(
+    path: '/beta/transactions/rules/v1/list',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsRulesListResponse>>
       _betaTransactionsRulesV1ListPost(
           {@Body() required TransactionsRulesListRequest? body});
@@ -2758,7 +3292,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove transaction rule
-  @Post(path: '/beta/transactions/rules/v1/remove')
+  @Post(
+    path: '/beta/transactions/rules/v1/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<TransactionsRulesRemoveResponse>>
       _betaTransactionsRulesV1RemovePost(
           {@Body() required TransactionsRulesRemoveRequest? body});
@@ -2773,7 +3310,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create payment profile
-  @Post(path: '/payment_profile/create')
+  @Post(
+    path: '/payment_profile/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentProfileCreateResponse>>
       _paymentProfileCreatePost(
           {@Body() required PaymentProfileCreateRequest? body});
@@ -2788,7 +3328,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get payment profile
-  @Post(path: '/payment_profile/get')
+  @Post(
+    path: '/payment_profile/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentProfileGetResponse>> _paymentProfileGetPost(
       {@Body() required PaymentProfileGetRequest? body});
 
@@ -2802,7 +3345,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Remove payment profile
-  @Post(path: '/payment_profile/remove')
+  @Post(
+    path: '/payment_profile/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<PaymentProfileRemoveResponse>>
       _paymentProfileRemovePost(
           {@Body() required PaymentProfileRemoveRequest? body});
@@ -2817,7 +3363,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Creates a new end customer for a Plaid reseller.
-  @Post(path: '/partner/customer/create')
+  @Post(
+    path: '/partner/customer/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<PartnerCustomerCreateResponse>>
       _partnerCustomerCreatePost(
           {@Body() required PartnerCustomerCreateRequest? body});
@@ -2832,7 +3381,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Returns a Plaid reseller's end customer.
-  @Post(path: '/partner/customer/get')
+  @Post(
+    path: '/partner/customer/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<PartnerCustomerGetResponse>> _partnerCustomerGetPost(
       {@Body() required PartnerCustomerGetRequest? body});
 
@@ -2846,7 +3398,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Enables a Plaid reseller's end customer in the Production environment.
-  @Post(path: '/partner/customer/enable')
+  @Post(
+    path: '/partner/customer/enable',
+    optionalBody: true,
+  )
   Future<chopper.Response<PartnerCustomerEnableResponse>>
       _partnerCustomerEnablePost(
           {@Body() required PartnerCustomerEnableRequest? body});
@@ -2861,7 +3416,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Removes a Plaid reseller's end customer.
-  @Post(path: '/partner/customer/remove')
+  @Post(
+    path: '/partner/customer/remove',
+    optionalBody: true,
+  )
   Future<chopper.Response<PartnerCustomerRemoveResponse>>
       _partnerCustomerRemovePost(
           {@Body() required PartnerCustomerRemoveRequest? body});
@@ -2876,7 +3434,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Create link delivery session
-  @Post(path: '/link_delivery/create')
+  @Post(
+    path: '/link_delivery/create',
+    optionalBody: true,
+  )
   Future<chopper.Response<LinkDeliveryCreateResponse>> _linkDeliveryCreatePost(
       {@Body() required LinkDeliveryCreateRequest? body});
 
@@ -2890,7 +3451,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Get link delivery session
-  @Post(path: '/link_delivery/get')
+  @Post(
+    path: '/link_delivery/get',
+    optionalBody: true,
+  )
   Future<chopper.Response<LinkDeliveryGetResponse>> _linkDeliveryGetPost(
       {@Body() required LinkDeliveryGetRequest? body});
 
@@ -2901,7 +3465,10 @@ abstract class PlaidService extends ChopperService {
   }
 
   ///Webhook receiver for fdx notifications
-  @Post(path: '/fdx/notifications')
+  @Post(
+    path: '/fdx/notifications',
+    optionalBody: true,
+  )
   Future<chopper.Response> _fdxNotificationsPost(
       {@Body() required FDXNotification? body});
 }
@@ -10603,7 +11170,7 @@ class PaymentInitiationPaymentGetResponse {
   @JsonKey(name: 'refund_details')
   final ExternalPaymentRefundDetails? refundDetails;
   @JsonKey(name: 'bacs')
-  final SenderBACSNullable bacs;
+  final SenderBACSNullable? bacs;
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'refund_ids', defaultValue: <String>[])
@@ -10773,7 +11340,7 @@ extension $PaymentInitiationPaymentGetResponseExtension
       Wrapped<DateTime>? lastStatusUpdate,
       Wrapped<ExternalPaymentScheduleGet?>? schedule,
       Wrapped<ExternalPaymentRefundDetails?>? refundDetails,
-      Wrapped<SenderBACSNullable>? bacs,
+      Wrapped<SenderBACSNullable?>? bacs,
       Wrapped<String?>? iban,
       Wrapped<List<String>?>? refundIds,
       Wrapped<PaymentAmountRefunded?>? amountRefunded,
@@ -10865,7 +11432,7 @@ class PaymentInitiationPayment {
   @JsonKey(name: 'refund_details')
   final ExternalPaymentRefundDetails? refundDetails;
   @JsonKey(name: 'bacs')
-  final SenderBACSNullable bacs;
+  final SenderBACSNullable? bacs;
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'refund_ids', defaultValue: <String>[])
@@ -11026,7 +11593,7 @@ extension $PaymentInitiationPaymentExtension on PaymentInitiationPayment {
       Wrapped<DateTime>? lastStatusUpdate,
       Wrapped<ExternalPaymentScheduleGet?>? schedule,
       Wrapped<ExternalPaymentRefundDetails?>? refundDetails,
-      Wrapped<SenderBACSNullable>? bacs,
+      Wrapped<SenderBACSNullable?>? bacs,
       Wrapped<String?>? iban,
       Wrapped<List<String>?>? refundIds,
       Wrapped<PaymentAmountRefunded?>? amountRefunded,
@@ -15680,7 +16247,7 @@ class AccountBase {
     toJson: accountSubtypeToJson,
     fromJson: accountSubtypeFromJson,
   )
-  final enums.AccountSubtype subtype;
+  final enums.AccountSubtype? subtype;
   @JsonKey(
     name: 'verification_status',
     toJson: accountBaseVerificationStatusToJson,
@@ -15762,7 +16329,7 @@ extension $AccountBaseExtension on AccountBase {
       Wrapped<String>? name,
       Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
-      Wrapped<enums.AccountSubtype>? subtype,
+      Wrapped<enums.AccountSubtype?>? subtype,
       Wrapped<enums.AccountBaseVerificationStatus?>? verificationStatus}) {
     return AccountBase(
         accountId: (accountId != null ? accountId.value : this.accountId),
@@ -17309,7 +17876,7 @@ class Transaction {
     toJson: transactionCodeToJson,
     fromJson: transactionCodeFromJson,
   )
-  final enums.TransactionCode transactionCode;
+  final enums.TransactionCode? transactionCode;
   @JsonKey(name: 'personal_finance_category')
   final PersonalFinanceCategory? personalFinanceCategory;
   @JsonKey(
@@ -17512,7 +18079,7 @@ extension $TransactionExtension on Transaction {
       Wrapped<DateTime?>? authorizedDate,
       Wrapped<DateTime?>? authorizedDatetime,
       Wrapped<DateTime?>? datetime,
-      Wrapped<enums.TransactionCode>? transactionCode,
+      Wrapped<enums.TransactionCode?>? transactionCode,
       Wrapped<PersonalFinanceCategory?>? personalFinanceCategory,
       Wrapped<enums.TransactionTransactionType?>? transactionType,
       Wrapped<String?>? pendingTransactionId,
@@ -19540,7 +20107,7 @@ class IdentityDefaultUpdateWebhook {
   @JsonKey(name: 'account_ids_with_updated_identity')
   final AccountIdsWithUpdatedIdentity accountIdsWithUpdatedIdentity;
   @JsonKey(name: 'error')
-  final PlaidError error;
+  final PlaidError? error;
   @JsonKey(
     name: 'environment',
     toJson: webhookEnvironmentValuesToJson,
@@ -19613,7 +20180,7 @@ extension $IdentityDefaultUpdateWebhookExtension
       Wrapped<String>? webhookCode,
       Wrapped<String>? itemId,
       Wrapped<AccountIdsWithUpdatedIdentity>? accountIdsWithUpdatedIdentity,
-      Wrapped<PlaidError>? error,
+      Wrapped<PlaidError?>? error,
       Wrapped<enums.WebhookEnvironmentValues>? environment}) {
     return IdentityDefaultUpdateWebhook(
         webhookType:
@@ -21790,7 +22357,7 @@ class AuthMetadata {
       _$AuthMetadataFromJson(json);
 
   @JsonKey(name: 'supported_methods')
-  final AuthSupportedMethods supportedMethods;
+  final AuthSupportedMethods? supportedMethods;
   static const fromJsonFactory = _$AuthMetadataFromJson;
   static const toJsonFactory = _$AuthMetadataToJson;
   Map<String, dynamic> toJson() => _$AuthMetadataToJson(this);
@@ -21820,7 +22387,7 @@ extension $AuthMetadataExtension on AuthMetadata {
   }
 
   AuthMetadata copyWithWrapped(
-      {Wrapped<AuthSupportedMethods>? supportedMethods}) {
+      {Wrapped<AuthSupportedMethods?>? supportedMethods}) {
     return AuthMetadata(
         supportedMethods: (supportedMethods != null
             ? supportedMethods.value
@@ -21922,7 +22489,7 @@ class PaymentInitiationMetadata {
   @JsonKey(name: 'supports_refund_details')
   final bool supportsRefundDetails;
   @JsonKey(name: 'standing_order_metadata')
-  final PaymentInitiationStandingOrderMetadata standingOrderMetadata;
+  final PaymentInitiationStandingOrderMetadata? standingOrderMetadata;
   static const fromJsonFactory = _$PaymentInitiationMetadataFromJson;
   static const toJsonFactory = _$PaymentInitiationMetadataToJson;
   Map<String, dynamic> toJson() => _$PaymentInitiationMetadataToJson(this);
@@ -21986,7 +22553,8 @@ extension $PaymentInitiationMetadataExtension on PaymentInitiationMetadata {
       Wrapped<bool>? supportsSepaInstant,
       Wrapped<PaymentInitiationMaximumPaymentAmount>? maximumPaymentAmount,
       Wrapped<bool>? supportsRefundDetails,
-      Wrapped<PaymentInitiationStandingOrderMetadata>? standingOrderMetadata}) {
+      Wrapped<PaymentInitiationStandingOrderMetadata?>?
+          standingOrderMetadata}) {
     return PaymentInitiationMetadata(
         supportsInternationalPayments: (supportsInternationalPayments != null
             ? supportsInternationalPayments.value
@@ -22731,7 +23299,7 @@ class ExternalPaymentRefundDetails {
   @JsonKey(name: 'iban')
   final String? iban;
   @JsonKey(name: 'bacs')
-  final RecipientBACSNullable bacs;
+  final RecipientBACSNullable? bacs;
   static const fromJsonFactory = _$ExternalPaymentRefundDetailsFromJson;
   static const toJsonFactory = _$ExternalPaymentRefundDetailsToJson;
   Map<String, dynamic> toJson() => _$ExternalPaymentRefundDetailsToJson(this);
@@ -22772,7 +23340,7 @@ extension $ExternalPaymentRefundDetailsExtension
   ExternalPaymentRefundDetails copyWithWrapped(
       {Wrapped<String>? name,
       Wrapped<String?>? iban,
-      Wrapped<RecipientBACSNullable>? bacs}) {
+      Wrapped<RecipientBACSNullable?>? bacs}) {
     return ExternalPaymentRefundDetails(
         name: (name != null ? name.value : this.name),
         iban: (iban != null ? iban.value : this.iban),
@@ -23274,7 +23842,7 @@ class OverrideAccounts {
     toJson: accountSubtypeToJson,
     fromJson: accountSubtypeFromJson,
   )
-  final enums.AccountSubtype subtype;
+  final enums.AccountSubtype? subtype;
   @JsonKey(name: 'starting_balance')
   final double startingBalance;
   @JsonKey(name: 'force_available_balance')
@@ -23407,7 +23975,7 @@ extension $OverrideAccountsExtension on OverrideAccounts {
 
   OverrideAccounts copyWithWrapped(
       {Wrapped<enums.OverrideAccountType>? type,
-      Wrapped<enums.AccountSubtype>? subtype,
+      Wrapped<enums.AccountSubtype?>? subtype,
       Wrapped<double>? startingBalance,
       Wrapped<double>? forceAvailableBalance,
       Wrapped<String>? currency,
@@ -25339,7 +25907,7 @@ class ItemErrorWebhook {
   @JsonKey(name: 'item_id')
   final String itemId;
   @JsonKey(name: 'error')
-  final PlaidError error;
+  final PlaidError? error;
   @JsonKey(
     name: 'environment',
     toJson: webhookEnvironmentValuesToJson,
@@ -25401,7 +25969,7 @@ extension $ItemErrorWebhookExtension on ItemErrorWebhook {
       {Wrapped<String>? webhookType,
       Wrapped<String>? webhookCode,
       Wrapped<String>? itemId,
-      Wrapped<PlaidError>? error,
+      Wrapped<PlaidError?>? error,
       Wrapped<enums.WebhookEnvironmentValues>? environment}) {
     return ItemErrorWebhook(
         webhookType:
@@ -26062,7 +26630,7 @@ class LiabilitiesDefaultUpdateWebhook {
   @JsonKey(name: 'item_id')
   final String itemId;
   @JsonKey(name: 'error')
-  final PlaidError error;
+  final PlaidError? error;
   @JsonKey(name: 'account_ids_with_new_liabilities', defaultValue: <String>[])
   final List<String> accountIdsWithNewLiabilities;
   @JsonKey(name: 'account_ids_with_updated_liabilities')
@@ -26150,7 +26718,7 @@ extension $LiabilitiesDefaultUpdateWebhookExtension
       {Wrapped<String>? webhookType,
       Wrapped<String>? webhookCode,
       Wrapped<String>? itemId,
-      Wrapped<PlaidError>? error,
+      Wrapped<PlaidError?>? error,
       Wrapped<List<String>>? accountIdsWithNewLiabilities,
       Wrapped<LiabilitiesAccountIdsWithUpdatedLiabilities>?
           accountIdsWithUpdatedLiabilities,
@@ -28901,9 +29469,9 @@ class Transfer {
   @JsonKey(name: 'cancellable')
   final bool cancellable;
   @JsonKey(name: 'failure_reason')
-  final TransferFailure failureReason;
+  final TransferFailure? failureReason;
   @JsonKey(name: 'metadata')
-  final TransferMetadata metadata;
+  final TransferMetadata? metadata;
   @JsonKey(name: 'origination_account_id')
   final String originationAccountId;
   @JsonKey(
@@ -28911,9 +29479,9 @@ class Transfer {
     toJson: transferAuthorizationGuaranteeDecisionToJson,
     fromJson: transferAuthorizationGuaranteeDecisionFromJson,
   )
-  final enums.TransferAuthorizationGuaranteeDecision guaranteeDecision;
+  final enums.TransferAuthorizationGuaranteeDecision? guaranteeDecision;
   @JsonKey(name: 'guarantee_decision_rationale')
-  final TransferAuthorizationGuaranteeDecisionRationale
+  final TransferAuthorizationGuaranteeDecisionRationale?
       guaranteeDecisionRationale;
   @JsonKey(name: 'iso_currency_code')
   final String isoCurrencyCode;
@@ -29092,11 +29660,11 @@ extension $TransferExtension on Transfer {
       Wrapped<enums.TransferSweepStatus?>? sweepStatus,
       Wrapped<enums.TransferNetwork>? network,
       Wrapped<bool>? cancellable,
-      Wrapped<TransferFailure>? failureReason,
-      Wrapped<TransferMetadata>? metadata,
+      Wrapped<TransferFailure?>? failureReason,
+      Wrapped<TransferMetadata?>? metadata,
       Wrapped<String>? originationAccountId,
-      Wrapped<enums.TransferAuthorizationGuaranteeDecision>? guaranteeDecision,
-      Wrapped<TransferAuthorizationGuaranteeDecisionRationale>?
+      Wrapped<enums.TransferAuthorizationGuaranteeDecision?>? guaranteeDecision,
+      Wrapped<TransferAuthorizationGuaranteeDecisionRationale?>?
           guaranteeDecisionRationale,
       Wrapped<String>? isoCurrencyCode,
       Wrapped<DateTime?>? standardReturnWindow,
@@ -29193,7 +29761,7 @@ class RecurringTransfer {
     toJson: transferRecurringStatusToJson,
     fromJson: transferRecurringStatusFromJson,
   )
-  final enums.TransferRecurringStatus status;
+  final enums.TransferRecurringStatus? status;
   @JsonKey(
     name: 'ach_class',
     toJson: aCHClassToJson,
@@ -29354,7 +29922,7 @@ extension $RecurringTransferExtension on RecurringTransfer {
       Wrapped<String?>? testClockId,
       Wrapped<enums.TransferType>? type,
       Wrapped<String>? amount,
-      Wrapped<enums.TransferRecurringStatus>? status,
+      Wrapped<enums.TransferRecurringStatus?>? status,
       Wrapped<enums.ACHClass?>? achClass,
       Wrapped<enums.TransferNetwork>? network,
       Wrapped<String>? originationAccountId,
@@ -29409,7 +29977,7 @@ class TransferTestClock {
       _$TransferTestClockFromJson(json);
 
   @JsonKey(name: 'test_clock_id')
-  final String testClockId;
+  final String? testClockId;
   @JsonKey(name: 'frozen_timestamp')
   final String frozenTimestamp;
   static const fromJsonFactory = _$TransferTestClockFromJson;
@@ -29446,7 +30014,7 @@ extension $TransferTestClockExtension on TransferTestClock {
   }
 
   TransferTestClock copyWithWrapped(
-      {Wrapped<String>? testClockId, Wrapped<String>? frozenTimestamp}) {
+      {Wrapped<String?>? testClockId, Wrapped<String>? frozenTimestamp}) {
     return TransferTestClock(
         testClockId:
             (testClockId != null ? testClockId.value : this.testClockId),
@@ -29522,11 +30090,11 @@ class BankTransfer {
   @JsonKey(name: 'cancellable')
   final bool cancellable;
   @JsonKey(name: 'failure_reason')
-  final BankTransferFailure failureReason;
+  final BankTransferFailure? failureReason;
   @JsonKey(name: 'custom_tag')
   final String? customTag;
   @JsonKey(name: 'metadata')
-  final BankTransferMetadata metadata;
+  final BankTransferMetadata? metadata;
   @JsonKey(name: 'origination_account_id')
   final String originationAccountId;
   @JsonKey(
@@ -29534,7 +30102,7 @@ class BankTransfer {
     toJson: bankTransferDirectionToJson,
     fromJson: bankTransferDirectionFromJson,
   )
-  final enums.BankTransferDirection direction;
+  final enums.BankTransferDirection? direction;
   static const fromJsonFactory = _$BankTransferFromJson;
   static const toJsonFactory = _$BankTransferToJson;
   Map<String, dynamic> toJson() => _$BankTransferToJson(this);
@@ -29668,11 +30236,11 @@ extension $BankTransferExtension on BankTransfer {
       Wrapped<enums.BankTransferStatus>? status,
       Wrapped<enums.BankTransferNetwork>? network,
       Wrapped<bool>? cancellable,
-      Wrapped<BankTransferFailure>? failureReason,
+      Wrapped<BankTransferFailure?>? failureReason,
       Wrapped<String?>? customTag,
-      Wrapped<BankTransferMetadata>? metadata,
+      Wrapped<BankTransferMetadata?>? metadata,
       Wrapped<String>? originationAccountId,
-      Wrapped<enums.BankTransferDirection>? direction}) {
+      Wrapped<enums.BankTransferDirection?>? direction}) {
     return BankTransfer(
         id: (id != null ? id.value : this.id),
         achClass: (achClass != null ? achClass.value : this.achClass),
@@ -30243,7 +30811,7 @@ class TransferUserInResponse {
   @JsonKey(name: 'email_address')
   final String? emailAddress;
   @JsonKey(name: 'address')
-  final TransferUserAddressInResponse address;
+  final TransferUserAddressInResponse? address;
   static const fromJsonFactory = _$TransferUserInResponseFromJson;
   static const toJsonFactory = _$TransferUserInResponseToJson;
   Map<String, dynamic> toJson() => _$TransferUserInResponseToJson(this);
@@ -30294,7 +30862,7 @@ extension $TransferUserInResponseExtension on TransferUserInResponse {
       {Wrapped<String>? legalName,
       Wrapped<String?>? phoneNumber,
       Wrapped<String?>? emailAddress,
-      Wrapped<TransferUserAddressInResponse>? address}) {
+      Wrapped<TransferUserAddressInResponse?>? address}) {
     return TransferUserInResponse(
         legalName: (legalName != null ? legalName.value : this.legalName),
         phoneNumber:
@@ -31710,7 +32278,7 @@ class TransferRecurringCreateRequest {
   @JsonKey(name: 'access_token')
   final String accessToken;
   @JsonKey(name: 'idempotency_key')
-  final String idempotencyKey;
+  final String? idempotencyKey;
   @JsonKey(name: 'account_id')
   final String accountId;
   @JsonKey(
@@ -31858,7 +32426,7 @@ extension $TransferRecurringCreateRequestExtension
       {Wrapped<String>? clientId,
       Wrapped<String>? secret,
       Wrapped<String>? accessToken,
-      Wrapped<String>? idempotencyKey,
+      Wrapped<String?>? idempotencyKey,
       Wrapped<String>? accountId,
       Wrapped<enums.TransferType>? type,
       Wrapped<enums.TransferNetwork>? network,
@@ -32201,15 +32769,15 @@ class TransferAuthorization {
   )
   final enums.TransferAuthorizationDecision decision;
   @JsonKey(name: 'decision_rationale')
-  final TransferAuthorizationDecisionRationale decisionRationale;
+  final TransferAuthorizationDecisionRationale? decisionRationale;
   @JsonKey(
     name: 'guarantee_decision',
     toJson: transferAuthorizationGuaranteeDecisionToJson,
     fromJson: transferAuthorizationGuaranteeDecisionFromJson,
   )
-  final enums.TransferAuthorizationGuaranteeDecision guaranteeDecision;
+  final enums.TransferAuthorizationGuaranteeDecision? guaranteeDecision;
   @JsonKey(name: 'guarantee_decision_rationale')
-  final TransferAuthorizationGuaranteeDecisionRationale
+  final TransferAuthorizationGuaranteeDecisionRationale?
       guaranteeDecisionRationale;
   @JsonKey(name: 'proposed_transfer')
   final TransferAuthorizationProposedTransfer proposedTransfer;
@@ -32285,9 +32853,9 @@ extension $TransferAuthorizationExtension on TransferAuthorization {
       {Wrapped<String>? id,
       Wrapped<DateTime>? created,
       Wrapped<enums.TransferAuthorizationDecision>? decision,
-      Wrapped<TransferAuthorizationDecisionRationale>? decisionRationale,
-      Wrapped<enums.TransferAuthorizationGuaranteeDecision>? guaranteeDecision,
-      Wrapped<TransferAuthorizationGuaranteeDecisionRationale>?
+      Wrapped<TransferAuthorizationDecisionRationale?>? decisionRationale,
+      Wrapped<enums.TransferAuthorizationGuaranteeDecision?>? guaranteeDecision,
+      Wrapped<TransferAuthorizationGuaranteeDecisionRationale?>?
           guaranteeDecisionRationale,
       Wrapped<TransferAuthorizationProposedTransfer>? proposedTransfer}) {
     return TransferAuthorization(
@@ -33763,11 +34331,11 @@ class TransferEvent {
   @JsonKey(name: 'transfer_amount')
   final String transferAmount;
   @JsonKey(name: 'failure_reason')
-  final TransferFailure failureReason;
+  final TransferFailure? failureReason;
   @JsonKey(name: 'sweep_id')
-  final String sweepId;
+  final String? sweepId;
   @JsonKey(name: 'sweep_amount')
-  final String sweepAmount;
+  final String? sweepAmount;
   @JsonKey(name: 'refund_id')
   final String? refundId;
   @JsonKey(name: 'originator_client_id')
@@ -33882,9 +34450,9 @@ extension $TransferEventExtension on TransferEvent {
       Wrapped<String?>? originationAccountId,
       Wrapped<enums.TransferType>? transferType,
       Wrapped<String>? transferAmount,
-      Wrapped<TransferFailure>? failureReason,
-      Wrapped<String>? sweepId,
-      Wrapped<String>? sweepAmount,
+      Wrapped<TransferFailure?>? failureReason,
+      Wrapped<String?>? sweepId,
+      Wrapped<String?>? sweepAmount,
       Wrapped<String?>? refundId,
       Wrapped<String?>? originatorClientId}) {
     return TransferEvent(
@@ -33959,13 +34527,13 @@ class BankTransferEvent {
   @JsonKey(name: 'bank_transfer_iso_currency_code')
   final String bankTransferIsoCurrencyCode;
   @JsonKey(name: 'failure_reason')
-  final BankTransferFailure failureReason;
+  final BankTransferFailure? failureReason;
   @JsonKey(
     name: 'direction',
     toJson: bankTransferDirectionToJson,
     fromJson: bankTransferDirectionFromJson,
   )
-  final enums.BankTransferDirection direction;
+  final enums.BankTransferDirection? direction;
   static const fromJsonFactory = _$BankTransferEventFromJson;
   static const toJsonFactory = _$BankTransferEventToJson;
   Map<String, dynamic> toJson() => _$BankTransferEventToJson(this);
@@ -34068,8 +34636,8 @@ extension $BankTransferEventExtension on BankTransferEvent {
       Wrapped<enums.BankTransferType>? bankTransferType,
       Wrapped<String>? bankTransferAmount,
       Wrapped<String>? bankTransferIsoCurrencyCode,
-      Wrapped<BankTransferFailure>? failureReason,
-      Wrapped<enums.BankTransferDirection>? direction}) {
+      Wrapped<BankTransferFailure?>? failureReason,
+      Wrapped<enums.BankTransferDirection?>? direction}) {
     return BankTransferEvent(
         eventId: (eventId != null ? eventId.value : this.eventId),
         timestamp: (timestamp != null ? timestamp.value : this.timestamp),
@@ -37465,15 +38033,15 @@ class TransferIntentGet {
   @JsonKey(name: 'transfer_id')
   final String? transferId;
   @JsonKey(name: 'failure_reason')
-  final TransferIntentGetFailureReason failureReason;
+  final TransferIntentGetFailureReason? failureReason;
   @JsonKey(
     name: 'authorization_decision',
     toJson: transferIntentAuthorizationDecisionToJson,
     fromJson: transferIntentAuthorizationDecisionFromJson,
   )
-  final enums.TransferIntentAuthorizationDecision authorizationDecision;
+  final enums.TransferIntentAuthorizationDecision? authorizationDecision;
   @JsonKey(name: 'authorization_decision_rationale')
-  final TransferAuthorizationDecisionRationale authorizationDecisionRationale;
+  final TransferAuthorizationDecisionRationale? authorizationDecisionRationale;
   @JsonKey(name: 'account_id')
   final String? accountId;
   @JsonKey(name: 'origination_account_id')
@@ -37507,9 +38075,9 @@ class TransferIntentGet {
     toJson: transferAuthorizationGuaranteeDecisionToJson,
     fromJson: transferAuthorizationGuaranteeDecisionFromJson,
   )
-  final enums.TransferAuthorizationGuaranteeDecision guaranteeDecision;
+  final enums.TransferAuthorizationGuaranteeDecision? guaranteeDecision;
   @JsonKey(name: 'guarantee_decision_rationale')
-  final TransferAuthorizationGuaranteeDecisionRationale
+  final TransferAuthorizationGuaranteeDecisionRationale?
       guaranteeDecisionRationale;
   static const fromJsonFactory = _$TransferIntentGetFromJson;
   static const toJsonFactory = _$TransferIntentGetToJson;
@@ -37654,9 +38222,10 @@ extension $TransferIntentGetExtension on TransferIntentGet {
       Wrapped<DateTime>? created,
       Wrapped<enums.TransferIntentStatus>? status,
       Wrapped<String?>? transferId,
-      Wrapped<TransferIntentGetFailureReason>? failureReason,
-      Wrapped<enums.TransferIntentAuthorizationDecision>? authorizationDecision,
-      Wrapped<TransferAuthorizationDecisionRationale>?
+      Wrapped<TransferIntentGetFailureReason?>? failureReason,
+      Wrapped<enums.TransferIntentAuthorizationDecision?>?
+          authorizationDecision,
+      Wrapped<TransferAuthorizationDecisionRationale?>?
           authorizationDecisionRationale,
       Wrapped<String?>? accountId,
       Wrapped<String>? originationAccountId,
@@ -37668,8 +38237,8 @@ extension $TransferIntentGetExtension on TransferIntentGet {
       Wrapped<TransferMetadata?>? metadata,
       Wrapped<String>? isoCurrencyCode,
       Wrapped<bool?>? requireGuarantee,
-      Wrapped<enums.TransferAuthorizationGuaranteeDecision>? guaranteeDecision,
-      Wrapped<TransferAuthorizationGuaranteeDecisionRationale>?
+      Wrapped<enums.TransferAuthorizationGuaranteeDecision?>? guaranteeDecision,
+      Wrapped<TransferAuthorizationGuaranteeDecisionRationale?>?
           guaranteeDecisionRationale}) {
     return TransferIntentGet(
         id: (id != null ? id.value : this.id),
@@ -38571,7 +39140,7 @@ class SandboxTransferTestClockAdvanceRequest {
   @JsonKey(name: 'secret')
   final String secret;
   @JsonKey(name: 'test_clock_id')
-  final String testClockId;
+  final String? testClockId;
   @JsonKey(name: 'new_frozen_timestamp')
   final String newFrozenTimestamp;
   static const fromJsonFactory =
@@ -38626,7 +39195,7 @@ extension $SandboxTransferTestClockAdvanceRequestExtension
   SandboxTransferTestClockAdvanceRequest copyWithWrapped(
       {Wrapped<String>? clientId,
       Wrapped<String>? secret,
-      Wrapped<String>? testClockId,
+      Wrapped<String?>? testClockId,
       Wrapped<String>? newFrozenTimestamp}) {
     return SandboxTransferTestClockAdvanceRequest(
         clientId: (clientId != null ? clientId.value : this.clientId),
@@ -38656,7 +39225,7 @@ class SandboxTransferTestClockGetRequest {
   @JsonKey(name: 'secret')
   final String secret;
   @JsonKey(name: 'test_clock_id')
-  final String testClockId;
+  final String? testClockId;
   static const fromJsonFactory = _$SandboxTransferTestClockGetRequestFromJson;
   static const toJsonFactory = _$SandboxTransferTestClockGetRequestToJson;
   Map<String, dynamic> toJson() =>
@@ -38700,7 +39269,7 @@ extension $SandboxTransferTestClockGetRequestExtension
   SandboxTransferTestClockGetRequest copyWithWrapped(
       {Wrapped<String>? clientId,
       Wrapped<String>? secret,
-      Wrapped<String>? testClockId}) {
+      Wrapped<String?>? testClockId}) {
     return SandboxTransferTestClockGetRequest(
         clientId: (clientId != null ? clientId.value : this.clientId),
         secret: (secret != null ? secret.value : this.secret),
@@ -39350,7 +39919,7 @@ class AccountIdentity {
     toJson: accountSubtypeToJson,
     fromJson: accountSubtypeFromJson,
   )
-  final enums.AccountSubtype subtype;
+  final enums.AccountSubtype? subtype;
   @JsonKey(
     name: 'verification_status',
     toJson: accountIdentityVerificationStatusToJson,
@@ -39438,7 +40007,7 @@ extension $AccountIdentityExtension on AccountIdentity {
       Wrapped<String>? name,
       Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
-      Wrapped<enums.AccountSubtype>? subtype,
+      Wrapped<enums.AccountSubtype?>? subtype,
       Wrapped<enums.AccountIdentityVerificationStatus?>? verificationStatus}) {
     return AccountIdentity(
         owners: (owners != null ? owners.value : this.owners),
@@ -39505,7 +40074,7 @@ class AccountIdentityMatchScore {
     toJson: accountSubtypeToJson,
     fromJson: accountSubtypeFromJson,
   )
-  final enums.AccountSubtype subtype;
+  final enums.AccountSubtype? subtype;
   @JsonKey(
     name: 'verification_status',
     toJson: accountIdentityMatchScoreVerificationStatusToJson,
@@ -39615,7 +40184,7 @@ extension $AccountIdentityMatchScoreExtension on AccountIdentityMatchScore {
       Wrapped<String>? name,
       Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
-      Wrapped<enums.AccountSubtype>? subtype,
+      Wrapped<enums.AccountSubtype?>? subtype,
       Wrapped<enums.AccountIdentityMatchScoreVerificationStatus?>?
           verificationStatus}) {
     return AccountIdentityMatchScore(
@@ -40211,7 +40780,7 @@ class Employer {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'address')
-  final AddressDataNullable address;
+  final AddressDataNullable? address;
   @JsonKey(name: 'confidence_score')
   final double confidenceScore;
   static const fromJsonFactory = _$EmployerFromJson;
@@ -40263,7 +40832,7 @@ extension $EmployerExtension on Employer {
   Employer copyWithWrapped(
       {Wrapped<String>? employerId,
       Wrapped<String>? name,
-      Wrapped<AddressDataNullable>? address,
+      Wrapped<AddressDataNullable?>? address,
       Wrapped<double>? confidenceScore}) {
     return Employer(
         employerId: (employerId != null ? employerId.value : this.employerId),
@@ -41564,11 +42133,11 @@ class IncomeSummary {
   @JsonKey(name: 'ytd_net_income')
   final YTDNetIncomeSummaryFieldNumber ytdNetIncome;
   @JsonKey(name: 'pay_frequency')
-  final PayFrequency payFrequency;
+  final PayFrequency? payFrequency;
   @JsonKey(name: 'projected_wage')
   final ProjectedIncomeSummaryFieldNumber projectedWage;
   @JsonKey(name: 'verified_transaction')
-  final TransactionData verifiedTransaction;
+  final TransactionData? verifiedTransaction;
   static const fromJsonFactory = _$IncomeSummaryFromJson;
   static const toJsonFactory = _$IncomeSummaryToJson;
   Map<String, dynamic> toJson() => _$IncomeSummaryToJson(this);
@@ -41639,9 +42208,9 @@ extension $IncomeSummaryExtension on IncomeSummary {
       Wrapped<EmployeeIncomeSummaryFieldString>? employeeName,
       Wrapped<YTDGrossIncomeSummaryFieldNumber>? ytdGrossIncome,
       Wrapped<YTDNetIncomeSummaryFieldNumber>? ytdNetIncome,
-      Wrapped<PayFrequency>? payFrequency,
+      Wrapped<PayFrequency?>? payFrequency,
       Wrapped<ProjectedIncomeSummaryFieldNumber>? projectedWage,
-      Wrapped<TransactionData>? verifiedTransaction}) {
+      Wrapped<TransactionData?>? verifiedTransaction}) {
     return IncomeSummary(
         employerName:
             (employerName != null ? employerName.value : this.employerName),
@@ -43689,7 +44258,7 @@ class IncomeBreakdown {
     toJson: incomeBreakdownTypeToJson,
     fromJson: incomeBreakdownTypeFromJson,
   )
-  final enums.IncomeBreakdownType type;
+  final enums.IncomeBreakdownType? type;
   @JsonKey(name: 'rate')
   final double? rate;
   @JsonKey(name: 'hours')
@@ -43740,7 +44309,7 @@ extension $IncomeBreakdownExtension on IncomeBreakdown {
   }
 
   IncomeBreakdown copyWithWrapped(
-      {Wrapped<enums.IncomeBreakdownType>? type,
+      {Wrapped<enums.IncomeBreakdownType?>? type,
       Wrapped<double?>? rate,
       Wrapped<double?>? hours,
       Wrapped<double?>? total}) {
@@ -48511,7 +49080,7 @@ class CreditDocumentMetadata {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'document_type')
-  final String documentType;
+  final String? documentType;
   @JsonKey(name: 'download_url')
   final String? downloadUrl;
   @JsonKey(name: 'status')
@@ -48563,7 +49132,7 @@ extension $CreditDocumentMetadataExtension on CreditDocumentMetadata {
 
   CreditDocumentMetadata copyWithWrapped(
       {Wrapped<String>? name,
-      Wrapped<String>? documentType,
+      Wrapped<String?>? documentType,
       Wrapped<String?>? downloadUrl,
       Wrapped<String?>? status}) {
     return CreditDocumentMetadata(
@@ -48602,7 +49171,7 @@ class PayrollItem {
   @JsonKey(name: 'payroll_income', defaultValue: <PayrollIncomeObject>[])
   final List<PayrollIncomeObject> payrollIncome;
   @JsonKey(name: 'status')
-  final PayrollItemStatus status;
+  final PayrollItemStatus? status;
   @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
   static const fromJsonFactory = _$PayrollItemFromJson;
@@ -48674,7 +49243,7 @@ extension $PayrollItemExtension on PayrollItem {
       Wrapped<String>? institutionName,
       Wrapped<List<PayrollIncomeAccountData>>? accounts,
       Wrapped<List<PayrollIncomeObject>>? payrollIncome,
-      Wrapped<PayrollItemStatus>? status,
+      Wrapped<PayrollItemStatus?>? status,
       Wrapped<DateTime?>? updatedAt}) {
     return PayrollItem(
         itemId: (itemId != null ? itemId.value : this.itemId),
@@ -50152,7 +50721,7 @@ class PayStubEarningsBreakdown {
       _$PayStubEarningsBreakdownFromJson(json);
 
   @JsonKey(name: 'canonical_description')
-  final String canonicalDescription;
+  final String? canonicalDescription;
   @JsonKey(name: 'current_amount')
   final double? currentAmount;
   @JsonKey(name: 'description')
@@ -50238,7 +50807,7 @@ extension $PayStubEarningsBreakdownExtension on PayStubEarningsBreakdown {
   }
 
   PayStubEarningsBreakdown copyWithWrapped(
-      {Wrapped<String>? canonicalDescription,
+      {Wrapped<String?>? canonicalDescription,
       Wrapped<double?>? currentAmount,
       Wrapped<String?>? description,
       Wrapped<double?>? hours,
@@ -51023,7 +51592,7 @@ class DocumentRiskSignal {
   @JsonKey(name: 'has_fraud_risk')
   final bool? hasFraudRisk;
   @JsonKey(name: 'institution_metadata')
-  final DocumentRiskSignalInstitutionMetadata institutionMetadata;
+  final DocumentRiskSignalInstitutionMetadata? institutionMetadata;
   @JsonKey(name: 'expected_value')
   final String? expectedValue;
   @JsonKey(name: 'actual_value')
@@ -51105,7 +51674,7 @@ extension $DocumentRiskSignalExtension on DocumentRiskSignal {
       {Wrapped<String?>? type,
       Wrapped<String?>? field,
       Wrapped<bool?>? hasFraudRisk,
-      Wrapped<DocumentRiskSignalInstitutionMetadata>? institutionMetadata,
+      Wrapped<DocumentRiskSignalInstitutionMetadata?>? institutionMetadata,
       Wrapped<String?>? expectedValue,
       Wrapped<String?>? actualValue,
       Wrapped<String?>? signalDescription,
@@ -52123,7 +52692,7 @@ class CreditEmploymentVerification {
   @JsonKey(name: 'account_id')
   final String? accountId;
   @JsonKey(name: 'status')
-  final String status;
+  final String? status;
   @JsonKey(name: 'start_date', toJson: _dateToJson)
   final DateTime? startDate;
   @JsonKey(name: 'end_date', toJson: _dateToJson)
@@ -52135,7 +52704,7 @@ class CreditEmploymentVerification {
   @JsonKey(name: 'platform_ids')
   final CreditPlatformIds platformIds;
   @JsonKey(name: 'employee_type')
-  final String employeeType;
+  final String? employeeType;
   @JsonKey(name: 'last_paystub_date', toJson: _dateToJson)
   final DateTime? lastPaystubDate;
   static const fromJsonFactory = _$CreditEmploymentVerificationFromJson;
@@ -52216,13 +52785,13 @@ extension $CreditEmploymentVerificationExtension
 
   CreditEmploymentVerification copyWithWrapped(
       {Wrapped<String?>? accountId,
-      Wrapped<String>? status,
+      Wrapped<String?>? status,
       Wrapped<DateTime?>? startDate,
       Wrapped<DateTime?>? endDate,
       Wrapped<CreditEmployerVerification>? employer,
       Wrapped<String?>? title,
       Wrapped<CreditPlatformIds>? platformIds,
-      Wrapped<String>? employeeType,
+      Wrapped<String?>? employeeType,
       Wrapped<DateTime?>? lastPaystubDate}) {
     return CreditEmploymentVerification(
         accountId: (accountId != null ? accountId.value : this.accountId),
@@ -59606,7 +60175,7 @@ class Enrichments {
   @JsonKey(name: 'location')
   final Location location;
   @JsonKey(name: 'personal_finance_category')
-  final PersonalFinanceCategory personalFinanceCategory;
+  final PersonalFinanceCategory? personalFinanceCategory;
   @JsonKey(name: 'personal_finance_category_icon_url')
   final String personalFinanceCategoryIconUrl;
   @JsonKey(name: 'counterparties', defaultValue: <Counterparty>[])
@@ -59714,7 +60283,7 @@ extension $EnrichmentsExtension on Enrichments {
       Wrapped<String?>? legacyCategoryId,
       Wrapped<List<String>?>? legacyCategory,
       Wrapped<Location>? location,
-      Wrapped<PersonalFinanceCategory>? personalFinanceCategory,
+      Wrapped<PersonalFinanceCategory?>? personalFinanceCategory,
       Wrapped<String>? personalFinanceCategoryIconUrl,
       Wrapped<List<Counterparty>?>? counterparties}) {
     return Enrichments(
@@ -63304,7 +63873,7 @@ class AssetsErrorWebhook {
   @JsonKey(name: 'webhook_code')
   final String webhookCode;
   @JsonKey(name: 'error')
-  final PlaidError error;
+  final PlaidError? error;
   @JsonKey(name: 'asset_report_id')
   final String assetReportId;
   static const fromJsonFactory = _$AssetsErrorWebhookFromJson;
@@ -63356,7 +63925,7 @@ extension $AssetsErrorWebhookExtension on AssetsErrorWebhook {
   AssetsErrorWebhook copyWithWrapped(
       {Wrapped<String>? webhookType,
       Wrapped<String>? webhookCode,
-      Wrapped<PlaidError>? error,
+      Wrapped<PlaidError?>? error,
       Wrapped<String>? assetReportId}) {
     return AssetsErrorWebhook(
         webhookType:
@@ -63812,7 +64381,7 @@ class AccountAssets {
     toJson: accountSubtypeToJson,
     fromJson: accountSubtypeFromJson,
   )
-  final enums.AccountSubtype subtype;
+  final enums.AccountSubtype? subtype;
   @JsonKey(
     name: 'verification_status',
     toJson: accountAssetsVerificationStatusToJson,
@@ -63928,7 +64497,7 @@ extension $AccountAssetsExtension on AccountAssets {
       Wrapped<String>? name,
       Wrapped<String?>? officialName,
       Wrapped<enums.AccountType>? type,
-      Wrapped<enums.AccountSubtype>? subtype,
+      Wrapped<enums.AccountSubtype?>? subtype,
       Wrapped<enums.AccountAssetsVerificationStatus?>? verificationStatus}) {
     return AccountAssets(
         daysAvailable:
@@ -64556,7 +65125,7 @@ class DashboardUserListResponse {
   @JsonKey(name: 'dashboard_users', defaultValue: <DashboardUser>[])
   final List<DashboardUser> dashboardUsers;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$DashboardUserListResponseFromJson;
@@ -64602,7 +65171,7 @@ extension $DashboardUserListResponseExtension on DashboardUserListResponse {
 
   DashboardUserListResponse copyWithWrapped(
       {Wrapped<List<DashboardUser>>? dashboardUsers,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return DashboardUserListResponse(
         dashboardUsers: (dashboardUsers != null
@@ -64690,7 +65259,7 @@ class DocumentAnalysis {
   )
   final enums.ImageQuality imageQuality;
   @JsonKey(name: 'extracted_data')
-  final PhysicalDocumentExtractedDataAnalysis extractedData;
+  final PhysicalDocumentExtractedDataAnalysis? extractedData;
   static const fromJsonFactory = _$DocumentAnalysisFromJson;
   static const toJsonFactory = _$DocumentAnalysisToJson;
   Map<String, dynamic> toJson() => _$DocumentAnalysisToJson(this);
@@ -64735,7 +65304,7 @@ extension $DocumentAnalysisExtension on DocumentAnalysis {
   DocumentAnalysis copyWithWrapped(
       {Wrapped<enums.DocumentAuthenticityMatchCode>? authenticity,
       Wrapped<enums.ImageQuality>? imageQuality,
-      Wrapped<PhysicalDocumentExtractedDataAnalysis>? extractedData}) {
+      Wrapped<PhysicalDocumentExtractedDataAnalysis?>? extractedData}) {
     return DocumentAnalysis(
         authenticity:
             (authenticity != null ? authenticity.value : this.authenticity),
@@ -64825,7 +65394,7 @@ class DocumentaryVerificationDocument {
   @JsonKey(name: 'images')
   final PhysicalDocumentImages images;
   @JsonKey(name: 'extracted_data')
-  final PhysicalDocumentExtractedData extractedData;
+  final PhysicalDocumentExtractedData? extractedData;
   @JsonKey(name: 'analysis')
   final DocumentAnalysis analysis;
   static const fromJsonFactory = _$DocumentaryVerificationDocumentFromJson;
@@ -64885,7 +65454,7 @@ extension $DocumentaryVerificationDocumentExtension
       {Wrapped<enums.DocumentStatus>? status,
       Wrapped<double>? attempt,
       Wrapped<PhysicalDocumentImages>? images,
-      Wrapped<PhysicalDocumentExtractedData>? extractedData,
+      Wrapped<PhysicalDocumentExtractedData?>? extractedData,
       Wrapped<DocumentAnalysis>? analysis}) {
     return DocumentaryVerificationDocument(
         status: (status != null ? status.value : this.status),
@@ -65858,7 +66427,7 @@ class EntityWatchlistScreening {
   @JsonKey(name: 'search_terms')
   final EntityWatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -65866,7 +66435,7 @@ class EntityWatchlistScreening {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   static const fromJsonFactory = _$EntityWatchlistScreeningFromJson;
@@ -65929,9 +66498,9 @@ extension $EntityWatchlistScreeningExtension on EntityWatchlistScreening {
   EntityWatchlistScreening copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<EntityWatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail}) {
     return EntityWatchlistScreening(
         id: (id != null ? id.value : this.id),
@@ -65974,9 +66543,9 @@ class EntityWatchlistScreeningHit {
   @JsonKey(name: 'first_active')
   final String firstActive;
   @JsonKey(name: 'inactive_since')
-  final String inactiveSince;
+  final String? inactiveSince;
   @JsonKey(name: 'historical_since')
-  final String historicalSince;
+  final String? historicalSince;
   @JsonKey(
     name: 'list_code',
     toJson: entityWatchlistCodeToJson,
@@ -65986,7 +66555,7 @@ class EntityWatchlistScreeningHit {
   @JsonKey(name: 'plaid_uid')
   final String plaidUid;
   @JsonKey(name: 'source_uid')
-  final String sourceUid;
+  final String? sourceUid;
   @JsonKey(name: 'analysis')
   final EntityScreeningHitAnalysis? analysis;
   @JsonKey(name: 'data')
@@ -66076,11 +66645,11 @@ extension $EntityWatchlistScreeningHitExtension on EntityWatchlistScreeningHit {
       {Wrapped<String>? id,
       Wrapped<enums.WatchlistScreeningHitStatus>? reviewStatus,
       Wrapped<String>? firstActive,
-      Wrapped<String>? inactiveSince,
-      Wrapped<String>? historicalSince,
+      Wrapped<String?>? inactiveSince,
+      Wrapped<String?>? historicalSince,
       Wrapped<enums.EntityWatchlistCode>? listCode,
       Wrapped<String>? plaidUid,
-      Wrapped<String>? sourceUid,
+      Wrapped<String?>? sourceUid,
       Wrapped<EntityScreeningHitAnalysis?>? analysis,
       Wrapped<EntityScreeningHitData?>? data}) {
     return EntityWatchlistScreeningHit(
@@ -66122,7 +66691,7 @@ class EntityWatchlistScreeningReview {
   @JsonKey(name: 'dismissed_hits', defaultValue: <String>[])
   final List<String> dismissedHits;
   @JsonKey(name: 'comment')
-  final String comment;
+  final String? comment;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   static const fromJsonFactory = _$EntityWatchlistScreeningReviewFromJson;
@@ -66182,7 +66751,7 @@ extension $EntityWatchlistScreeningReviewExtension
       {Wrapped<String>? id,
       Wrapped<List<String>>? confirmedHits,
       Wrapped<List<String>>? dismissedHits,
-      Wrapped<String>? comment,
+      Wrapped<String?>? comment,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail}) {
     return EntityWatchlistScreeningReview(
         id: (id != null ? id.value : this.id),
@@ -66217,15 +66786,15 @@ class EntityWatchlistScreeningSearchTerms {
   @JsonKey(name: 'legal_name')
   final String legalName;
   @JsonKey(name: 'document_number')
-  final String documentNumber;
+  final String? documentNumber;
   @JsonKey(name: 'email_address')
-  final String emailAddress;
+  final String? emailAddress;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'phone_number')
-  final String phoneNumber;
+  final String? phoneNumber;
   @JsonKey(name: 'url')
-  final String url;
+  final String? url;
   @JsonKey(name: 'version')
   final double version;
   static const fromJsonFactory = _$EntityWatchlistScreeningSearchTermsFromJson;
@@ -66305,11 +66874,11 @@ extension $EntityWatchlistScreeningSearchTermsExtension
   EntityWatchlistScreeningSearchTerms copyWithWrapped(
       {Wrapped<String>? entityWatchlistProgramId,
       Wrapped<String>? legalName,
-      Wrapped<String>? documentNumber,
-      Wrapped<String>? emailAddress,
-      Wrapped<String>? country,
-      Wrapped<String>? phoneNumber,
-      Wrapped<String>? url,
+      Wrapped<String?>? documentNumber,
+      Wrapped<String?>? emailAddress,
+      Wrapped<String?>? country,
+      Wrapped<String?>? phoneNumber,
+      Wrapped<String?>? url,
       Wrapped<double>? version}) {
     return EntityWatchlistScreeningSearchTerms(
         entityWatchlistProgramId: (entityWatchlistProgramId != null
@@ -66536,11 +67105,11 @@ class IdentityVerification {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'completed_at')
-  final String completedAt;
+  final String? completedAt;
   @JsonKey(name: 'previous_attempt_id')
-  final String previousAttemptId;
+  final String? previousAttemptId;
   @JsonKey(name: 'shareable_url')
-  final String shareableUrl;
+  final String? shareableUrl;
   @JsonKey(name: 'template')
   final IdentityVerificationTemplateReference template;
   @JsonKey(name: 'user')
@@ -66554,11 +67123,11 @@ class IdentityVerification {
   @JsonKey(name: 'steps')
   final IdentityVerificationStepSummary steps;
   @JsonKey(name: 'documentary_verification')
-  final DocumentaryVerification documentaryVerification;
+  final DocumentaryVerification? documentaryVerification;
   @JsonKey(name: 'kyc_check')
-  final KYCCheckDetails kycCheck;
+  final KYCCheckDetails? kycCheck;
   @JsonKey(name: 'watchlist_screening_id')
-  final String watchlistScreeningId;
+  final String? watchlistScreeningId;
   static const fromJsonFactory = _$IdentityVerificationFromJson;
   static const toJsonFactory = _$IdentityVerificationToJson;
   Map<String, dynamic> toJson() => _$IdentityVerificationToJson(this);
@@ -66663,16 +67232,16 @@ extension $IdentityVerificationExtension on IdentityVerification {
       {Wrapped<String>? id,
       Wrapped<String>? clientUserId,
       Wrapped<String>? createdAt,
-      Wrapped<String>? completedAt,
-      Wrapped<String>? previousAttemptId,
-      Wrapped<String>? shareableUrl,
+      Wrapped<String?>? completedAt,
+      Wrapped<String?>? previousAttemptId,
+      Wrapped<String?>? shareableUrl,
       Wrapped<IdentityVerificationTemplateReference>? template,
       Wrapped<IdentityVerificationUserData>? user,
       Wrapped<enums.IdentityVerificationStatus>? status,
       Wrapped<IdentityVerificationStepSummary>? steps,
-      Wrapped<DocumentaryVerification>? documentaryVerification,
-      Wrapped<KYCCheckDetails>? kycCheck,
-      Wrapped<String>? watchlistScreeningId}) {
+      Wrapped<DocumentaryVerification?>? documentaryVerification,
+      Wrapped<KYCCheckDetails?>? kycCheck,
+      Wrapped<String?>? watchlistScreeningId}) {
     return IdentityVerification(
         id: (id != null ? id.value : this.id),
         clientUserId:
@@ -66846,11 +67415,11 @@ class IdentityVerificationCreateResponse {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'completed_at')
-  final String completedAt;
+  final String? completedAt;
   @JsonKey(name: 'previous_attempt_id')
-  final String previousAttemptId;
+  final String? previousAttemptId;
   @JsonKey(name: 'shareable_url')
-  final String shareableUrl;
+  final String? shareableUrl;
   @JsonKey(name: 'template')
   final IdentityVerificationTemplateReference template;
   @JsonKey(name: 'user')
@@ -66864,11 +67433,11 @@ class IdentityVerificationCreateResponse {
   @JsonKey(name: 'steps')
   final IdentityVerificationStepSummary steps;
   @JsonKey(name: 'documentary_verification')
-  final DocumentaryVerification documentaryVerification;
+  final DocumentaryVerification? documentaryVerification;
   @JsonKey(name: 'kyc_check')
-  final KYCCheckDetails kycCheck;
+  final KYCCheckDetails? kycCheck;
   @JsonKey(name: 'watchlist_screening_id')
-  final String watchlistScreeningId;
+  final String? watchlistScreeningId;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$IdentityVerificationCreateResponseFromJson;
@@ -66982,16 +67551,16 @@ extension $IdentityVerificationCreateResponseExtension
       {Wrapped<String>? id,
       Wrapped<String>? clientUserId,
       Wrapped<String>? createdAt,
-      Wrapped<String>? completedAt,
-      Wrapped<String>? previousAttemptId,
-      Wrapped<String>? shareableUrl,
+      Wrapped<String?>? completedAt,
+      Wrapped<String?>? previousAttemptId,
+      Wrapped<String?>? shareableUrl,
       Wrapped<IdentityVerificationTemplateReference>? template,
       Wrapped<IdentityVerificationUserData>? user,
       Wrapped<enums.IdentityVerificationStatus>? status,
       Wrapped<IdentityVerificationStepSummary>? steps,
-      Wrapped<DocumentaryVerification>? documentaryVerification,
-      Wrapped<KYCCheckDetails>? kycCheck,
-      Wrapped<String>? watchlistScreeningId,
+      Wrapped<DocumentaryVerification?>? documentaryVerification,
+      Wrapped<KYCCheckDetails?>? kycCheck,
+      Wrapped<String?>? watchlistScreeningId,
       Wrapped<String>? requestId}) {
     return IdentityVerificationCreateResponse(
         id: (id != null ? id.value : this.id),
@@ -67119,11 +67688,11 @@ class IdentityVerificationGetResponse {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'completed_at')
-  final String completedAt;
+  final String? completedAt;
   @JsonKey(name: 'previous_attempt_id')
-  final String previousAttemptId;
+  final String? previousAttemptId;
   @JsonKey(name: 'shareable_url')
-  final String shareableUrl;
+  final String? shareableUrl;
   @JsonKey(name: 'template')
   final IdentityVerificationTemplateReference template;
   @JsonKey(name: 'user')
@@ -67137,11 +67706,11 @@ class IdentityVerificationGetResponse {
   @JsonKey(name: 'steps')
   final IdentityVerificationStepSummary steps;
   @JsonKey(name: 'documentary_verification')
-  final DocumentaryVerification documentaryVerification;
+  final DocumentaryVerification? documentaryVerification;
   @JsonKey(name: 'kyc_check')
-  final KYCCheckDetails kycCheck;
+  final KYCCheckDetails? kycCheck;
   @JsonKey(name: 'watchlist_screening_id')
-  final String watchlistScreeningId;
+  final String? watchlistScreeningId;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$IdentityVerificationGetResponseFromJson;
@@ -67255,16 +67824,16 @@ extension $IdentityVerificationGetResponseExtension
       {Wrapped<String>? id,
       Wrapped<String>? clientUserId,
       Wrapped<String>? createdAt,
-      Wrapped<String>? completedAt,
-      Wrapped<String>? previousAttemptId,
-      Wrapped<String>? shareableUrl,
+      Wrapped<String?>? completedAt,
+      Wrapped<String?>? previousAttemptId,
+      Wrapped<String?>? shareableUrl,
       Wrapped<IdentityVerificationTemplateReference>? template,
       Wrapped<IdentityVerificationUserData>? user,
       Wrapped<enums.IdentityVerificationStatus>? status,
       Wrapped<IdentityVerificationStepSummary>? steps,
-      Wrapped<DocumentaryVerification>? documentaryVerification,
-      Wrapped<KYCCheckDetails>? kycCheck,
-      Wrapped<String>? watchlistScreeningId,
+      Wrapped<DocumentaryVerification?>? documentaryVerification,
+      Wrapped<KYCCheckDetails?>? kycCheck,
+      Wrapped<String?>? watchlistScreeningId,
       Wrapped<String>? requestId}) {
     return IdentityVerificationGetResponse(
         id: (id != null ? id.value : this.id),
@@ -67401,7 +67970,7 @@ class IdentityVerificationListResponse {
       name: 'identity_verifications', defaultValue: <IdentityVerification>[])
   final List<IdentityVerification> identityVerifications;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$IdentityVerificationListResponseFromJson;
@@ -67450,7 +68019,7 @@ extension $IdentityVerificationListResponseExtension
 
   IdentityVerificationListResponse copyWithWrapped(
       {Wrapped<List<IdentityVerification>>? identityVerifications,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return IdentityVerificationListResponse(
         identityVerifications: (identityVerifications != null
@@ -67807,11 +68376,11 @@ class IdentityVerificationRetryResponse {
   @JsonKey(name: 'created_at')
   final String createdAt;
   @JsonKey(name: 'completed_at')
-  final String completedAt;
+  final String? completedAt;
   @JsonKey(name: 'previous_attempt_id')
-  final String previousAttemptId;
+  final String? previousAttemptId;
   @JsonKey(name: 'shareable_url')
-  final String shareableUrl;
+  final String? shareableUrl;
   @JsonKey(name: 'template')
   final IdentityVerificationTemplateReference template;
   @JsonKey(name: 'user')
@@ -67825,11 +68394,11 @@ class IdentityVerificationRetryResponse {
   @JsonKey(name: 'steps')
   final IdentityVerificationStepSummary steps;
   @JsonKey(name: 'documentary_verification')
-  final DocumentaryVerification documentaryVerification;
+  final DocumentaryVerification? documentaryVerification;
   @JsonKey(name: 'kyc_check')
-  final KYCCheckDetails kycCheck;
+  final KYCCheckDetails? kycCheck;
   @JsonKey(name: 'watchlist_screening_id')
-  final String watchlistScreeningId;
+  final String? watchlistScreeningId;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$IdentityVerificationRetryResponseFromJson;
@@ -67943,16 +68512,16 @@ extension $IdentityVerificationRetryResponseExtension
       {Wrapped<String>? id,
       Wrapped<String>? clientUserId,
       Wrapped<String>? createdAt,
-      Wrapped<String>? completedAt,
-      Wrapped<String>? previousAttemptId,
-      Wrapped<String>? shareableUrl,
+      Wrapped<String?>? completedAt,
+      Wrapped<String?>? previousAttemptId,
+      Wrapped<String?>? shareableUrl,
       Wrapped<IdentityVerificationTemplateReference>? template,
       Wrapped<IdentityVerificationUserData>? user,
       Wrapped<enums.IdentityVerificationStatus>? status,
       Wrapped<IdentityVerificationStepSummary>? steps,
-      Wrapped<DocumentaryVerification>? documentaryVerification,
-      Wrapped<KYCCheckDetails>? kycCheck,
-      Wrapped<String>? watchlistScreeningId,
+      Wrapped<DocumentaryVerification?>? documentaryVerification,
+      Wrapped<KYCCheckDetails?>? kycCheck,
+      Wrapped<String?>? watchlistScreeningId,
       Wrapped<String>? requestId}) {
     return IdentityVerificationRetryResponse(
         id: (id != null ? id.value : this.id),
@@ -68222,15 +68791,15 @@ class IdentityVerificationUserAddress {
       _$IdentityVerificationUserAddressFromJson(json);
 
   @JsonKey(name: 'street')
-  final String street;
+  final String? street;
   @JsonKey(name: 'street2')
-  final String street2;
+  final String? street2;
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'region')
-  final String region;
+  final String? region;
   @JsonKey(name: 'postal_code')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'country')
   final String country;
   static const fromJsonFactory = _$IdentityVerificationUserAddressFromJson;
@@ -68291,11 +68860,11 @@ extension $IdentityVerificationUserAddressExtension
   }
 
   IdentityVerificationUserAddress copyWithWrapped(
-      {Wrapped<String>? street,
-      Wrapped<String>? street2,
-      Wrapped<String>? city,
-      Wrapped<String>? region,
-      Wrapped<String>? postalCode,
+      {Wrapped<String?>? street,
+      Wrapped<String?>? street2,
+      Wrapped<String?>? city,
+      Wrapped<String?>? region,
+      Wrapped<String?>? postalCode,
       Wrapped<String>? country}) {
     return IdentityVerificationUserAddress(
         street: (street != null ? street.value : this.street),
@@ -68325,17 +68894,17 @@ class IdentityVerificationUserData {
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @JsonKey(name: 'date_of_birth')
-  final String dateOfBirth;
+  final String? dateOfBirth;
   @JsonKey(name: 'ip_address')
-  final String ipAddress;
+  final String? ipAddress;
   @JsonKey(name: 'email_address')
-  final String emailAddress;
+  final String? emailAddress;
   @JsonKey(name: 'name')
-  final UserName name;
+  final UserName? name;
   @JsonKey(name: 'address')
-  final IdentityVerificationUserAddress address;
+  final IdentityVerificationUserAddress? address;
   @JsonKey(name: 'id_number')
-  final UserIDNumber idNumber;
+  final UserIDNumber? idNumber;
   static const fromJsonFactory = _$IdentityVerificationUserDataFromJson;
   static const toJsonFactory = _$IdentityVerificationUserDataToJson;
   Map<String, dynamic> toJson() => _$IdentityVerificationUserDataToJson(this);
@@ -68403,12 +68972,12 @@ extension $IdentityVerificationUserDataExtension
 
   IdentityVerificationUserData copyWithWrapped(
       {Wrapped<String?>? phoneNumber,
-      Wrapped<String>? dateOfBirth,
-      Wrapped<String>? ipAddress,
-      Wrapped<String>? emailAddress,
-      Wrapped<UserName>? name,
-      Wrapped<IdentityVerificationUserAddress>? address,
-      Wrapped<UserIDNumber>? idNumber}) {
+      Wrapped<String?>? dateOfBirth,
+      Wrapped<String?>? ipAddress,
+      Wrapped<String?>? emailAddress,
+      Wrapped<UserName?>? name,
+      Wrapped<IdentityVerificationUserAddress?>? address,
+      Wrapped<UserIDNumber?>? idNumber}) {
     return IdentityVerificationUserData(
         phoneNumber:
             (phoneNumber != null ? phoneNumber.value : this.phoneNumber),
@@ -69062,7 +69631,7 @@ class PhysicalDocumentExtractedData {
       _$PhysicalDocumentExtractedDataFromJson(json);
 
   @JsonKey(name: 'id_number')
-  final String idNumber;
+  final String? idNumber;
   @JsonKey(
     name: 'category',
     toJson: physicalDocumentCategoryToJson,
@@ -69070,11 +69639,11 @@ class PhysicalDocumentExtractedData {
   )
   final enums.PhysicalDocumentCategory category;
   @JsonKey(name: 'expiration_date')
-  final String expirationDate;
+  final String? expirationDate;
   @JsonKey(name: 'issuing_country')
   final String issuingCountry;
   @JsonKey(name: 'issuing_region')
-  final String issuingRegion;
+  final String? issuingRegion;
   static const fromJsonFactory = _$PhysicalDocumentExtractedDataFromJson;
   static const toJsonFactory = _$PhysicalDocumentExtractedDataToJson;
   Map<String, dynamic> toJson() => _$PhysicalDocumentExtractedDataToJson(this);
@@ -69130,11 +69699,11 @@ extension $PhysicalDocumentExtractedDataExtension
   }
 
   PhysicalDocumentExtractedData copyWithWrapped(
-      {Wrapped<String>? idNumber,
+      {Wrapped<String?>? idNumber,
       Wrapped<enums.PhysicalDocumentCategory>? category,
-      Wrapped<String>? expirationDate,
+      Wrapped<String?>? expirationDate,
       Wrapped<String>? issuingCountry,
-      Wrapped<String>? issuingRegion}) {
+      Wrapped<String?>? issuingRegion}) {
     return PhysicalDocumentExtractedData(
         idNumber: (idNumber != null ? idNumber.value : this.idNumber),
         category: (category != null ? category.value : this.category),
@@ -69269,13 +69838,13 @@ class PhysicalDocumentImages {
   @JsonKey(name: 'original_front')
   final String originalFront;
   @JsonKey(name: 'original_back')
-  final String originalBack;
+  final String? originalBack;
   @JsonKey(name: 'cropped_front')
-  final String croppedFront;
+  final String? croppedFront;
   @JsonKey(name: 'cropped_back')
-  final String croppedBack;
+  final String? croppedBack;
   @JsonKey(name: 'face')
-  final String face;
+  final String? face;
   static const fromJsonFactory = _$PhysicalDocumentImagesFromJson;
   static const toJsonFactory = _$PhysicalDocumentImagesToJson;
   Map<String, dynamic> toJson() => _$PhysicalDocumentImagesToJson(this);
@@ -69330,10 +69899,10 @@ extension $PhysicalDocumentImagesExtension on PhysicalDocumentImages {
 
   PhysicalDocumentImages copyWithWrapped(
       {Wrapped<String>? originalFront,
-      Wrapped<String>? originalBack,
-      Wrapped<String>? croppedFront,
-      Wrapped<String>? croppedBack,
-      Wrapped<String>? face}) {
+      Wrapped<String?>? originalBack,
+      Wrapped<String?>? croppedFront,
+      Wrapped<String?>? croppedBack,
+      Wrapped<String?>? face}) {
     return PhysicalDocumentImages(
         originalFront:
             (originalFront != null ? originalFront.value : this.originalFront),
@@ -70174,7 +70743,7 @@ class WatchlistScreeningAuditTrail {
   )
   final enums.Source source;
   @JsonKey(name: 'dashboard_user_id')
-  final String dashboardUserId;
+  final String? dashboardUserId;
   @JsonKey(name: 'timestamp')
   final String timestamp;
   static const fromJsonFactory = _$WatchlistScreeningAuditTrailFromJson;
@@ -70218,7 +70787,7 @@ extension $WatchlistScreeningAuditTrailExtension
 
   WatchlistScreeningAuditTrail copyWithWrapped(
       {Wrapped<enums.Source>? source,
-      Wrapped<String>? dashboardUserId,
+      Wrapped<String?>? dashboardUserId,
       Wrapped<String>? timestamp}) {
     return WatchlistScreeningAuditTrail(
         source: (source != null ? source.value : this.source),
@@ -70393,7 +70962,7 @@ class WatchlistScreeningEntityCreateResponse {
   @JsonKey(name: 'search_terms')
   final EntityWatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -70401,7 +70970,7 @@ class WatchlistScreeningEntityCreateResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -70475,9 +71044,9 @@ extension $WatchlistScreeningEntityCreateResponseExtension
   WatchlistScreeningEntityCreateResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<EntityWatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityCreateResponse(
@@ -70588,7 +71157,7 @@ class WatchlistScreeningEntityGetResponse {
   @JsonKey(name: 'search_terms')
   final EntityWatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -70596,7 +71165,7 @@ class WatchlistScreeningEntityGetResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -70669,9 +71238,9 @@ extension $WatchlistScreeningEntityGetResponseExtension
   WatchlistScreeningEntityGetResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<EntityWatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityGetResponse(
@@ -70792,7 +71361,7 @@ class WatchlistScreeningEntityHistoryListResponse {
       defaultValue: <EntityWatchlistScreening>[])
   final List<EntityWatchlistScreening> entityWatchlistScreenings;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -70845,7 +71414,7 @@ extension $WatchlistScreeningEntityHistoryListResponseExtension
 
   WatchlistScreeningEntityHistoryListResponse copyWithWrapped(
       {Wrapped<List<EntityWatchlistScreening>>? entityWatchlistScreenings,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityHistoryListResponse(
         entityWatchlistScreenings: (entityWatchlistScreenings != null
@@ -70960,7 +71529,7 @@ class WatchlistScreeningEntityHitListResponse {
       defaultValue: <EntityWatchlistScreeningHit>[])
   final List<EntityWatchlistScreeningHit> entityWatchlistScreeningHits;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -71012,7 +71581,7 @@ extension $WatchlistScreeningEntityHitListResponseExtension
 
   WatchlistScreeningEntityHitListResponse copyWithWrapped(
       {Wrapped<List<EntityWatchlistScreeningHit>>? entityWatchlistScreeningHits,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityHitListResponse(
         entityWatchlistScreeningHits: (entityWatchlistScreeningHits != null
@@ -71163,7 +71732,7 @@ class WatchlistScreeningEntityListResponse {
       defaultValue: <EntityWatchlistScreening>[])
   final List<EntityWatchlistScreening> entityWatchlistScreenings;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory = _$WatchlistScreeningEntityListResponseFromJson;
@@ -71214,7 +71783,7 @@ extension $WatchlistScreeningEntityListResponseExtension
 
   WatchlistScreeningEntityListResponse copyWithWrapped(
       {Wrapped<List<EntityWatchlistScreening>>? entityWatchlistScreenings,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityListResponse(
         entityWatchlistScreenings: (entityWatchlistScreenings != null
@@ -71539,7 +72108,7 @@ class WatchlistScreeningEntityProgramListResponse {
       defaultValue: <EntityWatchlistProgram>[])
   final List<EntityWatchlistProgram> entityWatchlistPrograms;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -71591,7 +72160,7 @@ extension $WatchlistScreeningEntityProgramListResponseExtension
 
   WatchlistScreeningEntityProgramListResponse copyWithWrapped(
       {Wrapped<List<EntityWatchlistProgram>>? entityWatchlistPrograms,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityProgramListResponse(
         entityWatchlistPrograms: (entityWatchlistPrograms != null
@@ -71737,7 +72306,7 @@ class WatchlistScreeningEntityReviewCreateResponse {
   @JsonKey(name: 'dismissed_hits', defaultValue: <String>[])
   final List<String> dismissedHits;
   @JsonKey(name: 'comment')
-  final String comment;
+  final String? comment;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -71808,7 +72377,7 @@ extension $WatchlistScreeningEntityReviewCreateResponseExtension
       {Wrapped<String>? id,
       Wrapped<List<String>>? confirmedHits,
       Wrapped<List<String>>? dismissedHits,
-      Wrapped<String>? comment,
+      Wrapped<String?>? comment,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityReviewCreateResponse(
@@ -71928,7 +72497,7 @@ class WatchlistScreeningEntityReviewListResponse {
       defaultValue: <EntityWatchlistScreeningReview>[])
   final List<EntityWatchlistScreeningReview> entityWatchlistScreeningReviews;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -71982,7 +72551,7 @@ extension $WatchlistScreeningEntityReviewListResponseExtension
   WatchlistScreeningEntityReviewListResponse copyWithWrapped(
       {Wrapped<List<EntityWatchlistScreeningReview>>?
           entityWatchlistScreeningReviews,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityReviewListResponse(
         entityWatchlistScreeningReviews:
@@ -72155,7 +72724,7 @@ class WatchlistScreeningEntityUpdateResponse {
   @JsonKey(name: 'search_terms')
   final EntityWatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -72163,7 +72732,7 @@ class WatchlistScreeningEntityUpdateResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -72237,9 +72806,9 @@ extension $WatchlistScreeningEntityUpdateResponseExtension
   WatchlistScreeningEntityUpdateResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<EntityWatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningEntityUpdateResponse(
@@ -72284,9 +72853,9 @@ class WatchlistScreeningHit {
   @JsonKey(name: 'first_active')
   final String firstActive;
   @JsonKey(name: 'inactive_since')
-  final String inactiveSince;
+  final String? inactiveSince;
   @JsonKey(name: 'historical_since')
-  final String historicalSince;
+  final String? historicalSince;
   @JsonKey(
     name: 'list_code',
     toJson: individualWatchlistCodeToJson,
@@ -72296,7 +72865,7 @@ class WatchlistScreeningHit {
   @JsonKey(name: 'plaid_uid')
   final String plaidUid;
   @JsonKey(name: 'source_uid')
-  final String sourceUid;
+  final String? sourceUid;
   @JsonKey(name: 'analysis')
   final ScreeningHitAnalysis? analysis;
   @JsonKey(name: 'data')
@@ -72386,11 +72955,11 @@ extension $WatchlistScreeningHitExtension on WatchlistScreeningHit {
       {Wrapped<String>? id,
       Wrapped<enums.WatchlistScreeningHitStatus>? reviewStatus,
       Wrapped<String>? firstActive,
-      Wrapped<String>? inactiveSince,
-      Wrapped<String>? historicalSince,
+      Wrapped<String?>? inactiveSince,
+      Wrapped<String?>? historicalSince,
       Wrapped<enums.IndividualWatchlistCode>? listCode,
       Wrapped<String>? plaidUid,
-      Wrapped<String>? sourceUid,
+      Wrapped<String?>? sourceUid,
       Wrapped<ScreeningHitAnalysis?>? analysis,
       Wrapped<ScreeningHitData?>? data}) {
     return WatchlistScreeningHit(
@@ -72484,7 +73053,7 @@ class WatchlistScreeningIndividual {
   @JsonKey(name: 'search_terms')
   final WatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -72492,7 +73061,7 @@ class WatchlistScreeningIndividual {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   static const fromJsonFactory = _$WatchlistScreeningIndividualFromJson;
@@ -72556,9 +73125,9 @@ extension $WatchlistScreeningIndividualExtension
   WatchlistScreeningIndividual copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<WatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail}) {
     return WatchlistScreeningIndividual(
         id: (id != null ? id.value : this.id),
@@ -72679,7 +73248,7 @@ class WatchlistScreeningIndividualCreateResponse {
   @JsonKey(name: 'search_terms')
   final WatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -72687,7 +73256,7 @@ class WatchlistScreeningIndividualCreateResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -72762,9 +73331,9 @@ extension $WatchlistScreeningIndividualCreateResponseExtension
   WatchlistScreeningIndividualCreateResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<WatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualCreateResponse(
@@ -72873,7 +73442,7 @@ class WatchlistScreeningIndividualGetResponse {
   @JsonKey(name: 'search_terms')
   final WatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -72881,7 +73450,7 @@ class WatchlistScreeningIndividualGetResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -72955,9 +73524,9 @@ extension $WatchlistScreeningIndividualGetResponseExtension
   WatchlistScreeningIndividualGetResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<WatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualGetResponse(
@@ -73075,7 +73644,7 @@ class WatchlistScreeningIndividualHistoryListResponse {
       defaultValue: <WatchlistScreeningIndividual>[])
   final List<WatchlistScreeningIndividual> watchlistScreenings;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -73125,7 +73694,7 @@ extension $WatchlistScreeningIndividualHistoryListResponseExtension
 
   WatchlistScreeningIndividualHistoryListResponse copyWithWrapped(
       {Wrapped<List<WatchlistScreeningIndividual>>? watchlistScreenings,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualHistoryListResponse(
         watchlistScreenings: (watchlistScreenings != null
@@ -73237,7 +73806,7 @@ class WatchlistScreeningIndividualHitListResponse {
       name: 'watchlist_screening_hits', defaultValue: <WatchlistScreeningHit>[])
   final List<WatchlistScreeningHit> watchlistScreeningHits;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -73288,7 +73857,7 @@ extension $WatchlistScreeningIndividualHitListResponseExtension
 
   WatchlistScreeningIndividualHitListResponse copyWithWrapped(
       {Wrapped<List<WatchlistScreeningHit>>? watchlistScreeningHits,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualHitListResponse(
         watchlistScreeningHits: (watchlistScreeningHits != null
@@ -73437,7 +74006,7 @@ class WatchlistScreeningIndividualListResponse {
       defaultValue: <WatchlistScreeningIndividual>[])
   final List<WatchlistScreeningIndividual> watchlistScreenings;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -73486,7 +74055,7 @@ extension $WatchlistScreeningIndividualListResponseExtension
 
   WatchlistScreeningIndividualListResponse copyWithWrapped(
       {Wrapped<List<WatchlistScreeningIndividual>>? watchlistScreenings,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualListResponse(
         watchlistScreenings: (watchlistScreenings != null
@@ -73807,7 +74376,7 @@ class WatchlistScreeningIndividualProgramListResponse {
       name: 'watchlist_programs', defaultValue: <IndividualWatchlistProgram>[])
   final List<IndividualWatchlistProgram> watchlistPrograms;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -73857,7 +74426,7 @@ extension $WatchlistScreeningIndividualProgramListResponseExtension
 
   WatchlistScreeningIndividualProgramListResponse copyWithWrapped(
       {Wrapped<List<IndividualWatchlistProgram>>? watchlistPrograms,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualProgramListResponse(
         watchlistPrograms: (watchlistPrograms != null
@@ -74001,7 +74570,7 @@ class WatchlistScreeningIndividualReviewCreateResponse {
   @JsonKey(name: 'dismissed_hits', defaultValue: <String>[])
   final List<String> dismissedHits;
   @JsonKey(name: 'comment')
-  final String comment;
+  final String? comment;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -74072,7 +74641,7 @@ extension $WatchlistScreeningIndividualReviewCreateResponseExtension
       {Wrapped<String>? id,
       Wrapped<List<String>>? confirmedHits,
       Wrapped<List<String>>? dismissedHits,
-      Wrapped<String>? comment,
+      Wrapped<String?>? comment,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualReviewCreateResponse(
@@ -74189,7 +74758,7 @@ class WatchlistScreeningIndividualReviewListResponse {
       defaultValue: <WatchlistScreeningReview>[])
   final List<WatchlistScreeningReview> watchlistScreeningReviews;
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @JsonKey(name: 'request_id')
   final String requestId;
   static const fromJsonFactory =
@@ -74242,7 +74811,7 @@ extension $WatchlistScreeningIndividualReviewListResponseExtension
 
   WatchlistScreeningIndividualReviewListResponse copyWithWrapped(
       {Wrapped<List<WatchlistScreeningReview>>? watchlistScreeningReviews,
-      Wrapped<String>? nextCursor,
+      Wrapped<String?>? nextCursor,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualReviewListResponse(
         watchlistScreeningReviews: (watchlistScreeningReviews != null
@@ -74413,7 +74982,7 @@ class WatchlistScreeningIndividualUpdateResponse {
   @JsonKey(name: 'search_terms')
   final WatchlistScreeningSearchTerms searchTerms;
   @JsonKey(name: 'assignee')
-  final String assignee;
+  final String? assignee;
   @JsonKey(
     name: 'status',
     toJson: watchlistScreeningStatusToJson,
@@ -74421,7 +74990,7 @@ class WatchlistScreeningIndividualUpdateResponse {
   )
   final enums.WatchlistScreeningStatus status;
   @JsonKey(name: 'client_user_id')
-  final String clientUserId;
+  final String? clientUserId;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   @JsonKey(name: 'request_id')
@@ -74496,9 +75065,9 @@ extension $WatchlistScreeningIndividualUpdateResponseExtension
   WatchlistScreeningIndividualUpdateResponse copyWithWrapped(
       {Wrapped<String>? id,
       Wrapped<WatchlistScreeningSearchTerms>? searchTerms,
-      Wrapped<String>? assignee,
+      Wrapped<String?>? assignee,
       Wrapped<enums.WatchlistScreeningStatus>? status,
-      Wrapped<String>? clientUserId,
+      Wrapped<String?>? clientUserId,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail,
       Wrapped<String>? requestId}) {
     return WatchlistScreeningIndividualUpdateResponse(
@@ -74632,7 +75201,7 @@ class WatchlistScreeningReview {
   @JsonKey(name: 'dismissed_hits', defaultValue: <String>[])
   final List<String> dismissedHits;
   @JsonKey(name: 'comment')
-  final String comment;
+  final String? comment;
   @JsonKey(name: 'audit_trail')
   final WatchlistScreeningAuditTrail auditTrail;
   static const fromJsonFactory = _$WatchlistScreeningReviewFromJson;
@@ -74691,7 +75260,7 @@ extension $WatchlistScreeningReviewExtension on WatchlistScreeningReview {
       {Wrapped<String>? id,
       Wrapped<List<String>>? confirmedHits,
       Wrapped<List<String>>? dismissedHits,
-      Wrapped<String>? comment,
+      Wrapped<String?>? comment,
       Wrapped<WatchlistScreeningAuditTrail>? auditTrail}) {
     return WatchlistScreeningReview(
         id: (id != null ? id.value : this.id),
@@ -74723,11 +75292,11 @@ class WatchlistScreeningSearchTerms {
   @JsonKey(name: 'legal_name')
   final String legalName;
   @JsonKey(name: 'date_of_birth')
-  final String dateOfBirth;
+  final String? dateOfBirth;
   @JsonKey(name: 'document_number')
-  final String documentNumber;
+  final String? documentNumber;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'version')
   final double version;
   static const fromJsonFactory = _$WatchlistScreeningSearchTermsFromJson;
@@ -74792,9 +75361,9 @@ extension $WatchlistScreeningSearchTermsExtension
   WatchlistScreeningSearchTerms copyWithWrapped(
       {Wrapped<String>? watchlistProgramId,
       Wrapped<String>? legalName,
-      Wrapped<String>? dateOfBirth,
-      Wrapped<String>? documentNumber,
-      Wrapped<String>? country,
+      Wrapped<String?>? dateOfBirth,
+      Wrapped<String?>? documentNumber,
+      Wrapped<String?>? country,
       Wrapped<double>? version}) {
     return WatchlistScreeningSearchTerms(
         watchlistProgramId: (watchlistProgramId != null
@@ -75163,7 +75732,7 @@ class LoanIdentifier {
     toJson: loanIdentifierTypeToJson,
     fromJson: loanIdentifierTypeFromJson,
   )
-  final enums.LoanIdentifierType loanIdentifierType;
+  final enums.LoanIdentifierType? loanIdentifierType;
   static const fromJsonFactory = _$LoanIdentifierFromJson;
   static const toJsonFactory = _$LoanIdentifierToJson;
   Map<String, dynamic> toJson() => _$LoanIdentifierToJson(this);
@@ -75200,7 +75769,7 @@ extension $LoanIdentifierExtension on LoanIdentifier {
 
   LoanIdentifier copyWithWrapped(
       {Wrapped<String?>? loanIdentifier,
-      Wrapped<enums.LoanIdentifierType>? loanIdentifierType}) {
+      Wrapped<enums.LoanIdentifierType?>? loanIdentifierType}) {
     return LoanIdentifier(
         loanIdentifier: (loanIdentifier != null
             ? loanIdentifier.value
@@ -75610,7 +76179,7 @@ class TaxpayerIdentifier {
     toJson: taxpayerIdentifierTypeToJson,
     fromJson: taxpayerIdentifierTypeFromJson,
   )
-  final enums.TaxpayerIdentifierType taxpayerIdentifierType;
+  final enums.TaxpayerIdentifierType? taxpayerIdentifierType;
   @JsonKey(name: 'TaxpayerIdentifierValue')
   final String? taxpayerIdentifierValue;
   static const fromJsonFactory = _$TaxpayerIdentifierFromJson;
@@ -75652,7 +76221,7 @@ extension $TaxpayerIdentifierExtension on TaxpayerIdentifier {
   }
 
   TaxpayerIdentifier copyWithWrapped(
-      {Wrapped<enums.TaxpayerIdentifierType>? taxpayerIdentifierType,
+      {Wrapped<enums.TaxpayerIdentifierType?>? taxpayerIdentifierType,
       Wrapped<String?>? taxpayerIdentifierValue}) {
     return TaxpayerIdentifier(
         taxpayerIdentifierType: (taxpayerIdentifierType != null
@@ -76713,7 +77282,7 @@ class AssetTransactionDetail {
     toJson: assetTransactionCategoryTypeToJson,
     fromJson: assetTransactionCategoryTypeFromJson,
   )
-  final enums.AssetTransactionCategoryType assetTransactionCategoryType;
+  final enums.AssetTransactionCategoryType? assetTransactionCategoryType;
   @JsonKey(name: 'FinancialInstitutionTransactionIdentifier')
   final String? financialInstitutionTransactionIdentifier;
   static const fromJsonFactory = _$AssetTransactionDetailFromJson;
@@ -76818,7 +77387,8 @@ extension $AssetTransactionDetailExtension on AssetTransactionDetail {
       Wrapped<enums.AssetTransactionType>? assetTransactionType,
       Wrapped<String?>? assetTransactionPaidByName,
       Wrapped<String?>? assetTransactionTypeAdditionalDescription,
-      Wrapped<enums.AssetTransactionCategoryType>? assetTransactionCategoryType,
+      Wrapped<enums.AssetTransactionCategoryType?>?
+          assetTransactionCategoryType,
       Wrapped<String?>? financialInstitutionTransactionIdentifier}) {
     return AssetTransactionDetail(
         assetTransactionUniqueIdentifier:
@@ -78164,7 +78734,7 @@ class Item {
   @JsonKey(name: 'webhook')
   final String? webhook;
   @JsonKey(name: 'error')
-  final PlaidError error;
+  final PlaidError? error;
   @JsonKey(
     name: 'available_products',
     toJson: productsListToJson,
@@ -78283,7 +78853,7 @@ extension $ItemExtension on Item {
       {Wrapped<String>? itemId,
       Wrapped<String?>? institutionId,
       Wrapped<String?>? webhook,
-      Wrapped<PlaidError>? error,
+      Wrapped<PlaidError?>? error,
       Wrapped<List<enums.Products>>? availableProducts,
       Wrapped<List<enums.Products>>? billedProducts,
       Wrapped<List<enums.Products>?>? products,
